@@ -4,6 +4,7 @@ import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -33,6 +34,8 @@ class RegistrationActivity : AppCompatActivity()  , View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
         setRegViews()
+
+        Log.i("commit","Test")
     }
 
     private fun setRegViews() {
