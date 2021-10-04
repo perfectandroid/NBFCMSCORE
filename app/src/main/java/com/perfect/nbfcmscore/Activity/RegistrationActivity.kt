@@ -56,9 +56,9 @@ class RegistrationActivity : AppCompatActivity()  , View.OnClickListener {
             R.id.btreg->{
 
                 accno = etxt_accno!!.text.toString()
-                validation()
-               /* intent = Intent(applicationContext, OTPActivity::class.java)
-                startActivity(intent)*/
+               // validation()
+                intent = Intent(applicationContext, OTPActivity::class.java)
+                startActivity(intent)
             }
             R.id.tvlogin-> {
                 intent = Intent(applicationContext, LoginActivity::class.java)

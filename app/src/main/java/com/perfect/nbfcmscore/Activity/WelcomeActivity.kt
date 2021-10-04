@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.perfect.nbfcmscore.R
 
 class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
@@ -15,6 +17,9 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_welcome)
         setRegViews()
+
+        val imwelcome: ImageView = findViewById(R.id.imwelcome)
+        Glide.with(this).load(R.drawable.welcomegif).into(imwelcome)
     }
 
     private fun setRegViews() {

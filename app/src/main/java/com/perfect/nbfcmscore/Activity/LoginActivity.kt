@@ -42,7 +42,7 @@ class LoginActivity : AppCompatActivity() , View.OnClickListener {
     override fun onClick(v: View) {
         when(v.id){
             R.id.btlogin->{
-                getlogin()
+              //  getlogin()
                 intent = Intent(applicationContext, OTPActivity::class.java)
                 startActivity(intent)
             }
