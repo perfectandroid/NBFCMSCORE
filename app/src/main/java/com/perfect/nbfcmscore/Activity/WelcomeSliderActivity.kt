@@ -10,11 +10,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
+import com.bumptech.glide.Glide
 import com.perfect.nbfcmscore.Helper.PrefManager
 import com.perfect.nbfcmscore.R
 
@@ -54,6 +56,7 @@ class WelcomeSliderActivity : AppCompatActivity() {
             R.layout.welcome_slide2,
             R.layout.welcome_slide3
         )
+
         // adding bottom dots
         addBottomDots(0)
         // making notification bar transparent
@@ -96,7 +99,8 @@ class WelcomeSliderActivity : AppCompatActivity() {
 
     private fun launchHomeScreen() {
         prefManager!!.isFirstTimeLaunch = false
-        startActivity(Intent(this@WelcomeSliderActivity, WelcomeActivity::class.java))
+       // startActivity(Intent(this@WelcomeSliderActivity, WelcomeActivity::class.java))
+        startActivity(Intent(this@WelcomeSliderActivity, LanguageSelectionActivity::class.java))
         finish()
     }
 

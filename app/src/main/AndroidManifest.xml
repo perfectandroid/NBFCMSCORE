@@ -20,6 +20,9 @@
             android:name=".Activity.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".Activity.LanguageSelectionActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".Activity.OTPActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

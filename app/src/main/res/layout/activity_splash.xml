@@ -3,21 +3,52 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/mainbg"
     android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/transparentbottom">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/splashbg"
-        android:layout_gravity="center"
-        android:gravity="center"
-        tools:ignore="MissingConstraints" >
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:ignore="MissingConstraints" >
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginRight="60dp"
+                    android:layout_marginBottom="60dp"
+                    android:src="@drawable/applogo" />
+
+                <ImageView
+                    android:id="@+id/imsplashlogo"
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center" />
+            </LinearLayout>
+        </ScrollView>
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:src="@drawable/applogo"/>
-    </LinearLayout>
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/companylogo"/>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
