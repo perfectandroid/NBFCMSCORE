@@ -2,6 +2,8 @@ package com.perfect.nbfcmscore.Helper
 
 import android.content.Context
 import android.util.Log
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import java.io.IOException
 import java.security.KeyManagementException
 import java.security.KeyStore
@@ -14,9 +16,18 @@ import javax.net.ssl.*
 
 object Config {
     val CERT_NAME = "static-vm.pem"  //QA
-    val BASE_URL = "https://202.164.150.65:14001/NbfcAndroidAPI/api/"  //QA
+    val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/api/"  //DEVELOPMENT
 
     const val SHARED_PREF = "loginsession"
+    const val SHARED_PREF1 = "FK_Customer"
+    const val SHARED_PREF2 = "CusMobile"
+    const val SHARED_PREF3 = "CustomerName"
+    const val SHARED_PREF4 = "Address"
+    const val SHARED_PREF5 = "Email"
+    const val SHARED_PREF6 = "Gender"
+    const val SHARED_PREF7 = "DateOfBirth"
+    const val SHARED_PREF8 = "Token"
+
 
     fun getHostnameVerifier(): HostnameVerifier {
         return HostnameVerifier { hostname, session -> true }
@@ -84,4 +95,15 @@ object Config {
     }
 
 
+    object Utils {
+        fun hideSoftKeyBoard(context: Context, view: View) {
+            try {
+                val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm?.hideSoftInputFromWindow(view.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+            } catch (e: Exception) {
+                // TODO: handle exception
+                e.printStackTrace()
+            }
+        }
+    }
 }

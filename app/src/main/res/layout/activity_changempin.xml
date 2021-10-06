@@ -26,7 +26,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Forget MPIN"
+                        android:text="Change MPIN"
                         android:padding="10dp"
                         android:textColor="@color/white"
                         android:textStyle="bold"
@@ -49,7 +49,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Forget Your Password ?"
+                        android:text="New Credentials"
                         android:textColor="@color/white"
                         android:textStyle="bold"
                         android:textSize="18dp"
@@ -63,7 +63,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="We just need your registered mobile number to sent you new password."
+                        android:text="We just need your old &amp; new MPIN for changing your MPIN credentials."
                         android:textColor="@color/white"
                         android:textSize="15dp"
                         android:layout_gravity="center"
@@ -73,64 +73,51 @@
                         android:layout_marginBottom="10dp"/>
 
 
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:background="@drawable/btn_bg2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginRight="25dp"
-                        android:layout_marginTop="25dp"
-                        android:layout_marginBottom="10dp">
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/india"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:layout_margin="10dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="+91"
-                            android:textColor="@color/white"
-                            android:textStyle="bold"
-                            android:textSize="15dp"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"/>
-                        <View
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/white"/>
 
                         <EditText
-                            android:id="@+id/etxt_mob"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/etxt_oldpin"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Enter Mobile Number"
+                            android:hint="Enter MPIN"
                             android:textColor="@color/white"
                             android:textColorHint="@color/white"
                             android:textStyle="bold"
                             android:textSize="15dp"
-                            android:layout_gravity="center"
-                            android:background="@color/color_activity_transparent"
-                            android:maxLength="10"
-                            android:gravity="center"
+                            android:background="@drawable/btn_bg2"
+                            android:drawablePadding="10dp"
+                            android:drawableLeft="@drawable/mpinicon"
+                            android:maxLength="6"
+                            android:padding="10dp"
                             android:inputType="phone"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginRight="25dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="10dp"/>
-                    </LinearLayout>
+
+                        <EditText
+                            android:id="@+id/etxt_newpin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Enter new MPIN"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
+                            android:textStyle="bold"
+                            android:drawablePadding="10dp"
+                            android:padding="10dp"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginRight="25dp"
+                            android:drawableLeft="@drawable/newmpinicon"
+                            android:textSize="15dp"
+                            android:background="@drawable/btn_bg2"
+                            android:maxLength="6"
+                            android:inputType="phone"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"/>
 
 
 
                     <Button
-                        android:id="@+id/btforgrt"
+                        android:id="@+id/btcontinue"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:text="Continue"

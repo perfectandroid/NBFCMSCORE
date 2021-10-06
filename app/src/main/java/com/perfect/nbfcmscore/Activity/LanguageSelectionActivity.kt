@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.perfect.nbfcmscore.R
 
 class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
@@ -13,6 +15,9 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_languagesectection)
         setRegViews()
+
+        val imglogo: ImageView = findViewById(R.id.imglogo)
+        Glide.with(this).load(R.drawable.language).into(imglogo)
     }
 
     private fun setRegViews() {

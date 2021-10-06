@@ -14,13 +14,16 @@
 
             <ImageView
                 android:id="@+id/imslider2"
-                android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
                 android:layout_marginTop="50dp"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginBottom="30dp"
-                android:src="@drawable/welcomeimg"/>
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="50dp"
+                android:layout_gravity="center"
+                android:src="@drawable/siderimg2"
+                android:padding="40dp"
+                android:background="@drawable/welcomeimg"/>
 
             <TextView
                 android:id="@+id/tvHeader2"
@@ -34,7 +37,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:textStyle="bold"
-                android:text="Easy Payment"
+                android:text="Branch Details"
                 android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/tvdescriptn2"
@@ -46,7 +49,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="20dp"
                 android:textSize="15dp"
-                android:text="Easy Payments is a complete bill payment portal that facilitates fee collection arrangement for Educational institutions, Housing sccieties and SME customers."
+                android:text="The easiest way to find your bank branch is to log in and go to your branch details page. This should give you the branch name, address, contact details, opening &amp; closing time etc.  You can also locate your branch on Map &amp; can get exact location by tracking."
                 android:textColor="@color/white"/>
 
         </LinearLayout>
