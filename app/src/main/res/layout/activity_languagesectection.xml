@@ -57,8 +57,13 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
                         android:textStyle="bold"
-                        android:text="Select Language Of Your Choice"
+                        android:text="Select Language"
                         android:textColor="@color/white"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_Languagelist"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
                 </LinearLayout>
             </ScrollView>
         </RelativeLayout>

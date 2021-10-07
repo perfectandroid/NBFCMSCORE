@@ -17,6 +17,7 @@ import javax.net.ssl.*
 object Config {
     val CERT_NAME = "static-vm.pem"  //QA
     val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/api/"  //DEVELOPMENT
+    val IMAGE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/"  //DEVELOPMENT
 
     const val SHARED_PREF = "loginsession"
     const val SHARED_PREF1 = "FK_Customer"
@@ -27,6 +28,7 @@ object Config {
     const val SHARED_PREF6 = "Gender"
     const val SHARED_PREF7 = "DateOfBirth"
     const val SHARED_PREF8 = "Token"
+    const val SHARED_PREF9 = "ID_Languages"
 
 
     fun getHostnameVerifier(): HostnameVerifier {
