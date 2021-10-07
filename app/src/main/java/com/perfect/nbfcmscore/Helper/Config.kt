@@ -29,6 +29,12 @@ object Config {
     const val SHARED_PREF7 = "DateOfBirth"
     const val SHARED_PREF8 = "Token"
     const val SHARED_PREF9 = "ID_Languages"
+    const val SHARED_PREF10 = "AppStoreLink"
+    const val SHARED_PREF11= "PlayStoreLink"
+    const val SHARED_PREF12 = "ProductName"
+    const val SHARED_PREF13 = "CompanyLogoImageCode"
+    const val SHARED_PREF14 = "AppIconImageCode"
+    const val SHARED_PREF15 = "ResellerName"
 
 
     fun getHostnameVerifier(): HostnameVerifier {

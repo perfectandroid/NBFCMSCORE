@@ -113,6 +113,7 @@
                         android:background="@color/white"/>
 
                     <EditText
+                        android:id="@+id/etxt_mob"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="Enter Mobile Number"

@@ -1,11 +1,13 @@
 package com.perfect.nbfcmscore.Activity
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
@@ -26,6 +28,8 @@ import javax.net.ssl.*
 
 class LoginActivity : AppCompatActivity() , View.OnClickListener {
     private var progressDialog: ProgressDialog? = null
+    var etxt_mob: EditText? = null
+    var btlogin: Button? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -34,7 +38,8 @@ class LoginActivity : AppCompatActivity() , View.OnClickListener {
 
     private fun setRegViews() {
         val tvforgetpassword = findViewById<TextView>(R.id.tvforgetpassword) as TextView
-        val btlogin = findViewById<Button>(R.id.btlogin) as Button
+        etxt_mob = findViewById<EditText>(R.id.etxt_mob) as EditText
+        btlogin = findViewById<Button>(R.id.btlogin) as Button
         tvforgetpassword!!.setOnClickListener(this)
         btlogin!!.setOnClickListener(this)
     }
@@ -42,14 +47,24 @@ class LoginActivity : AppCompatActivity() , View.OnClickListener {
     override fun onClick(v: View) {
         when(v.id){
             R.id.btlogin->{
-              //  getlogin()
-                intent = Intent(applicationContext, OTPActivity::class.java)
-                startActivity(intent)
+                validation()
             }
             R.id.tvforgetpassword-> {
                 intent = Intent(applicationContext, ForgetActivity::class.java)
                 startActivity(intent)
             }
+        }
+    }
+
+    private fun validation() {
+        if (etxt_mob!!.text.toString() == null || etxt_mob!!.text.toString().isEmpty()) {
+            etxt_mob!!.setError("Please Enter Mobile Number")
+        }
+        else if (etxt_mob!!.text.toString().isNotEmpty() && etxt_mob!!.text.toString().length!=10) {
+            etxt_mob!!.setError("Please Enter Valid Mobile Number")
+        }else{
+            etxt_mob!!.text=null
+            getlogin()
         }
     }
 
@@ -76,17 +91,12 @@ class LoginActivity : AppCompatActivity() , View.OnClickListener {
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .client(client)
                         .build()
-
                     val apiService = retrofit.create(ApiInterface::class.java!!)
                     val requestObject1 = JSONObject()
                     try {
-
-                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("1"))
-                        requestObject1.put("MobileNumber", MscoreApplication.encryptStart(""))
-                        requestObject1.put("AccountNumber", MscoreApplication.encryptStart("2454"))
+                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("6"))
+                        requestObject1.put("MobileNumber", MscoreApplication.encryptStart(etxt_mob!!.text.toString()))
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
-                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(getResources().getString(R.string.BankHeader)))
-
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -96,13 +106,11 @@ class LoginActivity : AppCompatActivity() , View.OnClickListener {
                         )
                         mySnackbar.show()
                     }
-
                     val body = RequestBody.create(
                         okhttp3.MediaType.parse("application/json; charset=utf-8"),
                         requestObject1.toString()
                     )
-                    //   val call = apiService.getLogin(body)
-                    val call = apiService.getloginverification(body)
+                    val call = apiService.getCustomerLoginVerification(body)
                     call.enqueue(object : retrofit2.Callback<String> {
                         override fun onResponse(
                             call: retrofit2.Call<String>, response:
@@ -112,74 +120,77 @@ class LoginActivity : AppCompatActivity() , View.OnClickListener {
                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 if (jObject.getString("StatusCode") == "0") {
+                                    val jobjt = jObject.getJSONObject("CustomerLoginVerification")
+                                    val builder = AlertDialog.Builder(this@LoginActivity, R.style.MyDialogTheme)
+                                    builder.setMessage(""+jobjt.getString("ResponseMessage"))
+                                    builder.setPositiveButton("Ok"){dialogInterface, which ->
 
-
-
-
-                                } else if (jObject.getString("StatusCode") == "-12") {
-
-
+                                        val jobjt = jObject.getJSONObject("CustomerLoginVerification")
+                                        intent = Intent(applicationContext, OTPActivity::class.java)
+                                        intent.putExtra("FK_Customer", jobjt.getString("FK_Customer"))
+                                        intent.putExtra("Token", jobjt.getString("Token"))
+                                        intent.putExtra("CusMobile", jobjt.getString("CusMobile"))
+                                        startActivity(intent)
+                                        finish()
+                                    }
+                                    val alertDialog: AlertDialog = builder.create()
+                                    alertDialog.setCancelable(false)
+                                    alertDialog.show()
                                 } else {
-                                    // val jobjt = jObject.getJSONObject("LogInfo")
-                                   /* val dialogBuilder = AlertDialog.Builder(
-                                        this@LoginActivity,
-                                        R.style.MyDialogTheme
-                                    )
-                                    dialogBuilder.setMessage(jObject.getString("EXMessage"))
-                                        .setCancelable(false)
-                                        .setPositiveButton(
-                                            "OK",
-                                            DialogInterface.OnClickListener { dialog, id ->
-                                                dialog.dismiss()
-
-                                            })
-                                    val alert = dialogBuilder.create()
-                                    alert.show()
-                                    val pbutton = alert.getButton(DialogInterface.BUTTON_POSITIVE)
-                                    pbutton.setTextColor(Color.MAGENTA)*/
+                                    val builder = AlertDialog.Builder(this@LoginActivity, R.style.MyDialogTheme)
+                                    builder.setMessage(""+jObject.getString("EXMessage"))
+                                    builder.setPositiveButton("Ok"){dialogInterface, which ->
+                                    }
+                                    val alertDialog: AlertDialog = builder.create()
+                                    alertDialog.setCancelable(false)
+                                    alertDialog.show()
                                 }
                             }
                             catch (e: Exception) {
                                 progressDialog!!.dismiss()
-                               /* Log.e(TAG," 382   "+e.toString())
-                                val mySnackbar = Snackbar.make(
-                                    findViewById(R.id.rl_main),
-                                    " Some technical issues.", Snackbar.LENGTH_SHORT
-                                )
-                                mySnackbar.show()*/
+                                val builder = AlertDialog.Builder(this@LoginActivity, R.style.MyDialogTheme)
+                                builder.setMessage("Some technical issues.")
+                                builder.setPositiveButton("Ok"){dialogInterface, which ->
+                                }
+                                val alertDialog: AlertDialog = builder.create()
+                                alertDialog.setCancelable(false)
+                                alertDialog.show()
                                 e.printStackTrace()
                             }
                         }
 
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
-                          //  Log.e(TAG," 394   "+t.toString())
-                            val mySnackbar = Snackbar.make(
-                                findViewById(R.id.rl_main),
-                                " Some technical issues.", Snackbar.LENGTH_SHORT
-                            )
-                            mySnackbar.show()
+                            val builder = AlertDialog.Builder(this@LoginActivity, R.style.MyDialogTheme)
+                            builder.setMessage("Some technical issues.")
+                            builder.setPositiveButton("Ok"){dialogInterface, which ->
+                            }
+                            val alertDialog: AlertDialog = builder.create()
+                            alertDialog.setCancelable(false)
+                            alertDialog.show()
                         }
                     })
 
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
                     e.printStackTrace()
-                   // Log.e(TAG," 406   "+e.toString())
-                    val mySnackbar = Snackbar.make(
-                        findViewById(R.id.rl_main),
-                        " Some technical issues.", Snackbar.LENGTH_SHORT
-                    )
-                    mySnackbar.show()
+                    val builder = AlertDialog.Builder(this@LoginActivity, R.style.MyDialogTheme)
+                    builder.setMessage("Some technical issues.")
+                    builder.setPositiveButton("Ok"){dialogInterface, which ->
+                    }
+                    val alertDialog: AlertDialog = builder.create()
+                    alertDialog.setCancelable(false)
+                    alertDialog.show()
                 }
             }
             false -> {
-                val mySnackbar = Snackbar.make(
-                    findViewById(R.id.rl_main),
-                    "No Internet Connection!!",
-                    Snackbar.LENGTH_SHORT
-                )
-                mySnackbar.show()
+                val builder = AlertDialog.Builder(this@LoginActivity, R.style.MyDialogTheme)
+                builder.setMessage("No Internet Connection.")
+                builder.setPositiveButton("Ok"){dialogInterface, which ->
+                }
+                val alertDialog: AlertDialog = builder.create()
+                alertDialog.setCancelable(false)
+                alertDialog.show()
             }
         }
 
