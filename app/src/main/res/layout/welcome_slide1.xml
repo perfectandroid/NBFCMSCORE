@@ -12,13 +12,16 @@
             android:orientation="vertical">
             <ImageView
                 android:id="@+id/imslider1"
-                android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
                 android:layout_marginTop="50dp"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginBottom="30dp"
-                android:src="@drawable/welcomeimg"/>
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="50dp"
+                android:layout_gravity="center"
+                android:src="@drawable/siderimg1"
+                android:padding="40dp"
+                android:background="@drawable/welcomeimg"/>
             <TextView
                 android:id="@+id/tvHeader1"
                 android:layout_width="wrap_content"
@@ -43,7 +46,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="20dp"
                 android:textSize="15dp"
-                android:text="Easy Payments is a complete bill payment portal that facilitates fee collection arrangement for Educational institutions, Housing sccieties and SME customers."
+                android:text="Send or receive money without any trouble with this app’s fund transfer channels. We make transferring funds from your Bank account very simple and convenient. In fact, there are various options that we provide for transferring your funds online."
                 android:textColor="@color/white"/>
 
         </LinearLayout>

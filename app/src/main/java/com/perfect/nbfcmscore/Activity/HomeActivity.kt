@@ -3,6 +3,7 @@ package com.perfect.nbfcmscore.Activity
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
@@ -11,15 +12,25 @@ import android.widget.AdapterView.OnItemClickListener
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.viewpager.widget.ViewPager
 import com.google.android.material.navigation.NavigationView
+import com.perfect.nbfcmscore.Adapter.BannerAdapter
 import com.perfect.nbfcmscore.Adapter.NavMenuAdapter
 import com.perfect.nbfcmscore.R
+import me.relex.circleindicator.CircleIndicator
+import java.util.*
 
 class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     var lvNavMenu: ListView? = null
     var drawer: DrawerLayout? = null
     var imgMenu: ImageView? = null
+
+    private var mPager: ViewPager? = null
+    private var indicator: CircleIndicator? = null
+    private var currentPage = 0
+    private val XMEN = arrayOf<Int>(R.drawable.ban1, R.drawable.ban2, R.drawable.ban3, R.drawable.ban4)
+    private val XMENArray = ArrayList<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +39,28 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         setInitialise()
         setRegister()
         setHomeNavMenu()
+        init()
+
+    }
+
+    private fun init() {
+        for (i in 0 until 4)
+            XMENArray.add(XMEN[i])
+        mPager!!.adapter = BannerAdapter(this, XMENArray)
+        indicator!!.setViewPager(mPager)
+        val handler = Handler()
+        val Update = Runnable {
+            if (currentPage === 4) {
+                currentPage = 0
+            }
+            mPager!!.setCurrentItem(currentPage++, true)
+        }
+        val swipeTimer = Timer()
+        swipeTimer.schedule(object : TimerTask() {
+            override fun run() {
+                handler.post(Update)
+            }
+        }, 3000, 3000)
     }
 
     open fun setInitialise() {
@@ -38,6 +71,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
     open fun setRegister() {
         imgMenu!!.setOnClickListener(this)
+        mPager = findViewById(R.id.pager)
+        indicator =findViewById(R.id.indicator)
     }
 
     open fun setHomeNavMenu() {

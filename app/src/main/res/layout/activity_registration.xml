@@ -34,16 +34,17 @@
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
+                    android:id="@+id/imgLogo"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:src="@drawable/signup"
+                    android:layout_height="200dp"
                     android:layout_gravity="center"
+                    android:src="@drawable/login_reg_gif"
                     android:gravity="center"
-                    android:layout_marginBottom="100dp"/>
+                    android:layout_marginBottom="50dp"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -146,7 +147,6 @@
                         android:layout_height="wrap_content"
                         android:hint="Enter Mobile Number"
                         android:textColor="@color/white"
-                        android:textStyle="bold"
                         android:textSize="15dp"
                         android:layout_gravity="center"
                         android:background="@color/color_activity_transparent"
@@ -181,14 +181,14 @@
                         android:id="@+id/etxt_accno"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Enter Account number"
+                        android:hint="Enter Last 4 Digit Of A/C No."
                         android:textColor="@color/white"
-                        android:textStyle="bold"
                         android:textSize="15dp"
                         android:layout_gravity="center"
                         android:background="@color/color_activity_transparent"
                         android:textColorHint="@color/white"
                         android:inputType="number"
+                        android:maxLength="4"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"
@@ -292,7 +292,7 @@
                     android:layout_marginLeft="35dp"
                     android:layout_marginRight="35dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginBottom="10dp"/>
+                    android:layout_marginBottom="50dp"/>
 
 
 

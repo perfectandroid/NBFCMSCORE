@@ -9,14 +9,21 @@
 
 
     <color name="colorPrimary">#014c60</color>
-    <color name="colorPrimaryDark">#024151</color>
+    <color name="colorPrimaryDark">#09160c</color>
     <color name="colorPrimaryExtraDark">#00232C</color>
     <color name="colorAccent">#b4dd7f</color>
-    <color name="colorViolet">#305577</color>
+    <color name="colortopheader">#1e3120</color>
+    <color name="colorPrimarylight">#CB51A6BC</color>
+    <color name="colorAccentlight">#CDCEECA8</color>
+    <color name="bgcolour">#e7fdf1</color>
+    <color name="navtopcolour">#014c60</color>
+    <color name="navbottompcolour">#50753b</color>
 
+    <color name="colorViolet">#305577</color>
     <color name="coloryellow">#FFEB3B</color>
     <color name="grey">#808080</color>
     <color name="greylight">#E1DFDF</color>
+    <color name="green">#127317</color>
 
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
@@ -25,6 +32,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="blue">#0168BA</color>
 
     <color name="color_activity_transparent">#00000000</color>
 

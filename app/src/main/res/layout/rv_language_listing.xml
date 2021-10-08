@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_marginRight="30dp"
+    android:layout_marginLeft="30dp"
+    android:layout_marginBottom="10dp"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:id="@+id/llmain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:background="@drawable/btn_bg3"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
+        <ImageView
+            android:layout_width="1dp"
+            android:layout_height="20dp"
+            android:layout_margin="5dp"
+            android:id="@+id/imlogo"/>
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/lang_shortname"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@drawable/tvbg"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:textSize="25dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lang_name"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_gravity="center"
+            android:gravity="left"
+            android:padding="10dp"
+            android:drawableRight="@drawable/arrowright"
+            android:textStyle="bold"
+            android:textSize="15dp"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
