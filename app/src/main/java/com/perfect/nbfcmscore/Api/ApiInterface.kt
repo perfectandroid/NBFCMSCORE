@@ -22,6 +22,15 @@ interface ApiInterface {
     @POST("Customer/ResellerDetails")
     fun getResellerDetails(@Body body: RequestBody):Call<String>
 
+    @POST("AccountSummary/CustomerLoanAndDepositDetails")
+    fun getCustomerLoanAndDepositDetails(@Body body: RequestBody):Call<String>
+
+    @POST("AccountSummary/AccountModuleWiseDetailsList")
+    fun getAccountModuleWiseDetailsList(@Body body: RequestBody):Call<String>
+
+    @POST("AccountSummary/AccountMiniStatement")
+    fun getAccountMiniStatement(@Body body: RequestBody):Call<String>
+
 
 
 
