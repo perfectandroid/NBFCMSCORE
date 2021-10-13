@@ -22,6 +22,7 @@ import java.util.*
 
 class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
+    var llmyaccounts: LinearLayout? = null
     var lvNavMenu: ListView? = null
     var drawer: DrawerLayout? = null
     var imgMenu: ImageView? = null
@@ -64,12 +65,14 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     }
 
     open fun setInitialise() {
+        llmyaccounts = findViewById<LinearLayout>(R.id.llmyaccounts)
         imgMenu = findViewById<ImageView>(R.id.imgMenu)
         drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
         lvNavMenu = findViewById<ListView>(R.id.lvNavMenu)
     }
 
     open fun setRegister() {
+        llmyaccounts!!.setOnClickListener(this)
         imgMenu!!.setOnClickListener(this)
         mPager = findViewById(R.id.pager)
         indicator =findViewById(R.id.indicator)
@@ -114,6 +117,9 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         when (v.id) {
             R.id.imgMenu ->
                   drawer!!.openDrawer(Gravity.START)
+            R.id.llmyaccounts ->{
+                startActivity(Intent(this@HomeActivity, MyaccountsActivity::class.java))
+            }
         }
     }
 
