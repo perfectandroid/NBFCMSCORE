@@ -62,4 +62,6 @@
         <item>@color/dot_dark_screen3</item>
         <item>@color/dot_dark_screen4</item>
     </array>
+
+    <color name="bottom_line">#93c6fd</color>
 </resources>
