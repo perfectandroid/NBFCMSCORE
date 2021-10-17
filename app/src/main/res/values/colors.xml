@@ -10,7 +10,7 @@
 
     <color name="colorPrimary">#014c60</color>
     <color name="colorPrimaryDark">#09160c</color>
-    <color name="colorPrimaryExtraDark">#00232C</color>
+    <color name="colorPrimaryExtraDark">#050B06</color>
     <color name="colorAccent">#b4dd7f</color>
     <color name="colortopheader">#1e3120</color>
     <color name="colorPrimarylight">#CB51A6BC</color>
@@ -47,7 +47,8 @@
     <color name="dot_light_screen1">#8cf9eb</color>
     <color name="dot_light_screen4">#93c6fd</color>
     <color name="dot_light_screen3">#e4b5fc</color>
-    <color name="red">#e4b5fc</color>
+    <color name="red">#E91E1E</color>
+    <color name="redDark">#7E1212</color>
 
     <array name="array_dot_active">
         <item>@color/dot_light_screen1</item>

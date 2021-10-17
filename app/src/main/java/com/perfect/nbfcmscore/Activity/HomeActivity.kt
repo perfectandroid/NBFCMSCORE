@@ -118,7 +118,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             R.id.imgMenu ->
                   drawer!!.openDrawer(Gravity.START)
             R.id.llmyaccounts ->{
-                startActivity(Intent(this@HomeActivity, MyaccountsActivity::class.java))
+                startActivity(Intent(this@HomeActivity, AccountlistActivity::class.java))
             }
         }
     }

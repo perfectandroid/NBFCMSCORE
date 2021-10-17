@@ -26,8 +26,9 @@ class MyaccountsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_myaccounts)
-        getAccountDetails()
-        getAccountlist()
+        //getAccountDetails()
+        //getAccountlist()
+        getAccountStatement()
     }
 
 
@@ -67,9 +68,9 @@ class MyaccountsActivity : AppCompatActivity() {
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("10"))
                         requestObject1.put("FK_Customer",  MscoreApplication.encryptStart(FK_Customer))
-                        requestObject1.put("SubModule", MscoreApplication.encryptStart("SHNS"))
+                        requestObject1.put("SubModule", MscoreApplication.encryptStart("DDSB"))
                         requestObject1.put("AccountStatus", MscoreApplication.encryptStart("1"))
-                        requestObject1.put("FK_Account", MscoreApplication.encryptStart("1452"))
+                        requestObject1.put("FK_Account", MscoreApplication.encryptStart("10497"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put(
                                 "BankKey", MscoreApplication.encryptStart(
@@ -388,8 +389,8 @@ class MyaccountsActivity : AppCompatActivity() {
 
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("11"))
-                        requestObject1.put("FK_Account",  MscoreApplication.encryptStart("1234"))
-                        requestObject1.put("SubModule", MscoreApplication.encryptStart("TLML"))
+                        requestObject1.put("FK_Account",  MscoreApplication.encryptStart("10497"))
+                        requestObject1.put("SubModule", MscoreApplication.encryptStart("DDSB"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put(
                                 "BankKey", MscoreApplication.encryptStart(
@@ -398,13 +399,13 @@ class MyaccountsActivity : AppCompatActivity() {
                                 )
                         )
                         )
-                        requestObject1.put(
+                     /*   requestObject1.put(
                                 "BankHeader", MscoreApplication.encryptStart(
                                 getResources().getString(
                                         R.string.BankHeader
                                 )
                         )
-                        )
+                        )*/
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()

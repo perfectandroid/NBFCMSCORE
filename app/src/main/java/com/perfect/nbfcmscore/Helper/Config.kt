@@ -35,6 +35,8 @@ object Config {
     const val SHARED_PREF13 = "CompanyLogoImageCode"
     const val SHARED_PREF14 = "AppIconImageCode"
     const val SHARED_PREF15 = "ResellerName"
+    const val SHARED_PREF16 = "FK_Account"
+    const val SHARED_PREF17 = "SubModule"
 
 
     fun getHostnameVerifier(): HostnameVerifier {
