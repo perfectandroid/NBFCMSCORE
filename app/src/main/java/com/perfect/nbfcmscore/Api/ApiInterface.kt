@@ -31,7 +31,8 @@ interface ApiInterface {
     @POST("AccountSummary/AccountMiniStatement")
     fun getAccountMiniStatement(@Body body: RequestBody):Call<String>
 
-
+    @POST("AccountSummary/BankBranchDetails")
+    fun getBankBranchDetails(@Body body: RequestBody): Call<String>
 
 
 }

@@ -26,6 +26,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var lvNavMenu: ListView? = null
     var drawer: DrawerLayout? = null
     var imgMenu: ImageView? = null
+    var ll_branschDetails : LinearLayout?=null
 
     private var mPager: ViewPager? = null
     private var indicator: CircleIndicator? = null
@@ -69,6 +70,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         imgMenu = findViewById<ImageView>(R.id.imgMenu)
         drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
         lvNavMenu = findViewById<ListView>(R.id.lvNavMenu)
+        ll_branschDetails = findViewById<LinearLayout>(R.id.ll_branschDetails)
     }
 
     open fun setRegister() {
@@ -76,6 +78,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         imgMenu!!.setOnClickListener(this)
         mPager = findViewById(R.id.pager)
         indicator =findViewById(R.id.indicator)
+
+        ll_branschDetails!!.setOnClickListener(this)
     }
 
     open fun setHomeNavMenu() {
@@ -118,7 +122,10 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             R.id.imgMenu ->
                   drawer!!.openDrawer(Gravity.START)
             R.id.llmyaccounts ->{
-                startActivity(Intent(this@HomeActivity, MyaccountsActivity::class.java))
+                startActivity(Intent(this@HomeActivity, AccountlistActivity::class.java))
+            }
+            R.id.ll_branschDetails ->{
+                startActivity(Intent(this@HomeActivity, BranchDetailActivity::class.java))
             }
         }
     }
