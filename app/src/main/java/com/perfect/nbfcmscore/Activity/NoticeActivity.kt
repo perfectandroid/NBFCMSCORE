@@ -74,13 +74,13 @@ class NoticeActivity : AppCompatActivity() {
                                 )
                             )
                         )
-                        requestObject1.put(
+                     /*   requestObject1.put(
                             "BankHeader", MscoreApplication.encryptStart(
                                 getResources().getString(
                                     R.string.BankHeader
                                 )
                             )
-                        )
+                        )*/
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()

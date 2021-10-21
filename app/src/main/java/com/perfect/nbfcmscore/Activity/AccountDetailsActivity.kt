@@ -12,10 +12,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
-import com.perfect.nbfcmscore.Fragment.DepositFragment
-import com.perfect.nbfcmscore.Fragment.LoanlistFragment
-import com.perfect.nbfcmscore.Fragment.MiniStatementFragment
-import com.perfect.nbfcmscore.Fragment.MoreOptionFragment
+import com.perfect.nbfcmscore.Fragment.*
 import com.perfect.nbfcmscore.R
 import java.util.ArrayList
 
@@ -97,7 +94,7 @@ class AccountDetailsActivity : AppCompatActivity() , View.OnClickListener {
     private fun setupViewPager(viewPager: ViewPager?) {
         val adapter = ViewPagerAdapter(supportFragmentManager)
         adapter.addFragment(MiniStatementFragment(), "Mini Statement")
-        adapter.addFragment(MiniStatementFragment(), "Account Statement")
+        adapter.addFragment(StatementFragment(), "Account Statement")
         adapter.addFragment(MoreOptionFragment(), "More Options")
         viewPager!!.adapter = adapter
     }
