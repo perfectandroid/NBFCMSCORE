@@ -20,7 +20,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
-class MyaccountsActivity : AppCompatActivity() {
+class MyaccountsummaryActivity : AppCompatActivity() {
     private var progressDialog: ProgressDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +35,7 @@ class MyaccountsActivity : AppCompatActivity() {
     private fun getAccountDetails() {
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
-                progressDialog = ProgressDialog(this@MyaccountsActivity, R.style.Progress)
+                progressDialog = ProgressDialog(this@MyaccountsummaryActivity, R.style.Progress)
                 progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
                 progressDialog!!.setCancelable(false)
                 progressDialog!!.setIndeterminate(true)
@@ -43,7 +43,7 @@ class MyaccountsActivity : AppCompatActivity() {
                 progressDialog!!.show()
                 try {
                     val client = OkHttpClient.Builder()
-                            .sslSocketFactory(Config.getSSLSocketFactory(this@MyaccountsActivity))
+                            .sslSocketFactory(Config.getSSLSocketFactory(this@MyaccountsummaryActivity))
                             .hostnameVerifier(Config.getHostnameVerifier())
                             .build()
                     val gson = GsonBuilder()
@@ -111,14 +111,14 @@ class MyaccountsActivity : AppCompatActivity() {
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jobjt = jObject.getJSONObject("VarificationMaintenance")
                                     val builder = AlertDialog.Builder(
-                                            this@MyaccountsActivity,
+                                            this@MyaccountsummaryActivity,
                                             R.style.MyDialogTheme
                                     )
                                     builder.setMessage("" + jobjt.getString("ResponseMessage"))
                                     builder.setPositiveButton("Ok") { dialogInterface, which ->
                                         startActivity(
                                                 Intent(
-                                                        this@MyaccountsActivity,
+                                                        this@MyaccountsummaryActivity,
                                                         MpinActivity::class.java
                                                 )
                                         )
@@ -128,7 +128,7 @@ class MyaccountsActivity : AppCompatActivity() {
                                     alertDialog.show()
                                 } else {
                                     val builder = AlertDialog.Builder(
-                                            this@MyaccountsActivity,
+                                            this@MyaccountsummaryActivity,
                                             R.style.MyDialogTheme
                                     )
                                     builder.setMessage("" + jObject.getString("EXMessage"))
@@ -142,7 +142,7 @@ class MyaccountsActivity : AppCompatActivity() {
                                 progressDialog!!.dismiss()
 
                                 val builder = AlertDialog.Builder(
-                                        this@MyaccountsActivity,
+                                        this@MyaccountsummaryActivity,
                                         R.style.MyDialogTheme
                                 )
                                 builder.setMessage("Some technical issues.")
@@ -158,7 +158,7 @@ class MyaccountsActivity : AppCompatActivity() {
                             progressDialog!!.dismiss()
 
                             val builder = AlertDialog.Builder(
-                                    this@MyaccountsActivity,
+                                    this@MyaccountsummaryActivity,
                                     R.style.MyDialogTheme
                             )
                             builder.setMessage("Some technical issues.")
@@ -171,7 +171,7 @@ class MyaccountsActivity : AppCompatActivity() {
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(this@MyaccountsActivity, R.style.MyDialogTheme)
+                    val builder = AlertDialog.Builder(this@MyaccountsummaryActivity, R.style.MyDialogTheme)
                     builder.setMessage("Some technical issues.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->
                     }
@@ -182,7 +182,7 @@ class MyaccountsActivity : AppCompatActivity() {
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@MyaccountsActivity, R.style.MyDialogTheme)
+                val builder = AlertDialog.Builder(this@MyaccountsummaryActivity, R.style.MyDialogTheme)
                 builder.setMessage("No Internet Connection.")
                 builder.setPositiveButton("Ok") { dialogInterface, which ->
                 }
@@ -197,7 +197,7 @@ class MyaccountsActivity : AppCompatActivity() {
     private fun getAccountlist() {
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
-                progressDialog = ProgressDialog(this@MyaccountsActivity, R.style.Progress)
+                progressDialog = ProgressDialog(this@MyaccountsummaryActivity, R.style.Progress)
                 progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
                 progressDialog!!.setCancelable(false)
                 progressDialog!!.setIndeterminate(true)
@@ -205,7 +205,7 @@ class MyaccountsActivity : AppCompatActivity() {
                 progressDialog!!.show()
                 try {
                     val client = OkHttpClient.Builder()
-                            .sslSocketFactory(Config.getSSLSocketFactory(this@MyaccountsActivity))
+                            .sslSocketFactory(Config.getSSLSocketFactory(this@MyaccountsummaryActivity))
                             .hostnameVerifier(Config.getHostnameVerifier())
                             .build()
                     val gson = GsonBuilder()
@@ -271,14 +271,14 @@ class MyaccountsActivity : AppCompatActivity() {
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jobjt = jObject.getJSONObject("VarificationMaintenance")
                                     val builder = AlertDialog.Builder(
-                                            this@MyaccountsActivity,
+                                            this@MyaccountsummaryActivity,
                                             R.style.MyDialogTheme
                                     )
                                     builder.setMessage("" + jobjt.getString("ResponseMessage"))
                                     builder.setPositiveButton("Ok") { dialogInterface, which ->
                                         startActivity(
                                                 Intent(
-                                                        this@MyaccountsActivity,
+                                                        this@MyaccountsummaryActivity,
                                                         MpinActivity::class.java
                                                 )
                                         )
@@ -288,7 +288,7 @@ class MyaccountsActivity : AppCompatActivity() {
                                     alertDialog.show()
                                 } else {
                                     val builder = AlertDialog.Builder(
-                                            this@MyaccountsActivity,
+                                            this@MyaccountsummaryActivity,
                                             R.style.MyDialogTheme
                                     )
                                     builder.setMessage("" + jObject.getString("EXMessage"))
@@ -302,7 +302,7 @@ class MyaccountsActivity : AppCompatActivity() {
                                 progressDialog!!.dismiss()
 
                                 val builder = AlertDialog.Builder(
-                                        this@MyaccountsActivity,
+                                        this@MyaccountsummaryActivity,
                                         R.style.MyDialogTheme
                                 )
                                 builder.setMessage("Some technical issues.")
@@ -318,7 +318,7 @@ class MyaccountsActivity : AppCompatActivity() {
                             progressDialog!!.dismiss()
 
                             val builder = AlertDialog.Builder(
-                                    this@MyaccountsActivity,
+                                    this@MyaccountsummaryActivity,
                                     R.style.MyDialogTheme
                             )
                             builder.setMessage("Some technical issues.")
@@ -331,7 +331,7 @@ class MyaccountsActivity : AppCompatActivity() {
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(this@MyaccountsActivity, R.style.MyDialogTheme)
+                    val builder = AlertDialog.Builder(this@MyaccountsummaryActivity, R.style.MyDialogTheme)
                     builder.setMessage("Some technical issues.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->
                     }
@@ -342,7 +342,7 @@ class MyaccountsActivity : AppCompatActivity() {
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@MyaccountsActivity, R.style.MyDialogTheme)
+                val builder = AlertDialog.Builder(this@MyaccountsummaryActivity, R.style.MyDialogTheme)
                 builder.setMessage("No Internet Connection.")
                 builder.setPositiveButton("Ok") { dialogInterface, which ->
                 }
@@ -357,7 +357,7 @@ class MyaccountsActivity : AppCompatActivity() {
     private fun getAccountStatement() {
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
-                progressDialog = ProgressDialog(this@MyaccountsActivity, R.style.Progress)
+                progressDialog = ProgressDialog(this@MyaccountsummaryActivity, R.style.Progress)
                 progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
                 progressDialog!!.setCancelable(false)
                 progressDialog!!.setIndeterminate(true)
@@ -365,7 +365,7 @@ class MyaccountsActivity : AppCompatActivity() {
                 progressDialog!!.show()
                 try {
                     val client = OkHttpClient.Builder()
-                            .sslSocketFactory(Config.getSSLSocketFactory(this@MyaccountsActivity))
+                            .sslSocketFactory(Config.getSSLSocketFactory(this@MyaccountsummaryActivity))
                             .hostnameVerifier(Config.getHostnameVerifier())
                             .build()
                     val gson = GsonBuilder()
@@ -431,14 +431,14 @@ class MyaccountsActivity : AppCompatActivity() {
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jobjt = jObject.getJSONObject("VarificationMaintenance")
                                     val builder = AlertDialog.Builder(
-                                            this@MyaccountsActivity,
+                                            this@MyaccountsummaryActivity,
                                             R.style.MyDialogTheme
                                     )
                                     builder.setMessage("" + jobjt.getString("ResponseMessage"))
                                     builder.setPositiveButton("Ok") { dialogInterface, which ->
                                         startActivity(
                                                 Intent(
-                                                        this@MyaccountsActivity,
+                                                        this@MyaccountsummaryActivity,
                                                         MpinActivity::class.java
                                                 )
                                         )
@@ -448,7 +448,7 @@ class MyaccountsActivity : AppCompatActivity() {
                                     alertDialog.show()
                                 } else {
                                     val builder = AlertDialog.Builder(
-                                            this@MyaccountsActivity,
+                                            this@MyaccountsummaryActivity,
                                             R.style.MyDialogTheme
                                     )
                                     builder.setMessage("" + jObject.getString("EXMessage"))
@@ -462,7 +462,7 @@ class MyaccountsActivity : AppCompatActivity() {
                                 progressDialog!!.dismiss()
 
                                 val builder = AlertDialog.Builder(
-                                        this@MyaccountsActivity,
+                                        this@MyaccountsummaryActivity,
                                         R.style.MyDialogTheme
                                 )
                                 builder.setMessage("Some technical issues.")
@@ -478,7 +478,7 @@ class MyaccountsActivity : AppCompatActivity() {
                             progressDialog!!.dismiss()
 
                             val builder = AlertDialog.Builder(
-                                    this@MyaccountsActivity,
+                                    this@MyaccountsummaryActivity,
                                     R.style.MyDialogTheme
                             )
                             builder.setMessage("Some technical issues.")
@@ -491,7 +491,7 @@ class MyaccountsActivity : AppCompatActivity() {
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(this@MyaccountsActivity, R.style.MyDialogTheme)
+                    val builder = AlertDialog.Builder(this@MyaccountsummaryActivity, R.style.MyDialogTheme)
                     builder.setMessage("Some technical issues.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->
                     }
@@ -502,7 +502,7 @@ class MyaccountsActivity : AppCompatActivity() {
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@MyaccountsActivity, R.style.MyDialogTheme)
+                val builder = AlertDialog.Builder(this@MyaccountsummaryActivity, R.style.MyDialogTheme)
                 builder.setMessage("No Internet Connection.")
                 builder.setPositiveButton("Ok") { dialogInterface, which ->
                 }
