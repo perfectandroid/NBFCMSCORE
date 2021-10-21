@@ -34,6 +34,12 @@ interface ApiInterface {
     @POST("AccountSummary/BankBranchDetails")
     fun getBankBranchDetails(@Body body: RequestBody): Call<String>
 
+    @POST("AccountSummary/StandingInstructionDetails")
+    fun getStandingInstructionDetails(@Body body: RequestBody): Call<String>
+
+    @POST("AccountSummary/NoticePostingDetails")
+    fun getNoticePostingDetails(@Body body: RequestBody): Call<String>
+
 
 }
 

@@ -52,9 +52,19 @@ class MinistatementAdaptor(internal val mContext: Context, internal val jsInfo: 
             if (holder is MainViewHolder) {
 
                 holder.tvdate!!.setText(jsonObject!!.getString("TransDate") )
-                holder.tvamount!!.setText(jsonObject!!.getString("Amount"))
+
+                if(jsonObject!!.getString("TransType").equals("D")){
+                    holder.tvamount!!.setText(jsonObject!!.getString("Amount")+" D")
+                    holder.tvamount!!.setTextColor(mContext.resources.getColor(R.color.redDark))
+
+                } else if(jsonObject!!.getString("TransType").equals("C")){
+
+                    holder.tvamount!!.setText(jsonObject!!.getString("Amount")+" C")
+                    holder.tvamount!!.setTextColor(mContext.resources.getColor(R.color.green))
+
+                }
                 holder.tvnaration!!.setText(jsonObject!!.getString("Narration"))
-                holder.tvtranstype!!.setText(jsonObject!!.getString("TransType"))
+              // holder.tvtranstype!!.setText(jsonObject!!.getString("TransType"))
 
                 }
             } catch (e: JSONException) {
