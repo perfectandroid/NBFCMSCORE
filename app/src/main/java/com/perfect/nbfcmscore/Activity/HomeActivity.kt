@@ -27,6 +27,10 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var drawer: DrawerLayout? = null
     var imgMenu: ImageView? = null
     var ll_branschDetails : LinearLayout?=null
+    var ll_prepaid : LinearLayout?=null
+    var ll_postpaid : LinearLayout?=null
+    var ll_landline : LinearLayout?=null
+    var ll_dth : LinearLayout?=null
 
     private var mPager: ViewPager? = null
     private var indicator: CircleIndicator? = null
@@ -71,6 +75,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
         lvNavMenu = findViewById<ListView>(R.id.lvNavMenu)
         ll_branschDetails = findViewById<LinearLayout>(R.id.ll_branschDetails)
+        ll_prepaid = findViewById<LinearLayout>(R.id.ll_prepaid)
+        ll_postpaid = findViewById<LinearLayout>(R.id.ll_postpaid)
+        ll_landline = findViewById<LinearLayout>(R.id.ll_landline)
+        ll_dth = findViewById<LinearLayout>(R.id.ll_dth)
+
     }
 
     open fun setRegister() {
@@ -80,6 +89,10 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         indicator =findViewById(R.id.indicator)
 
         ll_branschDetails!!.setOnClickListener(this)
+        ll_prepaid!!.setOnClickListener(this)
+        ll_postpaid!!.setOnClickListener(this)
+        ll_landline!!.setOnClickListener(this)
+        ll_dth!!.setOnClickListener(this)
     }
 
     open fun setHomeNavMenu() {
@@ -127,6 +140,31 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             R.id.ll_branschDetails ->{
                 startActivity(Intent(this@HomeActivity, BranchDetailActivity::class.java))
             }
+            R.id.ll_prepaid ->{
+
+                var intent = Intent(this@HomeActivity, RechargeActivity::class.java)
+                intent.putExtra("from", "prepaid")
+                startActivity(intent)
+            }
+            R.id.ll_postpaid ->{
+
+                var intent = Intent(this@HomeActivity, RechargeActivity::class.java)
+                intent.putExtra("from", "postpaid")
+                startActivity(intent)
+            }
+            R.id.ll_landline ->{
+
+                var intent = Intent(this@HomeActivity, RechargeActivity::class.java)
+                intent.putExtra("from", "landline")
+                startActivity(intent)
+            }
+            R.id.ll_dth ->{
+
+                var intent = Intent(this@HomeActivity, RechargeActivity::class.java)
+                intent.putExtra("from", "dth")
+                startActivity(intent)
+            }
+
         }
     }
 

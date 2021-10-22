@@ -33,7 +33,9 @@ class BranchListAdapter(internal val mContext: Context, internal val jsInfo: JSO
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         try {
+
             jsonObject = jsInfo.getJSONObject(position)
+
             if (holder is BranchListAdapter.MainViewHolder) {
                 holder.tv_BranchName!!.setText(jsonObject!!.getString("BranchName"))
                 holder.tv_BankName!!.setText(jsonObject!!.getString("BankName"))
@@ -51,12 +53,39 @@ class BranchListAdapter(internal val mContext: Context, internal val jsInfo: JSO
                 if(!jsonObject!!.getString("District").equals("")){
                     address = address+" , "+jsonObject!!.getString("District")
                 }
-
                 holder.tv_Address!!.setText(address)
+
+                if(!jsonObject!!.getString("LandPhoneNumber").equals("")){
+                    holder.tv_mobile!!.visibility = View.GONE
+                    holder.tv_call!!.visibility = View.VISIBLE
+                    holder.tv_mobile!!.setText(jsonObject!!.getString("LandPhoneNumber"))
+                }else if (!jsonObject!!.getString("ContactPersonMobile").equals("")){
+                    holder.tv_call!!.visibility = View.VISIBLE
+                }
+
+
 
                 holder.ll_branchrow!!.setOnClickListener(View.OnClickListener {
                     //  Log.e("ScratchCard","ScratchCard  114    "+jsonObject.getString("CRAmount") );
-                    clickListener!!.onClick(position)
+                    clickListener!!.onClick(position,"branch")
+
+                })
+
+                holder.tv_call!!.setOnClickListener(View.OnClickListener {
+                    //  Log.e("ScratchCard","ScratchCard  114    "+jsonObject.getString("CRAmount") );
+                    clickListener!!.onClick(position,"call")
+
+                })
+
+                holder.tv_call!!.setOnClickListener(View.OnClickListener {
+                    //  Log.e("ScratchCard","ScratchCard  114    "+jsonObject.getString("CRAmount") );
+                    clickListener!!.onClick(position,"call")
+
+                })
+
+                holder.ll_map!!.setOnClickListener(View.OnClickListener {
+                    //  Log.e("ScratchCard","ScratchCard  114    "+jsonObject.getString("CRAmount") );
+                    clickListener!!.onClick(position,"map")
 
                 })
 
@@ -72,16 +101,25 @@ class BranchListAdapter(internal val mContext: Context, internal val jsInfo: JSO
 
 
         internal var ll_branchrow: LinearLayout? = null
+        internal var ll_map: LinearLayout? = null
+        internal var ll_call: LinearLayout? = null
         var tv_BranchName: TextView? = null
         var tv_BankName: TextView? = null
         var tv_Address: TextView? = null
+        var tv_call: TextView? = null
+        var tv_mobile: TextView? = null
 
         init {
 
             ll_branchrow = v.findViewById<View>(R.id.ll_branchrow) as LinearLayout
+            ll_map = v.findViewById<View>(R.id.ll_map) as LinearLayout
+            ll_call = v.findViewById<View>(R.id.ll_call) as LinearLayout
+
             tv_BranchName = v.findViewById<View>(R.id.tv_BranchName) as TextView
             tv_BankName = v.findViewById<View>(R.id.tv_BankName) as TextView
             tv_Address = v.findViewById<View>(R.id.tv_Address) as TextView
+            tv_call = v.findViewById<View>(R.id.tv_call) as TextView
+            tv_mobile = v.findViewById<View>(R.id.tv_mobile) as TextView
 
         }
     }

@@ -49,6 +49,12 @@ class OTPActivity : AppCompatActivity() , View.OnClickListener {
         CusMobile = intent.getStringExtra("CusMobile")!!
         val mask: String = CusMobile.replace("\\w(?=\\w{3})".toRegex(),"*")
         tvotpmsg!!.text="Please enter the validation code send to your registered mobile number "+mask
+
+        pinview!!.setPinViewEventListener { pinview, fromUser ->
+
+            val varOtp = pinview!!.value
+            getOtpVerification(varOtp)
+        }
     }
 
     private fun setRegViews() {
