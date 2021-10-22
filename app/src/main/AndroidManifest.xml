@@ -20,6 +20,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NBFCMSCORE">
 
+        <activity
+            android:name=".Activity.RechargeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            tools:ignore="MissingClass" />
+
         <activity android:name=".Activity.BranchDetailActivity"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="MissingClass"

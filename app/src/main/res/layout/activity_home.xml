@@ -805,6 +805,7 @@
                             app:cardUseCompatPadding="true">
 
                             <LinearLayout
+                                android:id="@+id/ll_prepaid"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center"
@@ -846,6 +847,7 @@
                             app:cardUseCompatPadding="true">
 
                             <LinearLayout
+                                android:id="@+id/ll_postpaid"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center"
@@ -887,6 +889,7 @@
                             app:cardUseCompatPadding="true">
 
                             <LinearLayout
+                                android:id="@+id/ll_landline"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center"
@@ -939,6 +942,7 @@
                             app:cardUseCompatPadding="true">
 
                             <LinearLayout
+                                android:id="@+id/ll_dth"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center"
