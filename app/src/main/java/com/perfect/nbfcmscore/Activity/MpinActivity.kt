@@ -46,6 +46,12 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
         val imgLogo: ImageView = findViewById(R.id.imgLogo)
         Glide.with(this).load(R.drawable.otpgif).into(imgLogo)
         setRegViews()
+        pinview!!.setPinViewEventListener { pinview, fromUser ->
+
+            val varOtp = pinview!!.value
+            getMPINVerification(varOtp)
+        }
+
 
     }
 
