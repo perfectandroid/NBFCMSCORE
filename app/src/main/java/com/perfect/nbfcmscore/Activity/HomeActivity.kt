@@ -31,6 +31,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var ll_postpaid : LinearLayout?=null
     var ll_landline : LinearLayout?=null
     var ll_dth : LinearLayout?=null
+    var llEmi : LinearLayout?=null
 
     private var mPager: ViewPager? = null
     private var indicator: CircleIndicator? = null
@@ -70,15 +71,16 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     }
 
     open fun setInitialise() {
-        llmyaccounts = findViewById<LinearLayout>(R.id.llmyaccounts)
-        imgMenu = findViewById<ImageView>(R.id.imgMenu)
-        drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
-        lvNavMenu = findViewById<ListView>(R.id.lvNavMenu)
-        ll_branschDetails = findViewById<LinearLayout>(R.id.ll_branschDetails)
-        ll_prepaid = findViewById<LinearLayout>(R.id.ll_prepaid)
-        ll_postpaid = findViewById<LinearLayout>(R.id.ll_postpaid)
-        ll_landline = findViewById<LinearLayout>(R.id.ll_landline)
-        ll_dth = findViewById<LinearLayout>(R.id.ll_dth)
+        llmyaccounts = findViewById(R.id.llmyaccounts)
+        imgMenu = findViewById(R.id.imgMenu)
+        drawer = findViewById(R.id.drawer_layout)
+        lvNavMenu = findViewById(R.id.lvNavMenu)
+        ll_branschDetails = findViewById(R.id.ll_branschDetails)
+        ll_prepaid = findViewById(R.id.ll_prepaid)
+        ll_postpaid = findViewById(R.id.ll_postpaid)
+        ll_landline = findViewById(R.id.ll_landline)
+        ll_dth = findViewById(R.id.ll_dth)
+        llEmi = findViewById(R.id.llEmi)
 
     }
 
@@ -93,6 +95,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         ll_postpaid!!.setOnClickListener(this)
         ll_landline!!.setOnClickListener(this)
         ll_dth!!.setOnClickListener(this)
+        llEmi!!.setOnClickListener(this)
     }
 
     open fun setHomeNavMenu() {
@@ -139,6 +142,9 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             }
             R.id.ll_branschDetails ->{
                 startActivity(Intent(this@HomeActivity, BranchDetailActivity::class.java))
+            }
+            R.id.llEmi ->{
+                startActivity(Intent(this@HomeActivity, EMIActivity::class.java))
             }
             R.id.ll_prepaid ->{
 
