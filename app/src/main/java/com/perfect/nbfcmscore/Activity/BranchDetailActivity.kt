@@ -4,18 +4,22 @@ import android.Manifest
 import android.app.AlertDialog
 import android.app.Dialog
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.view.Window
-import android.widget.ImageView
-import android.widget.TextView
+import android.view.inputmethod.InputMethodManager
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -72,6 +76,7 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
     var ContactPersonMobile: String? =""
     var BranchPhoneNumber: String? =""
     var jsonArray: JSONArray? = null
+    var jsonArrayDist: JSONArray? = null
     var rvBranchList: RecyclerView? = null
     var im_back: ImageView? = null
     var im_home: ImageView? = null
@@ -81,6 +86,10 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
     var mGoogleApiClient: GoogleApiClient? = null
     var mLocationRequest: LocationRequest? = null
 
+    var act_district: AutoCompleteTextView? = null
+    var card_branches: CardView? = null
+    var ll_branches: LinearLayout? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_branch_detail)
@@ -89,7 +98,196 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
         setInitialise()
         setRegister()
         getBranchList();
+        getDistricts()
 
+    }
+
+    private fun getDistricts() {
+        when(ConnectivityUtils.isConnected(this)) {
+            true -> {
+//                progressDialog = ProgressDialog(this@BranchDetailActivity, R.style.Progress)
+//                progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
+//                progressDialog!!.setCancelable(false)
+//                progressDialog!!.setIndeterminate(true)
+//                progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
+//                progressDialog!!.show()
+                try {
+                    val client = OkHttpClient.Builder()
+                        .sslSocketFactory(Config.getSSLSocketFactory(this@BranchDetailActivity))
+                        .hostnameVerifier(Config.getHostnameVerifier())
+                        .build()
+                    val gson = GsonBuilder()
+                        .setLenient()
+                        .create()
+                    val retrofit = Retrofit.Builder()
+                        .baseUrl(Config.BASE_URL)
+                        .addConverterFactory(ScalarsConverterFactory.create())
+                        .addConverterFactory(GsonConverterFactory.create(gson))
+                        .client(client)
+                        .build()
+                    val apiService = retrofit.create(ApiInterface::class.java!!)
+                    val requestObject1 = JSONObject()
+                    try {
+
+                        val TokenSP = applicationContext.getSharedPreferences(Config.SHARED_PREF8, 0)
+                        val Token = TokenSP.getString("Token", null)
+
+                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("19"))
+                        requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
+                        // requestObject1.put("BankHeader", MscoreApplication.encryptStart(getResources().getString(R.string.BankHeader)))
+
+                        Log.e(TAG,"requestObject1  171   "+requestObject1)
+                    } catch (e: Exception) {
+                        // progressDialog!!.dismiss()
+                        e.printStackTrace()
+                        val mySnackbar = Snackbar.make(
+                            findViewById(R.id.rl_main),
+                            " Some technical issues.", Snackbar.LENGTH_SHORT
+                        )
+                        mySnackbar.show()
+                    }
+                    val body = RequestBody.create(
+                        okhttp3.MediaType.parse("application/json; charset=utf-8"),
+                        requestObject1.toString()
+                    )
+                    val call = apiService.getDistrictDetails(body)
+                    call.enqueue(object : retrofit2.Callback<String> {
+                        override fun onResponse(
+                            call: retrofit2.Call<String>, response:
+                            Response<String>
+                        ) {
+                            try {
+                                //  progressDialog!!.dismiss()
+                                val jObject = JSONObject(response.body())
+                                if (jObject.getString("StatusCode") == "0") {
+                                    Log.e(TAG,"response  153   "+response.body())
+
+
+
+                                    val jobjt = jObject.getJSONObject("DistrictDetails")
+                                    jsonArrayDist = jobjt.getJSONArray("DistrictDetailsList")
+
+                                    val distnames: ArrayList<String> = ArrayList()
+                                    for (i in 0 until jsonArrayDist!!.length()) {
+                                        val obj: JSONObject = jsonArrayDist!!.getJSONObject(i)
+                                        distnames.add(obj.getString("DistrictName"));
+                                    }
+
+                                    val adapter = ArrayAdapter(this@BranchDetailActivity,
+                                        android.R.layout.simple_list_item_1, distnames)
+                                    act_district!!.setAdapter(adapter)
+//                                    act_district!!.showDropDown()
+                                    act_district!!.threshold =1
+
+                                    act_district!!.addTextChangedListener(object : TextWatcher {
+                                        override fun onTextChanged(
+                                            s: CharSequence,
+                                            start: Int,
+                                            before: Int,
+                                            count: Int) {
+                                            mMap!!.clear()
+                                            rvBranchList!!.adapter = null
+
+                                            for (i in 0 until jsonArrayDist!!.length()) {
+                                                val obj1: JSONObject = jsonArrayDist!!.getJSONObject(i)
+                                                var FK_District: String = ""
+                                                if (obj1.getString("DistrictName").equals(""+ act_district!!.text.toString())){
+
+                                                    FK_District = obj1.getString("FK_District")
+                                                    Log.e("DistrictName","DistrictName  192   "+obj1.getString("DistrictName")+"  "+FK_District)
+                                                    getBranchList1(mMap!!,FK_District)
+                                                }
+
+                                                //
+                                            }
+
+                                        }
+
+                                        override fun beforeTextChanged(
+                                            s: CharSequence,
+                                            start: Int,
+                                            count: Int,
+                                            after: Int
+                                        ) {
+                                        }
+
+                                        override fun afterTextChanged(s: Editable) {}
+                                    })
+//
+//                                    Log.e(TAG,"jarray   200  "+jsonArray)
+
+//                                    val obj_adapter = BranchListAdapter(applicationContext!!, jsonArray!!)
+//                                    rvBranchList!!.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
+//                                    rvBranchList!!.adapter = obj_adapter
+//                                    obj_adapter.setClickListener(this@BranchDetailActivity)
+
+
+                                } else {
+//                                    val builder = AlertDialog.Builder(
+//                                        this@BranchDetailActivity,
+//                                        R.style.MyDialogTheme
+//                                    )
+//                                    builder.setMessage("" + jObject.getString("EXMessage"))
+//                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+//                                    }
+//                                    val alertDialog: AlertDialog = builder.create()
+//                                    alertDialog.setCancelable(false)
+//                                    alertDialog.show()
+                                }
+                            } catch (e: Exception) {
+                                // progressDialog!!.dismiss()
+
+//                                val builder = AlertDialog.Builder(
+//                                    this@BranchDetailActivity,
+//                                    R.style.MyDialogTheme
+//                                )
+//                                builder.setMessage("Some technical issues.")
+//                                builder.setPositiveButton("Ok") { dialogInterface, which ->
+//                                }
+//                                val alertDialog: AlertDialog = builder.create()
+//                                alertDialog.setCancelable(false)
+//                                alertDialog.show()
+//                                e.printStackTrace()
+                            }
+                        }
+                        override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
+                            //  progressDialog!!.dismiss()
+
+//                            val builder = AlertDialog.Builder(
+//                                this@BranchDetailActivity,
+//                                R.style.MyDialogTheme
+//                            )
+//                            builder.setMessage("Some technical issues.")
+//                            builder.setPositiveButton("Ok") { dialogInterface, which ->
+//                            }
+//                            val alertDialog: AlertDialog = builder.create()
+//                            alertDialog.setCancelable(false)
+//                            alertDialog.show()
+                        }
+                    })
+                } catch (e: Exception) {
+                    //   progressDialog!!.dismiss()
+//                    val builder = AlertDialog.Builder(this@BranchDetailActivity, R.style.MyDialogTheme)
+//                    builder.setMessage("Some technical issues.")
+//                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+//                    }
+//                    val alertDialog: AlertDialog = builder.create()
+//                    alertDialog.setCancelable(false)
+//                    alertDialog.show()
+//                    e.printStackTrace()
+                }
+            }
+            false -> {
+//                val builder = AlertDialog.Builder(this@BranchDetailActivity, R.style.MyDialogTheme)
+//                builder.setMessage("No Internet Connection.")
+//                builder.setPositiveButton("Ok") { dialogInterface, which ->
+//                }
+//                val alertDialog: AlertDialog = builder.create()
+//                alertDialog.setCancelable(false)
+//                alertDialog.show()
+            }
+        }
     }
 
     private fun getBranchList() {
@@ -152,13 +350,17 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
         im_back = findViewById<ImageView>(R.id.im_back)
         im_home = findViewById<ImageView>(R.id.im_home)
 
+        act_district = findViewById<AutoCompleteTextView>(R.id.act_district)
+        card_branches= findViewById<CardView>(R.id.card_branches)
+        ll_branches= findViewById<LinearLayout>(R.id.ll_branches)
+
 
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
 //        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mMap = googleMap
-        getBranchList1(mMap!!);
+        getBranchList1(mMap!!,"0");
        // mMap!!.setOnMarkerClickListener(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(
@@ -203,7 +405,8 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
 //        )
     }
 
-    private fun getBranchList1(mMap: GoogleMap) {
+    private fun getBranchList1(mMap: GoogleMap,FK_District: String) {
+        closeKeyBoard()
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@BranchDetailActivity, R.style.Progress)
@@ -230,6 +433,7 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                     val requestObject1 = JSONObject()
                     try {
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("8"))
+                        requestObject1.put("FK_District", MscoreApplication.encryptStart(FK_District))
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
                         requestObject1.put("BankHeader", MscoreApplication.encryptStart(getResources().getString(R.string.BankHeader)))
 
@@ -257,6 +461,8 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 if (jObject.getString("StatusCode") == "0") {
+                                    card_branches!!.visibility = View.VISIBLE
+                                    ll_branches!!.visibility = View.VISIBLE
                                     Log.e(TAG,"response  195   "+response.body())
 
                                     val jobjt = jObject.getJSONObject("BankBranchDetails")
@@ -272,6 +478,8 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                                     setMarker(jsonArray!!,mMap)
 
                                 } else {
+                                    card_branches!!.visibility = View.GONE
+                                    ll_branches!!.visibility = View.GONE
                                     val builder = AlertDialog.Builder(
                                         this@BranchDetailActivity,
                                         R.style.MyDialogTheme
@@ -285,6 +493,8 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
+                                card_branches!!.visibility = View.GONE
+                                ll_branches!!.visibility = View.GONE
 
                                 val builder = AlertDialog.Builder(
                                     this@BranchDetailActivity,
@@ -301,6 +511,8 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                         }
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
+                            card_branches!!.visibility = View.GONE
+                            ll_branches!!.visibility = View.GONE
 
                             val builder = AlertDialog.Builder(
                                 this@BranchDetailActivity,
@@ -316,6 +528,8 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
+                    card_branches!!.visibility = View.GONE
+                    ll_branches!!.visibility = View.GONE
                     val builder = AlertDialog.Builder(this@BranchDetailActivity, R.style.MyDialogTheme)
                     builder.setMessage("Some technical issues.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -327,6 +541,8 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                 }
             }
             false -> {
+                card_branches!!.visibility = View.GONE
+                ll_branches!!.visibility = View.GONE
                 val builder = AlertDialog.Builder(this@BranchDetailActivity, R.style.MyDialogTheme)
                 builder.setMessage("No Internet Connection.")
                 builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -338,8 +554,16 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
         }
     }
 
-    private fun setMarker(jsonArray: JSONArray, mMap: GoogleMap) {
+    private fun closeKeyBoard() {
+        val view = this.currentFocus
+        if (view != null) {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
+    }
 
+    private fun setMarker(jsonArray: JSONArray, mMap: GoogleMap) {
+        mMap.clear()
         for (i in 0 until jsonArray.length()) {
             var jsonObject = jsonArray.getJSONObject(i)
 
@@ -492,12 +716,15 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
     }
 
     private fun setMarker1(jsonObject1: JSONObject, mMap: GoogleMap?) {
-
+        val id = jsonObject1.getString("ID_Branch")
+        val bank = jsonObject1.getString("BankName")
+        mMap!!.clear()
         mMap!!.addMarker(
             MarkerOptions()
                 .position(LatLng(jsonObject1.getDouble("LocationLatitude"), jsonObject1.getDouble("LocationLongitude")))
+                .title(id + ") " + bank)
 //                .title(""+jsonObject1.getString("Address"))
-                .title(jsonObject1.toString())
+//                .title(jsonObject1.toString())
 //                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
         )
 
