@@ -40,6 +40,9 @@ interface ApiInterface {
     @POST("AccountSummary/NoticePostingDetails")
     fun getNoticePostingDetails(@Body body: RequestBody): Call<String>
 
+    @POST("AccountSummary/DistrictDetails")
+    fun getDistrictDetails(@Body body: RequestBody): Call<String>
+
 
 }
 
