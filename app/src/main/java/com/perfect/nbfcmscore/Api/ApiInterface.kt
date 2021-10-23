@@ -1,4 +1,4 @@
-package com.perfect.bizcorelite.Api
+package com.perfect.nbfcmscore.Api
 
 import okhttp3.RequestBody
 import retrofit2.Call
