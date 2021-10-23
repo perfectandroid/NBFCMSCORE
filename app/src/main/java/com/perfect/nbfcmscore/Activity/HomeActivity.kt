@@ -32,7 +32,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var ll_landline : LinearLayout?=null
     var ll_dth : LinearLayout?=null
     var llEmi : LinearLayout?=null
-
+    var llpassbook: LinearLayout? = null
+    var llduereminder: LinearLayout? = null
     private var mPager: ViewPager? = null
     private var indicator: CircleIndicator? = null
     private var currentPage = 0
@@ -81,6 +82,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         ll_landline = findViewById(R.id.ll_landline)
         ll_dth = findViewById(R.id.ll_dth)
         llEmi = findViewById(R.id.llEmi)
+        llpassbook = findViewById<LinearLayout>(R.id.llpassbook)
+        llduereminder = findViewById<LinearLayout>(R.id.lldueremindrer)
 
     }
 
@@ -89,6 +92,9 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         imgMenu!!.setOnClickListener(this)
         mPager = findViewById(R.id.pager)
         indicator =findViewById(R.id.indicator)
+
+        llpassbook!!.setOnClickListener(this)
+        llduereminder!!.setOnClickListener(this)
 
         ll_branschDetails!!.setOnClickListener(this)
         ll_prepaid!!.setOnClickListener(this)
@@ -145,6 +151,12 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             }
             R.id.llEmi ->{
                 startActivity(Intent(this@HomeActivity, EMIActivity::class.java))
+            }
+            R.id.lldueremindrer ->{
+                startActivity(Intent(this@HomeActivity, DueReminderActivity::class.java))
+            }
+            R.id.llpassbook ->{
+                startActivity(Intent(this@HomeActivity, PassbookActivity::class.java))
             }
             R.id.ll_prepaid ->{
 

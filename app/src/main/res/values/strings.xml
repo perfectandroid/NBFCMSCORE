@@ -20,6 +20,11 @@
     <string name="term1">Slideshow</string>
     <string name="mscore">How likely would you recommend Mscore to your friends and colleagues?</string>
 
+    <string name="passbook">Passbook</string>
+    <string name="account_type">Account Type</string>
+    <string name="available_balance">Available Balance</string>
+    <string name="unclear_amount">Unclear Amount</string>
+
 
     <string name="privacy1">We may collect any or all the information that you gives us depending on the type of
     transaction you enter into including your name,address together with data about your use of the website.Other information that
