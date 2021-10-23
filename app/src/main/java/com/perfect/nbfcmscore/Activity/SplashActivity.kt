@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
-import com.perfect.bizcorelite.Api.ApiInterface
+import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Adapter.LanguageLsitAdaptor
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils

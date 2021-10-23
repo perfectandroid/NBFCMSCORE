@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.GsonBuilder
-import com.perfect.bizcorelite.Api.ApiInterface
+import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Adapter.AccountLsitAdaptor
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
