@@ -52,5 +52,11 @@ interface ApiInterface {
     @POST("AccountSummary/PassBookAccountTransactionList")
     fun getPassbookAccounttranslist(@Body body: RequestBody): Call<String>
 
+    @POST("AccountSummary/AccountDueDateDetails")
+    fun getAccountduedetails(@Body body: RequestBody): Call<String>
+
+    @POST("AccountSummary/HolidayDetails")
+    fun getHolidayList(@Body body: RequestBody): Call<String>
+
 }
 

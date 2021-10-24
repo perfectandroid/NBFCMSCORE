@@ -55,10 +55,13 @@ class PassbookTranscationListAdapter(internal val mContext: Context, internal va
                     //println(date.time)
                  //   val format = SimpleDateFormat("dd-MM-yyyy'T'HH:mm:ss")
                  //   val date: Date = format.parse(jsonObject!!.getString("TransDate"))
-                    var date = Date()
-                    val formatter = SimpleDateFormat("dd-MM-yyyy")
-                    val answer: String = formatter.format(date)
-                    holder.tv_date!!.setText(answer)
+                 //   val date = SimpleDateFormat(jsonObject!!.getString("TransDate"))
+                     val date = SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.US).parse(jsonObject!!.getString("TransDate"))
+                    val formattedDatesString = SimpleDateFormat("dd-MM-yyyy", Locale.US).format(date)
+                 //   var date = Date()
+                   // val formatter = SimpleDateFormat("dd-MM-yyyy")
+                    //val answer: String = formatter.format(date)
+                    holder.tv_date!!.setText(formattedDatesString)
                 } catch (e: ParseException) {
                     // TODO Auto-generated catch block
                     e.printStackTrace()

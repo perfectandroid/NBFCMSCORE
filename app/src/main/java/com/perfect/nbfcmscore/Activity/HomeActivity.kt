@@ -30,6 +30,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var ll_prepaid : LinearLayout?=null
     var ll_postpaid : LinearLayout?=null
     var ll_landline : LinearLayout?=null
+    var ll_holidaylist : LinearLayout?=null
     var ll_dth : LinearLayout?=null
     var llEmi : LinearLayout?=null
     var llpassbook: LinearLayout? = null
@@ -77,6 +78,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         drawer = findViewById(R.id.drawer_layout)
         lvNavMenu = findViewById(R.id.lvNavMenu)
         ll_branschDetails = findViewById(R.id.ll_branschDetails)
+        ll_holidaylist= findViewById(R.id.ll_holidaylist)
         ll_prepaid = findViewById(R.id.ll_prepaid)
         ll_postpaid = findViewById(R.id.ll_postpaid)
         ll_landline = findViewById(R.id.ll_landline)
@@ -95,7 +97,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
         llpassbook!!.setOnClickListener(this)
         llduereminder!!.setOnClickListener(this)
-
+        ll_holidaylist!!.setOnClickListener(this)
         ll_branschDetails!!.setOnClickListener(this)
         ll_prepaid!!.setOnClickListener(this)
         ll_postpaid!!.setOnClickListener(this)
@@ -149,6 +151,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             R.id.ll_branschDetails ->{
                 startActivity(Intent(this@HomeActivity, BranchDetailActivity::class.java))
             }
+
+            R.id.ll_holidaylist ->{
+                startActivity(Intent(this@HomeActivity, HolidayListActivity::class.java))
+            }
+
             R.id.llEmi ->{
                 startActivity(Intent(this@HomeActivity, EMIActivity::class.java))
             }
