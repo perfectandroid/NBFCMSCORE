@@ -44,7 +44,7 @@ class AccountLsitAdaptor(internal val mContext: Context, internal val jsInfo: JS
             if (holder is MainViewHolder) {
                 holder.tvaccounttype!!.setText(jsonObject!!.getString("LoanType"))
                 holder.tvaccountno!!.setText(jsonObject!!.getString("AccountNumber"))
-                holder.tvbal!!.setText(jsonObject!!.getString("Balance"))
+                holder.tvbal!!.setText("₹ "+ Config.getDecimelFormate(jsonObject!!.getDouble("Balance")))
                 holder.tvbranch!!.setText(jsonObject!!.getString("BranchName"))
 
 
