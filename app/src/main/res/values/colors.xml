@@ -34,6 +34,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#0168BA</color>
+    <color name="passtext">#014C60</color>
+    <color name="passavailbal">#539F73</color>
+    <color name="passatbleclr">#F4F2FE</color>
 
     <color name="color_activity_transparent">#00000000</color>
 

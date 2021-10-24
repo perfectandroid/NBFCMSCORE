@@ -14,6 +14,7 @@
         <LinearLayout
             android:id="@+id/lnLayout"
             android:layout_width="match_parent"
+            android:background="@color/passatbleclr"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -32,7 +33,7 @@
                     android:text=""
                     android:textStyle="bold"
                     android:layout_marginLeft="5dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/blue"
                     android:textSize="16sp"/>
 
                 <TextView
@@ -50,8 +51,9 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="10dp"
-                    android:text=""
-                    android:textColor="@color/green"
+                    android:text="100"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/red"
                     android:textSize="15dp"
                     android:textStyle="bold"
                     tools:ignore="RelativeOverlap" />
@@ -78,7 +80,7 @@
                         android:ellipsize="end"
                         android:text=""
                         android:layout_marginLeft="5dp"
-                        android:textColor="@color/black"
+                        android:textColor="@color/passtext"
                         android:textSize="12sp"/>
                 </LinearLayout>
 

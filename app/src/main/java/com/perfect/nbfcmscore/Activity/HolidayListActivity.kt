@@ -2,12 +2,17 @@ package com.perfect.nbfcmscore.Activity
 
 import android.app.AlertDialog
 import android.app.ProgressDialog
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
+import android.view.View
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
+import com.perfect.nbfcmscore.Adapter.BranchListAdapter
+import com.perfect.nbfcmscore.Adapter.HolidayListAdapter
+import com.perfect.nbfcmscore.Adapter.PassbookTranscationListAdapter
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
@@ -15,51 +20,34 @@ import com.perfect.nbfcmscore.Helper.MscoreApplication
 import com.perfect.nbfcmscore.R
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
+import org.json.JSONArray
 import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
-
-class DueReminderActivity : AppCompatActivity() {
+class HolidayListActivity : AppCompatActivity() {
     private var progressDialog: ProgressDialog? = null
-    var radiogrp: RadioGroup? = null
-    var submode: String=""
-    lateinit var radioButton: RadioButton
+    private var jresult: JSONArray? = null
+    private var rv_holiday: RecyclerView? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_duereminder)
+        setContentView(R.layout.activity_holiday)
 
-
+        getHolidayList()
         setRegViews()
     }
 
     private fun setRegViews() {
-        radiogrp = findViewById<RadioGroup>(R.id.radio_group)
-        val selectedOption: Int = radiogrp!!.checkedRadioButtonId
-
-        // Assigning id of the checked radio button
-        radioButton = findViewById(selectedOption)
-
-        // Displaying text of the checked radio button in the form of toast
-        Toast.makeText(baseContext, radioButton.text, Toast.LENGTH_SHORT).show()
-        if(radioButton.text.equals("Deposit"))
-                {
-                      submode="1"
-                }
-        if(radioButton.text.equals("Loan"))
-        {
-                    submode="2"
-        }
-        getdueReminder(submode)
+        rv_holiday = findViewById(R.id.rv_holiday)
     }
 
-    private fun getdueReminder(submode: String) {
-
+    private fun getHolidayList() {
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
-                progressDialog = ProgressDialog(this@DueReminderActivity, R.style.Progress)
+                progressDialog = ProgressDialog(this@HolidayListActivity, R.style.Progress)
                 progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
                 progressDialog!!.setCancelable(false)
                 progressDialog!!.setIndeterminate(true)
@@ -67,7 +55,7 @@ class DueReminderActivity : AppCompatActivity() {
                 progressDialog!!.show()
                 try {
                     val client = OkHttpClient.Builder()
-                            .sslSocketFactory(Config.getSSLSocketFactory(this@DueReminderActivity))
+                            .sslSocketFactory(Config.getSSLSocketFactory(this@HolidayListActivity))
                             .hostnameVerifier(Config.getHostnameVerifier())
                             .build()
                     val gson = GsonBuilder()
@@ -95,15 +83,11 @@ class DueReminderActivity : AppCompatActivity() {
                         )
                         val Token = TokenSP.getString("Token", null)
 
-                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("18"))
+                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("24"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put(
-                                "FK_Customer",
-                                MscoreApplication.encryptStart(FK_Customer)
-                        )
-                        requestObject1.put(
-                                "SubMode",
-                                MscoreApplication.encryptStart(submode)
+                                "BranchCode",
+                                MscoreApplication.encryptStart("2")
                         )
                         requestObject1.put(
                                 "BankKey", MscoreApplication.encryptStart(
@@ -128,7 +112,7 @@ class DueReminderActivity : AppCompatActivity() {
                             okhttp3.MediaType.parse("application/json; charset=utf-8"),
                             requestObject1.toString()
                     )
-                    val call = apiService.getAccountduedetails(body)
+                    val call = apiService.getHolidayList(body)
                     call.enqueue(object : retrofit2.Callback<String> {
                         override fun onResponse(
                                 call: retrofit2.Call<String>, response:
@@ -140,12 +124,28 @@ class DueReminderActivity : AppCompatActivity() {
                                 Log.i("Response", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
-                                            jObject.getJSONObject("PassBookAccountDetails")
+                                            jObject.getJSONObject("HolidayDetails")
+                                    val jsonobj2 = JSONObject(jsonObj1.toString())
+
+                                    jresult = jsonobj2.getJSONArray("HolidayDetailsList")
+
+                                    if (jresult!!.length() != 0) {
+
+                                        val lLayout =
+                                                GridLayoutManager(this@HolidayListActivity, 1)
+                                        rv_holiday!!.layoutManager = lLayout
+                                        rv_holiday!!.setHasFixedSize(true)
+                                        val adapter = HolidayListAdapter(applicationContext!!, jresult!!)
+
+                                        rv_holiday!!.adapter = adapter
+                                    } else {
+
+                                    }
 
 
                                 } else {
                                     val builder = AlertDialog.Builder(
-                                            this@DueReminderActivity,
+                                            this@HolidayListActivity,
                                             R.style.MyDialogTheme
                                     )
                                     builder.setMessage("" + jObject.getString("EXMessage"))
@@ -159,7 +159,7 @@ class DueReminderActivity : AppCompatActivity() {
                                 progressDialog!!.dismiss()
 
                                 val builder = AlertDialog.Builder(
-                                        this@DueReminderActivity,
+                                        this@HolidayListActivity,
                                         R.style.MyDialogTheme
                                 )
                                 builder.setMessage("Some technical issues.")
@@ -176,7 +176,7 @@ class DueReminderActivity : AppCompatActivity() {
                             progressDialog!!.dismiss()
 
                             val builder = AlertDialog.Builder(
-                                    this@DueReminderActivity,
+                                    this@HolidayListActivity,
                                     R.style.MyDialogTheme
                             )
                             builder.setMessage("Some technical issues.")
@@ -189,7 +189,7 @@ class DueReminderActivity : AppCompatActivity() {
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(this@DueReminderActivity, R.style.MyDialogTheme)
+                    val builder = AlertDialog.Builder(this@HolidayListActivity, R.style.MyDialogTheme)
                     builder.setMessage("Some technical issues.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->
                     }
@@ -200,7 +200,7 @@ class DueReminderActivity : AppCompatActivity() {
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@DueReminderActivity, R.style.MyDialogTheme)
+                val builder = AlertDialog.Builder(this@HolidayListActivity, R.style.MyDialogTheme)
                 builder.setMessage("No Internet Connection.")
                 builder.setPositiveButton("Ok") { dialogInterface, which ->
                 }

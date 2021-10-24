@@ -1569,6 +1569,7 @@
                             app:cardUseCompatPadding="true">
 
                             <LinearLayout
+                                android:id="@+id/ll_holidaylist"
                                 android:layout_width="match_parent"
                                 android:gravity="center"
                                 android:layout_gravity="center"

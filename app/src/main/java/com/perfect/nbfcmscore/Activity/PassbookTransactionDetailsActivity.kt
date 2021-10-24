@@ -127,6 +127,18 @@ class PassbookTransactionDetailsActivity : AppCompatActivity() {
                                     val adapter = PassbookTransactionDetailsAdapter(this@PassbookTransactionDetailsActivity, jsonArrayKey)
                                     rv_statementDetails!!.adapter = adapter
                                 }
+                                else {
+                                    val builder = AlertDialog.Builder(
+                                        this@PassbookTransactionDetailsActivity,
+                                        R.style.MyDialogTheme
+                                    )
+                                    builder.setMessage("" + jObject.getString("EXMessage"))
+                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                    }
+                                    val alertDialog: AlertDialog = builder.create()
+                                    alertDialog.setCancelable(false)
+                                    alertDialog.show()
+                                }
                                 /* if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
                                             jObject.getJSONObject("PassBookAccountDetails")
@@ -148,17 +160,6 @@ class PassbookTransactionDetailsActivity : AppCompatActivity() {
                                     )
 
 
-                                } else {
-                                    val builder = AlertDialog.Builder(
-                                            this@PassbookTransactionDetailsActivity,
-                                            R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
                                 }*/
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
