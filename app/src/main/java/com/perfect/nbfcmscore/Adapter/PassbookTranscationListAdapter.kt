@@ -9,13 +9,14 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.perfect.nbfcmscore.Activity.PassbookActivity
 import com.perfect.nbfcmscore.Activity.PassbookTransactionDetailsActivity
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.R
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import java.text.DateFormat
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -48,6 +49,20 @@ class PassbookTranscationListAdapter(internal val mContext: Context, internal va
                 val formats1 = formatter5.format(date)
                 println(formats1)*/
 
+
+                try {
+                  //  val date = SimpleDateFormat("dd-MM-yyyy").parse("14-02-2018")
+                    //println(date.time)
+                 //   val format = SimpleDateFormat("dd-MM-yyyy'T'HH:mm:ss")
+                 //   val date: Date = format.parse(jsonObject!!.getString("TransDate"))
+                    var date = Date()
+                    val formatter = SimpleDateFormat("dd-MM-yyyy")
+                    val answer: String = formatter.format(date)
+                    holder.tv_date!!.setText(answer)
+                } catch (e: ParseException) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace()
+                }
               // holder.tv_date!!.setText(dateString)
                 holder.narration!!.setText(
                         jsonObject!!.getString("Narration")

@@ -8,5 +8,11 @@ class DueReminderActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_duereminder)
+
+        getdueReminder();
+    }
+
+    private fun getdueReminder() {
+        TODO("Not yet implemented")
     }
 }
