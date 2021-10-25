@@ -3,19 +3,19 @@
     <item>
         <shape
             android:shape="rectangle">
-            <solid android:color="@color/greylight3" />
+            <solid android:color="@color/color_bottom_line" />
             <gradient
                 android:angle="0"
-                android:startColor="@color/greylight3"
-                android:endColor="@color/greylight3"
+                android:startColor="@color/color_bottom_line"
+                android:endColor="@color/color_bottom_line"
                 />
         </shape>
     </item>
 
-    <item android:bottom="2dp">
+    <item android:bottom="1dp">
         <shape
             android:shape="rectangle">
-            <solid android:color="@color/greylight3" />
+            <solid android:color="@color/color_text_bg" />
         </shape>
     </item>
 
