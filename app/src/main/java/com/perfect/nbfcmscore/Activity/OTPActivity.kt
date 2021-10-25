@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -125,6 +126,8 @@ class OTPActivity : AppCompatActivity() , View.OnClickListener {
                                 )
                             )
                         )
+
+
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -146,6 +149,7 @@ class OTPActivity : AppCompatActivity() , View.OnClickListener {
                         ) {
                             try {
                                 progressDialog!!.dismiss()
+
                                 val jObject = JSONObject(response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jobjt = jObject.getJSONObject("VarificationMaintenance")
@@ -194,6 +198,11 @@ class OTPActivity : AppCompatActivity() , View.OnClickListener {
                                     val TokenEditer = TokenSP.edit()
                                     TokenEditer.putString("Token", jobjt.getString("Token"))
                                     TokenEditer.commit()
+
+                                    val CustomerNumberSP = applicationContext.getSharedPreferences(Config.SHARED_PREF19,0)
+                                    val CustomerNumberEditer = CustomerNumberSP.edit()
+                                    CustomerNumberEditer.putString("CustomerNumber", jobjt.getString("CustomerNumber"))
+                                    CustomerNumberEditer.commit()
 
                                     val builder = AlertDialog.Builder(
                                         this@OTPActivity,

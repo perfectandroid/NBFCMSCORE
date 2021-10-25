@@ -10,7 +10,7 @@
         android:id="@+id/rltv_header"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/colortopheader">
+        android:background="@color/colorPrimary">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -73,5 +73,113 @@
 
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@+id/rltv_header">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                app:tabMode="fixed"
+                app:tabGravity="fill"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="10dp"
+                app:tabBackground="@drawable/tab_selector"
+                tools:ignore="MissingConstraints"
+                app:tabIndicatorColor="@color/red"
+                app:tabSelectedTextColor="@color/white"
+                app:tabTextColor="@color/white"
+                android:background="@color/colorPrimary"/>
+
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llviews"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="horizontal"
+            android:background="@color/greylight3">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:id="@+id/ll_notice"
+                android:layout_weight="1"
+                android:layout_marginTop="2dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:background="@color/white">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:scaleType="fitXY"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:src="@drawable/notice1" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.5"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Notice"
+                    android:textSize="15sp"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:id="@+id/ll_standingins"
+                android:layout_weight="1"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/white">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:scaleType="fitXY"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:src="@drawable/standinginstruction" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.5"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Standing Instruction"
+                    android:textSize="15sp"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 </RelativeLayout>

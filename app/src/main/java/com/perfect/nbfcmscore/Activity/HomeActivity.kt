@@ -31,6 +31,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var ll_postpaid : LinearLayout?=null
     var ll_landline : LinearLayout?=null
     var ll_holidaylist : LinearLayout?=null
+    var ll_virtualcard : LinearLayout?=null
     var ll_dth : LinearLayout?=null
     var llEmi : LinearLayout?=null
     var llpassbook: LinearLayout? = null
@@ -86,6 +87,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         llEmi = findViewById(R.id.llEmi)
         llpassbook = findViewById<LinearLayout>(R.id.llpassbook)
         llduereminder = findViewById<LinearLayout>(R.id.lldueremindrer)
+        ll_virtualcard = findViewById<LinearLayout>(R.id.ll_virtualcard)
 
     }
 
@@ -104,6 +106,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         ll_landline!!.setOnClickListener(this)
         ll_dth!!.setOnClickListener(this)
         llEmi!!.setOnClickListener(this)
+        ll_virtualcard!!.setOnClickListener(this)
     }
 
     open fun setHomeNavMenu() {
@@ -187,6 +190,12 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
                 var intent = Intent(this@HomeActivity, RechargeActivity::class.java)
                 intent.putExtra("from", "dth")
+                startActivity(intent)
+            }
+
+            R.id.ll_virtualcard ->{
+
+                var intent = Intent(this@HomeActivity, VirtualActivity::class.java)
                 startActivity(intent)
             }
 

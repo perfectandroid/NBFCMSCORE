@@ -60,5 +60,8 @@ interface ApiInterface {
 
     @POST("AccountSummary/HolidayDetails")
     fun getHolidayList(@Body body: RequestBody): Call<String>
+
+    @POST("AccountSummary/BarcodeFormatDet")
+    fun getBardCodeData(@Body body: RequestBody): Call<String>
 }
 
