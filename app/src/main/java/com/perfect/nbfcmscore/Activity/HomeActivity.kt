@@ -31,6 +31,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var ll_postpaid : LinearLayout?=null
     var ll_landline : LinearLayout?=null
     var ll_holidaylist : LinearLayout?=null
+    var llownbank : LinearLayout?=null
     var ll_dth : LinearLayout?=null
     var llEmi : LinearLayout?=null
     var llpassbook: LinearLayout? = null
@@ -78,6 +79,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         drawer = findViewById(R.id.drawer_layout)
         lvNavMenu = findViewById(R.id.lvNavMenu)
         ll_branschDetails = findViewById(R.id.ll_branschDetails)
+        llownbank = findViewById(R.id.llownbank)
         ll_holidaylist= findViewById(R.id.ll_holidaylist)
         ll_prepaid = findViewById(R.id.ll_prepaid)
         ll_postpaid = findViewById(R.id.ll_postpaid)
@@ -94,7 +96,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         imgMenu!!.setOnClickListener(this)
         mPager = findViewById(R.id.pager)
         indicator =findViewById(R.id.indicator)
-
+        llownbank!!.setOnClickListener(this)
         llpassbook!!.setOnClickListener(this)
         llduereminder!!.setOnClickListener(this)
         ll_holidaylist!!.setOnClickListener(this)
@@ -164,6 +166,9 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             }
             R.id.llpassbook ->{
                 startActivity(Intent(this@HomeActivity, PassbookActivity::class.java))
+            }
+            R.id.llownbank ->{
+                startActivity(Intent(this@HomeActivity, OwnbankownaccountTransferActivity::class.java))
             }
             R.id.ll_prepaid ->{
 

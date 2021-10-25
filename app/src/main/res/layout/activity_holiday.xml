@@ -33,7 +33,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
-
+            <ImageView
+                android:id="@+id/imgHome"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight=".2"
+                android:src="@drawable/ic_home" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -58,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="2dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="15dp"
                 android:theme="@style/Spinner"
                 android:popupBackground="#cccccc"
                 android:spinnerMode="dialog"/>
@@ -114,7 +119,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_holiday"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="15dp"
                     android:layout_height="match_parent" />
 
                 <TextView

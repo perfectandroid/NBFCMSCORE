@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -30,7 +29,7 @@
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="15dp"
-                    android:text="Due Reminder"
+                    android:text="Own Account"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
@@ -43,43 +42,22 @@
 
             </LinearLayout>
         </RelativeLayout>
-        <LinearLayout
+        <TextView
+            android:id="@+id/tv_accnt"
             android:layout_width="match_parent"
+            android:textColor="@color/red"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:layout_marginTop="10dp"
+            android:text="Select your Account"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <RadioGroup
-                android:id="@+id/radio_group"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center"
-                >
-
-                <RadioButton
-                    android:id="@+id/radio1"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="10dp"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="Deposit" />
-
-                <RadioButton
-                    android:id="@+id/radio2"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Loan" />
-            </RadioGroup>
-
-
-        </LinearLayout>
+            android:gravity="center"
+            android:layout_weight="1" />
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_duereminder"
-            android:layout_marginBottom="5dp"
+            android:id="@+id/rv_ownacnt"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/></LinearLayout>
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"/>
 
-
-
+    </LinearLayout>
 </LinearLayout>
