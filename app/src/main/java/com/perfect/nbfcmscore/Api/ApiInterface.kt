@@ -52,6 +52,9 @@ interface ApiInterface {
     @POST("AccountSummary/PassBookAccountStatement")
     fun getPassbookAccountstatement(@Body body: RequestBody): Call<String>
 
+    @POST("AccountSummary/LoanSlabDetails")
+    fun getLoanSlabDetails(@Body body: RequestBody): Call<String>
+
     @POST("AccountSummary/PassBookAccountTransactionList")
     fun getPassbookAccounttranslist(@Body body: RequestBody): Call<String>
 

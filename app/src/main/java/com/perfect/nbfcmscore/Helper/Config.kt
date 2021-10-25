@@ -39,6 +39,7 @@ object Config {
     const val SHARED_PREF16 = "FK_Account"
     const val SHARED_PREF17 = "SubModule"
     const val SHARED_PREF18 = "Status"
+    const val SHARED_PREF19 = "AccountNumber"
 
 
     fun getHostnameVerifier(): HostnameVerifier {

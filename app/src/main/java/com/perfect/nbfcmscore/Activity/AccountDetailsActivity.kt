@@ -34,6 +34,7 @@ class AccountDetailsActivity : AppCompatActivity() , View.OnClickListener {
 
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
+    var imgloanslab: ImageView? = null
     var tvaccounttype: TextView? = null
     var tvaccountno: TextView? = null
     var tvbal: TextView? = null
@@ -79,6 +80,8 @@ class AccountDetailsActivity : AppCompatActivity() , View.OnClickListener {
         imgBack!!.setOnClickListener(this)
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)
+        imgloanslab = findViewById<ImageView>(R.id.imgloanslab)
+        imgloanslab!!.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
@@ -88,6 +91,9 @@ class AccountDetailsActivity : AppCompatActivity() , View.OnClickListener {
             }
             R.id.imgHome ->{
                 startActivity(Intent(this@AccountDetailsActivity, HomeActivity::class.java))
+            }
+            R.id.imgloanslab ->{
+                startActivity(Intent(this@AccountDetailsActivity, LoanSlabActivity::class.java))
             }        }
     }
 
