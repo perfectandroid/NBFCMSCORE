@@ -2,8 +2,11 @@ package com.perfect.nbfcmscore.Activity
 
 import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,20 +26,29 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
-class PassbookTransactionDetailsActivity : AppCompatActivity() {
+class PassbookTransactionDetailsActivity : AppCompatActivity(), View.OnClickListener {
     var TransactionID: String? = null
     var SubModule:kotlin.String? = null
     var rv_statementDetails: RecyclerView? = null
     private var progressDialog: ProgressDialog? = null
+    var imgBack: ImageView? = null
+    var imgHome: ImageView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trans_details)
 
-        rv_statementDetails = findViewById(R.id.rv_statementDetails)
-
+        setRegviews()
         TransactionID = intent.getStringExtra("TransactionID")
         SubModule = intent.getStringExtra("SubModule")
         getPassbookStatementDetails(TransactionID, SubModule)
+    }
+
+    private fun setRegviews() {
+        rv_statementDetails = findViewById(R.id.rv_statementDetails)
+        imgBack = findViewById<ImageView>(R.id.imgBack)
+        imgBack!!.setOnClickListener(this)
+        imgHome = findViewById<ImageView>(R.id.imgHome)
+        imgHome!!.setOnClickListener(this)
     }
 
     private fun getPassbookStatementDetails(transactionID: String?, subModule: String?) {
@@ -217,5 +229,16 @@ class PassbookTransactionDetailsActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.imgBack ->{
+                finish()
+            }
+            R.id.imgHome ->{
+                startActivity(Intent(this@PassbookTransactionDetailsActivity, HomeActivity::class.java))
+            }
+        }
     }
 }

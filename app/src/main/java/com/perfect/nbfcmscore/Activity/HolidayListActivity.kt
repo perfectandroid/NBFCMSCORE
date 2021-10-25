@@ -2,12 +2,14 @@ package com.perfect.nbfcmscore.Activity
 
 import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.Spinner
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -31,12 +33,14 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
-class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
+class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener,View.OnClickListener {
     private var progressDialog: ProgressDialog? = null
     private var jresult: JSONArray? = null
     private var jresult1: JSONArray? = null
     private var rv_holiday: RecyclerView? = null
     var spnBranch: Spinner? = null
+    var imgBack: ImageView? = null
+    var imgHome: ImageView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_holiday)
@@ -208,6 +212,10 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
     private fun setRegViews() {
         rv_holiday = findViewById(R.id.rv_holiday)
         spnBranch = findViewById(R.id.spnBranch)
+        imgBack = findViewById<ImageView>(R.id.imgBack)
+        imgBack!!.setOnClickListener(this)
+        imgHome = findViewById<ImageView>(R.id.imgHome)
+        imgHome!!.setOnClickListener(this)
     }
 
     private fun getHolidayList() {
@@ -383,6 +391,17 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
         TODO("Not yet implemented")
+    }
+
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.imgBack ->{
+                finish()
+            }
+            R.id.imgHome ->{
+                startActivity(Intent(this@HolidayListActivity, HomeActivity::class.java))
+            }
+        }
     }
 
 

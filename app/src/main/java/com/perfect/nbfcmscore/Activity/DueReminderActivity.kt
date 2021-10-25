@@ -2,8 +2,10 @@ package com.perfect.nbfcmscore.Activity
 
 import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
@@ -22,14 +24,15 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
 
-class DueReminderActivity : AppCompatActivity() {
+class DueReminderActivity : AppCompatActivity() , View.OnClickListener{
     private var progressDialog: ProgressDialog? = null
     var radiogrp: RadioGroup? = null
     var radio1:RadioButton?=null
     var radio2:RadioButton?=null
     var submode: String=""
     var selectedId: Int = radiogrp!!.getCheckedRadioButtonId()
-
+    var imgBack: ImageView? = null
+    var imgHome: ImageView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_duereminder)
@@ -43,6 +46,10 @@ class DueReminderActivity : AppCompatActivity() {
         radio1 = findViewById<RadioButton>(R.id.radio1)
         radio2 = findViewById<RadioButton>(R.id.radio2)
         val selectedOption: Int = radiogrp!!.checkedRadioButtonId
+        imgBack = findViewById<ImageView>(R.id.imgBack)
+        imgBack!!.setOnClickListener(this)
+        imgHome = findViewById<ImageView>(R.id.imgHome)
+        imgHome!!.setOnClickListener(this)
 
         // Assigning id of the checked radio button
        // radioButton = findViewById(selectedOption)
@@ -221,6 +228,17 @@ class DueReminderActivity : AppCompatActivity() {
                 val alertDialog: AlertDialog = builder.create()
                 alertDialog.setCancelable(false)
                 alertDialog.show()
+            }
+        }
+    }
+
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.imgBack ->{
+                finish()
+            }
+            R.id.imgHome ->{
+                startActivity(Intent(this@DueReminderActivity, HomeActivity::class.java))
             }
         }
     }
