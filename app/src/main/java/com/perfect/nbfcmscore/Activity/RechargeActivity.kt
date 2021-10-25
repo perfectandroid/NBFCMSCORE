@@ -108,6 +108,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener {
             }
             R.id.tie_operator ->{
               //  tie_operator!!.setText("Airtel")
+                Log.e(TAG,"tie_operator")
                 getOperator()
 //                val dialog = BottomSheetDialog(this)
 //
