@@ -2,6 +2,7 @@ package com.perfect.nbfcmscore.Activity
 
 import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -31,7 +32,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.*
 
-class PassbookActivity : AppCompatActivity(), OnItemSelectedListener {
+class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClickListener {
     var arrayList1 = ArrayList<String>()
     var spnAccountNum: Spinner? = null
     private var jresult: JSONArray? = null
@@ -48,6 +49,8 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener {
     private var ll_balance: LinearLayout? = null
     var noofdays = 0
     private var progressDialog: ProgressDialog? = null
+    var imgBack: ImageView? = null
+    var imgHome: ImageView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_passbook)
@@ -66,6 +69,11 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener {
         empty_list = findViewById(R.id.empty_list)
         rv_passbook = findViewById(R.id.rv_passbook)
         spnAccountNum!!.onItemSelectedListener = this
+
+        imgBack = findViewById<ImageView>(R.id.imgBack)
+        imgBack!!.setOnClickListener(this)
+        imgHome = findViewById<ImageView>(R.id.imgHome)
+        imgHome!!.setOnClickListener(this)
 
 
     }
@@ -466,5 +474,16 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener {
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
         TODO("Not yet implemented")
+    }
+
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.imgBack ->{
+                finish()
+            }
+            R.id.imgHome ->{
+                startActivity(Intent(this@PassbookActivity, HomeActivity::class.java))
+            }
+        }
     }
 }

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_branchrow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:orientation="horizontal"
+        android:background="@drawable/border_rectangle">
+
+        <ImageView
+            android:layout_marginLeft="5dp"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:scaleType="fitXY"
+            android:background="@drawable/bell"
+            ></ImageView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:layout_weight="1">
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal">
+              <TextView
+                  android:id="@+id/tv_Acno"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="center_vertical"
+                  android:layout_marginLeft="8dp"
+                  android:textSize="12dp"
+                  android:layout_weight="1"
+                  android:padding="2dp"
+                  android:textStyle="bold"
+                  android:textColor="@color/black"
+                  android:text="A/c No :" />
+              <TextView
+                  android:id="@+id/tv_Acno1"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="center_vertical"
+                  android:textSize="12dp"
+                  android:layout_weight="0.3"
+                  android:padding="2dp"
+                  android:textStyle="bold"
+                  android:textColor="@color/black"
+                  android:text="erwrwr" />
+          </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tv_Amt"
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp"
+                    android:layout_weight="1.1"
+                    android:padding="2dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:text="Amount:" />
+                <TextView
+                    android:id="@+id/tv_amt1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp"
+                    android:layout_weight="0.4"
+                    android:padding="2dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:text="" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tv_duedate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp"
+                    android:layout_weight="1"
+                    android:padding="2dp"
+                    android:layout_marginLeft="8dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:text="Duedate:" />
+                <TextView
+                    android:id="@+id/tv_duedate1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:textSize="12dp"
+                    android:layout_weight="0.3"
+                    android:padding="2dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:text="erwrwr" />
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

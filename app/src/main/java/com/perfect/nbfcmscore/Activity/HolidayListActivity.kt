@@ -2,24 +2,22 @@ package com.perfect.nbfcmscore.Activity
 
 import android.app.AlertDialog
 import android.app.ProgressDialog
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
-import com.perfect.nbfcmscore.Adapter.BranchListAdapter
 import com.perfect.nbfcmscore.Adapter.HolidayListAdapter
-import com.perfect.nbfcmscore.Adapter.PassbookTranscationListAdapter
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
 import com.perfect.nbfcmscore.Helper.MscoreApplication
+import com.perfect.nbfcmscore.Model.Branchcode
 import com.perfect.nbfcmscore.R
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
@@ -30,13 +28,18 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import java.util.*
 
-class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
+class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener,View.OnClickListener {
     private var progressDialog: ProgressDialog? = null
     private var jresult: JSONArray? = null
     private var jresult1: JSONArray? = null
     private var rv_holiday: RecyclerView? = null
     var spnBranch: Spinner? = null
+    var imgBack: ImageView? = null
+    var imgHome: ImageView? = null
+    var arrayList1 = ArrayList<String>()
+    var arrayList2 = ArrayList<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_holiday)
@@ -49,12 +52,12 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
     private fun getBranchlist() {
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
-                progressDialog = ProgressDialog(this@HolidayListActivity, R.style.Progress)
+                /*progressDialog = ProgressDialog(this@HolidayListActivity, R.style.Progress)
                 progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
                 progressDialog!!.setCancelable(false)
                 progressDialog!!.setIndeterminate(true)
                 progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
-                progressDialog!!.show()
+                progressDialog!!.show()*/
                 try {
                     val client = OkHttpClient.Builder()
                             .sslSocketFactory(Config.getSSLSocketFactory(this@HolidayListActivity))
@@ -84,12 +87,20 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                                 0
                         )
                         val Token = TokenSP.getString("Token", null)
+
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("8"))
-                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
-                        requestObject1.put("FK_District", MscoreApplication.encryptStart("0"))
+                        requestObject1.put(
+                                "BankKey", MscoreApplication.encryptStart(
+                                getResources().getString(
+                                        R.string.BankKey
+                                )
+                        )
+                        )
+                        requestObject1.put(
+                                "FK_District",
+                                MscoreApplication.encryptStart("0")
+                        )
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-
-
 
 
                         Log.e("TAG", "requestObject1  171   " + requestObject1)
@@ -116,7 +127,7 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 Log.i("Response", response.body())
-                              /*  if (jObject.getString("StatusCode") == "0") {
+                                if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
                                             jObject.getJSONObject("BankBranchDetails")
                                     val jsonobj2 = JSONObject(jsonObj1.toString())
@@ -126,12 +137,13 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                                     for (i in 0 until jresult1!!.length()) {
                                         try {
                                             val json = jresult1!!.getJSONObject(i)
-                                            arrayList1!!.add(json.getString("AccountNumber"))
+                                            arrayList1!!.add(json.getString("BranchName"))
+                                            arrayList2.add(Branchcode(json.getString("BranchName"), json.getString("ID_Branch")).toString())
                                         } catch (e: JSONException) {
                                             e.printStackTrace()
                                         }
                                     }
-                                    spnAccountNum!!.adapter = ArrayAdapter(
+                                    spnBranch!!.adapter = ArrayAdapter(
                                             this@HolidayListActivity,
                                             android.R.layout.simple_spinner_dropdown_item, arrayList1
                                     )
@@ -148,9 +160,9 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                                     val alertDialog: AlertDialog = builder.create()
                                     alertDialog.setCancelable(false)
                                     alertDialog.show()
-                                }*/
+                                }
                             } catch (e: Exception) {
-                                progressDialog!!.dismiss()
+                                //  progressDialog!!.dismiss()
 
                                 val builder = AlertDialog.Builder(
                                         this@HolidayListActivity,
@@ -167,7 +179,7 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                         }
 
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
-                            progressDialog!!.dismiss()
+                            //  progressDialog!!.dismiss()
 
                             val builder = AlertDialog.Builder(
                                     this@HolidayListActivity,
@@ -182,7 +194,7 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                         }
                     })
                 } catch (e: Exception) {
-                    progressDialog!!.dismiss()
+                    // progressDialog!!.dismiss()
                     val builder = AlertDialog.Builder(this@HolidayListActivity, R.style.MyDialogTheme)
                     builder.setMessage("Some technical issues.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -208,6 +220,10 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
     private fun setRegViews() {
         rv_holiday = findViewById(R.id.rv_holiday)
         spnBranch = findViewById(R.id.spnBranch)
+        imgBack = findViewById<ImageView>(R.id.imgBack)
+        imgBack!!.setOnClickListener(this)
+        imgHome = findViewById<ImageView>(R.id.imgHome)
+        imgHome!!.setOnClickListener(this)
     }
 
     private fun getHolidayList() {
@@ -305,7 +321,16 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 
                                         rv_holiday!!.adapter = adapter
                                     } else {
-
+                                        val builder = AlertDialog.Builder(
+                                                this@HolidayListActivity,
+                                                R.style.MyDialogTheme
+                                        )
+                                        builder.setMessage("" + jObject.getString("EXMessage"))
+                                        builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                        }
+                                        val alertDialog: AlertDialog = builder.create()
+                                        alertDialog.setCancelable(false)
+                                        alertDialog.show()
                                     }
 
 
@@ -378,11 +403,23 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        TODO("Not yet implemented")
+        val json = jresult!!.getJSONObject(position)
+      //  Toast.makeText(applicationContext, "Branchcode :" + json.getString("ID_Branch"), Toast.LENGTH_LONG).show()
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
         TODO("Not yet implemented")
+    }
+
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.imgBack -> {
+                finish()
+            }
+            R.id.imgHome -> {
+                startActivity(Intent(this@HolidayListActivity, HomeActivity::class.java))
+            }
+        }
     }
 
 

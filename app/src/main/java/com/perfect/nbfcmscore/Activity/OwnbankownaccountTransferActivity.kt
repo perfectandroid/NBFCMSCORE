@@ -3,16 +3,18 @@ package com.perfect.nbfcmscore.Activity
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
-import com.perfect.nbfcmscore.Adapter.PassbookTransactionDetailsAdapter
+import com.perfect.nbfcmscore.Adapter.HolidayListAdapter
+import com.perfect.nbfcmscore.Adapter.OwnbankownacntAdapter
+import com.perfect.nbfcmscore.Adapter.PassbookTranscationListAdapter
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
@@ -20,41 +22,41 @@ import com.perfect.nbfcmscore.Helper.MscoreApplication
 import com.perfect.nbfcmscore.R
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
+import org.json.JSONArray
 import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
-class PassbookTransactionDetailsActivity : AppCompatActivity(), View.OnClickListener {
-    var TransactionID: String? = null
-    var SubModule:kotlin.String? = null
-    var rv_statementDetails: RecyclerView? = null
+class OwnbankownaccountTransferActivity : AppCompatActivity(),View.OnClickListener {
     private var progressDialog: ProgressDialog? = null
+    private var jresult: JSONArray? = null
+    private var rv_ownacnt: RecyclerView? = null
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_trans_details)
+        setContentView(R.layout.activity_ownbankownaccount)
 
-        setRegviews()
-        TransactionID = intent.getStringExtra("TransactionID")
-        SubModule = intent.getStringExtra("SubModule")
-        getPassbookStatementDetails(TransactionID, SubModule)
+        setRegViews()
+        getOwnbankownAccount()
+
+
     }
 
-    private fun setRegviews() {
-        rv_statementDetails = findViewById(R.id.rv_statementDetails)
+    private fun setRegViews() {
+        rv_ownacnt = findViewById(R.id.rv_ownacnt)
         imgBack = findViewById<ImageView>(R.id.imgBack)
         imgBack!!.setOnClickListener(this)
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)
     }
 
-    private fun getPassbookStatementDetails(transactionID: String?, subModule: String?) {
+    private fun getOwnbankownAccount() {
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
-                progressDialog = ProgressDialog(this@PassbookTransactionDetailsActivity, R.style.Progress)
+                progressDialog = ProgressDialog(this@OwnbankownaccountTransferActivity, R.style.Progress)
                 progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
                 progressDialog!!.setCancelable(false)
                 progressDialog!!.setIndeterminate(true)
@@ -62,7 +64,7 @@ class PassbookTransactionDetailsActivity : AppCompatActivity(), View.OnClickList
                 progressDialog!!.show()
                 try {
                     val client = OkHttpClient.Builder()
-                            .sslSocketFactory(Config.getSSLSocketFactory(this@PassbookTransactionDetailsActivity))
+                            .sslSocketFactory(Config.getSSLSocketFactory(this@OwnbankownaccountTransferActivity))
                             .hostnameVerifier(Config.getHostnameVerifier())
                             .build()
                     val gson = GsonBuilder()
@@ -74,7 +76,6 @@ class PassbookTransactionDetailsActivity : AppCompatActivity(), View.OnClickList
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)
                             .build()
-
                     val apiService = retrofit.create(ApiInterface::class.java!!)
                     val requestObject1 = JSONObject()
                     try {
@@ -91,10 +92,16 @@ class PassbookTransactionDetailsActivity : AppCompatActivity(), View.OnClickList
                         )
                         val Token = TokenSP.getString("Token", null)
 
-                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("14"))
+                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("26"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-                        requestObject1.put("TransactionID", MscoreApplication.encryptStart(transactionID))
-                        requestObject1.put("SubModule", MscoreApplication.encryptStart(subModule))
+                        requestObject1.put(
+                                "FK_Customer",
+                                MscoreApplication.encryptStart(FK_Customer)
+                        )
+                        requestObject1.put(
+                                "SubMode",
+                                MscoreApplication.encryptStart("1")
+                        )
 
                         requestObject1.put(
                                 "BankKey", MscoreApplication.encryptStart(
@@ -119,7 +126,7 @@ class PassbookTransactionDetailsActivity : AppCompatActivity(), View.OnClickList
                             okhttp3.MediaType.parse("application/json; charset=utf-8"),
                             requestObject1.toString()
                     )
-                    val call = apiService.getPassbookAccounttranslist(body)
+                    val call = apiService.getOwnbankownaccountdetail(body)
                     call.enqueue(object : retrofit2.Callback<String> {
                         override fun onResponse(
                                 call: retrofit2.Call<String>, response:
@@ -130,19 +137,39 @@ class PassbookTransactionDetailsActivity : AppCompatActivity(), View.OnClickList
                                 val jObject = JSONObject(response.body())
                                 Log.i("Response", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
-                                    val jsonObj1: JSONObject = jObject.getJSONObject("PassBookAccountTransactionList")
-                                    val jresult = jsonObj1.getJSONArray("Data")
-                                    val jsonArrayKey = jresult.getJSONObject(0).getJSONArray("Details")
-                                    val lLayout = GridLayoutManager(this@PassbookTransactionDetailsActivity, 1)
-                                    rv_statementDetails!!.layoutManager = lLayout
-                                    rv_statementDetails!!.setHasFixedSize(true)
-                                    val adapter = PassbookTransactionDetailsAdapter(this@PassbookTransactionDetailsActivity, jsonArrayKey)
-                                    rv_statementDetails!!.adapter = adapter
-                                }
-                                else {
+                                    val jsonObj1: JSONObject =
+                                            jObject.getJSONObject("OwnAccountdetails")
+                                    val jsonobj2 = JSONObject(jsonObj1.toString())
+
+                                    jresult = jsonobj2.getJSONArray("OwnAccountdetailsList")
+                                    if (jresult!!.length() != 0) {
+
+                                        val lLayout =
+                                                GridLayoutManager(this@OwnbankownaccountTransferActivity, 1)
+                                        rv_ownacnt!!.layoutManager = lLayout
+                                        rv_ownacnt!!.setHasFixedSize(true)
+                                        val adapter = OwnbankownacntAdapter(applicationContext!!, jresult!!)
+
+                                        rv_ownacnt!!.adapter = adapter
+                                    } else {
+                                        val builder = AlertDialog.Builder(
+                                                this@OwnbankownaccountTransferActivity,
+                                                R.style.MyDialogTheme
+                                        )
+                                        builder.setMessage("" + jObject.getString("EXMessage"))
+                                        builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                        }
+                                        val alertDialog: AlertDialog = builder.create()
+                                        alertDialog.setCancelable(false)
+                                        alertDialog.show()
+                                    }
+
+
+
+                                } else {
                                     val builder = AlertDialog.Builder(
-                                        this@PassbookTransactionDetailsActivity,
-                                        R.style.MyDialogTheme
+                                            this@OwnbankownaccountTransferActivity,
+                                            R.style.MyDialogTheme
                                     )
                                     builder.setMessage("" + jObject.getString("EXMessage"))
                                     builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -151,33 +178,11 @@ class PassbookTransactionDetailsActivity : AppCompatActivity(), View.OnClickList
                                     alertDialog.setCancelable(false)
                                     alertDialog.show()
                                 }
-                                /* if (jObject.getString("StatusCode") == "0") {
-                                    val jsonObj1: JSONObject =
-                                            jObject.getJSONObject("PassBookAccountDetails")
-                                    val jsonobj2 = JSONObject(jsonObj1.toString())
-
-                                    jresult = jsonobj2.getJSONArray("PassBookAccountDetailsList")
-
-                                    for (i in 0 until jresult!!.length()) {
-                                        try {
-                                            val json = jresult!!.getJSONObject(i)
-                                            arrayList1!!.add(json.getString("AccountNumber"))
-                                        } catch (e: JSONException) {
-                                            e.printStackTrace()
-                                        }
-                                    }
-                                    spnAccountNum!!.adapter = ArrayAdapter(
-                                            this@PassbookTransactionDetailsActivity,
-                                            android.R.layout.simple_spinner_dropdown_item, arrayList1
-                                    )
-
-
-                                }*/
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
 
                                 val builder = AlertDialog.Builder(
-                                        this@PassbookTransactionDetailsActivity,
+                                        this@OwnbankownaccountTransferActivity,
                                         R.style.MyDialogTheme
                                 )
                                 builder.setMessage("Some technical issues.")
@@ -194,7 +199,7 @@ class PassbookTransactionDetailsActivity : AppCompatActivity(), View.OnClickList
                             progressDialog!!.dismiss()
 
                             val builder = AlertDialog.Builder(
-                                    this@PassbookTransactionDetailsActivity,
+                                    this@OwnbankownaccountTransferActivity,
                                     R.style.MyDialogTheme
                             )
                             builder.setMessage("Some technical issues.")
@@ -207,7 +212,7 @@ class PassbookTransactionDetailsActivity : AppCompatActivity(), View.OnClickList
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(this@PassbookTransactionDetailsActivity, R.style.MyDialogTheme)
+                    val builder = AlertDialog.Builder(this@OwnbankownaccountTransferActivity, R.style.MyDialogTheme)
                     builder.setMessage("Some technical issues.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->
                     }
@@ -218,7 +223,7 @@ class PassbookTransactionDetailsActivity : AppCompatActivity(), View.OnClickList
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@PassbookTransactionDetailsActivity, R.style.MyDialogTheme)
+                val builder = AlertDialog.Builder(this@OwnbankownaccountTransferActivity, R.style.MyDialogTheme)
                 builder.setMessage("No Internet Connection.")
                 builder.setPositiveButton("Ok") { dialogInterface, which ->
                 }
@@ -227,17 +232,15 @@ class PassbookTransactionDetailsActivity : AppCompatActivity(), View.OnClickList
                 alertDialog.show()
             }
         }
-
-
     }
 
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.imgBack ->{
+            R.id.imgBack -> {
                 finish()
             }
-            R.id.imgHome ->{
-                startActivity(Intent(this@PassbookTransactionDetailsActivity, HomeActivity::class.java))
+            R.id.imgHome -> {
+                startActivity(Intent(this@OwnbankownaccountTransferActivity, HomeActivity::class.java))
             }
         }
     }
