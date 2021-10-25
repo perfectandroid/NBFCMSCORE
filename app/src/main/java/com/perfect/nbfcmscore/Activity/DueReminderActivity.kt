@@ -25,8 +25,11 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 class DueReminderActivity : AppCompatActivity() {
     private var progressDialog: ProgressDialog? = null
     var radiogrp: RadioGroup? = null
+    var radio1:RadioButton?=null
+    var radio2:RadioButton?=null
     var submode: String=""
-    lateinit var radioButton: RadioButton
+    var selectedId: Int = radiogrp!!.getCheckedRadioButtonId()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_duereminder)
@@ -37,21 +40,32 @@ class DueReminderActivity : AppCompatActivity() {
 
     private fun setRegViews() {
         radiogrp = findViewById<RadioGroup>(R.id.radio_group)
+        radio1 = findViewById<RadioButton>(R.id.radio1)
+        radio2 = findViewById<RadioButton>(R.id.radio2)
         val selectedOption: Int = radiogrp!!.checkedRadioButtonId
 
         // Assigning id of the checked radio button
-        radioButton = findViewById(selectedOption)
+       // radioButton = findViewById(selectedOption)
 
         // Displaying text of the checked radio button in the form of toast
-        Toast.makeText(baseContext, radioButton.text, Toast.LENGTH_SHORT).show()
-        if(radioButton.text.equals("Deposit"))
-                {
-                      submode="1"
-                }
-        if(radioButton.text.equals("Loan"))
+        //Toast.makeText(baseContext, radioButton.text, Toast.LENGTH_SHORT).show()
+
+        if(radio1!!.isChecked())
         {
-                    submode="2"
+            if(radio1!!.text.equals("Deposit"))
+            {
+                submode="1"
+            }
         }
+        else if(radio2!!.isChecked())
+        {
+            if(radio2!!.text.equals("Loan"))
+            {
+                submode="2"
+            }
+        }
+
+
         getdueReminder(submode)
     }
 
