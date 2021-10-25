@@ -2,10 +2,16 @@ package com.perfect.nbfcmscore.Activity
 
 import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
+import com.perfect.nbfcmscore.Adapter.StandingInstructionAdaptor
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
@@ -19,12 +25,20 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
-class StandingInsructionActivity : AppCompatActivity() {
+class StandingInsructionActivity : AppCompatActivity(), View.OnClickListener {
     private var progressDialog: ProgressDialog? = null
+    private var rv_si: RecyclerView? = null
 
+    var imgBack: ImageView? = null
+    var imgHome: ImageView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_si)
+        rv_si  = findViewById<View>(R.id.rv_si) as RecyclerView?
+        imgBack = findViewById<ImageView>(R.id.imgBack)
+        imgBack!!.setOnClickListener(this)
+        imgHome = findViewById<ImageView>(R.id.imgHome)
+        imgHome!!.setOnClickListener(this)
         getStandingInstruction()
     }
 
@@ -102,16 +116,13 @@ class StandingInsructionActivity : AppCompatActivity() {
                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 if (jObject.getString("StatusCode") == "0") {
-                                   /*    val jobjt = jObject.getJSONObject("VarificationMaintenance")
-
-                                    val jobjt =
-                                        jObject.getJSONObject("AccountMiniStatement")
+                                       val jobjt = jObject.getJSONObject("StandingInstructionInfo")
                                     val jarray =
-                                        jobjt.getJSONArray("AccountMiniStatementList")
+                                        jobjt.getJSONArray("StandingInstructionDetailsList")
 
-                                    val obj_adapter = MinistatementAdaptor(applicationContext!!, jarray)
-                                    rv_ministatementlist!!.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
-                                    rv_ministatementlist!!.adapter = obj_adapter*/
+                                    val obj_adapter = StandingInstructionAdaptor(applicationContext!!, jarray)
+                                    rv_si!!.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
+                                    rv_si!!.adapter = obj_adapter
 
                                 } else {
                                     val builder = AlertDialog.Builder(
@@ -180,4 +191,14 @@ class StandingInsructionActivity : AppCompatActivity() {
 
     }
 
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.imgBack ->{
+                finish()
+            }
+            R.id.imgHome ->{
+                startActivity(Intent(this@StandingInsructionActivity, HomeActivity::class.java))
+            }
+        }
+    }
 }

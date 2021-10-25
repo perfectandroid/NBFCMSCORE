@@ -5,8 +5,13 @@ import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
+import com.perfect.nbfcmscore.Adapter.NoticeAdaptor
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
@@ -20,13 +25,22 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
-class NoticeActivity : AppCompatActivity() {
+class NoticeActivity : AppCompatActivity() , View.OnClickListener {
     private var progressDialog: ProgressDialog? = null
 
+    private var rv_notice: RecyclerView? = null
+
+    var imgBack: ImageView? = null
+    var imgHome: ImageView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_myaccounts)
+        setContentView(R.layout.activity_notice)
 
+        rv_notice  = findViewById<View>(R.id.rv_notice) as RecyclerView?
+        imgBack = findViewById<ImageView>(R.id.imgBack)
+        imgBack!!.setOnClickListener(this)
+        imgHome = findViewById<ImageView>(R.id.imgHome)
+        imgHome!!.setOnClickListener(this)
         getStandingInstruction()
     }
 
@@ -104,16 +118,14 @@ class NoticeActivity : AppCompatActivity() {
                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 if (jObject.getString("StatusCode") == "0") {
-                                    /*   val jobjt = jObject.getJSONObject("VarificationMaintenance")
 
-                                    val jobjt =
-                                        jObject.getJSONObject("AccountMiniStatement")
+                                    val jobjt = jObject.getJSONObject("NoticePostingInfo")
                                     val jarray =
-                                        jobjt.getJSONArray("AccountMiniStatementList")
+                                        jobjt.getJSONArray("NoticePostingDetailsList")
 
-                                    val obj_adapter = MinistatementAdaptor(applicationContext!!, jarray)
-                                    rv_ministatementlist!!.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
-                                    rv_ministatementlist!!.adapter = obj_adapter*/
+                                    val obj_adapter = NoticeAdaptor(applicationContext!!, jarray)
+                                    rv_notice!!.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
+                                    rv_notice!!.adapter = obj_adapter
 
                                 } else {
                                     val builder = AlertDialog.Builder(
@@ -182,4 +194,14 @@ class NoticeActivity : AppCompatActivity() {
 
     }
 
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.imgBack ->{
+                finish()
+            }
+            R.id.imgHome ->{
+                startActivity(Intent(this@NoticeActivity, HomeActivity::class.java))
+            }
+        }
+    }
 }
