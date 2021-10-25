@@ -30,9 +30,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var ll_prepaid : LinearLayout?=null
     var ll_postpaid : LinearLayout?=null
     var ll_landline : LinearLayout?=null
+    var ll_holidaylist : LinearLayout?=null
     var ll_dth : LinearLayout?=null
     var llEmi : LinearLayout?=null
-
+    var llpassbook: LinearLayout? = null
+    var llduereminder: LinearLayout? = null
     private var mPager: ViewPager? = null
     private var indicator: CircleIndicator? = null
     private var currentPage = 0
@@ -76,11 +78,14 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         drawer = findViewById(R.id.drawer_layout)
         lvNavMenu = findViewById(R.id.lvNavMenu)
         ll_branschDetails = findViewById(R.id.ll_branschDetails)
+        ll_holidaylist= findViewById(R.id.ll_holidaylist)
         ll_prepaid = findViewById(R.id.ll_prepaid)
         ll_postpaid = findViewById(R.id.ll_postpaid)
         ll_landline = findViewById(R.id.ll_landline)
         ll_dth = findViewById(R.id.ll_dth)
         llEmi = findViewById(R.id.llEmi)
+        llpassbook = findViewById<LinearLayout>(R.id.llpassbook)
+        llduereminder = findViewById<LinearLayout>(R.id.lldueremindrer)
 
     }
 
@@ -90,6 +95,9 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         mPager = findViewById(R.id.pager)
         indicator =findViewById(R.id.indicator)
 
+        llpassbook!!.setOnClickListener(this)
+        llduereminder!!.setOnClickListener(this)
+        ll_holidaylist!!.setOnClickListener(this)
         ll_branschDetails!!.setOnClickListener(this)
         ll_prepaid!!.setOnClickListener(this)
         ll_postpaid!!.setOnClickListener(this)
@@ -143,8 +151,19 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             R.id.ll_branschDetails ->{
                 startActivity(Intent(this@HomeActivity, BranchDetailActivity::class.java))
             }
+
+            R.id.ll_holidaylist ->{
+                startActivity(Intent(this@HomeActivity, HolidayListActivity::class.java))
+            }
+
             R.id.llEmi ->{
                 startActivity(Intent(this@HomeActivity, EMIActivity::class.java))
+            }
+            R.id.lldueremindrer ->{
+                startActivity(Intent(this@HomeActivity, DueReminderActivity::class.java))
+            }
+            R.id.llpassbook ->{
+                startActivity(Intent(this@HomeActivity, PassbookActivity::class.java))
             }
             R.id.ll_prepaid ->{
 

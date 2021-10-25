@@ -29,7 +29,7 @@
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="15dp"
-                    android:text="   Standing Instruction"
+                    android:text="   Notice"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
@@ -44,7 +44,7 @@
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_si"
+            android:id="@+id/rv_notice"
             android:layout_marginBottom="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/></LinearLayout>

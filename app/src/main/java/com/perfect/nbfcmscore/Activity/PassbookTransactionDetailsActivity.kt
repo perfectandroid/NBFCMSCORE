@@ -2,16 +2,14 @@ package com.perfect.nbfcmscore.Activity
 
 import android.app.AlertDialog
 import android.app.ProgressDialog
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.ImageView
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
-import com.perfect.nbfcmscore.Adapter.StandingInstructionAdaptor
+import com.perfect.nbfcmscore.Adapter.PassbookTransactionDetailsAdapter
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
@@ -25,27 +23,26 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
-class StandingInsructionActivity : AppCompatActivity(), View.OnClickListener {
+class PassbookTransactionDetailsActivity : AppCompatActivity() {
+    var TransactionID: String? = null
+    var SubModule:kotlin.String? = null
+    var rv_statementDetails: RecyclerView? = null
     private var progressDialog: ProgressDialog? = null
-    private var rv_si: RecyclerView? = null
-
-    var imgBack: ImageView? = null
-    var imgHome: ImageView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_si)
-        rv_si  = findViewById<View>(R.id.rv_si) as RecyclerView?
-        imgBack = findViewById<ImageView>(R.id.imgBack)
-        imgBack!!.setOnClickListener(this)
-        imgHome = findViewById<ImageView>(R.id.imgHome)
-        imgHome!!.setOnClickListener(this)
-        getStandingInstruction()
+        setContentView(R.layout.activity_trans_details)
+
+        rv_statementDetails = findViewById(R.id.rv_statementDetails)
+
+        TransactionID = intent.getStringExtra("TransactionID")
+        SubModule = intent.getStringExtra("SubModule")
+        getPassbookStatementDetails(TransactionID, SubModule)
     }
 
-    private fun getStandingInstruction() {
+    private fun getPassbookStatementDetails(transactionID: String?, subModule: String?) {
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
-                progressDialog = ProgressDialog(this@StandingInsructionActivity, R.style.Progress)
+                progressDialog = ProgressDialog(this@PassbookTransactionDetailsActivity, R.style.Progress)
                 progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
                 progressDialog!!.setCancelable(false)
                 progressDialog!!.setIndeterminate(true)
@@ -53,7 +50,7 @@ class StandingInsructionActivity : AppCompatActivity(), View.OnClickListener {
                 progressDialog!!.show()
                 try {
                     val client = OkHttpClient.Builder()
-                            .sslSocketFactory(Config.getSSLSocketFactory(this@StandingInsructionActivity))
+                            .sslSocketFactory(Config.getSSLSocketFactory(this@PassbookTransactionDetailsActivity))
                             .hostnameVerifier(Config.getHostnameVerifier())
                             .build()
                     val gson = GsonBuilder()
@@ -65,20 +62,28 @@ class StandingInsructionActivity : AppCompatActivity(), View.OnClickListener {
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)
                             .build()
+
                     val apiService = retrofit.create(ApiInterface::class.java!!)
                     val requestObject1 = JSONObject()
                     try {
 
-                        val FK_CustomerSP = applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
+                        val FK_CustomerSP = this.applicationContext.getSharedPreferences(
+                                Config.SHARED_PREF1,
+                                0
+                        )
                         val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
 
-                        val TokenSP = applicationContext.getSharedPreferences(Config.SHARED_PREF8, 0)
+                        val TokenSP = this!!.applicationContext.getSharedPreferences(
+                                Config.SHARED_PREF8,
+                                0
+                        )
                         val Token = TokenSP.getString("Token", null)
 
-
-                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("15"))
-                        requestObject1.put("FK_Customer",  MscoreApplication.encryptStart(FK_Customer))
+                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("14"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+                        requestObject1.put("TransactionID", MscoreApplication.encryptStart(transactionID))
+                        requestObject1.put("SubModule", MscoreApplication.encryptStart(subModule))
+
                         requestObject1.put(
                                 "BankKey", MscoreApplication.encryptStart(
                                 getResources().getString(
@@ -86,13 +91,9 @@ class StandingInsructionActivity : AppCompatActivity(), View.OnClickListener {
                                 )
                         )
                         )
-                        requestObject1.put(
-                                "BankHeader", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                        R.string.BankHeader
-                                )
-                        )
-                        )
+
+
+                        Log.e("TAG", "requestObject1  171   " + requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -106,7 +107,7 @@ class StandingInsructionActivity : AppCompatActivity(), View.OnClickListener {
                             okhttp3.MediaType.parse("application/json; charset=utf-8"),
                             requestObject1.toString()
                     )
-                    val call = apiService.getStandingInstructionDetails(body)
+                    val call = apiService.getPassbookAccounttranslist(body)
                     call.enqueue(object : retrofit2.Callback<String> {
                         override fun onResponse(
                                 call: retrofit2.Call<String>, response:
@@ -115,18 +116,20 @@ class StandingInsructionActivity : AppCompatActivity(), View.OnClickListener {
                             try {
                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
+                                Log.i("Response", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
-                                       val jobjt = jObject.getJSONObject("StandingInstructionInfo")
-                                    val jarray =
-                                        jobjt.getJSONArray("StandingInstructionDetailsList")
-
-                                    val obj_adapter = StandingInstructionAdaptor(applicationContext!!, jarray)
-                                    rv_si!!.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
-                                    rv_si!!.adapter = obj_adapter
-
-                                } else {
+                                    val jsonObj1: JSONObject = jObject.getJSONObject("PassBookAccountTransactionList")
+                                    val jresult = jsonObj1.getJSONArray("Data")
+                                    val jsonArrayKey = jresult.getJSONObject(0).getJSONArray("Details")
+                                    val lLayout = GridLayoutManager(this@PassbookTransactionDetailsActivity, 1)
+                                    rv_statementDetails!!.layoutManager = lLayout
+                                    rv_statementDetails!!.setHasFixedSize(true)
+                                    val adapter = PassbookTransactionDetailsAdapter(this@PassbookTransactionDetailsActivity, jsonArrayKey)
+                                    rv_statementDetails!!.adapter = adapter
+                                }
+                                else {
                                     val builder = AlertDialog.Builder(
-                                        this@StandingInsructionActivity,
+                                        this@PassbookTransactionDetailsActivity,
                                         R.style.MyDialogTheme
                                     )
                                     builder.setMessage("" + jObject.getString("EXMessage"))
@@ -135,11 +138,34 @@ class StandingInsructionActivity : AppCompatActivity(), View.OnClickListener {
                                     val alertDialog: AlertDialog = builder.create()
                                     alertDialog.setCancelable(false)
                                     alertDialog.show()
-                                }                            } catch (e: Exception) {
+                                }
+                                /* if (jObject.getString("StatusCode") == "0") {
+                                    val jsonObj1: JSONObject =
+                                            jObject.getJSONObject("PassBookAccountDetails")
+                                    val jsonobj2 = JSONObject(jsonObj1.toString())
+
+                                    jresult = jsonobj2.getJSONArray("PassBookAccountDetailsList")
+
+                                    for (i in 0 until jresult!!.length()) {
+                                        try {
+                                            val json = jresult!!.getJSONObject(i)
+                                            arrayList1!!.add(json.getString("AccountNumber"))
+                                        } catch (e: JSONException) {
+                                            e.printStackTrace()
+                                        }
+                                    }
+                                    spnAccountNum!!.adapter = ArrayAdapter(
+                                            this@PassbookTransactionDetailsActivity,
+                                            android.R.layout.simple_spinner_dropdown_item, arrayList1
+                                    )
+
+
+                                }*/
+                            } catch (e: Exception) {
                                 progressDialog!!.dismiss()
 
                                 val builder = AlertDialog.Builder(
-                                        this@StandingInsructionActivity,
+                                        this@PassbookTransactionDetailsActivity,
                                         R.style.MyDialogTheme
                                 )
                                 builder.setMessage("Some technical issues.")
@@ -151,11 +177,12 @@ class StandingInsructionActivity : AppCompatActivity(), View.OnClickListener {
                                 e.printStackTrace()
                             }
                         }
+
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
 
                             val builder = AlertDialog.Builder(
-                                    this@StandingInsructionActivity,
+                                    this@PassbookTransactionDetailsActivity,
                                     R.style.MyDialogTheme
                             )
                             builder.setMessage("Some technical issues.")
@@ -168,7 +195,7 @@ class StandingInsructionActivity : AppCompatActivity(), View.OnClickListener {
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(this@StandingInsructionActivity, R.style.MyDialogTheme)
+                    val builder = AlertDialog.Builder(this@PassbookTransactionDetailsActivity, R.style.MyDialogTheme)
                     builder.setMessage("Some technical issues.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->
                     }
@@ -179,7 +206,7 @@ class StandingInsructionActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@StandingInsructionActivity, R.style.MyDialogTheme)
+                val builder = AlertDialog.Builder(this@PassbookTransactionDetailsActivity, R.style.MyDialogTheme)
                 builder.setMessage("No Internet Connection.")
                 builder.setPositiveButton("Ok") { dialogInterface, which ->
                 }
@@ -189,16 +216,6 @@ class StandingInsructionActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
 
-    }
 
-    override fun onClick(v: View) {
-        when (v.id) {
-            R.id.imgBack ->{
-                finish()
-            }
-            R.id.imgHome ->{
-                startActivity(Intent(this@StandingInsructionActivity, HomeActivity::class.java))
-            }
-        }
     }
 }

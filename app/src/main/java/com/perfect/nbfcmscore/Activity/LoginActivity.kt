@@ -63,7 +63,7 @@ class LoginActivity : AppCompatActivity() , View.OnClickListener {
         else if (etxt_mob!!.text.toString().isNotEmpty() && etxt_mob!!.text.toString().length!=10) {
             etxt_mob!!.setError("Please Enter Valid Mobile Number")
         }else{
-            etxt_mob!!.text=null
+            //etxt_mob!!.text=null
             getlogin()
         }
     }
