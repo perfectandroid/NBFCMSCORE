@@ -12,6 +12,7 @@ import java.security.NoSuchAlgorithmException
 import java.security.cert.CertificateException
 import java.security.cert.CertificateFactory
 import java.security.cert.X509Certificate
+import java.text.DecimalFormat
 import javax.net.ssl.*
 
 object Config {
@@ -116,5 +117,13 @@ object Config {
                 e.printStackTrace()
             }
         }
+    }
+    fun getDecimelFormate(amount: Double): String? {
+        val fmt = DecimalFormat("#,##,##,##,###.00")
+        var amt = fmt.format(amount)
+        if (amt.substring(0, 1) == ".") {
+            amt = "0$amt"
+        }
+        return amt
     }
 }

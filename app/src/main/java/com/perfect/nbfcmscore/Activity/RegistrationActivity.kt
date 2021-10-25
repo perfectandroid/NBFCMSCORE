@@ -80,8 +80,8 @@ class RegistrationActivity : AppCompatActivity()  , View.OnClickListener {
         else if (etxt_accno!!.text.toString().isNotEmpty() && etxt_accno!!.text.toString().length!=4) {
             etxt_accno!!.setError("Enter Last 4 Digit Of A/C No.")
         }else{
-            etxt_mob!!.text=null
-            etxt_accno!!.text=null
+        /*    etxt_mob!!.text=null
+            etxt_accno!!.text=null*/
             getRegister()
         }
     }

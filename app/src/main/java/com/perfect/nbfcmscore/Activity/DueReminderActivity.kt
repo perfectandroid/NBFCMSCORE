@@ -2,16 +2,12 @@ package com.perfect.nbfcmscore.Activity
 
 import android.app.AlertDialog
 import android.app.ProgressDialog
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.ImageView
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import android.util.Log
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
-import com.perfect.nbfcmscore.Adapter.NoticeAdaptor
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
@@ -25,29 +21,45 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
-class NoticeActivity : AppCompatActivity() , View.OnClickListener {
+
+class DueReminderActivity : AppCompatActivity() {
     private var progressDialog: ProgressDialog? = null
-
-    private var rv_notice: RecyclerView? = null
-
-    var imgBack: ImageView? = null
-    var imgHome: ImageView? = null
+    var radiogrp: RadioGroup? = null
+    var submode: String=""
+    lateinit var radioButton: RadioButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_notice)
+        setContentView(R.layout.activity_duereminder)
 
-        rv_notice  = findViewById<View>(R.id.rv_notice) as RecyclerView?
-        imgBack = findViewById<ImageView>(R.id.imgBack)
-        imgBack!!.setOnClickListener(this)
-        imgHome = findViewById<ImageView>(R.id.imgHome)
-        imgHome!!.setOnClickListener(this)
-        getStandingInstruction()
+
+        setRegViews()
     }
 
-    private fun getStandingInstruction() {
+    private fun setRegViews() {
+        radiogrp = findViewById<RadioGroup>(R.id.radio_group)
+        val selectedOption: Int = radiogrp!!.checkedRadioButtonId
+
+        // Assigning id of the checked radio button
+        radioButton = findViewById(selectedOption)
+
+        // Displaying text of the checked radio button in the form of toast
+        Toast.makeText(baseContext, radioButton.text, Toast.LENGTH_SHORT).show()
+        if(radioButton.text.equals("Deposit"))
+                {
+                      submode="1"
+                }
+        if(radioButton.text.equals("Loan"))
+        {
+                    submode="2"
+        }
+        getdueReminder(submode)
+    }
+
+    private fun getdueReminder(submode: String) {
+
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
-                progressDialog = ProgressDialog(this@NoticeActivity, R.style.Progress)
+                progressDialog = ProgressDialog(this@DueReminderActivity, R.style.Progress)
                 progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
                 progressDialog!!.setCancelable(false)
                 progressDialog!!.setIndeterminate(true)
@@ -55,82 +67,86 @@ class NoticeActivity : AppCompatActivity() , View.OnClickListener {
                 progressDialog!!.show()
                 try {
                     val client = OkHttpClient.Builder()
-                        .sslSocketFactory(Config.getSSLSocketFactory(this@NoticeActivity))
-                        .hostnameVerifier(Config.getHostnameVerifier())
-                        .build()
+                            .sslSocketFactory(Config.getSSLSocketFactory(this@DueReminderActivity))
+                            .hostnameVerifier(Config.getHostnameVerifier())
+                            .build()
                     val gson = GsonBuilder()
-                        .setLenient()
-                        .create()
+                            .setLenient()
+                            .create()
                     val retrofit = Retrofit.Builder()
-                        .baseUrl(Config.BASE_URL)
-                        .addConverterFactory(ScalarsConverterFactory.create())
-                        .addConverterFactory(GsonConverterFactory.create(gson))
-                        .client(client)
-                        .build()
+                            .baseUrl(Config.BASE_URL)
+                            .addConverterFactory(ScalarsConverterFactory.create())
+                            .addConverterFactory(GsonConverterFactory.create(gson))
+                            .client(client)
+                            .build()
                     val apiService = retrofit.create(ApiInterface::class.java!!)
                     val requestObject1 = JSONObject()
                     try {
 
-                        val FK_CustomerSP = applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
+                        val FK_CustomerSP = this.applicationContext.getSharedPreferences(
+                                Config.SHARED_PREF1,
+                                0
+                        )
                         val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
 
-                        val TokenSP = applicationContext.getSharedPreferences(Config.SHARED_PREF8, 0)
+                        val TokenSP = this!!.applicationContext.getSharedPreferences(
+                                Config.SHARED_PREF8,
+                                0
+                        )
                         val Token = TokenSP.getString("Token", null)
 
-
-                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("16"))
-                        requestObject1.put("FK_Customer",  MscoreApplication.encryptStart(FK_Customer))
+                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("18"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put(
-                            "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                    R.string.BankKey
-                                )
-                            )
+                                "FK_Customer",
+                                MscoreApplication.encryptStart(FK_Customer)
                         )
-                     /*   requestObject1.put(
-                            "BankHeader", MscoreApplication.encryptStart(
+                        requestObject1.put(
+                                "SubMode",
+                                MscoreApplication.encryptStart(submode)
+                        )
+                        requestObject1.put(
+                                "BankKey", MscoreApplication.encryptStart(
                                 getResources().getString(
-                                    R.string.BankHeader
+                                        R.string.BankKey
                                 )
-                            )
-                        )*/
+                        )
+                        )
+
+
+                        Log.e("TAG", "requestObject1  171   " + requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
                         val mySnackbar = Snackbar.make(
-                            findViewById(R.id.rl_main),
-                            " Some technical issues.", Snackbar.LENGTH_SHORT
+                                findViewById(R.id.rl_main),
+                                " Some technical issues.", Snackbar.LENGTH_SHORT
                         )
                         mySnackbar.show()
                     }
                     val body = RequestBody.create(
-                        okhttp3.MediaType.parse("application/json; charset=utf-8"),
-                        requestObject1.toString()
+                            okhttp3.MediaType.parse("application/json; charset=utf-8"),
+                            requestObject1.toString()
                     )
-                    val call = apiService.getNoticePostingDetails(body)
+                    val call = apiService.getAccountduedetails(body)
                     call.enqueue(object : retrofit2.Callback<String> {
                         override fun onResponse(
-                            call: retrofit2.Call<String>, response:
-                            Response<String>
+                                call: retrofit2.Call<String>, response:
+                                Response<String>
                         ) {
                             try {
                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
+                                Log.i("Response", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
+                                    val jsonObj1: JSONObject =
+                                            jObject.getJSONObject("PassBookAccountDetails")
 
-                                    val jobjt = jObject.getJSONObject("NoticePostingInfo")
-                                    val jarray =
-                                        jobjt.getJSONArray("NoticePostingDetailsList")
-
-                                    val obj_adapter = NoticeAdaptor(applicationContext!!, jarray)
-                                    rv_notice!!.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
-                                    rv_notice!!.adapter = obj_adapter
 
                                 } else {
                                     val builder = AlertDialog.Builder(
-                                        this@NoticeActivity,
-                                        R.style.MyDialogTheme
+                                            this@DueReminderActivity,
+                                            R.style.MyDialogTheme
                                     )
                                     builder.setMessage("" + jObject.getString("EXMessage"))
                                     builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -138,12 +154,13 @@ class NoticeActivity : AppCompatActivity() , View.OnClickListener {
                                     val alertDialog: AlertDialog = builder.create()
                                     alertDialog.setCancelable(false)
                                     alertDialog.show()
-                                }                            } catch (e: Exception) {
+                                }
+                            } catch (e: Exception) {
                                 progressDialog!!.dismiss()
 
                                 val builder = AlertDialog.Builder(
-                                    this@NoticeActivity,
-                                    R.style.MyDialogTheme
+                                        this@DueReminderActivity,
+                                        R.style.MyDialogTheme
                                 )
                                 builder.setMessage("Some technical issues.")
                                 builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -154,12 +171,13 @@ class NoticeActivity : AppCompatActivity() , View.OnClickListener {
                                 e.printStackTrace()
                             }
                         }
+
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
 
                             val builder = AlertDialog.Builder(
-                                this@NoticeActivity,
-                                R.style.MyDialogTheme
+                                    this@DueReminderActivity,
+                                    R.style.MyDialogTheme
                             )
                             builder.setMessage("Some technical issues.")
                             builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -171,7 +189,7 @@ class NoticeActivity : AppCompatActivity() , View.OnClickListener {
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(this@NoticeActivity, R.style.MyDialogTheme)
+                    val builder = AlertDialog.Builder(this@DueReminderActivity, R.style.MyDialogTheme)
                     builder.setMessage("Some technical issues.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->
                     }
@@ -182,25 +200,13 @@ class NoticeActivity : AppCompatActivity() , View.OnClickListener {
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@NoticeActivity, R.style.MyDialogTheme)
+                val builder = AlertDialog.Builder(this@DueReminderActivity, R.style.MyDialogTheme)
                 builder.setMessage("No Internet Connection.")
                 builder.setPositiveButton("Ok") { dialogInterface, which ->
                 }
                 val alertDialog: AlertDialog = builder.create()
                 alertDialog.setCancelable(false)
                 alertDialog.show()
-            }
-        }
-
-    }
-
-    override fun onClick(v: View) {
-        when (v.id) {
-            R.id.imgBack ->{
-                finish()
-            }
-            R.id.imgHome ->{
-                startActivity(Intent(this@NoticeActivity, HomeActivity::class.java))
             }
         }
     }
