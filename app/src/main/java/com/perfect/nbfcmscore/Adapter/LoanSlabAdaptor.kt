@@ -21,7 +21,7 @@ class LoanSlabAdaptor(internal val mContext: Context, internal val jsInfo: JSONA
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): RecyclerView.ViewHolder {
         val vh: RecyclerView.ViewHolder
         val v = LayoutInflater.from(parent.context).inflate(
-            R.layout.noticelist, parent, false
+            R.layout.loanslablist, parent, false
         )
         vh = MainViewHolder(v)
         return vh
@@ -36,13 +36,13 @@ class LoanSlabAdaptor(internal val mContext: Context, internal val jsInfo: JSONA
         try {
             jsonObject = jsInfo.getJSONObject(position)
             if (holder is MainViewHolder) {
-                var inPositn = position+1
-                holder.txt_slno!!.setText(""+inPositn)
-                holder.txt_NoticeTypeName!!.setText(jsonObject!!.getString("NoticeTypeName"))
-                holder.txt_AccountType!!.setText(jsonObject!!.getString("AccountType") )
-                holder.txt_AccountNo!!.setText(jsonObject!!.getString("AccountNo"))
-                holder.txt_NoticeDate!!.setText(jsonObject!!.getString("NoticeDate") )
-                holder.txt_DueAmount!!.setText("₹ "+ Config.getDecimelFormate(jsonObject!!.getDouble("DueAmount")))
+
+                holder.txt_slno!!.setText(jsonObject!!.getString("Slno"))
+                holder.txt_NoticeTypeName!!.setText(jsonObject!!.getString("Period"))
+                holder.txt_AccountType!!.setText(jsonObject!!.getString("Demand") )
+                holder.txt_AccountNo!!.setText("₹ "+ Config.getDecimelFormate(jsonObject!!.getDouble("Principal")))
+                holder.txt_NoticeDate!!.setText("₹ "+ Config.getDecimelFormate(jsonObject!!.getDouble("Interest")))
+                holder.txt_DueAmount!!.setText("₹ "+ Config.getDecimelFormate(jsonObject!!.getDouble("Total")))
 
                 }
             } catch (e: JSONException) {
