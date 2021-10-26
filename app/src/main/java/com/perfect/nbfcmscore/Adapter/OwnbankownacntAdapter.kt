@@ -61,10 +61,12 @@ class OwnbankownacntAdapter(internal val mContext: Context, internal val jsInfo:
                             try {
                                 jsonObject = jsInfo!!.getJSONObject(position)
                                 val i = Intent(mContext, OwnBankFundTransfer::class.java)
-                               /* i.putExtra("A/c", jsonObject!!.getString("AccountNumber"))
+                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                i.putExtra("A/c", jsonObject!!.getString("AccountNumber"))
                                 i.putExtra("Branch",  jsonObject!!.getString("BranchName"))
-                                i.putExtra("Balance",  jsonObject!!.getString("Balance"))*/
+                                i.putExtra("Balance",  jsonObject!!.getString("Balance"))
                                 mContext!!.startActivity(i)
+
                             } catch (e: JSONException) {
                                 e.printStackTrace()
                             }

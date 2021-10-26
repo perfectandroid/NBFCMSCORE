@@ -2,8 +2,8 @@ package com.perfect.nbfcmscore.Model;
 
 public class Branchcode {
 
-    private String Branchname;
-    private String Branchcode;
+    public String Branchname;
+    public String Branchcode;
 
     public Branchcode(String Branchname, String Branchcode) {
         this.Branchname = Branchname;

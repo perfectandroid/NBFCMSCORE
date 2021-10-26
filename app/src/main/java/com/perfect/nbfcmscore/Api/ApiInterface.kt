@@ -66,8 +66,12 @@ interface ApiInterface {
 
     @POST("AccountSummary/BarcodeFormatDet")
     fun getBardCodeData(@Body body: RequestBody): Call<String>
-    
+
     @POST("AccountSummary/OwnAccounDetails")
     fun getOwnbankownaccountdetail(@Body body: RequestBody): Call<String>
+
+    @POST("AccountSummary/BalanceSplitUpDetails")
+    fun getbalancesplitupdetail(@Body body: RequestBody): Call<String>
+
 }
 
