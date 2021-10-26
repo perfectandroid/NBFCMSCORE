@@ -68,6 +68,11 @@ class AccountLsitAdaptor(internal val mContext: Context, internal val jsInfo: JS
                     StatusEditer.putString("Status", jsonObject!!.getString("Status"))
                     StatusEditer.commit()
 
+                    val AccountNumberSP = mContext.getSharedPreferences(Config.SHARED_PREF19, 0)
+                    val AccountNumberEditer = AccountNumberSP.edit()
+                    AccountNumberEditer.putString("AccountNumber", jsonObject!!.getString("AccountNumber"))
+                    AccountNumberEditer.commit()
+
                       val intent = Intent(v.context, AccountDetailsActivity::class.java)
                       intent.putExtra("LoanType",jsonObject!!.getString("LoanType"))
                       intent.putExtra("Balance", jsonObject!!.getString("Balance"))
