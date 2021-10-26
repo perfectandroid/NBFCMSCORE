@@ -222,6 +222,7 @@
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/colorPrimarylight"
                         android:hint="Amount"
+                        android:inputType="numberDecimal"
                         android:enabled="true"
                         android:background="@android:color/transparent"/>
 
