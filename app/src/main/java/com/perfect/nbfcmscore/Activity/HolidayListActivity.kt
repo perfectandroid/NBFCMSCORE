@@ -30,6 +30,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.*
 
+
 class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener,View.OnClickListener {
     private var progressDialog: ProgressDialog? = null
     private var jresult: JSONArray? = null
@@ -40,6 +41,7 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
     var imgHome: ImageView? = null
     var arrayList1 = ArrayList<String>()
     var arrayList2 = ArrayList<String>()
+    val BranchAdapter: ArrayAdapter<Branchcode>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_holiday)
@@ -143,6 +145,15 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                                             e.printStackTrace()
                                         }
                                     }
+
+                                    /* ArrayAdapter<String> spinnerAdapter =
+                                                new ArrayAdapter< >(activity, R.layout.simple_spinner_item_dark, accountSpinnerItems);
+                                        spinner.setAdapter(spinnerAdapter);
+                                        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+*/
+                                    /*  BranchAdapter = ArrayAdapter(arrayList2!!, this, R.layout.simple_spinner_item_dark, R.id.textView)
+
+                                    BranchAdapter = (this, R.layout.simple_spinner_item_dark, R.id.textview, arrayList2)*/
                                     spnBranch!!.adapter = ArrayAdapter(
                                             this@HolidayListActivity,
                                             android.R.layout.simple_spinner_dropdown_item, arrayList1
@@ -402,11 +413,13 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         }
     }
 
-    override fun onItemSelected(p0: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        val json = jresult!!.getJSONObject(position)
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        val json = jresult1!!.getJSONObject(position)
 
-
-      //  Toast.makeText(applicationContext, "Branchcode :" + json.getString("ID_Branch"), Toast.LENGTH_LONG).show()
+       // var id=arrayList2.get(position).
+        // TextView textView = (TextView)mAccountTypeSpinner.getSelectedView();
+       // var result = adapter1!!.getItem(position).branchcode()
+    //   Toast.makeText(applicationContext, "Branchcode :" + result, Toast.LENGTH_LONG).show()
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
