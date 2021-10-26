@@ -30,7 +30,7 @@
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="15dp"
-                    android:text="   Notice"
+                    android:text="   Loan Slab"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
@@ -39,6 +39,7 @@
                     android:layout_width="0dp"
                     android:layout_height="35dp"
                     android:layout_weight=".2"
+                    android:padding="5dp"
                     android:src="@drawable/ic_home" />
 
             </LinearLayout>
@@ -82,7 +83,7 @@
                     android:layout_weight="1.05"
                     android:fontFamily="sans-serif-condensed-light"
                     android:gravity="center_horizontal"
-                    android:text="Notice Type"
+                    android:text="Total"
                     android:textColor="@color/colorPrimaryDark"
                     android:textStyle="bold" />
 
@@ -99,7 +100,7 @@
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-condensed-light"
                     android:gravity="center_horizontal"
-                    android:text="Account Type"
+                    android:text="Demand"
                     android:textColor="@color/colorPrimaryDark"
                     android:textStyle="bold" />
 
@@ -116,7 +117,7 @@
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-condensed-light"
                     android:gravity="center_horizontal"
-                    android:text="Account No."
+                    android:text="Principal"
                     android:textColor="@color/colorPrimaryDark"
                     android:textStyle="bold" />
 
@@ -133,7 +134,7 @@
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-condensed-light"
                     android:gravity="center_horizontal"
-                    android:text="Notice Date"
+                    android:text="Interest"
                     android:textColor="@color/colorPrimaryDark"
                     android:textStyle="bold" />
 
@@ -150,7 +151,7 @@
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-condensed-light"
                     android:gravity="center_horizontal"
-                    android:text="Due Amount"
+                    android:text="Total"
                     android:textColor="@color/colorPrimaryDark"
                     android:textStyle="bold" />
 
