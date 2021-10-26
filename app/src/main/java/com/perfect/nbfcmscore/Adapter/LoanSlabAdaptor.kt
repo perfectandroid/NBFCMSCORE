@@ -15,7 +15,7 @@ import org.json.JSONException
 import org.json.JSONObject
 
 
-class NoticeAdaptor(internal val mContext: Context, internal val jsInfo: JSONArray): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class LoanSlabAdaptor(internal val mContext: Context, internal val jsInfo: JSONArray): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     internal var jsonObject: JSONObject? = null
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): RecyclerView.ViewHolder {

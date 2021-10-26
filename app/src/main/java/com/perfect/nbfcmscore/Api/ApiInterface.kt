@@ -52,6 +52,9 @@ interface ApiInterface {
     @POST("AccountSummary/PassBookAccountStatement")
     fun getPassbookAccountstatement(@Body body: RequestBody): Call<String>
 
+    @POST("AccountSummary/LoanSlabDetails")
+    fun getLoanSlabDetails(@Body body: RequestBody): Call<String>
+
     @POST("AccountSummary/PassBookAccountTransactionList")
     fun getPassbookAccounttranslist(@Body body: RequestBody): Call<String>
 
@@ -61,8 +64,7 @@ interface ApiInterface {
     @POST("AccountSummary/HolidayDetails")
     fun getHolidayList(@Body body: RequestBody): Call<String>
 
-    @POST("AccountSummary/OwnAccounDetails")
-    fun getOwnbankownaccountdetail(@Body body: RequestBody): Call<String>
-
+    @POST("AccountSummary/BarcodeFormatDet")
+    fun getBardCodeData(@Body body: RequestBody): Call<String>
 }
 

@@ -2,12 +2,22 @@ package com.perfect.nbfcmscore.Activity
 
 import android.app.ProgressDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager.widget.ViewPager
+import com.google.android.material.tabs.TabLayout
+import com.perfect.nbfcmscore.Fragment.BackViewFragment
+import com.perfect.nbfcmscore.Fragment.DepositFragment
+import com.perfect.nbfcmscore.Fragment.FrontViewFragment
+import com.perfect.nbfcmscore.Fragment.LoanlistFragment
 import com.perfect.nbfcmscore.R
+import java.util.*
 
 class VirtualActivity : AppCompatActivity() , View.OnClickListener{
 
@@ -18,12 +28,23 @@ class VirtualActivity : AppCompatActivity() , View.OnClickListener{
 
     var tv_header: TextView? = null
 
+    private var tabLayout: TabLayout? = null
+    var reqmode: String? = null
+    var token: String? = null
+    var cusid: String? = null
+    private var viewPager: ViewPager? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_virtual)
 
         setInitialise()
         setRegister()
+
+        viewPager = findViewById<View>(R.id.viewpager) as ViewPager
+        setupViewPager(viewPager)
+        tabLayout = findViewById<View>(R.id.tabs) as TabLayout
+        tabLayout!!.setupWithViewPager(viewPager)
     }
 
     private fun setInitialise() {
@@ -56,4 +77,36 @@ class VirtualActivity : AppCompatActivity() , View.OnClickListener{
             }
         }
     }
+
+    private fun setupViewPager(viewPager: ViewPager?) {
+        val adapter = ViewPagerAdapter(supportFragmentManager)
+        adapter.addFragment(FrontViewFragment(), "Frontview")
+        adapter.addFragment(BackViewFragment(), "Backview")
+        viewPager!!.adapter = adapter
+    }
+
+    internal inner class ViewPagerAdapter(manager: FragmentManager?) : FragmentPagerAdapter(
+        manager!!
+    ) {
+        private val mFragmentList: MutableList<Fragment> = ArrayList()
+        private val mFragmentTitleList: MutableList<String> = ArrayList()
+        override fun getItem(position: Int): Fragment {
+            return mFragmentList[position]
+        }
+
+        override fun getCount(): Int {
+            return mFragmentList.size
+        }
+
+        fun addFragment(fragment: Fragment, title: String) {
+            mFragmentList.add(fragment)
+            mFragmentTitleList.add(title)
+        }
+
+        override fun getPageTitle(position: Int): CharSequence? {
+            return mFragmentTitleList[position]
+        }
+    }
+
+
 }
