@@ -69,5 +69,14 @@ interface ApiInterface {
     
     @POST("AccountSummary/OwnAccounDetails")
     fun getOwnbankownaccountdetail(@Body body: RequestBody): Call<String>
+
+    @POST("AccountSummary/GoldSlabEstimator")
+    fun getGoldSlabEstimator(@Body body: RequestBody): Call<String>
+
+    @POST("AccountSummary/EMICalculatorDateils")
+    fun getEMICalculatorDateils(@Body body: RequestBody): Call<String>
+
+    @POST("AccountSummary/EMIMethodDateils")
+    fun getEMIMethodDateils(@Body body: RequestBody): Call<String>
 }
 

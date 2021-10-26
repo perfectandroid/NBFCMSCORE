@@ -1478,6 +1478,7 @@
                             app:cardUseCompatPadding="true">
 
                             <LinearLayout
+                                android:id="@+id/llgoldslab"
                                 android:layout_width="match_parent"
                                 android:gravity="center"
                                 android:layout_gravity="center"
