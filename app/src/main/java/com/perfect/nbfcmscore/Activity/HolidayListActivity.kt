@@ -404,6 +404,8 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 
     override fun onItemSelected(p0: AdapterView<*>?, view: View?, position: Int, id: Long) {
         val json = jresult!!.getJSONObject(position)
+
+
       //  Toast.makeText(applicationContext, "Branchcode :" + json.getString("ID_Branch"), Toast.LENGTH_LONG).show()
     }
 
