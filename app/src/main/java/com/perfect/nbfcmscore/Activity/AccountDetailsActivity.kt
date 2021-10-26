@@ -1,8 +1,11 @@
 package com.perfect.nbfcmscore.Activity
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -13,6 +16,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.perfect.nbfcmscore.Fragment.*
+import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.R
 import java.util.ArrayList
 
@@ -35,6 +39,7 @@ class AccountDetailsActivity : AppCompatActivity() , View.OnClickListener {
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
     var imgloanslab: ImageView? = null
+    var imgshare: ImageView? = null
     var tvaccounttype: TextView? = null
     var tvaccountno: TextView? = null
     var tvbal: TextView? = null
@@ -82,6 +87,8 @@ class AccountDetailsActivity : AppCompatActivity() , View.OnClickListener {
         imgHome!!.setOnClickListener(this)
         imgloanslab = findViewById<ImageView>(R.id.imgloanslab)
         imgloanslab!!.setOnClickListener(this)
+        imgshare = findViewById<ImageView>(R.id.imgshare)
+        imgshare!!.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
@@ -94,7 +101,11 @@ class AccountDetailsActivity : AppCompatActivity() , View.OnClickListener {
             }
             R.id.imgloanslab ->{
                 startActivity(Intent(this@AccountDetailsActivity, LoanSlabActivity::class.java))
-            }        }
+            }
+            R.id.imgshare ->{
+                share()
+            }
+        }
     }
 
     private fun setupViewPager(viewPager: ViewPager?) {
@@ -125,6 +136,43 @@ class AccountDetailsActivity : AppCompatActivity() , View.OnClickListener {
 
         override fun getPageTitle(position: Int): CharSequence? {
             return mFragmentTitleList[position]
+        }
+    }
+
+
+    private fun share() {
+        try {
+            val builder = AlertDialog.Builder(this)
+
+            val inflater1 =
+                applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val layout: View = inflater1.inflate(R.layout.share_popup, null)
+            val tv_share = layout.findViewById<TextView>(R.id.tv_share)
+            val tv_cancel = layout.findViewById<TextView>(R.id.tv_cancel)
+            val tvp_name = layout.findViewById<TextView>(R.id.tvp_name)
+            val tvp_accNum = layout.findViewById<TextView>(R.id.tvp_accNum)
+            builder.setView(layout)
+            val alertDialog = builder.create()
+
+            val CustomerNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF3, 0)
+            val CustomerName = CustomerNameSP.getString("CustomerName", null)
+
+            tvp_name.text = "Beneficiary Name : " + CustomerName + ""
+            tvp_accNum.text = "Account Type : "+LoanType +"\nBeneficiary Account : "+FundTransferAccount +"\nIFSC Code : "+IFSCCode
+
+            tv_cancel.setOnClickListener { alertDialog.dismiss() }
+            tv_share.setOnClickListener {
+               var shareData = ""+tvp_name.getText()+"\nAccount Type : "+LoanType+"\n"+"Beneficiary Account : "+FundTransferAccount+"\n"+"IFSC Code : "+IFSCCode;
+                val sendIntent = Intent()
+                sendIntent.action = Intent.ACTION_SEND
+                sendIntent.putExtra(Intent.EXTRA_TEXT, shareData)
+                sendIntent.type = "text/plain"
+                startActivity(sendIntent)
+                alertDialog.dismiss()
+            }
+            alertDialog.show()
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
         }
     }
 }

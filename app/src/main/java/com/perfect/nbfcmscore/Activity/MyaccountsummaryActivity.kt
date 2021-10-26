@@ -1,18 +1,23 @@
 package com.perfect.nbfcmscore.Activity
 
 import android.app.AlertDialog
+import android.app.Dialog
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.Window
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
-import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Adapter.AccountSummaryAdaptor
+import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
 import com.perfect.nbfcmscore.Helper.MscoreApplication
@@ -226,4 +231,6 @@ class MyaccountsummaryActivity : AppCompatActivity() , View.OnClickListener {
             }
         }
     }
+
+
 }

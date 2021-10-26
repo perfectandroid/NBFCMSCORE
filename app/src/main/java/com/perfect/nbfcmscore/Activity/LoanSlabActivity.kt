@@ -3,16 +3,15 @@ package com.perfect.nbfcmscore.Activity
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Adapter.LoanSlabAdaptor
-import com.perfect.nbfcmscore.Adapter.NoticeAdaptor
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
@@ -80,14 +79,14 @@ class LoanSlabActivity : AppCompatActivity()  , View.OnClickListener {
 
                         val FK_AccountSP = applicationContext.getSharedPreferences(Config.SHARED_PREF19, 0)
                         val FK_Account = FK_AccountSP.getString("AccountNumber", null)
-
+                        val result: String = FK_Account!!.substring(0, 12).toString()
                         val SubModuleSP = applicationContext.getSharedPreferences(Config.SHARED_PREF17, 0)
                         val SubModule = SubModuleSP.getString("SubModule", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("20"))
                         requestObject1.put("FK_Customer",  MscoreApplication.encryptStart(FK_Customer))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-                        requestObject1.put("LoanNumber", MscoreApplication.encryptStart(FK_Account))
+                        requestObject1.put("LoanNumber", MscoreApplication.encryptStart(result))
                         requestObject1.put("SubModule", MscoreApplication.encryptStart(SubModule))
                         requestObject1.put(
                             "BankKey", MscoreApplication.encryptStart(
@@ -127,9 +126,9 @@ class LoanSlabActivity : AppCompatActivity()  , View.OnClickListener {
                                 val jObject = JSONObject(response.body())
                                 if (jObject.getString("StatusCode") == "0") {
 
-                                    val jobjt = jObject.getJSONObject("NoticePostingInfo")
+                                    val jobjt = jObject.getJSONObject("LoanSlabDetails")
                                     val jarray =
-                                        jobjt.getJSONArray("NoticePostingDetailsList")
+                                        jobjt.getJSONArray("LoanSlabDetailsList")
 
                                     val obj_adapter = LoanSlabAdaptor(applicationContext!!, jarray)
                                     rv_loanslab!!.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
