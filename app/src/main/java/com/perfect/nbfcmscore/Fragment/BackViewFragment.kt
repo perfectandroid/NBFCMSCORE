@@ -2,16 +2,22 @@ package com.perfect.nbfcmscore.Fragment
 
 import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.Context.WINDOW_SERVICE
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.Point
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidmads.library.qrgenearator.QRGContents
+import androidmads.library.qrgenearator.QRGEncoder
 import androidx.fragment.app.Fragment
 import com.google.gson.GsonBuilder
 import com.google.zxing.BarcodeFormat
@@ -19,7 +25,6 @@ import com.google.zxing.EncodeHintType
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
 import com.google.zxing.common.BitMatrix
-import com.google.zxing.qrcode.QRCodeWriter
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
@@ -35,7 +40,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.*
 
 
-class BackViewFragment : Fragment() {
+class BackViewFragment : Fragment() , OnClickListener{
 
     private var progressDialog: ProgressDialog? = null
     val TAG: String = "BackViewFragment"
@@ -43,11 +48,20 @@ class BackViewFragment : Fragment() {
     var token: String? = null
     var vritualcardCombination: String? = null
     var bitmap: Bitmap? = null
+    var bitmapqr: Bitmap? = null
+    private var qrgEncoder: QRGEncoder? = null
+
     var txtv_addrs: TextView? = null
     var txtv_phone: TextView? = null
     val QRcodeWidth = 500
     var imgv_barcode: ImageView? = null
     var imgv_qrcode: ImageView? = null
+
+    var txtv_purpose: TextView? = null
+    var txtv_points1: TextView? = null
+    var txtv_points2: TextView? = null
+    var txtv_points3: TextView? = null
+    var txtv_points4: TextView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,9 +82,25 @@ class BackViewFragment : Fragment() {
         txtv_addrs = v.findViewById<View>(R.id.txtv_addrs) as TextView?
         txtv_phone = v.findViewById<View>(R.id.txtv_phone) as TextView?
 
+        txtv_purpose = v.findViewById<View>(R.id.txtv_purpose) as TextView?
+        txtv_points1 = v.findViewById<View>(R.id.txtv_points1) as TextView?
+        txtv_points2 = v.findViewById<View>(R.id.txtv_points2) as TextView?
+        txtv_points3 = v.findViewById<View>(R.id.txtv_points3) as TextView?
+        txtv_points4 = v.findViewById<View>(R.id.txtv_points4) as TextView?
+
+        txtv_purpose!!.setText(R.string.purpose)
+        txtv_purpose!!.visibility = View.VISIBLE
+        txtv_points1!!.visibility = View.VISIBLE
+        txtv_points2!!.visibility = View.VISIBLE
+        txtv_points3!!.visibility = View.VISIBLE
+        txtv_points4!!.visibility = View.VISIBLE
+
 
         imgv_barcode = v.findViewById<View>(R.id.imgv_barcode) as ImageView?
         imgv_qrcode = v.findViewById<View>(R.id.imgv_qrcode) as ImageView?
+
+        imgv_barcode!!.setOnClickListener(this)
+        imgv_qrcode!!.setOnClickListener(this)
 
         val CusMobileSP = activity!!.getSharedPreferences(Config.SHARED_PREF2,0)
         val AddressSP = activity!!.getSharedPreferences(Config.SHARED_PREF4,0)
@@ -154,7 +184,7 @@ class BackViewFragment : Fragment() {
                                 //    tv_vritualcard!!.text = vritualcardCombination
 
                                     generatebarcode()
-                               //     generateqrcode()
+                                    generateqrcode()
 
 
                                 } else {
@@ -228,6 +258,44 @@ class BackViewFragment : Fragment() {
 
     private fun generateqrcode() {
 
+        try {
+
+//            val multiFormatWriter = MultiFormatWriter()
+//            val bitMatrix = multiFormatWriter.encode(vritualcardCombination, BarcodeFormat.QR_CODE, 200, 200)
+//            val barcodeEncoder = BarcodeEncoder()
+//            val bitmap: Bitmap = barcodeEncoder.createBitmap(bitMatrix)
+//
+//            imgv_qrcode!!.setImageBitmap(bitmap)
+
+            val manager = activity!!.getSystemService(WINDOW_SERVICE) as WindowManager?
+            val display = manager!!.defaultDisplay
+            val point = Point()
+            display.getSize(point)
+            val width: Int = point.x
+            val height: Int = point.y
+            var smallerDimension = if (width < height) width else height
+            smallerDimension = smallerDimension * 3 / 4
+
+            qrgEncoder = QRGEncoder(
+                vritualcardCombination, null,
+                QRGContents.Type.TEXT,
+                smallerDimension
+            )
+            qrgEncoder!!.setColorBlack(Color.BLACK)
+            qrgEncoder!!.setColorWhite(Color.WHITE)
+            try {
+                bitmapqr = qrgEncoder!!.getBitmap()
+                imgv_qrcode!!.setImageBitmap(bitmapqr)
+            } catch (e: java.lang.Exception) {
+                e.printStackTrace()
+            }
+
+
+
+        }catch (e : WriterException) {
+            e.printStackTrace();
+        }
+
 //        val writer = QRCodeWriter()
 //        try {
 //            val bitMatrix = writer.encode(vritualcardCombination, BarcodeFormat.QR_CODE, 512, 512)
@@ -263,9 +331,6 @@ class BackViewFragment : Fragment() {
             Toast.makeText(activity, e.message, Toast.LENGTH_LONG).show()
         }
     }
-
-
-
 
     private val WHITE = -0x1
     private val BLACK = -0x1000000
@@ -317,6 +382,51 @@ class BackViewFragment : Fragment() {
             }
         }
         return null
+    }
+
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.imgv_qrcode -> {
+                if (bitmapqr != null){
+                    showBarQrAlert(bitmapqr,"QR")
+                }
+            }
+            R.id.imgv_barcode -> {
+                if (bitmap != null){
+                    showBarQrAlert(bitmap,"BAR")
+                }
+            }
+        }
+    }
+
+    private fun showBarQrAlert(bitmapqrbar: Bitmap?, s: String) {
+
+        val dialogBuilder = AlertDialog.Builder(activity)
+        val inflater = this.layoutInflater
+        val dialogView = inflater.inflate(R.layout.alert_barqr_code, null)
+        dialogBuilder.setView(dialogView)
+        val b = dialogBuilder.create()
+        b.setCancelable(false)
+
+        val img_barcode = dialogView.findViewById<ImageView>(R.id.img_barcode)
+        val tv_scan_header = dialogView.findViewById<TextView>(R.id.tv_scan_header)
+        val img_close = dialogView.findViewById<ImageView>(R.id.img_close)
+        if(s.equals("QR")){
+            tv_scan_header.text = "Scan QR Code"
+        }
+        if(s.equals("BAR")){
+            tv_scan_header.text = "Scan Bar Code"
+        }
+        img_barcode.setImageBitmap(bitmapqrbar)
+
+
+        img_close.setOnClickListener {
+            b.dismiss()
+        }
+
+
+        b.show()
+
     }
 
 

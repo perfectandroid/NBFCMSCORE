@@ -78,5 +78,9 @@ interface ApiInterface {
 
     @POST("AccountSummary/EMIMethodDateils")
     fun getEMIMethodDateils(@Body body: RequestBody): Call<String>
+
+    @POST("AccountSummary/BalanceSplitUpDetails")
+    fun getbalancesplitupdetail(@Body body: RequestBody): Call<String>
+
 }
 

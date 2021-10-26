@@ -34,6 +34,12 @@ class FrontViewFragment : Fragment() {
     var txt_custid: TextView? = null
     var tv_vritualcard: TextView? = null
 
+    var txtv_purpose: TextView? = null
+    var txtv_points1: TextView? = null
+    var txtv_points2: TextView? = null
+    var txtv_points3: TextView? = null
+    var txtv_points4: TextView? = null
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -45,6 +51,19 @@ class FrontViewFragment : Fragment() {
         txt_custname = v.findViewById<View>(R.id.txt_custname) as TextView?
         txt_custid = v.findViewById<View>(R.id.txt_custid) as TextView?
         tv_vritualcard = v.findViewById<View>(R.id.tv_vritualcard) as TextView?
+
+        txtv_purpose = v.findViewById<View>(R.id.txtv_purpose) as TextView?
+        txtv_points1 = v.findViewById<View>(R.id.txtv_points1) as TextView?
+        txtv_points2 = v.findViewById<View>(R.id.txtv_points2) as TextView?
+        txtv_points3 = v.findViewById<View>(R.id.txtv_points3) as TextView?
+        txtv_points4 = v.findViewById<View>(R.id.txtv_points4) as TextView?
+
+        txtv_purpose!!.setText(R.string.purpose)
+        txtv_purpose!!.visibility = View.VISIBLE
+        txtv_points1!!.visibility = View.VISIBLE
+        txtv_points2!!.visibility = View.VISIBLE
+        txtv_points3!!.visibility = View.VISIBLE
+        txtv_points4!!.visibility = View.VISIBLE
 
         val FK_CustomerSP = activity!!.getSharedPreferences(Config.SHARED_PREF1, 0)
         cusid = FK_CustomerSP.getString("FK_Customer", null)

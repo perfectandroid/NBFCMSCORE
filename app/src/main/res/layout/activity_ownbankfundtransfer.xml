@@ -4,7 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -100,7 +99,7 @@
                                     android:gravity="center_vertical"
                                     android:drawablePadding="4dp"
                                     android:text="Account No."
-                                    android:layout_gravity="center_vertical"
+                                    android:layout_gravity="left"
                                     android:textColor="@color/black"
                                     android:textSize="13sp"
                                     android:textStyle="normal" />
@@ -109,8 +108,8 @@
                                     android:layout_width="fill_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center_vertical"
-                                    android:layout_marginLeft="25dp"
-                                    android:layout_gravity="center_vertical"
+                                    android:text="rererer"
+                                    android:layout_gravity="left"
                                     android:textColor="@color/black"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
@@ -119,9 +118,9 @@
                                     android:layout_width="fill_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center_vertical"
-                                    android:layout_marginLeft="25dp"
-                                    android:layout_gravity="center_vertical"
+                                    android:layout_gravity="left"
                                     android:textSize="12sp"
+                                    android:text="rererer"
                                     android:textStyle="normal" />
                             </LinearLayout>
                             <LinearLayout
@@ -422,6 +421,7 @@
                                 android:paddingLeft="12dp"
                                 android:paddingRight="12dp"
                                 android:text="scan"
+                                app:backgroundTint="@null"
                                 android:textColor="@color/white"
                                 android:textSize="16sp"
                                 tools:ignore="RelativeOverlap" />
@@ -715,51 +715,52 @@
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-            </LinearLayout>
 
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_bottombar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="95dp"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal"
+                >
+                <!--            android:layout_marginLeft="10dp"-->
+                <!--            android:layout_marginRight="10dp"-->
+                <Button
+                    android:id="@+id/btn_clear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/grey"
+                    android:text="Clear"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    tools:ignore="ButtonStyle" />
+
+                <Button
+                    android:id="@+id/btn_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginStart="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/grey"
+                    android:text="PAY"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    tools:ignore="ButtonStyle" />
+
+
+            </LinearLayout>
         </LinearLayout>
 
     </ScrollView>
-    <LinearLayout
-        android:id="@+id/ll_bottombar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        >
-        <!--            android:layout_marginLeft="10dp"-->
-        <!--            android:layout_marginRight="10dp"-->
-        <Button
-            android:id="@+id/btn_clear"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="1dp"
-            android:layout_marginRight="1dp"
-            android:layout_weight="1"
-            android:background="@color/blue"
-            android:text="Clear"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:textStyle="normal"
-            tools:ignore="ButtonStyle" />
 
-        <Button
-            android:id="@+id/btn_submit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="1dp"
-            android:layout_marginStart="1dp"
-            android:layout_weight="1"
-            android:background="@color/blue"
-            android:text="PAY"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:textStyle="normal"
-            tools:ignore="ButtonStyle" />
-
-
-    </LinearLayout>
 </LinearLayout>
