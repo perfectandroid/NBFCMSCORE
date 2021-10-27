@@ -22,6 +22,7 @@ import java.util.*
 
 class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
+    var llgoldslab: LinearLayout? = null
     var llmyaccounts: LinearLayout? = null
     var lvNavMenu: ListView? = null
     var drawer: DrawerLayout? = null
@@ -89,6 +90,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         llEmi = findViewById(R.id.llEmi)
         llpassbook = findViewById<LinearLayout>(R.id.llpassbook)
         llduereminder = findViewById<LinearLayout>(R.id.lldueremindrer)
+        llgoldslab = findViewById<LinearLayout>(R.id.llgoldslab)
         ll_virtualcard = findViewById<LinearLayout>(R.id.ll_virtualcard)
 
     }
@@ -108,7 +110,6 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         ll_landline!!.setOnClickListener(this)
         ll_dth!!.setOnClickListener(this)
         llEmi!!.setOnClickListener(this)
-        ll_virtualcard!!.setOnClickListener(this)
     }
 
     open fun setHomeNavMenu() {
@@ -172,6 +173,9 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             }
             R.id.llownbank ->{
                 startActivity(Intent(this@HomeActivity, OwnbankownaccountTransferActivity::class.java))
+            }
+            R.id.llgoldslab ->{
+                startActivity(Intent(this@HomeActivity, GoldSlabEstimatorActivity::class.java))
             }
             R.id.ll_prepaid ->{
 
