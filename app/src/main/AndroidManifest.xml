@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.ACCESS_ASSISTED_GPS" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:allowBackup="true"
@@ -19,8 +20,16 @@
         android:roundIcon="@drawable/applogo"
         android:supportsRtl="true"
         android:theme="@style/Theme.NBFCMSCORE">
-
-        <activity android:name=".Activity.VirtualActivity"
+        <activity android:name=".Activity.OtherBankFundTransferActivity"></activity>
+        <activity android:name=".Activity.BeneficiaryListActivity" />
+        <activity
+            android:name=".Activity.OtherBankActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            tools:ignore="MissingClass" />
+        <activity
+            android:name=".Activity.VirtualActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustPan"
@@ -109,25 +118,15 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".Activity.OwnBankotheraccountFundTransfer"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".Activity.OwnBankFundTransfer"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan"/>
-        <activity
-            android:name=".Activity.OwnBankownaccountFundTransfer"
             android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan"/>
-        <activity
-            android:name=".Activity.OwnBankFundTransferServiceActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan"/>
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".Activity.OwnbankownaccountTransferActivity"
-            android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan"/>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".Activity.WelcomeSliderActivity"
             android:screenOrientation="portrait"

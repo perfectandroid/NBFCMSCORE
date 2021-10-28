@@ -132,9 +132,12 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
 
                         val TokenSP = applicationContext.getSharedPreferences(Config.SHARED_PREF8, 0)
                         val Token = TokenSP.getString("Token", null)
+                        val FK_CustomerSP = this.applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
+                        val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("19"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
                         // requestObject1.put("BankHeader", MscoreApplication.encryptStart(getResources().getString(R.string.BankHeader)))
 
