@@ -459,8 +459,8 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         val branchcode: Branchcode = arrayList2!!.get(position)
         branchid = branchcode.getId()
 
-        Toast.makeText(this, "ID: " + branchcode.getId() + "\nBranch: " + branchcode.getBranch(),
-            Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, "ID: " + branchcode.getId() + "\nBranch: " + branchcode.getBranch(),
+        //    Toast.LENGTH_SHORT).show();
       //
         rv_holiday!!.visibility=View.VISIBLE
         getHolidayList(branchid)
