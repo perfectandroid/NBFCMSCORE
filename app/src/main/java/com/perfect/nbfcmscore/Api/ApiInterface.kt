@@ -85,6 +85,7 @@ interface ApiInterface {
     @POST("AccountSummary/FundTransferToOwnBank")
     fun getfundtransferownBank(@Body body: RequestBody): Call<String>
 
-
+    @POST("AccountSummary/FundTransferLimit")
+    fun getfundtransferlimit(@Body body: RequestBody): Call<String>
 }
 
