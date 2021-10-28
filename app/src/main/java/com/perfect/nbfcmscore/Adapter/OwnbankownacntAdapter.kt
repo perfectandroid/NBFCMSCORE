@@ -8,16 +8,13 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.perfect.nbfcmscore.Activity.OwnBankFundTransfer
-import com.perfect.nbfcmscore.Activity.PassbookTransactionDetailsActivity
+import com.perfect.nbfcmscore.Activity.OwnBankownaccountFundTransfer
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ItemClickListener
 import com.perfect.nbfcmscore.R
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-import java.text.SimpleDateFormat
-import java.util.*
 
 class OwnbankownacntAdapter(internal val mContext: Context, internal val jsInfo: JSONArray): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -60,7 +57,7 @@ class OwnbankownacntAdapter(internal val mContext: Context, internal val jsInfo:
                         View.OnClickListener {
                             try {
                                 jsonObject = jsInfo!!.getJSONObject(position)
-                                val i = Intent(mContext, OwnBankFundTransfer::class.java)
+                                val i = Intent(mContext, OwnBankownaccountFundTransfer::class.java)
                                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 i.putExtra("A/c", jsonObject!!.getString("AccountNumber"))
                                 i.putExtra("Branch",  jsonObject!!.getString("BranchName"))

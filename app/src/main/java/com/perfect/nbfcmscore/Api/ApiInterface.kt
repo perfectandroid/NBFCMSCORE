@@ -70,17 +70,21 @@ interface ApiInterface {
     @POST("AccountSummary/OwnAccounDetails")
     fun getOwnbankownaccountdetail(@Body body: RequestBody): Call<String>
 
-    @POST("AccountSummary/GoldSlabEstimator")
-    fun getGoldSlabEstimator(@Body body: RequestBody): Call<String>
+    @POST("AccountSummary/RechargeCircleDetails")
+    fun getRechargeCircleDetails(@Body body: RequestBody): Call<String>
 
-    @POST("AccountSummary/EMICalculatorDateils")
-    fun getEMICalculatorDateils(@Body body: RequestBody): Call<String>
+    @POST("AccountSummary/OwnAccounDetails")
+    fun getOwnAccounDetails(@Body body: RequestBody): Call<String>
 
-    @POST("AccountSummary/EMIMethodDateils")
-    fun getEMIMethodDateils(@Body body: RequestBody): Call<String>
+    @POST("Recharge/MobileRecharge")
+    fun getMobileRecharge(@Body body: RequestBody): Call<String>
 
     @POST("AccountSummary/BalanceSplitUpDetails")
     fun getbalancesplitupdetail(@Body body: RequestBody): Call<String>
+
+    @POST("AccountSummary/FundTransferToOwnBank")
+    fun getfundtransferownBank(@Body body: RequestBody): Call<String>
+
 
 }
 

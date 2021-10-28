@@ -25,6 +25,10 @@
     <string name="available_balance">Available Balance</string>
     <string name="unclear_amount">Unclear Amount</string>
 
+    <string name="savings_bank">Savings Bank</string>
+    <string name="current_account">Current Account</string>
+    <string name="cash_credit">Cash Credit</string>
+
 
     <string name="privacy1">We may collect any or all the information that you gives us depending on the type of
     transaction you enter into including your name,address together with data about your use of the website.Other information that
@@ -45,6 +49,16 @@
     <string name="portfolio">Strengthen your loan portfolio</string>
     <string name="queue">Eliminate the long queues</string>
     <string name="purpose"><u>Purpose of Virtual Card:</u></string>
+    <string name="reciever_account_type">Receiver account type</string>
+    <string name="account_no">Account no</string>
+    <integer name="viewfinder_border_length">60</integer>
+    <integer name="viewfinder_border_width">4</integer>
+    <string name="scan">Scan</string>
+    <string name="amount">Amount</string>
+    <string name="title_section3">Messages</string>
+    <string name="clear">CLEAR</string>
+    <string name="confirm_acc_no">Confirm account no:</string>
+
 
 
 </resources>

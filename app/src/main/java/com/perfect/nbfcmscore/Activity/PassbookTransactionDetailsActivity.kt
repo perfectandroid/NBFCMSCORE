@@ -93,6 +93,7 @@ class PassbookTransactionDetailsActivity : AppCompatActivity(), View.OnClickList
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("14"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
                         requestObject1.put("TransactionID", MscoreApplication.encryptStart(transactionID))
                         requestObject1.put("SubModule", MscoreApplication.encryptStart(subModule))
 

@@ -14,24 +14,21 @@
         android:id="@+id/card_branches">
 
         <LinearLayout
-            android:id="@+id/ll_adp_operator"
+            android:id="@+id/ll_adp_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
             android:padding="5dp">
 
-            <ImageView
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:background="@drawable/applogo"/>
-
             <TextView
-                android:id="@+id/tv_adp_operator"
+                android:id="@+id/tv_adp_account"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Airtel"
+                android:gravity="start"
+                android:textSize="15dp"
+                android:text=""
+                android:padding="5dp"
                 android:textColor="@color/black"
                 android:visibility="visible"/>
 

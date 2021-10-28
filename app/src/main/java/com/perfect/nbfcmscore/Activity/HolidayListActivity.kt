@@ -39,18 +39,33 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
     var spnBranch: Spinner? = null
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
+    var branchid:String?=null
     var arrayList1 = ArrayList<String>()
-    var arrayList2 = ArrayList<String>()
-    val BranchAdapter: ArrayAdapter<Branchcode>? = null
+    public var arrayList2: ArrayList<Branchcode>? = null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_holiday)
         setRegViews()
-        getBranchlist();
-        getHolidayList()
+        getBranchlist()
+        rv_holiday!!.visibility=View.GONE
+        getHolidayList(branchid)
+
+
 
     }
+    private fun setRegViews() {
 
+        imgBack = findViewById<ImageView>(R.id.imgBack)
+        imgBack!!.setOnClickListener(this)
+        imgHome = findViewById<ImageView>(R.id.imgHome)
+        imgHome!!.setOnClickListener(this)
+
+        rv_holiday = findViewById(R.id.rv_holiday)
+        spnBranch = findViewById( R.id.spnBranch)
+        spnBranch!!.onItemSelectedListener = this
+    }
     private fun getBranchlist() {
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
@@ -62,45 +77,46 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                 progressDialog!!.show()*/
                 try {
                     val client = OkHttpClient.Builder()
-                            .sslSocketFactory(Config.getSSLSocketFactory(this@HolidayListActivity))
-                            .hostnameVerifier(Config.getHostnameVerifier())
-                            .build()
+                        .sslSocketFactory(Config.getSSLSocketFactory(this@HolidayListActivity))
+                        .hostnameVerifier(Config.getHostnameVerifier())
+                        .build()
                     val gson = GsonBuilder()
-                            .setLenient()
-                            .create()
+                        .setLenient()
+                        .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
-                            .addConverterFactory(ScalarsConverterFactory.create())
-                            .addConverterFactory(GsonConverterFactory.create(gson))
-                            .client(client)
-                            .build()
+                        .baseUrl(Config.BASE_URL)
+                        .addConverterFactory(ScalarsConverterFactory.create())
+                        .addConverterFactory(GsonConverterFactory.create(gson))
+                        .client(client)
+                        .build()
                     val apiService = retrofit.create(ApiInterface::class.java!!)
                     val requestObject1 = JSONObject()
                     try {
 
                         val FK_CustomerSP = this.applicationContext.getSharedPreferences(
-                                Config.SHARED_PREF1,
-                                0
+                            Config.SHARED_PREF1,
+                            0
                         )
                         val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
 
                         val TokenSP = this!!.applicationContext.getSharedPreferences(
-                                Config.SHARED_PREF8,
-                                0
+                            Config.SHARED_PREF8,
+                            0
                         )
                         val Token = TokenSP.getString("Token", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("8"))
+                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
                         requestObject1.put(
-                                "BankKey", MscoreApplication.encryptStart(
+                            "BankKey", MscoreApplication.encryptStart(
                                 getResources().getString(
-                                        R.string.BankKey
+                                    R.string.BankKey
                                 )
-                        )
+                            )
                         )
                         requestObject1.put(
-                                "FK_District",
-                                MscoreApplication.encryptStart("0")
+                            "FK_District",
+                            MscoreApplication.encryptStart("0")
                         )
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
 
@@ -110,20 +126,20 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                         progressDialog!!.dismiss()
                         e.printStackTrace()
                         val mySnackbar = Snackbar.make(
-                                findViewById(R.id.rl_main),
-                                " Some technical issues.", Snackbar.LENGTH_SHORT
+                            findViewById(R.id.rl_main),
+                            " Some technical issues.", Snackbar.LENGTH_SHORT
                         )
                         mySnackbar.show()
                     }
                     val body = RequestBody.create(
-                            okhttp3.MediaType.parse("application/json; charset=utf-8"),
-                            requestObject1.toString()
+                        okhttp3.MediaType.parse("application/json; charset=utf-8"),
+                        requestObject1.toString()
                     )
                     val call = apiService.getBankBranchDetails(body)
                     call.enqueue(object : retrofit2.Callback<String> {
                         override fun onResponse(
-                                call: retrofit2.Call<String>, response:
-                                Response<String>
+                            call: retrofit2.Call<String>, response:
+                            Response<String>
                         ) {
                             try {
                                 progressDialog!!.dismiss()
@@ -131,39 +147,39 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                                 Log.i("Response", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
-                                            jObject.getJSONObject("BankBranchDetails")
+                                        jObject.getJSONObject("BankBranchDetails")
                                     val jsonobj2 = JSONObject(jsonObj1.toString())
 
                                     jresult1 = jsonobj2.getJSONArray("BankBranchDetailsListInfo")
-
+                                    arrayList2 = ArrayList<Branchcode>()
                                     for (i in 0 until jresult1!!.length()) {
                                         try {
                                             val json = jresult1!!.getJSONObject(i)
                                             arrayList1!!.add(json.getString("BranchName"))
-                                            arrayList2.add(Branchcode(json.getString("BranchName"), json.getString("ID_Branch")).toString())
+                                            arrayList2!!.add(
+                                                Branchcode(
+                                                    json.getString("BranchName"), json.getString(
+                                                        "ID_Branch"
+                                                    )
+                                                )
+                                            )
+
                                         } catch (e: JSONException) {
                                             e.printStackTrace()
                                         }
                                     }
 
-                                    /* ArrayAdapter<String> spinnerAdapter =
-                                                new ArrayAdapter< >(activity, R.layout.simple_spinner_item_dark, accountSpinnerItems);
-                                        spinner.setAdapter(spinnerAdapter);
-                                        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-*/
-                                    /*  BranchAdapter = ArrayAdapter(arrayList2!!, this, R.layout.simple_spinner_item_dark, R.id.textView)
 
-                                    BranchAdapter = (this, R.layout.simple_spinner_item_dark, R.id.textview, arrayList2)*/
                                     spnBranch!!.adapter = ArrayAdapter(
-                                            this@HolidayListActivity,
-                                            android.R.layout.simple_spinner_dropdown_item, arrayList1
+                                        this@HolidayListActivity,
+                                        android.R.layout.simple_spinner_dropdown_item, arrayList2!!
                                     )
 
 
                                 } else {
                                     val builder = AlertDialog.Builder(
-                                            this@HolidayListActivity,
-                                            R.style.MyDialogTheme
+                                        this@HolidayListActivity,
+                                        R.style.MyDialogTheme
                                     )
                                     builder.setMessage("" + jObject.getString("EXMessage"))
                                     builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -176,8 +192,8 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                                 //  progressDialog!!.dismiss()
 
                                 val builder = AlertDialog.Builder(
-                                        this@HolidayListActivity,
-                                        R.style.MyDialogTheme
+                                    this@HolidayListActivity,
+                                    R.style.MyDialogTheme
                                 )
                                 builder.setMessage("Some technical issues.")
                                 builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -193,8 +209,8 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                             //  progressDialog!!.dismiss()
 
                             val builder = AlertDialog.Builder(
-                                    this@HolidayListActivity,
-                                    R.style.MyDialogTheme
+                                this@HolidayListActivity,
+                                R.style.MyDialogTheme
                             )
                             builder.setMessage("Some technical issues.")
                             builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -206,7 +222,10 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                     })
                 } catch (e: Exception) {
                     // progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(this@HolidayListActivity, R.style.MyDialogTheme)
+                    val builder = AlertDialog.Builder(
+                        this@HolidayListActivity,
+                        R.style.MyDialogTheme
+                    )
                     builder.setMessage("Some technical issues.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->
                     }
@@ -225,19 +244,12 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                 alertDialog.setCancelable(false)
                 alertDialog.show()
             }
-        }
+            }
     }
 
-    private fun setRegViews() {
-        rv_holiday = findViewById(R.id.rv_holiday)
-        spnBranch = findViewById(R.id.spnBranch)
-        imgBack = findViewById<ImageView>(R.id.imgBack)
-        imgBack!!.setOnClickListener(this)
-        imgHome = findViewById<ImageView>(R.id.imgHome)
-        imgHome!!.setOnClickListener(this)
-    }
 
-    private fun getHolidayList() {
+
+    private fun getHolidayList(branchid: String?) {
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@HolidayListActivity, R.style.Progress)
@@ -248,46 +260,46 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                 progressDialog!!.show()
                 try {
                     val client = OkHttpClient.Builder()
-                            .sslSocketFactory(Config.getSSLSocketFactory(this@HolidayListActivity))
-                            .hostnameVerifier(Config.getHostnameVerifier())
-                            .build()
+                        .sslSocketFactory(Config.getSSLSocketFactory(this@HolidayListActivity))
+                        .hostnameVerifier(Config.getHostnameVerifier())
+                        .build()
                     val gson = GsonBuilder()
-                            .setLenient()
-                            .create()
+                        .setLenient()
+                        .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
-                            .addConverterFactory(ScalarsConverterFactory.create())
-                            .addConverterFactory(GsonConverterFactory.create(gson))
-                            .client(client)
-                            .build()
+                        .baseUrl(Config.BASE_URL)
+                        .addConverterFactory(ScalarsConverterFactory.create())
+                        .addConverterFactory(GsonConverterFactory.create(gson))
+                        .client(client)
+                        .build()
                     val apiService = retrofit.create(ApiInterface::class.java!!)
                     val requestObject1 = JSONObject()
                     try {
 
                         val FK_CustomerSP = this.applicationContext.getSharedPreferences(
-                                Config.SHARED_PREF1,
-                                0
+                            Config.SHARED_PREF1,
+                            0
                         )
                         val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
 
                         val TokenSP = this!!.applicationContext.getSharedPreferences(
-                                Config.SHARED_PREF8,
-                                0
+                            Config.SHARED_PREF8,
+                            0
                         )
                         val Token = TokenSP.getString("Token", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("24"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put(
-                                "BranchCode",
-                                MscoreApplication.encryptStart("2")
+                            "BranchCode",
+                            MscoreApplication.encryptStart(branchid)
                         )
                         requestObject1.put(
-                                "BankKey", MscoreApplication.encryptStart(
+                            "BankKey", MscoreApplication.encryptStart(
                                 getResources().getString(
-                                        R.string.BankKey
+                                    R.string.BankKey
                                 )
-                        )
+                            )
                         )
 
 
@@ -296,20 +308,20 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                         progressDialog!!.dismiss()
                         e.printStackTrace()
                         val mySnackbar = Snackbar.make(
-                                findViewById(R.id.rl_main),
-                                " Some technical issues.", Snackbar.LENGTH_SHORT
+                            findViewById(R.id.rl_main),
+                            " Some technical issues.", Snackbar.LENGTH_SHORT
                         )
                         mySnackbar.show()
                     }
                     val body = RequestBody.create(
-                            okhttp3.MediaType.parse("application/json; charset=utf-8"),
-                            requestObject1.toString()
+                        okhttp3.MediaType.parse("application/json; charset=utf-8"),
+                        requestObject1.toString()
                     )
                     val call = apiService.getHolidayList(body)
                     call.enqueue(object : retrofit2.Callback<String> {
                         override fun onResponse(
-                                call: retrofit2.Call<String>, response:
-                                Response<String>
+                            call: retrofit2.Call<String>, response:
+                            Response<String>
                         ) {
                             try {
                                 progressDialog!!.dismiss()
@@ -317,7 +329,7 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                                 Log.i("Response", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
-                                            jObject.getJSONObject("HolidayDetails")
+                                        jObject.getJSONObject("HolidayDetails")
                                     val jsonobj2 = JSONObject(jsonObj1.toString())
 
                                     jresult = jsonobj2.getJSONArray("HolidayDetailsList")
@@ -325,13 +337,41 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                                     if (jresult!!.length() != 0) {
 
                                         val lLayout =
-                                                GridLayoutManager(this@HolidayListActivity, 1)
+                                            GridLayoutManager(this@HolidayListActivity, 1)
                                         rv_holiday!!.layoutManager = lLayout
                                         rv_holiday!!.setHasFixedSize(true)
-                                        val adapter = HolidayListAdapter(applicationContext!!, jresult!!)
+                                        val adapter = HolidayListAdapter(
+                                            applicationContext!!,
+                                            jresult!!
+                                        )
 
                                         rv_holiday!!.adapter = adapter
+
                                     } else {
+                                        if(rv_holiday!!.isShown())
+                                        {
+                                            val builder = AlertDialog.Builder(
+                                                    this@HolidayListActivity,
+                                                    R.style.MyDialogTheme
+                                            )
+                                            builder.setMessage("" + jObject.getString("EXMessage"))
+                                            builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                            }
+                                            val alertDialog: AlertDialog = builder.create()
+                                            alertDialog.setCancelable(false)
+                                            alertDialog.show()
+                                        }
+                                        else
+                                        {
+
+                                        }
+
+                                    }
+
+
+                                } else {
+                                    if(rv_holiday!!.isShown())
+                                    {
                                         val builder = AlertDialog.Builder(
                                                 this@HolidayListActivity,
                                                 R.style.MyDialogTheme
@@ -344,22 +384,30 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                                         alertDialog.show()
                                     }
 
-
-                                } else {
+                                }
+                            } catch (e: Exception) {
+                                progressDialog!!.dismiss()
+                                if(rv_holiday!!.isShown())
+                                {
                                     val builder = AlertDialog.Builder(
                                             this@HolidayListActivity,
                                             R.style.MyDialogTheme
                                     )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
+                                    builder.setMessage("Some technical issues.")
                                     builder.setPositiveButton("Ok") { dialogInterface, which ->
                                     }
                                     val alertDialog: AlertDialog = builder.create()
                                     alertDialog.setCancelable(false)
                                     alertDialog.show()
                                 }
-                            } catch (e: Exception) {
-                                progressDialog!!.dismiss()
 
+                                e.printStackTrace()
+                            }
+                        }
+
+                        override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
+                            progressDialog!!.dismiss()
+                            if(rv_holiday!!.isShown()){
                                 val builder = AlertDialog.Builder(
                                         this@HolidayListActivity,
                                         R.style.MyDialogTheme
@@ -370,35 +418,26 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                                 val alertDialog: AlertDialog = builder.create()
                                 alertDialog.setCancelable(false)
                                 alertDialog.show()
-                                e.printStackTrace()
                             }
-                        }
 
-                        override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
-                            progressDialog!!.dismiss()
-
-                            val builder = AlertDialog.Builder(
-                                    this@HolidayListActivity,
-                                    R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(this@HolidayListActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                    if(rv_holiday!!.isShown()){
+                        val builder = AlertDialog.Builder(
+                                this@HolidayListActivity,
+                                R.style.MyDialogTheme
+                        )
+                        builder.setMessage("Some technical issues.")
+                        builder.setPositiveButton("Ok") { dialogInterface, which ->
+                        }
+                        val alertDialog: AlertDialog = builder.create()
+                        alertDialog.setCancelable(false)
+                        alertDialog.show()
+                        e.printStackTrace()
                     }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
-                    e.printStackTrace()
+
                 }
             }
             false -> {
@@ -415,6 +454,17 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         val json = jresult1!!.getJSONObject(position)
+
+
+        // TextView textView = (TextView)mAccountTypeSpinner.getSelectedView();
+        val branchcode: Branchcode = arrayList2!!.get(position)
+        branchid = branchcode.getId()
+
+      //  Toast.makeText(this, "ID: " + branchcode.getId() + "\nBranch: " + branchcode.getBranch(),
+        //    Toast.LENGTH_SHORT).show();
+      //
+        rv_holiday!!.visibility=View.VISIBLE
+        getHolidayList(branchid)
 
        // var id=arrayList2.get(position).
         // TextView textView = (TextView)mAccountTypeSpinner.getSelectedView();

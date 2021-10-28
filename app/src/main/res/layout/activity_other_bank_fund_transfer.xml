@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bgcolour"
-    tools:context=".Activity.RechargeActivity">
+    tools:context=".Activity.OtherBankFundTransferActivity"
+    android:background="@color/bgcolour">
 
     <RelativeLayout
         android:id="@+id/rltv_header"
@@ -49,7 +49,7 @@
                     android:textSize="18dp"
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/white"
-                    android:text="" />
+                    android:text="Fund Transfer" />
 
             </LinearLayout>
 
@@ -65,6 +65,7 @@
                     android:id="@+id/im_home"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
+                    android:padding="5dp"
                     android:src="@drawable/ic_home" />
 
             </LinearLayout>
@@ -73,66 +74,45 @@
         </LinearLayout>
 
 
+
+
     </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
+        android:layout_below="@+id/rltv_header"
         android:padding="20dp"
-        android:layout_below="@+id/rltv_header">
+        android:background="@color/bgcolour">
+
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
+            android:orientation="vertical">
 
-            <RelativeLayout
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal"
-                android:padding="5dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/bg_light_grey">
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:gravity="end"
+                android:orientation="horizontal">
 
+                <TextView
+                    android:id="@+id/tv_beneficiarylist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Beneficiary List"
+                    android:layout_gravity="end"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_mobilenumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textColorHint="@color/colorPrimarylight"
-                    app:hintTextColor="@color/colorPrimarylight"
-                    android:background="@android:color/transparent"
-                    android:layout_toLeftOf="@+id/im_contact">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/tie_mobilenumber"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColorHint="@color/colorPrimarylight"
-                        android:hint="Mobile Number"
-                        android:inputType="phone"
-                        android:background="@android:color/transparent"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <ImageView
-                    android:id="@+id/im_contact"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentRight="true"
-                    android:backgroundTint="@color/colorPrimarylight"
-                    android:background="@drawable/ic_contact_box"/>
-
-
-
-
-            </RelativeLayout>
+            </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -152,102 +132,7 @@
                     android:background="@android:color/transparent">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/tie_operator"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColorHint="@color/colorPrimarylight"
-                        android:hint="Operator"
-                        android:focusable="false"
-                        android:clickable="true"
-                        android:background="@android:color/transparent"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="vertical"
-                android:padding="5dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/bg_light_grey">
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textColorHint="@color/colorPrimarylight"
-                    app:hintTextColor="@color/colorPrimarylight"
-                    android:layout_alignParentBottom="true"
-                    android:background="@android:color/transparent">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/tie_circle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColorHint="@color/colorPrimarylight"
-                        android:hint="Circle"
-                        android:focusable="false"
-                        android:clickable="true"
-                        android:background="@android:color/transparent"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="vertical"
-                android:padding="5dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/bg_light_grey">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textColorHint="@color/colorPrimarylight"
-                    app:hintTextColor="@color/colorPrimarylight"
-                    android:layout_alignParentBottom="true"
-                    android:background="@android:color/transparent">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/tie_amount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColorHint="@color/colorPrimarylight"
-                        android:hint="Amount"
-                        android:inputType="numberDecimal"
-                        android:enabled="true"
-                        android:background="@android:color/transparent"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="vertical"
-                android:padding="5dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/bg_light_grey">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textColorHint="@color/colorPrimarylight"
-                    app:hintTextColor="@color/colorPrimarylight"
-                    android:layout_alignParentBottom="true"
-                    android:background="@android:color/transparent">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/tie_account"
+                        android:id="@+id/tie_accountnumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/colorPrimarylight"
@@ -258,25 +143,161 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-            </RelativeLayout>
 
+            </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/rltv_recharge"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/bg_button"
-                android:layout_marginTop="30dp">
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_light_grey">
 
-                <Button
-                    android:id="@+id/but_recharge"
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_mobilenumber"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white"
-                    android:text="recharge"/>
+                    android:layout_height="match_parent"
+                    android:textColorHint="@color/colorPrimarylight"
+                    app:hintTextColor="@color/colorPrimarylight"
+                    android:background="@android:color/transparent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tie_beneficiary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/colorPrimarylight"
+                        android:hint="Beneficiary Name"
+                        android:inputType="phone"
+                        android:background="@android:color/transparent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_light_grey">
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_beneficiary_aacno"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColorHint="@color/colorPrimarylight"
+                    app:hintTextColor="@color/colorPrimarylight"
+                    android:background="@android:color/transparent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tie_beneficiary_aacno"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/colorPrimarylight"
+                        android:hint="Beneficiary Ac/ No"
+                        android:inputType="phone"
+                        android:background="@android:color/transparent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_light_grey">
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_Conf_beneficiary_aacno"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColorHint="@color/colorPrimarylight"
+                    app:hintTextColor="@color/colorPrimarylight"
+                    android:background="@android:color/transparent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tie_Conf_beneficiary_aacno"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/colorPrimarylight"
+                        android:hint="Confirm Beneficiary Ac/ No"
+                        android:inputType="phone"
+                        android:background="@android:color/transparent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_light_grey">
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_ifsc_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColorHint="@color/colorPrimarylight"
+                    app:hintTextColor="@color/colorPrimarylight"
+                    android:background="@android:color/transparent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tie_ifsc_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/colorPrimarylight"
+                        android:hint="IFSC Code"
+                        android:inputType="phone"
+                        android:background="@android:color/transparent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_light_grey">
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColorHint="@color/colorPrimarylight"
+                    app:hintTextColor="@color/colorPrimarylight"
+                    android:background="@android:color/transparent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tie_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/colorPrimarylight"
+                        android:hint="Amount Payable"
+                        android:inputType="phone"
+                        android:background="@android:color/transparent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
 
             </RelativeLayout>
 
@@ -284,27 +305,6 @@
         </LinearLayout>
 
 
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="20dp">
-
-            <TextView
-                android:id="@+id/tv_Close"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:textSize="16dp"
-                android:text="Recent Recharges" />
-
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-
+    </RelativeLayout>
 
 </RelativeLayout>
