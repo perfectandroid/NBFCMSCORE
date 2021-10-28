@@ -40,6 +40,11 @@
 
     <color name="color_activity_transparent">#00000000</color>
 
+    <color name="text_primary">#DADADA</color>
+    <color name="text_secondary">#999999</color>
+    <color name="text_fourth">#EDECEC</color>
+    <color name="text_tertary">#ff333333</color>
+
     <!-- dots inactive colors -->
     <color name="dot_dark_screen2">#d1395c</color>
     <color name="dot_dark_screen1">#14a895</color>

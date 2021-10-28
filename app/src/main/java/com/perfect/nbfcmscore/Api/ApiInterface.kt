@@ -75,5 +75,8 @@ interface ApiInterface {
 
     @POST("AccountSummary/OwnAccounDetails")
     fun getOwnAccounDetails(@Body body: RequestBody): Call<String>
+
+    @POST("AccountSummary/BalanceSplitUpDetails")
+    fun getbalancesplitupdetail(@Body body: RequestBody): Call<String>
 }
 

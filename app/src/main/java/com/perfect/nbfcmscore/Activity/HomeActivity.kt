@@ -172,7 +172,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 startActivity(Intent(this@HomeActivity, PassbookActivity::class.java))
             }
             R.id.llownbank ->{
-                startActivity(Intent(this@HomeActivity, OwnbankownaccountTransferActivity::class.java))
+                startActivity(Intent(this@HomeActivity, OwnBankFundTransferServiceActivity::class.java))
             }
             R.id.llgoldslab ->{
                 startActivity(Intent(this@HomeActivity, GoldSlabEstimatorActivity::class.java))

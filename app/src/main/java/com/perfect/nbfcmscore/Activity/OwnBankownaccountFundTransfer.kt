@@ -1,21 +1,14 @@
 package com.perfect.nbfcmscore.Activity
 
 import android.app.AlertDialog
-import android.app.ProgressDialog
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
-import android.widget.AdapterView.OnItemSelectedListener
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
-import com.perfect.nbfcmscore.Adapter.PassbookTranscationListAdapter
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
@@ -32,63 +25,66 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.*
 
-class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClickListener {
-    var arrayList1 = ArrayList<String>()
-    var spnAccountNum: Spinner? = null
-    private var jresult: JSONArray? = null
-    private var jresult1: JSONArray? = null
-    private var Account: TextView? = null
-    private var available_balance: TextView? = null
-    private var unclear_balance: TextView? = null
-    private var txtLastUpdatedAt: TextView? = null
-    private var empty_list: TextView? = null
-    private var tv_list_days: TextView? = null
-    private var rv_passbook: RecyclerView? = null
-    private var ll_balance1: CardView? = null
-
-    private var ll_balance: LinearLayout? = null
-    var noofdays = 0
-    private var progressDialog: ProgressDialog? = null
+class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener {
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
+    var arrayList1 = ArrayList<String>()
+    private var tv_account_no: TextView? = null
+    private var tv_branch_name: TextView? = null
+    public var tv_balance: TextView? = null
+    public var spn_account_num: Spinner? = null
+    public var BranchName: String? = null
+    public var Balance: String? = null
+    public var Acnt: String? = null
+    private var jresult: JSONArray? = null
+    var compareValue = "Select Account"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_passbook)
-        setRegViews()
-        getAccList()
-    }
-    private fun setRegViews() {
-        tv_list_days = findViewById(R.id.tv_list_days)
-        ll_balance = findViewById(R.id.ll_balance)
-        ll_balance1 = findViewById(R.id.ll_balance1)
-        spnAccountNum = findViewById(R.id.spnAccountNum)
-        Account = findViewById(R.id.Account)
-        available_balance = findViewById(R.id.available_balance)
-        unclear_balance = findViewById(R.id.unclear_balance)
-        txtLastUpdatedAt = findViewById(R.id.txtLastUpdatedAt)
-        empty_list = findViewById(R.id.empty_list)
-        rv_passbook = findViewById(R.id.rv_passbook)
-        spnAccountNum!!.onItemSelectedListener = this
+        setContentView(R.layout.activity_ownbankfundtransfer)
 
+        setRegViews()
+        getAccountnumber()
+
+    }
+
+
+
+    private fun setRegViews() {
+
+        spn_account_num = findViewById<Spinner>(R.id.spn_account_type)
         imgBack = findViewById<ImageView>(R.id.imgBack)
         imgBack!!.setOnClickListener(this)
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)
 
+        tv_account_no = findViewById(R.id.tv_account_no)
+        tv_branch_name = findViewById(R.id.tv_branch_name)
+        tv_balance = findViewById(R.id.tv_balance)
 
+
+        BranchName = intent.getStringExtra("Branch")
+        Balance = intent.getStringExtra("Balance")
+        Acnt = intent.getStringExtra("A/c")
+        Log.i("Details", BranchName + Balance + Acnt)
+
+        val amt1 =Balance!!.toDouble()
+        tv_account_no!!.text=Acnt
+        tv_balance!!.text="\u20B9 " + Config.getDecimelFormate(amt1)
+
+        tv_branch_name!!.text=BranchName
     }
-    private fun getAccList() {
+    private fun getAccountnumber() {
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
-                progressDialog = ProgressDialog(this@PassbookActivity, R.style.Progress)
-                progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
-                progressDialog!!.setCancelable(false)
-                progressDialog!!.setIndeterminate(true)
-                progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
-                progressDialog!!.show()
+                /*  progressDialog = ProgressDialog(this@PassbookActivity, R.style.Progress)
+                  progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
+                  progressDialog!!.setCancelable(false)
+                  progressDialog!!.setIndeterminate(true)
+                  progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
+                  progressDialog!!.show()*/
                 try {
                     val client = OkHttpClient.Builder()
-                            .sslSocketFactory(Config.getSSLSocketFactory(this@PassbookActivity))
+                            .sslSocketFactory(Config.getSSLSocketFactory(this@OwnBankownaccountFundTransfer))
                             .hostnameVerifier(Config.getHostnameVerifier())
                             .build()
                     val gson = GsonBuilder()
@@ -116,11 +112,15 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                         )
                         val Token = TokenSP.getString("Token", null)
 
-                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("12"))
+                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("26"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put(
                                 "FK_Customer",
                                 MscoreApplication.encryptStart(FK_Customer)
+                        )
+                        requestObject1.put(
+                                "SubMode",
+                                MscoreApplication.encryptStart("2")
                         )
                         requestObject1.put(
                                 "BankKey", MscoreApplication.encryptStart(
@@ -133,7 +133,7 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
 
                         Log.e("TAG", "requestObject1  171   " + requestObject1)
                     } catch (e: Exception) {
-                        progressDialog!!.dismiss()
+                        // progressDialog!!.dismiss()
                         e.printStackTrace()
                         val mySnackbar = Snackbar.make(
                                 findViewById(R.id.rl_main),
@@ -145,22 +145,22 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                             okhttp3.MediaType.parse("application/json; charset=utf-8"),
                             requestObject1.toString()
                     )
-                    val call = apiService.getPassbookAccount(body)
+                    val call = apiService.getOwnbankownaccountdetail(body)
                     call.enqueue(object : retrofit2.Callback<String> {
                         override fun onResponse(
                                 call: retrofit2.Call<String>, response:
                                 Response<String>
                         ) {
                             try {
-                                progressDialog!!.dismiss()
+                                //  progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
-                                Log.i("Response", response.body())
+                                Log.i("Response2", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
-                                            jObject.getJSONObject("PassBookAccountDetails")
+                                            jObject.getJSONObject("OwnAccountdetails")
                                     val jsonobj2 = JSONObject(jsonObj1.toString())
 
-                                    jresult = jsonobj2.getJSONArray("PassBookAccountDetailsList")
+                                    jresult = jsonobj2.getJSONArray("OwnAccountdetailsList")
 
                                     for (i in 0 until jresult!!.length()) {
                                         try {
@@ -170,15 +170,15 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                                             e.printStackTrace()
                                         }
                                     }
-                                    spnAccountNum!!.adapter = ArrayAdapter(
-                                            this@PassbookActivity,
+                                    spn_account_num!!.adapter = ArrayAdapter(
+                                            this@OwnBankownaccountFundTransfer,
                                             android.R.layout.simple_spinner_dropdown_item, arrayList1
                                     )
-
+                                //    spn_account_num!!.setSelection(arrayList1.indexOf("Select Account"));
 
                                 } else {
                                     val builder = AlertDialog.Builder(
-                                            this@PassbookActivity,
+                                            this@OwnBankownaccountFundTransfer,
                                             R.style.MyDialogTheme
                                     )
                                     builder.setMessage("" + jObject.getString("EXMessage"))
@@ -189,10 +189,10 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                                     alertDialog.show()
                                 }
                             } catch (e: Exception) {
-                                progressDialog!!.dismiss()
+                                //  progressDialog!!.dismiss()
 
                                 val builder = AlertDialog.Builder(
-                                        this@PassbookActivity,
+                                        this@OwnBankownaccountFundTransfer,
                                         R.style.MyDialogTheme
                                 )
                                 builder.setMessage("Some technical issues.")
@@ -206,10 +206,10 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                         }
 
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
-                            progressDialog!!.dismiss()
+                            //  progressDialog!!.dismiss()
 
                             val builder = AlertDialog.Builder(
-                                    this@PassbookActivity,
+                                    this@OwnBankownaccountFundTransfer,
                                     R.style.MyDialogTheme
                             )
                             builder.setMessage("Some technical issues.")
@@ -221,8 +221,8 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                         }
                     })
                 } catch (e: Exception) {
-                    progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(this@PassbookActivity, R.style.MyDialogTheme)
+                    //  progressDialog!!.dismiss()
+                    val builder = AlertDialog.Builder(this@OwnBankownaccountFundTransfer, R.style.MyDialogTheme)
                     builder.setMessage("Some technical issues.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->
                     }
@@ -233,7 +233,7 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@PassbookActivity, R.style.MyDialogTheme)
+                val builder = AlertDialog.Builder(this@OwnBankownaccountFundTransfer, R.style.MyDialogTheme)
                 builder.setMessage("No Internet Connection.")
                 builder.setPositiveButton("Ok") { dialogInterface, which ->
                 }
@@ -243,64 +243,34 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
             }
         }
     }
-
-
-
-
-
-
-
-    override fun onItemSelected(p0: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        try {
-            val json = jresult!!.getJSONObject(position)
-            if (json.getString("IsShowBalance").equals("1")) {
-
-            //if (isshowbal.equals("1") ) {
-                ll_balance!!.visibility = View.VISIBLE
-                ll_balance1!!.visibility = View.VISIBLE
-                available_balance!!.text =
-                    "\u20B9 " + Config.getDecimelFormate(json.getDouble("AvailableBalance"))
-                if (json.getDouble("UnclearAmount") <= 0) {
-                    unclear_balance!!.text =
-                        "\u20B9 " + Config.getDecimelFormate(json.getDouble("UnclearAmount"))
-                    unclear_balance!!.setTextColor(Color.RED)
-                } else {
-                    unclear_balance!!.text =
-                        "\u20B9 " + Config.getDecimelFormate(json.getDouble("UnclearAmount"))
-                    unclear_balance!!.setTextColor(Color.parseColor("#7E5858"))
-                }
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.imgBack -> {
+                finish()
             }
-            else  {
-                ll_balance!!.visibility = View.GONE
-                ll_balance1!!.visibility = View.GONE
-                tv_list_days!!.visibility = View.GONE
-                rv_passbook!!.visibility = View.GONE
+            R.id.imgHome -> {
+                startActivity(Intent(this@OwnBankownaccountFundTransfer, HomeActivity::class.java))
             }
 
-            Account!!.text = json.getString("AccountType")
-            getPassBookAccountStatement(
-                    json.getString("FK_Account"),
-                    json.getString("SubModule"),
-                    noofdays
-            )
-        } catch (e: Exception) {
-            e.printStackTrace()
         }
     }
 
-    private fun getPassBookAccountStatement(fkaccount: String, submodule: String, noofdays: Int) {
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        balanceSplitUpDetails()
+    }
 
+    private fun balanceSplitUpDetails() {
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
-                progressDialog = ProgressDialog(this@PassbookActivity, R.style.Progress)
-                progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
-                progressDialog!!.setCancelable(false)
-                progressDialog!!.setIndeterminate(true)
-                progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
-                progressDialog!!.show()
+                /*  progressDialog = ProgressDialog(this@PassbookActivity, R.style.Progress)
+                  progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
+                  progressDialog!!.setCancelable(false)
+                  progressDialog!!.setIndeterminate(true)
+                  progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
+                  progressDialog!!.show()*/
                 try {
                     val client = OkHttpClient.Builder()
-                            .sslSocketFactory(Config.getSSLSocketFactory(this@PassbookActivity))
+                            .sslSocketFactory(Config.getSSLSocketFactory(this@OwnBankownaccountFundTransfer))
                             .hostnameVerifier(Config.getHostnameVerifier())
                             .build()
                     val gson = GsonBuilder()
@@ -314,6 +284,28 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                             .build()
                     val apiService = retrofit.create(ApiInterface::class.java!!)
                     val requestObject1 = JSONObject()
+
+                    val accountType: String = spn_account_num!!.getSelectedItem().toString()
+                    val type: String
+                    var accountNo = accountType.replace(accountType.substring(accountType.indexOf(" (") + 1, accountType.indexOf(")") + 1), "")
+                    accountNo = accountNo.replace(" ", "")
+
+                    /* type = if (accountType.equals(getString(R.string.savings_bank), ignoreCase = true)) {
+                        "SB"
+                    } else if (accountType.equals(getString(R.string.current_account), ignoreCase = true)) {
+                        "CA"
+                    } else if (accountType.equals(getString(R.string.cash_credit), ignoreCase = true)) {
+                        "OD"
+                    } else if (accountType.equals(getString(R.string.member_loan), ignoreCase = true)) {
+                        "ML"
+                    } else if (accountType.equals(getString(R.string.recurring_deposit), ignoreCase = true)) {
+                        "RD"
+                    } else if (accountType.equals(getString(R.string.jewell_loan), ignoreCase = true)) {
+                        "JL"
+                    } else {
+                        "GD"
+                    }*/
+                    //Log.i("Type", type)
                     try {
 
                         val FK_CustomerSP = this.applicationContext.getSharedPreferences(
@@ -328,23 +320,15 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                         )
                         val Token = TokenSP.getString("Token", null)
 
-                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("13"))
+                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("27"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put(
                                 "FK_Account",
-                                MscoreApplication.encryptStart(fkaccount)
-                        )
-                        requestObject1.put(
-                                "FK_Customer",
-                                MscoreApplication.encryptStart(FK_Customer)
+                                MscoreApplication.encryptStart(accountNo)
                         )
                         requestObject1.put(
                                 "SubModule",
-                                MscoreApplication.encryptStart(submodule)
-                        )
-                        requestObject1.put(
-                                "NoOfDays",
-                                MscoreApplication.encryptStart("" + noofdays)
+                                MscoreApplication.encryptStart(accountType)
                         )
                         requestObject1.put(
                                 "BankKey", MscoreApplication.encryptStart(
@@ -357,7 +341,7 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
 
                         Log.e("TAG", "requestObject1  171   " + requestObject1)
                     } catch (e: Exception) {
-                        progressDialog!!.dismiss()
+                        // progressDialog!!.dismiss()
                         e.printStackTrace()
                         val mySnackbar = Snackbar.make(
                                 findViewById(R.id.rl_main),
@@ -369,48 +353,40 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                             okhttp3.MediaType.parse("application/json; charset=utf-8"),
                             requestObject1.toString()
                     )
-                    val call = apiService.getPassbookAccountstatement(body)
+                    val call = apiService.getbalancesplitupdetail(body)
                     call.enqueue(object : retrofit2.Callback<String> {
                         override fun onResponse(
                                 call: retrofit2.Call<String>, response:
                                 Response<String>
                         ) {
                             try {
-                                progressDialog!!.dismiss()
+                                //  progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
-                                Log.i("Response", response.body())
-                                if (jObject.getString("StatusCode") == "0") {
+                                Log.i("Response-balance", response.body())
+                                /* if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
-                                            jObject.getJSONObject("PassBookAccountStatement")
+                                            jObject.getJSONObject("OwnAccountdetails")
                                     val jsonobj2 = JSONObject(jsonObj1.toString())
 
-                                    jresult1 = jsonobj2.getJSONArray("PassBookAccountStatementList")
-                                    if (jresult1!!.length() != 0) {
-                                        tv_list_days!!.visibility = View.VISIBLE
-                                        rv_passbook!!.visibility = View.VISIBLE
-                                        empty_list!!.visibility = View.GONE
-                                        val lLayout =
-                                                GridLayoutManager(this@PassbookActivity, 1)
-                                        rv_passbook!!.layoutManager = lLayout
-                                        rv_passbook!!.setHasFixedSize(true)
-                                        val adapter = PassbookTranscationListAdapter(
-                                                this@PassbookActivity,
-                                                jresult1!!,
-                                                submodule
-                                        )
-                                        rv_passbook!!.adapter = adapter
-                                    } else {
-                                        rv_passbook!!.visibility = View.GONE
-                                        tv_list_days!!.visibility = View.GONE
-                                        empty_list!!.visibility = View.VISIBLE
-                                        empty_list!!.text =
-                                                "There are no transactions to display for the last $noofdays days"
-                                    }
+                                    jresult = jsonobj2.getJSONArray("OwnAccountdetailsList")
 
+                                    for (i in 0 until jresult!!.length()) {
+                                        try {
+                                            val json = jresult!!.getJSONObject(i)
+                                            arrayList1!!.add(json.getString("AccountNumber"))
+                                        } catch (e: JSONException) {
+                                            e.printStackTrace()
+                                        }
+                                    }
+                                    spn_account_num!!.adapter = ArrayAdapter(
+                                            this@OwnBankFundTransfer,
+                                            android.R.layout.simple_spinner_dropdown_item, arrayList1
+                                    )
+                                    spn_account_num!!.setSelection(arrayList1.indexOf("Select Account"));
 
                                 } else {
                                     val builder = AlertDialog.Builder(
-                                            this@PassbookActivity,
+                                            this@OwnBankFundTransfer,
                                             R.style.MyDialogTheme
                                     )
                                     builder.setMessage("" + jObject.getString("EXMessage"))
@@ -419,12 +395,12 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                                     val alertDialog: AlertDialog = builder.create()
                                     alertDialog.setCancelable(false)
                                     alertDialog.show()
-                                }
+                                }*/
                             } catch (e: Exception) {
-                                progressDialog!!.dismiss()
+                                //  progressDialog!!.dismiss()
 
                                 val builder = AlertDialog.Builder(
-                                        this@PassbookActivity,
+                                        this@OwnBankownaccountFundTransfer,
                                         R.style.MyDialogTheme
                                 )
                                 builder.setMessage("Some technical issues.")
@@ -438,10 +414,10 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                         }
 
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
-                            progressDialog!!.dismiss()
+                            //  progressDialog!!.dismiss()
 
                             val builder = AlertDialog.Builder(
-                                    this@PassbookActivity,
+                                    this@OwnBankownaccountFundTransfer,
                                     R.style.MyDialogTheme
                             )
                             builder.setMessage("Some technical issues.")
@@ -453,8 +429,8 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                         }
                     })
                 } catch (e: Exception) {
-                    progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(this@PassbookActivity, R.style.MyDialogTheme)
+                    //  progressDialog!!.dismiss()
+                    val builder = AlertDialog.Builder(this@OwnBankownaccountFundTransfer, R.style.MyDialogTheme)
                     builder.setMessage("Some technical issues.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->
                     }
@@ -465,7 +441,7 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@PassbookActivity, R.style.MyDialogTheme)
+                val builder = AlertDialog.Builder(this@OwnBankownaccountFundTransfer, R.style.MyDialogTheme)
                 builder.setMessage("No Internet Connection.")
                 builder.setPositiveButton("Ok") { dialogInterface, which ->
                 }
@@ -478,16 +454,5 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
         TODO("Not yet implemented")
-    }
-
-    override fun onClick(v: View) {
-        when (v.id) {
-            R.id.imgBack ->{
-                finish()
-            }
-            R.id.imgHome ->{
-                startActivity(Intent(this@PassbookActivity, HomeActivity::class.java))
-            }
-        }
     }
 }
