@@ -1,16 +1,18 @@
 package com.perfect.nbfcmscore.Activity
 
 import android.app.AlertDialog
+import android.app.Dialog
 import android.app.ProgressDialog
 import android.content.Intent
+import android.database.Cursor
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.util.Log
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
+import android.view.Window
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
@@ -20,10 +22,7 @@ import com.perfect.nbfcmscore.Adapter.AccountAdapter
 import com.perfect.nbfcmscore.Adapter.CircleAdapter
 import com.perfect.nbfcmscore.Adapter.OperatorAdapter
 import com.perfect.nbfcmscore.Api.ApiInterface
-import com.perfect.nbfcmscore.Helper.Config
-import com.perfect.nbfcmscore.Helper.ConnectivityUtils
-import com.perfect.nbfcmscore.Helper.ItemClickListener
-import com.perfect.nbfcmscore.Helper.MscoreApplication
+import com.perfect.nbfcmscore.Helper.*
 import com.perfect.nbfcmscore.R
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
@@ -38,8 +37,11 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 
     private var progressDialog: ProgressDialog? = null
     val TAG: String = "RechargeActivity"
+    private val PICK_CONTACT = 1
+
     var im_back: ImageView? = null
     var im_home: ImageView? = null
+    var im_contact: ImageView? = null
 
     var tv_header: TextView? = null
 
@@ -47,24 +49,32 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
     var tie_operator: TextInputEditText? = null
     var tie_circle: TextInputEditText? = null
     var tie_account: TextInputEditText? = null
+    var tie_amount: TextInputEditText? = null
 
     var jArrayOperator: JSONArray? = null
     var jArrayCircle: JSONArray? = null
     var jArrayAccount: JSONArray? = null
 
 
-    var ProvidersMode: String? = ""
-
-
     var  dialogOperator: BottomSheetDialog? = null
     var  dialogCircle: BottomSheetDialog? = null
     var  dialogAccount: BottomSheetDialog? = null
 
+    var mobileNumber: String? = ""
+    var Amount: String? = ""
     var ID_Providers: String? = ""
     var ID_RechargeCircle: String? = ""
+    var ProvidersMode: String? = ""
+    var CircleMode: String? = ""
+    var AccountNo: String? = ""
+    var SubModule: String? = ""
     var FK_Account: String? = ""
+    var ProvidersCode: String? = ""
+    var BranchName: String? = ""
 
 
+    var rltv_recharge: RelativeLayout? = null
+    var but_recharge: Button? = null
 
 
 
@@ -102,6 +112,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 
         im_back = findViewById<ImageView>(R.id.im_back)
         im_home = findViewById<ImageView>(R.id.im_home)
+        im_contact = findViewById<ImageView>(R.id.im_contact)
 
         tv_header = findViewById<TextView>(R.id.tv_header)
 
@@ -110,7 +121,8 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
         tie_circle = findViewById<TextInputEditText>(R.id.tie_circle)
         tie_account = findViewById<TextInputEditText>(R.id.tie_account)
 
-
+        tie_amount = findViewById<TextInputEditText>(R.id.tie_amount)
+        but_recharge = findViewById<Button>(R.id.but_recharge)
 
 
     }
@@ -118,9 +130,11 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
     private fun setRegister() {
         im_back!!.setOnClickListener(this)
         im_home!!.setOnClickListener(this)
+        im_contact!!.setOnClickListener(this)
         tie_operator!!.setOnClickListener(this)
         tie_circle!!.setOnClickListener(this)
         tie_account!!.setOnClickListener(this)
+        but_recharge!!.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
@@ -150,10 +164,17 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                 Log.e(TAG,"tie_account")
                 getOwnAccount()
             }
+            R.id.im_contact ->{
+                Log.e(TAG,"tie_account")
+                contactSelect()
+            }
+
+            R.id.but_recharge ->{
+                Log.e(TAG,"ll_recharge")
+                rechargeValidation()
+            }
         }
     }
-
-
 
 
     private fun getOperator() {
@@ -184,9 +205,12 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                     try {
                         val TokenSP = applicationContext.getSharedPreferences(Config.SHARED_PREF8, 0)
                         val Token = TokenSP.getString("Token", null)
+                        val FK_CustomerSP = this.applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
+                        val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("17"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
                         requestObject1.put("BankHeader", MscoreApplication.encryptStart(getResources().getString(R.string.BankHeader)))
                         requestObject1.put("ProvidersMode", MscoreApplication.encryptStart(ProvidersMode))
@@ -323,9 +347,12 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                     try {
                         val TokenSP = applicationContext.getSharedPreferences(Config.SHARED_PREF8, 0)
                         val Token = TokenSP.getString("Token", null)
+                        val FK_CustomerSP = this.applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
+                        val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("25"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
                         requestObject1.put("BankHeader", MscoreApplication.encryptStart(getResources().getString(R.string.BankHeader)))
 
@@ -654,6 +681,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
             dialogOperator!!.dismiss()
             var jsonObject1 = jArrayOperator!!.getJSONObject(position)
             ID_Providers = jsonObject1.getString("ID_Providers")
+            ProvidersCode = jsonObject1.getString("ProvidersCode")
             tie_operator!!.setText(""+jsonObject1.getString("ProvidersName"))
         }
 
@@ -662,14 +690,145 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
             var jsonObject1 = jArrayCircle!!.getJSONObject(position)
             ID_RechargeCircle = jsonObject1.getString("ID_RechargeCircle")
             tie_circle!!.setText(""+jsonObject1.getString("CircleName"))
+            CircleMode = jsonObject1.getString("CircleMode")
         }
 
         if (data.equals("account")){
             dialogAccount!!.dismiss()
             var jsonObject1 = jArrayAccount!!.getJSONObject(position)
             FK_Account = jsonObject1.getString("FK_Account")
+            AccountNo = jsonObject1.getString("AccountNumber")
+            SubModule= jsonObject1.getString("SubModule")
+            BranchName= jsonObject1.getString("BranchName")
             tie_account!!.setText(""+jsonObject1.getString("AccountNumber"))
         }
+
+
+    }
+
+    private fun contactSelect() {
+        val intent = Intent(
+            Intent.ACTION_PICK,
+            ContactsContract.Contacts.CONTENT_URI
+        )
+        intent.type = ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE
+        startActivityForResult(intent, PICK_CONTACT)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.e(TAG,"tempContact  698  "+requestCode+"  "+resultCode)
+        if (requestCode == PICK_CONTACT && resultCode == RESULT_OK && applicationContext != null) {
+            try {
+                val uriContact = data!!.data!!
+                val cursor: Cursor = applicationContext.getContentResolver().query(
+                    uriContact, null, null, null, null
+                )!!
+                cursor.moveToFirst()
+                val tempContact = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
+                Log.e(TAG,"tempContact  6981  "+tempContact)
+                tie_mobilenumber!!.setText(extractPhoneNumber(tempContact))
+                closeCursor(cursor)
+            } catch (e: java.lang.Exception) {
+
+            }
+        }
+
+    }
+    private fun extractPhoneNumber(resultPhoneNumber: String): String? {
+        var result: String
+        try {
+            result = resultPhoneNumber.replace("\\D+".toRegex(), "")
+            if (result.length > 10) {
+                result = result.substring(result.length - 10, result.length)
+            }
+        } catch (e: java.lang.Exception) {
+            result = ""
+        }
+        return result
+    }
+    private fun closeCursor(cursor: Cursor) {
+        try {
+            cursor.close()
+        } catch (e: java.lang.Exception) {
+//            if (IScoreApplication.DEBUG) Log.e("Null pointer ex", e.toString())
+        }
+    }
+
+    private fun rechargeValidation() {
+
+        mobileNumber = tie_mobilenumber!!.text.toString();
+        Amount = tie_amount!!.text.toString();
+        var mAccountNumber = AccountNo!!.replace(AccountNo!!.substring(AccountNo!!.indexOf(" (") + 1, AccountNo!!.indexOf(')') + 1), "")
+        mAccountNumber = mAccountNumber.replace(" ", "")
+
+        if (mobileNumber!!.length!= 10){
+            Toast.makeText(applicationContext,"Please enter valid  mobile number",Toast.LENGTH_LONG).show()
+//            showToast("Please enter valid  mobile number")
+        }else if(ProvidersCode!!.equals("")){
+            Toast.makeText(applicationContext,"Please Select Operator",Toast.LENGTH_LONG).show()
+        }
+        else if(CircleMode!!.equals("")){
+            Toast.makeText(applicationContext,"Please Select Circle",Toast.LENGTH_LONG).show()
+        }
+        else if(Amount!!.equals("")){
+            Toast.makeText(applicationContext,"Please Enter Amount",Toast.LENGTH_LONG).show()
+        }
+        else if(mAccountNumber!!.length != 12){
+            Toast.makeText(applicationContext,"Please Select Account",Toast.LENGTH_LONG).show()
+        }
+        else if(SubModule!!.equals("")){
+            Toast.makeText(applicationContext,"Please Select Account",Toast.LENGTH_LONG).show()
+        }else{
+
+            Log.e(TAG,"MobileNumer      785   "+mobileNumber)
+            Log.e(TAG,"ProvidersCode    785   "+ProvidersCode)
+            Log.e(TAG,"CircleMode       785   "+CircleMode)
+            Log.e(TAG,"Amount           785   "+Amount)
+            Log.e(TAG,"AccountNo        785   "+mAccountNumber)
+            Log.e(TAG,"FK_Providers     785   "+ID_Providers)
+            Log.e(TAG,"FK_RechargeCircle    785   "+ID_RechargeCircle)
+            Log.e(TAG,"FK_Account         785   "+FK_Account)
+
+            RechargeConfirmationPop(mobileNumber!!,ProvidersCode!!,CircleMode!!,Amount!!,mAccountNumber,ID_Providers,ID_RechargeCircle,FK_Account,AccountNo!!)
+
+        }
+
+    }
+
+    private fun RechargeConfirmationPop(mobileNumber: String, providersCode: String, circleMode: String, amount: String, mAccountNumber: String?,
+        idProviders: String?, idRechargecircle: String?, fkAccount: String?, accountNo: String) {
+
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setContentView(R.layout.recharge_confirmation)
+
+        val tvAcntno = dialog.findViewById(R.id.tvAcntno) as TextView
+        val tvbranch = dialog.findViewById(R.id.tvbranch) as TextView
+        val tv_mob = dialog.findViewById(R.id.tv_mob) as TextView
+        val tv_oper = dialog.findViewById(R.id.tv_oper) as TextView
+        val tv_cir = dialog.findViewById(R.id.tv_cir) as TextView
+        val text_confirmationmsg = dialog.findViewById(R.id.text_confirmationmsg) as TextView
+
+
+
+        tvAcntno!!.setText(""+accountNo)
+        tvbranch!!.setText(""+BranchName)
+        tv_mob!!.setText(""+mobileNumber)
+        tv_oper!!.setText(""+tie_operator!!.text.toString())
+        tv_cir!!.setText(""+tie_circle!!.text.toString())
+
+
+//            double num =Double.parseDouble(""+mAmount);
+//            String stramnt = CommonUtilities.getDecimelFormate(num);
+
+
+
+
+        dialog.show()
+
+
 
 
     }

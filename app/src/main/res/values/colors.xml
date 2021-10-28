@@ -74,4 +74,10 @@
 
     <color name="color_tab_select">#2B6C7B</color>
     <color name="color_tab_unselect">#4A848E</color>
+
+    <color name="DarkGray">#A9A9A9</color>
+    <color name="google_green1">#63B456</color>
+    <color name="RoyalBlue">#4169E1</color>
+    <color name="gray_btn_bg_color">#e74c3c</color>
+
 </resources>
