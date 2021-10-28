@@ -25,7 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.*
 
-class OwnBankFundTransfer : AppCompatActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener {
+class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener {
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
     var arrayList1 = ArrayList<String>()
@@ -51,16 +51,16 @@ class OwnBankFundTransfer : AppCompatActivity(), View.OnClickListener, AdapterVi
 
     private fun setRegViews() {
 
-        tv_account_no = findViewById<TextView>(R.id.tv_account_no)
-        tv_branch_name = findViewById<TextView>(R.id.tv_branch_name)
         spn_account_num = findViewById<Spinner>(R.id.spn_account_type)
-        tv_balance = findViewById<TextView>(R.id.tv_balance)
         imgBack = findViewById<ImageView>(R.id.imgBack)
         imgBack!!.setOnClickListener(this)
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)
 
-        spn_account_num!!.onItemSelectedListener = this
+        tv_account_no = findViewById(R.id.tv_account_no)
+        tv_branch_name = findViewById(R.id.tv_branch_name)
+        tv_balance = findViewById(R.id.tv_balance)
+
 
         BranchName = intent.getStringExtra("Branch")
         Balance = intent.getStringExtra("Balance")
@@ -84,7 +84,7 @@ class OwnBankFundTransfer : AppCompatActivity(), View.OnClickListener, AdapterVi
                   progressDialog!!.show()*/
                 try {
                     val client = OkHttpClient.Builder()
-                            .sslSocketFactory(Config.getSSLSocketFactory(this@OwnBankFundTransfer))
+                            .sslSocketFactory(Config.getSSLSocketFactory(this@OwnBankownaccountFundTransfer))
                             .hostnameVerifier(Config.getHostnameVerifier())
                             .build()
                     val gson = GsonBuilder()
@@ -171,14 +171,14 @@ class OwnBankFundTransfer : AppCompatActivity(), View.OnClickListener, AdapterVi
                                         }
                                     }
                                     spn_account_num!!.adapter = ArrayAdapter(
-                                            this@OwnBankFundTransfer,
+                                            this@OwnBankownaccountFundTransfer,
                                             android.R.layout.simple_spinner_dropdown_item, arrayList1
                                     )
-                                    spn_account_num!!.setSelection(arrayList1.indexOf("Select Account"));
+                                //    spn_account_num!!.setSelection(arrayList1.indexOf("Select Account"));
 
                                 } else {
                                     val builder = AlertDialog.Builder(
-                                            this@OwnBankFundTransfer,
+                                            this@OwnBankownaccountFundTransfer,
                                             R.style.MyDialogTheme
                                     )
                                     builder.setMessage("" + jObject.getString("EXMessage"))
@@ -192,7 +192,7 @@ class OwnBankFundTransfer : AppCompatActivity(), View.OnClickListener, AdapterVi
                                 //  progressDialog!!.dismiss()
 
                                 val builder = AlertDialog.Builder(
-                                        this@OwnBankFundTransfer,
+                                        this@OwnBankownaccountFundTransfer,
                                         R.style.MyDialogTheme
                                 )
                                 builder.setMessage("Some technical issues.")
@@ -209,7 +209,7 @@ class OwnBankFundTransfer : AppCompatActivity(), View.OnClickListener, AdapterVi
                             //  progressDialog!!.dismiss()
 
                             val builder = AlertDialog.Builder(
-                                    this@OwnBankFundTransfer,
+                                    this@OwnBankownaccountFundTransfer,
                                     R.style.MyDialogTheme
                             )
                             builder.setMessage("Some technical issues.")
@@ -222,7 +222,7 @@ class OwnBankFundTransfer : AppCompatActivity(), View.OnClickListener, AdapterVi
                     })
                 } catch (e: Exception) {
                     //  progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(this@OwnBankFundTransfer, R.style.MyDialogTheme)
+                    val builder = AlertDialog.Builder(this@OwnBankownaccountFundTransfer, R.style.MyDialogTheme)
                     builder.setMessage("Some technical issues.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->
                     }
@@ -233,7 +233,7 @@ class OwnBankFundTransfer : AppCompatActivity(), View.OnClickListener, AdapterVi
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@OwnBankFundTransfer, R.style.MyDialogTheme)
+                val builder = AlertDialog.Builder(this@OwnBankownaccountFundTransfer, R.style.MyDialogTheme)
                 builder.setMessage("No Internet Connection.")
                 builder.setPositiveButton("Ok") { dialogInterface, which ->
                 }
@@ -249,8 +249,9 @@ class OwnBankFundTransfer : AppCompatActivity(), View.OnClickListener, AdapterVi
                 finish()
             }
             R.id.imgHome -> {
-                startActivity(Intent(this@OwnBankFundTransfer, HomeActivity::class.java))
+                startActivity(Intent(this@OwnBankownaccountFundTransfer, HomeActivity::class.java))
             }
+
         }
     }
 
@@ -269,7 +270,7 @@ class OwnBankFundTransfer : AppCompatActivity(), View.OnClickListener, AdapterVi
                   progressDialog!!.show()*/
                 try {
                     val client = OkHttpClient.Builder()
-                            .sslSocketFactory(Config.getSSLSocketFactory(this@OwnBankFundTransfer))
+                            .sslSocketFactory(Config.getSSLSocketFactory(this@OwnBankownaccountFundTransfer))
                             .hostnameVerifier(Config.getHostnameVerifier())
                             .build()
                     val gson = GsonBuilder()
@@ -286,25 +287,25 @@ class OwnBankFundTransfer : AppCompatActivity(), View.OnClickListener, AdapterVi
 
                     val accountType: String = spn_account_num!!.getSelectedItem().toString()
                     val type: String
-//                    var accountNo = accountType.replace(accountType.substring(accountType.indexOf(" (") + 1, accountType.indexOf(")") + 1), "")
-//                    accountNo = accountNo.replace(" ", "")
-//
-//                    type = if (accountType.equals(getString(R.string.savings_bank), ignoreCase = true)) {
-//                        "SB"
-//                    } else if (accountType.equals(getString(R.string.current_account), ignoreCase = true)) {
-//                        "CA"
-//                    } else if (accountType.equals(getString(R.string.cash_credit), ignoreCase = true)) {
-//                        "OD"
-//                    } else if (accountType.equals(getString(R.string.member_loan), ignoreCase = true)) {
-//                        "ML"
-//                    } else if (accountType.equals(getString(R.string.recurring_deposit), ignoreCase = true)) {
-//                        "RD"
-//                    } else if (accountType.equals(getString(R.string.jewell_loan), ignoreCase = true)) {
-//                        "JL"
-//                    } else {
-//                        "GD"
-//                    }
-//                    Log.i("Type", type)
+                    var accountNo = accountType.replace(accountType.substring(accountType.indexOf(" (") + 1, accountType.indexOf(")") + 1), "")
+                    accountNo = accountNo.replace(" ", "")
+
+                    /* type = if (accountType.equals(getString(R.string.savings_bank), ignoreCase = true)) {
+                        "SB"
+                    } else if (accountType.equals(getString(R.string.current_account), ignoreCase = true)) {
+                        "CA"
+                    } else if (accountType.equals(getString(R.string.cash_credit), ignoreCase = true)) {
+                        "OD"
+                    } else if (accountType.equals(getString(R.string.member_loan), ignoreCase = true)) {
+                        "ML"
+                    } else if (accountType.equals(getString(R.string.recurring_deposit), ignoreCase = true)) {
+                        "RD"
+                    } else if (accountType.equals(getString(R.string.jewell_loan), ignoreCase = true)) {
+                        "JL"
+                    } else {
+                        "GD"
+                    }*/
+                    //Log.i("Type", type)
                     try {
 
                         val FK_CustomerSP = this.applicationContext.getSharedPreferences(
@@ -321,10 +322,10 @@ class OwnBankFundTransfer : AppCompatActivity(), View.OnClickListener, AdapterVi
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("27"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-//                        requestObject1.put(
-//                                "FK_Account",
-//                              //  MscoreApplication.encryptStart(accountNo)
-//                        )
+                        requestObject1.put(
+                                "FK_Account",
+                                MscoreApplication.encryptStart(accountNo)
+                        )
                         requestObject1.put(
                                 "SubModule",
                                 MscoreApplication.encryptStart(accountType)
@@ -352,84 +353,84 @@ class OwnBankFundTransfer : AppCompatActivity(), View.OnClickListener, AdapterVi
                             okhttp3.MediaType.parse("application/json; charset=utf-8"),
                             requestObject1.toString()
                     )
-//                    val call = apiService.getbalancesplitupdetail(body)
-//                    call.enqueue(object : retrofit2.Callback<String> {
-//                        override fun onResponse(
-//                                call: retrofit2.Call<String>, response:
-//                                Response<String>
-//                        ) {
-//                            try {
-//                                //  progressDialog!!.dismiss()
-//                                val jObject = JSONObject(response.body())
-//                                Log.i("Response-balance", response.body())
-//                                /* if (jObject.getString("StatusCode") == "0") {
-//                                    val jsonObj1: JSONObject =
-//                                            jObject.getJSONObject("OwnAccountdetails")
-//                                    val jsonobj2 = JSONObject(jsonObj1.toString())
-//
-//                                    jresult = jsonobj2.getJSONArray("OwnAccountdetailsList")
-//
-//                                    for (i in 0 until jresult!!.length()) {
-//                                        try {
-//                                            val json = jresult!!.getJSONObject(i)
-//                                            arrayList1!!.add(json.getString("AccountNumber"))
-//                                        } catch (e: JSONException) {
-//                                            e.printStackTrace()
-//                                        }
-//                                    }
-//                                    spn_account_num!!.adapter = ArrayAdapter(
-//                                            this@OwnBankFundTransfer,
-//                                            android.R.layout.simple_spinner_dropdown_item, arrayList1
-//                                    )
-//                                    spn_account_num!!.setSelection(arrayList1.indexOf("Select Account"));
-//
-//                                } else {
-//                                    val builder = AlertDialog.Builder(
-//                                            this@OwnBankFundTransfer,
-//                                            R.style.MyDialogTheme
-//                                    )
-//                                    builder.setMessage("" + jObject.getString("EXMessage"))
-//                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-//                                    }
-//                                    val alertDialog: AlertDialog = builder.create()
-//                                    alertDialog.setCancelable(false)
-//                                    alertDialog.show()
-//                                }*/
-//                            } catch (e: Exception) {
-//                                //  progressDialog!!.dismiss()
-//
-//                                val builder = AlertDialog.Builder(
-//                                        this@OwnBankFundTransfer,
-//                                        R.style.MyDialogTheme
-//                                )
-//                                builder.setMessage("Some technical issues.")
-//                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-//                                }
-//                                val alertDialog: AlertDialog = builder.create()
-//                                alertDialog.setCancelable(false)
-//                                alertDialog.show()
-//                                e.printStackTrace()
-//                            }
-//                        }
-//
-//                        override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
-//                            //  progressDialog!!.dismiss()
-//
-//                            val builder = AlertDialog.Builder(
-//                                    this@OwnBankFundTransfer,
-//                                    R.style.MyDialogTheme
-//                            )
-//                            builder.setMessage("Some technical issues.")
-//                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-//                            }
-//                            val alertDialog: AlertDialog = builder.create()
-//                            alertDialog.setCancelable(false)
-//                            alertDialog.show()
-//                        }
-//                    })
+                    val call = apiService.getbalancesplitupdetail(body)
+                    call.enqueue(object : retrofit2.Callback<String> {
+                        override fun onResponse(
+                                call: retrofit2.Call<String>, response:
+                                Response<String>
+                        ) {
+                            try {
+                                //  progressDialog!!.dismiss()
+                                val jObject = JSONObject(response.body())
+                                Log.i("Response-balance", response.body())
+                                /* if (jObject.getString("StatusCode") == "0") {
+                                    val jsonObj1: JSONObject =
+                                            jObject.getJSONObject("OwnAccountdetails")
+                                    val jsonobj2 = JSONObject(jsonObj1.toString())
+
+                                    jresult = jsonobj2.getJSONArray("OwnAccountdetailsList")
+
+                                    for (i in 0 until jresult!!.length()) {
+                                        try {
+                                            val json = jresult!!.getJSONObject(i)
+                                            arrayList1!!.add(json.getString("AccountNumber"))
+                                        } catch (e: JSONException) {
+                                            e.printStackTrace()
+                                        }
+                                    }
+                                    spn_account_num!!.adapter = ArrayAdapter(
+                                            this@OwnBankFundTransfer,
+                                            android.R.layout.simple_spinner_dropdown_item, arrayList1
+                                    )
+                                    spn_account_num!!.setSelection(arrayList1.indexOf("Select Account"));
+
+                                } else {
+                                    val builder = AlertDialog.Builder(
+                                            this@OwnBankFundTransfer,
+                                            R.style.MyDialogTheme
+                                    )
+                                    builder.setMessage("" + jObject.getString("EXMessage"))
+                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                    }
+                                    val alertDialog: AlertDialog = builder.create()
+                                    alertDialog.setCancelable(false)
+                                    alertDialog.show()
+                                }*/
+                            } catch (e: Exception) {
+                                //  progressDialog!!.dismiss()
+
+                                val builder = AlertDialog.Builder(
+                                        this@OwnBankownaccountFundTransfer,
+                                        R.style.MyDialogTheme
+                                )
+                                builder.setMessage("Some technical issues.")
+                                builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                }
+                                val alertDialog: AlertDialog = builder.create()
+                                alertDialog.setCancelable(false)
+                                alertDialog.show()
+                                e.printStackTrace()
+                            }
+                        }
+
+                        override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
+                            //  progressDialog!!.dismiss()
+
+                            val builder = AlertDialog.Builder(
+                                    this@OwnBankownaccountFundTransfer,
+                                    R.style.MyDialogTheme
+                            )
+                            builder.setMessage("Some technical issues.")
+                            builder.setPositiveButton("Ok") { dialogInterface, which ->
+                            }
+                            val alertDialog: AlertDialog = builder.create()
+                            alertDialog.setCancelable(false)
+                            alertDialog.show()
+                        }
+                    })
                 } catch (e: Exception) {
                     //  progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(this@OwnBankFundTransfer, R.style.MyDialogTheme)
+                    val builder = AlertDialog.Builder(this@OwnBankownaccountFundTransfer, R.style.MyDialogTheme)
                     builder.setMessage("Some technical issues.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->
                     }
@@ -440,7 +441,7 @@ class OwnBankFundTransfer : AppCompatActivity(), View.OnClickListener, AdapterVi
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@OwnBankFundTransfer, R.style.MyDialogTheme)
+                val builder = AlertDialog.Builder(this@OwnBankownaccountFundTransfer, R.style.MyDialogTheme)
                 builder.setMessage("No Internet Connection.")
                 builder.setPositiveButton("Ok") { dialogInterface, which ->
                 }
