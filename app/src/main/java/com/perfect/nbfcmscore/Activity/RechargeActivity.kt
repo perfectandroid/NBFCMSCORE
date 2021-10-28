@@ -498,7 +498,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                         requestObject1.put("SubMode", MscoreApplication.encryptStart("1"))
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
                         requestObject1.put("BankHeader", MscoreApplication.encryptStart(getResources().getString(R.string.BankHeader)))
-                        requestObject1.put("ProvidersMode", MscoreApplication.encryptStart(ProvidersMode))
+
 
                         Log.e(TAG,"requestObject1  516   "+requestObject1)
 
