@@ -289,22 +289,6 @@ class OwnBankFundTransfer : AppCompatActivity(), View.OnClickListener, AdapterVi
                     var accountNo = accountType.replace(accountType.substring(accountType.indexOf(" (") + 1, accountType.indexOf(")") + 1), "")
                     accountNo = accountNo.replace(" ", "")
 
-                    type = if (accountType.equals(getString(R.string.savings_bank), ignoreCase = true)) {
-                        "SB"
-                    } else if (accountType.equals(getString(R.string.current_account), ignoreCase = true)) {
-                        "CA"
-                    } else if (accountType.equals(getString(R.string.cash_credit), ignoreCase = true)) {
-                        "OD"
-                    } else if (accountType.equals(getString(R.string.member_loan), ignoreCase = true)) {
-                        "ML"
-                    } else if (accountType.equals(getString(R.string.recurring_deposit), ignoreCase = true)) {
-                        "RD"
-                    } else if (accountType.equals(getString(R.string.jewell_loan), ignoreCase = true)) {
-                        "JL"
-                    } else {
-                        "GD"
-                    }
-                    Log.i("Type", type)
                     try {
 
                         val FK_CustomerSP = this.applicationContext.getSharedPreferences(
