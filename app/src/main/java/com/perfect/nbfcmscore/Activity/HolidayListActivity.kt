@@ -49,8 +49,9 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         setContentView(R.layout.activity_holiday)
         setRegViews()
         getBranchlist()
-        getHolidayList(branchid)
         rv_holiday!!.visibility=View.GONE
+        getHolidayList(branchid)
+
 
 
     }
