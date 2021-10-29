@@ -95,5 +95,7 @@ interface ApiInterface {
     fun getGoldSlabEstimator(@Body body: RequestBody): Call<String>
 
 
+    @POST("AccountSummary/BeneficiaryDeatils")
+    fun getBeneficiaryDeatils(@Body body: RequestBody): Call<String>
 }
 

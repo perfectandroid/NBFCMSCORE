@@ -169,7 +169,8 @@
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/colorPrimarylight"
                         android:hint="Beneficiary Name"
-                        android:inputType="phone"
+                        android:inputType="none"
+                        android:textColor="@color/black"
                         android:background="@android:color/transparent"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -200,7 +201,8 @@
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/colorPrimarylight"
                         android:hint="Beneficiary Ac/ No"
-                        android:inputType="phone"
+                        android:inputType="none"
+                        android:textColor="@color/black"
                         android:background="@android:color/transparent"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -231,7 +233,8 @@
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/colorPrimarylight"
                         android:hint="Confirm Beneficiary Ac/ No"
-                        android:inputType="phone"
+                        android:inputType="none"
+                        android:textColor="@color/black"
                         android:background="@android:color/transparent"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -262,7 +265,9 @@
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/colorPrimarylight"
                         android:hint="IFSC Code"
-                        android:inputType="phone"
+                        android:inputType="none"
+                        android:textColor="@color/black"
+                        android:maxLength="11"
                         android:background="@android:color/transparent"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -292,14 +297,55 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/colorPrimarylight"
+                        android:textColor="@color/black"
                         android:hint="Amount Payable"
-                        android:inputType="phone"
+                        android:inputType="numberDecimal"
                         android:background="@android:color/transparent"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
 
             </RelativeLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_chk_bene"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <CheckBox
+                    android:id="@+id/chk_beneficiary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:buttonTint="@color/colorPrimary"
+                    android:textColor="@color/black"
+                    android:text="Save beneficiary for future" />
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/rltv_recharge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_button"
+                android:layout_marginTop="30dp">
+
+                <Button
+                    android:id="@+id/but_pay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:text="PAY"/>
+
+            </RelativeLayout>
+
 
 
         </LinearLayout>

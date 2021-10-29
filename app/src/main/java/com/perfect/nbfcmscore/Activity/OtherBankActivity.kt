@@ -73,18 +73,26 @@ class OtherBankActivity : AppCompatActivity()  , View.OnClickListener{
             }
 
             R.id.ll_imps ->{
-                startActivity(Intent(this@OtherBankActivity, OtherBankFundTransferActivity::class.java))
-                finish()
+//                startActivity(Intent(this@OtherBankActivity, OtherBankFundTransferActivity::class.java))
+//                finish()
+
+                var intent = Intent(this@OtherBankActivity, OtherBankFundTransferActivity::class.java)
+                intent.putExtra("TYPE", "IMPS")
+                startActivity(intent)
             }
 
             R.id.ll_neft ->{
-//                startActivity(Intent(this@OtherBankActivity, HomeActivity::class.java))
-//                finish()
+
+                var intent = Intent(this@OtherBankActivity, OtherBankFundTransferActivity::class.java)
+                intent.putExtra("TYPE", "NEFT")
+                startActivity(intent)
             }
 
             R.id.ll_rtgs ->{
-//                startActivity(Intent(this@OtherBankActivity, HomeActivity::class.java))
-//                finish()
+
+                var intent = Intent(this@OtherBankActivity, OtherBankFundTransferActivity::class.java)
+                intent.putExtra("trans", "RTGS")
+                startActivity(intent)
             }
         }
     }
