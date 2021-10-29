@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@android:color/transparent">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
                             android:text="Paying From"/>
                         <TextView
                             android:layout_marginTop="5dp"
-                            android:id="@+id/tvAcntno"
+                            android:id="@+id/txtvAcntno"
                             android:textStyle="bold"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -62,15 +62,31 @@
                             android:layout_marginLeft="60dp"
                             android:text="">
                         </TextView>
-                        <TextView
-
-                            android:id="@+id/tvbranch"
+                        <LinearLayout
+                            android:layout_marginTop="5dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/DarkGray"
-                            android:layout_marginLeft="60dp"
-                            android:layout_weight="1"
-                            android:text=""/>
+                            android:orientation="vertical">
+                            <TextView
+
+                                android:id="@+id/txtvbranch"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:layout_marginLeft="60dp"
+                                android:layout_weight="1"
+                                android:text=""/>
+                            <TextView
+                                android:layout_marginTop="5dp"
+                                android:id="@+id/txtvbalnce"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:layout_marginLeft="60dp"
+                                android:layout_weight="1"
+                                android:text=""
+                                android:visibility="gone"/>
+                        </LinearLayout>
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
@@ -85,8 +101,18 @@
                             android:paddingTop="5dp"
                             android:drawableLeft="@drawable/payingto"
                             android:layout_marginTop="10dp"
-                            android:text="Recharge Number &amp; Details"/>
+                            android:text="Paying To"></TextView>
+                        <TextView
+                            android:layout_marginTop="5dp"
 
+                            android:id="@+id/txtvAcntnoto"
+                            android:textStyle="bold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="60dp"
+                            android:text="">
+                        </TextView>
                         <LinearLayout
 
                             android:layout_marginTop="5dp"
@@ -94,46 +120,26 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
                             <TextView
-                                android:layout_marginTop="5dp"
-                                android:id="@+id/tv_mob"
-                                android:textStyle="bold"
+                                android:id="@+id/txtvbranchto"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/black"
                                 android:layout_marginLeft="60dp"
-                                android:text=""/>
+                                android:layout_weight="1"
+                                android:text=""
+                                android:visibility="gone"/>
                             <TextView
-                                android:layout_marginTop="5dp"
-                                android:id="@+id/tv_oper"
-                                android:textStyle="bold"
+                                android:layout_marginTop="15dp"
+                                android:id="@+id/txtvbalnceto"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textColor="@color/DarkGray"
-                                android:layout_marginLeft="60dp"
-                                android:text=""/>
-                            <TextView
-                                android:layout_marginTop="5dp"
-                                android:id="@+id/tv_cir"
+                                android:textColor="@color/RoyalBlue"
                                 android:textStyle="bold"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/DarkGray"
-                                android:layout_marginLeft="60dp"
-                                android:text=""/>
-
+                                android:textSize="20dp"
+                                android:layout_marginLeft="33dp"
+                                android:layout_weight="1"
+                                android:text="Payable Amount"/>
                         </LinearLayout>
-                        <TextView
-                            android:layout_marginTop="15dp"
-                            android:id="@+id/txtvbalnceto"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/RoyalBlue"
-                            android:textStyle="bold"
-                            android:textSize="20dp"
-                            android:layout_marginLeft="33dp"
-                            android:layout_weight="1"
-                            android:text="Recharge Amount"/>
-
                         <TextView
                             android:id="@+id/tv_amount"
                             android:text="₹ 100"
@@ -195,7 +201,7 @@
                         android:layout_marginBottom="5dp">
 
                         <Button
-                            android:id="@+id/bt_cancel"
+                            android:id="@+id/btnCncl"
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:layout_margin="10dp"
@@ -206,7 +212,7 @@
                             android:text="Cancel"
                             android:textColor="@color/white" />
                         <Button
-                            android:id="@+id/bt_ok"
+                            android:id="@+id/btnOK"
                             android:text="OK"
                             android:textStyle="normal"
                             android:textSize="16dp"
@@ -313,4 +319,5 @@
 
         </LinearLayout>
     </ScrollView>
+
 </LinearLayout>
