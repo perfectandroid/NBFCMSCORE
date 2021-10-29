@@ -1,6 +1,8 @@
 package com.perfect.nbfcmscore.Helper
 
-class NumberToWord {
+import java.text.DecimalFormat
+
+object NumberToWord {
 
     private var input: String? = null
     private val num = 0
@@ -42,6 +44,7 @@ class NumberToWord {
             " Lakh",
             " Crore"
     )
+
 
 
     fun convertNumberToWords(n: Int): String? {

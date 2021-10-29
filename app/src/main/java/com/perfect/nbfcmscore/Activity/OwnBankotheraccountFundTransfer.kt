@@ -73,6 +73,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
         setRegViews()
         setAccountType()
 
+        getminTransAmount()
     }
 
 
@@ -151,7 +152,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
         btn_submit!!.setOnClickListener(this)
         btn_clear!!.setOnClickListener(this)
 
-         btnScanAccounttNo = findViewById<Button>(R.id.btn_scan_acnt_no)
+        btnScanAccounttNo = findViewById<Button>(R.id.btn_scan_acnt_no)
         btnScanAccounttNo!!.setOnClickListener(this)
 
         mAccountNumberEt!!.addTextChangedListener(object : TextWatcher {
@@ -200,9 +201,9 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                     val amnt = edtTxtAmount!!.getText().toString().replace(",".toRegex(), "")
                     val netAmountArr = amnt.split("\\.".toRegex()).toTypedArray()
                     var amountInWordPop = ""
-                  /*  if (netAmountArr.size > 0) {
+                    if (netAmountArr.size > 0) {
                         val integerValue = netAmountArr[0].toInt()
-                        amountInWordPop = "Rupees " + NumberToWord!!.convertNumberToWords(integerValue)
+                        amountInWordPop = "Rupees " + NumberToWord.convertNumberToWords(integerValue)
                         if (netAmountArr.size > 1) {
                             val decimalValue = netAmountArr[1].toInt()
                             if (decimalValue != 0) {
@@ -210,7 +211,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                             }
                         }
                         amountInWordPop += " only"
-                    }*/
+                    }
                     txt_amtinword!!.setText("" + amountInWordPop)
                 } catch (nfe: NumberFormatException) {
                     nfe.printStackTrace()
@@ -340,7 +341,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                         )
 
 
-                        Log.e("TAG", "requestObject1  171   " + requestObject1)
+                        Log.e("TAG", "requestObject1  700   " + requestObject1)
                     } catch (e: Exception) {
                         //progressDialog!!.dismiss()
                         e.printStackTrace()
