@@ -142,20 +142,20 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                         val amnt: String = edt_txt_amount!!.getText().toString().replace(",".toRegex(), "")
                         val netAmountArr = amnt.split("\\.".toRegex()).toTypedArray()
                         var amountInWordPop = ""
-                        if (netAmountArr[0].toInt() != 0) {
-                            if (netAmountArr.size > 0) {
-                                val integerValue = netAmountArr[0].toInt()
-                                amountInWordPop = "Rupees " + NumberToWord.convertNumberToWords(integerValue)
-                                if (netAmountArr.size > 1) {
-                                    val decimalValue = netAmountArr[1].toInt()
-                                    if (decimalValue != 0) {
-                                        amountInWordPop += " and " + NumberToWord.convertNumberToWords(decimalValue).toString() + " paise"
-                                    }
-                                }
-                                amountInWordPop += " only"
-                            }
-                            txt_amtinword!!.setText("" + amountInWordPop)
-                        }
+//                        if (netAmountArr[0].toInt() != 0) {
+//                            if (netAmountArr.size > 0) {
+//                                val integerValue = netAmountArr[0].toInt()
+//                                amountInWordPop = "Rupees " + NumberToWord.convertNumberToWords(integerValue)
+//                                if (netAmountArr.size > 1) {
+//                                    val decimalValue = netAmountArr[1].toInt()
+//                                    if (decimalValue != 0) {
+//                                        amountInWordPop += " and " + NumberToWord.convertNumberToWords(decimalValue).toString() + " paise"
+//                                    }
+//                                }
+//                                amountInWordPop += " only"
+//                            }
+//                            txt_amtinword!!.setText("" + amountInWordPop)
+//                        }
                     } else {
                         txt_amtinword!!.setText("")
                     }

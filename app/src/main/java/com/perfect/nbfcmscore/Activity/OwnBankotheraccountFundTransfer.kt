@@ -62,7 +62,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
     private var edtTxtConfirmAccountNoSecondBlock: EditText? = null
     private var edtTxtConfirmAccountNoThirdBlock: EditText? = null
     private var btn_submit: Button? = null
-    private  var btn_clear:android.widget.Button? = null
+    private  var btn_clear:Button? = null
     private var edtTxtAmount: EditText? = null
     private var edt_txt_remark: EditText? = null
     var compareValue = "Select Account"

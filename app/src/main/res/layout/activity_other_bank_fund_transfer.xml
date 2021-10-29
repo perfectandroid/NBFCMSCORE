@@ -299,7 +299,8 @@
                         android:textColorHint="@color/colorPrimarylight"
                         android:textColor="@color/black"
                         android:hint="Amount Payable"
-                        android:inputType="numberDecimal"
+                        android:maxLength="11"
+                        android:inputType="number"
                         android:background="@android:color/transparent"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
