@@ -3,11 +3,14 @@ package com.perfect.nbfcmscore.Activity
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
+import android.database.Cursor
 import android.os.Bundle
+import android.provider.ContactsContract
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -48,15 +51,37 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
 
     var tie_accountnumber: TextInputEditText? = null
     var tie_beneficiary: TextInputEditText? = null
+    var tie_beneficiary_aacno: TextInputEditText? = null
+    var tie_Conf_beneficiary_aacno: TextInputEditText? = null
+    var tie_ifsc_code: TextInputEditText? = null
+    var tie_amount: TextInputEditText? = null
+
 
     var jArrayAccount: JSONArray? = null
 
     var  dialogAccount: BottomSheetDialog? = null
+    var ll_chk_bene: LinearLayout? = null
+    var chk_beneficiary: CheckBox? = null
+
 
     var FK_Account: String? = ""
     var AccountNumber: String? = ""
     var SubModule: String? = ""
     var BranchName: String? = ""
+
+    var but_pay: Button? = null
+
+    // Save
+    var AccountNo: String? = ""
+    var BeneName: String? = ""
+    var BeneIFSC: String? = ""
+    var BeneAccountNumber: String? = ""
+    var BeneAccountNumber_conf: String? = ""
+    var Amount: String? = ""
+    var EftType: String? = "0"
+    var BeneAdd: String? = ""
+    var OTPRef: String? = ""
+    var OTPCode: String? = ""
 
 
 
@@ -64,12 +89,38 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_other_bank_fund_transfer)
 
+
         setInitialise()
         setRegister()
+
+        if(intent.getStringExtra("TYPE")!!.equals("IMPS")){
+            EftType = "3"
+        }
+        if(intent.getStringExtra("TYPE")!!.equals("NEFT")){
+            EftType = "2"
+        }
+        if(intent.getStringExtra("TYPE")!!.equals("RTGS")){
+            EftType = "1"
+        }
 
         getOwnAccount()
 
 //        tie_beneficiary!!.isEnabled = false
+
+        tie_amount!!.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+                if (tie_amount!!.text.toString().equals(".")){
+                    tie_amount!!.setText("")
+                }
+            }
+        })
 
     }
 
@@ -83,6 +134,15 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
 
         tie_accountnumber = findViewById<TextInputEditText>(R.id.tie_accountnumber)
         tie_beneficiary = findViewById<TextInputEditText>(R.id.tie_beneficiary)
+        tie_beneficiary_aacno = findViewById<TextInputEditText>(R.id.tie_beneficiary_aacno)
+        tie_Conf_beneficiary_aacno = findViewById<TextInputEditText>(R.id.tie_Conf_beneficiary_aacno)
+        tie_ifsc_code = findViewById<TextInputEditText>(R.id.tie_ifsc_code)
+        tie_amount = findViewById<TextInputEditText>(R.id.tie_amount)
+
+        ll_chk_bene = findViewById<LinearLayout>(R.id.ll_chk_bene)
+        chk_beneficiary = findViewById<CheckBox>(R.id.chk_beneficiary)
+        but_pay = findViewById<Button>(R.id.but_pay)
+
 
     }
 
@@ -93,6 +153,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
         tie_accountnumber!!.setOnClickListener(this)
 
         tv_beneficiarylist!!.setOnClickListener(this)
+        but_pay!!.setOnClickListener(this)
      //   tie_beneficiary!!.setOnClickListener(this)
 
     }
@@ -111,14 +172,18 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
             }
             R.id.tie_accountnumber ->{
                 AccountNobottomSheet(jArrayAccount!!)
-            } R.id.tv_beneficiarylist ->{
+            }
+            R.id.tv_beneficiarylist ->{
 
 //            startActivity(Intent(this@OtherBankFundTransferActivity, BeneficiaryListActivity::class.java))
             val i = Intent(this, BeneficiaryListActivity::class.java)
             startActivityForResult(i, PICK_BENEFICIARY)
+            } R.id.but_pay ->{
+                payValidation()
             }
         }
     }
+
 
 
     private fun getOwnAccount() {
@@ -311,5 +376,95 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
             BranchName= jsonObject1.getString("BranchName")
             tie_accountnumber!!.setText(""+jsonObject1.getString("AccountNumber"))
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.e(TAG,"tempContact  698  "+requestCode+"  "+resultCode)
+        if (requestCode == PICK_BENEFICIARY && resultCode == RESULT_OK && applicationContext != null) {
+            try {
+
+                ll_chk_bene!!.visibility = View.GONE
+                chk_beneficiary!!.isChecked = false
+                Log.e(TAG,"BeneName  323   "+ data!!.getStringExtra("BeneName"))
+                Log.e(TAG,"BeneIFSC  323   "+ data!!.getStringExtra("BeneIFSC"))
+                Log.e(TAG,"BeneAccNo  323   "+ data!!.getStringExtra("BeneAccNo"))
+
+                tie_beneficiary!!.setText(data!!.getStringExtra("BeneName"))
+                tie_beneficiary_aacno!!.setText(data!!.getStringExtra("BeneAccNo"))
+                tie_Conf_beneficiary_aacno!!.setText(data!!.getStringExtra("BeneAccNo"))
+                tie_ifsc_code!!.setText(data!!.getStringExtra("BeneIFSC"))
+
+                tie_beneficiary!!.isEnabled = false
+                tie_beneficiary_aacno!!.isEnabled = false
+                tie_Conf_beneficiary_aacno!!.isEnabled = false
+                tie_ifsc_code!!.isEnabled = false
+
+            } catch (e: java.lang.Exception) {
+
+            }
+        }
+
+    }
+
+
+    private fun payValidation() {
+
+        OTPRef = ""
+        OTPCode = ""
+
+        var AccountNos = AccountNumber!!.replace(AccountNumber!!.substring(AccountNumber!!.indexOf(" (") + 1, AccountNumber!!.indexOf(')') + 1), "")
+        AccountNos = AccountNos.replace(" ", "")
+        AccountNo = AccountNos
+
+        if (chk_beneficiary!!.isChecked){
+            BeneAdd = "1"
+        }else{
+            BeneAdd = "0"
+        }
+
+        BeneName = tie_beneficiary!!.text.toString();
+        BeneAccountNumber = tie_beneficiary_aacno!!.text.toString();
+        BeneAccountNumber_conf = tie_Conf_beneficiary_aacno!!.text.toString();
+        BeneIFSC = tie_ifsc_code!!.text.toString();
+        Amount = tie_amount!!.text.toString();
+
+        Log.e(TAG,"CONFIRMS   446     "+BeneAccountNumber)
+        Log.e(TAG,"CONFIRMS   446     "+BeneAccountNumber_conf)
+
+        if (AccountNo!!.length != 12){
+            Toast.makeText(applicationContext,"Select valid  account number",Toast.LENGTH_LONG).show()
+        }
+        else if(BeneName!!.equals("")){
+            Toast.makeText(applicationContext,"Please enter Beneficiary name",Toast.LENGTH_LONG).show()
+        }
+        else if(BeneAccountNumber!!.equals("")){
+            Toast.makeText(applicationContext,"Beneficiary account number is required",Toast.LENGTH_LONG).show()
+        }
+        else if(BeneAccountNumber_conf!!.equals("")){
+            Toast.makeText(applicationContext,"Confirm Beneficiary account number is required",Toast.LENGTH_LONG).show()
+        }
+        else if(!BeneAccountNumber!!.equals(BeneAccountNumber_conf!!)){
+            Toast.makeText(applicationContext,"Beneficiary account numbers don't match",Toast.LENGTH_LONG).show()
+        }else if(BeneIFSC!!.equals("") || BeneIFSC!!.length != 11){
+            Toast.makeText(applicationContext,"Please enter valid IFSC",Toast.LENGTH_LONG).show()
+        }else if(BeneIFSC!!.equals("") || BeneIFSC!!.length != 11){
+            Toast.makeText(applicationContext,"Please enter valid IFSC",Toast.LENGTH_LONG).show()
+        }else{
+
+
+            Log.e(TAG,"CONFIRMS   446"
+            +"\n"+"AccountNo    "+AccountNo
+                    +"\n"+"SubModule    "+SubModule
+                    +"\n"+"BeneName    "+BeneName
+                    +"\n"+"BeneIFSC    "+BeneIFSC
+                    +"\n"+"BeneAccountNumber    "+BeneAccountNumber
+                    +"\n"+"Amount    "+Amount
+                    +"\n"+"EftType    "+EftType
+                    +"\n"+"BeneAdd    "+BeneAdd
+                    +"\n"+"OTPRef    "+OTPRef
+                    +"\n"+"OTPCode    "+OTPCode)
+        }
+
     }
 }

@@ -3,29 +3,34 @@ package com.perfect.nbfcmscore.Activity
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
+import com.perfect.nbfcmscore.Adapter.BeneficiaryListAdapter
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
+import com.perfect.nbfcmscore.Helper.ItemClickListener
 import com.perfect.nbfcmscore.Helper.MscoreApplication
 import com.perfect.nbfcmscore.R
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
+import org.json.JSONArray
 import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
-class BeneficiaryListActivity : AppCompatActivity() , View.OnClickListener{
+
+class BeneficiaryListActivity : AppCompatActivity() , View.OnClickListener , ItemClickListener {
 
     private var progressDialog: ProgressDialog? = null
     val TAG: String = "BeneficiaryListActivity"
@@ -36,6 +41,8 @@ class BeneficiaryListActivity : AppCompatActivity() , View.OnClickListener{
     var tv_header: TextView? = null
 
     var rvBeneficiaryList: RecyclerView? = null
+    var jArrayBeneficiary: JSONArray? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +60,8 @@ class BeneficiaryListActivity : AppCompatActivity() , View.OnClickListener{
         im_home = findViewById<ImageView>(R.id.im_home)
 
         tv_header = findViewById<TextView>(R.id.tv_header)
+
+        rvBeneficiaryList = findViewById<RecyclerView>(R.id.rvBeneficiaryList)
 
     }
 
@@ -113,8 +122,8 @@ class BeneficiaryListActivity : AppCompatActivity() , View.OnClickListener{
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
 
-//                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
-//                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(getResources().getString(R.string.BankHeader)))
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(getResources().getString(R.string.BankHeader)))
 
                         Log.e(TAG,"requestObject1  119   "+requestObject1)
 
@@ -132,7 +141,7 @@ class BeneficiaryListActivity : AppCompatActivity() , View.OnClickListener{
                         okhttp3.MediaType.parse("application/json; charset=utf-8"),
                         requestObject1.toString()
                     )
-                    val call = apiService.getOwnAccounDetails(body)
+                    val call = apiService.getBeneficiaryDeatils(body)
                     call.enqueue(object : retrofit2.Callback<String> {
                         override fun onResponse(
                             call: retrofit2.Call<String>, response:
@@ -146,9 +155,16 @@ class BeneficiaryListActivity : AppCompatActivity() , View.OnClickListener{
                                 Log.e(TAG,"response  1194   "+jObject.getString("StatusCode"))
                                 if (jObject.getString("StatusCode") == "0") {
 
-//                                    val jobjt = jObject.getJSONObject("OwnAccountdetails")
-//                                    jArrayAccount = jobjt.getJSONArray("OwnAccountdetailsList")
-//                                    Log.e(TAG,"jArrayAccount  5164   "+jArrayAccount)
+                                    val jobjt = jObject.getJSONObject("BeneficiaryDeatils")
+                                    jArrayBeneficiary = jobjt.getJSONArray("BeneficiaryDeatilsList")
+                                    Log.e(TAG,"jArrayBeneficiary  1195   "+jArrayBeneficiary)
+
+                                    val lLayout = GridLayoutManager(this@BeneficiaryListActivity, 1)
+                                    rvBeneficiaryList!!.setLayoutManager(lLayout)
+                                    rvBeneficiaryList!!.setHasFixedSize(true)
+                                    val bene_adapter = BeneficiaryListAdapter(applicationContext!!, jArrayBeneficiary!!)
+                                    rvBeneficiaryList!!.adapter = bene_adapter
+                                    bene_adapter.setClickListener(this@BeneficiaryListActivity)
 
 
 
@@ -221,6 +237,19 @@ class BeneficiaryListActivity : AppCompatActivity() , View.OnClickListener{
                 alertDialog.show()
             }
         }
+    }
+
+    override fun onClick(position: Int, data: String) {
+
+        Log.e(TAG,"position  244  "+position+"  "+data)
+        var jsonObject1 = jArrayBeneficiary!!.getJSONObject(position)
+
+        val intent = Intent()
+        intent.putExtra("BeneName", jsonObject1.getString("BeneName"))
+        intent.putExtra("BeneIFSC", jsonObject1.getString("BeneIFSC"))
+        intent.putExtra("BeneAccNo", jsonObject1.getString("BeneAccNo"))
+        setResult(RESULT_OK, intent)
+        finish()
     }
 
 }
