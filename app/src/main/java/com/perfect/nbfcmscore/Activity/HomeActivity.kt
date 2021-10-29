@@ -39,6 +39,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var llduereminder: LinearLayout? = null
     var ll_virtualcard: LinearLayout? = null
     var ll_otherbank: LinearLayout? = null
+    var llquickbalance: LinearLayout? = null
 
     private var mPager: ViewPager? = null
     private var indicator: CircleIndicator? = null
@@ -95,10 +96,12 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         llgoldslab = findViewById<LinearLayout>(R.id.llgoldslab)
         ll_virtualcard = findViewById<LinearLayout>(R.id.ll_virtualcard)
         ll_otherbank = findViewById<LinearLayout>(R.id.ll_otherbank)
+        llquickbalance = findViewById<LinearLayout>(R.id.llquickbalance)
 
     }
 
     open fun setRegister() {
+        llquickbalance!!.setOnClickListener(this)
         llmyaccounts!!.setOnClickListener(this)
         imgMenu!!.setOnClickListener(this)
         mPager = findViewById(R.id.pager)
@@ -175,6 +178,9 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             }
             R.id.llpassbook ->{
                 startActivity(Intent(this@HomeActivity, PassbookActivity::class.java))
+            }
+            R.id.llquickbalance ->{
+                startActivity(Intent(this@HomeActivity, QuickBalanceActivity::class.java))
             }
             R.id.llownbank ->{
                 startActivity(Intent(this@HomeActivity, OwnBankFundTransferServiceActivity::class.java))

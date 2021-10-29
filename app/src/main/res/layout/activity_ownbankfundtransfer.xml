@@ -51,7 +51,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:background="@color/grey"
+            android:background="@color/bgcolour"
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -81,7 +81,7 @@
                             android:layout_marginTop="2dp"
                             android:layout_marginBottom="7dp"
                             android:text="Paying From :"
-                            android:textColor="@color/blue"
+                            android:textColor="#00C6FF"
                             android:textSize="16sp"
                             android:textStyle="bold" />
                         <LinearLayout
@@ -93,26 +93,36 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:orientation="vertical">
-                                <TextView
-                                    android:layout_width="fill_parent"
+                                <LinearLayout
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:gravity="center_vertical"
-                                    android:drawablePadding="4dp"
-                                    android:text="Account No."
-                                    android:layout_gravity="left"
-                                    android:textColor="@color/black"
-                                    android:textSize="13sp"
-                                    android:textStyle="normal" />
-                                <TextView
-                                    android:id="@+id/tv_account_no"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center_vertical"
-                                    android:text="rererer"
-                                    android:layout_gravity="left"
-                                    android:textColor="@color/black"
-                                    android:textSize="16sp"
-                                    android:textStyle="bold" />
+                                    android:orientation="horizontal">
+                                    <TextView
+                                        android:layout_width="fill_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_vertical"
+                                        android:text="Account No."
+                                        android:drawablePadding="4dp"
+                                        android:layout_weight="1"
+                                        android:drawableLeft="@drawable/bank"
+
+                                        android:layout_gravity="left"
+                                        android:textColor="#444444"
+                                        android:textSize="13sp"
+                                        android:textStyle="normal" />
+                                    <TextView
+                                        android:id="@+id/tv_account_no"
+                                        android:layout_width="fill_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_vertical"
+                                        android:text="rererer"
+                                        android:layout_weight="1"
+                                        android:layout_gravity="left"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
                                 <TextView
                                     android:id="@+id/tv_branch_name"
                                     android:layout_width="fill_parent"
@@ -123,33 +133,37 @@
                                     android:text="rererer"
                                     android:textStyle="normal" />
                             </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1.2"
-                                android:orientation="vertical">
 
-                                <TextView
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center_vertical"
-                                    android:drawablePadding="4dp"
-                                    android:text="Available Balance"
-                                    android:layout_gravity="center_vertical"
-                                    android:textColor="@color/black"
-                                    android:textSize="13sp"
-                                    android:textStyle="normal" />
-                                <TextView
-                                    android:id="@+id/tv_balance"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center_vertical"
-                                    android:layout_marginLeft="25dp"
-                                    android:layout_gravity="center_vertical"
-                                    android:textColor="@color/black"
-                                    android:textSize="16sp"
-                                    android:textStyle="bold" />
-                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:drawablePadding="4dp"
+                                android:layout_weight="1"
+                                android:text="Available Balance"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@color/black"
+                                android:textSize="12sp"
+                                android:textStyle="normal" />
+                            <TextView
+                                android:id="@+id/tv_balance"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:layout_marginLeft="25dp"
+                                android:layout_weight="1"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@color/black"
+                                android:textSize="10sp"
+                                android:text="ewe"
+                                android:textStyle="bold" />
                         </LinearLayout>
                         <Spinner
                             android:visibility="gone"
@@ -179,6 +193,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_margin="5dp"
+                        android:background="@color/bgcolour"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
                         <LinearLayout
@@ -193,7 +208,7 @@
                                 android:gravity="start"
                                 android:layout_marginTop="2dp"
                                 android:text="Paying to : "
-                                android:textColor="@color/blue"
+                                android:textColor="#00C6FF"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
                             <LinearLayout
@@ -522,6 +537,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
+                        android:background="@color/bgcolour"
                         android:layout_marginBottom="15dp"
                         android:orientation="vertical">
 
@@ -533,7 +549,7 @@
                             android:gravity="start"
                             android:layout_marginTop="2dp"
                             android:layout_marginLeft="7dp"
-                            android:textColor="@color/blue"
+                            android:textColor="#00C6FF"
                             android:textSize="16sp"
                             android:textStyle="bold"
                             android:text="Amount Payable :"/>
@@ -648,7 +664,7 @@
                             android:gravity="start"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="7dp"
-                            android:textColor="@color/blue"
+                            android:textColor="#00C6FF"
                             android:textSize="16sp"
                             android:textStyle="bold"
                             android:text="Remark : "/>
@@ -729,6 +745,7 @@
                 <!--            android:layout_marginRight="10dp"-->
                 <Button
                     android:id="@+id/btn_clear"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="1dp"
@@ -749,8 +766,8 @@
                     android:layout_marginLeft="1dp"
                     android:layout_marginStart="1dp"
                     android:layout_weight="1"
-                    android:background="@color/grey"
                     android:text="PAY"
+                    android:backgroundTint=" #61B383"
                     android:textAllCaps="false"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp"
