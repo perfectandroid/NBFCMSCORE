@@ -101,8 +101,8 @@
                                         android:layout_width="fill_parent"
                                         android:layout_height="wrap_content"
                                         android:gravity="center_vertical"
-                                        android:drawablePadding="4dp"
                                         android:text="Account No."
+                                        android:drawablePadding="4dp"
                                         android:layout_weight="1"
                                         android:drawableLeft="@drawable/bank"
 
