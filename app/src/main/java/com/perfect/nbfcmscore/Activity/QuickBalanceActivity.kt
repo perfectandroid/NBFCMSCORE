@@ -75,7 +75,6 @@ class QuickBalanceActivity : AppCompatActivity(), OnItemSelectedListener,View.On
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)
 
-
     }
     private fun getAccList() {
         when(ConnectivityUtils.isConnected(this)) {
@@ -278,16 +277,17 @@ class QuickBalanceActivity : AppCompatActivity(), OnItemSelectedListener,View.On
             }
 
             Account!!.text = json.getString("AccountType")
-            getPassBookAccountStatement(
+         /*   getPassBookAccountStatement(
                     json.getString("FK_Account"),
                     json.getString("SubModule"),
                     noofdays
-            )
+            )*/
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
+/*
     private fun getPassBookAccountStatement(fkaccount: String, submodule: String, noofdays: Int) {
 
         when(ConnectivityUtils.isConnected(this)) {
@@ -475,6 +475,7 @@ class QuickBalanceActivity : AppCompatActivity(), OnItemSelectedListener,View.On
             }
         }
     }
+*/
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
         TODO("Not yet implemented")
