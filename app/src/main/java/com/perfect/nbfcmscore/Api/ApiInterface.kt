@@ -87,5 +87,8 @@ interface ApiInterface {
 
     @POST("AccountSummary/FundTransferLimit")
     fun getfundtransferlimit(@Body body: RequestBody): Call<String>
+
+    @POST("AccountSummary/BeneficiaryDeatils")
+    fun getBeneficiaryDeatils(@Body body: RequestBody): Call<String>
 }
 
