@@ -67,6 +67,7 @@
                 android:layout_marginTop="15dp"
                 android:theme="@style/Spinner"
                 android:popupBackground="#cccccc"
+                android:background="@color/colorAccent"
                 android:spinnerMode="dialog"/>
             <RelativeLayout
                 android:layout_width="fill_parent"

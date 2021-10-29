@@ -58,6 +58,7 @@ class SourceAccListAdapter(internal val mContext: Context, internal val jsInfo: 
                             i.putExtra("A/c", jsonObject!!.getString("AccountNumber"))
                             i.putExtra("Branch", jsonObject!!.getString("BranchName"))
                             i.putExtra("Balance", jsonObject!!.getString("Balance"))
+                            i.putExtra("SubModule", jsonObject!!.getString("SubModule"))
                             mContext!!.startActivity(i)
                         } else {
                             val i = Intent(mContext, OwnBankotheraccountFundTransfer::class.java)
@@ -65,6 +66,7 @@ class SourceAccListAdapter(internal val mContext: Context, internal val jsInfo: 
                             i.putExtra("A/c", jsonObject!!.getString("AccountNumber"))
                             i.putExtra("Branch", jsonObject!!.getString("BranchName"))
                             i.putExtra("Balance", jsonObject!!.getString("Balance"))
+                            i.putExtra("SubModule", jsonObject!!.getString("SubModule"))
                             mContext!!.startActivity(i)
                         }
                     } catch (e: JSONException) {

@@ -45,7 +45,7 @@ class OwnBankFundTransferServiceActivity: AppCompatActivity(), View.OnClickListe
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_own_bank_fund_transfer_service_chooser)
 
-        setRegViews()
+       setRegViews()
     }
 
     private fun setRegViews() {

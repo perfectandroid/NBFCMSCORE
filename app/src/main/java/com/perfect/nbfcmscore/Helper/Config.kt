@@ -119,6 +119,16 @@ object Config {
             }
         }
     }
+
+    fun getDecimelFormateForEditText(amount: Double): String? {
+        val fmt = DecimalFormat("#,##,##,##,###")
+        var amt = fmt.format(amount)
+        if (amt.substring(0, 1) == ".") {
+            amt = "0$amt"
+        }
+        return amt
+    }
+
     fun getDecimelFormate(amount: Double): String? {
         val fmt = DecimalFormat("#,##,##,##,###.00")
         var amt = fmt.format(amount)
