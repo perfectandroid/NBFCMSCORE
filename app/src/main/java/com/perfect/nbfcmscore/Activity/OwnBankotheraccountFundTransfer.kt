@@ -18,7 +18,6 @@ import android.widget.*
 import android.widget.TextView.OnEditorActionListener
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
@@ -496,8 +495,8 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
     private fun setAccountType() {
         val items = ArrayList<String>()
         items.add(getString(R.string.savings_bank))
-        items.add(getString(R.string.current_account))
-        items.add(getString(R.string.cash_credit))
+        items.add("")
+        items.add("")
 
         val spinnerAdapter = ArrayAdapter(this, R.layout.simple_spinner_item_dark, items)
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -506,6 +505,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+
 
     }
 
@@ -609,18 +609,22 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                         requestObject1.put("SubModule", MscoreApplication.encryptStart(Submod))
                         requestObject1.put("Amount", MscoreApplication.encryptStart(amount))
                         var accno =
-                        requestObject1.put(
-                            "ReceiverAccountNo", MscoreApplication.encryptStart(
-                                "00101101251"
+                            requestObject1.put(
+                                "ReceiverAccountNo", MscoreApplication.encryptStart(
+                                    "00101101251"
+                                )
                             )
-                        )
+                        val rtype: String = spn_account_type!!.getSelectedItem().toString()
+                        var type = ""
+
+                        if (rtype == "Savings bank") {
+                            type = "DDSB"
+                        }
                         requestObject1.put(
-                            "ReceiverModule", MscoreApplication.encryptStart(
-                                "TLML"
-                            )
-                        )
+                            "ReceiverModule", MscoreApplication.encryptStart(type))
                         requestObject1.put("QRCode", MscoreApplication.encryptStart(""))
-                        requestObject1.put("Remark", MscoreApplication.encryptStart(""))
+                        var remark = edt_txt_remark!!.text.toString()
+                        requestObject1.put("Remark", MscoreApplication.encryptStart(remark))
                         requestObject1.put(
                             "BankKey", MscoreApplication.encryptStart(
                                 getResources().getString(
