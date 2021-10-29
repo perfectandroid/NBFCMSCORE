@@ -1,46 +1,133 @@
 package com.perfect.nbfcmscore.Helper
 
-class NumberToWord {
+import java.text.DecimalFormat
 
-    val units = arrayOf(
-        "", "One", "Two", "Three", "Four",
-        "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve",
-        "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen",
-        "Eighteen", "Nineteen"
+object NumberToWord {
+
+    private var input: String? = null
+    private val num = 0
+    private val units = arrayOf("",
+            " One",
+            " Two",
+            " Three",
+            " Four",
+            " Five",
+            " Six",
+            " Seven",
+            " Eight",
+            " Nine"
+    )
+    private val teen = arrayOf(" Ten",
+            " Eleven",
+            " Twelve",
+            " Thirteen",
+            " Fourteen",
+            " Fifteen",
+            " Sixteen",
+            " Seventeen",
+            " Eighteen",
+            " Nineteen"
+    )
+    private val tens = arrayOf(" Twenty",
+            " Thirty",
+            " Forty",
+            " Fifty",
+            " Sixty",
+            " Seventy",
+            " Eighty",
+            " Ninety"
+    )
+    private val maxs = arrayOf("",
+            "",
+            " Hundred",
+            " Thousand",
+            " Lakh",
+            " Crore"
     )
 
-    val tens = arrayOf(
-        "",  // 0
-        "",  // 1
-        "Twenty",  // 2
-        "Thirty",  // 3
-        "Forty",  // 4
-        "Fifty",  // 5
-        "Sixty",  // 6
-        "Seventy",  // 7
-        "Eighty",  // 8
-        "Ninety" // 9
-    )
 
-    fun converts(n: Int): String {
-        if (n < 0) {
-            return "Minus " + converts(-n)
+
+    fun convertNumberToWords(n: Int): String? {
+        if (n == 0) return "zero"
+        input = numToString(n)
+        var converted = ""
+        var pos = 1
+        var hun = false
+        while (input!!.length > 0) {
+            if (pos == 1) // TENS AND UNIT POSITION
+            {
+                if (input!!.length >= 2) // TWO DIGIT NUMBERS
+                {
+                    val temp = input!!.substring(input!!.length - 2, input!!.length)
+                    input = input!!.substring(0, input!!.length - 2)
+                    converted += digits(temp)
+                } else if (input!!.length == 1) // 1 DIGIT NUMBER
+                {
+                    converted += digits(input)
+                    input = ""
+                }
+                pos++
+            } else if (pos == 2) // HUNDRED POSITION
+            {
+                val temp = input!!.substring(input!!.length - 1, input!!.length)
+                input = input!!.substring(0, input!!.length - 1)
+                if (converted.length > 0 && digits(temp) !== "") {
+                    /*converted=(digits(temp)+maxs[pos]+" and")+converted;*/
+                    converted = digits(temp) + maxs[pos] + " " + converted
+                    hun = true
+                } else {
+                    if (digits(temp) === "") ; else converted = digits(temp) + maxs[pos] + converted
+                    hun = true
+                }
+                pos++
+            } else if (pos > 2) // REMAINING NUMBERS PAIRED BY TWO
+            {
+                if (input!!.length >= 2) // EXTRACT 2 DIGITS
+                {
+                    val temp = input!!.substring(input!!.length - 2, input!!.length)
+                    input = input!!.substring(0, input!!.length - 2)
+                    if (!hun && converted.length > 0) /*converted=digits(temp)+maxs[pos]+" and"+converted;*/ converted = digits(temp) + maxs[pos] + " " + converted else {
+                        if (digits(temp) === "") ; else converted = digits(temp) + maxs[pos] + converted
+                    }
+                } else if (input!!.length == 1) // EXTRACT 1 DIGIT
+                {
+                    if (!hun && converted.length > 0) /*converted=digits(input)+maxs[pos]+" and"+converted;*/ converted = digits(input) + maxs[pos] + " " + converted else {
+                        if (digits(input) === "") ; else converted = digits(input) + maxs[pos] + converted
+                        input = ""
+                    }
+                }
+                pos++
+            }
         }
-        if (n < 20) {
-            return units[n]
-        }
-        if (n < 100) {
-            return tens[n / 10] + (if (n % 10 != 0) " " else "") + units[n % 10]
-        }
-        if (n < 1000) {
-            return units[n / 100] + " Hundred" + (if (n % 100 != 0) " " else "") + converts(n % 100)
-        }
-        if (n < 100000) {
-            return converts(n / 1000) + " Thousand" + (if (n % 10000 != 0) " " else "") + converts(n % 1000)
-        }
-        return if (n < 10000000) {
-            converts(n / 100000) + " Lakh" + (if (n % 100000 != 0) " " else "") + converts(n % 100000)
-        } else converts(n / 10000000) + " Crore" + (if (n % 10000000 != 0) " " else "") + converts(n % 10000000)
+        return converted
     }
 
+    private fun digits(temp: String?): String // TO RETURN SELECTED NUMBERS IN WORDS
+    {
+        var converted = ""
+        for (i in temp!!.length - 1 downTo 0) {
+            val ch = temp[i].toInt() - 48
+            if (i == 0 && ch > 1 && temp.length > 1) converted = tens[ch - 2] + converted // IF TENS DIGIT STARTS WITH 2 OR MORE IT FALLS UNDER TENS
+            else if (i == 0 && ch == 1 && temp.length == 2) // IF TENS DIGIT STARTS WITH 1 IT FALLS UNDER TEENS
+            {
+                var sum = 0
+                for (j in 0..1) sum = sum * 10 + (temp[j].toInt() - 48)
+                return teen[sum - 10]
+            } else {
+                if (ch > 0) converted = units[ch] + converted
+            } // IF SINGLE DIGIT PROVIDED
+        }
+        return converted
+    }
+
+    private fun numToString(x: Int): String? // CONVERT THE NUMBER TO STRING
+    {
+        var x = x
+        var num = ""
+        while (x != 0) {
+            num = (x % 10 + 48).toChar().toString() + num
+            x /= 10
+        }
+        return num
+    }
 }

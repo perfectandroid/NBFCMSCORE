@@ -73,6 +73,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
         setRegViews()
         setAccountType()
 
+        getminTransAmount()
     }
 
 
@@ -151,7 +152,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
         btn_submit!!.setOnClickListener(this)
         btn_clear!!.setOnClickListener(this)
 
-         btnScanAccounttNo = findViewById<Button>(R.id.btn_scan_acnt_no)
+        btnScanAccounttNo = findViewById<Button>(R.id.btn_scan_acnt_no)
         btnScanAccounttNo!!.setOnClickListener(this)
 
         mAccountNumberEt!!.addTextChangedListener(object : TextWatcher {
@@ -340,7 +341,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                         )
 
 
-                        Log.e("TAG", "requestObject1  171   " + requestObject1)
+                        Log.e("TAG", "requestObject1  700   " + requestObject1)
                     } catch (e: Exception) {
                         //progressDialog!!.dismiss()
                         e.printStackTrace()
