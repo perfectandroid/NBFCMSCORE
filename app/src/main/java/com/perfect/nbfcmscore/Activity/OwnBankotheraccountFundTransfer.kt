@@ -200,9 +200,9 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                     val amnt = edtTxtAmount!!.getText().toString().replace(",".toRegex(), "")
                     val netAmountArr = amnt.split("\\.".toRegex()).toTypedArray()
                     var amountInWordPop = ""
-                    if (netAmountArr.size > 0) {
+                  /*  if (netAmountArr.size > 0) {
                         val integerValue = netAmountArr[0].toInt()
-                        amountInWordPop = "Rupees " + NumberToWord.convertNumberToWords(integerValue)
+                        amountInWordPop = "Rupees " + NumberToWord!!.convertNumberToWords(integerValue)
                         if (netAmountArr.size > 1) {
                             val decimalValue = netAmountArr[1].toInt()
                             if (decimalValue != 0) {
@@ -210,7 +210,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                             }
                         }
                         amountInWordPop += " only"
-                    }
+                    }*/
                     txt_amtinword!!.setText("" + amountInWordPop)
                 } catch (nfe: NumberFormatException) {
                     nfe.printStackTrace()
