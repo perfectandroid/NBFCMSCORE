@@ -84,6 +84,8 @@
     <color name="google_green1">#63B456</color>
     <color name="RoyalBlue">#4169E1</color>
     <color name="gray_btn_bg_color">#e74c3c</color>
+    <color name="red_error_snack_bar">#ca0606</color>
+    <color name="blue_variant2">#1196C3</color>
 
     <color name="graph1">#4FC3F7</color>
     <color name="graph2">#F06292</color>
