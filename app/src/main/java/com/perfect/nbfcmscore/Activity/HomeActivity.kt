@@ -164,7 +164,6 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             R.id.imgMenu ->
                   drawer!!.openDrawer(Gravity.START)
             R.id.lldashboard ->{
-                startActivity(Intent(this@HomeActivity, DashboardtabActivity::class.java))
             }
             R.id.llmyaccounts ->{
                 startActivity(Intent(this@HomeActivity, AccountlistActivity::class.java))
