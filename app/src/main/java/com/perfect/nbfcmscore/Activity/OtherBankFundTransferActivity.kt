@@ -557,7 +557,8 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
             dialog.dismiss()
            // submit()
          //   OtpPopups(accountNo, subModule, beneName, beneIFSC, beneAccountNumber, amount, eftType, beneAdd, otpRef, otpCode)
-            RetreiveOtp(accountNo, subModule, beneName, beneIFSC, beneAccountNumber, amount, eftType, beneAdd, otpRef, otpCode)
+           // RetreiveOtp(accountNo, subModule, beneName, beneIFSC, beneAccountNumber, amount, eftType, beneAdd, otpRef, otpCode)
+            otpPopup()
 
         })
 
@@ -735,6 +736,18 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                 alertDialog.show()
             }
         }
+
+    }
+
+    private fun otpPopup(){
+
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setContentView(R.layout.popup_other_fundtransfer)
+
+
+        dialog.show()
 
     }
 }
