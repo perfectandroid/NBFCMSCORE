@@ -207,7 +207,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="start"
                                 android:layout_marginTop="2dp"
-                                android:text="Paying to : "
+                                android:text="Paying To : "
                                 android:textColor="#00C6FF"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
@@ -479,7 +479,7 @@
                                 android:paddingRight="8dp"
                                 android:textSize="18sp" />
                         </com.google.android.material.textfield.TextInputLayout>
-                        <com.perfect.nbfcmscore.Helper.FullLenghtListview
+                        <com.perfect.nbfcmscore.Helper.FullLenghRecyclertview
                             android:id="@+id/rv_split_details"
                             android:layout_marginBottom="5dp"
                             android:background="@color/white"

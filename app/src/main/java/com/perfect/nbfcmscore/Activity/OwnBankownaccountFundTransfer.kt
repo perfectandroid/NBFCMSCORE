@@ -5,6 +5,7 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,13 +13,12 @@ import android.view.View
 import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
+import com.perfect.nbfcmscore.Adapter.BalancesplitAdapter
 import com.perfect.nbfcmscore.Api.ApiInterface
-import com.perfect.nbfcmscore.Helper.Config
-import com.perfect.nbfcmscore.Helper.ConnectivityUtils
-import com.perfect.nbfcmscore.Helper.MscoreApplication
-import com.perfect.nbfcmscore.Helper.NumberToWord
+import com.perfect.nbfcmscore.Helper.*
 import com.perfect.nbfcmscore.Model.Splitupdetail
 import com.perfect.nbfcmscore.R
 import okhttp3.OkHttpClient
@@ -48,7 +48,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
     private var progressDialog: ProgressDialog? = null
     private var btn_submit: Button? = null
     private var btn_clear: Button? = null
-
+    private var rv_split_details: FullLenghRecyclertview? = null
     private var ll_needTochange: LinearLayout? = null
     private var ll_needToPayAdvance: LinearLayout? = null
     private var ll_remittance: LinearLayout? = null
@@ -60,7 +60,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
     private var jresult: JSONArray? = null
     public var fkaccount:String?=null
     public var submodule:String?=null
-    lateinit var pendinginsa: Array<String>
+    var pendinginsa = arrayOfNulls<String>(0)
     var compareValue = "Select Account"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,7 +88,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
         ll_remittance= findViewById(R.id.ll_needTochange)
         txt_amtinword= findViewById(R.id.txt_amtinword)
         edt_txt_amount = findViewById(R.id.edt_txt_amount)
-
+        rv_split_details = findViewById(R.id.rv_split_details)
         tv_availbal= findViewById(R.id.tv_availbal)
         edt_txt_remark= findViewById(R.id.edt_txt_remark)
         tv_account_no = findViewById(R.id.tv_account_no)
@@ -114,7 +114,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
         edt_txt_amount!!.setOnClickListener(this)
         edt_txt_remark!!.setOnClickListener(this)
 
-        //   rv_split_details = findViewById(R.id.rv_split_details)
+
 
         edt_txt_amount!!.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
@@ -132,14 +132,14 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
 //                        formatter.applyPattern("#,###,###,###");
 //                        String formattedString = formatter.format(longval);
                         val formattedString: String? =
-                            Config!!.getDecimelFormateForEditText(longval)
+                                Config!!.getDecimelFormateForEditText(longval)
                         //
                         //setting text after format to EditText
                         edt_txt_amount!!.setText(formattedString)
                         edt_txt_amount!!.setSelection(edt_txt_amount!!.getText().length)
                         val amnt: String = edt_txt_amount!!.getText().toString().replace(
-                            ",".toRegex(),
-                            ""
+                                ",".toRegex(),
+                                ""
                         )
                         val netAmountArr = amnt.split("\\.".toRegex()).toTypedArray()
                         var amountInWordPop = ""
@@ -147,13 +147,13 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                             if (netAmountArr.size > 0) {
                                 val integerValue = netAmountArr[0].toInt()
                                 amountInWordPop = "Rupees " + NumberToWord.convertNumberToWords(
-                                    integerValue
+                                        integerValue
                                 )
                                 if (netAmountArr.size > 1) {
                                     val decimalValue = netAmountArr[1].toInt()
                                     if (decimalValue != 0) {
                                         amountInWordPop += " and " + NumberToWord.convertNumberToWords(
-                                            decimalValue
+                                                decimalValue
                                         ).toString() + " paise"
                                     }
                                 }
@@ -199,415 +199,6 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                   progressDialog!!.show()*/
                 try {
                     val client = OkHttpClient.Builder()
-                        .sslSocketFactory(Config.getSSLSocketFactory(this@OwnBankownaccountFundTransfer))
-                        .hostnameVerifier(Config.getHostnameVerifier())
-                        .build()
-                    val gson = GsonBuilder()
-                        .setLenient()
-                        .create()
-                    val retrofit = Retrofit.Builder()
-                        .baseUrl(Config.BASE_URL)
-                        .addConverterFactory(ScalarsConverterFactory.create())
-                        .addConverterFactory(GsonConverterFactory.create(gson))
-                        .client(client)
-                        .build()
-                    val apiService = retrofit.create(ApiInterface::class.java!!)
-                    val requestObject1 = JSONObject()
-                    try {
-
-                        val FK_CustomerSP = this.applicationContext.getSharedPreferences(
-                            Config.SHARED_PREF1,
-                            0
-                        )
-                        val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
-
-                        val TokenSP = this!!.applicationContext.getSharedPreferences(
-                            Config.SHARED_PREF8,
-                            0
-                        )
-                        val Token = TokenSP.getString("Token", null)
-
-                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("26"))
-                        requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-                        requestObject1.put(
-                            "FK_Customer",
-                            MscoreApplication.encryptStart(FK_Customer)
-                        )
-                        requestObject1.put(
-                            "SubMode",
-                            MscoreApplication.encryptStart("2")
-                        )
-                        requestObject1.put(
-                            "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                    R.string.BankKey
-                                )
-                            )
-                        )
-
-
-                        Log.e("TAG", "requestObject1  171   " + requestObject1)
-                    } catch (e: Exception) {
-                        // progressDialog!!.dismiss()
-                        e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                            findViewById(R.id.rl_main),
-                            " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
-                    }
-                    val body = RequestBody.create(
-                        okhttp3.MediaType.parse("application/json; charset=utf-8"),
-                        requestObject1.toString()
-                    )
-                    val call = apiService.getOwnbankownaccountdetail(body)
-                    call.enqueue(object : retrofit2.Callback<String> {
-                        override fun onResponse(
-                            call: retrofit2.Call<String>, response:
-                            Response<String>
-                        ) {
-                            try {
-                                //  progressDialog!!.dismiss()
-                                val jObject = JSONObject(response.body())
-                                Log.i("Response2", response.body())
-                                if (jObject.getString("StatusCode") == "0") {
-                                    val jsonObj1: JSONObject =
-                                        jObject.getJSONObject("OwnAccountdetails")
-                                    val jsonobj2 = JSONObject(jsonObj1.toString())
-
-                                    jresult = jsonobj2.getJSONArray("OwnAccountdetailsList")
-                                    arrayList1 = ArrayList<Splitupdetail>()
-                                    for (i in 0 until jresult!!.length()) {
-                                        try {
-                                            val json = jresult!!.getJSONObject(i)
-                                            arrayList1!!.add(
-                                                Splitupdetail(
-                                                    json.getString("AccountNumber"),
-                                                    json.getString(
-                                                        "FK_Account"
-                                                    ),
-                                                    json.getString(
-                                                        "SubModule"
-                                                    )
-                                                )
-                                            )
-
-                                        } catch (e: JSONException) {
-                                            e.printStackTrace()
-                                        }
-                                    }
-                                    spn_account_num!!.adapter = ArrayAdapter(
-                                        this@OwnBankownaccountFundTransfer,
-                                        android.R.layout.simple_spinner_dropdown_item, arrayList1!!
-                                    )
-
-                                    //    spn_account_num!!.setSelection(arrayList1.indexOf("Select Account"));
-
-                                } else {
-                                    val builder = AlertDialog.Builder(
-                                        this@OwnBankownaccountFundTransfer,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
-                                }
-                            } catch (e: Exception) {
-                                //  progressDialog!!.dismiss()
-
-                                val builder = AlertDialog.Builder(
-                                    this@OwnBankownaccountFundTransfer,
-                                    R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
-                                e.printStackTrace()
-                            }
-                        }
-
-                        override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
-                            //  progressDialog!!.dismiss()
-
-                            val builder = AlertDialog.Builder(
-                                this@OwnBankownaccountFundTransfer,
-                                R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
-                        }
-                    })
-                } catch (e: Exception) {
-                    //  progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(
-                        this@OwnBankownaccountFundTransfer,
-                        R.style.MyDialogTheme
-                    )
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
-                    e.printStackTrace()
-                }
-            }
-            false -> {
-                val builder = AlertDialog.Builder(
-                    this@OwnBankownaccountFundTransfer,
-                    R.style.MyDialogTheme
-                )
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
-            }
-        }
-    }
-    override fun onClick(v: View) {
-        when (v.id) {
-            R.id.imgBack -> {
-                finish()
-            }
-            R.id.imgHome -> {
-                startActivity(Intent(this@OwnBankownaccountFundTransfer, HomeActivity::class.java))
-            }
-            R.id.btn_submit -> {
-                getOwnAccountFundTransfer()
-
-            }
-            R.id.btn_clear -> {
-                getAccountnumber()
-
-                txt_amtinword!!.text = ""
-//                setAccountType();
-                edt_txt_amount!!.setText("")
-            }
-        }
-    }
-
-    private fun getOwnAccountFundTransfer() {
-        when(ConnectivityUtils.isConnected(this)) {
-            true -> {
-                progressDialog = ProgressDialog(
-                    this@OwnBankownaccountFundTransfer,
-                    R.style.Progress
-                )
-                progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
-                progressDialog!!.setCancelable(false)
-                progressDialog!!.setIndeterminate(true)
-                progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
-                progressDialog!!.show()
-                try {
-                    val client = OkHttpClient.Builder()
-                        .sslSocketFactory(Config.getSSLSocketFactory(this@OwnBankownaccountFundTransfer))
-                        .hostnameVerifier(Config.getHostnameVerifier())
-                        .build()
-                    val gson = GsonBuilder()
-                        .setLenient()
-                        .create()
-                    val retrofit = Retrofit.Builder()
-                        .baseUrl(Config.BASE_URL)
-                        .addConverterFactory(ScalarsConverterFactory.create())
-                        .addConverterFactory(GsonConverterFactory.create(gson))
-                        .client(client)
-                        .build()
-                    val apiService = retrofit.create(ApiInterface::class.java!!)
-                    val requestObject1 = JSONObject()
-
-
-
-
-                    try {
-
-                        val FK_CustomerSP = this.applicationContext.getSharedPreferences(
-                            Config.SHARED_PREF1,
-                            0
-                        )
-                        val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
-
-                        val TokenSP = this!!.applicationContext.getSharedPreferences(
-                            Config.SHARED_PREF8,
-                            0
-                        )
-                        val Token = TokenSP.getString("Token", null)
-                        var amount = edt_txt_amount!!.text.toString()
-                        amount = amount.replace(",", "")
-                        //requestObject1.put("Reqmode", MscoreApplication.encryptStart("27"))
-                        requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-                        requestObject1.put(
-                            "FK_Customer",
-                            MscoreApplication.encryptStart(FK_Customer)
-                        )
-                        requestObject1.put(
-                            "AccountNo",
-                            MscoreApplication.encryptStart(tv_account_no!!.text.toString())
-                        )
-                        requestObject1.put("SubModule", MscoreApplication.encryptStart(Submod))
-                        requestObject1.put("Amount", MscoreApplication.encryptStart(amount))
-                        requestObject1.put(
-                            "ReceiverAccountNo", MscoreApplication.encryptStart(
-                                spn_account_num!!.selectedItem.toString()
-                            )
-                        )
-                        requestObject1.put(
-                            "ReceiverModule", MscoreApplication.encryptStart(
-                                submodule
-                            )
-                        )
-                        requestObject1.put("QRCode", MscoreApplication.encryptStart(""))
-                        requestObject1.put("Remark", MscoreApplication.encryptStart(""))
-                        requestObject1.put(
-                            "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                    R.string.BankKey
-                                )
-                            )
-                        )
-
-
-                        Log.e("TAG", "requestObject1  650   " + requestObject1)
-                    } catch (e: Exception) {
-                        progressDialog!!.dismiss()
-                        e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                            findViewById(R.id.rl_main),
-                            " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
-                    }
-                    val body = RequestBody.create(
-                        okhttp3.MediaType.parse("application/json; charset=utf-8"),
-                        requestObject1.toString()
-                    )
-                    val call = apiService.getfundtransferownBank(body)
-                    call.enqueue(object : retrofit2.Callback<String> {
-                        override fun onResponse(
-                            call: retrofit2.Call<String>, response:
-                            Response<String>
-                        ) {
-                            try {
-                                progressDialog!!.dismiss()
-                                val jObject = JSONObject(response.body())
-                                Log.i("Response-ownfd", response.body())
-                                if (jObject.getString("StatusCode") == "0") {
-                                    val jsonObj1: JSONObject =
-                                        jObject.getJSONObject("FundTransferToOwnBank")
-                                    val jsonobj2 = JSONObject(jsonObj1.toString())
-                                    var result = jsonobj2.getString("ResponseMessage")
-                                    Log.i("Result", result)
-                                    alertMessage1("", result)
-                                   // Toast.makeText(applicationContext, result, Toast.LENGTH_LONG)
-                                      //  .show()
-
-
-                                } else {
-                                    val builder = AlertDialog.Builder(
-                                        this@OwnBankownaccountFundTransfer,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
-                                }
-                            } catch (e: Exception) {
-                                progressDialog!!.dismiss()
-
-                                val builder = AlertDialog.Builder(
-                                    this@OwnBankownaccountFundTransfer,
-                                    R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
-                                e.printStackTrace()
-                            }
-                        }
-
-                        override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
-                            progressDialog!!.dismiss()
-
-                            val builder = AlertDialog.Builder(
-                                this@OwnBankownaccountFundTransfer,
-                                R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
-                        }
-                    })
-                } catch (e: Exception) {
-                    progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(
-                        this@OwnBankownaccountFundTransfer,
-                        R.style.MyDialogTheme
-                    )
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
-                    e.printStackTrace()
-                }
-            }
-            false -> {
-                val builder = AlertDialog.Builder(
-                    this@OwnBankownaccountFundTransfer,
-                    R.style.MyDialogTheme
-                )
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
-            }
-        }
-    }
-
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-        val splitupdetail: Splitupdetail = arrayList1!!.get(position)
-        fkaccount = splitupdetail.getFkaccount()
-        submodule = splitupdetail.getSubmodule()
-
-        //Toast.makeText(this, "FKAccount: " + fkaccount ,
-        // Toast.LENGTH_SHORT).show();
-        // balanceSplitUpDetails(fkaccount, submodule)
-    }
-
-    /*  private fun balanceSplitUpDetails(fkaccount: String?, submodule: String?) {
-          when(ConnectivityUtils.isConnected(this)) {
-              true -> {
-                  *//*  progressDialog = ProgressDialog(this@PassbookActivity, R.style.Progress)
-                  progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
-                  progressDialog!!.setCancelable(false)
-                  progressDialog!!.setIndeterminate(true)
-                  progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
-                  progressDialog!!.show()*//*
-                try {
-                    val client = OkHttpClient.Builder()
                             .sslSocketFactory(Config.getSSLSocketFactory(this@OwnBankownaccountFundTransfer))
                             .hostnameVerifier(Config.getHostnameVerifier())
                             .build()
@@ -622,28 +213,6 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                             .build()
                     val apiService = retrofit.create(ApiInterface::class.java!!)
                     val requestObject1 = JSONObject()
-
-                    val accountType: String = spn_account_num!!.getSelectedItem().toString()
-                    val type: String
-                    var accountNo = accountType.replace(accountType.substring(accountType.indexOf(" (") + 1, accountType.indexOf(")") + 1), "")
-                    accountNo = accountNo.replace(" ", "")
-
-                    *//* type = if (accountType.equals(getString(R.string.savings_bank), ignoreCase = true)) {
-                        "SB"
-                    } else if (accountType.equals(getString(R.string.current_account), ignoreCase = true)) {
-                        "CA"
-                    } else if (accountType.equals(getString(R.string.cash_credit), ignoreCase = true)) {
-                        "OD"
-                    } else if (accountType.equals(getString(R.string.member_loan), ignoreCase = true)) {
-                        "ML"
-                    } else if (accountType.equals(getString(R.string.recurring_deposit), ignoreCase = true)) {
-                        "RD"
-                    } else if (accountType.equals(getString(R.string.jewell_loan), ignoreCase = true)) {
-                        "JL"
-                    } else {
-                        "GD"
-                    }*//*
-                    //Log.i("Type", type)
                     try {
 
                         val FK_CustomerSP = this.applicationContext.getSharedPreferences(
@@ -658,16 +227,15 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                         )
                         val Token = TokenSP.getString("Token", null)
 
-                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("27"))
+                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("26"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
                         requestObject1.put(
-                                "FK_Account",
-                                MscoreApplication.encryptStart(fkaccount)
+                                "FK_Customer",
+                                MscoreApplication.encryptStart(FK_Customer)
                         )
                         requestObject1.put(
-                                "SubModule",
-                                MscoreApplication.encryptStart(submodule)
+                                "SubMode",
+                                MscoreApplication.encryptStart("2")
                         )
                         requestObject1.put(
                                 "BankKey", MscoreApplication.encryptStart(
@@ -692,7 +260,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                             okhttp3.MediaType.parse("application/json; charset=utf-8"),
                             requestObject1.toString()
                     )
-                    val call = apiService.getbalancesplitupdetail(body)
+                    val call = apiService.getOwnbankownaccountdetail(body)
                     call.enqueue(object : retrofit2.Callback<String> {
                         override fun onResponse(
                                 call: retrofit2.Call<String>, response:
@@ -701,100 +269,41 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                             try {
                                 //  progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
-                                Log.i("Response-balancesplit", response.body())
+                                Log.i("Response2", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
-                                            jObject.getJSONObject("BalanceSplitUpDetails")
+                                            jObject.getJSONObject("OwnAccountdetails")
                                     val jsonobj2 = JSONObject(jsonObj1.toString())
 
-                                    jresult = jsonobj2.getJSONArray("Data")
+                                    jresult = jsonobj2.getJSONArray("OwnAccountdetailsList")
+                                    arrayList1 = ArrayList<Splitupdetail>()
+                                    for (i in 0 until jresult!!.length()) {
+                                        try {
+                                            val json = jresult!!.getJSONObject(i)
+                                            arrayList1!!.add(
+                                                    Splitupdetail(
+                                                            json.getString("AccountNumber"),
+                                                            json.getString(
+                                                                    "FK_Account"
+                                                            ),
+                                                            json.getString(
+                                                                    "SubModule"
+                                                            )
+                                                    )
+                                            )
 
-                                    if (jresult!!.length() != 0) {
-                                        val jsonObject: JSONObject = jresult!!.getJSONObject(0)
-                                        val jsonObjectjarray = jsonObject.getJSONArray("Details")
-                                        if (jsonObjectjarray.length() != 0) {
-                                            var Slimit = "0"
-                                            var Advancelimit = "0"
-                                            rv_split_details!!.setVisibility(View.VISIBLE)
-                                            val lLayout = GridLayoutManager(this@OwnBankownaccountFundTransfer, 1)
-                                            rv_split_details!!.setLayoutManager(lLayout)
-                                            rv_split_details!!.setHasFixedSize(true)
-                                            val adapter = BalancesplitAdapter(this@OwnBankownaccountFundTransfer, jsonObjectjarray)
-                                            rv_split_details!!.setAdapter(adapter)
-                                            for (k in 0 until jsonObjectjarray.length()) {
-                                                val DetailsjsonObject = jsonObjectjarray.getJSONObject(k)
-                                                val NetAmount = DetailsjsonObject.getString("Key")
-                                                if (NetAmount == "NetAmount") {
-                                                    Log.e("T", "onResponse   1142   ")
-                                                    edt_txt_amount!!.setText(DetailsjsonObject.getString("Value").replace("-", ""))
-                                                } else {
-                                                    edt_txt_amount!!.setText("")
-                                                }
-                                                val BalanceInstallment = DetailsjsonObject.getString("Key")
-                                                if (BalanceInstallment == "BalanceInstallment") {
-                                                    Advancelimit = DetailsjsonObject.getString("Value")
-                                                }
-                                            }
-                                            var IsAdvance = "0"
-                                            if (submodule == "PDRD" || submodule == "ODGD") {
-                                                val DetailsjsonObject = jsonObjectjarray.getJSONObject(0)
-                                                Slimit = DetailsjsonObject.getString("Value")
-                                                val limit = Slimit.toInt()
-                                                if (limit > 0) {
-                                                    ll_needTochange!!.setVisibility(View.VISIBLE)
-                                                    edt_txt_amount!!.setKeyListener(null)
-                                                    edt_txt_amount!!.setEnabled(false)
-                                                    edt_txt_amount!!.setInputType(InputType.TYPE_NULL)
-                                                    edt_txt_amount!!.setFocusable(false)
-                                                    pendinginsa = arrayOfNulls(limit)
-                                                    IsAdvance = "0"
-                                                    var i: Int
-                                                    i = 0
-                                                    while (i < limit) {
-                                                        pendinginsa.get(i) = (i + 1).toString()
-                                                        i++
-                                                    }
-                                                    fkaccount?.let { getpendinginsa(submodule, it, IsAdvance) }
-                                                } else if (limit == 0 && Advancelimit != "0") {
-                                                    ll_needToPayAdvance!!.setVisibility(View.VISIBLE)
-                                                    edt_txt_amount!!.setKeyListener(null)
-                                                    edt_txt_amount!!.setEnabled(false)
-                                                    edt_txt_amount!!.setInputType(InputType.TYPE_NULL)
-                                                    edt_txt_amount!!.setFocusable(false)
-                                                    val Advancelimitlimit = Advancelimit.toInt()
-                                                    pendinginsa = arrayOfNulls<String>(Advancelimitlimit)
-                                                    IsAdvance = "1"
-                                                    var i: Int
-                                                    i = 0
-                                                    while (i < Advancelimitlimit) {
-                                                        pendinginsa!!.get(i) = (i + 1).toString()
-                                                        i++
-                                                    }
-                                                    fkaccount?.let { getpendinginsa(submodule, it, IsAdvance) }
-                                                } else {
-                                                    edt_txt_amount!!.setKeyListener(null)
-                                                    edt_txt_amount!!.setEnabled(false)
-                                                    edt_txt_amount!!.setInputType(InputType.TYPE_NULL)
-                                                    edt_txt_amount!!.setFocusable(false)
-                                                }
-                                            } else {
-                                                ll_needTochange!!.setVisibility(View.GONE)
-                                                ll_needToPayAdvance!!.setVisibility(View.GONE)
-                                                ll_remittance!!.setVisibility(View.GONE)
-                                                edt_txt_amount!!.setEnabled(true)
-                                                edt_txt_amount!!.setInputType(InputType.TYPE_CLASS_NUMBER)
-                                                edt_txt_amount!!.setFocusable(true)
-                                                edt_txt_amount!!.setFocusableInTouchMode(true)
-                                            }
-                                        } else {
-                                            tv_availbal!!.setVisibility(View.GONE)
+                                        } catch (e: JSONException) {
+                                            e.printStackTrace()
                                         }
-                                    } else {
-                                        tv_availbal!!.setVisibility(View.GONE)
                                     }
+                                    spn_account_num!!.adapter = ArrayAdapter(
+                                            this@OwnBankownaccountFundTransfer,
+                                            android.R.layout.simple_spinner_dropdown_item, arrayList1!!
+                                    )
+
+                                    //    spn_account_num!!.setSelection(arrayList1.indexOf("Select Account"));
 
                                 } else {
-                                    tv_availbal!!.setVisibility(View.GONE)
                                     val builder = AlertDialog.Builder(
                                             this@OwnBankownaccountFundTransfer,
                                             R.style.MyDialogTheme
@@ -840,6 +349,687 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                     })
                 } catch (e: Exception) {
                     //  progressDialog!!.dismiss()
+                    val builder = AlertDialog.Builder(
+                            this@OwnBankownaccountFundTransfer,
+                            R.style.MyDialogTheme
+                    )
+                    builder.setMessage("Some technical issues.")
+                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                    }
+                    val alertDialog: AlertDialog = builder.create()
+                    alertDialog.setCancelable(false)
+                    alertDialog.show()
+                    e.printStackTrace()
+                }
+            }
+            false -> {
+                val builder = AlertDialog.Builder(
+                        this@OwnBankownaccountFundTransfer,
+                        R.style.MyDialogTheme
+                )
+                builder.setMessage("No Internet Connection.")
+                builder.setPositiveButton("Ok") { dialogInterface, which ->
+                }
+                val alertDialog: AlertDialog = builder.create()
+                alertDialog.setCancelable(false)
+                alertDialog.show()
+            }
+        }
+    }
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.imgBack -> {
+                finish()
+            }
+            R.id.imgHome -> {
+                startActivity(Intent(this@OwnBankownaccountFundTransfer, HomeActivity::class.java))
+            }
+            R.id.btn_submit -> {
+                getOwnAccountFundTransfer()
+
+            }
+            R.id.btn_clear -> {
+                getAccountnumber()
+
+                txt_amtinword!!.text = ""
+//                setAccountType();
+                edt_txt_amount!!.setText("")
+            }
+        }
+    }
+
+    private fun getOwnAccountFundTransfer() {
+        when(ConnectivityUtils.isConnected(this)) {
+            true -> {
+                progressDialog = ProgressDialog(
+                        this@OwnBankownaccountFundTransfer,
+                        R.style.Progress
+                )
+                progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
+                progressDialog!!.setCancelable(false)
+                progressDialog!!.setIndeterminate(true)
+                progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
+                progressDialog!!.show()
+                try {
+                    val client = OkHttpClient.Builder()
+                            .sslSocketFactory(Config.getSSLSocketFactory(this@OwnBankownaccountFundTransfer))
+                            .hostnameVerifier(Config.getHostnameVerifier())
+                            .build()
+                    val gson = GsonBuilder()
+                            .setLenient()
+                            .create()
+                    val retrofit = Retrofit.Builder()
+                            .baseUrl(Config.BASE_URL)
+                            .addConverterFactory(ScalarsConverterFactory.create())
+                            .addConverterFactory(GsonConverterFactory.create(gson))
+                            .client(client)
+                            .build()
+                    val apiService = retrofit.create(ApiInterface::class.java!!)
+                    val requestObject1 = JSONObject()
+
+
+
+
+                    try {
+
+                        val FK_CustomerSP = this.applicationContext.getSharedPreferences(
+                                Config.SHARED_PREF1,
+                                0
+                        )
+                        val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
+
+                        val TokenSP = this!!.applicationContext.getSharedPreferences(
+                                Config.SHARED_PREF8,
+                                0
+                        )
+                        val Token = TokenSP.getString("Token", null)
+                        var amount = edt_txt_amount!!.text.toString()
+                        amount = amount.replace(",", "")
+                        //requestObject1.put("Reqmode", MscoreApplication.encryptStart("27"))
+                        requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+                        requestObject1.put(
+                                "FK_Customer",
+                                MscoreApplication.encryptStart(FK_Customer)
+                        )
+                        requestObject1.put(
+                                "AccountNo",
+                                MscoreApplication.encryptStart(tv_account_no!!.text.toString())
+                        )
+                        requestObject1.put("SubModule", MscoreApplication.encryptStart(Submod))
+                        requestObject1.put("Amount", MscoreApplication.encryptStart(amount))
+                        requestObject1.put(
+                                "ReceiverAccountNo", MscoreApplication.encryptStart(
+                                spn_account_num!!.selectedItem.toString()
+                        )
+                        )
+                        requestObject1.put(
+                                "ReceiverModule", MscoreApplication.encryptStart(
+                                submodule
+                        )
+                        )
+                        requestObject1.put("QRCode", MscoreApplication.encryptStart(""))
+                        requestObject1.put("Remark", MscoreApplication.encryptStart(""))
+                        requestObject1.put(
+                                "BankKey", MscoreApplication.encryptStart(
+                                getResources().getString(
+                                        R.string.BankKey
+                                )
+                        )
+                        )
+
+
+                        Log.e("TAG", "requestObject1  650   " + requestObject1)
+                    } catch (e: Exception) {
+                        progressDialog!!.dismiss()
+                        e.printStackTrace()
+                        val mySnackbar = Snackbar.make(
+                                findViewById(R.id.rl_main),
+                                " Some technical issues.", Snackbar.LENGTH_SHORT
+                        )
+                        mySnackbar.show()
+                    }
+                    val body = RequestBody.create(
+                            okhttp3.MediaType.parse("application/json; charset=utf-8"),
+                            requestObject1.toString()
+                    )
+                    val call = apiService.getfundtransferownBank(body)
+                    call.enqueue(object : retrofit2.Callback<String> {
+                        override fun onResponse(
+                                call: retrofit2.Call<String>, response:
+                                Response<String>
+                        ) {
+                            try {
+                                progressDialog!!.dismiss()
+                                val jObject = JSONObject(response.body())
+                                Log.i("Response-ownfd", response.body())
+                                if (jObject.getString("StatusCode") == "0") {
+                                    val jsonObj1: JSONObject =
+                                            jObject.getJSONObject("FundTransferToOwnBank")
+                                    val jsonobj2 = JSONObject(jsonObj1.toString())
+                                    var result = jsonobj2.getString("ResponseMessage")
+                                    Log.i("Result", result)
+                                    alertMessage1("", result)
+                                    // Toast.makeText(applicationContext, result, Toast.LENGTH_LONG)
+                                    //  .show()
+
+
+                                } else {
+                                    val builder = AlertDialog.Builder(
+                                            this@OwnBankownaccountFundTransfer,
+                                            R.style.MyDialogTheme
+                                    )
+                                    builder.setMessage("" + jObject.getString("EXMessage"))
+                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                    }
+                                    val alertDialog: AlertDialog = builder.create()
+                                    alertDialog.setCancelable(false)
+                                    alertDialog.show()
+                                }
+                            } catch (e: Exception) {
+                                progressDialog!!.dismiss()
+
+                                val builder = AlertDialog.Builder(
+                                        this@OwnBankownaccountFundTransfer,
+                                        R.style.MyDialogTheme
+                                )
+                                builder.setMessage("Some technical issues.")
+                                builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                }
+                                val alertDialog: AlertDialog = builder.create()
+                                alertDialog.setCancelable(false)
+                                alertDialog.show()
+                                e.printStackTrace()
+                            }
+                        }
+
+                        override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
+                            progressDialog!!.dismiss()
+
+                            val builder = AlertDialog.Builder(
+                                    this@OwnBankownaccountFundTransfer,
+                                    R.style.MyDialogTheme
+                            )
+                            builder.setMessage("Some technical issues.")
+                            builder.setPositiveButton("Ok") { dialogInterface, which ->
+                            }
+                            val alertDialog: AlertDialog = builder.create()
+                            alertDialog.setCancelable(false)
+                            alertDialog.show()
+                        }
+                    })
+                } catch (e: Exception) {
+                    progressDialog!!.dismiss()
+                    val builder = AlertDialog.Builder(
+                            this@OwnBankownaccountFundTransfer,
+                            R.style.MyDialogTheme
+                    )
+                    builder.setMessage("Some technical issues.")
+                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                    }
+                    val alertDialog: AlertDialog = builder.create()
+                    alertDialog.setCancelable(false)
+                    alertDialog.show()
+                    e.printStackTrace()
+                }
+            }
+            false -> {
+                val builder = AlertDialog.Builder(
+                        this@OwnBankownaccountFundTransfer,
+                        R.style.MyDialogTheme
+                )
+                builder.setMessage("No Internet Connection.")
+                builder.setPositiveButton("Ok") { dialogInterface, which ->
+                }
+                val alertDialog: AlertDialog = builder.create()
+                alertDialog.setCancelable(false)
+                alertDialog.show()
+            }
+        }
+    }
+
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+        val splitupdetail: Splitupdetail = arrayList1!!.get(position)
+        fkaccount = splitupdetail.getFkaccount()
+        submodule = splitupdetail.getSubmodule()
+        //  Toast.makeText(getApplicationContext(),AccountAdapter.getItem(position).getBranchName(),Toast.LENGTH_LONG).show();
+//                                                tv_as_on_date.setVisibility(View.VISIBLE);
+        ll_needTochange!!.visibility = View.GONE
+        ll_needToPayAdvance!!.visibility = View.GONE
+        ll_remittance!!.visibility = View.GONE
+        //Toast.makeText(this, "FKAccount: " + fkaccount ,
+        // Toast.LENGTH_SHORT).show();
+         balanceSplitUpDetails(fkaccount, submodule)
+    }
+
+      private fun balanceSplitUpDetails(fkaccount: String?, submodule: String?) {
+          when(ConnectivityUtils.isConnected(this)) {
+              true -> {
+                  /*  progressDialog = ProgressDialog(this@PassbookActivity, R.style.Progress)
+                  progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
+                  progressDialog!!.setCancelable(false)
+                  progressDialog!!.setIndeterminate(true)
+                  progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
+                  progressDialog!!.show()*/
+                  try {
+                      val client = OkHttpClient.Builder()
+                              .sslSocketFactory(Config.getSSLSocketFactory(this@OwnBankownaccountFundTransfer))
+                              .hostnameVerifier(Config.getHostnameVerifier())
+                              .build()
+                      val gson = GsonBuilder()
+                              .setLenient()
+                              .create()
+                      val retrofit = Retrofit.Builder()
+                              .baseUrl(Config.BASE_URL)
+                              .addConverterFactory(ScalarsConverterFactory.create())
+                              .addConverterFactory(GsonConverterFactory.create(gson))
+                              .client(client)
+                              .build()
+                      val apiService = retrofit.create(ApiInterface::class.java!!)
+                      val requestObject1 = JSONObject()
+
+                      val accountType: String = spn_account_num!!.getSelectedItem().toString()
+                      val type: String
+                      var accountNo = accountType.replace(accountType.substring(accountType.indexOf(" (") + 1, accountType.indexOf(")") + 1), "")
+                      accountNo = accountNo.replace(" ", "")
+
+
+                      //Log.i("Type", type)
+                      try {
+
+                          val FK_CustomerSP = this.applicationContext.getSharedPreferences(
+                                  Config.SHARED_PREF1,
+                                  0
+                          )
+                          val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
+
+                          val TokenSP = this!!.applicationContext.getSharedPreferences(
+                                  Config.SHARED_PREF8,
+                                  0
+                          )
+                          val Token = TokenSP.getString("Token", null)
+
+                          requestObject1.put("Reqmode", MscoreApplication.encryptStart("27"))
+                          requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+                          requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
+                          requestObject1.put(
+                                  "FK_Account",
+                                  MscoreApplication.encryptStart(fkaccount)
+                          )
+                          requestObject1.put(
+                                  "SubModule",
+                                  MscoreApplication.encryptStart(submodule)
+                          )
+                          requestObject1.put(
+                                  "BankKey", MscoreApplication.encryptStart(
+                                  getResources().getString(
+                                          R.string.BankKey
+                                  )
+                          )
+                          )
+
+
+                          Log.e("TAG", "requestObject1  balance   " + requestObject1)
+                      } catch (e: Exception) {
+                          // progressDialog!!.dismiss()
+                          e.printStackTrace()
+                          val mySnackbar = Snackbar.make(
+                                  findViewById(R.id.rl_main),
+                                  " Some technical issues.", Snackbar.LENGTH_SHORT
+                          )
+                          mySnackbar.show()
+                      }
+                      val body = RequestBody.create(
+                              okhttp3.MediaType.parse("application/json; charset=utf-8"),
+                              requestObject1.toString()
+                      )
+                      val call = apiService.getbalancesplitupdetail(body)
+                      call.enqueue(object : retrofit2.Callback<String> {
+                          override fun onResponse(
+                                  call: retrofit2.Call<String>, response:
+                                  Response<String>
+                          ) {
+                              try {
+                                  //  progressDialog!!.dismiss()
+                                  val jObject = JSONObject(response.body())
+                                  Log.i("Response-balancesplit", response.body())
+                                  if (jObject.getString("StatusCode") == "0") {
+                                      val jsonObj1: JSONObject =
+                                              jObject.getJSONObject("BalanceSplitUpDetails")
+                                      val jsonobj2 = JSONObject(jsonObj1.toString())
+
+                                      jresult = jsonobj2.getJSONArray("Data")
+
+                                      if (jresult!!.length() != 0) {
+                                          val jsonObject: JSONObject = jresult!!.getJSONObject(0)
+                                          val jsonObjectjarray = jsonObject.getJSONArray("Details")
+                                          if (jsonObjectjarray.length() != 0) {
+                                              var Slimit = "0"
+                                              var Advancelimit = "0"
+                                              rv_split_details!!.setVisibility(View.VISIBLE)
+                                              val lLayout = GridLayoutManager(this@OwnBankownaccountFundTransfer, 1)
+                                              rv_split_details!!.setLayoutManager(lLayout)
+                                              rv_split_details!!.setHasFixedSize(true)
+                                              val adapter = BalancesplitAdapter(this@OwnBankownaccountFundTransfer, jsonObjectjarray)
+                                              rv_split_details!!.setAdapter(adapter)
+                                              for (k in 0 until jsonObjectjarray.length()) {
+                                                  val DetailsjsonObject = jsonObjectjarray.getJSONObject(k)
+                                                  val NetAmount = DetailsjsonObject.getString("Key")
+                                                  if (NetAmount == "NetAmount") {
+                                                      Log.e("T", "onResponse   1142   ")
+                                                      edt_txt_amount!!.setText(DetailsjsonObject.getString("Value").replace("-", ""))
+                                                  } else {
+                                                      edt_txt_amount!!.setText("")
+                                                  }
+                                                  val BalanceInstallment = DetailsjsonObject.getString("Key")
+                                                  if (BalanceInstallment == "BalanceInstallment") {
+                                                      Advancelimit = DetailsjsonObject.getString("Value")
+                                                  }
+                                              }
+                                              var IsAdvance = "0"
+                                              if (submodule == "PDRD" || submodule == "ODGD") {
+                                                  val DetailsjsonObject = jsonObjectjarray.getJSONObject(0)
+                                                  Slimit = DetailsjsonObject.getString("Value")
+                                                  val limit = Slimit.toInt()
+                                                  if (limit > 0) {
+                                                      ll_needTochange!!.setVisibility(View.VISIBLE)
+                                                      edt_txt_amount!!.setKeyListener(null)
+                                                      edt_txt_amount!!.setEnabled(false)
+                                                      edt_txt_amount!!.setInputType(InputType.TYPE_NULL)
+                                                      edt_txt_amount!!.setFocusable(false)
+                                                      pendinginsa = arrayOfNulls<String>(limit)
+
+                                                      IsAdvance = "0"
+                                                      var i: Int
+                                                      i = 0
+                                                      while (i < limit) {
+                                                          pendinginsa[i] = (i + 1).toString()
+                                                          i++
+                                                      }
+                                                      fkaccount?.let { getpendinginsa(submodule, it, IsAdvance) }
+                                                  } else if (limit == 0 && Advancelimit != "0") {
+                                                      ll_needToPayAdvance!!.setVisibility(View.VISIBLE)
+                                                      edt_txt_amount!!.setKeyListener(null)
+                                                      edt_txt_amount!!.setEnabled(false)
+                                                      edt_txt_amount!!.setInputType(InputType.TYPE_NULL)
+                                                      edt_txt_amount!!.setFocusable(false)
+                                                      val Advancelimitlimit = Advancelimit.toInt()
+                                                      pendinginsa = arrayOfNulls<String>(Advancelimitlimit)
+                                                      IsAdvance = "1"
+                                                      var i: Int
+                                                      i = 0
+                                                      while (i < Advancelimitlimit) {
+                                                          pendinginsa[i] = (i + 1).toString()
+                                                          i++
+                                                      }
+                                                      fkaccount?.let { getpendinginsa(submodule, it, IsAdvance) }
+                                                  } else {
+                                                      edt_txt_amount!!.setKeyListener(null)
+                                                      edt_txt_amount!!.setEnabled(false)
+                                                      edt_txt_amount!!.setInputType(InputType.TYPE_NULL)
+                                                      edt_txt_amount!!.setFocusable(false)
+                                                  }
+                                              } else {
+                                                  ll_needTochange!!.setVisibility(View.GONE)
+                                                  ll_needToPayAdvance!!.setVisibility(View.GONE)
+                                                  ll_remittance!!.setVisibility(View.GONE)
+                                                  edt_txt_amount!!.setEnabled(true)
+                                                  edt_txt_amount!!.setInputType(InputType.TYPE_CLASS_NUMBER)
+                                                  edt_txt_amount!!.setFocusable(true)
+                                                  edt_txt_amount!!.setFocusableInTouchMode(true)
+                                              }
+                                          } else {
+                                              tv_availbal!!.setVisibility(View.GONE)
+                                          }
+                                      } else {
+                                          tv_availbal!!.setVisibility(View.GONE)
+                                      }
+
+                                  } else {
+                                      tv_availbal!!.setVisibility(View.GONE)
+                                      val builder = AlertDialog.Builder(
+                                              this@OwnBankownaccountFundTransfer,
+                                              R.style.MyDialogTheme
+                                      )
+                                      builder.setMessage("" + jObject.getString("EXMessage"))
+                                      builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                      }
+                                      val alertDialog: AlertDialog = builder.create()
+                                      alertDialog.setCancelable(false)
+                                      alertDialog.show()
+                                  }
+                              } catch (e: Exception) {
+                                  //  progressDialog!!.dismiss()
+
+                                  val builder = AlertDialog.Builder(
+                                          this@OwnBankownaccountFundTransfer,
+                                          R.style.MyDialogTheme
+                                  )
+                                  builder.setMessage("Some technical issues.")
+                                  builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                  }
+                                  val alertDialog: AlertDialog = builder.create()
+                                  alertDialog.setCancelable(false)
+                                  alertDialog.show()
+                                  e.printStackTrace()
+                              }
+                          }
+
+                          override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
+                              //  progressDialog!!.dismiss()
+
+                              val builder = AlertDialog.Builder(
+                                      this@OwnBankownaccountFundTransfer,
+                                      R.style.MyDialogTheme
+                              )
+                              builder.setMessage("Some technical issues.")
+                              builder.setPositiveButton("Ok") { dialogInterface, which ->
+                              }
+                              val alertDialog: AlertDialog = builder.create()
+                              alertDialog.setCancelable(false)
+                              alertDialog.show()
+                          }
+                      })
+                  } catch (e: Exception) {
+                      //  progressDialog!!.dismiss()
+                      val builder = AlertDialog.Builder(this@OwnBankownaccountFundTransfer, R.style.MyDialogTheme)
+                      builder.setMessage("Some technical issues.")
+                      builder.setPositiveButton("Ok") { dialogInterface, which ->
+                      }
+                      val alertDialog: AlertDialog = builder.create()
+                      alertDialog.setCancelable(false)
+                      alertDialog.show()
+                      e.printStackTrace()
+                  }
+              }
+              false -> {
+                  val builder = AlertDialog.Builder(this@OwnBankownaccountFundTransfer, R.style.MyDialogTheme)
+                  builder.setMessage("No Internet Connection.")
+                  builder.setPositiveButton("Ok") { dialogInterface, which ->
+                  }
+                  val alertDialog: AlertDialog = builder.create()
+                  alertDialog.setCancelable(false)
+                  alertDialog.show()
+              }
+        }
+
+    }
+
+
+    private fun getpendinginsa(ToSubModule: String, ToFK_Account: String, IsAdvance: String) {
+        val aa: ArrayAdapter<*> = ArrayAdapter<Any?>(
+                this,
+                android.R.layout.simple_spinner_item,
+                pendinginsa
+        )
+        aa.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
+        status_spinner!!.setAdapter(aa)
+        status_spinner!!.setOnItemSelectedListener(object : OnItemSelectedListener {
+            override fun onItemSelected(
+                    parent: AdapterView<*>,
+                    view: View,
+                    position: Int,
+                    id: Long
+            ) {
+                val item = parent.getItemAtPosition(position)
+                edt_txt_amount!!.setText("" + position)
+                val remittanance = position + 1
+                Log.e("TAG", "onResponse   355   ")
+                remittanceDetails("" + remittanance, ToSubModule, ToFK_Account, IsAdvance)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                //Do nothing
+            }
+        })
+    }
+
+    private fun remittanceDetails(s: String, toSubModule: String, tofkAccount: String, isAdvance: String) {
+
+        when(ConnectivityUtils.isConnected(this)) {
+            true -> {
+                progressDialog = ProgressDialog(this@OwnBankownaccountFundTransfer, R.style.Progress)
+                progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
+                progressDialog!!.setCancelable(false)
+                progressDialog!!.setIndeterminate(true)
+                progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
+                progressDialog!!.show()
+                try {
+                    val client = OkHttpClient.Builder()
+                            .sslSocketFactory(Config.getSSLSocketFactory(this@OwnBankownaccountFundTransfer))
+                            .hostnameVerifier(Config.getHostnameVerifier())
+                            .build()
+                    val gson = GsonBuilder()
+                            .setLenient()
+                            .create()
+                    val retrofit = Retrofit.Builder()
+                            .baseUrl(Config.BASE_URL)
+                            .addConverterFactory(ScalarsConverterFactory.create())
+                            .addConverterFactory(GsonConverterFactory.create(gson))
+                            .client(client)
+                            .build()
+                    val apiService = retrofit.create(ApiInterface::class.java!!)
+                    val requestObject1 = JSONObject()
+                    try {
+
+                        val FK_CustomerSP = this.applicationContext.getSharedPreferences(
+                                Config.SHARED_PREF1,
+                                0
+                        )
+                        val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
+
+                        val TokenSP = this!!.applicationContext.getSharedPreferences(
+                                Config.SHARED_PREF8,
+                                0
+                        )
+                        val Token = TokenSP.getString("Token", null)
+
+                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("28"))
+                        requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+                        requestObject1.put(
+                                "FK_Account",
+                                MscoreApplication.encryptStart(fkaccount)
+                        )
+                        requestObject1.put(
+                                "FK_Customer",
+                                MscoreApplication.encryptStart(FK_Customer)
+                        )
+                        requestObject1.put(
+                                "SubModule",
+                                MscoreApplication.encryptStart(toSubModule)
+                        )
+                        requestObject1.put(
+                                "InstalmentCount",
+                                MscoreApplication.encryptStart(s)
+                        )
+                        requestObject1.put(
+                                "IsAdvance",
+                                MscoreApplication.encryptStart(isAdvance)
+                        )
+                        requestObject1.put(
+                                "BankKey", MscoreApplication.encryptStart(
+                                getResources().getString(
+                                        R.string.BankKey
+                                )
+                        )
+                        )
+
+
+                        Log.e("TAG", "requestObject1 remittance   " + requestObject1)
+                    } catch (e: Exception) {
+                        progressDialog!!.dismiss()
+                        e.printStackTrace()
+                        val mySnackbar = Snackbar.make(
+                                findViewById(R.id.rl_main),
+                                " Some technical issues.", Snackbar.LENGTH_SHORT
+                        )
+                        mySnackbar.show()
+                    }
+                    val body = RequestBody.create(
+                            okhttp3.MediaType.parse("application/json; charset=utf-8"),
+                            requestObject1.toString()
+                    )
+                    val call = apiService.getinstanceremittanceamt(body)
+                    call.enqueue(object : retrofit2.Callback<String> {
+                        override fun onResponse(
+                                call: retrofit2.Call<String>, response:
+                                Response<String>
+                        ) {
+                            try {
+                                progressDialog!!.dismiss()
+                                val jObject = JSONObject(response.body())
+                                Log.i("Response-remittance", response.body())
+                                if (jObject.getString("StatusCode") == "0") {
+                                    val jsonObj1: JSONObject =
+                                            jObject.getJSONObject("GetInstalmmentRemittanceAmount")
+                                    val RemittanceAmount: String = jsonObj1.getString("RemittanceAmount")
+                                    edt_txt_amount!!.setText(RemittanceAmount)
+                                } else {
+                                    edt_txt_amount!!.setText("")
+                                    val builder = AlertDialog.Builder(
+                                            this@OwnBankownaccountFundTransfer,
+                                            R.style.MyDialogTheme
+                                    )
+                                    builder.setMessage("" + jObject.getString("EXMessage"))
+                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                    }
+                                    val alertDialog: AlertDialog = builder.create()
+                                    alertDialog.setCancelable(false)
+                                    alertDialog.show()
+                                }
+                            } catch (e: Exception) {
+                                progressDialog!!.dismiss()
+
+                                val builder = AlertDialog.Builder(
+                                        this@OwnBankownaccountFundTransfer,
+                                        R.style.MyDialogTheme
+                                )
+                                builder.setMessage("Some technical issues.")
+                                builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                }
+                                val alertDialog: AlertDialog = builder.create()
+                                alertDialog.setCancelable(false)
+                                alertDialog.show()
+                                e.printStackTrace()
+                            }
+                        }
+
+                        override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
+                            progressDialog!!.dismiss()
+
+                            val builder = AlertDialog.Builder(
+                                    this@OwnBankownaccountFundTransfer,
+                                    R.style.MyDialogTheme
+                            )
+                            builder.setMessage("Some technical issues.")
+                            builder.setPositiveButton("Ok") { dialogInterface, which ->
+                            }
+                            val alertDialog: AlertDialog = builder.create()
+                            alertDialog.setCancelable(false)
+                            alertDialog.show()
+                        }
+                    })
+                } catch (e: Exception) {
+                    progressDialog!!.dismiss()
                     val builder = AlertDialog.Builder(this@OwnBankownaccountFundTransfer, R.style.MyDialogTheme)
                     builder.setMessage("Some technical issues.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -860,36 +1050,6 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                 alertDialog.show()
             }
         }
-
-    }*/
-
-
-    private fun getpendinginsa(ToSubModule: String, ToFK_Account: String, IsAdvance: String) {
-        val aa: ArrayAdapter<*> = ArrayAdapter<Any?>(
-            this,
-            android.R.layout.simple_spinner_item,
-            pendinginsa
-        )
-        aa.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
-        status_spinner!!.setAdapter(aa)
-        status_spinner!!.setOnItemSelectedListener(object : OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                val item = parent.getItemAtPosition(position)
-                edt_txt_amount!!.setText("" + position)
-                val remittanance = position + 1
-                Log.e("TAG", "onResponse   355   ")
-                //remittanceDetails!!("" + remittanance, ToSubModule, ToFK_Account, IsAdvance)
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                //Do nothing
-            }
-        })
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
