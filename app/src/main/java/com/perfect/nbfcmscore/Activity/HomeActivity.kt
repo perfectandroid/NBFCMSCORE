@@ -22,6 +22,7 @@ import java.util.*
 
 class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
+    var lldashboard: LinearLayout? = null
     var llgoldslab: LinearLayout? = null
     var llmyaccounts: LinearLayout? = null
     var lvNavMenu: ListView? = null
@@ -79,6 +80,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     }
 
     open fun setInitialise() {
+        lldashboard = findViewById(R.id.lldashboard)
         llmyaccounts = findViewById(R.id.llmyaccounts)
         imgMenu = findViewById(R.id.imgMenu)
         drawer = findViewById(R.id.drawer_layout)
@@ -101,6 +103,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     }
 
     open fun setRegister() {
+        lldashboard!!.setOnClickListener(this)
+        llgoldslab!!.setOnClickListener(this)
         llquickbalance!!.setOnClickListener(this)
         llmyaccounts!!.setOnClickListener(this)
         imgMenu!!.setOnClickListener(this)
@@ -159,6 +163,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         when (v.id) {
             R.id.imgMenu ->
                   drawer!!.openDrawer(Gravity.START)
+            R.id.lldashboard ->{
+            }
             R.id.llmyaccounts ->{
                 startActivity(Intent(this@HomeActivity, AccountlistActivity::class.java))
             }
