@@ -167,7 +167,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             R.id.imgMenu ->
                   drawer!!.openDrawer(Gravity.START)
             R.id.lldashboard ->{
-
+                startActivity(Intent(this@HomeActivity, DashboardActivity::class.java))
             }
             R.id.llprdctdetail ->{
 
