@@ -595,8 +595,8 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
         ll_needTochange!!.visibility = View.GONE
         ll_needToPayAdvance!!.visibility = View.GONE
         ll_remittance!!.visibility = View.GONE
-        Toast.makeText(this, "FKAccount: " + fkaccount ,
-         Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, "FKAccount: " + fkaccount ,
+      //   Toast.LENGTH_SHORT).show();
          balanceSplitUpDetails(fkaccount, submodule)
     }
 
