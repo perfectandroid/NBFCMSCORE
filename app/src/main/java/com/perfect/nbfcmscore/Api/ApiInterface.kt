@@ -66,7 +66,7 @@ interface ApiInterface {
 
     @POST("AccountSummary/BarcodeFormatDet")
     fun getBardCodeData(@Body body: RequestBody): Call<String>
-    
+
     @POST("AccountSummary/OwnAccounDetails")
     fun getOwnbankownaccountdetail(@Body body: RequestBody): Call<String>
 
@@ -100,8 +100,13 @@ interface ApiInterface {
     @POST("AccountSummary/FundTransferLimit")
     fun getfundtransferlimit(@Body body: RequestBody): Call<String>
 
+
     @POST("AccountSummary/GetInstalmmentRemittanceAmount")
     fun getinstanceremittanceamt(@Body body: RequestBody): Call<String>
+
+
+    @POST("AccountSummary/DashBoardAssetsDataDetails")
+    fun getDashBoardAssetsDataDetails(@Body body: RequestBody): Call<String>
 
 }
 
