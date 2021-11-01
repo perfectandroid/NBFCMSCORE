@@ -33,6 +33,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var ll_prepaid : LinearLayout?=null
     var ll_postpaid : LinearLayout?=null
     var ll_landline : LinearLayout?=null
+    var ll_rechargehistory : LinearLayout?=null
     var ll_holidaylist : LinearLayout?=null
     var llownbank : LinearLayout?=null
     var ll_dth : LinearLayout?=null
@@ -93,6 +94,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         ll_prepaid = findViewById(R.id.ll_prepaid)
         ll_postpaid = findViewById(R.id.ll_postpaid)
         ll_landline = findViewById(R.id.ll_landline)
+        ll_rechargehistory = findViewById(R.id.ll_rechargehistory)
         ll_dth = findViewById(R.id.ll_dth)
         llEmi = findViewById(R.id.llEmi)
         llpassbook = findViewById<LinearLayout>(R.id.llpassbook)
@@ -121,6 +123,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         ll_prepaid!!.setOnClickListener(this)
         ll_postpaid!!.setOnClickListener(this)
         ll_landline!!.setOnClickListener(this)
+        ll_rechargehistory!!.setOnClickListener(this)
         ll_dth!!.setOnClickListener(this)
         llEmi!!.setOnClickListener(this)
         ll_virtualcard!!.setOnClickListener(this)
@@ -235,6 +238,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             R.id.ll_otherbank ->{
 
                 var intent = Intent(this@HomeActivity, OtherBankActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.ll_rechargehistory ->{
+
+                var intent = Intent(this@HomeActivity, RechargeHistoryActivity::class.java)
                 startActivity(intent)
             }
 

@@ -20,16 +20,24 @@
         android:roundIcon="@drawable/applogo"
         android:supportsRtl="true"
         android:theme="@style/Theme.NBFCMSCORE">
-        <activity android:name=".Activity.OtherBankFundTransferActivity"
+
+        <activity android:name=".Activity.RechargeHistoryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustPan"
-            tools:ignore="MissingClass"/>
-        <activity android:name=".Activity.BeneficiaryListActivity"
+            tools:ignore="MissingClass" />
+        <activity
+            android:name=".Activity.OtherBankFundTransferActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustPan"
-            tools:ignore="MissingClass"/>
+            tools:ignore="MissingClass" />
+        <activity
+            android:name=".Activity.BeneficiaryListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            tools:ignore="MissingClass" />
         <activity
             android:name=".Activity.OtherBankActivity"
             android:screenOrientation="portrait"
@@ -140,7 +148,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-
         <activity
             android:name=".Activity.OwnBankotheraccountFundTransfer"
             android:screenOrientation="portrait"
@@ -206,11 +213,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".Activity.DashboardtabActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+<!--        <activity-->
+<!--            android:name=".Activity.DashboardtabActivity"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:theme="@style/AppTheme.NoActionBar"-->
+<!--            android:windowSoftInputMode="stateHidden|adjustPan" />-->
         <activity
             android:name=".Activity.HolidayListActivity"
             android:screenOrientation="portrait"
