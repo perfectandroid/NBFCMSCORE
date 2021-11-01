@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Adapter.PassbookTransactionDetailsAdapter
+import com.perfect.nbfcmscore.Adapter.ProductListAdapter
+import com.perfect.nbfcmscore.Adapter.ProductSummaryAdapter
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
@@ -89,7 +91,7 @@ class ProductListDetailsActivity : AppCompatActivity(), View.OnClickListener {
                         )
                         val Token = TokenSP.getString("Token", null)
 
-                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("14"))
+                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("34"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
                         requestObject1.put("FK_Product", MscoreApplication.encryptStart(fkproduct))
@@ -129,13 +131,13 @@ class ProductListDetailsActivity : AppCompatActivity(), View.OnClickListener {
                                 Log.i("Response-productsummary", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject = jObject.getJSONObject("ProductDetailsSummary")
-                                  /*  val jresult = jsonObj1.getJSONArray("Data")
-                                    val jsonArrayKey = jresult.getJSONObject(0).getJSONArray("Details")
+                                    val jresult = jsonObj1.getJSONArray("Data")
+                                    val jsonArrayKey = jresult.getJSONObject(0).getJSONArray("ProductDetailsSummaryList")
                                     val lLayout = GridLayoutManager(this@ProductListDetailsActivity, 1)
                                     rv_statementDetails!!.layoutManager = lLayout
                                     rv_statementDetails!!.setHasFixedSize(true)
-                                    val adapter = PassbookTransactionDetailsAdapter(this@ProductListDetailsActivity, jsonArrayKey)
-                                    rv_statementDetails!!.adapter = adapter*/
+                                    val adapter = ProductSummaryAdapter(this@ProductListDetailsActivity, jsonArrayKey)
+                                    rv_statementDetails!!.adapter = adapter
                                 }
                                 else {
                                     val builder = AlertDialog.Builder(
