@@ -91,8 +91,10 @@ class OtherBankActivity : AppCompatActivity()  , View.OnClickListener{
             R.id.ll_rtgs ->{
 
                 var intent = Intent(this@OtherBankActivity, OtherBankFundTransferActivity::class.java)
-                intent.putExtra("trans", "RTGS")
+                intent.putExtra("TYPE", "RTGS")
                 startActivity(intent)
+
+
             }
         }
     }
