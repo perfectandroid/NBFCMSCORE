@@ -49,7 +49,7 @@
         android:background="@color/white">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_statementDetails"
+            android:id="@+id/rv_productsummaryDetails"
             android:layout_width="match_parent"
             android:scrollbarAlwaysDrawVerticalTrack="true"
             android:scrollIndicators="bottom"

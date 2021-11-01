@@ -22,6 +22,7 @@ import com.perfect.nbfcmscore.Helper.MscoreApplication
 import com.perfect.nbfcmscore.R
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
+import org.json.JSONArray
 import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -30,9 +31,10 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class ProductListDetailsActivity : AppCompatActivity(), View.OnClickListener {
     var fkproduct: String? = null
-    var rv_statementDetails: RecyclerView? = null
+    var rv_productsummaryDetails: RecyclerView? = null
     private var progressDialog: ProgressDialog? = null
     var imgBack: ImageView? = null
+    private var jresult: JSONArray? = null
     var imgHome: ImageView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +46,7 @@ class ProductListDetailsActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun setRegviews() {
-        rv_statementDetails = findViewById(R.id.rv_statementDetails)
+        rv_productsummaryDetails = findViewById(R.id.rv_productsummaryDetails)
         imgBack = findViewById<ImageView>(R.id.imgBack)
         imgBack!!.setOnClickListener(this)
         imgHome = findViewById<ImageView>(R.id.imgHome)
@@ -130,14 +132,20 @@ class ProductListDetailsActivity : AppCompatActivity(), View.OnClickListener {
                                 val jObject = JSONObject(response.body())
                                 Log.i("Response-productsummary", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
-                                    val jsonObj1: JSONObject = jObject.getJSONObject("ProductDetailsSummary")
-                                    val jresult = jsonObj1.getJSONArray("Data")
-                                    val jsonArrayKey = jresult.getJSONObject(0).getJSONArray("ProductDetailsSummaryList")
-                                    val lLayout = GridLayoutManager(this@ProductListDetailsActivity, 1)
-                                    rv_statementDetails!!.layoutManager = lLayout
-                                    rv_statementDetails!!.setHasFixedSize(true)
-                                    val adapter = ProductSummaryAdapter(this@ProductListDetailsActivity, jsonArrayKey)
-                                    rv_statementDetails!!.adapter = adapter
+                                    val jsonObj1: JSONObject =
+                                            jObject.getJSONObject("ProductDetailsSummary")
+                                    val jsonobj2 = JSONObject(jsonObj1.toString())
+
+                                    jresult = jsonobj2.getJSONArray("ProductDetailsSummaryList")
+                                    if (jresult!!.length() != 0) {
+                                        val lLayout =
+                                                GridLayoutManager(this@ProductListDetailsActivity, 1)
+                                        rv_productsummaryDetails!!.layoutManager = lLayout
+                                        rv_productsummaryDetails!!.setHasFixedSize(true)
+
+                                        val adapter = ProductSummaryAdapter(applicationContext!!, jresult!!)
+                                        rv_productsummaryDetails!!.adapter = adapter
+                                    }
                                 }
                                 else {
                                     val builder = AlertDialog.Builder(

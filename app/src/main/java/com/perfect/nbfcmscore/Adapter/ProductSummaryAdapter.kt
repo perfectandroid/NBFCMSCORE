@@ -46,10 +46,10 @@ class ProductSummaryAdapter(internal val mContext: Context, internal val jsInfo:
               /*  val date = SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.US).parse(jsonObject!!.getString("HolidayDate"))
                 val formattedDatesString = SimpleDateFormat("MMM dd, yyyy", Locale.US).format(date)*/
 
-                holder.tv_caption!!.setText(jsonObject!!.getString("ProductCaption"))
-                holder.tv_prdctdetl!!.setText(jsonObject!!.getString("ProductDetails"))
+                holder.tv_prdctid!!.setText(jsonObject!!.getString("ID_ProductDetails"))
+                holder.tv_prdctdesc!!.setText(jsonObject!!.getString("ProductDescription"))
 
-                holder.ll_productlist!!.setTag(
+           /*     holder.ll_productlist!!.setTag(
                         position
                 )
                 holder.ll_productlist!!.setOnClickListener(
@@ -63,7 +63,7 @@ class ProductSummaryAdapter(internal val mContext: Context, internal val jsInfo:
                             } catch (e: JSONException) {
                                 e.printStackTrace()
                             }
-                        })
+                        })*/
 
 
 
@@ -77,14 +77,14 @@ class ProductSummaryAdapter(internal val mContext: Context, internal val jsInfo:
 
 
 
-        var tv_caption: TextView? = null
-        var tv_prdctdetl: TextView? = null
+        var tv_prdctid: TextView? = null
+        var tv_prdctdesc: TextView? = null
         public var ll_productlist: LinearLayout? = null
 
         init {
-            tv_caption = v.findViewById<View>(R.id.tv_caption) as TextView
-            tv_prdctdetl = v.findViewById<View>(R.id.tv_prdctdetl) as TextView
-            ll_productlist = v.findViewById<LinearLayout>(R.id.ll_productlist)
+            tv_prdctid = v.findViewById<View>(R.id.tv_prdctid) as TextView
+            tv_prdctdesc = v.findViewById<View>(R.id.tv_prdctdesc) as TextView
+
 
         }
     }
