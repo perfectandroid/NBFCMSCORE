@@ -65,6 +65,7 @@
                     android:id="@+id/im_home"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
+                    android:padding="5dp"
                     android:src="@drawable/ic_home" />
 
             </LinearLayout>
@@ -107,7 +108,7 @@
                     android:layout_height="40dp"
                     android:dropDownHeight="wrap_content"
                     android:text=""
-                    android:hint="Districts"
+                    android:hint="Enter District"
                     android:padding="5dp"
                     android:textSize="16dp"
                     android:textColor="@color/black"

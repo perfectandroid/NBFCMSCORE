@@ -40,6 +40,11 @@
 
     <color name="color_activity_transparent">#00000000</color>
 
+    <color name="text_primary">#DADADA</color>
+    <color name="text_secondary">#999999</color>
+    <color name="text_fourth">#EDECEC</color>
+    <color name="text_tertary">#ff333333</color>
+
     <!-- dots inactive colors -->
     <color name="dot_dark_screen2">#d1395c</color>
     <color name="dot_dark_screen1">#14a895</color>
@@ -69,4 +74,15 @@
     </array>
 
     <color name="bottom_line">#93c6fd</color>
+    <color name="color_bottom_line">#A89AD3DF</color>
+    <color name="color_text_bg">#e2f8ec</color>
+
+    <color name="color_tab_select">#2B6C7B</color>
+    <color name="color_tab_unselect">#4A848E</color>
+
+    <color name="DarkGray">#A9A9A9</color>
+    <color name="google_green1">#63B456</color>
+    <color name="RoyalBlue">#4169E1</color>
+    <color name="gray_btn_bg_color">#e74c3c</color>
+
 </resources>

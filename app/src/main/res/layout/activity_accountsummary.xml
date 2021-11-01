@@ -29,7 +29,7 @@
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="15dp"
-                    android:text="   Account Summary"
+                    android:text=" Account Summary"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
@@ -38,6 +38,7 @@
                     android:layout_width="0dp"
                     android:layout_height="35dp"
                     android:layout_weight=".2"
+                    android:padding="5dp"
                     android:src="@drawable/ic_home" />
 
             </LinearLayout>

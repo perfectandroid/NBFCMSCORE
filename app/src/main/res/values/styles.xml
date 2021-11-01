@@ -13,6 +13,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
@@ -38,7 +39,15 @@
         <item name="android:topBright">@color/color_activity_transparent</item>
         <item name="android:topDark">@color/color_activity_transparent</item>
     </style>
-
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">@color/colorPrimary</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="hintTextAppearance">@style/TextFloatingLabelApperarance</item>
+    </style>
+    <style name="TextFloatingLabelApperarance" parent="TextAppearance.Design.Hint">
+        <item name="android:textColorHint">@color/colorPrimary</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
     <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:background">@color/white</item>
     </style>
@@ -58,5 +67,9 @@
     <style name="Spinner" parent="Widget.AppCompat.Light.DropDownItem.Spinner">
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">14sp</item>
+    </style>
+    <style name="service_chooser_before">
+        <item name="android:background">@drawable/service_chooser_button_before</item>
+        <item name="android:textColor">@color/blue</item>
     </style>
 </resources>

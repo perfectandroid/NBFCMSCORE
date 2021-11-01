@@ -237,8 +237,9 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/myacc" />
+                                    android:src="@drawable/myaccountsummary" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -279,8 +280,9 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/myacc" />
+                                    android:src="@drawable/mypassbook" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -308,6 +310,7 @@
                             app:cardUseCompatPadding="true">
 
                             <LinearLayout
+                                android:id="@+id/llquickbalance"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center"
@@ -320,8 +323,9 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/dashboard" />
+                                    android:src="@drawable/myquickbalance" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -372,8 +376,9 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/branch" />
+                                    android:src="@drawable/mystatement" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -414,8 +419,9 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/vcard" />
+                                    android:src="@drawable/myduereminder" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -455,8 +461,9 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/emi" />
+                                    android:src="@drawable/mynotification" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -517,6 +524,7 @@
                             app:cardUseCompatPadding="true">
 
                             <LinearLayout
+                                android:id="@+id/llownbank"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center"
@@ -529,8 +537,9 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/myacc" />
+                                    android:src="@drawable/myonwbank" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -558,6 +567,7 @@
                             app:cardUseCompatPadding="true">
 
                             <LinearLayout
+                                android:id="@+id/ll_otherbank"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center"
@@ -570,8 +580,9 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/myacc" />
+                                    android:src="@drawable/myotherbank" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -611,8 +622,9 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/dashboard" />
+                                    android:src="@drawable/myquickpay" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -664,6 +676,7 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
                                     android:src="@drawable/branch" />
 
@@ -704,6 +717,7 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
                                     android:src="@drawable/vcard" />
 
@@ -745,6 +759,7 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
                                     android:src="@drawable/emi" />
 
@@ -820,8 +835,9 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/myacc" />
+                                    android:src="@drawable/myprepaidmobile" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -862,8 +878,9 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/myacc" />
+                                    android:src="@drawable/mypostpaidmobile" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -904,8 +921,9 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/dashboard" />
+                                    android:src="@drawable/mylandline" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -957,8 +975,9 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/branch" />
+                                    android:src="@drawable/mydth" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -998,8 +1017,9 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/vcard" />
+                                    android:src="@drawable/mydatacard" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -1039,8 +1059,9 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/emi" />
+                                    android:src="@drawable/mykseb" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -1114,8 +1135,9 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/myacc" />
+                                    android:src="@drawable/mydashboard" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -1143,6 +1165,7 @@
                             app:cardUseCompatPadding="true">
 
                             <LinearLayout
+                                android:id="@+id/ll_virtualcard"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center"
@@ -1155,8 +1178,9 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/myacc" />
+                                    android:src="@drawable/myvirtualcard" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -1197,8 +1221,9 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/dashboard" />
+                                    android:src="@drawable/mybranchdetails" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -1249,8 +1274,9 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/branch" />
+                                    android:src="@drawable/myloanapplication" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -1290,8 +1316,9 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/vcard" />
+                                    android:src="@drawable/myloanstatus" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -1319,6 +1346,7 @@
                             app:cardUseCompatPadding="true">
 
                             <LinearLayout
+                                android:id="@+id/llprdctdetail"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center"
@@ -1331,8 +1359,9 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/emi" />
+                                    android:src="@drawable/myproductdetails" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -1406,8 +1435,9 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/myacc" />
+                                    android:src="@drawable/emicalculator" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -1447,8 +1477,9 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/myacc" />
+                                    android:src="@drawable/mydepositcal" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -1476,6 +1507,7 @@
                             app:cardUseCompatPadding="true">
 
                             <LinearLayout
+                                android:id="@+id/llgoldslab"
                                 android:layout_width="match_parent"
                                 android:gravity="center"
                                 android:layout_gravity="center"
@@ -1488,8 +1520,9 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/dashboard" />
+                                    android:src="@drawable/mygoldloaneligible" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -1540,8 +1573,9 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/branch" />
+                                    android:src="@drawable/myenquiry" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -1582,8 +1616,9 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/vcard" />
+                                    android:src="@drawable/myholidaylist" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -1623,8 +1658,9 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:padding="6dp"
                                     android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/emi" />
+                                    android:src="@drawable/myexecutivecall" />
 
                                 <TextView
                                     android:layout_width="wrap_content"

@@ -13,6 +13,7 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.text.method.TextKeyListener
 import android.util.Log
 import android.view.View
 import android.view.Window
@@ -43,8 +44,8 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
-import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Adapter.BranchListAdapter
+import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
 import com.perfect.nbfcmscore.Helper.ItemClickListener
@@ -131,9 +132,12 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
 
                         val TokenSP = applicationContext.getSharedPreferences(Config.SHARED_PREF8, 0)
                         val Token = TokenSP.getString("Token", null)
+                        val FK_CustomerSP = this.applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
+                        val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("19"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
                         // requestObject1.put("BankHeader", MscoreApplication.encryptStart(getResources().getString(R.string.BankHeader)))
 
@@ -188,11 +192,17 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                                             count: Int) {
                                             mMap!!.clear()
                                             rvBranchList!!.adapter = null
+                                            card_branches!!.visibility = View.GONE
+                                            ll_branches!!.visibility = View.GONE
+
+                                          //  val str: String? = "Hello"
+
+
 
                                             for (i in 0 until jsonArrayDist!!.length()) {
                                                 val obj1: JSONObject = jsonArrayDist!!.getJSONObject(i)
                                                 var FK_District: String = ""
-                                                if (obj1.getString("DistrictName").equals(""+ act_district!!.text.toString())){
+                                                if (obj1.getString("DistrictName")==(""+ act_district!!.text.toString())){
 
                                                     FK_District = obj1.getString("FK_District")
                                                     Log.e("DistrictName","DistrictName  192   "+obj1.getString("DistrictName")+"  "+FK_District)

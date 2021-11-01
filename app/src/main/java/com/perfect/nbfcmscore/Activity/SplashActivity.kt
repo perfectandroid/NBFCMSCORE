@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowManager
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
@@ -107,8 +108,9 @@ class SplashActivity : AppCompatActivity() {
                     val requestObject1 = JSONObject()
                     try {
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("5"))
-                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey))
-                        )
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
+
+                        Log.e("requestObject1","requestObject1  113   "+requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -130,6 +132,7 @@ class SplashActivity : AppCompatActivity() {
                         ) {
                             try {
                                 progressDialog!!.dismiss()
+                                Log.e("response","response  1131   "+response.body())
                                 val jObject = JSONObject(response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jobjt = jObject.getJSONObject("ResellerDetails")

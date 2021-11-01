@@ -115,6 +115,8 @@ class RegistrationActivity : AppCompatActivity()  , View.OnClickListener {
                         requestObject1.put("MobileNumber", MscoreApplication.encryptStart(etxt_mob!!.text.toString()))
                         requestObject1.put("AccountNumber", MscoreApplication.encryptStart(etxt_accno!!.text.toString()))
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
+
+
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()

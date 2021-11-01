@@ -2,12 +2,18 @@ package com.perfect.nbfcmscore.Activity
 
 import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
+import com.perfect.nbfcmscore.Adapter.DuereminderListAdapter
+import com.perfect.nbfcmscore.Adapter.HolidayListAdapter
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
@@ -15,6 +21,7 @@ import com.perfect.nbfcmscore.Helper.MscoreApplication
 import com.perfect.nbfcmscore.R
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
+import org.json.JSONArray
 import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -22,11 +29,16 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
 
-class DueReminderActivity : AppCompatActivity() {
+class DueReminderActivity : AppCompatActivity() , View.OnClickListener{
     private var progressDialog: ProgressDialog? = null
     var radiogrp: RadioGroup? = null
+    var radio1:RadioButton?=null
+    var radio2:RadioButton?=null
+    private var rv_duereminder: RecyclerView? = null
     var submode: String=""
-    lateinit var radioButton: RadioButton
+    var imgBack: ImageView? = null
+    var imgHome: ImageView? = null
+    private var jresult: JSONArray? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_duereminder)
@@ -37,21 +49,37 @@ class DueReminderActivity : AppCompatActivity() {
 
     private fun setRegViews() {
         radiogrp = findViewById<RadioGroup>(R.id.radio_group)
+        radio1 = findViewById<RadioButton>(R.id.radio1)
+        radio2 = findViewById<RadioButton>(R.id.radio2)
         val selectedOption: Int = radiogrp!!.checkedRadioButtonId
+        imgBack = findViewById<ImageView>(R.id.imgBack)
+        imgBack!!.setOnClickListener(this)
+        imgHome = findViewById<ImageView>(R.id.imgHome)
+        imgHome!!.setOnClickListener(this)
+        rv_duereminder = findViewById(R.id.rv_duereminder)
 
         // Assigning id of the checked radio button
-        radioButton = findViewById(selectedOption)
+       // radioButton = findViewById(selectedOption)
 
         // Displaying text of the checked radio button in the form of toast
-        Toast.makeText(baseContext, radioButton.text, Toast.LENGTH_SHORT).show()
-        if(radioButton.text.equals("Deposit"))
-                {
-                      submode="1"
-                }
-        if(radioButton.text.equals("Loan"))
+        //Toast.makeText(baseContext, radioButton.text, Toast.LENGTH_SHORT).show()
+
+        if(radio1!!.isChecked())
         {
-                    submode="2"
+            if(radio1!!.text.equals("Deposit"))
+            {
+                submode="1"
+            }
         }
+        else if(radio2!!.isChecked())
+        {
+            if(radio2!!.text.equals("Loan"))
+            {
+                submode="2"
+            }
+        }
+
+
         getdueReminder(submode)
     }
 
@@ -140,7 +168,31 @@ class DueReminderActivity : AppCompatActivity() {
                                 Log.i("Response", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
-                                            jObject.getJSONObject("PassBookAccountDetails")
+                                            jObject.getJSONObject("AccountDueDateDetailsIfo")
+                                    val jsonobj2 = JSONObject(jsonObj1.toString())
+
+                                    jresult = jsonobj2.getJSONArray("AccountDueDateDetails")
+                                    if (jresult!!.length() != 0) {
+
+                                        val lLayout =
+                                            GridLayoutManager(this@DueReminderActivity, 1)
+                                        rv_duereminder!!.layoutManager = lLayout
+                                        rv_duereminder!!.setHasFixedSize(true)
+                                        val adapter = DuereminderListAdapter(applicationContext!!, jresult!!)
+
+                                        rv_duereminder!!.adapter = adapter
+                                    } else {
+                                        val builder = AlertDialog.Builder(
+                                            this@DueReminderActivity,
+                                            R.style.MyDialogTheme
+                                        )
+                                        builder.setMessage("" + jObject.getString("EXMessage"))
+                                        builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                        }
+                                        val alertDialog: AlertDialog = builder.create()
+                                        alertDialog.setCancelable(false)
+                                        alertDialog.show()
+                                    }
 
 
                                 } else {
@@ -207,6 +259,17 @@ class DueReminderActivity : AppCompatActivity() {
                 val alertDialog: AlertDialog = builder.create()
                 alertDialog.setCancelable(false)
                 alertDialog.show()
+            }
+        }
+    }
+
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.imgBack ->{
+                finish()
+            }
+            R.id.imgHome ->{
+                startActivity(Intent(this@DueReminderActivity, HomeActivity::class.java))
             }
         }
     }

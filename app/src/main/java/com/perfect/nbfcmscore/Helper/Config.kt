@@ -39,6 +39,7 @@ object Config {
     const val SHARED_PREF16 = "FK_Account"
     const val SHARED_PREF17 = "SubModule"
     const val SHARED_PREF18 = "Status"
+    const val SHARED_PREF19 = "CustomerNumber"
 
 
     fun getHostnameVerifier(): HostnameVerifier {
@@ -118,6 +119,16 @@ object Config {
             }
         }
     }
+
+    fun getDecimelFormateForEditText(amount: Double): String? {
+        val fmt = DecimalFormat("#,##,##,##,###")
+        var amt = fmt.format(amount)
+        if (amt.substring(0, 1) == ".") {
+            amt = "0$amt"
+        }
+        return amt
+    }
+
     fun getDecimelFormate(amount: Double): String? {
         val fmt = DecimalFormat("#,##,##,##,###.00")
         var amt = fmt.format(amount)

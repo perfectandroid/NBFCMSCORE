@@ -83,190 +83,207 @@
         android:padding="20dp"
         android:layout_below="@+id/rltv_header">
 
-         <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:padding="5dp"
-             android:layout_marginTop="20dp"
-        android:background="@drawable/bg_light_grey">
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_mobilenumber"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColorHint="@color/colorPrimarylight"
-            app:hintTextColor="@color/colorPrimarylight"
-            android:background="@android:color/transparent"
-            android:layout_toLeftOf="@+id/im_contact">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tie_mobilenumber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@color/colorPrimarylight"
-                android:hint="Mobile Number"
-                android:inputType="phone"
-                android:background="@android:color/transparent"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <ImageView
-            android:id="@+id/im_contact"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:backgroundTint="@color/colorPrimarylight"
-            android:background="@drawable/ic_contact_box"/>
-
-
-
-
-    </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="vertical"
-            android:padding="5dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_light_grey">
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColorHint="@color/colorPrimarylight"
-                app:hintTextColor="@color/colorPrimarylight"
-                android:layout_alignParentBottom="true"
-                android:background="@android:color/transparent">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tie_operator"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="@color/colorPrimarylight"
-                    android:hint="Operator"
-                    android:focusable="false"
-                    android:clickable="true"
-                    android:background="@android:color/transparent"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="vertical"
-            android:padding="5dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_light_grey">
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColorHint="@color/colorPrimarylight"
-                app:hintTextColor="@color/colorPrimarylight"
-                android:layout_alignParentBottom="true"
-                android:background="@android:color/transparent">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tie_circle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="@color/colorPrimarylight"
-                    android:hint="Circle"
-                    android:focusable="false"
-                    android:clickable="true"
-                    android:background="@android:color/transparent"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="vertical"
-            android:padding="5dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_light_grey">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColorHint="@color/colorPrimarylight"
-                app:hintTextColor="@color/colorPrimarylight"
-                android:layout_alignParentBottom="true"
-                android:background="@android:color/transparent">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tie_amount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="@color/colorPrimarylight"
-                    android:hint="Amount"
-                    android:enabled="true"
-                    android:background="@android:color/transparent"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="vertical"
-            android:padding="5dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_light_grey">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColorHint="@color/colorPrimarylight"
-                app:hintTextColor="@color/colorPrimarylight"
-                android:layout_alignParentBottom="true"
-                android:background="@android:color/transparent">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tie_account"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="@color/colorPrimarylight"
-                    android:hint="Account Number"
-                    android:focusable="false"
-                    android:clickable="true"
-                    android:background="@android:color/transparent"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </RelativeLayout>
-
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/bg_button"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
 
-            <Button
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_light_grey">
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_mobilenumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColorHint="@color/colorPrimarylight"
+                    app:hintTextColor="@color/colorPrimarylight"
+                    android:background="@android:color/transparent"
+                    android:layout_toLeftOf="@+id/im_contact">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tie_mobilenumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/colorPrimarylight"
+                        android:hint="Mobile Number"
+                        android:inputType="phone"
+                        android:background="@android:color/transparent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <ImageView
+                    android:id="@+id/im_contact"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:backgroundTint="@color/colorPrimarylight"
+                    android:background="@drawable/ic_contact_box"/>
+
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_light_grey">
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColorHint="@color/colorPrimarylight"
+                    app:hintTextColor="@color/colorPrimarylight"
+                    android:layout_alignParentBottom="true"
+                    android:background="@android:color/transparent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tie_operator"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/colorPrimarylight"
+                        android:hint="Operator"
+                        android:focusable="false"
+                        android:clickable="true"
+                        android:background="@android:color/transparent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_light_grey">
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColorHint="@color/colorPrimarylight"
+                    app:hintTextColor="@color/colorPrimarylight"
+                    android:layout_alignParentBottom="true"
+                    android:background="@android:color/transparent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tie_circle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/colorPrimarylight"
+                        android:hint="Circle"
+                        android:focusable="false"
+                        android:clickable="true"
+                        android:background="@android:color/transparent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_light_grey">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColorHint="@color/colorPrimarylight"
+                    app:hintTextColor="@color/colorPrimarylight"
+                    android:layout_alignParentBottom="true"
+                    android:background="@android:color/transparent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tie_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/colorPrimarylight"
+                        android:hint="Amount"
+                        android:inputType="numberDecimal"
+                        android:enabled="true"
+                        android:background="@android:color/transparent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_light_grey">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColorHint="@color/colorPrimarylight"
+                    app:hintTextColor="@color/colorPrimarylight"
+                    android:layout_alignParentBottom="true"
+                    android:background="@android:color/transparent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tie_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/colorPrimarylight"
+                        android:hint="Account Number"
+                        android:focusable="false"
+                        android:clickable="true"
+                        android:background="@android:color/transparent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rltv_recharge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:textAllCaps="true"
-                android:text="recharge"/>
+                android:orientation="vertical"
+                android:background="@drawable/bg_button"
+                android:layout_marginTop="30dp">
 
-        </RelativeLayout>
+                <Button
+                    android:id="@+id/but_recharge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:text="recharge"/>
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
 
 
         <LinearLayout

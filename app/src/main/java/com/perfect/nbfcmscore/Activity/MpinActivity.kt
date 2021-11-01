@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
@@ -36,6 +37,7 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
     var pinview: Pinview? = null
     var tvforgetpassword: TextView? = null
     var tvchangepassword: TextView? = null
+    val TAG: String = "MpinActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -130,15 +132,12 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("2"))
                         requestObject1.put("FK_Customer",  MscoreApplication.encryptStart(FK_Customer))
-                        requestObject1.put("OTP", MscoreApplication.encryptStart(varOtp))
+                        requestObject1.put("MPIN", MscoreApplication.encryptStart(varOtp))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-                        requestObject1.put(
-                            "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                    R.string.BankKey
-                                )
-                            )
-                        )
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
+
+                        Log.e(TAG,"requestObject1  139   "+requestObject1)
+
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -159,26 +158,31 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
                             Response<String>
                         ) {
                             try {
+                                Log.e(TAG,"response  1391   "+response.body())
                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jobjt = jObject.getJSONObject("VarificationMaintenance")
-                                    val builder = AlertDialog.Builder(
-                                        this@MpinActivity,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jobjt.getString("ResponseMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                        startActivity(
-                                            Intent(
-                                                this@MpinActivity,
-                                                HomeActivity::class.java
-                                            )
-                                        )
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+
+                                    startActivity(
+                                        Intent(this@MpinActivity, HomeActivity::class.java))
+
+//                                    val builder = AlertDialog.Builder(
+//                                        this@MpinActivity,
+//                                        R.style.MyDialogTheme
+//                                    )
+//                                    builder.setMessage("" + jobjt.getString("ResponseMessage"))
+//                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+//                                        startActivity(
+//                                            Intent(
+//                                                this@MpinActivity,
+//                                                HomeActivity::class.java
+//                                            )
+//                                        )
+//                                    }
+//                                    val alertDialog: AlertDialog = builder.create()
+//                                    alertDialog.setCancelable(false)
+//                                    alertDialog.show()
                                 } else {
                                     pinview!!.clearValue()
                                     val builder = AlertDialog.Builder(

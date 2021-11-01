@@ -38,10 +38,25 @@
                     android:layout_weight="1" />
 
                 <ImageView
+                    android:id="@+id/imgshare"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_weight=".2"
+                    android:padding="5dp"
+                    android:src="@drawable/sharenav" />
+                <ImageView
+                    android:id="@+id/imgloanslab"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_weight=".2"
+                    android:padding="5dp"
+                    android:src="@drawable/loanslab" />
+                <ImageView
                     android:id="@+id/imgHome"
                     android:layout_width="0dp"
                     android:layout_height="35dp"
                     android:layout_weight=".2"
+                    android:padding="5dp"
                     android:src="@drawable/ic_home" />
 
             </LinearLayout>
@@ -72,7 +87,6 @@
                         android:drawableLeft="@drawable/accounticon"
                         android:drawablePadding="10dp"
                         android:text="My Accounts"
-                        android:drawableRight="@drawable/icshare"
                         android:textColor="@color/colorPrimary"
                         android:textSize="15sp" />
                 </LinearLayout>

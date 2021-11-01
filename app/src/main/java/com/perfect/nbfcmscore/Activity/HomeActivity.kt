@@ -22,6 +22,9 @@ import java.util.*
 
 class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
+    var lldashboard: LinearLayout? = null
+    var llprdctdetail: LinearLayout? = null
+    var llgoldslab: LinearLayout? = null
     var llmyaccounts: LinearLayout? = null
     var lvNavMenu: ListView? = null
     var drawer: DrawerLayout? = null
@@ -31,10 +34,15 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var ll_postpaid : LinearLayout?=null
     var ll_landline : LinearLayout?=null
     var ll_holidaylist : LinearLayout?=null
+    var llownbank : LinearLayout?=null
     var ll_dth : LinearLayout?=null
     var llEmi : LinearLayout?=null
     var llpassbook: LinearLayout? = null
     var llduereminder: LinearLayout? = null
+    var ll_virtualcard: LinearLayout? = null
+    var ll_otherbank: LinearLayout? = null
+    var llquickbalance: LinearLayout? = null
+
     private var mPager: ViewPager? = null
     private var indicator: CircleIndicator? = null
     private var currentPage = 0
@@ -73,11 +81,14 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     }
 
     open fun setInitialise() {
+        lldashboard = findViewById(R.id.lldashboard)
+        llprdctdetail = findViewById(R.id.llprdctdetail)
         llmyaccounts = findViewById(R.id.llmyaccounts)
         imgMenu = findViewById(R.id.imgMenu)
         drawer = findViewById(R.id.drawer_layout)
         lvNavMenu = findViewById(R.id.lvNavMenu)
         ll_branschDetails = findViewById(R.id.ll_branschDetails)
+        llownbank = findViewById(R.id.llownbank)
         ll_holidaylist= findViewById(R.id.ll_holidaylist)
         ll_prepaid = findViewById(R.id.ll_prepaid)
         ll_postpaid = findViewById(R.id.ll_postpaid)
@@ -86,15 +97,23 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         llEmi = findViewById(R.id.llEmi)
         llpassbook = findViewById<LinearLayout>(R.id.llpassbook)
         llduereminder = findViewById<LinearLayout>(R.id.lldueremindrer)
+        llgoldslab = findViewById<LinearLayout>(R.id.llgoldslab)
+        ll_virtualcard = findViewById<LinearLayout>(R.id.ll_virtualcard)
+        ll_otherbank = findViewById<LinearLayout>(R.id.ll_otherbank)
+        llquickbalance = findViewById<LinearLayout>(R.id.llquickbalance)
 
     }
 
     open fun setRegister() {
+        lldashboard!!.setOnClickListener(this)
+        llprdctdetail!!.setOnClickListener(this)
+        llgoldslab!!.setOnClickListener(this)
+        llquickbalance!!.setOnClickListener(this)
         llmyaccounts!!.setOnClickListener(this)
         imgMenu!!.setOnClickListener(this)
         mPager = findViewById(R.id.pager)
         indicator =findViewById(R.id.indicator)
-
+        llownbank!!.setOnClickListener(this)
         llpassbook!!.setOnClickListener(this)
         llduereminder!!.setOnClickListener(this)
         ll_holidaylist!!.setOnClickListener(this)
@@ -104,6 +123,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         ll_landline!!.setOnClickListener(this)
         ll_dth!!.setOnClickListener(this)
         llEmi!!.setOnClickListener(this)
+        ll_virtualcard!!.setOnClickListener(this)
+        ll_otherbank!!.setOnClickListener(this)
     }
 
     open fun setHomeNavMenu() {
@@ -145,6 +166,13 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         when (v.id) {
             R.id.imgMenu ->
                   drawer!!.openDrawer(Gravity.START)
+            R.id.lldashboard ->{
+                startActivity(Intent(this@HomeActivity, DashboardActivity::class.java))
+            }
+            R.id.llprdctdetail ->{
+
+                startActivity(Intent(this@HomeActivity, ProductListActivity::class.java))
+            }
             R.id.llmyaccounts ->{
                 startActivity(Intent(this@HomeActivity, AccountlistActivity::class.java))
             }
@@ -164,6 +192,15 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             }
             R.id.llpassbook ->{
                 startActivity(Intent(this@HomeActivity, PassbookActivity::class.java))
+            }
+            R.id.llquickbalance ->{
+                startActivity(Intent(this@HomeActivity, QuickBalanceActivity::class.java))
+            }
+            R.id.llownbank ->{
+                startActivity(Intent(this@HomeActivity, OwnBankFundTransferServiceActivity::class.java))
+            }
+            R.id.llgoldslab ->{
+                startActivity(Intent(this@HomeActivity, GoldSlabEstimatorActivity::class.java))
             }
             R.id.ll_prepaid ->{
 
@@ -187,6 +224,17 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
                 var intent = Intent(this@HomeActivity, RechargeActivity::class.java)
                 intent.putExtra("from", "dth")
+                startActivity(intent)
+            }
+
+            R.id.ll_virtualcard ->{
+
+                var intent = Intent(this@HomeActivity, VirtualActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.ll_otherbank ->{
+
+                var intent = Intent(this@HomeActivity, OtherBankActivity::class.java)
                 startActivity(intent)
             }
 
