@@ -45,6 +45,7 @@
     <color name="text_fourth">#EDECEC</color>
     <color name="text_tertary">#ff333333</color>
 
+
     <!-- dots inactive colors -->
     <color name="dot_dark_screen2">#d1395c</color>
     <color name="dot_dark_screen1">#14a895</color>
@@ -86,5 +87,6 @@
     <color name="gray_btn_bg_color">#e74c3c</color>
     <color name="red_error_snack_bar">#ca0606</color>
     <color name="blue_variant2">#1196C3</color>
+    <color name="button_color">#61B383</color>
 
 </resources>

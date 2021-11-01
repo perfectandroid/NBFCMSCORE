@@ -121,5 +121,8 @@ interface ApiInterface {
     fun getFundTransferStatus(@Body body: RequestBody): Call<String>
 
 
+    @POST("Recharge/RechargeHistory")
+    fun getRechargeHistory(@Body body: RequestBody): Call<String>
+
 }
 
