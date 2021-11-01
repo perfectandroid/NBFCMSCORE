@@ -114,5 +114,8 @@ interface ApiInterface {
     @POST("AccountSummary/ProductDetailsSummary")
     fun getProductsummary(@Body body: RequestBody): Call<String>
 
+    @POST("AccountSummary/FundTransferToOtherBank")
+    fun getFundTransferToOtherBank(@Body body: RequestBody): Call<String>
+
 }
 
