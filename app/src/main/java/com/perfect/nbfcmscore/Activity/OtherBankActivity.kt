@@ -22,6 +22,7 @@ class OtherBankActivity : AppCompatActivity()  , View.OnClickListener{
 
     var ll_imps: LinearLayout? = null
     var ll_neft: LinearLayout? = null
+    var ll_fundtransfer: LinearLayout? = null
     var ll_rtgs: LinearLayout? = null
 
 
@@ -45,6 +46,7 @@ class OtherBankActivity : AppCompatActivity()  , View.OnClickListener{
         ll_imps = findViewById<LinearLayout>(R.id.ll_imps)
         ll_neft = findViewById<LinearLayout>(R.id.ll_neft)
         ll_rtgs = findViewById<LinearLayout>(R.id.ll_rtgs)
+        ll_fundtransfer = findViewById<LinearLayout>(R.id.ll_fundtransfer)
 
 
     }
@@ -56,7 +58,7 @@ class OtherBankActivity : AppCompatActivity()  , View.OnClickListener{
         ll_imps!!.setOnClickListener(this)
         ll_neft!!.setOnClickListener(this)
         ll_rtgs!!.setOnClickListener(this)
-
+        ll_fundtransfer!!.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
@@ -92,6 +94,12 @@ class OtherBankActivity : AppCompatActivity()  , View.OnClickListener{
 
                 var intent = Intent(this@OtherBankActivity, OtherBankFundTransferActivity::class.java)
                 intent.putExtra("trans", "RTGS")
+                startActivity(intent)
+            }
+            R.id.ll_fundtransfer ->{
+
+                var intent = Intent(this@OtherBankActivity, OtherfundTransferHistory::class.java)
+                intent.putExtra("trans", "FUND TRANSFER")
                 startActivity(intent)
             }
         }
