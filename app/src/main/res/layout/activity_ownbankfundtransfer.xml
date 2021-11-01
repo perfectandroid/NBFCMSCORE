@@ -767,7 +767,7 @@
                     android:layout_marginStart="1dp"
                     android:layout_weight="1"
                     android:text="PAY"
-                    android:backgroundTint=" #61B383"
+                    android:backgroundTint="#61B383"
                     android:textAllCaps="false"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp"
