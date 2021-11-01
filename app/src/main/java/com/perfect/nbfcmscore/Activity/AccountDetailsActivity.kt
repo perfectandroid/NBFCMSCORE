@@ -23,6 +23,7 @@ import java.util.ArrayList
 class AccountDetailsActivity : AppCompatActivity() , View.OnClickListener {
     private var progressDialog: ProgressDialog? = null
 
+
     var LoanType: String=""
     var Balance: String=""
     var AccountNumber: String=""
