@@ -102,14 +102,14 @@
                                 android:layout_weight="4"
                                 app:cardCornerRadius="8dp"
                                 app:cardElevation="8dp"
-                                app:cardBackgroundColor="@color/colorPrimarylight"
+                                app:cardBackgroundColor="@color/colorAccent"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src="@drawable/principal_amt"
+                                    android:src="@drawable/emi"
                                     android:padding="5dp"
                                     android:background="@android:color/transparent"/>
 
@@ -167,14 +167,14 @@
                                 android:layout_weight="4"
                                 app:cardCornerRadius="8dp"
                                 app:cardElevation="8dp"
-                                app:cardBackgroundColor="@color/colorPrimarylight"
+                                app:cardBackgroundColor="@color/colorAccent"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src="@drawable/rate_interest"
+                                    android:src="@drawable/emi"
                                     android:padding="5dp"
                                     android:background="@android:color/transparent"/>
 
@@ -232,14 +232,14 @@
                                 android:layout_weight="4"
                                 app:cardCornerRadius="8dp"
                                 app:cardElevation="8dp"
-                                app:cardBackgroundColor="@color/colorPrimarylight"
+                                app:cardBackgroundColor="@color/colorAccent"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src="@drawable/year_month"
+                                    android:src="@drawable/emi"
                                     android:padding="5dp"
                                     android:background="@android:color/transparent"/>
 
@@ -303,14 +303,14 @@
                                 android:layout_weight="4"
                                 app:cardCornerRadius="8dp"
                                 app:cardElevation="8dp"
-                                app:cardBackgroundColor="@color/colorPrimarylight"
+                                app:cardBackgroundColor="@color/colorAccent"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src="@drawable/emi_type"
+                                    android:src="@drawable/emi"
                                     android:padding="5dp"
                                     android:background="@android:color/transparent"/>
 
@@ -337,7 +337,7 @@
                     android:id="@+id/llOutput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="visible">
+                    android:visibility="invisible">
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -371,7 +371,7 @@
                                     tools:ignore="Autofill" />
 
                                 <TextView
-                                    android:id="@+id/emiTotal"
+                                    android:id="@+id/emi"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:inputType="number"
@@ -439,7 +439,7 @@
 
 
             <Button
-                android:id="@+id/btn_calculate"
+                android:id="@+id/btn_calculate2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"

@@ -7,8 +7,6 @@ import android.content.Intent
 import android.database.Cursor
 import android.os.Bundle
 import android.provider.ContactsContract
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.view.Window
@@ -104,54 +102,6 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
             tv_header!!.text = "DTH"
             ProvidersMode = "2"
         }
-
-
-        tie_amount!!.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable) {
-                tie_amount!!.removeTextChangedListener(this)
-                try {
-                    var originalString = s.toString()
-                    if (originalString != "") {
-                        val longval: Double
-                        if (originalString.contains(",")) {
-                            originalString = originalString.replace(",".toRegex(), "")
-                        }
-                        longval = originalString.toDouble()
-
-                        val formattedString: String? = Config!!.getDecimelFormateForEditText(longval)
-                        tie_amount!!.setText(formattedString)
-                        val selection: Int = tie_amount!!.length()
-                        tie_amount!!.setSelection(selection)
-                        // tie_amount!!.setSelection(tie_amount!!.getText().length)
-                        val amnt: String = tie_amount!!.getText().toString().replace(",".toRegex(), "")
-                        val netAmountArr = amnt.split("\\.".toRegex()).toTypedArray()
-
-                    } else {
-                        tie_amount!!.setText("")
-                    }
-                } catch (nfe: NumberFormatException) {
-                    nfe.printStackTrace()
-                }
-                tie_amount!!.addTextChangedListener(this)
-            }
-
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                try {
-                    if (s.length != 0) {
-                        var originalString = s.toString()
-                        if (originalString.contains(",")) {
-                            originalString = originalString.replace(",".toRegex(), "")
-                        }
-                        val num = ("" + originalString).toDouble()
-                        // btn_submit!!.setText("PAY  " + "\u20B9 " + Config.getDecimelFormate(num))
-                    } else {
-                        //  btn_submit!!.setText("PAY")
-                    }
-                } catch (e: NumberFormatException) {
-                }
-            }
-        })
 
 
     }
@@ -808,7 +758,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
     private fun rechargeValidation() {
 
         mobileNumber = tie_mobilenumber!!.text.toString();
-        Amount = tie_amount!!.text.toString().replace(",", "")
+        Amount = tie_amount!!.text.toString();
         var mAccountNumber = AccountNo!!.replace(AccountNo!!.substring(AccountNo!!.indexOf(" (") + 1, AccountNo!!.indexOf(')') + 1), "")
         mAccountNumber = mAccountNumber.replace(" ", "")
 
@@ -861,7 +811,6 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
         val tv_cir = dialog.findViewById(R.id.tv_cir) as TextView
         val text_confirmationmsg = dialog.findViewById(R.id.text_confirmationmsg) as TextView
         val tv_amount = dialog.findViewById(R.id.tv_amount) as TextView
-        val tv_amount_words = dialog.findViewById(R.id.tv_amount_words) as TextView
 
         val bt_cancel = dialog.findViewById(R.id.bt_cancel) as Button
         val bt_ok = dialog.findViewById(R.id.bt_ok) as Button
@@ -879,23 +828,9 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 //            double num =Double.parseDouble(""+mAmount);
 //            String stramnt = CommonUtilities.getDecimelFormate(num);
         val stramnt: String = amount.replace(",", "")
-        tv_amount!!.setText(""+Config.getDecimelFormate(stramnt!!.toDouble()))
-     //   tv_amount.setText(""+stramnt)
-
-        val netAmountArr = amount.split("\\.".toRegex()).toTypedArray()
-        var amountInWordPop = ""
-        if (netAmountArr.size > 0) {
-            val integerValue = netAmountArr[0].toInt()
-            amountInWordPop = "Rupees " + NumberToWord!!.convertNumberToWords(integerValue)
-            if (netAmountArr.size > 1) {
-                val decimalValue = netAmountArr[1].toInt()
-                if (decimalValue != 0) {
-                    amountInWordPop += " and " + NumberToWord.convertNumberToWords(decimalValue).toString() + " paise"
-                }
-            }
-            amountInWordPop += " only"
-        }
-        tv_amount_words!!.setText("" + amountInWordPop)
+        val netAmountArr: Array<String> = stramnt.split("\\.").toTypedArray()
+        val amountInWordPop = ""
+        tv_amount.setText(""+stramnt)
 
         bt_ok!!.setOnClickListener {
             recharge(mobileNumber, providersCode, CircleMode, mAccountNumber, SubModule, ID_Providers, ID_RechargeCircle, FK_Account,amount)
@@ -998,19 +933,8 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 //                                    Log.e(TAG,"jArrayOperator  4344   "+jArrayOperator)
 //                                    OperatorbottomSheet(jArrayOperator!!)
 
-                                  //  Toast.makeText(applicationContext,"Not Complete",Toast.LENGTH_LONG).show()
-                                    val builder = AlertDialog.Builder(
-                                        this@RechargeActivity,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                        startActivity(Intent(this@RechargeActivity, HomeActivity::class.java))
-                                        finish()
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    Toast.makeText(applicationContext,"Not Complete",Toast.LENGTH_LONG).show()
+
 
 
                                 } else {
@@ -1020,8 +944,6 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                                     )
                                     builder.setMessage("" + jObject.getString("EXMessage"))
                                     builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                        startActivity(Intent(this@RechargeActivity, HomeActivity::class.java))
-                                        finish()
                                     }
                                     val alertDialog: AlertDialog = builder.create()
                                     alertDialog.setCancelable(false)
@@ -1036,8 +958,6 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                                 )
                                 builder.setMessage("Some technical issues.")
                                 builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    startActivity(Intent(this@RechargeActivity, HomeActivity::class.java))
-                                    finish()
                                 }
                                 val alertDialog: AlertDialog = builder.create()
                                 alertDialog.setCancelable(false)
@@ -1054,8 +974,6 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                             )
                             builder.setMessage("Some technical issues.")
                             builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                startActivity(Intent(this@RechargeActivity, HomeActivity::class.java))
-                                finish()
                             }
                             val alertDialog: AlertDialog = builder.create()
                             alertDialog.setCancelable(false)

@@ -1,9 +1,11 @@
 package com.perfect.nbfcmscore.Adapter
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +14,8 @@ import com.perfect.nbfcmscore.R
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.util.*
 
 class BalancesplitAdapter(internal val mContext: Context, internal val jsInfo: JSONArray): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -21,7 +25,7 @@ class BalancesplitAdapter(internal val mContext: Context, internal val jsInfo: J
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): RecyclerView.ViewHolder {
         val vh: RecyclerView.ViewHolder
         val v = LayoutInflater.from(parent.context).inflate(
-            R.layout.adapter_branch_list, parent, false
+                R.layout.activity_splitlist, parent, false
         )
         vh = MainViewHolder(v)
         return vh
@@ -33,93 +37,72 @@ class BalancesplitAdapter(internal val mContext: Context, internal val jsInfo: J
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         try {
-
             jsonObject = jsInfo.getJSONObject(position)
-
             if (holder is BalancesplitAdapter.MainViewHolder) {
-                holder.tv_BranchName!!.setText(jsonObject!!.getString("BranchName"))
-                holder.tv_BankName!!.setText(jsonObject!!.getString("BankName"))
+//                ((MainViewHolder)holder).tvkey.setText(jsonObject.getString("Key"));
+//                ((MainViewHolder)holder).tvvalue.setText(jsonObject.getString("Value"));
+                if (jsonObject!!.getString("Key") == "NetAmount") {
+                    val date = Calendar.getInstance().time
+                    val df = SimpleDateFormat("dd-MM-yyyy")
+                    val formattedDate = df.format(date)
+                    holder.tvkey!!.setText("Due As On $formattedDate")
+                    holder.tvvalue!!.setText(jsonObject!!.getString("Value"))
+                    holder.v_sep!!.visibility=View.VISIBLE
+                    holder.tvkey!!.setTextColor(Color.parseColor("#B22222"))
+                    holder.tv_sep!!.setTextColor(Color.parseColor("#B22222"))
+                    holder.tvvalue!!.setTextColor(Color.parseColor("#B22222"))
 
-                var address = ""
-                if(!jsonObject!!.getString("Address").equals("")){
-                    address = jsonObject!!.getString("Address")
+                } else {
+                    holder.tvkey!!.setText(jsonObject!!.getString("Key"))
+                    holder.tvvalue!!.setText(jsonObject!!.getString("Value"))
+                    holder.v_sep!!.visibility=View.GONE
+
                 }
-                if(!jsonObject!!.getString("Place").equals("")){
-                    address = address+" , "+jsonObject!!.getString("Place")
+                //                Log.e(TAG,"Value   57   "+jsonObject.getString("Value"));
+//                double num =Double.parseDouble(""+jsonObject.getString("Value"));
+//                ((MainViewHolder)holder).tvvalue.setText(""+ CommonUtilities.getDecimelFormate(num));
+                if (jsonObject!!.getString("Key") == "Pending Installment") {
+                    holder.tvkey!!.setTextColor(Color.parseColor("#000000"))
+                    holder.tv_sep!!.setTextColor(Color.parseColor("#000000"))
+                    holder.tvvalue!!.setTextColor(Color.parseColor("#000000"))
+                    holder.llDetails!!.setBackgroundColor(Color.parseColor("#B0E0E6"))
+
                 }
-                if(!jsonObject!!.getString("Post").equals("")){
-                    address = address+" , "+jsonObject!!.getString("Post")
+                if (jsonObject!!.getString("Key") == "BalanceInstallment") {
+                    holder.itemView.visibility = View.GONE
+                    val params = holder.itemView.layoutParams
+                    params.height = 0
+                    params.width = 0
+                    holder.itemView.layoutParams = params
                 }
-                if(!jsonObject!!.getString("District").equals("")){
-                    address = address+" , "+jsonObject!!.getString("District")
-                }
-                holder.tv_Address!!.setText(address)
-
-                if(!jsonObject!!.getString("LandPhoneNumber").equals("")){
-                    holder.tv_mobile!!.visibility = View.GONE
-                    holder.tv_call!!.visibility = View.VISIBLE
-                    holder.tv_mobile!!.setText(jsonObject!!.getString("LandPhoneNumber"))
-                }else if (!jsonObject!!.getString("ContactPersonMobile").equals("")){
-                    holder.tv_call!!.visibility = View.VISIBLE
-                }
-
-
-
-                holder.ll_branchrow!!.setOnClickListener(View.OnClickListener {
-                    //  Log.e("ScratchCard","ScratchCard  114    "+jsonObject.getString("CRAmount") );
-                    clickListener!!.onClick(position,"branch")
-
-                })
-
-                holder.tv_call!!.setOnClickListener(View.OnClickListener {
-                    //  Log.e("ScratchCard","ScratchCard  114    "+jsonObject.getString("CRAmount") );
-                    clickListener!!.onClick(position,"call")
-
-                })
-
-                holder.tv_call!!.setOnClickListener(View.OnClickListener {
-                    //  Log.e("ScratchCard","ScratchCard  114    "+jsonObject.getString("CRAmount") );
-                    clickListener!!.onClick(position,"call")
-
-                })
-
-                holder.ll_map!!.setOnClickListener(View.OnClickListener {
-                    //  Log.e("ScratchCard","ScratchCard  114    "+jsonObject.getString("CRAmount") );
-                    clickListener!!.onClick(position,"map")
-
-                })
-
-
-
             }
         } catch (e: JSONException) {
             e.printStackTrace()
         }
+
+
+
     }
 
     inner class MainViewHolder(v: View) : RecyclerView.ViewHolder(v) {
 
 
-        internal var ll_branchrow: LinearLayout? = null
-        internal var ll_map: LinearLayout? = null
-        internal var ll_call: LinearLayout? = null
-        var tv_BranchName: TextView? = null
-        var tv_BankName: TextView? = null
-        var tv_Address: TextView? = null
-        var tv_call: TextView? = null
-        var tv_mobile: TextView? = null
+        var tvkey: TextView? = null
+        var tvvalue:TextView? = null
+        var tv_sl_no:TextView? = null
+        var tv_sep:TextView? = null
+        var llDetails: LinearLayout? = null
+        var imSeperator: ImageView? = null
+        var v_sep: View? = null
 
         init {
 
-            ll_branchrow = v.findViewById<View>(R.id.ll_branchrow) as LinearLayout
-            ll_map = v.findViewById<View>(R.id.ll_map) as LinearLayout
-            ll_call = v.findViewById<View>(R.id.ll_call) as LinearLayout
-
-            tv_BranchName = v.findViewById<View>(R.id.tv_BranchName) as TextView
-            tv_BankName = v.findViewById<View>(R.id.tv_BankName) as TextView
-            tv_Address = v.findViewById<View>(R.id.tv_Address) as TextView
-            tv_call = v.findViewById<View>(R.id.tv_call) as TextView
-            tv_mobile = v.findViewById<View>(R.id.tv_mobile) as TextView
+            tv_sl_no = v.findViewById(R.id.tv_sl_no)
+            v_sep = v.findViewById(R.id.v_sep)
+            tvvalue = v.findViewById(R.id.tvvalue)
+            tv_sep = v.findViewById(R.id.tv_sep)
+            tvkey = v.findViewById(R.id.tvkey)
+            llDetails = v.findViewById(R.id.llDetails)
 
         }
     }

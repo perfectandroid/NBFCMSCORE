@@ -28,7 +28,6 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
-import java.text.SimpleDateFormat
 import java.util.*
 
 class EMIActivity : AppCompatActivity()  , View.OnClickListener {
@@ -44,11 +43,7 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener {
     var llemitype: LinearLayout? = null
     var sadapter: EmiListAdapter? = null
     var txt_emi: TextView? = null
-    var emiTotal: TextView? = null
-    var interest_total: TextView? = null
-
     var ID_EmiMethod: String? = null
-    var btn_calculate: Button? = null
 
     var EMIArrayList: ArrayList<EMIModel> = ArrayList<EMIModel>()
     var array_sort: ArrayList<EMIModel> = ArrayList<EMIModel>()
@@ -56,10 +51,7 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_emi)
 
-        btn_calculate  = findViewById<View>(R.id.btn_calculate) as Button?
-        emiTotal  = findViewById<View>(R.id.emiTotal) as TextView?
         txt_emi  = findViewById<View>(R.id.txt_emi) as TextView?
-        interest_total  = findViewById<View>(R.id.interest_total) as TextView?
         llemitype  = findViewById<View>(R.id.llemitype) as LinearLayout?
         principal  = findViewById<View>(R.id.principal) as EditText?
         interest  = findViewById<View>(R.id.interest) as EditText?
@@ -70,10 +62,10 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener {
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)
         llemitype!!.setOnClickListener(this)
-        btn_calculate!!.setOnClickListener(this)
+        getStandingInstruction()
     }
 
-    private fun getEMICalculators() {
+    private fun getStandingInstruction() {
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@EMIActivity, R.style.Progress)
@@ -106,8 +98,6 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener {
                         val TokenSP = applicationContext.getSharedPreferences(Config.SHARED_PREF8, 0)
                         val Token = TokenSP.getString("Token", null)
 
-                        val sdf = SimpleDateFormat("dd-M-yyyy")
-                        val currentDate = sdf.format(Date())
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("22"))
                         requestObject1.put("FK_Customer",  MscoreApplication.encryptStart(FK_Customer))
@@ -116,14 +106,22 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener {
                         requestObject1.put("RateOfInterset", MscoreApplication.encryptStart(interest!!.text.toString()))
                         requestObject1.put("MonthOrYear",  MscoreApplication.encryptStart("M"))
                         requestObject1.put("TenureValue", MscoreApplication.encryptStart(years!!.text.toString()))
-                        requestObject1.put("Id_Method", MscoreApplication.encryptStart(ID_EmiMethod))
-                        requestObject1.put("LoanDate", MscoreApplication.encryptStart(currentDate))
-                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(
+                        requestObject1.put("Id_Method", MscoreApplication.encryptStart("1"))
+                        requestObject1.put("LoanDate", MscoreApplication.encryptStart("26-10-2021"))
+                        requestObject1.put(
+                            "BankKey", MscoreApplication.encryptStart(
+                                getResources().getString(
                                     R.string.BankKey
-                                )))
-                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(getResources().getString(
+                                )
+                            )
+                        )
+                           requestObject1.put(
+                               "BankHeader", MscoreApplication.encryptStart(
+                                   getResources().getString(
                                        R.string.BankHeader
-                                   )))
+                                   )
+                               )
+                           )
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -148,10 +146,13 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener {
                                 val jObject = JSONObject(response.body())
                                 if (jObject.getString("StatusCode") == "0") {
 
-                                    val jobjt = jObject.getJSONObject("EMICalculatorDateils")
+                                    val jobjt = jObject.getJSONObject("LoanSlabDetails")
+                                    val jarray =
+                                        jobjt.getJSONArray("LoanSlabDetailsList")
 
-                                    emiTotal!!.text=jobjt.getString("InstallmentAmount")
-                                    interest_total!!.text=jobjt.getString("TotalInterest")
+                                    val obj_adapter = LoanSlabAdaptor(applicationContext!!, jarray)
+                                    rv_loanslab!!.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
+                                    rv_loanslab!!.adapter = obj_adapter
 
                                 } else {
                                     val builder = AlertDialog.Builder(
@@ -400,9 +401,6 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener {
 
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.btn_calculate ->{
-                getEMICalculators()
-            }
             R.id.imgBack ->{
                 finish()
             }
