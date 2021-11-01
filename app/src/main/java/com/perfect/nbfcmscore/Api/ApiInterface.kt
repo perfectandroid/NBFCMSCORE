@@ -117,6 +117,10 @@ interface ApiInterface {
     @POST("AccountSummary/FundTransferToOtherBank")
     fun getFundTransferToOtherBank(@Body body: RequestBody): Call<String>
 
+    @POST("AccountSummary/OwnFundTransferHistory")
+    fun getFundTransferStatus(@Body body: RequestBody): Call<String>
+
+
     @POST("Recharge/RechargeHistory")
     fun getRechargeHistory(@Body body: RequestBody): Call<String>
 
