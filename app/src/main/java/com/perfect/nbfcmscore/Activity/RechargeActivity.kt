@@ -21,7 +21,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Adapter.AccountAdapter
-import com.perfect.nbfcmscore.Adapter.BeneficiaryListAdapter
 import com.perfect.nbfcmscore.Adapter.CircleAdapter
 import com.perfect.nbfcmscore.Adapter.OperatorAdapter
 import com.perfect.nbfcmscore.Adapter.RecentRechargeAdapter
@@ -42,10 +41,12 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
     private var progressDialog: ProgressDialog? = null
     val TAG: String = "RechargeActivity"
     private val PICK_CONTACT = 1
+    private val REACHARGE_OFFER = 10
 
     var im_back: ImageView? = null
     var im_home: ImageView? = null
     var im_contact: ImageView? = null
+    var im_offers: ImageView? = null
 
     var tv_header: TextView? = null
 
@@ -113,6 +114,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 
         getRecentRecharges()
 
+
         tie_amount!!.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
                 tie_amount!!.removeTextChangedListener(this)
@@ -170,6 +172,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
         im_back = findViewById<ImageView>(R.id.im_back)
         im_home = findViewById<ImageView>(R.id.im_home)
         im_contact = findViewById<ImageView>(R.id.im_contact)
+        im_offers = findViewById<ImageView>(R.id.im_offers)
 
         tv_header = findViewById<TextView>(R.id.tv_header)
 
@@ -190,6 +193,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
         im_back!!.setOnClickListener(this)
         im_home!!.setOnClickListener(this)
         im_contact!!.setOnClickListener(this)
+        im_offers!!.setOnClickListener(this)
         tie_operator!!.setOnClickListener(this)
         tie_circle!!.setOnClickListener(this)
         tie_account!!.setOnClickListener(this)
@@ -232,6 +236,20 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
             R.id.but_recharge ->{
                 Log.e(TAG,"ll_recharge")
                 rechargeValidation()
+            }
+            R.id.im_offers ->{
+                Log.e(TAG,"im_offers")
+               // rechargeValidation()3
+                if (!ID_Providers.equals("")){
+//                    val intent = Intent(this@RechargeActivity, ReachargeOfferActivity::class.java)
+//                    intent.putExtra("ID_Providers", ID_Providers)
+//                    startActivityForResult(intent,REACHARGE_OFFER)
+//                    startActivity(Intent(this@RechargeActivity, ReachargeOfferActivity::class.java))
+//                    finish()
+                }else{
+                    Toast.makeText(applicationContext,"Select Operator",Toast.LENGTH_LONG).show()
+                }
+
             }
         }
     }
@@ -766,24 +784,20 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
         if (data.equals("recent")){
 //            dialogAccount!!.dismiss()
             var jsonObject2 = jArrayRecent!!.getJSONObject(position)
-//            FK_Account = jsonObject1.getString("FK_Account")
-//            AccountNo = jsonObject1.getString("AccountNumber")
-//            SubModule= jsonObject1.getString("SubModule")
-//            BranchName= jsonObject1.getString("BranchName")
-//            tie_account!!.setText(""+jsonObject1.getString("AccountNumber"))
+
             tie_mobilenumber!!.setText(""+jsonObject2.getString("MobileNo"))
             tie_operator!!.setText(""+jsonObject2.getString("ProvidersName"))
             tie_circle!!.setText(""+jsonObject2.getString("CircleName"))
             tie_amount!!.setText(""+jsonObject2.getString("RechargeRs"))
 
-            ProvidersCode = "1"
-            CircleMode = "1"
+//            ProvidersCode = "1"
+//            CircleMode = "1"
 
             ID_Providers = jsonObject2.getString("FK_Providers")
-            //ProvidersCode = jsonObject2.getString("ProvidersCode")
+            ProvidersCode = jsonObject2.getString("ProvidersCode")
 
             ID_RechargeCircle = jsonObject2.getString("FK_RechargeCircle")
-           // CircleMode = jsonObject2.getString("CircleMode")
+            CircleMode = jsonObject2.getString("CircleMode")
 
 
 

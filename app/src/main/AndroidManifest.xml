@@ -20,8 +20,13 @@
         android:roundIcon="@drawable/applogo"
         android:supportsRtl="true"
         android:theme="@style/Theme.NBFCMSCORE">
-
-        <activity android:name=".Activity.RechargeHistoryActivity"
+        <activity android:name=".Activity.RechargeOfferActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            tools:ignore="MissingClass"/>
+        <activity
+            android:name=".Activity.RechargeHistoryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustPan"
@@ -212,12 +217,11 @@
             android:name=".Activity.DueReminderActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-<!--        <activity-->
-<!--            android:name=".Activity.DashboardtabActivity"-->
-<!--            android:screenOrientation="portrait"-->
-<!--            android:theme="@style/AppTheme.NoActionBar"-->
-<!--            android:windowSoftInputMode="stateHidden|adjustPan" />-->
+            android:windowSoftInputMode="stateHidden|adjustPan" /> <!-- <activity -->
+        <!-- android:name=".Activity.DashboardtabActivity" -->
+        <!-- android:screenOrientation="portrait" -->
+        <!-- android:theme="@style/AppTheme.NoActionBar" -->
+        <!-- android:windowSoftInputMode="stateHidden|adjustPan" /> -->
         <activity
             android:name=".Activity.HolidayListActivity"
             android:screenOrientation="portrait"
