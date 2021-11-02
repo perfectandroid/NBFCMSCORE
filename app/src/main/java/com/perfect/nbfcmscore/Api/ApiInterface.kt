@@ -108,6 +108,12 @@ interface ApiInterface {
     @POST("AccountSummary/DashBoardAssetsDataDetails")
     fun getDashBoardAssetsDataDetails(@Body body: RequestBody): Call<String>
 
+    @POST("AccountSummary/DashBoardLaibilityDataDetails")
+    fun getDashBoardLiabilityDetails(@Body body: RequestBody): Call<String>
+
+    @POST("AccountSummary/DashBoardDataPaymentAndReceiptDetails")
+    fun getDashBoardpaymentandreceipt(@Body body: RequestBody): Call<String>
+
     @POST("AccountSummary/ProductDetailsList")
     fun getProductDetails(@Body body: RequestBody): Call<String>
 

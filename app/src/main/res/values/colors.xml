@@ -25,7 +25,7 @@
     <color name="greylight">#E1DFDF</color>
     <color name="greylight3">#FAF4F4</color>
     <color name="green">#127317</color>
-
+    <color name="btngreen">#61B383</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
