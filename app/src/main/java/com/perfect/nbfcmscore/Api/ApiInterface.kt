@@ -130,5 +130,8 @@ interface ApiInterface {
     @POST("Recharge/RechargeHistory")
     fun getRechargeHistory(@Body body: RequestBody): Call<String>
 
+    @POST("Recharge/RechargeOffers")
+    fun getRechargeOffers(@Body body: RequestBody): Call<String>
+
 }
 

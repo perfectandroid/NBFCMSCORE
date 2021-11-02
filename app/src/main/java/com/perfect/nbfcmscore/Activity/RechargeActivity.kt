@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.app.ProgressDialog
 import android.content.Intent
+import android.content.SharedPreferences
 import android.database.Cursor
 import android.os.Bundle
 import android.provider.ContactsContract
@@ -239,15 +240,32 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
             }
             R.id.im_offers ->{
                 Log.e(TAG,"im_offers")
-               // rechargeValidation()3
-                if (!ID_Providers.equals("")){
-//                    val intent = Intent(this@RechargeActivity, ReachargeOfferActivity::class.java)
-//                    intent.putExtra("ID_Providers", ID_Providers)
-//                    startActivityForResult(intent,REACHARGE_OFFER)
-//                    startActivity(Intent(this@RechargeActivity, ReachargeOfferActivity::class.java))
-//                    finish()
-                }else{
-                    Toast.makeText(applicationContext,"Select Operator",Toast.LENGTH_LONG).show()
+                val operatorIdPref: SharedPreferences = applicationContext.getSharedPreferences(
+                    Config.SHARED_PREF20,
+                    0
+                )
+                val operatorIdEdit = operatorIdPref.edit()
+                operatorIdEdit.putString("ID_Providers", "")
+                operatorIdEdit.commit()
+                if (!ID_Providers.equals("")) {
+
+                    val operatorIdPref: SharedPreferences = applicationContext.getSharedPreferences(
+                        Config.SHARED_PREF20,
+                        0
+                    )
+                    val operatorIdEdit = operatorIdPref.edit()
+                    operatorIdEdit.putString("ID_Providers", ID_Providers)
+                    operatorIdEdit.commit()
+
+                    val intent = Intent(this@RechargeActivity, RechargeOfferActivity::class.java)
+                    intent.putExtra("ID_Providers", ID_Providers)
+                    startActivityForResult(
+                        intent,
+                        REACHARGE_OFFER
+                    ) // Activity is started with requestCode 2
+
+                } else {
+                    Toast.makeText(applicationContext, "Select Operator", Toast.LENGTH_LONG).show()
                 }
 
             }
@@ -831,6 +849,15 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                 closeCursor(cursor)
             } catch (e: java.lang.Exception) {
 
+            }
+        }
+        if (requestCode == REACHARGE_OFFER && resultCode == RESULT_OK && applicationContext != null) {
+            try {
+                val value = data?.getStringExtra("data")
+                Log.e(TAG, "AMOUNT   932   " + value)
+                tie_amount!!.setText(value)
+            } catch (e: Exception) {
+                Log.e(TAG, "AMOUNT   932   " + e.toString())
             }
         }
 
