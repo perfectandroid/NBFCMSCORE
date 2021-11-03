@@ -724,7 +724,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 
     private fun CirclebottomSheet(jArrayCircle: JSONArray) {
 
-        dialogCircle = BottomSheetDialog(this)
+        dialogCircle = BottomSheetDialog(this,R.style.BottomSheetDialog)
         val view = layoutInflater.inflate(R.layout.circle_bottom_sheet, null)
 
         val rvCircle = view.findViewById<RecyclerView>(R.id.rvCircle)
@@ -773,7 +773,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 
     private fun AccountNobottomSheet(jArrayAccount: JSONArray) {
 
-        dialogAccount = BottomSheetDialog(this)
+        dialogAccount = BottomSheetDialog(this,R.style.BottomSheetDialog)
         val view = layoutInflater.inflate(R.layout.account_bottom_sheet, null)
 
         val rvAccount = view.findViewById<RecyclerView>(R.id.rvAccount)

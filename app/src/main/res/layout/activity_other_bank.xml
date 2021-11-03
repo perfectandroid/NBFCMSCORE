@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.OtherBankActivity"
-    android:background="@color/white">
+    android:background="@color/bgcolour">
 
     <RelativeLayout
         android:id="@+id/rltv_header"

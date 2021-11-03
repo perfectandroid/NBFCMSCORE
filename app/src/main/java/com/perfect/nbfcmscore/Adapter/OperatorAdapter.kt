@@ -10,15 +10,13 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ItemClickListener
 import com.perfect.nbfcmscore.R
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-import com.squareup.picasso.Picasso
-import com.bumptech.glide.annotation.GlideModule
-import com.bumptech.glide.module.AppGlideModule
 
 class OperatorAdapter(internal val mContext: Context, internal val jsInfo: JSONArray): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -62,6 +60,12 @@ class OperatorAdapter(internal val mContext: Context, internal val jsInfo: JSONA
 //                Glide.with(context)
 //                    .load(Uri.parse("file:///android_asset/"+fileName))
 //                    .into(imageView);
+
+                Glide.with(mContext)
+                    .load(imagepath)
+                    .placeholder(R.drawable.applogo)
+                    .error(R.drawable.applogo)
+                    .into((holder).im_operator!!);
 
                 holder.ll_adp_operator!!.setOnClickListener(View.OnClickListener {
                     clickListener!!.onClick(position,"operator")
