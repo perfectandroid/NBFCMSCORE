@@ -52,6 +52,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
     var tv_header: TextView? = null
 
     var tie_mobilenumber: TextInputEditText? = null
+    var tie_subscriber: TextInputEditText? = null
     var tie_operator: TextInputEditText? = null
     var tie_circle: TextInputEditText? = null
     var tie_account: TextInputEditText? = null
@@ -62,11 +63,19 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
     var jArrayAccount: JSONArray? = null
 
 
+    var rltv_mobile: RelativeLayout? = null
+    var rltv_subscriber: RelativeLayout? = null
+    var ll_recentrecharge: LinearLayout? = null
+
+
+
+
     var  dialogOperator: BottomSheetDialog? = null
     var  dialogCircle: BottomSheetDialog? = null
     var  dialogAccount: BottomSheetDialog? = null
 
     var mobileNumber: String? = ""
+    var subscriberId: String? = ""
     var Amount: String? = ""
     var ID_Providers: String? = ""
     var ID_RechargeCircle: String? = ""
@@ -85,10 +94,6 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
     var jArrayRecent: JSONArray? = null
 
 
-
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recharge)
@@ -99,18 +104,22 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
         if(intent.getStringExtra("from")!!.equals("prepaid")){
             ProvidersMode = "1"
             tv_header!!.text = "Prepaid Mobile"
+            rltv_subscriber!!.visibility = View.GONE
         }
         if(intent.getStringExtra("from")!!.equals("postpaid")){
             tv_header!!.text = "Postpaid Mobile"
             ProvidersMode = "4"
+            rltv_subscriber!!.visibility = View.GONE
         }
         if(intent.getStringExtra("from")!!.equals("landline")){
             tv_header!!.text = "Landline"
             ProvidersMode = "3"
+            rltv_subscriber!!.visibility = View.GONE
         }
         if(intent.getStringExtra("from")!!.equals("dth")){
             tv_header!!.text = "DTH"
             ProvidersMode = "2"
+            rltv_mobile!!.visibility = View.GONE
         }
 
         getRecentRecharges()
@@ -178,6 +187,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
         tv_header = findViewById<TextView>(R.id.tv_header)
 
         tie_mobilenumber = findViewById<TextInputEditText>(R.id.tie_mobilenumber)
+        tie_subscriber = findViewById<TextInputEditText>(R.id.tie_subscriber)
         tie_operator = findViewById<TextInputEditText>(R.id.tie_operator)
         tie_circle = findViewById<TextInputEditText>(R.id.tie_circle)
         tie_account = findViewById<TextInputEditText>(R.id.tie_account)
@@ -186,6 +196,10 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
         but_recharge = findViewById<Button>(R.id.but_recharge)
 
         rvrecentRecharge = findViewById<FullLenghRecyclertview>(R.id.rvrecentRecharge)
+
+        rltv_mobile = findViewById<RelativeLayout>(R.id.rltv_mobile)
+        rltv_subscriber = findViewById<RelativeLayout>(R.id.rltv_subscriber)
+        ll_recentrecharge = findViewById<LinearLayout>(R.id.ll_recentrecharge)
 
 
     }
@@ -236,7 +250,13 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 
             R.id.but_recharge ->{
                 Log.e(TAG,"ll_recharge")
-                rechargeValidation()
+                if (ProvidersMode.equals("1") || ProvidersMode.equals("4")){
+                    rechargeValidation()
+                }
+                else if(ProvidersMode.equals("2")){
+                    dthValidation()
+                }
+
             }
             R.id.im_offers ->{
                 Log.e(TAG,"im_offers")
@@ -271,6 +291,8 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
             }
         }
     }
+
+
 
 
     private fun getOperator() {
@@ -725,22 +747,23 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
     private fun OperatorbottomSheet(jArrayOperator: JSONArray) {
         Log.e(TAG,"jArrayOperator  272     "+jArrayOperator)
 
-        dialogOperator = BottomSheetDialog(this)
-        val view = layoutInflater.inflate(R.layout.operator_bottom_sheet, null)
+        dialogOperator = BottomSheetDialog(this,R.style.BottomSheetDialog)
+       // val view = layoutInflater.inflate(R.layout.operator_bottom_sheet, null)
+        dialogOperator!!.setContentView(R.layout.operator_bottom_sheet)
 //
 //     //   val tv_Close = view.findViewById<TextView>(R.id.tv_Close)
-        val rvOperator = view.findViewById<RecyclerView>(R.id.rvOperator)
+        val rvOperator = dialogOperator!!.findViewById<RecyclerView>(R.id.rvOperator)
 //
         val lLayout = GridLayoutManager(this@RechargeActivity, 3)
-        rvOperator.setLayoutManager(lLayout)
-        rvOperator.setHasFixedSize(true)
+        rvOperator!!.setLayoutManager(lLayout)
+        rvOperator!!.setHasFixedSize(true)
         val obj_adapter = OperatorAdapter(applicationContext!!, jArrayOperator!!)
         rvOperator!!.adapter = obj_adapter
         obj_adapter.setClickListener(this@RechargeActivity)
 
         dialogOperator!!.setCancelable(true)
 
-        dialogOperator!!.setContentView(view)
+       // dialogOperator!!.setContentView(view)
 
         dialogOperator!!.show()
     }
@@ -930,6 +953,58 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 
     }
 
+    private fun dthValidation() {
+
+//        ID_Providers = "1"
+//        ProvidersCode ="2"
+//        tie_operator!!.setText("Airtel DTH")
+
+
+        subscriberId = tie_subscriber!!.text.toString();
+        Amount = tie_amount!!.text.toString().replace(",", "")
+        var mAccountNumber = AccountNo!!.replace(AccountNo!!.substring(AccountNo!!.indexOf(" (") + 1, AccountNo!!.indexOf(')') + 1), "")
+        mAccountNumber = mAccountNumber.replace(" ", "")
+
+        if (subscriberId!!.length <= 0){
+            // Toast.makeText(applicationContext,"Please enter valid  mobile number",Toast.LENGTH_LONG).show()
+
+            CustomBottomSheeet.Show(this,"Please enter valid  subscriber id","0")
+//            showToast("Please enter valid  mobile number")
+        }else if(ProvidersCode!!.equals("")){
+            // Toast.makeText(applicationContext,"Please Select Operator",Toast.LENGTH_LONG).show()
+            CustomBottomSheeet.Show(this,"Please Select Operator","0")
+        }
+        else if(CircleMode!!.equals("")){
+            //  Toast.makeText(applicationContext,"Please Select Circle",Toast.LENGTH_LONG).show()
+            CustomBottomSheeet.Show(this,"Please Select Circle","0")
+        }
+        else if(Amount!!.equals("")){
+            // Toast.makeText(applicationContext,"Please Enter Amount",Toast.LENGTH_LONG).show()
+            CustomBottomSheeet.Show(this,"Please Enter Amount","0")
+        }
+        else if(mAccountNumber!!.length != 12){
+            // Toast.makeText(applicationContext,"Please Select Account",Toast.LENGTH_LONG).show()
+            CustomBottomSheeet.Show(this,"Please Select Account","0")
+        }
+        else if(SubModule!!.equals("")){
+            //  Toast.makeText(applicationContext,"Please Select Account",Toast.LENGTH_LONG).show()
+            CustomBottomSheeet.Show(this,"Please Select Account","0")
+        }else{
+
+            Log.e(TAG,"subscriberId      785   "+subscriberId)
+            Log.e(TAG,"ProvidersCode    785   "+ProvidersCode)
+            Log.e(TAG,"CircleMode       785   "+CircleMode)
+            Log.e(TAG,"Amount           785   "+Amount)
+            Log.e(TAG,"AccountNo        785   "+mAccountNumber)
+            Log.e(TAG,"FK_Providers     785   "+ID_Providers)
+            Log.e(TAG,"FK_RechargeCircle    785   "+ID_RechargeCircle)
+            Log.e(TAG,"FK_Account         785   "+FK_Account)
+
+            RechargeConfirmationPop(subscriberId!!,ProvidersCode!!,CircleMode!!,Amount!!,mAccountNumber,ID_Providers,ID_RechargeCircle,FK_Account,AccountNo!!)
+
+        }
+    }
+
     private fun RechargeConfirmationPop(mobileNumber: String, providersCode: String, circleMode: String, amount: String, mAccountNumber: String?,
         idProviders: String?, idRechargecircle: String?, fkAccount: String?, accountNo: String) {
 
@@ -964,27 +1039,36 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 //            String stramnt = CommonUtilities.getDecimelFormate(num);
         val stramnt: String = amount.replace(",", "")
         val netAmountArr: Array<String> = stramnt.split("\\.").toTypedArray()
-        val amountInWordPop = ""
+        var amountInWordPop = ""
       //  tv_amount.setText(""+stramnt)
         tv_amount!!.setText(""+Config.getDecimelFormate(amount!!.toDouble()))
 
-//        val netAmountArr = amount.split("\\.".toRegex()).toTypedArray()
-//        var amountInWordPop = ""
-//        if (netAmountArr.size > 0) {
-//            val integerValue = netAmountArr[0].toInt()
-//            amountInWordPop = "Rupees " + NumberToWord!!.convertNumberToWords(integerValue)
-//            if (netAmountArr.size > 1) {
-//                val decimalValue = netAmountArr[1].toInt()
-//                if (decimalValue != 0) {
-//                    amountInWordPop += " and " + NumberToWord.convertNumberToWords(decimalValue).toString() + " paise"
-//                }
-//            }
-//            amountInWordPop += " only"
-//        }
-//        tv_amount_words!!.setText("" + amountInWordPop)
+
+        if (netAmountArr.size > 0) {
+            val integerValue = netAmountArr[0].toInt()
+            amountInWordPop = "Rupees " + NumberToWord!!.convertNumberToWords(integerValue)
+            if (netAmountArr.size > 1) {
+                val decimalValue = netAmountArr[1].toInt()
+                if (decimalValue != 0) {
+                    amountInWordPop += " and " + NumberToWord.convertNumberToWords(decimalValue).toString() + " paise"
+                }
+            }
+            amountInWordPop += " only"
+        }
+        tv_amount_words!!.setText("" + amountInWordPop)
 
         bt_ok!!.setOnClickListener {
-            recharge(mobileNumber, providersCode, CircleMode, mAccountNumber, SubModule, ID_Providers, ID_RechargeCircle, FK_Account,amount)
+
+            if (ProvidersMode.equals("1")){
+                recharge(mobileNumber, providersCode, CircleMode, mAccountNumber, SubModule, ID_Providers, ID_RechargeCircle, FK_Account,amount)
+            }
+            else if (ProvidersMode.equals("4")){
+                rechargepostpaid(mobileNumber, providersCode, CircleMode, mAccountNumber, SubModule, ID_Providers, ID_RechargeCircle, FK_Account,amount)
+            }
+            else if (ProvidersMode.equals("2")){
+                Log.e(TAG,"1067   subscriberId  "+mobileNumber)
+               // rechargedth(mobileNumber, providersCode, CircleMode, mAccountNumber, SubModule, ID_Providers, ID_RechargeCircle, FK_Account,amount)
+            }
 
             dialog.dismiss()
         }
@@ -997,6 +1081,346 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 
 
 
+
+    }
+
+    private fun rechargepostpaid(mobileNumber: String, providersCode: String, circleMode: String?, mAccountNumber: String?, subModule: String?,
+                                 idProviders: String?, idRechargecircle: String?, fkAccount: String?, amount: String) {
+
+//        when(ConnectivityUtils.isConnected(this)) {
+//            true -> {
+//                progressDialog = ProgressDialog(this@RechargeActivity, R.style.Progress)
+//                progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
+//                progressDialog!!.setCancelable(false)
+//                progressDialog!!.setIndeterminate(true)
+//                progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
+//                progressDialog!!.show()
+//                try {
+//                    val client = OkHttpClient.Builder()
+//                        .sslSocketFactory(Config.getSSLSocketFactory(this@RechargeActivity))
+//                        .hostnameVerifier(Config.getHostnameVerifier())
+//                        .build()
+//                    val gson = GsonBuilder()
+//                        .setLenient()
+//                        .create()
+//                    val retrofit = Retrofit.Builder()
+//                        .baseUrl(Config.BASE_URL)
+//                        .addConverterFactory(ScalarsConverterFactory.create())
+//                        .addConverterFactory(GsonConverterFactory.create(gson))
+//                        .client(client)
+//                        .build()
+//                    val apiService = retrofit.create(ApiInterface::class.java!!)
+//                    val requestObject1 = JSONObject()
+//                    try {
+//                        val TokenSP = applicationContext.getSharedPreferences(Config.SHARED_PREF8, 0)
+//                        val Token = TokenSP.getString("Token", null)
+//                        val FK_CustomerSP = this.applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
+//                        val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
+//
+//                        requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+//                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
+//                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(getResources().getString(R.string.BankHeader)))
+//                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
+//
+//                        requestObject1.put("MobileNumer", MscoreApplication.encryptStart(mobileNumber))
+//                        requestObject1.put("ProvidersCode", MscoreApplication.encryptStart(ProvidersCode))
+//                        requestObject1.put("CircleMode", MscoreApplication.encryptStart(circleMode))
+//                        requestObject1.put("Amount", MscoreApplication.encryptStart(amount))
+//                        requestObject1.put("AccountNo", MscoreApplication.encryptStart(mAccountNumber))
+//
+//                        requestObject1.put("SubModule", MscoreApplication.encryptStart(SubModule))
+//                        requestObject1.put("FK_Providers", MscoreApplication.encryptStart(idProviders))
+//                        requestObject1.put("FK_RechargeCircle", MscoreApplication.encryptStart(idRechargecircle))
+//                        requestObject1.put("FK_Account", MscoreApplication.encryptStart(FK_Account))
+//
+//                        Log.e(TAG,"requestObject1  901   "+requestObject1)
+//
+//                    } catch (e: Exception) {
+//                        Log.e(TAG,"Some  9011   "+e.toString())
+//                        progressDialog!!.dismiss()
+//                        e.printStackTrace()
+//                        val mySnackbar = Snackbar.make(
+//                            findViewById(R.id.rl_main),
+//                            " Some technical issues.", Snackbar.LENGTH_SHORT
+//                        )
+//                        mySnackbar.show()
+//                    }
+//                    val body = RequestBody.create(
+//                        okhttp3.MediaType.parse("application/json; charset=utf-8"),
+//                        requestObject1.toString()
+//                    )
+//                    val call = apiService.getMobileRecharge(body)
+//                    call.enqueue(object : retrofit2.Callback<String> {
+//                        override fun onResponse(
+//                            call: retrofit2.Call<String>, response:
+//                            Response<String>
+//                        ) {
+//                            try {
+//                                progressDialog!!.dismiss()
+//
+//                                val jObject = JSONObject(response.body())
+//                                Log.e(TAG,"response  9013   "+response.body())
+//                                Log.e(TAG,"response  9014   "+jObject.getString("StatusCode"))
+//                                if (jObject.getString("StatusCode") == "0") {
+//
+////                                    val jobjt = jObject.getJSONObject("ProvidersDetailsIfo")
+////                                    jArrayOperator = jobjt.getJSONArray("ProvidersDetails")
+////                                    Log.e(TAG,"jArrayOperator  4344   "+jArrayOperator)
+////                                    OperatorbottomSheet(jArrayOperator!!)
+//
+//                                    // Toast.makeText(applicationContext,"Not Complete",Toast.LENGTH_LONG).show()
+//                                    val builder = AlertDialog.Builder(
+//                                        this@RechargeActivity,
+//                                        R.style.MyDialogTheme
+//                                    )
+//                                    builder.setMessage("" + jObject.getString("EXMessage"))
+//                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+//                                        startActivity(Intent(this@RechargeActivity, HomeActivity::class.java))
+//                                        finish()
+//                                    }
+//                                    val alertDialog: AlertDialog = builder.create()
+//                                    alertDialog.setCancelable(false)
+//                                    alertDialog.show()
+//
+//
+//
+//                                } else {
+//                                    val builder = AlertDialog.Builder(
+//                                        this@RechargeActivity,
+//                                        R.style.MyDialogTheme
+//                                    )
+//                                    builder.setMessage("" + jObject.getString("EXMessage"))
+//                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+//                                    }
+//                                    val alertDialog: AlertDialog = builder.create()
+//                                    alertDialog.setCancelable(false)
+//                                    alertDialog.show()
+//                                }
+//                            } catch (e: Exception) {
+//                                progressDialog!!.dismiss()
+//                                Log.e(TAG,"Some  2162   "+e.toString())
+//                                val builder = AlertDialog.Builder(
+//                                    this@RechargeActivity,
+//                                    R.style.MyDialogTheme
+//                                )
+//                                builder.setMessage("Some technical issues.")
+//                                builder.setPositiveButton("Ok") { dialogInterface, which ->
+//                                }
+//                                val alertDialog: AlertDialog = builder.create()
+//                                alertDialog.setCancelable(false)
+//                                alertDialog.show()
+//                                e.printStackTrace()
+//                            }
+//                        }
+//                        override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
+//                            progressDialog!!.dismiss()
+//                            Log.e(TAG,"Some  2163   "+t.message)
+//                            val builder = AlertDialog.Builder(
+//                                this@RechargeActivity,
+//                                R.style.MyDialogTheme
+//                            )
+//                            builder.setMessage("Some technical issues.")
+//                            builder.setPositiveButton("Ok") { dialogInterface, which ->
+//                            }
+//                            val alertDialog: AlertDialog = builder.create()
+//                            alertDialog.setCancelable(false)
+//                            alertDialog.show()
+//                        }
+//                    })
+//                } catch (e: Exception) {
+//                    progressDialog!!.dismiss()
+//                    Log.e(TAG,"Some  2165   "+e.toString())
+//                    val builder = AlertDialog.Builder(this@RechargeActivity, R.style.MyDialogTheme)
+//                    builder.setMessage("Some technical issues.")
+//                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+//                    }
+//                    val alertDialog: AlertDialog = builder.create()
+//                    alertDialog.setCancelable(false)
+//                    alertDialog.show()
+//                    e.printStackTrace()
+//                }
+//            }
+//            false -> {
+//
+//                val builder = AlertDialog.Builder(this@RechargeActivity, R.style.MyDialogTheme)
+//                builder.setMessage("No Internet Connection.")
+//                builder.setPositiveButton("Ok") { dialogInterface, which ->
+//                }
+//                val alertDialog: AlertDialog = builder.create()
+//                alertDialog.setCancelable(false)
+//                alertDialog.show()
+//            }
+//        }
+
+    }
+
+    private fun rechargedth(subscriberId: String, providersCode: String, circleMode: String?, mAccountNumber: String?, subModule: String?, idProviders: String?,
+        idRechargecircle: String?, fkAccount: String?, amount: String) {
+
+        when(ConnectivityUtils.isConnected(this)) {
+            true -> {
+                progressDialog = ProgressDialog(this@RechargeActivity, R.style.Progress)
+                progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
+                progressDialog!!.setCancelable(false)
+                progressDialog!!.setIndeterminate(true)
+                progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
+                progressDialog!!.show()
+                try {
+                    val client = OkHttpClient.Builder()
+                        .sslSocketFactory(Config.getSSLSocketFactory(this@RechargeActivity))
+                        .hostnameVerifier(Config.getHostnameVerifier())
+                        .build()
+                    val gson = GsonBuilder()
+                        .setLenient()
+                        .create()
+                    val retrofit = Retrofit.Builder()
+                        .baseUrl(Config.BASE_URL)
+                        .addConverterFactory(ScalarsConverterFactory.create())
+                        .addConverterFactory(GsonConverterFactory.create(gson))
+                        .client(client)
+                        .build()
+                    val apiService = retrofit.create(ApiInterface::class.java!!)
+                    val requestObject1 = JSONObject()
+                    try {
+                        val TokenSP = applicationContext.getSharedPreferences(Config.SHARED_PREF8, 0)
+                        val Token = TokenSP.getString("Token", null)
+                        val FK_CustomerSP = this.applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
+                        val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
+
+                        requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(getResources().getString(R.string.BankHeader)))
+                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
+
+                        requestObject1.put("SUBSCRIBER_ID", MscoreApplication.encryptStart(subscriberId))
+                        requestObject1.put("ProvidersCode", MscoreApplication.encryptStart(ProvidersCode))
+                        requestObject1.put("CircleMode", MscoreApplication.encryptStart(circleMode))
+                        requestObject1.put("Amount", MscoreApplication.encryptStart(amount))
+                        requestObject1.put("AccountNo", MscoreApplication.encryptStart(mAccountNumber))
+
+                        requestObject1.put("SubModule", MscoreApplication.encryptStart(SubModule))
+                        requestObject1.put("FK_Providers", MscoreApplication.encryptStart(idProviders))
+                        requestObject1.put("FK_RechargeCircle", MscoreApplication.encryptStart(idRechargecircle))
+                        requestObject1.put("FK_Account", MscoreApplication.encryptStart(FK_Account))
+
+                        Log.e(TAG,"requestObject1  1130   "+requestObject1)
+
+                    } catch (e: Exception) {
+                        Log.e(TAG,"Some  11301   "+e.toString())
+                        progressDialog!!.dismiss()
+                        e.printStackTrace()
+                        val mySnackbar = Snackbar.make(
+                            findViewById(R.id.rl_main),
+                            " Some technical issues.", Snackbar.LENGTH_SHORT
+                        )
+                        mySnackbar.show()
+                    }
+                    val body = RequestBody.create(
+                        okhttp3.MediaType.parse("application/json; charset=utf-8"),
+                        requestObject1.toString()
+                    )
+                    val call = apiService.getDTHRecharge(body)
+                    call.enqueue(object : retrofit2.Callback<String> {
+                        override fun onResponse(
+                            call: retrofit2.Call<String>, response:
+                            Response<String>
+                        ) {
+                            try {
+                                progressDialog!!.dismiss()
+
+                                val jObject = JSONObject(response.body())
+                                Log.e(TAG,"response  11302   "+response.body())
+                                Log.e(TAG,"response  11303   "+jObject.getString("StatusCode"))
+                                if (jObject.getString("StatusCode") == "0") {
+
+//                                    val jobjt = jObject.getJSONObject("ProvidersDetailsIfo")
+//                                    jArrayOperator = jobjt.getJSONArray("ProvidersDetails")
+//                                    Log.e(TAG,"jArrayOperator  4344   "+jArrayOperator)
+//                                    OperatorbottomSheet(jArrayOperator!!)
+
+                                    // Toast.makeText(applicationContext,"Not Complete",Toast.LENGTH_LONG).show()
+                                    val builder = AlertDialog.Builder(
+                                        this@RechargeActivity,
+                                        R.style.MyDialogTheme
+                                    )
+                                    builder.setMessage("" + jObject.getString("EXMessage"))
+                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                        startActivity(Intent(this@RechargeActivity, HomeActivity::class.java))
+                                        finish()
+                                    }
+                                    val alertDialog: AlertDialog = builder.create()
+                                    alertDialog.setCancelable(false)
+                                    alertDialog.show()
+
+
+
+                                } else {
+                                    val builder = AlertDialog.Builder(
+                                        this@RechargeActivity,
+                                        R.style.MyDialogTheme
+                                    )
+                                    builder.setMessage("" + jObject.getString("EXMessage"))
+                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                    }
+                                    val alertDialog: AlertDialog = builder.create()
+                                    alertDialog.setCancelable(false)
+                                    alertDialog.show()
+                                }
+                            } catch (e: Exception) {
+                                progressDialog!!.dismiss()
+                                Log.e(TAG,"Some  2162   "+e.toString())
+                                val builder = AlertDialog.Builder(
+                                    this@RechargeActivity,
+                                    R.style.MyDialogTheme
+                                )
+                                builder.setMessage("Some technical issues.")
+                                builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                }
+                                val alertDialog: AlertDialog = builder.create()
+                                alertDialog.setCancelable(false)
+                                alertDialog.show()
+                                e.printStackTrace()
+                            }
+                        }
+                        override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
+                            progressDialog!!.dismiss()
+                            Log.e(TAG,"Some  2163   "+t.message)
+                            val builder = AlertDialog.Builder(
+                                this@RechargeActivity,
+                                R.style.MyDialogTheme
+                            )
+                            builder.setMessage("Some technical issues.")
+                            builder.setPositiveButton("Ok") { dialogInterface, which ->
+                            }
+                            val alertDialog: AlertDialog = builder.create()
+                            alertDialog.setCancelable(false)
+                            alertDialog.show()
+                        }
+                    })
+                } catch (e: Exception) {
+                    progressDialog!!.dismiss()
+                    Log.e(TAG,"Some  2165   "+e.toString())
+                    val builder = AlertDialog.Builder(this@RechargeActivity, R.style.MyDialogTheme)
+                    builder.setMessage("Some technical issues.")
+                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                    }
+                    val alertDialog: AlertDialog = builder.create()
+                    alertDialog.setCancelable(false)
+                    alertDialog.show()
+                    e.printStackTrace()
+                }
+            }
+            false -> {
+
+                val builder = AlertDialog.Builder(this@RechargeActivity, R.style.MyDialogTheme)
+                builder.setMessage("No Internet Connection.")
+                builder.setPositiveButton("Ok") { dialogInterface, which ->
+                }
+                val alertDialog: AlertDialog = builder.create()
+                alertDialog.setCancelable(false)
+                alertDialog.show()
+            }
+        }
 
     }
 
@@ -1173,6 +1597,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 
     private fun getRecentRecharges() {
 
+        ll_recentrecharge!!.visibility = View.GONE
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@RechargeActivity, R.style.Progress)
@@ -1241,6 +1666,8 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                                 Log.e(TAG,"response  10852   "+response.body())
                                 Log.e(TAG,"response  10853   "+jObject.getString("StatusCode"))
                                 if (jObject.getString("StatusCode") == "0") {
+
+                                    ll_recentrecharge!!.visibility = View.VISIBLE
 
                                     val jobjt = jObject.getJSONObject("RechargeHistory")
                                     jArrayRecent = jobjt.getJSONArray("RechargeHistoryList")

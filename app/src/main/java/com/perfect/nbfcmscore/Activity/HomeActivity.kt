@@ -222,9 +222,9 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             }
             R.id.ll_landline ->{
 
-                var intent = Intent(this@HomeActivity, RechargeActivity::class.java)
-                intent.putExtra("from", "landline")
-                startActivity(intent)
+//                var intent = Intent(this@HomeActivity, RechargeActivity::class.java)
+//                intent.putExtra("from", "landline")
+//                startActivity(intent)
             }
             R.id.ll_dth ->{
 

@@ -108,6 +108,7 @@
                         android:layout_marginRight="10dp">
 
                         <RelativeLayout
+                            android:id="@+id/rltv_mobile"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:orientation="horizontal"
@@ -145,6 +146,39 @@
                                 android:backgroundTint="@color/colorPrimarylight"
                                 android:background="@drawable/ic_contact_box"/>
 
+
+
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/rltv_subscriber"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal"
+                            android:padding="5dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/bg_light_grey">
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/til_subscriber"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:textColorHint="@color/colorPrimarylight"
+                                app:hintTextColor="@color/colorPrimarylight"
+                                android:background="@android:color/transparent">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/tie_subscriber"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColorHint="@color/colorPrimarylight"
+                                    android:hint="Subscriber ID"
+                                    android:inputType="phone"
+                                    android:background="@android:color/transparent"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
 
 
 
@@ -300,9 +334,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@android:color/transparent"
+                                android:text="recharge"
                                 android:textAllCaps="true"
-                                android:textColor="@color/white"
-                                android:text="recharge"/>
+                                android:textColor="@color/white" />
 
                         </RelativeLayout>
 
@@ -313,6 +347,7 @@
 
 
                     <LinearLayout
+                        android:id="@+id/ll_recentrecharge"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
