@@ -42,6 +42,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
     var im_back: ImageView? = null
     var im_home: ImageView? = null
     var tv_header: TextView? = null
+    var submode: String? = null
     var tv_beneficiaryname: TextView? = null
 
 
@@ -59,6 +60,8 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
 
     var  dialogAccount: BottomSheetDialog? = null
     var ll_chk_bene: LinearLayout? = null
+    var llhist: LinearLayout? = null
+
     var chk_beneficiary: CheckBox? = null
 
 
@@ -177,18 +180,20 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
         ll_chk_bene = findViewById<LinearLayout>(R.id.ll_chk_bene)
         chk_beneficiary = findViewById<CheckBox>(R.id.chk_beneficiary)
         but_pay = findViewById<Button>(R.id.but_pay)
-
+        llhist = findViewById(R.id.llhist)
 
     }
 
     private fun setRegister() {
         im_back!!.setOnClickListener(this)
         im_home!!.setOnClickListener(this)
-
+        llhist!!.setOnClickListener(this)
         tie_accountnumber!!.setOnClickListener(this)
 
         tv_beneficiarylist!!.setOnClickListener(this)
         but_pay!!.setOnClickListener(this)
+
+
      //   tie_beneficiary!!.setOnClickListener(this)
 
     }
@@ -207,6 +212,23 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
             }
             R.id.tie_accountnumber ->{
                 AccountNobottomSheet(jArrayAccount!!)
+            }
+            R.id.llhist ->{
+                var intent = Intent(this@OtherBankFundTransferActivity, OtherfundTransferHistory::class.java)
+                if(tv_beneficiaryname!!.text.toString().equals("IMPS"))
+                {
+                       submode ="1"
+                }
+                else if(tv_beneficiaryname!!.text.toString().equals("NEFT"))
+                {
+                        submode ="2"
+                }
+                else if(tv_beneficiaryname!!.text.toString().equals("RTGS"))
+                {
+                    submode ="3"
+                }
+                intent.putExtra("submode", submode)
+                startActivity(intent)
             }
             R.id.tv_beneficiarylist ->{
 
