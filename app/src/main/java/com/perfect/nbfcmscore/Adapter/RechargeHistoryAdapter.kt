@@ -41,7 +41,7 @@ class RechargeHistoryAdapter (internal val mContext: Context, internal val jsInf
 
                 holder.tv_name!!.setText(jsonObject!!.getString("ProvidersName"))
                 holder.tv_nunber!!.setText(jsonObject!!.getString("MobileNo"))
-                holder.tv_last_recharge!!.setText("Last Recharge ₹ "+jsonObject!!.getString("RechargeRs")+" on "+jsonObject!!.getString("RechargeDate"))
+                holder.tv_last_recharge!!.setText("Last Recharge ₹ "+jsonObject!!.getString("RechargeRs")+" on "+jsonObject!!.getString("RechargeDate")+" , "+jsonObject!!.getString("StatusType"))
 
 
 

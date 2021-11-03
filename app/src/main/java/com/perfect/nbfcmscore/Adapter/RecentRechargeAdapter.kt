@@ -42,7 +42,7 @@ class RecentRechargeAdapter(internal val mContext: Context, internal val jsInfo:
 
                 holder.tv_name!!.setText(jsonObject!!.getString("ProvidersName"))
                 holder.tv_nunber!!.setText(jsonObject!!.getString("MobileNo"))
-                holder.tv_last_recharge!!.setText("Last Recharge ₹ "+jsonObject!!.getString("RechargeRs")+" on "+jsonObject!!.getString("RechargeDate"))
+                holder.tv_last_recharge!!.setText("Last Recharge ₹ "+jsonObject!!.getString("RechargeRs")+" on "+jsonObject!!.getString("RechargeDate")+" , "+jsonObject!!.getString("StatusType"))
 
                 holder.ll_recent!!.setOnClickListener(View.OnClickListener {
                     clickListener!!.onClick(position,"recent")
