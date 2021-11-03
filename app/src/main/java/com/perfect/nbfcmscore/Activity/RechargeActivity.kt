@@ -890,22 +890,29 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
         mAccountNumber = mAccountNumber.replace(" ", "")
 
         if (mobileNumber!!.length!= 10){
-            Toast.makeText(applicationContext,"Please enter valid  mobile number",Toast.LENGTH_LONG).show()
+           // Toast.makeText(applicationContext,"Please enter valid  mobile number",Toast.LENGTH_LONG).show()
+
+            CustomBottomSheeet.Show(this,"Please enter valid  mobile number","0")
 //            showToast("Please enter valid  mobile number")
         }else if(ProvidersCode!!.equals("")){
-            Toast.makeText(applicationContext,"Please Select Operator",Toast.LENGTH_LONG).show()
+           // Toast.makeText(applicationContext,"Please Select Operator",Toast.LENGTH_LONG).show()
+            CustomBottomSheeet.Show(this,"Please Select Operator","0")
         }
         else if(CircleMode!!.equals("")){
-            Toast.makeText(applicationContext,"Please Select Circle",Toast.LENGTH_LONG).show()
+          //  Toast.makeText(applicationContext,"Please Select Circle",Toast.LENGTH_LONG).show()
+            CustomBottomSheeet.Show(this,"Please Select Circle","0")
         }
         else if(Amount!!.equals("")){
-            Toast.makeText(applicationContext,"Please Enter Amount",Toast.LENGTH_LONG).show()
+           // Toast.makeText(applicationContext,"Please Enter Amount",Toast.LENGTH_LONG).show()
+            CustomBottomSheeet.Show(this,"Please Enter Amount","0")
         }
         else if(mAccountNumber!!.length != 12){
-            Toast.makeText(applicationContext,"Please Select Account",Toast.LENGTH_LONG).show()
+           // Toast.makeText(applicationContext,"Please Select Account",Toast.LENGTH_LONG).show()
+            CustomBottomSheeet.Show(this,"Please Select Account","0")
         }
         else if(SubModule!!.equals("")){
-            Toast.makeText(applicationContext,"Please Select Account",Toast.LENGTH_LONG).show()
+          //  Toast.makeText(applicationContext,"Please Select Account",Toast.LENGTH_LONG).show()
+            CustomBottomSheeet.Show(this,"Please Select Account","0")
         }else{
 
             Log.e(TAG,"MobileNumer      785   "+mobileNumber)

@@ -43,6 +43,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var ll_virtualcard: LinearLayout? = null
     var ll_otherbank: LinearLayout? = null
     var llquickbalance: LinearLayout? = null
+    var llstatement: LinearLayout? = null
 
     private var mPager: ViewPager? = null
     private var indicator: CircleIndicator? = null
@@ -103,6 +104,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         ll_virtualcard = findViewById<LinearLayout>(R.id.ll_virtualcard)
         ll_otherbank = findViewById<LinearLayout>(R.id.ll_otherbank)
         llquickbalance = findViewById<LinearLayout>(R.id.llquickbalance)
+        llstatement = findViewById<LinearLayout>(R.id.llstatement)
 
     }
 
@@ -128,6 +130,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         llEmi!!.setOnClickListener(this)
         ll_virtualcard!!.setOnClickListener(this)
         ll_otherbank!!.setOnClickListener(this)
+        llstatement!!.setOnClickListener(this)
     }
 
     open fun setHomeNavMenu() {
@@ -243,6 +246,10 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             R.id.ll_rechargehistory ->{
 
                 var intent = Intent(this@HomeActivity, RechargeHistoryActivity::class.java)
+                startActivity(intent)
+            } R.id.llstatement ->{
+
+                var intent = Intent(this@HomeActivity, StatementActivity::class.java)
                 startActivity(intent)
             }
 
