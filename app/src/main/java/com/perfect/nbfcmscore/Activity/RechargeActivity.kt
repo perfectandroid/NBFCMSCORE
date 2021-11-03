@@ -285,7 +285,8 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                     ) // Activity is started with requestCode 2
 
                 } else {
-                    Toast.makeText(applicationContext, "Select Operator", Toast.LENGTH_LONG).show()
+                   // Toast.makeText(applicationContext, "Select Operator", Toast.LENGTH_LONG).show()
+                    CustomBottomSheeet.Show(this,"Select Operator","0")
                 }
 
             }

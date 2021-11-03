@@ -284,8 +284,8 @@
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:layout_alignParentRight="true"
-                                android:backgroundTint="@color/colorPrimarylight"
-                                android:background="@drawable/ic_offer"/>
+                                android:background="@drawable/ic_offer"
+                                android:backgroundTint="@color/colorPrimarylight" />
 
                         </RelativeLayout>
 

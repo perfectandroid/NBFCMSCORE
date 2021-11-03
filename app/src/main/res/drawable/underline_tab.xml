@@ -3,7 +3,8 @@
     <item android:top="-2dp" android:right="-2dp" android:left="-2dp">
         <shape>
             <solid android:color="@android:color/transparent" />
-            <stroke android:color="@color/tab_color" android:width="1dp"/>
+            <stroke android:color="@color/tab_color"
+                android:width="2dp"/>
         </shape>
     </item>
 
