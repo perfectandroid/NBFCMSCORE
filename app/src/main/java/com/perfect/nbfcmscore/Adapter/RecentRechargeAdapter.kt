@@ -8,7 +8,9 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ItemClickListener
+import com.perfect.nbfcmscore.Helper.PicassoTrustAll
 import com.perfect.nbfcmscore.R
 import org.json.JSONArray
 import org.json.JSONException
@@ -39,6 +41,8 @@ class RecentRechargeAdapter(internal val mContext: Context, internal val jsInfo:
 
             if (holder is RecentRechargeAdapter.MainViewHolder) {
 
+                val imagepath = Config.IMAGE_URL+jsonObject!!.getString("ProvidersImagePath")
+                PicassoTrustAll.getInstance(mContext)!!.load(imagepath).error(R.drawable.no_image).into(holder.img_operator)
 
                 holder.tv_name!!.setText(jsonObject!!.getString("ProvidersName"))
                 holder.tv_nunber!!.setText(jsonObject!!.getString("MobileNo"))
