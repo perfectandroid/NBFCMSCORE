@@ -14,12 +14,11 @@ class OtherBankActivity : AppCompatActivity()  , View.OnClickListener{
 
     private var progressDialog: ProgressDialog? = null
     val TAG: String = "OtherBankActivity"
-
+    var submode:String?=null
     var im_back: ImageView? = null
     var im_home: ImageView? = null
 
     var tv_header: TextView? = null
-
     var ll_imps: LinearLayout? = null
     var ll_neft: LinearLayout? = null
     var ll_fundtransfer: LinearLayout? = null
@@ -41,8 +40,6 @@ class OtherBankActivity : AppCompatActivity()  , View.OnClickListener{
         im_home = findViewById<ImageView>(R.id.im_home)
 
         tv_header = findViewById<TextView>(R.id.tv_header)
-
-
         ll_imps = findViewById<LinearLayout>(R.id.ll_imps)
         ll_neft = findViewById<LinearLayout>(R.id.ll_neft)
         ll_rtgs = findViewById<LinearLayout>(R.id.ll_rtgs)
@@ -99,11 +96,12 @@ class OtherBankActivity : AppCompatActivity()  , View.OnClickListener{
 
             }
             R.id.ll_fundtransfer ->{
-
+                submode="0"
                 var intent = Intent(this@OtherBankActivity, OtherfundTransferHistory::class.java)
-                intent.putExtra("trans", "FUND TRANSFER")
+                intent.putExtra("submode", submode)
                 startActivity(intent)
             }
+
         }
     }
 }

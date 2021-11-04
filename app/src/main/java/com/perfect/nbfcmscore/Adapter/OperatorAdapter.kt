@@ -1,7 +1,6 @@
 package com.perfect.nbfcmscore.Adapter
 
 import android.content.Context
-import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,15 +9,18 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ItemClickListener
-import com.perfect.nbfcmscore.R
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-import com.squareup.picasso.Picasso
-import com.bumptech.glide.annotation.GlideModule
-import com.bumptech.glide.module.AppGlideModule
+import android.R
+
+import com.perfect.nbfcmscore.Helper.PicassoTrustAll
+
+
+
 
 class OperatorAdapter(internal val mContext: Context, internal val jsInfo: JSONArray): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -29,7 +31,7 @@ class OperatorAdapter(internal val mContext: Context, internal val jsInfo: JSONA
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): RecyclerView.ViewHolder {
         val vh: RecyclerView.ViewHolder
         val v = LayoutInflater.from(parent.context).inflate(
-            R.layout.operator_list, parent, false
+            com.perfect.nbfcmscore.R.layout.operator_list, parent, false
         )
         vh = MainViewHolder(v)
         return vh
@@ -50,18 +52,8 @@ class OperatorAdapter(internal val mContext: Context, internal val jsInfo: JSONA
                 val imagepath = Config.IMAGE_URL+jsonObject!!.getString("ProvidersImagePath")
 
                 Log.e(TAG,"IMGEURL  48   "+imagepath)
-                // Set Image & Lang All Category
-//                PicassoTrustAll.getInstance(context).load(imagepath).error(R.drawable.applogo)
-//                    .into((holder).im_operator)
-//
-//                Picasso.with(mContext).load(imagepath).into((holder).im_operator)
+                PicassoTrustAll.getInstance(mContext)!!.load(imagepath).error(com.perfect.nbfcmscore.R.drawable.no_image).into(holder.im_operator)
 
-//                Glide.with(mContext).load(imagepath).placeholder(R.drawable.applogo)
-//                    .into((holder).im_operator!!);
-
-//                Glide.with(context)
-//                    .load(Uri.parse("file:///android_asset/"+fileName))
-//                    .into(imageView);
 
                 holder.ll_adp_operator!!.setOnClickListener(View.OnClickListener {
                     clickListener!!.onClick(position,"operator")
@@ -89,12 +81,12 @@ class OperatorAdapter(internal val mContext: Context, internal val jsInfo: JSONA
 
         init {
 
-            ll_adp_operator = v.findViewById<View>(R.id.ll_adp_operator) as LinearLayout
+            ll_adp_operator = v.findViewById<View>(com.perfect.nbfcmscore.R.id.ll_adp_operator) as LinearLayout
 //            ll_map = v.findViewById<View>(R.id.ll_map) as LinearLayout
 //            ll_call = v.findViewById<View>(R.id.ll_call) as LinearLayout
 //
-            tv_adp_operator = v.findViewById<View>(R.id.tv_adp_operator) as TextView
-            im_operator = v.findViewById<View>(R.id.im_operator) as ImageView
+            tv_adp_operator = v.findViewById<View>(com.perfect.nbfcmscore.R.id.tv_adp_operator) as TextView
+            im_operator = v.findViewById<View>(com.perfect.nbfcmscore.R.id.im_operator) as ImageView
 //            tv_Address = v.findViewById<View>(R.id.tv_Address) as TextView
 //            tv_call = v.findViewById<View>(R.id.tv_call) as TextView
 //            tv_mobile = v.findViewById<View>(R.id.tv_mobile) as TextView

@@ -23,14 +23,27 @@
 
                     <ImageView
                         android:id="@+id/imwelcome"
-                        android:layout_width="230dp"
-                        android:layout_height="230dp"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
                         android:layout_marginTop="60dp"
                         android:layout_marginLeft="50dp"
                         android:layout_marginRight="50dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/welcomeimg"
-                        android:layout_marginBottom="50dp"/>
+                        android:background="@drawable/welcomeimg" />
+
+                    <TextView
+                        android:id="@+id/tv_product_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:padding="5dp"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="25dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="70dp"/>
 
                     <TextView
                         android:id="@+id/tvHeader2"

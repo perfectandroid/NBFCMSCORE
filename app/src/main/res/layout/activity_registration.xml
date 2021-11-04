@@ -37,14 +37,28 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <ImageView
                     android:id="@+id/imgLogo"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:layout_gravity="center"
                     android:src="@drawable/login_reg_gif"
+                    android:gravity="center" />
+                <TextView
+                    android:id="@+id/tv_product_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="25dp"
+                    android:layout_gravity="center"
                     android:gravity="center"
-                    android:layout_marginBottom="50dp"/>
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="50dp" />
 
                 <TextView
                     android:layout_width="match_parent"

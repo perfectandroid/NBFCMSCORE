@@ -46,6 +46,19 @@ object Config {
     const val SHARED_PREF17 = "SubModule"
     const val SHARED_PREF18 = "Status"
     const val SHARED_PREF19 = "CustomerNumber"
+    const val SHARED_PREF20 = "CustomerNumber"
+
+    const val SHARED_PREF21 = "updateDays"
+    const val SHARED_PREF22 = "updateHour"
+    const val SHARED_PREF23 = "updateMinute"
+    const val SHARED_PREF24 = "DefaultAccount"
+    const val SHARED_PREF25 = "DefaultFK_Account"
+    const val SHARED_PREF26 = "DefaultSubModule"
+    const val SHARED_PREF27 = "DefaultBalance"
+    const val SHARED_PREF28 = "DefaultBranchName"
+
+    const val SHARED_PREF29 = "LastLoginTime"
+
 
 
     fun getHostnameVerifier(): HostnameVerifier {

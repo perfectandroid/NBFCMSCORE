@@ -20,11 +20,24 @@
         android:roundIcon="@drawable/applogo"
         android:supportsRtl="true"
         android:theme="@style/Theme.NBFCMSCORE">
-        <activity android:name=".Activity.RechargeOfferActivity"
+        <activity
+            android:name=".Activity.SettingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustPan"
             tools:ignore="MissingClass"/>
+        <activity
+            android:name=".Activity.StatementActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            tools:ignore="MissingClass" />
+        <activity
+            android:name=".Activity.RechargeOfferActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            tools:ignore="MissingClass" />
         <activity
             android:name=".Activity.RechargeHistoryActivity"
             android:screenOrientation="portrait"
@@ -79,6 +92,16 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
+            android:name=".Activity.PassbookActivityMoreoption"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".Activity.QuickPayActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
             android:name=".Activity.HomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
@@ -122,7 +145,7 @@
             android:name=".Activity.OTPActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".Activity.ForgetActivity"
             android:screenOrientation="portrait"
@@ -172,7 +195,7 @@
             android:name=".Activity.MpinActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".Activity.WelcomeActivity"
             android:screenOrientation="portrait"
