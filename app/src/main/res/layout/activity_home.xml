@@ -90,6 +90,7 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/tv_def_account"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -110,6 +111,7 @@
                                     android:gravity="center"
                                     android:text="Available Balance"/>
                             <TextView
+                                android:id="@+id/tv_def_availablebal"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/green"
@@ -117,8 +119,9 @@
                                     android:textSize="25dp"
                                     android:layout_gravity="center"
                                     android:gravity="center"
-                                    android:text="Rs. 250000"/>
+                                    android:text=""/>
                             <TextView
+                                android:id="@+id/tv_lastlogin"
                                android:layout_width="match_parent"
                                android:layout_height="wrap_content"
                                android:textColor="@color/black"

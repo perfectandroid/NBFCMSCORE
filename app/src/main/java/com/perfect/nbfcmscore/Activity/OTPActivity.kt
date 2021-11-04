@@ -26,6 +26,9 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class OTPActivity : AppCompatActivity() , View.OnClickListener {
     private var progressDialog: ProgressDialog? = null
@@ -203,6 +206,16 @@ class OTPActivity : AppCompatActivity() , View.OnClickListener {
                                     val CustomerNumberEditer = CustomerNumberSP.edit()
                                     CustomerNumberEditer.putString("CustomerNumber", jobjt.getString("CustomerNumber"))
                                     CustomerNumberEditer.commit()
+
+                                    val currentTime = Calendar.getInstance().time
+                                    val date: DateFormat = SimpleDateFormat("dd-MM-yyyy HH:mm a")
+                                    val localTime = date.format(currentTime)
+
+
+                                    val LastLoginTimeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF29,0)
+                                    val LastLoginTimeEditer = LastLoginTimeSP.edit()
+                                    LastLoginTimeEditer.putString("LastLoginTime", localTime)
+                                    LastLoginTimeEditer.commit()
 
                                     val builder = AlertDialog.Builder(
                                         this@OTPActivity,

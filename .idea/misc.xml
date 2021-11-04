@@ -3,20 +3,41 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/bg_light_grey.xml" value="0.34629629629629627" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/bg_light_grey1.xml" value="0.2921875" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/bottom_line.xml" value="0.34629629629629627" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/bottom_shape.xml" value="0.3671875" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/ratenav.xml" value="0.2921875" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/rounded_corner.xml" value="0.33958333333333335" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/rounded_shape.xml" value="0.303125" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/rounded_top.xml" value="0.303125" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/rounded_top_bg.xml" value="0.303125" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/rounded_top_bg_grey.xml" value="0.22135416666666666" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/rounded_top_primary.xml" value="0.2921875" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/underline_tab.xml" value="0.303125" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/underline_trans.xml" value="0.3671875" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/account_bottom_sheet.xml" value="0.2869791666666667" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_branch_detail.xml" value="0.221875" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_home.xml" value="0.5" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_home_main.xml" value="0.3037037037037037" />
-        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_recharge.xml" value="0.36666666666666664" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_other_bank.xml" value="0.2869791666666667" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_otherbankfundtransfer.xml" value="0.2552083333333333" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_passbook.xml" value="0.2760416666666667" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_recharge.xml" value="0.25" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_recharge_offer.xml" value="0.20520833333333333" />
-        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_statement.xml" value="0.36666666666666664" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_setting.xml" value="0.2760416666666667" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_statement.xml" value="0.25" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/adapter_offerlist.xml" value="0.2957427536231884" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/adapter_recharge_header.xml" value="0.2957427536231884" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/alert_layout.xml" value="0.2957427536231884" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/circle_bottom_sheet.xml" value="0.3416666666666667" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/circle_list.xml" value="0.2869791666666667" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/custom_bottom_sheet.xml" value="0.2957427536231884" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/fragment_back_view.xml" value="0.2869791666666667" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/fragment_front_view.xml" value="0.2869791666666667" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/operator_bottom_sheet.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/operator_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/spinner_text.xml" value="0.20520833333333333" />
       </map>
     </option>
   </component>

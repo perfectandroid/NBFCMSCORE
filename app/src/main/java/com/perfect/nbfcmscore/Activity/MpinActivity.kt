@@ -3,6 +3,7 @@ package com.perfect.nbfcmscore.Activity
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
+import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -28,6 +29,9 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.net.ssl.*
 
 class MpinActivity : AppCompatActivity() , View.OnClickListener {
@@ -48,6 +52,46 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
         val imgLogo: ImageView = findViewById(R.id.imgLogo)
         Glide.with(this).load(R.drawable.otpgif).into(imgLogo)
         setRegViews()
+
+
+
+
+//        val calendar = Calendar.getInstance()
+//        val simpleDateFormat = SimpleDateFormat("dd-MM-yyyy hh:mm aa", Locale.ENGLISH)
+//        val dateTime = simpleDateFormat.format(calendar.time)
+//        Log.e(TAG,"dateTime  58   "+dateTime)
+
+//        val cal = Calendar.getInstance()
+//        val tz = cal.timeZone
+//        Log.e(TAG,"tz  58   "+tz.getDisplayName())
+//
+//        val timezoneID = TimeZone.getDefault().id
+//
+//        val sdf2 = SimpleDateFormat("dd-MM-yyyy hh:mm aa")
+//        sdf2.setTimeZone(TimeZone.getTimeZone(timezoneID));
+//
+//        val dateTime1 = sdf2.format(calendar.time)
+//
+//        Log.e(TAG,"dateTime1  58   "+dateTime1)
+
+//        val cal1 = Calendar.getInstance(TimeZone.getTimeZone("GMT+5:30"))
+//        val currentLocalTime = cal1.time
+//        val date: DateFormat = SimpleDateFormat("HH:mm a")
+//
+//        val localTime = date.format(currentLocalTime)
+//
+//        Log.e(TAG,"dateTime2  583   "+localTime)
+
+
+
+// you can get seconds by adding  "...:ss" to it
+// you can get seconds by adding  "...:ss" to it
+//        date.setTimeZone(TimeZone.getTimeZone("GMT+1:00"))
+//
+//        val localTime: String = date.format(currentLocalTime)
+
+
+
         pinview!!.setPinViewEventListener { pinview, fromUser ->
 
             val varOtp = pinview!!.value
@@ -163,6 +207,17 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
                                 val jObject = JSONObject(response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jobjt = jObject.getJSONObject("VarificationMaintenance")
+
+                                    val currentTime = Calendar.getInstance().time
+                                    Log.e(TAG,"currentTime  "+currentTime)
+                                    val date: DateFormat = SimpleDateFormat("dd-MM-yyyy HH:mm a")
+                                    val localTime = date.format(currentTime)
+                                    Log.e(TAG,"localTime  "+localTime)
+
+                                    val LastLoginTimeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF29,0)
+                                    val LastLoginTimeEditer = LastLoginTimeSP.edit()
+                                    LastLoginTimeEditer.putString("LastLoginTime", localTime)
+                                    LastLoginTimeEditer.commit()
 
                                     startActivity(
                                         Intent(this@MpinActivity, HomeActivity::class.java))
