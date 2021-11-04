@@ -14,7 +14,7 @@ class OtherBankActivity : AppCompatActivity()  , View.OnClickListener{
 
     private var progressDialog: ProgressDialog? = null
     val TAG: String = "OtherBankActivity"
-
+    var submode:String?=null
     var im_back: ImageView? = null
     var im_home: ImageView? = null
 
@@ -99,9 +99,9 @@ class OtherBankActivity : AppCompatActivity()  , View.OnClickListener{
 
             }
             R.id.ll_fundtransfer ->{
-
+                submode="0"
                 var intent = Intent(this@OtherBankActivity, OtherfundTransferHistory::class.java)
-                intent.putExtra("trans", "FUND TRANSFER")
+                intent.putExtra("submode", submode)
                 startActivity(intent)
             }
         }
