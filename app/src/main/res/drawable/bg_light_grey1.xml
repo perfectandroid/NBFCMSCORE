@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape
+            android:shape="rectangle">
+            <solid android:color="@color/input_border" />
+            <gradient
+                android:angle="0"
+                android:startColor="@color/input_border"
+                android:endColor="@color/input_border"
+                />
+        </shape>
+    </item>
+
+    <item android:bottom="1dp">
+        <shape
+            android:shape="rectangle">
+            <solid android:color="@color/input_bg" />
+        </shape>
+    </item>
+
+</layer-list>

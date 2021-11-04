@@ -59,5 +59,9 @@
     <string name="clear">CLEAR</string>
     <string name="confirm_acc_no">Confirm account no:</string>
 
+    <string name="transaction_update_days">Transaction Update(Days)</string>
+    <string name="update_inerval">Update Interval</string>
+    <string name="default_acc">Default Account</string>
+
 
 </resources>

@@ -48,6 +48,11 @@ object Config {
     const val SHARED_PREF19 = "CustomerNumber"
     const val SHARED_PREF20 = "CustomerNumber"
 
+    const val SHARED_PREF21 = "updateDays"
+    const val SHARED_PREF22 = "updateHour"
+    const val SHARED_PREF23 = "updateMinute"
+    const val SHARED_PREF24 = "DefaultAccount"
+
 
     fun getHostnameVerifier(): HostnameVerifier {
         return HostnameVerifier { hostname, session -> true }

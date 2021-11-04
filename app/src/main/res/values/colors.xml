@@ -92,5 +92,13 @@
     <color name="tab_color">#00ace6</color>
     <color name="black_75_per">#Bf000000</color>
     <color name="grey1">#CED1D1</color>
+    <color name="input_bg">#FAFAFA</color>
+    <color name="input_border">#00C6FF</color>
+    <color name="border">#DBDBDB</color>
+    <color name="textcolor2">#014C60</color>
+    <color name="but_tint">#61B383</color>
+
+
+    <color name="test">#539F73</color>
 
 </resources>

@@ -134,11 +134,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     }
 
     open fun setHomeNavMenu() {
-        val menulist = arrayOf("Home", "About Us", "Notification", "Contact Us", "Feedback", "Privacy Policies", "Terms & Conditions", "Rate Us", "Share", "Logout", "Quit")
+        val menulist = arrayOf("Home", "About Us", "Notification", "Contact Us", "Feedback", "Privacy Policies", "Terms & Conditions", "Settings", "Rate Us", "Share", "Logout", "Quit")
         val imageId = arrayOf<Int>(
                 R.drawable.homenav, R.drawable.aboutnav, R.drawable.notinav, R.drawable.contnav,
-                R.drawable.feedbacknav, R.drawable.ppnav, R.drawable.tncnav, R.drawable.ratenav,
-                R.drawable.sharenav, R.drawable.logoutnav, R.drawable.exitnav
+                R.drawable.feedbacknav, R.drawable.ppnav, R.drawable.tncnav, R.drawable.ic_settings,
+                R.drawable.ratenav,R.drawable.sharenav, R.drawable.logoutnav, R.drawable.exitnav
         )
         val adapter = NavMenuAdapter(this@HomeActivity, menulist, imageId)
         lvNavMenu!!.adapter = adapter
@@ -154,9 +154,14 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
                 startActivity(Intent(this@HomeActivity, NotificationActivity::class.java))
                 drawer!!.closeDrawer(GravityCompat.START)
-            } else if (position == 3) {
+            } else if (position == 7) {
+                startActivity(Intent(this@HomeActivity, SettingActivity::class.java))
+                drawer!!.closeDrawer(GravityCompat.START)
+            }
+            else if (position == 3) {
 
             }
+
         }
     }
 
