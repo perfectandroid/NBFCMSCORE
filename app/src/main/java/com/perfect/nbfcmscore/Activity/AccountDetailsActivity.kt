@@ -44,6 +44,7 @@ class AccountDetailsActivity : AppCompatActivity() , View.OnClickListener {
     var tvaccounttype: TextView? = null
     var tvaccountno: TextView? = null
     var tvbal: TextView? = null
+    var data :String?=null
     private var tabLayout: TabLayout? = null
     private var viewPager: ViewPager? = null
 
@@ -76,6 +77,14 @@ class AccountDetailsActivity : AppCompatActivity() , View.OnClickListener {
         tvaccounttype!!.setText(LoanType)
         tvaccountno!!.setText(AccountNumber)
         tvbal!!.setText(Balance)
+
+        data =FK_Account+","+SubModule
+        sendpassbookData()
+    }
+
+
+    public fun sendpassbookData(): String? {
+        return data
     }
 
     private fun setRegViews() {

@@ -361,7 +361,7 @@ class OtherBankFundTransferPreviousHistoryFragment : Fragment() , OnItemSelected
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
-        
+
     }
 
 

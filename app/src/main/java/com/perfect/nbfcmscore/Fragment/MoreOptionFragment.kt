@@ -3,15 +3,14 @@ package com.perfect.nbfcmscore.Fragment
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.perfect.nbfcmscore.Activity.MyaccountsummaryActivity
-import com.perfect.nbfcmscore.Activity.NoticeActivity
-import com.perfect.nbfcmscore.Activity.StandingInsructionActivity
+import com.perfect.nbfcmscore.Activity.*
 import com.perfect.nbfcmscore.R
 import java.util.*
 
@@ -23,7 +22,9 @@ class MoreOptionFragment : Fragment() , View.OnClickListener{
     var llpassbook: LinearLayout? = null
     var llstandinginstruction: LinearLayout? = null
     var llnotice: LinearLayout? = null
-
+    var data: String?=null
+    var fkacc:String?=null
+    var submodle:String?=null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,6 +33,17 @@ class MoreOptionFragment : Fragment() , View.OnClickListener{
             R.layout.fragment_moreoption, container,
             false
         )
+        val activity: AccountDetailsActivity? = activity as AccountDetailsActivity?
+        data = activity!!.sendpassbookData()
+
+        val st = StringTokenizer(data, ",")
+         fkacc = st.nextToken()
+       submodle = st.nextToken()
+       // val submodule = st.nextToken()
+
+        Log.i("Values",fkacc+"\n"+submodle)
+
+
 
         llmyaccountsdetails = v.findViewById<View>(R.id.llmyaccountsdetails) as LinearLayout?
         llpassbook = v.findViewById<View>(R.id.llpassbook) as LinearLayout?
@@ -49,16 +61,20 @@ class MoreOptionFragment : Fragment() , View.OnClickListener{
     override fun onClick(v: View) {
         when (v.id) {
             R.id.llmyaccountsdetails -> {
-                startActivity( Intent(context, MyaccountsummaryActivity::class.java) )
+                startActivity(Intent(context, MyaccountsummaryActivity::class.java))
             }
             R.id.llpassbook -> {
-               // startActivity( Intent(context, ChangeMpinActivity::class.java) )
+                var intent = Intent(activity, PassbookActivityMoreoption::class.java)
+                intent.putExtra("fkaccount", fkacc)
+                intent.putExtra("submodule", submodle)
+                startActivity(intent)
+
             }
             R.id.llstandinginstruction -> {
-                startActivity( Intent(context, StandingInsructionActivity::class.java) )
+                startActivity(Intent(context, StandingInsructionActivity::class.java))
             }
             R.id.llnotice -> {
-                startActivity( Intent(context, NoticeActivity::class.java) )
+                startActivity(Intent(context, NoticeActivity::class.java))
             }
         }
     }
