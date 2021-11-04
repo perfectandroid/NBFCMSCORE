@@ -44,7 +44,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var ll_otherbank: LinearLayout? = null
     var llquickbalance: LinearLayout? = null
     var llstatement: LinearLayout? = null
-
+    var llquickpay: LinearLayout? = null
     private var mPager: ViewPager? = null
     private var indicator: CircleIndicator? = null
     private var currentPage = 0
@@ -105,6 +105,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         ll_otherbank = findViewById<LinearLayout>(R.id.ll_otherbank)
         llquickbalance = findViewById<LinearLayout>(R.id.llquickbalance)
         llstatement = findViewById<LinearLayout>(R.id.llstatement)
+        llquickpay = findViewById<LinearLayout>(R.id.llquickpay)
 
     }
 
@@ -131,6 +132,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         ll_virtualcard!!.setOnClickListener(this)
         ll_otherbank!!.setOnClickListener(this)
         llstatement!!.setOnClickListener(this)
+        llquickpay!!.setOnClickListener(this)
     }
 
     open fun setHomeNavMenu() {
@@ -252,7 +254,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 var intent = Intent(this@HomeActivity, StatementActivity::class.java)
                 startActivity(intent)
             }
+            R.id.llquickpay ->{
 
+                var intent = Intent(this@HomeActivity, QuickPayActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 
