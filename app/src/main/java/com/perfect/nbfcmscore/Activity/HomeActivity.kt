@@ -1,14 +1,18 @@
 package com.perfect.nbfcmscore.Activity
 
 import android.annotation.SuppressLint
+import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -66,6 +70,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var tv_def_availablebal: TextView? = null
     var tv_lastlogin: TextView? = null
 
+    var improfile: ImageView? = null
     var im_applogo: ImageView? = null
     var tv_header: TextView? = null
 
@@ -91,8 +96,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
         val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14,0)
         val ProductNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF12,0)
-        val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode",null)
-        PicassoTrustAll.getInstance(this)!!.load(imagepath).error(R.drawable.no_image).into(im_applogo)
+        try {
+            val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode",null)
+            PicassoTrustAll.getInstance(this)!!.load(imagepath).error(R.drawable.no_image).into(im_applogo)
+        }catch (e: Exception) {
+            e.printStackTrace()}
         tv_header!!.setText(ProductNameSP.getString("ProductName",null))
 
 
@@ -141,6 +149,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     }
 
     open fun setInitialise() {
+        improfile = findViewById(R.id.improfile)
+        tv_header = findViewById(R.id.tv_header)
         llloanapplication = findViewById(R.id.llloanapplication)
         lldashboard = findViewById(R.id.lldashboard)
         llprdctdetail = findViewById(R.id.llprdctdetail)
@@ -173,6 +183,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     }
 
     open fun setRegister() {
+        improfile!!.setOnClickListener(this)
         lldashboard!!.setOnClickListener(this)
         llprdctdetail!!.setOnClickListener(this)
         llgoldslab!!.setOnClickListener(this)
@@ -198,32 +209,37 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     }
 
     open fun setHomeNavMenu() {
-        val menulist = arrayOf("Home", "About Us", "Notification", "Contact Us", "Feedback", "Privacy Policies", "Terms & Conditions", "Settings", "Rate Us", "Share", "Logout", "Quit")
+        val menulist = arrayOf("About Us", "Contact Us", "Feedback", "Privacy Policies", "Terms & Conditions", "Settings",  "Logout", "Quit")
         val imageId = arrayOf<Int>(
-                R.drawable.homenav, R.drawable.aboutnav, R.drawable.notinav, R.drawable.contnav,
+                R.drawable.aboutnav, R.drawable.contnav,
                 R.drawable.feedbacknav, R.drawable.ppnav, R.drawable.tncnav, R.drawable.ic_settings,
-                R.drawable.ratenav,R.drawable.sharenav, R.drawable.logoutnav, R.drawable.exitnav
+                R.drawable.logoutnav, R.drawable.exitnav
         )
         val adapter = NavMenuAdapter(this@HomeActivity, menulist, imageId)
         lvNavMenu!!.adapter = adapter
         lvNavMenu!!.onItemClickListener = OnItemClickListener { parent, view, position, id ->
             if (position == 0) {
-                startActivity(Intent(this@HomeActivity, HomeActivity::class.java))
-                drawer!!.closeDrawer(GravityCompat.START)
-            } else if (position == 1) {
-
                 startActivity(Intent(this@HomeActivity, AboutActivity::class.java))
                 drawer!!.closeDrawer(GravityCompat.START)
+            } else if (position == 1) {
+                //contact
             } else if (position == 2) {
-
-                startActivity(Intent(this@HomeActivity, NotificationActivity::class.java))
+                //feedback
+            } else if (position == 3) {
+                startActivity(Intent(this@HomeActivity, PrivacyPolicyActivity::class.java))
                 drawer!!.closeDrawer(GravityCompat.START)
-            } else if (position == 7) {
+            }else if (position == 4) {
+                startActivity(Intent(this@HomeActivity, TermsnconditionsActivity::class.java))
+                drawer!!.closeDrawer(GravityCompat.START)
+            }else if (position == 5) {
                 startActivity(Intent(this@HomeActivity, SettingActivity::class.java))
                 drawer!!.closeDrawer(GravityCompat.START)
             }
-            else if (position == 3) {
-
+            else if (position == 6) {
+                //logout
+            }
+            else if (position == 7) {
+                //quit
             }
 
         }
@@ -264,6 +280,9 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             }
             R.id.lldueremindrer ->{
                 startActivity(Intent(this@HomeActivity, DueReminderActivity::class.java))
+            }
+            R.id.improfile ->{
+                startActivity(Intent(this@HomeActivity, ProfileActivity::class.java))
             }
             R.id.llpassbook ->{
                 startActivity(Intent(this@HomeActivity, PassbookActivity::class.java))
