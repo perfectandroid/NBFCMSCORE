@@ -39,7 +39,7 @@
                         android:id="@+id/tv_product_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Verify"
+                        android:text=""
                         android:padding="5dp"
                         android:textColor="@color/white"
                         android:textStyle="bold"

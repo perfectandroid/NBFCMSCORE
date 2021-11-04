@@ -140,7 +140,7 @@
             android:name=".Activity.OTPActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".Activity.ForgetActivity"
             android:screenOrientation="portrait"
@@ -190,7 +190,7 @@
             android:name=".Activity.MpinActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".Activity.WelcomeActivity"
             android:screenOrientation="portrait"
