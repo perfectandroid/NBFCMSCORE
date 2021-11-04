@@ -25,6 +25,7 @@ import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
 import com.perfect.nbfcmscore.Helper.MscoreApplication
+import com.perfect.nbfcmscore.Helper.PicassoTrustAll
 import com.perfect.nbfcmscore.R
 import me.relex.circleindicator.CircleIndicator
 import okhttp3.OkHttpClient
@@ -67,6 +68,9 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var tv_def_availablebal: TextView? = null
     var tv_lastlogin: TextView? = null
 
+    var im_applogo: ImageView? = null
+    var tv_header: TextView? = null
+
     private var mPager: ViewPager? = null
     private var indicator: CircleIndicator? = null
     private var currentPage = 0
@@ -86,6 +90,12 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         init()
 
         setdefaultAccountDetails()
+
+        val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14,0)
+        val ProductNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF12,0)
+        val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode",null)
+        PicassoTrustAll.getInstance(this)!!.load(imagepath).error(R.drawable.no_image).into(im_applogo)
+        tv_header!!.setText(ProductNameSP.getString("ProductName",null))
 
 
     }
@@ -133,6 +143,10 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     }
 
     open fun setInitialise() {
+
+        im_applogo = findViewById(R.id.im_applogo)
+        tv_header = findViewById(R.id.tv_header)
+
         lldashboard = findViewById(R.id.lldashboard)
         llprdctdetail = findViewById(R.id.llprdctdetail)
         llmyaccounts = findViewById(R.id.llmyaccounts)

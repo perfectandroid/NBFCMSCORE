@@ -78,16 +78,19 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
         setContentView(R.layout.activity_mpin)
 
         val imgLogo: ImageView = findViewById(R.id.imgLogo)
+        val tv_product_name: TextView = findViewById(R.id.tv_product_name)
        // Glide.with(this).load(R.drawable.otpgif).into(imgLogo)
 
         val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14,0)
         val CompanyLogoImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF13,0)
-        IMAGRURL = Config.IMAGE_URL+CompanyLogoImageCodeSP.getString("CompanyLogoImageCode",null)
+        val ProductNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF12,0)
+        IMAGRURL = Config.IMAGE_URL+AppIconImageCodeSP.getString("AppIconImageCode",null)
         Log.e(TAG,"IMAGRURL  86  "+IMAGRURL)
 
 //        Glide.with(this).load("https://picsum.photos/200").into(imgLogo)
         Glide.with(this).load(IMAGRURL).placeholder(R.drawable.otpgif)
                     .into(imgLogo);
+        tv_product_name!!.setText(""+ProductNameSP.getString("ProductName",null))
 
         setRegViews()
 
