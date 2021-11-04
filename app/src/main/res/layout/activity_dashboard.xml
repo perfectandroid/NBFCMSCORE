@@ -68,24 +68,25 @@
                 android:layout_height="match_parent">
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:background="@color/white"
+                    android:id="@+id/lay_chart"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    android:orientation="vertical">
 
                     <TextView
-
-                        android:layout_width="match_parent"
+                        android:id="@+id/txtvDate"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:gravity="center"
-                        android:text="Assets"
-                        android:textColor="@color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        tools:ignore="DuplicateIds" />
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="20dp"
+                        android:text=""
+                        android:visibility="gone"
+                        android:textColor="@color/blue"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
 
                     <ScrollView
                         android:layout_width="match_parent"
@@ -94,20 +95,27 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_margin="10dp"
+                            android:layout_margin="20dp"
                             android:orientation="vertical" >
-                            <lecho.lib.hellocharts.view.PieChartView
-                                android:id="@+id/chart"
+                            <TextView
+                                android:id="@+id/tv_piechart"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:gravity="center"
+                                android:text="Total Job"
+                                android:textColor="@color/black"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <com.github.mikephil.charting.charts.PieChart
+                                android:id="@+id/piechart"
                                 android:layout_width="match_parent"
                                 android:layout_height="151dp"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:layout_marginBottom="20dp"/>
-                            <com.perfect.nbfcmscore.Helper.FullLenghRecyclertview
-                                android:id="@+id/rv_pie"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginBottom="20dp"/>
+                                android:layout_gravity="center"
+                                android:visibility="visible" />
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -213,33 +221,35 @@
                                     android:textColor="@color/black"
                                     android:text=" "/>
                             </LinearLayout>
-                            <LinearLayout
-                                android:id="@+id/lay_nodata"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/tv_nodata"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_marginLeft="20dp"
-                                    android:layout_marginTop="20dp"
-                                    android:layout_marginRight="20dp"
-                                    android:text="No Data Found"
-                                    android:visibility="visible"
-                                    android:textColor="@color/blue"
-                                    android:textSize="18dp"
-                                    android:textStyle="bold" />
-
-                            </LinearLayout>
                         </LinearLayout>
                     </ScrollView>
 
-
                 </LinearLayout>
+
+
+
+              <!--  <LinearLayout
+                    android:id="@+id/lay_nodata"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_nodata"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="20dp"
+                        android:text="No Data Found"
+                        android:visibility="visible"
+                        android:textColor="@color/blue"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>-->
 
 
             </androidx.cardview.widget.CardView>
