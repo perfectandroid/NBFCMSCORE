@@ -22,6 +22,7 @@ import java.util.*
 
 class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
+    var llloanapplication: LinearLayout? = null
     var lldashboard: LinearLayout? = null
     var llprdctdetail: LinearLayout? = null
     var llgoldslab: LinearLayout? = null
@@ -82,6 +83,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     }
 
     open fun setInitialise() {
+        llloanapplication = findViewById(R.id.llloanapplication)
         lldashboard = findViewById(R.id.lldashboard)
         llprdctdetail = findViewById(R.id.llprdctdetail)
         llmyaccounts = findViewById(R.id.llmyaccounts)
@@ -128,6 +130,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         llEmi!!.setOnClickListener(this)
         ll_virtualcard!!.setOnClickListener(this)
         ll_otherbank!!.setOnClickListener(this)
+        llloanapplication!!.setOnClickListener(this)
     }
 
     open fun setHomeNavMenu() {
@@ -204,6 +207,9 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             }
             R.id.llgoldslab ->{
                 startActivity(Intent(this@HomeActivity, GoldSlabEstimatorActivity::class.java))
+            }
+            R.id.llloanapplication ->{
+                startActivity(Intent(this@HomeActivity, LoanApplicationActivity::class.java))
             }
             R.id.ll_prepaid ->{
 
