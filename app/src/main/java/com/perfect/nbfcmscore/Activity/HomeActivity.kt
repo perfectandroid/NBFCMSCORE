@@ -1,9 +1,12 @@
 package com.perfect.nbfcmscore.Activity
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
@@ -14,10 +17,24 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
+import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Adapter.BannerAdapter
 import com.perfect.nbfcmscore.Adapter.NavMenuAdapter
+import com.perfect.nbfcmscore.Api.ApiInterface
+import com.perfect.nbfcmscore.Helper.Config
+import com.perfect.nbfcmscore.Helper.ConnectivityUtils
+import com.perfect.nbfcmscore.Helper.MscoreApplication
 import com.perfect.nbfcmscore.R
 import me.relex.circleindicator.CircleIndicator
+import okhttp3.OkHttpClient
+import okhttp3.RequestBody
+import org.json.JSONArray
+import org.json.JSONObject
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.*
 
 class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -45,11 +62,18 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var llquickbalance: LinearLayout? = null
     var llstatement: LinearLayout? = null
 
+    var tv_def_account: TextView? = null
+    var tv_def_availablebal: TextView? = null
+    var tv_lastlogin: TextView? = null
+
     private var mPager: ViewPager? = null
     private var indicator: CircleIndicator? = null
     private var currentPage = 0
     private val XMEN = arrayOf<Int>(R.drawable.ban1, R.drawable.ban2, R.drawable.ban3, R.drawable.ban4)
     private val XMENArray = ArrayList<Int>()
+
+    var jArrayAccount: JSONArray? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +83,31 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         setRegister()
         setHomeNavMenu()
         init()
+
+        setdefaultAccountDetails()
+
+
+    }
+
+    private fun setdefaultAccountDetails() {
+
+
+        val DefaultAccountSP = applicationContext.getSharedPreferences(Config.SHARED_PREF24,0)
+        val DefaultBalanceSP = applicationContext.getSharedPreferences(Config.SHARED_PREF27,0)
+        val LastLoginTimeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF29,0)
+
+        tv_lastlogin!!.setText("Last Login : "+LastLoginTimeSP.getString("LastLoginTime",null))
+
+        if (DefaultAccountSP.getString("DefaultAccount",null) == null){
+            tv_def_account!!.setText("")
+            tv_def_availablebal!!.setText("")
+            getOwnAccount()
+
+        }else{
+            tv_def_account!!.setText(DefaultAccountSP.getString("DefaultAccount",null))
+            val balance = DefaultBalanceSP.getString("DefaultBalance",null)!!.toDouble()
+            tv_def_availablebal!!.setText("Rs. "+Config.getDecimelFormate(balance))
+        }
 
     }
 
@@ -105,6 +154,10 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         ll_otherbank = findViewById<LinearLayout>(R.id.ll_otherbank)
         llquickbalance = findViewById<LinearLayout>(R.id.llquickbalance)
         llstatement = findViewById<LinearLayout>(R.id.llstatement)
+
+        tv_def_account = findViewById<TextView>(R.id.tv_def_account)
+        tv_def_availablebal = findViewById<TextView>(R.id.tv_def_availablebal)
+        tv_lastlogin = findViewById<TextView>(R.id.tv_lastlogin)
 
     }
 
@@ -258,6 +311,111 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 startActivity(intent)
             }
 
+        }
+    }
+
+    private fun getOwnAccount() {
+        when(ConnectivityUtils.isConnected(this)) {
+            true -> {
+
+                try {
+                    val client = OkHttpClient.Builder()
+                        .sslSocketFactory(Config.getSSLSocketFactory(this@HomeActivity))
+                        .hostnameVerifier(Config.getHostnameVerifier())
+                        .build()
+                    val gson = GsonBuilder()
+                        .setLenient()
+                        .create()
+                    val retrofit = Retrofit.Builder()
+                        .baseUrl(Config.BASE_URL)
+                        .addConverterFactory(ScalarsConverterFactory.create())
+                        .addConverterFactory(GsonConverterFactory.create(gson))
+                        .client(client)
+                        .build()
+                    val apiService = retrofit.create(ApiInterface::class.java!!)
+                    val requestObject1 = JSONObject()
+                    try {
+                        val TokenSP = applicationContext.getSharedPreferences(Config.SHARED_PREF8, 0)
+                        val Token = TokenSP.getString("Token", null)
+
+                        val FK_CustomerSP = this.applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
+                        val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
+
+                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("26"))
+                        requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
+                        requestObject1.put("SubMode", MscoreApplication.encryptStart("1"))
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(getResources().getString(R.string.BankHeader)))
+
+
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        val mySnackbar = Snackbar.make(
+                            findViewById(R.id.rl_main),
+                            " Some technical issues.", Snackbar.LENGTH_SHORT
+                        )
+                        mySnackbar.show()
+                    }
+                    val body = RequestBody.create(
+                        okhttp3.MediaType.parse("application/json; charset=utf-8"),
+                        requestObject1.toString()
+                    )
+                    val call = apiService.getOwnAccounDetails(body)
+                    call.enqueue(object : retrofit2.Callback<String> {
+                        override fun onResponse(
+                            call: retrofit2.Call<String>, response:
+                            Response<String>
+                        ) {
+                            try {
+
+                                val jObject = JSONObject(response.body())
+
+                                if (jObject.getString("StatusCode") == "0") {
+
+                                    val jobjt = jObject.getJSONObject("OwnAccountdetails")
+                                    jArrayAccount = jobjt.getJSONArray("OwnAccountdetailsList")
+                                    val accountItems: ArrayList<String> = ArrayList()
+                                    for (i in 0 until jArrayAccount!!.length()) {
+                                        val obj: JSONObject = jArrayAccount!!.getJSONObject(i)
+                                        accountItems.add(obj.getString("AccountNumber"));
+                                        val DefaultAccountSP = applicationContext.getSharedPreferences(Config.SHARED_PREF24,0)
+                                        if (DefaultAccountSP.getString("DefaultAccount",null) == null){
+                                            if (i == 0){
+
+                                                val balance = obj.getString("Balance").toDouble()
+                                                tv_def_availablebal!!.setText("Rs. "+Config.getDecimelFormate(balance))
+                                                tv_def_account!!.setText(obj.getString("AccountNumber"))
+
+                                            }
+                                        }
+                                    }
+
+                                } else {
+
+                                }
+                            } catch (e: Exception) {
+
+                            }
+                        }
+                        override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
+
+                        }
+                    })
+                } catch (e: Exception) {
+
+                }
+            }
+            false -> {
+
+                val builder = AlertDialog.Builder(this@HomeActivity, R.style.MyDialogTheme)
+                builder.setMessage("No Internet Connection.")
+                builder.setPositiveButton("Ok") { dialogInterface, which ->
+                }
+                val alertDialog: AlertDialog = builder.create()
+                alertDialog.setCancelable(false)
+                alertDialog.show()
+            }
         }
     }
 

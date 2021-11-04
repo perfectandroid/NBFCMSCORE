@@ -221,6 +221,35 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
                 DefaultAccountEditer.putString("DefaultAccount", upacc)
                 DefaultAccountEditer.commit()
 
+                for (i in 0 until jArrayAccount!!.length()) {
+                    val obj: JSONObject = jArrayAccount!!.getJSONObject(i)
+                    if (obj.getString("AccountNumber").equals(upacc)){
+
+                        val DefaultFK_AccountSP = applicationContext.getSharedPreferences(Config.SHARED_PREF25,0)
+                        val DefaultFK_AccountEditer = DefaultFK_AccountSP.edit()
+                        DefaultFK_AccountEditer.putString("DefaultFK_Account", obj.getString("FK_Account"))
+                        DefaultFK_AccountEditer.commit()
+
+                        val DefaultSubModuleSP = applicationContext.getSharedPreferences(Config.SHARED_PREF26,0)
+                        val DefaultSubModuleEditer = DefaultSubModuleSP.edit()
+                        DefaultSubModuleEditer.putString("DefaultSubModule", obj.getString("SubModule"))
+                        DefaultSubModuleEditer.commit()
+
+                        val DefaultBalanceSP = applicationContext.getSharedPreferences(Config.SHARED_PREF27,0)
+                        val DefaultBalanceEditer = DefaultBalanceSP.edit()
+                        DefaultBalanceEditer.putString("DefaultBalance", obj.getString("Balance"))
+                        DefaultBalanceEditer.commit()
+
+                        val DefaultBranchNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF28,0)
+                        val DefaultBranchNameEditer = DefaultBranchNameSP.edit()
+                        DefaultBranchNameEditer.putString("DefaultBranchName", obj.getString("BranchName"))
+                        DefaultBranchNameEditer.commit()
+
+
+                    }
+                }
+
+
                 val builder = AlertDialog.Builder(
                     this@SettingActivity,
                     R.style.MyDialogTheme

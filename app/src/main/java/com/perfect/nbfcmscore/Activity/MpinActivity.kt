@@ -53,6 +53,9 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
         Glide.with(this).load(R.drawable.otpgif).into(imgLogo)
         setRegViews()
 
+
+
+
 //        val calendar = Calendar.getInstance()
 //        val simpleDateFormat = SimpleDateFormat("dd-MM-yyyy hh:mm aa", Locale.ENGLISH)
 //        val dateTime = simpleDateFormat.format(calendar.time)
@@ -204,6 +207,17 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
                                 val jObject = JSONObject(response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jobjt = jObject.getJSONObject("VarificationMaintenance")
+
+                                    val currentTime = Calendar.getInstance().time
+                                    Log.e(TAG,"currentTime  "+currentTime)
+                                    val date: DateFormat = SimpleDateFormat("dd-MM-yyyy HH:mm a")
+                                    val localTime = date.format(currentTime)
+                                    Log.e(TAG,"localTime  "+localTime)
+
+                                    val LastLoginTimeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF29,0)
+                                    val LastLoginTimeEditer = LastLoginTimeSP.edit()
+                                    LastLoginTimeEditer.putString("LastLoginTime", localTime)
+                                    LastLoginTimeEditer.commit()
 
                                     startActivity(
                                         Intent(this@MpinActivity, HomeActivity::class.java))
