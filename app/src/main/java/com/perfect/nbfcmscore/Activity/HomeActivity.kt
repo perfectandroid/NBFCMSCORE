@@ -61,6 +61,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var ll_otherbank: LinearLayout? = null
     var llquickbalance: LinearLayout? = null
     var llstatement: LinearLayout? = null
+    var llquickpay: LinearLayout? = null
 
     var tv_def_account: TextView? = null
     var tv_def_availablebal: TextView? = null
@@ -154,6 +155,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         ll_otherbank = findViewById<LinearLayout>(R.id.ll_otherbank)
         llquickbalance = findViewById<LinearLayout>(R.id.llquickbalance)
         llstatement = findViewById<LinearLayout>(R.id.llstatement)
+        llquickpay = findViewById<LinearLayout>(R.id.llquickpay)
 
         tv_def_account = findViewById<TextView>(R.id.tv_def_account)
         tv_def_availablebal = findViewById<TextView>(R.id.tv_def_availablebal)
@@ -184,6 +186,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         ll_virtualcard!!.setOnClickListener(this)
         ll_otherbank!!.setOnClickListener(this)
         llstatement!!.setOnClickListener(this)
+        llquickpay!!.setOnClickListener(this)
     }
 
     open fun setHomeNavMenu() {
@@ -310,7 +313,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 var intent = Intent(this@HomeActivity, StatementActivity::class.java)
                 startActivity(intent)
             }
+            R.id.llquickpay ->{
 
+                var intent = Intent(this@HomeActivity, QuickPayActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 
