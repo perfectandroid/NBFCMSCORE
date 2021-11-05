@@ -1,17 +1,18 @@
 package com.perfect.nbfcmscore.Activity
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
-import android.app.ProgressDialog
+import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -25,6 +26,7 @@ import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
 import com.perfect.nbfcmscore.Helper.MscoreApplication
+import com.perfect.nbfcmscore.Helper.PicassoTrustAll
 import com.perfect.nbfcmscore.R
 import me.relex.circleindicator.CircleIndicator
 import okhttp3.OkHttpClient
@@ -39,6 +41,7 @@ import java.util.*
 
 class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
+    var llloanapplication: LinearLayout? = null
     var lldashboard: LinearLayout? = null
     var llprdctdetail: LinearLayout? = null
     var llgoldslab: LinearLayout? = null
@@ -62,10 +65,17 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var llquickbalance: LinearLayout? = null
     var llstatement: LinearLayout? = null
     var llquickpay: LinearLayout? = null
+    var llprofile: LinearLayout? = null
 
     var tv_def_account: TextView? = null
     var tv_def_availablebal: TextView? = null
     var tv_lastlogin: TextView? = null
+
+    var improfile: ImageView? = null
+    var im_applogo: ImageView? = null
+    var tv_header: TextView? = null
+    var tvuser: TextView? = null
+    var tv_mobile: TextView? = null
 
     private var mPager: ViewPager? = null
     private var indicator: CircleIndicator? = null
@@ -87,6 +97,19 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
         setdefaultAccountDetails()
 
+        val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14,0)
+        val ProductNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF12,0)
+        try {
+            val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode",null)
+            PicassoTrustAll.getInstance(this)!!.load(imagepath).error(R.drawable.no_image).into(im_applogo)
+        }catch (e: Exception) {
+            e.printStackTrace()}
+        tv_header!!.setText(ProductNameSP.getString("ProductName",null))
+
+        val CustomerNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF3,0)
+        tvuser!!.setText(CustomerNameSP.getString("CustomerName",null))
+        val CusMobileSP = applicationContext.getSharedPreferences(Config.SHARED_PREF2,0)
+        tv_mobile!!.setText(CusMobileSP.getString("CusMobile",null))
 
     }
 
@@ -133,6 +156,12 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     }
 
     open fun setInitialise() {
+        tv_mobile = findViewById(R.id.tv_mobile)
+        tvuser = findViewById(R.id.tvuser)
+        llprofile = findViewById(R.id.llprofile)
+        improfile = findViewById(R.id.improfile)
+        tv_header = findViewById(R.id.tv_header)
+        llloanapplication = findViewById(R.id.llloanapplication)
         lldashboard = findViewById(R.id.lldashboard)
         llprdctdetail = findViewById(R.id.llprdctdetail)
         llmyaccounts = findViewById(R.id.llmyaccounts)
@@ -164,6 +193,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     }
 
     open fun setRegister() {
+        improfile!!.setOnClickListener(this)
         lldashboard!!.setOnClickListener(this)
         llprdctdetail!!.setOnClickListener(this)
         llgoldslab!!.setOnClickListener(this)
@@ -185,37 +215,42 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         llEmi!!.setOnClickListener(this)
         ll_virtualcard!!.setOnClickListener(this)
         ll_otherbank!!.setOnClickListener(this)
-        llstatement!!.setOnClickListener(this)
-        llquickpay!!.setOnClickListener(this)
+        llloanapplication!!.setOnClickListener(this)
+        llprofile!!.setOnClickListener(this)
     }
 
     open fun setHomeNavMenu() {
-        val menulist = arrayOf("Home", "About Us", "Notification", "Contact Us", "Feedback", "Privacy Policies", "Terms & Conditions", "Settings", "Rate Us", "Share", "Logout", "Quit")
+        val menulist = arrayOf("About Us", "Contact Us", "Feedback", "Privacy Policies", "Terms & Conditions", "Settings",  "Logout", "Quit")
         val imageId = arrayOf<Int>(
-                R.drawable.homenav, R.drawable.aboutnav, R.drawable.notinav, R.drawable.contnav,
+                R.drawable.aboutnav, R.drawable.contnav,
                 R.drawable.feedbacknav, R.drawable.ppnav, R.drawable.tncnav, R.drawable.ic_settings,
-                R.drawable.ratenav,R.drawable.sharenav, R.drawable.logoutnav, R.drawable.exitnav
+                R.drawable.logoutnav, R.drawable.exitnav
         )
         val adapter = NavMenuAdapter(this@HomeActivity, menulist, imageId)
         lvNavMenu!!.adapter = adapter
         lvNavMenu!!.onItemClickListener = OnItemClickListener { parent, view, position, id ->
             if (position == 0) {
-                startActivity(Intent(this@HomeActivity, HomeActivity::class.java))
-                drawer!!.closeDrawer(GravityCompat.START)
-            } else if (position == 1) {
-
                 startActivity(Intent(this@HomeActivity, AboutActivity::class.java))
                 drawer!!.closeDrawer(GravityCompat.START)
+            } else if (position == 1) {
+                //contact
             } else if (position == 2) {
-
-                startActivity(Intent(this@HomeActivity, NotificationActivity::class.java))
+                //feedback
+            } else if (position == 3) {
+                startActivity(Intent(this@HomeActivity, PrivacyPolicyActivity::class.java))
                 drawer!!.closeDrawer(GravityCompat.START)
-            } else if (position == 7) {
+            }else if (position == 4) {
+                startActivity(Intent(this@HomeActivity, TermsnconditionsActivity::class.java))
+                drawer!!.closeDrawer(GravityCompat.START)
+            }else if (position == 5) {
                 startActivity(Intent(this@HomeActivity, SettingActivity::class.java))
                 drawer!!.closeDrawer(GravityCompat.START)
             }
-            else if (position == 3) {
-
+            else if (position == 6) {
+                //logout
+            }
+            else if (position == 7) {
+                //quit
             }
 
         }
@@ -257,6 +292,12 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             R.id.lldueremindrer ->{
                 startActivity(Intent(this@HomeActivity, DueReminderActivity::class.java))
             }
+            R.id.improfile ->{
+                startActivity(Intent(this@HomeActivity, ProfileActivity::class.java))
+            }
+            R.id.llprofile ->{
+                startActivity(Intent(this@HomeActivity, ProfileActivity::class.java))
+            }
             R.id.llpassbook ->{
                 startActivity(Intent(this@HomeActivity, PassbookActivity::class.java))
             }
@@ -268,6 +309,9 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             }
             R.id.llgoldslab ->{
                 startActivity(Intent(this@HomeActivity, GoldSlabEstimatorActivity::class.java))
+            }
+            R.id.llloanapplication ->{
+                startActivity(Intent(this@HomeActivity, LoanApplicationActivity::class.java))
             }
             R.id.ll_prepaid ->{
 

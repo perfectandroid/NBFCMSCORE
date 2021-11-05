@@ -2,12 +2,15 @@ package com.perfect.nbfcmscore.Activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.R
 
 class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
@@ -19,7 +22,16 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
         setRegViews()
 
         val imwelcome: ImageView = findViewById(R.id.imwelcome)
-        Glide.with(this).load(R.drawable.welcomegif).into(imwelcome)
+        val tv_product_name: TextView = findViewById(R.id.tv_product_name)
+//        Glide.with(this).load(R.drawable.welcomegif).into(imwelcome)
+
+        val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14,0)
+        val ProductNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF12,0)
+        var IMAGRURL = Config.IMAGE_URL+AppIconImageCodeSP.getString("AppIconImageCode",null)
+
+        Glide.with(this).load(IMAGRURL).placeholder(R.drawable.welcomegif).into(imwelcome);
+        tv_product_name!!.setText(""+ProductNameSP.getString("ProductName",null))
+
     }
 
     private fun setRegViews() {

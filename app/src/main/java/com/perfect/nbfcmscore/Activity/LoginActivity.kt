@@ -8,7 +8,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Api.ApiInterface
@@ -34,6 +36,17 @@ class LoginActivity : AppCompatActivity() , View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         setRegViews()
+
+        val imgLogo: ImageView = findViewById(R.id.imgLogo)
+        val tv_product_name: TextView = findViewById(R.id.tv_product_name)
+
+        val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14,0)
+        val ProductNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF12,0)
+        var IMAGRURL = Config.IMAGE_URL+AppIconImageCodeSP.getString("AppIconImageCode",null)
+
+        Glide.with(this).load(IMAGRURL).placeholder(R.drawable.login_icon).into(imgLogo);
+        tv_product_name!!.setText(ProductNameSP.getString("ProductName",null))
+
     }
 
     private fun setRegViews() {

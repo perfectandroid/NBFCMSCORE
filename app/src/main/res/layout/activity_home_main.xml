@@ -26,6 +26,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
                     <LinearLayout
+                        android:id="@+id/llprofile"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
                         android:layout_gravity="center"
@@ -49,16 +50,16 @@
                                 android:layout_marginTop="10dp"
                                 android:textSize="18dp"
                                 android:textColor="@color/white"
-                                android:text="Akhil P V"/>
+                                android:text=""/>
                             <TextView
-                                android:id="@+id/tvgmail"
+                                android:id="@+id/tv_mobile"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:layout_marginRight="10dp"
                                 android:textSize="13dp"
                                 android:textColor="@color/white"
-                                android:text="9876543210"/>
+                                android:text=""/>
                         </LinearLayout>
                         <ImageView
                             android:layout_weight="4"

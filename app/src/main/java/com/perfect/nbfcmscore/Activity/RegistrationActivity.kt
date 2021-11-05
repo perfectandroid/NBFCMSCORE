@@ -38,8 +38,18 @@ class RegistrationActivity : AppCompatActivity()  , View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
 
-       /* val imgLogo: ImageView = findViewById(R.id.imgLogo)
-        Glide.with(this).load(R.drawable.login_reg_gif).into(imgLogo)*/
+        val imgLogo: ImageView = findViewById(R.id.imgLogo)
+        val tv_product_name: TextView = findViewById(R.id.tv_product_name)
+//        Glide.with(this).load(R.drawable.login_reg_gif).into(imgLogo)
+
+        val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14,0)
+        val ProductNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF12,0)
+        var IMAGRURL = Config.IMAGE_URL+AppIconImageCodeSP.getString("AppIconImageCode",null)
+
+        Glide.with(this).load(IMAGRURL).placeholder(R.drawable.login_reg_gif).into(imgLogo);
+        tv_product_name!!.setText(ProductNameSP.getString("ProductName",null))
+
+
         setRegViews()
 
         Log.i("commit","Test")
