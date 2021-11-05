@@ -65,6 +65,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var llquickbalance: LinearLayout? = null
     var llstatement: LinearLayout? = null
     var llquickpay: LinearLayout? = null
+    var llprofile: LinearLayout? = null
 
     var tv_def_account: TextView? = null
     var tv_def_availablebal: TextView? = null
@@ -73,6 +74,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var improfile: ImageView? = null
     var im_applogo: ImageView? = null
     var tv_header: TextView? = null
+    var tvuser: TextView? = null
+    var tv_mobile: TextView? = null
 
     private var mPager: ViewPager? = null
     private var indicator: CircleIndicator? = null
@@ -103,6 +106,10 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             e.printStackTrace()}
         tv_header!!.setText(ProductNameSP.getString("ProductName",null))
 
+        val CustomerNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF3,0)
+        tvuser!!.setText(CustomerNameSP.getString("CustomerName",null))
+        val CusMobileSP = applicationContext.getSharedPreferences(Config.SHARED_PREF2,0)
+        tv_mobile!!.setText(CusMobileSP.getString("CusMobile",null))
 
     }
 
@@ -149,6 +156,9 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     }
 
     open fun setInitialise() {
+        tv_mobile = findViewById(R.id.tv_mobile)
+        tvuser = findViewById(R.id.tvuser)
+        llprofile = findViewById(R.id.llprofile)
         improfile = findViewById(R.id.improfile)
         tv_header = findViewById(R.id.tv_header)
         llloanapplication = findViewById(R.id.llloanapplication)
@@ -206,6 +216,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         ll_virtualcard!!.setOnClickListener(this)
         ll_otherbank!!.setOnClickListener(this)
         llloanapplication!!.setOnClickListener(this)
+        llprofile!!.setOnClickListener(this)
     }
 
     open fun setHomeNavMenu() {
@@ -282,6 +293,9 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 startActivity(Intent(this@HomeActivity, DueReminderActivity::class.java))
             }
             R.id.improfile ->{
+                startActivity(Intent(this@HomeActivity, ProfileActivity::class.java))
+            }
+            R.id.llprofile ->{
                 startActivity(Intent(this@HomeActivity, ProfileActivity::class.java))
             }
             R.id.llpassbook ->{
