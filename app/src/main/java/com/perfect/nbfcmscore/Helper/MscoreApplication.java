@@ -12,7 +12,10 @@ import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.IvParameterSpec;
 
 public class MscoreApplication {
-
+    private static MscoreApplication mInstance;
+    public static void toastMessage(String message, int length) {
+        //Toast.makeText(mInstance, message, length).show();
+    }
     public static String encryptStart(String encypt) throws Exception {
         String te = encypt;
 
@@ -37,4 +40,9 @@ public class MscoreApplication {
         return new String(Base64.encode(bout.toByteArray(), Base64.DEFAULT), "ASCII");
 
     }
+    public static MscoreApplication getAppContext() {
+        return mInstance;
+    }
+
+    
 }

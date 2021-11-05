@@ -42,7 +42,6 @@
 
         </LinearLayout>
     </RelativeLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -50,490 +49,200 @@
         android:background="@color/bgcolour"
         android:layout_marginBottom="10dp"
         android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="10dp"
+            app:cardElevation="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:orientation="horizontal">
-            <androidx.cardview.widget.CardView
-                app:cardCornerRadius="10dp"
-                app:cardElevation="30dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:background="@color/white"
                 android:layout_width="match_parent"
-                app:cardBackgroundColor="@color/color_activity_transparent"
                 android:layout_height="match_parent">
 
-                <LinearLayout
-                    android:id="@+id/lay_chart"
+
+                <TextView
+                    android:id="@+id/tv_piechart"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:visibility="gone"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/txtvDate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginRight="20dp"
-                        android:text=""
-                        android:visibility="gone"
-                        android:textColor="@color/blue"
-                        android:textSize="18dp"
-                        android:textStyle="bold" />
-
-                    <ScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="visible">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_margin="20dp"
-                            android:orientation="vertical" >
-                            <TextView
-                                android:id="@+id/tv_piechart"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:gravity="center"
-                                android:text="Total Job"
-                                android:textColor="@color/black"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-
-                            <com.github.mikephil.charting.charts.PieChart
-                                android:id="@+id/piechart"
-                                android:layout_width="match_parent"
-                                android:layout_height="151dp"
-                                android:layout_gravity="center"
-                                android:visibility="visible" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:visibility="gone"
-                                android:orientation="horizontal">
-                                <ImageView
-                                    android:id="@+id/ivAsset1"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"/>
-                                <TextView
-                                    android:id="@+id/tvAsset1"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:layout_marginLeft="5dp"
-                                    android:textStyle="bold"
-                                    android:textColor="@color/black"
-                                    android:text=" "/>
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:visibility="gone"
-                                android:orientation="horizontal">
-                                <ImageView
-                                    android:id="@+id/ivAsset2"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"/>
-                                <TextView
-                                    android:id="@+id/tvAsset2"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:layout_marginLeft="5dp"
-                                    android:textStyle="bold"
-                                    android:textColor="@color/black"
-                                    android:text=" "/>
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:visibility="gone"
-                                android:orientation="horizontal">
-                                <ImageView
-                                    android:id="@+id/ivAsset3"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"/>
-                                <TextView
-                                    android:id="@+id/tvAsset3"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:layout_marginLeft="5dp"
-                                    android:textStyle="bold"
-                                    android:textColor="@color/black"
-                                    android:text=" "/>
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:visibility="gone"
-                                android:orientation="horizontal">
-                                <ImageView
-                                    android:id="@+id/ivAsset4"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"/>
-                                <TextView
-                                    android:id="@+id/tvAsset4"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:layout_marginLeft="5dp"
-                                    android:textStyle="bold"
-                                    android:textColor="@color/black"
-                                    android:text=" "/>
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:visibility="gone"
-                                android:orientation="horizontal">
-                                <ImageView
-                                    android:id="@+id/ivAsset5"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"/>
-                                <TextView
-                                    android:id="@+id/tvAsset5"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:layout_marginLeft="5dp"
-                                    android:textStyle="bold"
-                                    android:textColor="@color/black"
-                                    android:text=" "/>
-                            </LinearLayout>
-                        </LinearLayout>
-                    </ScrollView>
-
-                </LinearLayout>
-
-
-
-              <!--  <LinearLayout
-                    android:id="@+id/lay_nodata"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:text="Assets"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/tv_nodata"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginRight="20dp"
-                        android:text="No Data Found"
-                        android:visibility="visible"
-                        android:textColor="@color/blue"
-                        android:textSize="18dp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>-->
-
-
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <androidx.cardview.widget.CardView
-                app:cardCornerRadius="10dp"
-                app:cardElevation="30dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                app:cardBackgroundColor="@color/color_activity_transparent"
-                android:layout_height="match_parent">
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/piechart"
+                    android:layout_width="match_parent"
+                    android:layout_height="151dp"
+                    android:layout_gravity="center"
+                    android:visibility="visible" />
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:background="@color/white"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
-
-                    <TextView
-                        android:id="@+id/tv_piechart1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvOverassetlist"
+                        android:layout_below="@+id/layoutTop"
                         android:layout_marginBottom="10dp"
-                        android:gravity="center"
-                        android:text="Liabilities"
-                        android:textColor="@color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <lecho.lib.hellocharts.view.ColumnChartView
-                        android:id="@+id/chartt"
+                        android:layout_marginTop="10dp"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_weight="1"/>
-                    <ScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.5">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_margin="20dp"
-                            android:orientation="vertical" >
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/rv_liability"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginBottom="20dp"/>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:visibility="gone"
-                                android:orientation="horizontal">
-                                <ImageView
-                                    android:id="@+id/ivliab1"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"/>
-                                <TextView
-                                    android:id="@+id/tvliab1"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:layout_marginLeft="5dp"
-                                    android:textStyle="bold"
-                                    android:textColor="@color/black"
-                                    android:text=" "/>
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:visibility="gone"
-                                android:orientation="horizontal">
-                                <ImageView
-                                    android:id="@+id/ivliab2"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"/>
-                                <TextView
-                                    android:id="@+id/tvliab2"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:layout_marginLeft="5dp"
-                                    android:textStyle="bold"
-                                    android:textColor="@color/black"
-                                    android:text=" "/>
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:visibility="gone"
-                                android:orientation="horizontal">
-                                <ImageView
-                                    android:id="@+id/ivliab3"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"/>
-                                <TextView
-                                    android:id="@+id/tvliab3"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:layout_marginLeft="5dp"
-                                    android:textStyle="bold"
-                                    android:textColor="@color/black"
-                                    android:text=" "/>
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:visibility="gone"
-                                android:orientation="horizontal">
-                                <ImageView
-                                    android:id="@+id/ivliab4"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"/>
-                                <TextView
-                                    android:id="@+id/tvliab4"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:layout_marginLeft="5dp"
-                                    android:textStyle="bold"
-                                    android:textColor="@color/black"
-                                    android:text=" "/>
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:visibility="gone"
-                                android:orientation="horizontal">
-                                <ImageView
-                                    android:id="@+id/ivliab5"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"/>
-                                <TextView
-                                    android:id="@+id/ivliab6"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:layout_marginLeft="5dp"
-                                    android:textStyle="bold"
-                                    android:textColor="@color/black"
-                                    android:text=" "/>
-                            </LinearLayout>
-                        </LinearLayout>
-                    </ScrollView>
-
+                        android:layout_height="wrap_content" />
 
                 </LinearLayout>
 
 
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <androidx.cardview.widget.CardView
-                app:cardCornerRadius="10dp"
-                app:cardElevation="30dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                app:cardBackgroundColor="@color/color_activity_transparent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:background="@color/white"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+            </LinearLayout>
 
 
-                    <TextView
+        </androidx.cardview.widget.CardView>
 
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:gravity="center"
-                        android:text="Payment and Receipt"
-                        android:textColor="@color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <ScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:orientation="horizontal" >
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:layout_weight="1"
-                                android:orientation="horizontal">
-                                <ImageView
-                                    android:id="@+id/ivAsset"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"/>
-                                <TextView
-                                    android:id="@+id/tvAsset"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:layout_marginLeft="5dp"
-                                    android:textStyle="bold"
-                                    android:textColor="@color/black"
-                                    android:text=" "/>
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:layout_weight="1"
-                                android:orientation="horizontal">
-                                <ImageView
-                                    android:id="@+id/ivAssett"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"/>
-                                <TextView
-                                    android:id="@+id/tvAssettt"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:layout_marginLeft="5dp"
-                                    android:textStyle="bold"
-                                    android:textColor="@color/black"
-                                    android:text=" "/>
-                            </LinearLayout>
-                        </LinearLayout>
-                    </ScrollView>
-
-                    <lecho.lib.hellocharts.view.ColumnChartView
-                        android:id="@+id/charttt"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:layout_weight="1"/>
-
-                </LinearLayout>
-
-
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
     </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <androidx.cardview.widget.CardView
+                app:cardCornerRadius="10dp"
+                app:cardElevation="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <TextView
+                        android:id="@+id/tv_line1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="center"
+                        android:text="Liability"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/line"
+                        android:layout_width="match_parent"
+                        android:layout_height="151dp"
+                        android:layout_gravity="center"
+                        android:visibility="visible" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvliability"
+                            android:layout_below="@+id/layoutTop"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <androidx.cardview.widget.CardView
+                app:cardCornerRadius="10dp"
+                app:cardElevation="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <TextView
+                        android:id="@+id/tv_line2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="center"
+                        android:text="Payment Receipt"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/line2"
+                        android:layout_width="match_parent"
+                        android:layout_height="151dp"
+                        android:layout_gravity="center"
+                        android:visibility="visible" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvOverduelist"
+                            android:layout_below="@+id/layoutTop"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+</LinearLayout>
 </LinearLayout>
