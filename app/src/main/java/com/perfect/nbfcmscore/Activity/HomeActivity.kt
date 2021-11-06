@@ -2,9 +2,9 @@ package com.perfect.nbfcmscore.Activity
 
 import android.annotation.SuppressLint
 import android.app.Dialog
-import android.content.Context
-import android.content.Intent
+import android.content.*
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -38,6 +38,8 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import java.net.MalformedURLException
+import java.net.URL
 import java.util.*
 
 class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -96,7 +98,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         setRegister()
         setHomeNavMenu()
         init()
-      //  versioncheck()
+        versioncheck()
 
         setdefaultAccountDetails()
 
@@ -210,40 +212,17 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                 //  progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 Log.i("Response-Versioncheck", response.body())
+
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
-                                            jObject.getJSONObject("BannerDetails")
+                                            jObject.getJSONObject("VersionCheck")
                                     val jsonobj2 = JSONObject(jsonObj1.toString())
 
-                                    jresult = jsonobj2.getJSONArray("BannerDetailsList")
+                                    var status = jsonobj2.getString("Status")
+                                    if (status.equals("10")) {
+                                        goToPlayStore()
+                                    } else {
 
-                                    for (i in 0 until jresult!!.length()) {
-                                        try {
-                                            val json = jresult!!.getJSONObject(i)
-                                            XMENArray!!.add("/Images/Banner/ban1.jpg")
-
-
-                                            mPager!!.adapter = BannerAdapter(
-                                                    this@HomeActivity,
-                                                    XMENArray
-                                            )
-                                            indicator!!.setViewPager(mPager)
-                                            val handler = Handler()
-                                            val Update = Runnable {
-                                                if (currentPage === jresult!!.length()) {
-                                                    currentPage = 0
-                                                }
-                                                mPager!!.setCurrentItem(currentPage++, true)
-                                            }
-                                            val swipeTimer = Timer()
-                                            swipeTimer.schedule(object : TimerTask() {
-                                                override fun run() {
-                                                    handler.post(Update)
-                                                }
-                                            }, 3000, 3000)
-                                        } catch (e: JSONException) {
-                                            e.printStackTrace()
-                                        }
                                     }
 
 
@@ -321,6 +300,50 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         }
     }
 
+    private fun goToPlayStore() {
+        try {
+//            String url = getResources().getString(R.string.app_link );
+            val pref = applicationContext.getSharedPreferences(Config.SHARED_PREF11, 0)
+            val url = pref.getString("PlayStoreLink", null)
+            URL(url)
+        } catch (e: MalformedURLException) {
+            val alertDialogBuilder = AlertDialog.Builder(this@HomeActivity)
+            alertDialogBuilder.setMessage("The app is under maintenance. Sorry for the inconvenience.")
+            alertDialogBuilder.setCancelable(false)
+            alertDialogBuilder.setPositiveButton("Ok") { dialog: DialogInterface?, which: Int -> finish() }
+            alertDialogBuilder.show()
+            return
+        }
+        val dialogBuilder = android.app.AlertDialog.Builder(this@HomeActivity)
+        val inflater: LayoutInflater = this@HomeActivity.getLayoutInflater()
+        val dialogView: View = inflater.inflate(R.layout.alert_layout, null)
+        dialogBuilder.setView(dialogView)
+        val alertDialog = dialogBuilder.create()
+        val tv_share = dialogView.findViewById<TextView>(R.id.tv_share)
+        val tv_msg = dialogView.findViewById<TextView>(R.id.txt1)
+        val tv_msg2 = dialogView.findViewById<TextView>(R.id.txt2)
+        tv_msg.text = "New Version Available"
+        tv_msg2.text = "New version of this application is available.\n" +
+                "Click OK to upgrade now"
+        val tv_cancel = dialogView.findViewById<TextView>(R.id.tv_cancel)
+        tv_cancel.setOnClickListener { alertDialog.dismiss() }
+        tv_share.setOnClickListener { //  finishAffinity();
+
+            val pref = applicationContext.getSharedPreferences(Config.SHARED_PREF11, 0)
+            val url = pref.getString("PlayStoreLink", null)
+            Log.i("URL",url.toString())
+            try {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+            } catch (anfe: ActivityNotFoundException) {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+            }
+            alertDialog.dismiss()
+        }
+
+        alertDialog.show()
+
+
+    }
 
 
     private fun setdefaultAccountDetails() {
@@ -717,89 +740,89 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     }
 
     private fun logout() {
-        val loginSP = this!!.getSharedPreferences(Config.SHARED_PREF,0)
+        val loginSP = this!!.getSharedPreferences(Config.SHARED_PREF, 0)
         val loginEditer = loginSP.edit()
         loginEditer.putString("loginsession", "No")
         loginEditer.commit()
 
 
-        val FK_CustomerSP = this!!.getSharedPreferences(Config.SHARED_PREF1,0)
+        val FK_CustomerSP = this!!.getSharedPreferences(Config.SHARED_PREF1, 0)
         val FK_CustomerEditer = FK_CustomerSP.edit()
         FK_CustomerEditer.putString("FK_Customer", "")
         FK_CustomerEditer.commit()
 
-        val FK_CustomerMobSp = this!!.getSharedPreferences(Config.SHARED_PREF2,0)
+        val FK_CustomerMobSp = this!!.getSharedPreferences(Config.SHARED_PREF2, 0)
         val FK_CustomerMobEditer = FK_CustomerMobSp.edit()
         FK_CustomerMobEditer.putString("CusMobile", "")
         FK_CustomerMobEditer.commit()
 
-        val CustomerNameSP = this!!.getSharedPreferences(Config.SHARED_PREF3,0)
+        val CustomerNameSP = this!!.getSharedPreferences(Config.SHARED_PREF3, 0)
         val CustomerNameEditer = CustomerNameSP.edit()
         CustomerNameEditer.putString("CustomerName", "")
         CustomerNameEditer.commit()
 
-        val CustomerAddressSP = this!!.getSharedPreferences(Config.SHARED_PREF4,0)
+        val CustomerAddressSP = this!!.getSharedPreferences(Config.SHARED_PREF4, 0)
         val CustomerAddressEditer = CustomerAddressSP.edit()
         CustomerAddressEditer.putString("Address", "")
         CustomerAddressEditer.commit()
 
-        val CustomerEmailSP = this!!.getSharedPreferences(Config.SHARED_PREF5,0)
+        val CustomerEmailSP = this!!.getSharedPreferences(Config.SHARED_PREF5, 0)
         val CustomerEmailEditer = CustomerEmailSP.edit()
         CustomerEmailEditer.putString("Email", "")
         CustomerEmailEditer.commit()
 
-        val CustomerGenderSP = this!!.getSharedPreferences(Config.SHARED_PREF6,0)
+        val CustomerGenderSP = this!!.getSharedPreferences(Config.SHARED_PREF6, 0)
         val CustomerGenderEditer = CustomerGenderSP.edit()
         CustomerGenderEditer.putString("Gender", "")
         CustomerGenderEditer.commit()
 
-        val CustomerDobSP = this!!.getSharedPreferences(Config.SHARED_PREF7,0)
+        val CustomerDobSP = this!!.getSharedPreferences(Config.SHARED_PREF7, 0)
         val CustomerDobEditer = CustomerDobSP.edit()
         CustomerDobEditer.putString("DateOfBirth", "")
         CustomerDobEditer.commit()
 
-        val TokenSP = this!!.getSharedPreferences(Config.SHARED_PREF8,0)
+        val TokenSP = this!!.getSharedPreferences(Config.SHARED_PREF8, 0)
         val TokenEditer = TokenSP.edit()
         TokenEditer.putString("Token", "")
         TokenEditer.commit()
 
-        val AppstoreSP = this!!.getSharedPreferences(Config.SHARED_PREF10,0)
+        val AppstoreSP = this!!.getSharedPreferences(Config.SHARED_PREF10, 0)
         val AppstoreEditer = AppstoreSP.edit()
         AppstoreEditer.putString("AppStoreLink", "")
         AppstoreEditer.commit()
 
 
-        val ID_PlaystoreSP = this!!.getSharedPreferences(Config.SHARED_PREF11,0)
+        val ID_PlaystoreSP = this!!.getSharedPreferences(Config.SHARED_PREF11, 0)
         val ID_PlaystoreEditer = ID_PlaystoreSP.edit()
         ID_PlaystoreEditer.putString("PlayStoreLink", "")
         ID_PlaystoreEditer.commit()
 
-        val FKAccountSP = this!!.getSharedPreferences(Config.SHARED_PREF16,0)
+        val FKAccountSP = this!!.getSharedPreferences(Config.SHARED_PREF16, 0)
         val FKAccountEditer = FKAccountSP.edit()
         FKAccountEditer.putString("FK_Account", "")
         FKAccountEditer.commit()
 
-        val SubmoduleeSP = this!!.getSharedPreferences(Config.SHARED_PREF17,0)
+        val SubmoduleeSP = this!!.getSharedPreferences(Config.SHARED_PREF17, 0)
         val SubmoduleEditer = SubmoduleeSP.edit()
         SubmoduleEditer.putString("SubModule", "")
         SubmoduleEditer.commit()
 
-        val StatusSP = this!!.getSharedPreferences(Config.SHARED_PREF18,0)
+        val StatusSP = this!!.getSharedPreferences(Config.SHARED_PREF18, 0)
         val StatusEditer = StatusSP.edit()
         StatusEditer.putString("Status", "")
         StatusEditer.commit()
 
-        val CustnoSP = this!!.getSharedPreferences(Config.SHARED_PREF19,0)
+        val CustnoSP = this!!.getSharedPreferences(Config.SHARED_PREF19, 0)
         val CustnoEditer = CustnoSP.edit()
         CustnoEditer.putString("CustomerNumber", "")
         CustnoEditer.commit()
 
-        val Custno1SP = this!!.getSharedPreferences(Config.SHARED_PREF20,0)
+        val Custno1SP = this!!.getSharedPreferences(Config.SHARED_PREF20, 0)
         val Custno1Editer = Custno1SP.edit()
         Custno1Editer.putString("CustomerNumber", "")
         Custno1Editer.commit()
 
-        val LastloginSP = this!!.getSharedPreferences(Config.SHARED_PREF29,0)
+        val LastloginSP = this!!.getSharedPreferences(Config.SHARED_PREF29, 0)
         val LastloginEditer = LastloginSP.edit()
         LastloginEditer.putString("LastLoginTime", "")
         LastloginEditer.commit()
