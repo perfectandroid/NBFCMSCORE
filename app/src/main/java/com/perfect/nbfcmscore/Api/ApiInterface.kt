@@ -150,5 +150,8 @@ interface ApiInterface {
     @POST("AccountSummary/MaintenanceMessage")
     fun getMaintenanceMsg(@Body body: RequestBody): Call<String>
 
+    @POST("Customer/LabelDetails")
+    fun getLabels(@Body body: RequestBody): Call<String>
+
 }
 

@@ -46,7 +46,7 @@ class LanguageLsitAdaptor(internal val mContext: Context, internal val jsInfo: J
                     Color.parseColor("#E5E8E8"),
                     PorterDuff.Mode.SRC_ATOP
                 )
-                holder.lang_shortname!!.setTextColor(Color.parseColor(jsonObject!!.getString("ColorCode")));
+              //  holder.lang_shortname!!.setTextColor(Color.parseColor(jsonObject!!.getString("ColorCode")));
                 holder.llmain!!.setTag(position)
                 holder.llmain!!.setOnClickListener { v ->
                     jsonObject = jsInfo.getJSONObject(position)

@@ -5,7 +5,9 @@ import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +23,7 @@ import com.perfect.nbfcmscore.Helper.MscoreApplication
 import com.perfect.nbfcmscore.R
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
+import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -41,7 +44,10 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
         Glide.with(this).load(R.drawable.language).into(imglogo)
 
         getLanguagelist()
+
     }
+
+
 
     private fun setRegViews() {
         val tvskip = findViewById<TextView>(R.id.tvskip) as TextView
@@ -85,8 +91,8 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
                     val requestObject1 = JSONObject()
                     try {
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("7"))
-                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey))
-                        )
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
+                        Log.e("TAG", "requestObject1  Language   " + requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -109,6 +115,7 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
                             try {
                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
+                                Log.i("Response-language", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                  //   val jobjt = jObject.getJSONObject("VarificationMaintenance")
 
