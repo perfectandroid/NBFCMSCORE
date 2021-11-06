@@ -140,5 +140,12 @@ interface ApiInterface {
 
     @POST("AccountSummary/QuickPayMoneyTransferPayment")
     fun getQuickPay(@Body body: RequestBody): Call<String>
+
+    @POST("Customer/BannerDetails")
+    fun getBannerdetails(@Body body: RequestBody): Call<String>
+
+    @POST("Customer/VersionCheck")
+    fun getVersioncheck(@Body body: RequestBody): Call<String>
+
 }
 
