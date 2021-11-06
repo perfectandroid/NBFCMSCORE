@@ -147,5 +147,8 @@ interface ApiInterface {
     @POST("Customer/VersionCheck")
     fun getVersioncheck(@Body body: RequestBody): Call<String>
 
+    @POST("AccountSummary/MaintenanceMessage")
+    fun getMaintenanceMsg(@Body body: RequestBody): Call<String>
+
 }
 

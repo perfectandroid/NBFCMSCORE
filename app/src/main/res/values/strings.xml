@@ -68,6 +68,11 @@
     <string name="transaction_update_days">Transaction Update(Days)</string>
     <string name="update_inerval">Update Interval</string>
     <string name="default_acc">Default Account</string>
-
-
+    <string name="splash_screen">ON</string>
+    <string name="add_sender">Add sender</string>
+    <string name="first_name">FIRST NAME</string>
+    <string name="last_name">LAST NAME</string>
+    <string name="caps_mobile_no">MOBILE NUMBER</string>
+    <string name="dob">DOB</string>
+    <string name="register">REGISTER</string>
 </resources>

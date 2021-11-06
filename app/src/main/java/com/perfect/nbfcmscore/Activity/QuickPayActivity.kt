@@ -37,6 +37,9 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener {
     private var mAccountSpinner: Spinner? = null
     private val mAmountEt: AppCompatEditText? = null
     private val mMessageEt: AppCompatEditText? = null
+    private var add_new_sender: TextView?=null
+    private var add_new_receiver: TextView?=null
+
     private val mPin: AppCompatEditText? = null
     private val mProgressDialog: ProgressDialog? = null
     private val mSenderSpinner: Spinner? = null
@@ -66,6 +69,8 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener {
 
     private fun setRegviews() {
 
+        add_new_sender = findViewById<TextView>(R.id.add_new_sender)
+        add_new_receiver = findViewById<TextView>(R.id.add_new_receiver)
         imgBack = findViewById<ImageView>(R.id.imgBack)
         imgBack!!.setOnClickListener(this)
         imgHome = findViewById<ImageView>(R.id.imgHome)
@@ -73,6 +78,9 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener {
         mAccountSpinner = findViewById<Spinner>(R.id.spn_account_num)
         mBtnSubmit = findViewById<Button>(R.id.btn_submit)
         mBtnSubmit!!.setOnClickListener(this)
+        add_new_sender!!.setOnClickListener(this)
+        add_new_receiver!!.setOnClickListener(this)
+
        // mAccountSpinner!!.onItemSelectedListener = this
 
     }
@@ -279,6 +287,14 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener {
             R.id.btn_submit -> {
               //  QuickConfirmation()
                 getQuickPay()
+            }
+            R.id.add_new_receiver -> {
+                startActivity(Intent(this@QuickPayActivity, AddReceiver::class.java))
+
+            }
+            R.id.add_new_sender -> {
+                startActivity(Intent(this@QuickPayActivity, AddSender::class.java))
+
             }
         }
     }
