@@ -1,15 +1,15 @@
 package com.perfect.nbfcmscore.Activity
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import android.view.Gravity
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
 import androidx.appcompat.app.AlertDialog
@@ -433,7 +433,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     for (i in 0 until jresult!!.length()) {
                                         try {
                                             val json = jresult!!.getJSONObject(i)
-                                            var s = "https://202.164.150.65:14262/NbfcAndroidAPI"+json.getString("ImagePath")
+                                            var s = "https://202.164.150.65:14262/NbfcAndroidAPI" + json.getString("ImagePath")
 
 
                                             XMENArray!!.add(s)
@@ -655,13 +655,157 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 drawer!!.closeDrawer(GravityCompat.START)
             }
             else if (position == 6) {
-                //logout
+                try {
+
+                    val dialogBuilder = android.app.AlertDialog.Builder(this@HomeActivity)
+                    val inflater: LayoutInflater = this@HomeActivity.getLayoutInflater()
+                    val dialogView: View = inflater.inflate(R.layout.logout_popup, null)
+                    dialogBuilder.setView(dialogView)
+                    val alertDialog = dialogBuilder.create()
+                    val tv_share = dialogView.findViewById<TextView>(R.id.tv_share)
+                    val tv_cancel = dialogView.findViewById<TextView>(R.id.tv_cancel)
+
+
+                    tv_cancel.setOnClickListener { alertDialog.dismiss() }
+                    tv_share.setOnClickListener {
+                        alertDialog.dismiss()
+                        logout()
+                        val intent = Intent(this, WelcomeActivity::class.java)
+                        intent.putExtra("from", "true")
+                        this.startActivity(intent)
+                        this.finish()
+                    }
+                    alertDialog.show()
+
+
+
+
+
+                } catch (e: java.lang.Exception) {
+                    e.printStackTrace()
+                }
             }
             else if (position == 7) {
-                //quit
+                quit()
             }
 
         }
+    }
+
+    private fun quit() {
+        try {
+            val dialog1 = Dialog(this)
+            dialog1 .requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog1 .setCancelable(false)
+            dialog1 .setContentView(R.layout.quit_popup)
+            val btn_Yes = dialog1.findViewById(R.id.tv_share) as TextView
+            val btn_cancel = dialog1.findViewById(R.id.tv_cancel) as TextView
+            btn_cancel.setOnClickListener {
+                dialog1 .dismiss()
+            }
+            btn_Yes.setOnClickListener {
+                dialog1.dismiss()
+                finish()
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    finishAffinity()
+                }
+            }
+            dialog1.show()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun logout() {
+        val loginSP = this!!.getSharedPreferences(Config.SHARED_PREF,0)
+        val loginEditer = loginSP.edit()
+        loginEditer.putString("loginsession", "No")
+        loginEditer.commit()
+
+
+        val FK_CustomerSP = this!!.getSharedPreferences(Config.SHARED_PREF1,0)
+        val FK_CustomerEditer = FK_CustomerSP.edit()
+        FK_CustomerEditer.putString("FK_Customer", "")
+        FK_CustomerEditer.commit()
+
+        val FK_CustomerMobSp = this!!.getSharedPreferences(Config.SHARED_PREF2,0)
+        val FK_CustomerMobEditer = FK_CustomerMobSp.edit()
+        FK_CustomerMobEditer.putString("CusMobile", "")
+        FK_CustomerMobEditer.commit()
+
+        val CustomerNameSP = this!!.getSharedPreferences(Config.SHARED_PREF3,0)
+        val CustomerNameEditer = CustomerNameSP.edit()
+        CustomerNameEditer.putString("CustomerName", "")
+        CustomerNameEditer.commit()
+
+        val CustomerAddressSP = this!!.getSharedPreferences(Config.SHARED_PREF4,0)
+        val CustomerAddressEditer = CustomerAddressSP.edit()
+        CustomerAddressEditer.putString("Address", "")
+        CustomerAddressEditer.commit()
+
+        val CustomerEmailSP = this!!.getSharedPreferences(Config.SHARED_PREF5,0)
+        val CustomerEmailEditer = CustomerEmailSP.edit()
+        CustomerEmailEditer.putString("Email", "")
+        CustomerEmailEditer.commit()
+
+        val CustomerGenderSP = this!!.getSharedPreferences(Config.SHARED_PREF6,0)
+        val CustomerGenderEditer = CustomerGenderSP.edit()
+        CustomerGenderEditer.putString("Gender", "")
+        CustomerGenderEditer.commit()
+
+        val CustomerDobSP = this!!.getSharedPreferences(Config.SHARED_PREF7,0)
+        val CustomerDobEditer = CustomerDobSP.edit()
+        CustomerDobEditer.putString("DateOfBirth", "")
+        CustomerDobEditer.commit()
+
+        val TokenSP = this!!.getSharedPreferences(Config.SHARED_PREF8,0)
+        val TokenEditer = TokenSP.edit()
+        TokenEditer.putString("Token", "")
+        TokenEditer.commit()
+
+        val AppstoreSP = this!!.getSharedPreferences(Config.SHARED_PREF10,0)
+        val AppstoreEditer = AppstoreSP.edit()
+        AppstoreEditer.putString("AppStoreLink", "")
+        AppstoreEditer.commit()
+
+
+        val ID_PlaystoreSP = this!!.getSharedPreferences(Config.SHARED_PREF11,0)
+        val ID_PlaystoreEditer = ID_PlaystoreSP.edit()
+        ID_PlaystoreEditer.putString("PlayStoreLink", "")
+        ID_PlaystoreEditer.commit()
+
+        val FKAccountSP = this!!.getSharedPreferences(Config.SHARED_PREF16,0)
+        val FKAccountEditer = FKAccountSP.edit()
+        FKAccountEditer.putString("FK_Account", "")
+        FKAccountEditer.commit()
+
+        val SubmoduleeSP = this!!.getSharedPreferences(Config.SHARED_PREF17,0)
+        val SubmoduleEditer = SubmoduleeSP.edit()
+        SubmoduleEditer.putString("SubModule", "")
+        SubmoduleEditer.commit()
+
+        val StatusSP = this!!.getSharedPreferences(Config.SHARED_PREF18,0)
+        val StatusEditer = StatusSP.edit()
+        StatusEditer.putString("Status", "")
+        StatusEditer.commit()
+
+        val CustnoSP = this!!.getSharedPreferences(Config.SHARED_PREF19,0)
+        val CustnoEditer = CustnoSP.edit()
+        CustnoEditer.putString("CustomerNumber", "")
+        CustnoEditer.commit()
+
+        val Custno1SP = this!!.getSharedPreferences(Config.SHARED_PREF20,0)
+        val Custno1Editer = Custno1SP.edit()
+        Custno1Editer.putString("CustomerNumber", "")
+        Custno1Editer.commit()
+
+        val LastloginSP = this!!.getSharedPreferences(Config.SHARED_PREF29,0)
+        val LastloginEditer = LastloginSP.edit()
+        LastloginEditer.putString("LastLoginTime", "")
+        LastloginEditer.commit()
+
+
+
     }
 
 
