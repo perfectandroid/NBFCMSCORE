@@ -61,6 +61,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var llownbank : LinearLayout?=null
     var ll_dth : LinearLayout?=null
     var llEmi : LinearLayout?=null
+    var llnotif : LinearLayout?=null
     var llpassbook: LinearLayout? = null
     var llduereminder: LinearLayout? = null
     var ll_virtualcard: LinearLayout? = null
@@ -597,6 +598,9 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         ll_postpaid = findViewById(R.id.ll_postpaid)
         ll_landline = findViewById(R.id.ll_landline)
         ll_rechargehistory = findViewById(R.id.ll_rechargehistory)
+
+        llnotif= findViewById(R.id.llnotif)
+
         ll_dth = findViewById(R.id.ll_dth)
         llEmi = findViewById(R.id.llEmi)
         llpassbook = findViewById<LinearLayout>(R.id.llpassbook)
@@ -640,6 +644,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         llloanapplication!!.setOnClickListener(this)
         llprofile!!.setOnClickListener(this)
         llquickpay!!.setOnClickListener(this)
+        llnotif!!.setOnClickListener(this)
     }
 
     open fun setHomeNavMenu() {
@@ -904,6 +909,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
                 var intent = Intent(this@HomeActivity, RechargeActivity::class.java)
                 intent.putExtra("from", "postpaid")
+                startActivity(intent)
+            }
+            R.id.llnotif -> {
+
+                var intent = Intent(this@HomeActivity, DuedateActivity::class.java)
                 startActivity(intent)
             }
             R.id.ll_landline -> {

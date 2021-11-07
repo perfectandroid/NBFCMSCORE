@@ -60,7 +60,16 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener  {
     var pieDataTotal: PieData? = null
     var nnnn : Int=0
     var dashTextSize : Float = 10f
-    val color = intArrayOf(R.color.colorPrimary, R.color.btngreen, R.color.colorPrimary, R.color.btngreen, R.color.colorPrimary)
+
+    val pieChartData = arrayListOf<String>()
+
+    val color = intArrayOf(
+            R.color.colorPrimary,
+            R.color.btngreen,
+            R.color.colorPrimary,
+            R.color.btngreen,
+            R.color.colorPrimary
+    )
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -69,7 +78,8 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener  {
 
         setRegviews()
 
-       // getDashboardassetlist()
+
+        getDashboardassetlist()
         //getDashboardliabilitylist()
        // getDashboardpaymentandreceiptlist()
 
@@ -77,7 +87,7 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener  {
 
     }
 
-   /* private fun getDashboardassetlist() {
+    private fun getDashboardassetlist() {
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@DashboardActivity, R.style.Progress)
@@ -167,6 +177,7 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener  {
 
                                     jresult = jsonobj2.getJSONArray("DashBoardAssestDetails")
 
+
                                     val json = jresult!!.getJSONObject(0)
                                     var str = json.getString("Balance")
                                     //val bal: Double = str.toDouble()
@@ -174,14 +185,21 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener  {
                                     //val jaTotal1 = json.getJSONArray("Details")
                                     val myListsAll = JSONArray(str)
 
-                                    Log.e("TAG", "Response-array   " + myListsAll.length() + "  " + myListsAll)
+                                    Log.e(
+                                            "TAG",
+                                            "Response-array   " + myListsAll.length() + "  " + myListsAll
+                                    )
                                     entriesTotal = ArrayList()
                                     PieEntryLabelsTotal = ArrayList<String>()
 
 
                                     for (x in 0 until myListsAll.length()) {
                                         val jsonobject = myListsAll[x] as JSONObject
-                                        entriesTotal!!.add(BarEntry(jsonobject.optString("Value").toFloat(), x))
+                                        entriesTotal!!.add(
+                                                BarEntry(
+                                                        jsonobject.optString("Value").toFloat(), x
+                                                )
+                                        )
                                         PieEntryLabelsTotal!!.add(jsonobject.optString("Key"));
 
                                     }
@@ -199,7 +217,12 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener  {
                                     pieDataSetTotal!!.setColors(color, applicationContext)
                                     pieDataSetTotal!!.setValueTextSize(dashTextSize); // <- here
                                     pieDataSetTotal!!.setDrawValues(true);  // entries enable/disable
-                                    pieDataSetTotal!!.setValueTextColor(ContextCompat.getColor(this@DashboardActivity, R.color.black));
+                                    pieDataSetTotal!!.setValueTextColor(
+                                            ContextCompat.getColor(
+                                                    this@DashboardActivity,
+                                                    R.color.black
+                                            )
+                                    );
 
                                     piechart!!.data = pieDataTotal
                                     piechart!!.setDescription("")
@@ -279,7 +302,7 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener  {
             }
         }
     }
-*/
+
 
     private fun setRegviews() {
         imgBack = findViewById<ImageView>(R.id.imgBack)
