@@ -153,5 +153,8 @@ interface ApiInterface {
     @POST("Customer/LabelDetails")
     fun getLabels(@Body body: RequestBody): Call<String>
 
+    @POST("AccountSummary/QuickPaySenderReciver")
+    fun getSenderReceiver(@Body body: RequestBody): Call<String>
+
 }
 
