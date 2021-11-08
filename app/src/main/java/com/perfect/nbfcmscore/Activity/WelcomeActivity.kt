@@ -43,7 +43,7 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
         val ProductNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF12,0)
         var IMAGRURL = Config.IMAGE_URL+AppIconImageCodeSP.getString("AppIconImageCode",null)
 
-        Glide.with(this).load(IMAGRURL).placeholder(R.drawable.welcomegif).into(imwelcome);
+        Glide.with(this).load(IMAGRURL).placeholder(null).into(imwelcome);
         tv_product_name!!.setText(""+ProductNameSP.getString("ProductName",null))
 
 

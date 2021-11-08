@@ -112,7 +112,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                     "AppIconImageCode",
                     null
             )
-            PicassoTrustAll.getInstance(this)!!.load(imagepath).error(R.drawable.no_image).into(
+            PicassoTrustAll.getInstance(this)!!.load(imagepath).error(null).into(
                     im_applogo
             )
         }catch (e: Exception) {
