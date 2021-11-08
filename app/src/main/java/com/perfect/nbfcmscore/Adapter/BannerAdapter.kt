@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.viewpager.widget.PagerAdapter
 import com.perfect.nbfcmscore.R
-import java.util.ArrayList
+import com.squareup.picasso.Picasso
+import java.util.*
 
-class BannerAdapter(private val context: Context?, private val images: ArrayList<Int>) : PagerAdapter() {
+
+class BannerAdapter(private val context: Context?, private val images: ArrayList<String>) : PagerAdapter() {
 
     private val inflater: LayoutInflater
 
@@ -28,8 +30,11 @@ class BannerAdapter(private val context: Context?, private val images: ArrayList
     override fun instantiateItem(view: ViewGroup, position: Int): Any {
         val myImageLayout = inflater.inflate(R.layout.slide, view, false)
         val myImage = myImageLayout
-            .findViewById(R.id.image) as ImageView
-        myImage.setImageResource(images[position])
+                .findViewById(R.id.image) as ImageView
+       // myImage.setImageResource(images[position])
+        Picasso.with(context).load(images.get(position)) //.placeholder(R.drawable.ban2)
+                .error(R.drawable.ban2)
+                .into(myImage)
         view.addView(myImageLayout, 0)
         return myImageLayout
     }

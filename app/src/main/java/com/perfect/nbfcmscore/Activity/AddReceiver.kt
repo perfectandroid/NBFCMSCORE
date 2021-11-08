@@ -9,14 +9,9 @@ import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ImageView
-import android.widget.TextView
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Api.ApiInterface
-import com.perfect.nbfcmscore.Adapter.LanguageLsitAdaptor
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
 import com.perfect.nbfcmscore.Helper.MscoreApplication
@@ -30,44 +25,24 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
-class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
-
+class AddReceiver : AppCompatActivity() , View.OnClickListener{
     private var progressDialog: ProgressDialog? = null
-    var rv_Languagelist: RecyclerView? = null
-
+    var imgBack: ImageView? = null
+    var applogo: ImageView? = null
+    var imCompanylogo: ImageView? = null
+    var imgHome: ImageView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_languagesectection)
-        setRegViews()
+        setContentView(R.layout.activity_receiver)
 
-        val imglogo: ImageView = findViewById(R.id.imglogo)
-        Glide.with(this).load(R.drawable.language).into(imglogo)
-
-        getLanguagelist()
+         getReceiver()
 
     }
 
-
-
-    private fun setRegViews() {
-        val tvskip = findViewById<TextView>(R.id.tvskip) as TextView
-        rv_Languagelist = findViewById<RecyclerView>(R.id.rv_Languagelist) as RecyclerView
-        tvskip!!.setOnClickListener(this)
-    }
-
-    override fun onClick(v: View) {
-        when(v.id){
-            R.id.tvskip->{
-                intent = Intent(applicationContext, WelcomeActivity::class.java)
-                startActivity(intent)
-            }
-        }
-    }
-
-    private fun getLanguagelist() {
+    private fun getReceiver() {
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
-                progressDialog = ProgressDialog(this@LanguageSelectionActivity, R.style.Progress)
+                progressDialog = ProgressDialog(this@AddReceiver, R.style.Progress)
                 progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
                 progressDialog!!.setCancelable(false)
                 progressDialog!!.setIndeterminate(true)
@@ -75,63 +50,98 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
                 progressDialog!!.show()
                 try {
                     val client = OkHttpClient.Builder()
-                        .sslSocketFactory(Config.getSSLSocketFactory(this@LanguageSelectionActivity))
-                        .hostnameVerifier(Config.getHostnameVerifier())
-                        .build()
+                            .sslSocketFactory(Config.getSSLSocketFactory(this@AddReceiver))
+                            .hostnameVerifier(Config.getHostnameVerifier())
+                            .build()
                     val gson = GsonBuilder()
-                        .setLenient()
-                        .create()
+                            .setLenient()
+                            .create()
                     val retrofit = Retrofit.Builder()
-                        .baseUrl(Config.BASE_URL)
-                        .addConverterFactory(ScalarsConverterFactory.create())
-                        .addConverterFactory(GsonConverterFactory.create(gson))
-                        .client(client)
-                        .build()
+                            .baseUrl(Config.BASE_URL)
+                            .addConverterFactory(ScalarsConverterFactory.create())
+                            .addConverterFactory(GsonConverterFactory.create(gson))
+                            .client(client)
+                            .build()
                     val apiService = retrofit.create(ApiInterface::class.java!!)
                     val requestObject1 = JSONObject()
                     try {
-                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("7"))
-                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
-                        Log.e("TAG", "requestObject1  Language   " + requestObject1)
+
+                        val FK_CustomerSP = this.applicationContext.getSharedPreferences(
+                                Config.SHARED_PREF1,
+                                0
+                        )
+                        val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
+
+                        val TokenSP = this!!.applicationContext.getSharedPreferences(
+                                Config.SHARED_PREF8,
+                                0
+                        )
+                        val Token = TokenSP.getString("Token", null)
+
+                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("40"))
+                        requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+                        requestObject1.put(
+                                "FK_Customer",
+                                MscoreApplication.encryptStart(FK_Customer)
+                        )
+                        requestObject1.put(
+                                "BankKey", MscoreApplication.encryptStart(
+                                getResources().getString(
+                                        R.string.BankKey
+                                )
+                        )
+                        )
+
+
+                        Log.e("TAG", "requestObject1  171   " + requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
                         val mySnackbar = Snackbar.make(
-                            findViewById(R.id.rl_main),
-                            " Some technical issues.", Snackbar.LENGTH_SHORT
+                                findViewById(R.id.rl_main),
+                                " Some technical issues.", Snackbar.LENGTH_SHORT
                         )
                         mySnackbar.show()
                     }
                     val body = RequestBody.create(
-                        okhttp3.MediaType.parse("application/json; charset=utf-8"),
-                        requestObject1.toString()
+                            okhttp3.MediaType.parse("application/json; charset=utf-8"),
+                            requestObject1.toString()
                     )
-                    val call = apiService.getLanguages(body)
+                    val call = apiService.getSenderReceiver(body)
                     call.enqueue(object : retrofit2.Callback<String> {
                         override fun onResponse(
-                            call: retrofit2.Call<String>, response:
-                            Response<String>
+                                call: retrofit2.Call<String>, response:
+                                Response<String>
                         ) {
                             try {
                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
-                                Log.i("Response-language", response.body())
-                                if (jObject.getString("StatusCode") == "0") {
-                                 //   val jobjt = jObject.getJSONObject("VarificationMaintenance")
+                                Log.i("Response-receiver", response.body())
+                             /*   if (jObject.getString("StatusCode") == "0") {
+                                    val jsonObj1: JSONObject =
+                                            jObject.getJSONObject("PassBookAccountDetails")
+                                    val jsonobj2 = JSONObject(jsonObj1.toString())
 
-                                    val jobjt =
-                                        jObject.getJSONObject("Languages")
-                                    val jarray =
-                                        jobjt.getJSONArray("LanguagesList")
+                                    jresult = jsonobj2.getJSONArray("PassBookAccountDetailsList")
 
-                                    val obj_adapter = LanguageLsitAdaptor(applicationContext!!, jarray)
-                                    rv_Languagelist!!.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
-                                    rv_Languagelist!!.adapter = obj_adapter
+                                    for (i in 0 until jresult!!.length()) {
+                                        try {
+                                            val json = jresult!!.getJSONObject(i)
+                                            arrayList1!!.add(json.getString("AccountNumber"))
+                                        } catch (e: JSONException) {
+                                            e.printStackTrace()
+                                        }
+                                    }
+                                    spnAccountNum!!.adapter = ArrayAdapter(
+                                            this@PassbookActivity,
+                                            android.R.layout.simple_spinner_dropdown_item, arrayList1
+                                    )
+
 
                                 } else {
                                     val builder = AlertDialog.Builder(
-                                        this@LanguageSelectionActivity,
-                                        R.style.MyDialogTheme
+                                            this@PassbookActivity,
+                                            R.style.MyDialogTheme
                                     )
                                     builder.setMessage("" + jObject.getString("EXMessage"))
                                     builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -139,13 +149,13 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
                                     val alertDialog: AlertDialog = builder.create()
                                     alertDialog.setCancelable(false)
                                     alertDialog.show()
-                                }
+                                }*/
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
 
                                 val builder = AlertDialog.Builder(
-                                    this@LanguageSelectionActivity,
-                                    R.style.MyDialogTheme
+                                        this@AddReceiver,
+                                        R.style.MyDialogTheme
                                 )
                                 builder.setMessage("Some technical issues.")
                                 builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -156,12 +166,13 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
                                 e.printStackTrace()
                             }
                         }
+
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
 
                             val builder = AlertDialog.Builder(
-                                this@LanguageSelectionActivity,
-                                R.style.MyDialogTheme
+                                    this@AddReceiver,
+                                    R.style.MyDialogTheme
                             )
                             builder.setMessage("Some technical issues.")
                             builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -173,7 +184,7 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(this@LanguageSelectionActivity, R.style.MyDialogTheme)
+                    val builder = AlertDialog.Builder(this@AddReceiver, R.style.MyDialogTheme)
                     builder.setMessage("Some technical issues.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->
                     }
@@ -184,7 +195,7 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@LanguageSelectionActivity, R.style.MyDialogTheme)
+                val builder = AlertDialog.Builder(this@AddReceiver, R.style.MyDialogTheme)
                 builder.setMessage("No Internet Connection.")
                 builder.setPositiveButton("Ok") { dialogInterface, which ->
                 }
@@ -193,6 +204,16 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
                 alertDialog.show()
             }
         }
+    }
 
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.imgBack ->{
+                finish()
+            }
+            R.id.imgHome ->{
+                startActivity(Intent(this@AddReceiver, HomeActivity::class.java))
+            }
+        }
     }
 }

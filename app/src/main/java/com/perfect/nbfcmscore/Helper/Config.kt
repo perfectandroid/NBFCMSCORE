@@ -17,11 +17,11 @@ import javax.net.ssl.*
 
 object Config {
     val CERT_NAME = "static-vm.pem"  //QA
-   val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/api/"  //DEVELOPMENT
+  val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/api/"  //DEVELOPMENT
     val IMAGE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/"  ///DEVELOPMENT*/
 
-   /* val BASE_URL="http://202.164.150.65:14006/NbfcAndroidAPIQA/api/"  //Qa new ip
-    val IMAGE_URL="http://202.164.150.65:14006/NbfcAndroidAPIQA/"*/
+ /*  val BASE_URL="https://202.164.150.65:14262/NbfcAndroidAPIQA/api/"  //Qa new ip
+    val IMAGE_URL="https://202.164.150.65:14262/NbfcAndroidAPIQA/"*/
 
 
 

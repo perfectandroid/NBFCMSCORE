@@ -20,6 +20,7 @@
                 tools:ignore="MissingConstraints" >
 
                 <ImageView
+                    android:id="@+id/imgv1"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
@@ -29,7 +30,22 @@
                     android:layout_marginRight="60dp"
                     android:layout_marginBottom="60dp"
                     android:src="@drawable/applogo" />
-
+                <TextView
+                    android:id="@+id/tv_error_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imgv1"/>
                 <ImageView
                     android:id="@+id/imsplashlogo"
                     android:layout_width="match_parent"
@@ -40,6 +56,22 @@
                     android:gravity="center" />
             </LinearLayout>
         </ScrollView>
+        <Button
+            android:id="@+id/btn_proceed"
+            android:background="@drawable/custom_edt_txt_account_border"
+            android:layout_weight="0.1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PROCEED"
+            android:gravity="center"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:padding="2.5dp" />
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="50dp"

@@ -45,22 +45,9 @@
                         android:layout_gravity="center"
                         android:layout_height="65dp" />
                     <TextView
-                        android:id="@+id/txt1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text=""
-                        android:textStyle="bold"
-                        android:layout_marginTop="10dp"
-                        android:textColor="@color/blue"
-                        android:gravity="center"
-                        android:textSize="18sp"
-                        android:focusable="false"
-                        android:layout_margin="5dp"/>
-                    <TextView
-                        android:id="@+id/txt2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text=""
+                        android:text="Do You Want To Quit ?"
                         android:layout_marginTop="10dp"
                         android:textColor="@color/black"
                         android:gravity="center"
@@ -73,7 +60,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -81,27 +68,26 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:visibility="invisible"
-                        android:background="@drawable/bg_unselect"
+                        android:background="@drawable/bg_select"
                         android:gravity="center"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="10dp"
                         android:textStyle="bold"
-                        android:textColor="@color/RoyalBlue"
+                        android:textColor="@color/white"
                         android:text="No"/>
 
                     <TextView
                         android:id="@+id/tv_share"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="50dp"
-                        android:layout_marginRight="20dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:background="@drawable/bg_unselect"
                         android:gravity="center"
-                        android:text="OK"
-                        android:textColor="@color/blue"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="20dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:text="Yes"/>
                 </LinearLayout>
 
 

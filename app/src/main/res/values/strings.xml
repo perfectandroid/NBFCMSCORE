@@ -68,6 +68,20 @@
     <string name="transaction_update_days">Transaction Update(Days)</string>
     <string name="update_inerval">Update Interval</string>
     <string name="default_acc">Default Account</string>
-
-
+    <string name="splash_screen">ON</string>
+    <string name="add_sender">Add sender</string>
+    <string name="address">Address</string>
+    <string name="first_name">FIRST NAME</string>
+    <string name="last_name">LAST NAME</string>
+    <string name="caps_mobile_no">MOBILE NUMBER</string>
+    <string name="dob">DOB</string>
+    <string name="add_receiver">Add receiver</string>
+    <string name="sender_name">Sender Name</string>
+    <string name="receiver_name">Receiver Name</string>
+    <string name="ifsc_code">IFS Code</string>
+    <string name="register">REGISTER</string>
+    <string name="mobile_no">Mobile number</string>
+    <string name="consumer_no">Consumer no</string>
+    <string name="bill_no">Bill no</string>
+    <string name="remainder">\nOver Due Loans are shown in red colour. \n*  Due amount shown in this list is as of today. \n** You can set reminder on calender for due date intimation of deposits &amp; loans.</string>
 </resources>

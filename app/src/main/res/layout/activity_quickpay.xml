@@ -47,6 +47,7 @@
         android:id="@+id/linear_animation_container"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+
         android:background="@android:color/transparent"
         android:orientation="vertical">
 

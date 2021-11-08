@@ -1,5 +1,7 @@
 package com.perfect.nbfcmscore.Activity
 
+import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -10,8 +12,20 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
+import com.google.gson.GsonBuilder
+import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
+import com.perfect.nbfcmscore.Helper.ConnectivityUtils
+import com.perfect.nbfcmscore.Helper.MscoreApplication
 import com.perfect.nbfcmscore.R
+import okhttp3.OkHttpClient
+import okhttp3.RequestBody
+import org.json.JSONObject
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -32,6 +46,8 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
         Glide.with(this).load(IMAGRURL).placeholder(R.drawable.welcomegif).into(imwelcome);
         tv_product_name!!.setText(""+ProductNameSP.getString("ProductName",null))
 
+
+     //   getlabels()
     }
 
     private fun setRegViews() {
