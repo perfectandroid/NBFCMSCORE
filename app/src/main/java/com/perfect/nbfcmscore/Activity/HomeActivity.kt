@@ -233,7 +233,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 startActivity(Intent(this@HomeActivity, AboutActivity::class.java))
                 drawer!!.closeDrawer(GravityCompat.START)
             } else if (position == 1) {
-                //contact
+                startActivity(Intent(this@HomeActivity, ContactUsActivity::class.java))
             } else if (position == 2) {
                 //feedback
             } else if (position == 3) {
