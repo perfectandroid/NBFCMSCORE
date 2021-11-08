@@ -546,6 +546,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
         val txtvAcntno: TextView = dialog.findViewById<TextView>(R.id.txtvAcntno)
         val txtvbranch: TextView = dialog.findViewById<TextView>(R.id.txtvbranch)
         val tv_amount_words: TextView = dialog.findViewById<TextView>(R.id.tv_amount_words)
+        val img_aapicon: ImageView = dialog.findViewById<ImageView>(R.id.img_aapicon)
 //        val txtvbalnce: TextView = dialog.findViewById<TextView>(R.id.txtvbalnce)
 
         val txtvAcntnoto: TextView = dialog.findViewById<TextView>(R.id.txtvAcntnoto)
@@ -559,6 +560,13 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
         txtvbranch!!.setText(""+BranchName)
         txtvAcntnoto!!.setText(""+BeneAccountNumber)
         tv_amount!!.setText(""+Config.getDecimelFormate(amount!!.toDouble()))
+
+        val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
+        val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+        Log.e(TAG,"imagepath  566   "+imagepath)
+       // img_aapicon!!.setImageResource(R.drawable.applogo)
+        PicassoTrustAll.getInstance(this@OtherBankFundTransferActivity)!!.load(imagepath).error(android.R.color.transparent).into(img_aapicon!!)
+
 //        val fmt = DecimalFormat("#,##,###.00")
 //
 // Log.e(TAG,"517     "+Config.getDecimelFormate(amount!!.toDouble()))

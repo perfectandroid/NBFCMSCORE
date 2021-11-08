@@ -46,11 +46,13 @@
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/alert_layout.xml" value="0.2957427536231884" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/circle_bottom_sheet.xml" value="0.3416666666666667" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/circle_list.xml" value="0.2869791666666667" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/confirmation_fund_popup.xml" value="0.3265625" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/custom_bottom_sheet.xml" value="0.2957427536231884" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/fragment_back_view.xml" value="0.2869791666666667" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/fragment_front_view.xml" value="0.2869791666666667" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/operator_bottom_sheet.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/operator_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/recharge_confirmation.xml" value="0.3265625" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/spinner_text.xml" value="0.20520833333333333" />
       </map>
     </option>
