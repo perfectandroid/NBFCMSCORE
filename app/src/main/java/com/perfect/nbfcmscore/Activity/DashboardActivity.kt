@@ -32,6 +32,7 @@ import com.perfect.nbfcmscore.R
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
 import org.json.JSONArray
+import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -43,14 +44,14 @@ import java.util.*
 class DashboardActivity : AppCompatActivity(),View.OnClickListener  {
     private var progressDialog: ProgressDialog? = null
     var imgBack: ImageView? = null
-    var arrayList1 = ArrayList<String>()
+    var myListsAll = JSONArray()
+    var arrayList1 = ArrayList<Float>()
     var imgHome: ImageView? = null
     var piechart: PieChart? = null
     var rvOverduelist: RecyclerView? = null
     var lay_chart: LinearLayout? = null
     var lay_nodata:LinearLayout? = null
     var tv_nodata: TextView? = null
-    var pieData = arrayListOf("0")
     var list2 = ArrayList<String>()
     var jsonArraypie: JSONArray? = null
     private var jresult: JSONArray? = null
@@ -177,13 +178,24 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener  {
 
                                     jresult = jsonobj2.getJSONArray("DashBoardAssestDetails")
 
+                                    for (i in 0 until jresult!!.length()) {
+                                        try {
+                                            val json = jresult!!.getJSONObject(i)
+                                            var str = json.getInt("Balance")
+                                             myListsAll = JSONArray(str)
+                                        } catch (e: JSONException) {
+                                            e.printStackTrace()
+                                            Log.e("Exception",e.toString())
+                                        }
+                                    }
 
-                                    val json = jresult!!.getJSONObject(0)
-                                    var str = json.getString("Balance")
+                                    //  val json: JSONObject = jresult!!.getJSONObject(0)
+                                    //  val json = jresult!!.getJSONObject(0)
+                                    //  var str = json.getString("Balance")
                                     //val bal: Double = str.toDouble()
                                     //  val jObject = JSONObject(s)
                                     //val jaTotal1 = json.getJSONArray("Details")
-                                    val myListsAll = JSONArray(str)
+                                    //     val myListsAll = JSONArray(str)
 
                                     Log.e(
                                             "TAG",

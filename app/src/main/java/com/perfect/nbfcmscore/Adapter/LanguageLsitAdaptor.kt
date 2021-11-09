@@ -59,6 +59,7 @@ class LanguageLsitAdaptor(internal val mContext: Context, internal val jsInfo: J
                     ID_LanguagesEditer.commit()
                   //  Toast.makeText(mContext,""+jsonObject!!.getString("ID_Languages"),Toast.LENGTH_LONG).show()
                     val intent = Intent(v.context, WelcomeActivity::class.java)
+                    intent.putExtra("id", jsonObject!!.getString("ID_Languages"))
                     v.context.startActivity(intent)
                 }
             }
