@@ -66,6 +66,7 @@
                     android:layout_marginBottom="100dp"/>
 
                 <TextView
+                    android:id="@+id/tv_loginwithmob"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Login with Mobile Number"
@@ -78,6 +79,7 @@
                     android:layout_marginBottom="10dp"/>
 
                 <TextView
+                    android:id="@+id/tv_entermobotp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Enter your mobile number we will sent you OTP to verify."

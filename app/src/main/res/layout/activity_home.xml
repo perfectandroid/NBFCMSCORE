@@ -275,6 +275,7 @@
                                     android:src="@drawable/myaccountsummary" />
 
                                 <TextView
+                                    android:id="@+id/txtv_myacc"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
@@ -318,6 +319,7 @@
                                     android:src="@drawable/mypassbook" />
 
                                 <TextView
+                                    android:id="@+id/txtv_pasbk"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
@@ -361,6 +363,7 @@
                                     android:src="@drawable/myquickbalance" />
 
                                 <TextView
+                                    android:id="@+id/txtv_quickbal"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
@@ -415,6 +418,7 @@
                                     android:src="@drawable/mystatement" />
 
                                 <TextView
+                                    android:id="@+id/txtvstatmnt"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
@@ -458,6 +462,7 @@
                                     android:src="@drawable/myduereminder" />
 
                                 <TextView
+                                    android:id="@+id/txtv_dueremndr"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"

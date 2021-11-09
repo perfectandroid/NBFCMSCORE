@@ -41,6 +41,7 @@ class OTPActivity : AppCompatActivity() , View.OnClickListener {
     var pinview: Pinview? = null
     var tvotpmsg: TextView? = null
 
+    var txtv_otpverify:TextView?=null
     var one: Button? = null
     var two: Button? = null
     var three: Button? = null
@@ -69,7 +70,7 @@ class OTPActivity : AppCompatActivity() , View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_o_t_p)
         setRegViews()
-
+        val ID_OtpverifySP = applicationContext.getSharedPreferences(Config.SHARED_PREF48,0)
 
 
         val imgLogo: ImageView = findViewById(R.id.imgLogo)
@@ -85,6 +86,8 @@ class OTPActivity : AppCompatActivity() , View.OnClickListener {
         CusMobile = intent.getStringExtra("CusMobile")!!
         val mask: String = CusMobile.replace("\\w(?=\\w{3})".toRegex(),"*")
         tvotpmsg!!.text="Please enter the validation code send to your registered mobile number "+mask
+
+        txtv_otpverify!!.setText(ID_OtpverifySP.getString("Otpverification",null))
 
         pinview!!.setPinViewEventListener { pinview, fromUser ->
 
@@ -109,7 +112,7 @@ class OTPActivity : AppCompatActivity() , View.OnClickListener {
         eight = findViewById<Button>(R.id.eight) as Button
         nine = findViewById<Button>(R.id.nine) as Button
         zero = findViewById<Button>(R.id.zero) as Button
-
+        txtv_otpverify= findViewById<TextView>(R.id.txtv_otpverify) as TextView
 
         et_1 = findViewById<EditText>(R.id.et_1) as EditText
         et_2 = findViewById<EditText>(R.id.et_2) as EditText

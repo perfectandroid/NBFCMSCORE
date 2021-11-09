@@ -28,16 +28,44 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
-
+    var Languageid: String? = null
+    var tvWelcome:TextView?=null
+    var tvfasterway:TextView?=null
+    var btlogin:Button?=null
+    var btregistration:Button?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_welcome)
         setRegViews()
 
+
+        val WelcomeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF34,0)
+        val FasterSP = applicationContext.getSharedPreferences(Config.SHARED_PREF35,0)
+        val SigninSP = applicationContext.getSharedPreferences(Config.SHARED_PREF36,0)
+        val RegisterSP = applicationContext.getSharedPreferences(Config.SHARED_PREF37,0)
+
+        if(WelcomeSP.equals("")||FasterSP.equals("")||SigninSP.equals("")||RegisterSP.equals(""))
+        {
+
+        }
+        else
+        {
+            tvWelcome!!.setText(WelcomeSP.getString("welcome",null))
+            tvfasterway!!.setText(FasterSP.getString("fasterwaytohelpyou",null))
+            btlogin!!.setText(SigninSP.getString("sigin",null))
+            btregistration!!.setText(RegisterSP.getString("registernow",null))
+
+        }
+
+
         val imwelcome: ImageView = findViewById(R.id.imwelcome)
         val tv_product_name: TextView = findViewById(R.id.tv_product_name)
 //        Glide.with(this).load(R.drawable.welcomegif).into(imwelcome)
+
+
+
+
 
         val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14,0)
         val ProductNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF12,0)
@@ -47,14 +75,21 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
         tv_product_name!!.setText(""+ProductNameSP.getString("ProductName",null))
 
 
-        getlabels()
+        Languageid = intent.getStringExtra("id")
+
+
+      //  getlabels()
     }
 
     private fun setRegViews() {
-        val btlogin = findViewById<Button>(R.id.btlogin) as Button
-        val btregistration = findViewById<Button>(R.id.btregistration) as Button
+         btlogin = findViewById<Button>(R.id.btlogin) as Button
+        tvWelcome = findViewById<TextView>(R.id.tvWelcome) as TextView
+        tvfasterway = findViewById<TextView>(R.id.tvfasterway) as TextView
+        btregistration = findViewById<Button>(R.id.btregistration) as Button
         btlogin!!.setOnClickListener(this)
         btregistration!!.setOnClickListener(this)
+
+
     }
 
     override fun onClick(v: View) {
@@ -113,7 +148,7 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                         //  requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
                         requestObject1.put(
                                 "FK_Languages",
-                                MscoreApplication.encryptStart("1")
+                                MscoreApplication.encryptStart(Languageid)
                         )
                         requestObject1.put(
                                 "BankKey", MscoreApplication.encryptStart(
