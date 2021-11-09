@@ -64,7 +64,7 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
         val tv_product_name: TextView = findViewById(R.id.tv_product_name)
 //        Glide.with(this).load(R.drawable.welcomegif).into(imwelcome)
 
-        val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
+
 
 
 
