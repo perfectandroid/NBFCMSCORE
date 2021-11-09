@@ -1,6 +1,7 @@
 package com.perfect.nbfcmscore.Helper
 
 import android.content.Context
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -160,4 +161,17 @@ object Config {
         }
         return amt
     }
+
+    fun hideSoftKeyBoards(context: Context) {
+        try {
+            val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val view = View(context)
+            imm?.hideSoftInputFromWindow(view.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+        } catch (e: Exception) {
+            // TODO: handle exception
+            e.printStackTrace()
+        }
+    }
+
+
 }

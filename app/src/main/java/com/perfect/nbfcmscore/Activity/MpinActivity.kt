@@ -39,7 +39,7 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
 
     var show : Boolean = false
     private var progressDialog: ProgressDialog? = null
-    var pinview: Pinview? = null
+  //  var pinview: Pinview? = null
     var tvforgetpassword: TextView? = null
     var tvchangepassword: TextView? = null
     val TAG: String = "MpinActivity"
@@ -75,8 +75,10 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+//        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         setContentView(R.layout.activity_mpin)
 
+        Config.Utils.hideSoftKeyBoard(this@MpinActivity,getWindow().getDecorView())
         val imgLogo: ImageView = findViewById(R.id.imgLogo)
         val tv_product_name: TextView = findViewById(R.id.tv_product_name)
        // Glide.with(this).load(R.drawable.otpgif).into(imgLogo)
@@ -134,11 +136,11 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
 
 
 
-        pinview!!.setPinViewEventListener { pinview, fromUser ->
-
-            val varOtp = pinview!!.value
-            getMPINVerification(varOtp)
-        }
+//        pinview!!.setPinViewEventListener { pinview, fromUser ->
+//
+//            val varOtp = pinview!!.value
+//            getMPINVerification(varOtp)
+//        }
 
 
     }
@@ -148,7 +150,7 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
          tvforgetpassword = findViewById<TextView>(R.id.tvforgetpassword) as TextView
          tvchangepassword = findViewById<TextView>(R.id.tvchangepassword) as TextView
 //        val btverify = findViewById<Button>(R.id.btverify) as Button
-        pinview = findViewById<Pinview>(R.id.pinview) as Pinview
+       // pinview = findViewById<Pinview>(R.id.pinview) as Pinview
 //        btverify!!.setOnClickListener(this)
         tvforgetpassword!!.setOnClickListener(this)
         tvchangepassword!!.setOnClickListener(this)
@@ -704,7 +706,7 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
 //                                    alertDialog.show()
                                 } else {
                                     pinValue = ""
-                                    pinview!!.clearValue()
+                                  //  pinview!!.clearValue()
                                     et_1!!.setText("")
                                     et_2!!.setText("")
                                     et_3!!.setText("")

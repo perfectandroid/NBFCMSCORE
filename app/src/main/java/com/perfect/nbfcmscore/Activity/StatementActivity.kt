@@ -557,12 +557,21 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
                                     val strNew: String? = filename.substringAfterLast("NbfcAndroidAPI\\")
                                     Log.e(TAG,"strNew  51622   "+strNew)
 
-                                    val filename2: String = Config.BASE_URL + "\\" + strNew + "\\" + filename1
+//                                    val filename2: String = Config.BASE_URL + "\\" + strNew + "\\" + filename1
+                                    val filename2: String = Config.BASE_URL + "\\" + strNew
                                     Log.e(TAG,"filename2  51623   "+filename2)
 
-                                    val i = Intent(this@StatementActivity, ViewStatementActivity::class.java)
-                                    i.putExtra("docx", filename2)
-                                    startActivity(i)
+                                    if (docType.equals("1")){
+                                        val i = Intent(this@StatementActivity, ViewStatementActivity::class.java)
+                                        i.putExtra("docx", filename2)
+                                        startActivity(i)
+                                    }
+
+                                    if (docType.equals("2")){
+
+                                    }
+
+
 
 
                                 } else {

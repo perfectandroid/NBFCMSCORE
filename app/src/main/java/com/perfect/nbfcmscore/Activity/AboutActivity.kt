@@ -34,8 +34,8 @@ class AboutActivity : AppCompatActivity() , View.OnClickListener{
             val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode",null)
             val CompanyLogoImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF13,0)
             val imagepathcompanylog = Config.IMAGE_URL+CompanyLogoImageCodeSP!!.getString("CompanyLogoImageCode",null)
-            PicassoTrustAll.getInstance(this)!!.load(imagepath).error(R.drawable.no_image).into(applogo)
-            PicassoTrustAll.getInstance(this)!!.load(imagepathcompanylog).error(R.drawable.no_image).into(imCompanylogo)
+            PicassoTrustAll.getInstance(this)!!.load(imagepath).error(null).into(applogo)
+            PicassoTrustAll.getInstance(this)!!.load(imagepathcompanylog).error(null).into(imCompanylogo)
         }catch (e: Exception) {
             e.printStackTrace()}
     }

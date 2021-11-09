@@ -106,6 +106,7 @@
                                 android:text="Account"/>
 
                             <TextView
+                                android:id="@+id/tv_viewall"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -175,7 +176,8 @@
                                 android:textStyle="bold"
                                 android:layout_gravity="center"
                                 android:gravity="left"
-                                android:textColor="@color/black"/>
+                                android:textColor="@color/black"
+                                android:visibility="gone"/>
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -204,7 +206,7 @@
                     app:cardUseCompatPadding="true">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="70dp">
+                    android:layout_height="120dp">
                     <RelativeLayout
                         android:layout_width="fill_parent"
                         android:layout_height="match_parent">
@@ -1126,7 +1128,7 @@
                         android:orientation="horizontal"
                         android:weightSum="3">
 
-                        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
                             android:layout_height="110dp"
                             android:layout_weight="1"
@@ -1144,14 +1146,14 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:layout_width="40dp"
+                                    android:layout_width="36dp"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/mydth" />
+                                    android:src="@drawable/myhistory" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
