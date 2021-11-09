@@ -177,6 +177,26 @@ class SplashActivity : AppCompatActivity() {
                                     ResellerNameEditer.putString("ResellerName", jobjt.getString("ResellerName"))
                                     ResellerNameEditer.commit()
 
+                                    val ContactNumberSP = applicationContext.getSharedPreferences(Config.SHARED_PREF30,0)
+                                    val ContactNumberEditer = ContactNumberSP.edit()
+                                    ContactNumberEditer.putString("ContactNumber", jobjt.getString("ContactNumber"))
+                                    ContactNumberEditer.commit()
+
+                                    val ContactEmailSP = applicationContext.getSharedPreferences(Config.SHARED_PREF31,0)
+                                    val ContactEmailEditer = ContactEmailSP.edit()
+                                    ContactEmailEditer.putString("ContactEmail", jobjt.getString("ContactEmail"))
+                                    ContactEmailEditer.commit()
+
+                                    val ContactAddressSP = applicationContext.getSharedPreferences(Config.SHARED_PREF32,0)
+                                    val ContactAddressEditer = ContactAddressSP.edit()
+                                    ContactAddressEditer.putString("ContactAddress", jobjt.getString("ContactAddress"))
+                                    ContactAddressEditer.commit()
+
+                                    val IsNBFCSP = applicationContext.getSharedPreferences(Config.SHARED_PREF33,0)
+                                    val IsNBFCEditer = IsNBFCSP.edit()
+                                    IsNBFCEditer.putString("IsNBFC", jobjt.getString("IsNBFC"))
+                                    IsNBFCEditer.commit()
+
                                     doSplash()
                                     getMaintenanceMessage()
                                   //  getlabels()

@@ -1022,6 +1022,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
         val text_confirmationmsg = dialog.findViewById(R.id.text_confirmationmsg) as TextView
         val tv_amount = dialog.findViewById(R.id.tv_amount) as TextView
         val tv_amount_words = dialog.findViewById(R.id.tv_amount_words) as TextView
+        val img_aapicon = dialog.findViewById(R.id.img_aapicon) as ImageView
 
         val bt_cancel = dialog.findViewById(R.id.bt_cancel) as Button
         val bt_ok = dialog.findViewById(R.id.bt_ok) as Button
@@ -1033,6 +1034,10 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
         tv_mob!!.setText(""+mobileNumber)
         tv_oper!!.setText(""+tie_operator!!.text.toString())
         tv_cir!!.setText(""+tie_circle!!.text.toString())
+
+        val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
+        val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+        PicassoTrustAll.getInstance(this@RechargeActivity)!!.load(imagepath).error(android.R.color.transparent).into(img_aapicon)
 
         text_confirmationmsg!!.setText("Proceed Recharge With Above Amount ..?")
 

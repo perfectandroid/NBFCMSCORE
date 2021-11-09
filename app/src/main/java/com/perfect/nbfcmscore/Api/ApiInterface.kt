@@ -156,5 +156,8 @@ interface ApiInterface {
     @POST("AccountSummary/QuickPaySenderReciver")
     fun getSenderReceiver(@Body body: RequestBody): Call<String>
 
+    @POST("Statement/StatementOfAccount")
+    fun getStatementOfAccount(@Body body: RequestBody): Call<String>
+
 }
 

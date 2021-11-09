@@ -112,7 +112,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                     "AppIconImageCode",
                     null
             )
-            PicassoTrustAll.getInstance(this)!!.load(imagepath).error(R.drawable.no_image).into(
+            PicassoTrustAll.getInstance(this)!!.load(imagepath).error(null).into(
                     im_applogo
             )
         }catch (e: Exception) {
@@ -645,6 +645,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         llprofile!!.setOnClickListener(this)
         llquickpay!!.setOnClickListener(this)
         llnotif!!.setOnClickListener(this)
+        llstatement!!.setOnClickListener(this)
     }
 
     open fun setHomeNavMenu() {
@@ -670,7 +671,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 startActivity(Intent(this@HomeActivity, AboutActivity::class.java))
                 drawer!!.closeDrawer(GravityCompat.START)
             } else if (position == 1) {
-                //contact
+                startActivity(Intent(this@HomeActivity, ContactUsActivity::class.java))
             } else if (position == 2) {
                 //feedback
             } else if (position == 3) {

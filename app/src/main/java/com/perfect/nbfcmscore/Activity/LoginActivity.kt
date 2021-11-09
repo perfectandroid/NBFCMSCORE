@@ -44,7 +44,8 @@ class LoginActivity : AppCompatActivity() , View.OnClickListener {
         val ProductNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF12,0)
         var IMAGRURL = Config.IMAGE_URL+AppIconImageCodeSP.getString("AppIconImageCode",null)
 
-        Glide.with(this).load(IMAGRURL).placeholder(R.drawable.login_icon).into(imgLogo);
+            //  Glide.with(this).load(IMAGRURL).placeholder(R.drawable.login_icon).into(imgLogo);
+        Glide.with(this).load(IMAGRURL).placeholder(null).into(imgLogo);
         tv_product_name!!.setText(ProductNameSP.getString("ProductName",null))
 
     }

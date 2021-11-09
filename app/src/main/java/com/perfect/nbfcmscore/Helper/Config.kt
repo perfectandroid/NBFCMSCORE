@@ -58,6 +58,10 @@ object Config {
     const val SHARED_PREF28 = "DefaultBranchName"
 
     const val SHARED_PREF29 = "LastLoginTime"
+    const val SHARED_PREF30 = "ContactNumber"
+    const val SHARED_PREF31 = "ContactEmail"
+    const val SHARED_PREF32 = "ContactAddress"
+    const val SHARED_PREF33 = "IsNBFC"
 
 
 

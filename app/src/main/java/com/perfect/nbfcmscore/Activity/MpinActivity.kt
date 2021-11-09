@@ -88,7 +88,7 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
         Log.e(TAG,"IMAGRURL  86  "+IMAGRURL)
 
 //        Glide.with(this).load("https://picsum.photos/200").into(imgLogo)
-        Glide.with(this).load(IMAGRURL).placeholder(R.drawable.otpgif)
+        Glide.with(this).load(IMAGRURL).placeholder(null)
                     .into(imgLogo);
         tv_product_name!!.setText(""+ProductNameSP.getString("ProductName",null))
 
