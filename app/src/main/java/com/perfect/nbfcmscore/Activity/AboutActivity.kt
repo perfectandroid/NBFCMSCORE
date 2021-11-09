@@ -32,10 +32,15 @@ class AboutActivity : AppCompatActivity() , View.OnClickListener{
         try {
             val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14,0)
             val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode",null)
+
             val CompanyLogoImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF13,0)
             val imagepathcompanylog = Config.IMAGE_URL+CompanyLogoImageCodeSP!!.getString("CompanyLogoImageCode",null)
-            PicassoTrustAll.getInstance(this)!!.load(imagepath).error(null).into(applogo)
-            PicassoTrustAll.getInstance(this)!!.load(imagepathcompanylog).error(null).into(imCompanylogo)
+
+            PicassoTrustAll.getInstance(this@AboutActivity)!!.load(imagepath).error(android.R.color.transparent).into(applogo!!)
+            PicassoTrustAll.getInstance(this@AboutActivity)!!.load(imagepathcompanylog).error(android.R.color.transparent).into(imCompanylogo!!)
+
+//            PicassoTrustAll.getInstance(this)!!.load(imagepath).error(null).into(applogo)
+//            PicassoTrustAll.getInstance(this)!!.load(imagepathcompanylog).error(null).into(imCompanylogo)
         }catch (e: Exception) {
             e.printStackTrace()}
     }

@@ -744,7 +744,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
             try {
                 val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
-                PicassoTrustAll.getInstance(this)!!.load(imagepath).error(null).into(imglogo)
+                PicassoTrustAll.getInstance(this@HomeActivity)!!.load(imagepath).error(android.R.color.transparent).into(imglogo!!)
             }catch (e: Exception) {
                 e.printStackTrace()
             }

@@ -22,6 +22,7 @@ import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
 import com.perfect.nbfcmscore.Helper.MscoreApplication
+import com.perfect.nbfcmscore.Helper.PicassoTrustAll
 import com.perfect.nbfcmscore.R
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
@@ -83,16 +84,26 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
         val tv_product_name: TextView = findViewById(R.id.tv_product_name)
        // Glide.with(this).load(R.drawable.otpgif).into(imgLogo)
 
-        val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14,0)
+        val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
         val CompanyLogoImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF13,0)
         val ProductNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF12,0)
         IMAGRURL = Config.IMAGE_URL+AppIconImageCodeSP.getString("AppIconImageCode",null)
         Log.e(TAG,"IMAGRURL  86  "+IMAGRURL)
 
 //        Glide.with(this).load("https://picsum.photos/200").into(imgLogo)
-        Glide.with(this).load(IMAGRURL).placeholder(null)
-                    .into(imgLogo);
-        tv_product_name!!.setText(""+ProductNameSP.getString("ProductName",null))
+//        Glide.with(this).load(IMAGRURL).placeholder(null)
+//                    .into(imgLogo);
+        try {
+            val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+            PicassoTrustAll.getInstance(this@MpinActivity)!!.load(imagepath).error(android.R.color.transparent).into(imgLogo!!)
+            tv_product_name!!.setText(""+ProductNameSP.getString("ProductName",null))
+        }catch (e: Exception){
+
+        }
+
+
+
+
 
         setRegViews()
 
