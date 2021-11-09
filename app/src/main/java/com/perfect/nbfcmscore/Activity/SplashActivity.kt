@@ -19,6 +19,7 @@ import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
 import com.perfect.nbfcmscore.Helper.MscoreApplication
+import com.perfect.nbfcmscore.Helper.PicassoTrustAll
 import com.perfect.nbfcmscore.R
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
@@ -34,6 +35,7 @@ class SplashActivity : AppCompatActivity() {
     private var progressDialog: ProgressDialog? = null
     var tv_error_message: TextView? = null
     var btn_proceed: Button? = null
+    var imglogo: ImageView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +51,17 @@ class SplashActivity : AppCompatActivity() {
 
 
         val imgSplash: ImageView = findViewById(R.id.imsplashlogo)
+        val imglogo: ImageView = findViewById(R.id.imglogo)
         Glide.with(this).load(R.drawable.splashgif).into(imgSplash)
+        try {
+            val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
+            val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+            PicassoTrustAll.getInstance(this@SplashActivity)!!.load(imagepath).error(android.R.color.transparent).into(imglogo!!)
+
+        }catch (e: Exception) {
+            e.printStackTrace()}
+
+
         getResellerDetails()
     }
 
@@ -196,6 +208,13 @@ class SplashActivity : AppCompatActivity() {
                                     val IsNBFCEditer = IsNBFCSP.edit()
                                     IsNBFCEditer.putString("IsNBFC", jobjt.getString("IsNBFC"))
                                     IsNBFCEditer.commit()
+
+                                    try {
+                                        val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+                                        PicassoTrustAll.getInstance(this@SplashActivity)!!.load(imagepath).error(android.R.color.transparent).into(imglogo!!)
+
+                                    }catch (e: Exception) {
+                                        e.printStackTrace()}
 
                                     doSplash()
                                     getMaintenanceMessage()

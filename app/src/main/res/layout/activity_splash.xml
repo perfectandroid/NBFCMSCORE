@@ -20,16 +20,16 @@
                 tools:ignore="MissingConstraints" >
 
                 <ImageView
-                    android:id="@+id/imgv1"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:id="@+id/imglogo"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:layout_gravity="center"
                     android:gravity="center"
+                    android:padding="10dp"
                     android:layout_marginTop="60dp"
                     android:layout_marginLeft="60dp"
                     android:layout_marginRight="60dp"
-                    android:layout_marginBottom="60dp"
-                    android:src="@drawable/applogo" />
+                    android:layout_marginBottom="60dp" />
                 <TextView
                     android:id="@+id/tv_error_message"
                     android:layout_width="match_parent"
