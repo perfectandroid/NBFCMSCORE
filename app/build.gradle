@@ -92,4 +92,5 @@ dependencies {
 
     implementation 'commons-net:commons-net:3.3'
     implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
 }

@@ -645,6 +645,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         llprofile!!.setOnClickListener(this)
         llquickpay!!.setOnClickListener(this)
         llnotif!!.setOnClickListener(this)
+        llstatement!!.setOnClickListener(this)
     }
 
     open fun setHomeNavMenu() {
