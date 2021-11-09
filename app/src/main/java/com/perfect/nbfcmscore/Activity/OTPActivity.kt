@@ -19,6 +19,7 @@ import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
 import com.perfect.nbfcmscore.Helper.MscoreApplication
+import com.perfect.nbfcmscore.Helper.PicassoTrustAll
 import com.perfect.nbfcmscore.R
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
@@ -71,15 +72,20 @@ class OTPActivity : AppCompatActivity() , View.OnClickListener {
         setContentView(R.layout.activity_o_t_p)
         setRegViews()
         val ID_OtpverifySP = applicationContext.getSharedPreferences(Config.SHARED_PREF48,0)
+        Config.Utils.hideSoftKeyBoard(this@OTPActivity,getWindow().getDecorView())
 
 
         val imgLogo: ImageView = findViewById(R.id.imgLogo)
+        val tv_product_name: TextView = findViewById(R.id.tv_product_name)
       //  Glide.with(this).load(R.drawable.otpgif).into(imgLogo)
-        val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14,0)
+        val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
         val ProductNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF12,0)
-        var IMAGRURL = Config.IMAGE_URL+AppIconImageCodeSP.getString("AppIconImageCode",null)
+        val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
 
-        Glide.with(this).load(IMAGRURL).placeholder(null).into(imgLogo);
+//        Glide.with(this).load(IMAGRURL).placeholder(null).into(imgLogo);
+
+        PicassoTrustAll.getInstance(this@OTPActivity)!!.load(imagepath).error(android.R.color.transparent).into(imgLogo!!)
+        tv_product_name!!.setText(ProductNameSP.getString("ProductName",null))
 
         FK_Customer = intent.getStringExtra("FK_Customer")!!
         Token = intent.getStringExtra("Token")!!
@@ -94,6 +100,11 @@ class OTPActivity : AppCompatActivity() , View.OnClickListener {
             val varOtp = pinview!!.value
             getOtpVerification(varOtp)
         }
+//        pinview!!.setPinViewEventListener { pinview, fromUser ->
+//
+//            val varOtp = pinview!!.value
+//            getOtpVerification(varOtp)
+//        }
     }
 
     private fun setRegViews() {
@@ -112,7 +123,7 @@ class OTPActivity : AppCompatActivity() , View.OnClickListener {
         eight = findViewById<Button>(R.id.eight) as Button
         nine = findViewById<Button>(R.id.nine) as Button
         zero = findViewById<Button>(R.id.zero) as Button
-        txtv_otpverify= findViewById<TextView>(R.id.txtv_otpverify) as TextView
+
 
         et_1 = findViewById<EditText>(R.id.et_1) as EditText
         et_2 = findViewById<EditText>(R.id.et_2) as EditText

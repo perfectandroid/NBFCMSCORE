@@ -18,6 +18,7 @@ import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
 import com.perfect.nbfcmscore.Helper.MscoreApplication
+import com.perfect.nbfcmscore.Helper.PicassoTrustAll
 import com.perfect.nbfcmscore.R
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
@@ -58,12 +59,13 @@ class LoginActivity : AppCompatActivity() , View.OnClickListener {
         val imgLogo: ImageView = findViewById(R.id.imgLogo)
         val tv_product_name: TextView = findViewById(R.id.tv_product_name)
 
-        val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14,0)
+        val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
         val ProductNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF12,0)
-        var IMAGRURL = Config.IMAGE_URL+AppIconImageCodeSP.getString("AppIconImageCode",null)
+        val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
 
             //  Glide.with(this).load(IMAGRURL).placeholder(R.drawable.login_icon).into(imgLogo);
-        Glide.with(this).load(IMAGRURL).placeholder(null).into(imgLogo);
+       // Glide.with(this).load(IMAGRURL).placeholder(null).into(imgLogo);
+        PicassoTrustAll.getInstance(this@LoginActivity)!!.load(imagepath).error(android.R.color.transparent).into(imgLogo!!)
         tv_product_name!!.setText(ProductNameSP.getString("ProductName",null))
 
     }

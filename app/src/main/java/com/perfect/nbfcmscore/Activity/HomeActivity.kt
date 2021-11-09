@@ -85,6 +85,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var txtv_quickbal: TextView? = null
     var txtvstatmnt: TextView? = null
     var txtv_dueremndr: TextView? = null
+    var tv_viewall: TextView? = null
+
     private var mPager: ViewPager? = null
     private var indicator: CircleIndicator? = null
     private var currentPage = 0
@@ -128,9 +130,10 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                     "AppIconImageCode",
                     null
             )
-            PicassoTrustAll.getInstance(this)!!.load(imagepath).error(null).into(
-                    im_applogo
-            )
+            Log.e("TAG","imagepath  116   "+imagepath)
+            //PicassoTrustAll.getInstance(this)!!.load(imagepath).error(null).into(im_applogo)
+            PicassoTrustAll.getInstance(this@HomeActivity)!!.load(imagepath).error(android.R.color.transparent).into(im_applogo!!)
+
         }catch (e: Exception) {
             e.printStackTrace()}
         tv_header!!.setText(ProductNameSP.getString("ProductName", null))
@@ -595,6 +598,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     }
 
     open fun setInitialise() {
+
+
+        im_applogo = findViewById(R.id.im_applogo)
+
+
         tv_mobile = findViewById(R.id.tv_mobile)
         tvuser = findViewById(R.id.tvuser)
         llprofile = findViewById(R.id.llprofile)
@@ -638,6 +646,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         tv_def_account = findViewById<TextView>(R.id.tv_def_account)
         tv_def_availablebal = findViewById<TextView>(R.id.tv_def_availablebal)
         tv_lastlogin = findViewById<TextView>(R.id.tv_lastlogin)
+        tv_viewall = findViewById<TextView>(R.id.tv_viewall)
 
     }
 
@@ -669,6 +678,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         llquickpay!!.setOnClickListener(this)
         llnotif!!.setOnClickListener(this)
         llstatement!!.setOnClickListener(this)
+        tv_viewall!!.setOnClickListener(this)
     }
 
     open fun setHomeNavMenu() {
@@ -771,6 +781,16 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             dialog1 .setContentView(R.layout.quit_popup)
             val btn_Yes = dialog1.findViewById(R.id.tv_share) as TextView
             val btn_cancel = dialog1.findViewById(R.id.tv_cancel) as TextView
+            val imglogo = dialog1.findViewById(R.id.imglogo) as ImageView
+
+            val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
+            try {
+                val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+                PicassoTrustAll.getInstance(this@HomeActivity)!!.load(imagepath).error(android.R.color.transparent).into(imglogo!!)
+            }catch (e: Exception) {
+                e.printStackTrace()
+            }
+
             btn_cancel.setOnClickListener {
                 dialog1 .dismiss()
             }
@@ -996,6 +1016,10 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 var intent = Intent(this@HomeActivity, QuickPayActivity::class.java)
                 startActivity(intent)
             }
+            R.id.tv_viewall -> {
+
+                startActivity(Intent(this@HomeActivity, AccountlistActivity::class.java))
+            }
         }
     }
 
@@ -1145,5 +1169,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             // Do nothing
         }
         return 1
+    }
+
+    override fun onBackPressed() {
+
+        quit()
+
     }
 }

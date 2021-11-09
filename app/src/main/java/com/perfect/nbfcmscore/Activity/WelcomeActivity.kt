@@ -18,6 +18,7 @@ import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
 import com.perfect.nbfcmscore.Helper.MscoreApplication
+import com.perfect.nbfcmscore.Helper.PicassoTrustAll
 import com.perfect.nbfcmscore.R
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
@@ -63,6 +64,7 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
         val tv_product_name: TextView = findViewById(R.id.tv_product_name)
 //        Glide.with(this).load(R.drawable.welcomegif).into(imwelcome)
 
+        val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
 
 
 
@@ -70,8 +72,10 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
         val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14,0)
         val ProductNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF12,0)
         var IMAGRURL = Config.IMAGE_URL+AppIconImageCodeSP.getString("AppIconImageCode",null)
+        val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
 
-        Glide.with(this).load(IMAGRURL).placeholder(null).into(imwelcome);
+      //  Glide.with(this).load(IMAGRURL).placeholder(null).into(imwelcome!!);
+        PicassoTrustAll.getInstance(this@WelcomeActivity)!!.load(imagepath).error(android.R.color.transparent).into(imwelcome!!)
         tv_product_name!!.setText(""+ProductNameSP.getString("ProductName",null))
 
 
