@@ -78,8 +78,10 @@
     <color name="color_bottom_line">#A89AD3DF</color>
     <color name="color_text_bg">#e2f8ec</color>
 
-    <color name="color_tab_select">#2B6C7B</color>
-    <color name="color_tab_unselect">#4A848E</color>
+<!--    <color name="color_tab_select">#2B6C7B</color>-->
+<!--    <color name="color_tab_unselect">#4A848E</color>-->
+    <color name="color_tab_select">#01323E</color>
+    <color name="color_tab_unselect">#045E75</color>
 
     <color name="DarkGray">#A9A9A9</color>
     <color name="google_green1">#63B456</color>
@@ -98,7 +100,13 @@
     <color name="textcolor2">#014C60</color>
     <color name="but_tint">#61B383</color>
 
+    <color name="bg_textview">#F5F5F5</color>
+    <color name="bottom_line1">#00C6FF</color>
 
-    <color name="test">#539F73</color>
+    <color name="but_color1">#61B383</color>
+    <color name="but_color2">#014C60</color>
+
+
+    <color name="test">#fbfbfb</color>
 
 </resources>
