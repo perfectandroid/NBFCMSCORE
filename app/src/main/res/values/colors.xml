@@ -98,7 +98,13 @@
     <color name="textcolor2">#014C60</color>
     <color name="but_tint">#61B383</color>
 
+    <color name="bg_textview">#F5F5F5</color>
+    <color name="bottom_line1">#00C6FF</color>
 
-    <color name="test">#539F73</color>
+    <color name="but_color1">#61B383</color>
+    <color name="but_color2">#014C60</color>
+
+
+    <color name="test">#fbfbfb</color>
 
 </resources>
