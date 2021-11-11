@@ -49,6 +49,7 @@
                         android:layout_marginBottom="50dp"/>
 
                     <TextView
+                        android:id="@+id/txtv_otpverify"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="OTP Verification"

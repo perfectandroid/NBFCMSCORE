@@ -5,6 +5,7 @@ import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -33,10 +34,27 @@ class LoginActivity : AppCompatActivity() , View.OnClickListener {
     private var progressDialog: ProgressDialog? = null
     var etxt_mob: EditText? = null
     var btlogin: Button? = null
+    var tv_loginwithmob: TextView? = null
+    var tv_entermobotp:TextView?=null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         setRegViews()
+
+
+        val ID_LoginmobSP = applicationContext.getSharedPreferences(Config.SHARED_PREF45,0)
+        val ID_MobotpeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF46,0)
+        val ID_EntermobSP = applicationContext.getSharedPreferences(Config.SHARED_PREF42,0)
+        //   val ID_last4SP = applicationContext.getSharedPreferences(Config.SHARED_PREF43,0)
+        val ID_ContinueSP = applicationContext.getSharedPreferences(Config.SHARED_PREF44,0)
+
+        tv_loginwithmob!!.setText(ID_LoginmobSP.getString("loginwithmobilenumber",null))
+        tv_entermobotp!!.setText(ID_MobotpeSP.getString("enteryourmobilenumberwewillsentyouOTPtoverify",null))
+        etxt_mob!!.setHint(ID_EntermobSP.getString("entermobilenumber",null))
+        //    etxt_accno!!.setText(ID_last4SP.getString("enter last4digitofa/cno",null))
+        btlogin!!.setText(ID_ContinueSP.getString("continue",null))
+
 
         val imgLogo: ImageView = findViewById(R.id.imgLogo)
         val tv_product_name: TextView = findViewById(R.id.tv_product_name)
@@ -54,7 +72,11 @@ class LoginActivity : AppCompatActivity() , View.OnClickListener {
 
     private fun setRegViews() {
         val tvforgetpassword = findViewById<TextView>(R.id.tvforgetpassword) as TextView
+        tv_loginwithmob = findViewById<TextView>(R.id.tv_loginwithmob) as TextView
+        tv_entermobotp = findViewById<TextView>(R.id.tv_entermobotp) as TextView
+
         etxt_mob = findViewById<EditText>(R.id.etxt_mob) as EditText
+
         btlogin = findViewById<Button>(R.id.btlogin) as Button
         tvforgetpassword!!.setOnClickListener(this)
         btlogin!!.setOnClickListener(this)
@@ -138,6 +160,7 @@ class LoginActivity : AppCompatActivity() , View.OnClickListener {
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jobjt = jObject.getJSONObject("CustomerLoginVerification")
                                     val builder = AlertDialog.Builder(this@LoginActivity, R.style.MyDialogTheme)
+                                    Log.i("popup",jobjt.getString("ResponseMessage"))
                                     builder.setMessage(""+jobjt.getString("ResponseMessage"))
                                     builder.setPositiveButton("Ok"){dialogInterface, which ->
 

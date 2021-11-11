@@ -34,6 +34,9 @@ class RegistrationActivity : AppCompatActivity()  , View.OnClickListener {
     var tvlogin: TextView? = null
     var etxt_accno: EditText? = null
     var etxt_mob: EditText? = null
+    var txtv_lets:TextView?=null
+    var txv_plz:TextView?=null
+    var btreg:Button?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,19 +56,34 @@ class RegistrationActivity : AppCompatActivity()  , View.OnClickListener {
         PicassoTrustAll.getInstance(this@RegistrationActivity)!!.load(imagepath).error(android.R.color.transparent).into(imgLogo!!)
         tv_product_name!!.setText(ProductNameSP.getString("ProductName",null))
 
-
         setRegViews()
+
+        val ID_LetsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF40,0)
+        val ID_PersnlinfSP = applicationContext.getSharedPreferences(Config.SHARED_PREF41,0)
+        val ID_EntermobSP = applicationContext.getSharedPreferences(Config.SHARED_PREF42,0)
+     //   val ID_last4SP = applicationContext.getSharedPreferences(Config.SHARED_PREF43,0)
+        val ID_ContinueSP = applicationContext.getSharedPreferences(Config.SHARED_PREF44,0)
+
+        txtv_lets!!.setText(ID_LetsSP.getString("Let'sgetstarted",null))
+        txv_plz!!.setText(ID_PersnlinfSP.getString("pleaseenteryourpersonalinformation",null))
+        etxt_mob!!.setHint(ID_EntermobSP.getString("entermobilenumber",null))
+    //    etxt_accno!!.setText(ID_last4SP.getString("enter last4digitofa/cno",null))
+        btreg!!.setText(ID_ContinueSP.getString("continue",null))
 
         Log.i("commit","Test")
     }
 
     private fun setRegViews() {
          tvlogin = findViewById<TextView>(R.id.tvlogin) as TextView
-         val btreg = findViewById<Button>(R.id.btreg) as Button
+         txtv_lets = findViewById<TextView>(R.id.txtv_lets) as TextView
+         txv_plz = findViewById<TextView>(R.id.txv_plz) as TextView
+         btreg = findViewById<Button>(R.id.btreg) as Button
          etxt_mob = findViewById<EditText>(R.id.etxt_mob) as EditText
          etxt_accno = findViewById<EditText>(R.id.etxt_accno) as EditText
          tvlogin!!.setOnClickListener(this)
          btreg!!.setOnClickListener(this)
+
+
     }
 
     override fun onClick(v: View) {

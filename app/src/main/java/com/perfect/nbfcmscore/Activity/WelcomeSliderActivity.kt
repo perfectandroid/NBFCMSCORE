@@ -99,8 +99,11 @@ class WelcomeSliderActivity : AppCompatActivity() {
 
     private fun launchHomeScreen() {
         prefManager!!.isFirstTimeLaunch = false
+        val intent = Intent(this@WelcomeSliderActivity, LanguageSelectionActivity::class.java)
+        intent.putExtra("From", "welcome")
+        startActivity(intent)
        // startActivity(Intent(this@WelcomeSliderActivity, WelcomeActivity::class.java))
-        startActivity(Intent(this@WelcomeSliderActivity, LanguageSelectionActivity::class.java))
+       // startActivity(Intent(this@WelcomeSliderActivity, LanguageSelectionActivity::class.java))
         finish()
     }
 

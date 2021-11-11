@@ -5,9 +5,7 @@ import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,7 +21,6 @@ import com.perfect.nbfcmscore.Helper.MscoreApplication
 import com.perfect.nbfcmscore.R
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
-import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -34,6 +31,9 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
 
     private var progressDialog: ProgressDialog? = null
     var rv_Languagelist: RecyclerView? = null
+    var from: String? = null
+    var tvHeader2: TextView? = null
+    var tvskip: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,16 +43,32 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
         val imglogo: ImageView = findViewById(R.id.imglogo)
         Glide.with(this).load(R.drawable.language).into(imglogo)
 
-        getLanguagelist()
+        from = intent.getStringExtra("From")
+       /* if(from.equals("welcome"))
+        {
+            getLanguagelist()
+        }
+        else
+        {
+            this.recreate();*/
+            getLanguagelist()
+      /*  val SelectlanSP = applicationContext.getSharedPreferences(Config.SHARED_PREF38,0)
+        val SkipSP = applicationContext.getSharedPreferences(Config.SHARED_PREF39,0)
+
+        tvskip!!.setText(SelectlanSP!!.getString("SelectLanguage",null))
+        tvHeader2!!.setText(SkipSP.getString("Skip",null))*/
+        //}
+
 
     }
 
-
-
     private fun setRegViews() {
-        val tvskip = findViewById<TextView>(R.id.tvskip) as TextView
+         tvskip = findViewById<TextView>(R.id.tvskip) as TextView
+        tvHeader2 = findViewById<TextView>(R.id.tvHeader2) as TextView
         rv_Languagelist = findViewById<RecyclerView>(R.id.rv_Languagelist) as RecyclerView
         tvskip!!.setOnClickListener(this)
+
+
     }
 
     override fun onClick(v: View) {
@@ -91,8 +107,8 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
                     val requestObject1 = JSONObject()
                     try {
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("7"))
-                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
-                        Log.e("TAG", "requestObject1  Language   " + requestObject1)
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey))
+                        )
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -115,7 +131,6 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
                             try {
                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
-                                Log.i("Response-language", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                  //   val jobjt = jObject.getJSONObject("VarificationMaintenance")
 

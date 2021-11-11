@@ -80,6 +80,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var tv_header: TextView? = null
     var tvuser: TextView? = null
     var tv_mobile: TextView? = null
+    var txtv_myacc: TextView? = null
+    var txtv_pasbk: TextView? = null
+    var txtv_quickbal: TextView? = null
+    var txtvstatmnt: TextView? = null
+    var txtv_dueremndr: TextView? = null
     var tv_viewall: TextView? = null
 
     private var mPager: ViewPager? = null
@@ -87,7 +92,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     private var currentPage = 0
    // private val XMEN = arrayOf<String>
    // private val XMEN = arrayOf<String>(R.drawable.ban1, R.drawable.ban2, R.drawable.ban3, R.drawable.ban4)
-    private val XMENArray = ArrayList<String>()
+    public val XMENArray = ArrayList<String>()
     var XMEN = intArrayOf(0)
     var jArrayAccount: JSONArray? = null
 
@@ -104,6 +109,18 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
         setdefaultAccountDetails()
 
+        val ID_MyaccSP = applicationContext.getSharedPreferences(Config.SHARED_PREF50,0)
+        val ID_PassbkSP = applicationContext.getSharedPreferences(Config.SHARED_PREF51,0)
+        val ID_QuickbalSP = applicationContext.getSharedPreferences(Config.SHARED_PREF52,0)
+        val ID_DueremindSP = applicationContext.getSharedPreferences(Config.SHARED_PREF53,0)
+        val ID_StatmntSP = applicationContext.getSharedPreferences(Config.SHARED_PREF59,0)
+
+
+        txtv_myacc!!.setText(ID_MyaccSP.getString("Myaccounts",null))
+        txtv_pasbk!!.setText(ID_PassbkSP.getString("passbook",null))
+        txtv_quickbal!!.setText(ID_QuickbalSP.getString("quickbalance",null))
+        txtv_dueremndr!!.setText(ID_DueremindSP.getString("duereminder",null))
+        txtvstatmnt!!.setText(ID_StatmntSP.getString("statement",null))
 
 
         val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
@@ -606,6 +623,13 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         ll_landline = findViewById(R.id.ll_landline)
         ll_rechargehistory = findViewById(R.id.ll_rechargehistory)
 
+
+         txtv_myacc= findViewById(R.id.txtv_myacc)
+         txtv_pasbk= findViewById(R.id.txtv_pasbk)
+         txtv_quickbal= findViewById(R.id.txtv_quickbal)
+         txtvstatmnt= findViewById(R.id.txtvstatmnt)
+        txtv_dueremndr= findViewById(R.id.txtv_dueremndr)
+
         llnotif= findViewById(R.id.llnotif)
 
         ll_dth = findViewById(R.id.ll_dth)
@@ -658,7 +682,25 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     }
 
     open fun setHomeNavMenu() {
-        val menulist = arrayOf(
+        val ID_AbtusSP = applicationContext.getSharedPreferences(Config.SHARED_PREF54,0)
+        val ID_ContactSP = applicationContext.getSharedPreferences(Config.SHARED_PREF55,0)
+        val ID_FeebkSP = applicationContext.getSharedPreferences(Config.SHARED_PREF56,0)
+        val ID_PrivacySP = applicationContext.getSharedPreferences(Config.SHARED_PREF57,0)
+        val ID_TermsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF58,0)
+        val ID_SetngsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF60,0)
+        val ID_LogoutSP = applicationContext.getSharedPreferences(Config.SHARED_PREF61,0)
+
+
+        var abt =ID_AbtusSP.getString("aboutus",null)
+        var cntct =ID_ContactSP.getString("contactus",null)
+        var feebk =ID_FeebkSP.getString("feedback",null)
+        var privacy =ID_PrivacySP.getString("privacypolicy",null)
+        var terms =ID_TermsSP.getString("termsandconditions",null)
+        var setngs =ID_SetngsSP.getString("settings",null)
+        var logout =ID_LogoutSP.getString("logout",null)
+
+        val menulist= arrayOf(abt,cntct,feebk,privacy,terms,setngs,logout,"Quit")
+      /*  val menulist = arrayOf(
                 "About Us",
                 "Contact Us",
                 "Feedback",
@@ -667,7 +709,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 "Settings",
                 "Logout",
                 "Quit"
-        )
+        )*/
         val imageId = arrayOf<Int>(
                 R.drawable.aboutnav, R.drawable.contnav,
                 R.drawable.feedbacknav, R.drawable.ppnav, R.drawable.tncnav, R.drawable.ic_settings,
