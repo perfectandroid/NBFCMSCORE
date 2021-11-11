@@ -159,5 +159,8 @@ interface ApiInterface {
     @POST("Statement/StatementOfAccount")
     fun getStatementOfAccount(@Body body: RequestBody): Call<String>
 
+    @POST("AccountSummary/QuickPayResendMPIN")
+    fun getResendMpin(@Body body: RequestBody): Call<String>
+
 }
 

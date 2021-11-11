@@ -6,12 +6,14 @@ public class Splitupdetail {
         private String Accountno;
         private String Fkaccount;
         private String submodule;
+        private String branchname;
 
 
-        public Splitupdetail(String Accountno, String Fkaccount,String submodule) {
+        public Splitupdetail(String Accountno, String Fkaccount,String submodule,String branchname) {
             this.Accountno = Accountno;
             this.Fkaccount = Fkaccount;
             this.submodule = submodule;
+            this.branchname = branchname;
 
         }
 
@@ -37,6 +39,14 @@ public class Splitupdetail {
 
         public void setSubmodule(String submodule) {
         this.submodule = submodule;
+    }
+
+       public String getBranchname() {
+        return branchname;
+    }
+
+      public void setBranchname(String branchname) {
+        this.branchname = branchname;
     }
 
     @Override
