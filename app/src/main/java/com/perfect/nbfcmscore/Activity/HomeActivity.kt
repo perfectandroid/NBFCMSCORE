@@ -21,6 +21,7 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Adapter.BannerAdapter
+import com.perfect.nbfcmscore.Adapter.BannerAdapter1
 import com.perfect.nbfcmscore.Adapter.NavMenuAdapter
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
@@ -482,7 +483,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                             XMENArray!!.add(s)
 
 
-                                            mPager!!.adapter = BannerAdapter(
+                                            mPager!!.adapter = BannerAdapter1(
                                                     this@HomeActivity,
                                                     XMENArray
                                             )
