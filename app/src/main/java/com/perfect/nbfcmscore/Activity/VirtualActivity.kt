@@ -41,6 +41,8 @@ class VirtualActivity : AppCompatActivity() , View.OnClickListener{
         setInitialise()
         setRegister()
 
+        tv_header!!.setText("Virtual Card")
+
         viewPager = findViewById<View>(R.id.viewpager) as ViewPager
         setupViewPager(viewPager)
         tabLayout = findViewById<View>(R.id.tabs) as TabLayout

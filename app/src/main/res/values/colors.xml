@@ -105,6 +105,7 @@
 
     <color name="but_color1">#61B383</color>
     <color name="but_color2">#014C60</color>
+    <color name="card_color">#014c60</color>
 
 
     <color name="test">#fbfbfb</color>

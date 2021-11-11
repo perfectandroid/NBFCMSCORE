@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.gson.GsonBuilder
@@ -14,6 +15,7 @@ import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
 import com.perfect.nbfcmscore.Helper.MscoreApplication
+import com.perfect.nbfcmscore.Helper.PicassoTrustAll
 import com.perfect.nbfcmscore.R
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
@@ -40,6 +42,8 @@ class FrontViewFragment : Fragment() {
     var txtv_points3: TextView? = null
     var txtv_points4: TextView? = null
 
+    var img_applogo: ImageView? = null
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -57,6 +61,8 @@ class FrontViewFragment : Fragment() {
         txtv_points2 = v.findViewById<View>(R.id.txtv_points2) as TextView?
         txtv_points3 = v.findViewById<View>(R.id.txtv_points3) as TextView?
         txtv_points4 = v.findViewById<View>(R.id.txtv_points4) as TextView?
+
+        img_applogo = v.findViewById<View>(R.id.img_applogo) as ImageView?
 
         txtv_purpose!!.setText(R.string.purpose)
         txtv_purpose!!.visibility = View.VISIBLE
@@ -77,6 +83,16 @@ class FrontViewFragment : Fragment() {
 
         val CustomerNumberSP = activity!!.getSharedPreferences(Config.SHARED_PREF19,0)
         txt_custid!!.text = CustomerNumberSP.getString("CustomerNumber",null)
+
+        try {
+            val AppIconImageCodeSP = activity!!.getSharedPreferences(Config.SHARED_PREF14, 0)
+            val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+            PicassoTrustAll.getInstance(activity!!)!!.load(imagepath).error(android.R.color.transparent).into(img_applogo!!)
+        }catch (e : java.lang.Exception){
+
+        }
+
+
 
         getVritualcardCombination()
 
