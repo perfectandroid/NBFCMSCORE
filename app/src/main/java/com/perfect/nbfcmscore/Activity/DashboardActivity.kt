@@ -81,7 +81,7 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener  {
 
 
         getDashboardassetlist()
-        //getDashboardliabilitylist()
+       // getDashboardliabilitylist()
        // getDashboardpaymentandreceiptlist()
 
 

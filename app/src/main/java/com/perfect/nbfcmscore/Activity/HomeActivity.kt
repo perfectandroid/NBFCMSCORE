@@ -917,7 +917,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 startActivity(Intent(this@HomeActivity, GoldSlabEstimatorActivity::class.java))
             }
             R.id.llloanapplication -> {
-                startActivity(Intent(this@HomeActivity, LoanApplicationActivity::class.java))
+               // startActivity(Intent(this@HomeActivity, LoanApplicationActivity::class.java))
             }
             R.id.ll_prepaid -> {
 
