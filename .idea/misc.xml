@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/bg_grey_border.xml" value="0.33489583333333334" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/bg_light_grey.xml" value="0.34629629629629627" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/bg_light_grey1.xml" value="0.2921875" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/bg_light_grey2.xml" value="0.3302083333333333" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/bg_light_grey_line.xml" value="0.33489583333333334" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/bottom_line.xml" value="0.34629629629629627" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/bottom_shape.xml" value="0.3671875" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/but_ronded1.xml" value="0.21614583333333334" />
@@ -41,7 +43,7 @@
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_mpin.xml" value="0.2552083333333333" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_myaccounts.xml" value="0.271875" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_o_t_p.xml" value="0.28072916666666664" />
-        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_other_bank.xml" value="0.2869791666666667" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_other_bank.xml" value="0.22" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_other_bank_fund_transfer.xml" value="0.2552083333333333" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_otherbankfundtransfer.xml" value="0.2552083333333333" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_passbook.xml" value="0.2760416666666667" />
