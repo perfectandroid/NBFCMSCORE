@@ -405,6 +405,7 @@
                     android:dividerHeight="0dp"
                     android:visibility="gone"
                     android:paddingBottom="12dp"/>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_productdetail"
                     android:layout_width="match_parent"
