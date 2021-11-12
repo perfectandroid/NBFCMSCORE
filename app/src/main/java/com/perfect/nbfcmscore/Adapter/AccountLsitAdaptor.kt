@@ -103,6 +103,7 @@ var tvaccounttype: TextView? = null
 var tvaccountno: TextView? = null
 var tvbal: TextView? = null
 var tvbranch: TextView? = null
+var img_accounttype: ImageView? = null
 
 
 
@@ -113,6 +114,7 @@ tvaccounttype = v.findViewById<View>(R.id.tvaccounttype) as TextView
 tvaccountno = v.findViewById<View>(R.id.tvaccountno) as TextView
 tvbal = v.findViewById<View>(R.id.tvbal) as TextView
 tvbranch = v.findViewById<View>(R.id.tvbranch) as TextView
+    img_accounttype = v.findViewById<View>(R.id.img_accounttype) as ImageView
 
 
 }

@@ -42,6 +42,7 @@
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_login.xml" value="0.22083333333333333" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_mpin.xml" value="0.2552083333333333" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_myaccounts.xml" value="0.271875" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_notification.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_o_t_p.xml" value="0.28072916666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_other_bank.xml" value="0.22" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_other_bank_fund_transfer.xml" value="0.2552083333333333" />
@@ -58,6 +59,7 @@
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_virtual.xml" value="0.32708333333333334" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_welcome.xml" value="0.22083333333333333" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/adapter_accountlist.xml" value="0.2578125" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/adapter_duedate.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/adapter_emi.xml" value="0.2578125" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/adapter_offerlist.xml" value="0.2957427536231884" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/adapter_recent_recharge.xml" value="0.25625" />
@@ -77,6 +79,8 @@
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/operator_list.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/quit_popup.xml" value="0.3229166666666667" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/recharge_confirmation.xml" value="0.3265625" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/reminder_popup.xml" value="0.36666666666666664" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/rv_account_listing.xml" value="0.31875" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/spinner_text.xml" value="0.20520833333333333" />
       </map>
     </option>
