@@ -51,10 +51,13 @@
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_passbook.xml" value="0.2760416666666667" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_productdetail.xml" value="0.2994791666666667" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_productsummary.xml" value="0.25" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_quickpay.xml" value="0.2526041666666667" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_receiver.xml" value="0.5" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_recharge.xml" value="0.25" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_recharge_history.xml" value="0.2552083333333333" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_recharge_offer.xml" value="0.20520833333333333" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_registration.xml" value="0.22083333333333333" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_sender.xml" value="0.2526041666666667" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_setting.xml" value="0.2760416666666667" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_splash.xml" value="0.20520833333333333" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_statement.xml" value="0.25" />
