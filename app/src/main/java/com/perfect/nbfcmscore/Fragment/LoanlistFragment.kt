@@ -3,6 +3,7 @@ package com.perfect.nbfcmscore.Fragment
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,6 +33,7 @@ import java.util.*
 
 class LoanlistFragment : Fragment(){
 
+    val TAG: String = "LoanlistFragment"
     private var switch1: Switch? = null
     var tvdate: TextView? = null
 
@@ -121,6 +123,8 @@ class LoanlistFragment : Fragment(){
                                 )
                             )
                         )
+
+                        Log.e(TAG,"requestObject1   1291    "+requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -148,6 +152,7 @@ class LoanlistFragment : Fragment(){
                         ) {
                             try {
                                 progressDialog!!.dismiss()
+                                Log.e(TAG,"response   1292    "+response.body())
                                 val jObject = JSONObject(response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jObject = JSONObject(response.body())

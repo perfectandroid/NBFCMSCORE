@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,6 +37,7 @@ import java.util.*
 class DepositFragment : Fragment(){
 
     private var switch1: Switch? = null
+    val TAG: String = "DepositFragment"
 
     private var progressDialog: ProgressDialog? = null
     var rv_Accountlist: RecyclerView? = null
@@ -124,6 +126,8 @@ class DepositFragment : Fragment(){
                                 )
                             )
                         )
+
+                        Log.e(TAG,"requestObject1   1291    "+requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -151,6 +155,7 @@ class DepositFragment : Fragment(){
                         ) {
                             try {
                                 progressDialog!!.dismiss()
+                                Log.e(TAG,"response   1292    "+response.body())
                                 val jObject = JSONObject(response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jObject = JSONObject(response.body())
