@@ -45,6 +45,8 @@ class VirtualActivity : AppCompatActivity() , View.OnClickListener{
         val ID_Virtual = applicationContext.getSharedPreferences(Config.SHARED_PREF74,0)
         tv_header!!.setText(ID_Virtual.getString("VirtualCard",null))
 
+        tv_header!!.setText("Virtual Card")
+
         viewPager = findViewById<View>(R.id.viewpager) as ViewPager
         setupViewPager(viewPager)
         tabLayout = findViewById<View>(R.id.tabs) as TabLayout

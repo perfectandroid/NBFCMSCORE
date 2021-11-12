@@ -287,11 +287,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                                                             ),
                                                             json.getString(
                                                                     "SubModule"
-                                                            ),
-                                                            json.getString(
-                                                                    "BranchName"
                                                             )
-
                                                     )
                                             )
 

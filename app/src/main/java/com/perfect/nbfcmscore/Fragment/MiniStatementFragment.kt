@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,6 +37,7 @@ import java.util.*
 
 class MiniStatementFragment : Fragment(){
 
+    val TAG: String = "MiniStatementFragment"
     private var progressDialog: ProgressDialog? = null
     var rv_ministatementlist: RecyclerView? = null
 
@@ -90,18 +92,18 @@ class MiniStatementFragment : Fragment(){
                         val SubModuleSP = context!!.applicationContext.getSharedPreferences(Config.SHARED_PREF17, 0)
                         val SubModule = SubModuleSP.getString("SubModule", null)
 
+                        val FK_CustomerSP = context!!.getSharedPreferences(Config.SHARED_PREF1, 0)
+                        val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
+
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("11"))
                         requestObject1.put("FK_Account",  MscoreApplication.encryptStart(FK_Account))
                         requestObject1.put("SubModule", MscoreApplication.encryptStart(SubModule))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-                        requestObject1.put(
-                            "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                    R.string.BankKey
-                                )
-                            )
-                        )
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
+                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
+
+                        Log.e(TAG,"requestObject1  107   "+requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -125,6 +127,7 @@ class MiniStatementFragment : Fragment(){
                         ) {
                             try {
                                 progressDialog!!.dismiss()
+                                Log.e(TAG,"response  1072   "+response.body())
                                 val jObject = JSONObject(response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     //   val jobjt = jObject.getJSONObject("VarificationMaintenance")

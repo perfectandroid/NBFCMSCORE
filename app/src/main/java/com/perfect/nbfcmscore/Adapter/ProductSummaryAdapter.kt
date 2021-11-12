@@ -8,8 +8,6 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.perfect.nbfcmscore.Activity.PassbookTransactionDetailsActivity
-import com.perfect.nbfcmscore.Activity.ProductListDetailsActivity
 import com.perfect.nbfcmscore.Helper.ItemClickListener
 import com.perfect.nbfcmscore.R
 import org.json.JSONArray

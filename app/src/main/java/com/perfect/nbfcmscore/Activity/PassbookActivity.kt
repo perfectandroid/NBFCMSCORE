@@ -5,6 +5,8 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -45,12 +47,15 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
     private var tv_list_days: TextView? = null
     private var rv_passbook: RecyclerView? = null
     private var ll_balance1: CardView? = null
+    private var card_list: CardView? = null
 
     private var ll_balance: LinearLayout? = null
     var noofdays = 0
     private var progressDialog: ProgressDialog? = null
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
+    var act_account: AutoCompleteTextView? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_passbook)
@@ -68,12 +73,16 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
         txtLastUpdatedAt = findViewById(R.id.txtLastUpdatedAt)
         empty_list = findViewById(R.id.empty_list)
         rv_passbook = findViewById(R.id.rv_passbook)
+        act_account = findViewById(R.id.act_account)
+        card_list = findViewById(R.id.card_list)
         spnAccountNum!!.onItemSelectedListener = this
 
         imgBack = findViewById<ImageView>(R.id.imgBack)
         imgBack!!.setOnClickListener(this)
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)
+
+        act_account!!.setOnClickListener(this)
 
 
     }
@@ -165,6 +174,16 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                                     for (i in 0 until jresult!!.length()) {
                                         try {
                                             val json = jresult!!.getJSONObject(i)
+                                            if(i == 0){
+                                                act_account!!.setText(json.getString("AccountNumber"))
+                                                Account!!.setText(json.getString("AccountType"))
+                                                getPassBookAccountStatement(
+                                                    json.getString("FK_Account"),
+                                                    json.getString("SubModule"),
+                                                    noofdays
+                                                )
+
+                                            }
                                             arrayList1!!.add(json.getString("AccountNumber"))
                                         } catch (e: JSONException) {
                                             e.printStackTrace()
@@ -174,6 +193,73 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                                             this@PassbookActivity,
                                             android.R.layout.simple_spinner_dropdown_item, arrayList1
                                     )
+
+                                    val adapter = ArrayAdapter(this@PassbookActivity,
+                                        android.R.layout.simple_list_item_1, arrayList1)
+                                    act_account!!.setAdapter(adapter)
+//                                    act_district!!.showDropDown()
+                                    act_account!!.threshold =1
+
+                                    act_account!!.setOnItemClickListener { parent, view, position, id ->
+
+                                       // for (i in 0 until jresult!!.length()) {
+                                            val json: JSONObject = jresult!!.getJSONObject(position)
+                                            if (json.getString("IsShowBalance").equals("1")) {
+
+                                                //if (isshowbal.equals("1") ) {
+                                                ll_balance!!.visibility = View.VISIBLE
+                                                ll_balance1!!.visibility = View.VISIBLE
+                                                available_balance!!.text =
+                                                    "\u20B9 " + Config.getDecimelFormate(json.getDouble("AvailableBalance"))
+                                                if (json.getDouble("UnclearAmount") <= 0) {
+                                                    unclear_balance!!.text =
+                                                        "\u20B9 " + Config.getDecimelFormate(json.getDouble("UnclearAmount"))
+                                                    unclear_balance!!.setTextColor(Color.WHITE)
+                                                } else {
+                                                    unclear_balance!!.text =
+                                                        "\u20B9 " + Config.getDecimelFormate(json.getDouble("UnclearAmount"))
+//                                                    unclear_balance!!.setTextColor(Color.parseColor("#7E5858"))
+                                                    unclear_balance!!.setTextColor(Color.WHITE)
+                                                }
+                                            }
+                                            else  {
+                                                ll_balance!!.visibility = View.GONE
+                                                ll_balance1!!.visibility = View.GONE
+                                                tv_list_days!!.visibility = View.GONE
+                                                card_list!!.visibility = View.GONE
+                                                rv_passbook!!.visibility = View.GONE
+                                            }
+
+                                            Account!!.text = json.getString("AccountType")
+                                            getPassBookAccountStatement(
+                                                json.getString("FK_Account"),
+                                                json.getString("SubModule"),
+                                                noofdays
+                                            )
+                                      //  }
+                                    }
+
+//                                    act_account!!.addTextChangedListener(object : TextWatcher {
+//                                        override fun onTextChanged(
+//                                            s: CharSequence,
+//                                            start: Int,
+//                                            before: Int,
+//                                            count: Int) {
+//
+//
+//
+//                                        }
+//
+//                                        override fun beforeTextChanged(
+//                                            s: CharSequence,
+//                                            start: Int,
+//                                            count: Int,
+//                                            after: Int
+//                                        ) {
+//                                        }
+//
+//                                        override fun afterTextChanged(s: Editable) {}
+//                                    })
 
 
                                 } else {
@@ -255,6 +341,8 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
             val json = jresult!!.getJSONObject(position)
             if (json.getString("IsShowBalance").equals("1")) {
 
+
+
             //if (isshowbal.equals("1") ) {
                 ll_balance!!.visibility = View.VISIBLE
                 ll_balance1!!.visibility = View.VISIBLE
@@ -274,6 +362,7 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                 ll_balance!!.visibility = View.GONE
                 ll_balance1!!.visibility = View.GONE
                 tv_list_days!!.visibility = View.GONE
+                card_list!!.visibility = View.GONE
                 rv_passbook!!.visibility = View.GONE
             }
 
@@ -387,6 +476,7 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                                     jresult1 = jsonobj2.getJSONArray("PassBookAccountStatementList")
                                     if (jresult1!!.length() != 0) {
                                         tv_list_days!!.visibility = View.VISIBLE
+                                        card_list!!.visibility = View.VISIBLE
                                         rv_passbook!!.visibility = View.VISIBLE
                                         empty_list!!.visibility = View.GONE
                                         val lLayout =
@@ -402,6 +492,7 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                                     } else {
                                         rv_passbook!!.visibility = View.GONE
                                         tv_list_days!!.visibility = View.GONE
+                                        card_list!!.visibility = View.GONE
                                         empty_list!!.visibility = View.VISIBLE
                                         empty_list!!.text =
                                                 "There are no transactions to display for the last $noofdays days"
@@ -487,6 +578,9 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
             }
             R.id.imgHome ->{
                 startActivity(Intent(this@PassbookActivity, HomeActivity::class.java))
+            }
+            R.id.act_account ->{
+                act_account!!.showDropDown()
             }
         }
     }

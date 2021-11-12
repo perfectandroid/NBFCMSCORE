@@ -2,58 +2,101 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:gravity="center_vertical">
 
-    <LinearLayout
-        android:id="@+id/ll_branchrow"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:orientation="horizontal"
-        android:background="@drawable/border_rectangle">
-
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="2dp"
+        app:cardBackgroundColor="@color/color_prodlist"
+        app:cardCornerRadius="5dp">
 
         <LinearLayout
+            android:id="@+id/ll_branchrow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="5dp"
-            android:layout_weight="1">
+            android:layout_margin="4dp"
+            android:orientation="horizontal">
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/tv_prdctid"
-                    android:layout_marginLeft="8dp"
+                android:orientation="vertical"
+                android:layout_margin="1dp"
+                android:layout_weight="1">
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:textSize="12dp"
-                    android:layout_weight="1.8"
-                    android:padding="2dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:text="3" />
-                <TextView
-                    android:id="@+id/tv_prdctdesc"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:textSize="12dp"
-                    android:layout_weight="0.2"
-                    android:padding="2dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:text="wewew" />
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            app:cardBackgroundColor="@color/card_color"
+                            app:cardCornerRadius="5dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:id="@+id/tv_prdctid"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:textSize="12dp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/white"
+                                    android:text="322" />
+
+                            </LinearLayout>
+
+
+
+                        </androidx.cardview.widget.CardView>
+
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/tv_prdctdesc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:textSize="12dp"
+                        android:layout_weight="0.2"
+                        android:padding="2dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/grey"
+                        android:text="wewew" />
+                </LinearLayout>
+
+
+
+
+
+
+
+
+
+
             </LinearLayout>
-
-
-
-
 
 
 
@@ -62,12 +105,9 @@
 
         </LinearLayout>
 
+    </androidx.cardview.widget.CardView>
 
 
-
-
-
-    </LinearLayout>
 
 
 

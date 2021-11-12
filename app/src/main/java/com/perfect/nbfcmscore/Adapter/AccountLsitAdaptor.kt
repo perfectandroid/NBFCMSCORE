@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,14 +17,17 @@ import com.perfect.nbfcmscore.Activity.AccountDetailsActivity
 import com.perfect.nbfcmscore.Activity.OTPActivity
 import com.perfect.nbfcmscore.Activity.WelcomeActivity
 import com.perfect.nbfcmscore.Helper.Config
+import com.perfect.nbfcmscore.Helper.PicassoTrustAll
 import com.perfect.nbfcmscore.R
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import java.lang.Exception
 
 
 class AccountLsitAdaptor(internal val mContext: Context, internal val jsInfo: JSONArray): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    val TAG: String = "AccountLsitAdaptor"
     internal var jsonObject: JSONObject? = null
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): RecyclerView.ViewHolder {
         val vh: RecyclerView.ViewHolder
@@ -46,6 +50,14 @@ class AccountLsitAdaptor(internal val mContext: Context, internal val jsInfo: JS
                 holder.tvaccountno!!.setText(jsonObject!!.getString("AccountNumber"))
                 holder.tvbal!!.setText("₹ "+ Config.getDecimelFormate(jsonObject!!.getDouble("Balance")))
                 holder.tvbranch!!.setText(jsonObject!!.getString("BranchName"))
+
+                try {
+                    val imagepath = Config.IMAGE_URL+jsonObject!!.getString("ImagePath")
+                    Log.e(TAG,"imagepath  55   "+imagepath)
+                    PicassoTrustAll.getInstance(mContext)!!.load(imagepath).error(android.R.color.transparent).into(holder.img_accounttype!!)
+                }catch (e : Exception){
+
+                }
 
 
                 holder.llmain!!.setTag(position)
@@ -103,6 +115,7 @@ var tvaccounttype: TextView? = null
 var tvaccountno: TextView? = null
 var tvbal: TextView? = null
 var tvbranch: TextView? = null
+var img_accounttype: ImageView? = null
 
 
 
@@ -113,6 +126,7 @@ tvaccounttype = v.findViewById<View>(R.id.tvaccounttype) as TextView
 tvaccountno = v.findViewById<View>(R.id.tvaccountno) as TextView
 tvbal = v.findViewById<View>(R.id.tvbal) as TextView
 tvbranch = v.findViewById<View>(R.id.tvbranch) as TextView
+    img_accounttype = v.findViewById<View>(R.id.img_accounttype) as ImageView
 
 
 }

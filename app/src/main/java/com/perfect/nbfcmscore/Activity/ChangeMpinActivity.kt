@@ -5,6 +5,7 @@ import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -17,6 +18,7 @@ import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
 import com.perfect.nbfcmscore.Helper.MscoreApplication
+import com.perfect.nbfcmscore.Helper.PicassoTrustAll
 import com.perfect.nbfcmscore.R
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
@@ -45,7 +47,15 @@ class ChangeMpinActivity : AppCompatActivity(), View.OnClickListener {
         val ProductNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF12,0)
         var IMAGRURL = Config.IMAGE_URL+AppIconImageCodeSP.getString("AppIconImageCode",null)
 
-        Glide.with(this).load(IMAGRURL).placeholder(R.drawable.login_icon).into(imgLogo);
+        try { val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+            Log.e("TAG","imagepath  116   "+imagepath)
+            //PicassoTrustAll.getInstance(this)!!.load(imagepath).error(null).into(im_applogo)
+            PicassoTrustAll.getInstance(this@ChangeMpinActivity)!!.load(imagepath).error(android.R.color.transparent).into(imgLogo!!)
+
+        }catch (e: Exception) {
+            e.printStackTrace()}
+
+//        Glide.with(this).load(IMAGRURL).placeholder(R.drawable.login_icon).into(imgLogo);
         tv_product_name!!.setText(ProductNameSP.getString("ProductName",null))
     }
 

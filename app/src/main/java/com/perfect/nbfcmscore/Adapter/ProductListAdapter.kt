@@ -59,6 +59,7 @@ class ProductListAdapter(internal val mContext: Context, internal val jsInfo: JS
                                 val i = Intent(mContext, ProductListDetailsActivity::class.java)
                                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 i.putExtra("FK_Product", jsonObject!!.getString("FK_Product"))
+                                i.putExtra("ProductCaption", jsonObject!!.getString("ProductCaption"))
                                 mContext!!.startActivity(i)
                             } catch (e: JSONException) {
                                 e.printStackTrace()

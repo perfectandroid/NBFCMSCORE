@@ -121,7 +121,7 @@
                                 android:id="@+id/til_mobilenumber"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_toLeftOf="@+id/im_contact"
+                                android:layout_toLeftOf="@+id/ll_contact"
                                 android:background="@android:color/transparent"
                                 android:textColorHint="@color/colorPrimarylight"
                                 app:hintTextColor="@color/colorPrimarylight">
@@ -137,14 +137,21 @@
 
                             </com.google.android.material.textfield.TextInputLayout>
 
-
-                            <ImageView
-                                android:id="@+id/im_contact"
+                            <LinearLayout
+                                android:id="@+id/ll_contact"
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:layout_alignParentRight="true"
-                                android:background="@drawable/ic_contact_box"
-                                android:backgroundTint="@color/colorPrimarylight" />
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:id="@+id/im_contact"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:backgroundTint="@color/colorPrimarylight"
+                                    android:src="@drawable/im_contacts" />
+
+                            </LinearLayout>
 
 
                         </RelativeLayout>
@@ -257,7 +264,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_alignParentBottom="true"
-                                android:layout_toLeftOf="@+id/im_offers"
+                                android:layout_toLeftOf="@+id/ll_offers"
                                 android:background="@android:color/transparent"
                                 android:textColorHint="@color/colorPrimarylight"
                                 app:hintTextColor="@color/colorPrimarylight">
@@ -274,13 +281,22 @@
 
                             </com.google.android.material.textfield.TextInputLayout>
 
-                            <ImageView
-                                android:id="@+id/im_offers"
+                            <LinearLayout
+                                android:id="@+id/ll_offers"
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:layout_alignParentRight="true"
-                                android:background="@drawable/ic_offer"
-                                android:backgroundTint="@color/colorPrimarylight" />
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:id="@+id/im_offers"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_alignParentRight="true"
+                                    android:src="@drawable/ic_offer" />
+
+                            </LinearLayout>
+
 
                         </RelativeLayout>
 

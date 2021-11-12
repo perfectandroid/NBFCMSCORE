@@ -7,13 +7,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
-import com.perfect.nbfcmscore.Adapter.PassbookTransactionDetailsAdapter
-import com.perfect.nbfcmscore.Adapter.ProductListAdapter
 import com.perfect.nbfcmscore.Adapter.ProductSummaryAdapter
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
@@ -24,6 +23,7 @@ import okhttp3.OkHttpClient
 import okhttp3.RequestBody
 import org.json.JSONArray
 import org.json.JSONObject
+import org.w3c.dom.Text
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -31,9 +31,11 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class ProductListDetailsActivity : AppCompatActivity(), View.OnClickListener {
     var fkproduct: String? = null
+    var ProductCaption: String? = null
     var rv_productsummaryDetails: RecyclerView? = null
     private var progressDialog: ProgressDialog? = null
     var imgBack: ImageView? = null
+    var tv_prdctdesc: TextView? = null
     private var jresult: JSONArray? = null
     var imgHome: ImageView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,12 +44,16 @@ class ProductListDetailsActivity : AppCompatActivity(), View.OnClickListener {
 
         setRegviews()
         fkproduct = intent.getStringExtra("FK_Product")
+        ProductCaption = intent.getStringExtra("ProductCaption")
+
+        tv_prdctdesc!!.setText(ProductCaption)
         getProductdetail(fkproduct)
     }
 
     private fun setRegviews() {
         rv_productsummaryDetails = findViewById(R.id.rv_productsummaryDetails)
         imgBack = findViewById<ImageView>(R.id.imgBack)
+        tv_prdctdesc = findViewById<TextView>(R.id.tv_prdctdesc)
         imgBack!!.setOnClickListener(this)
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)

@@ -491,26 +491,34 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
         Log.e(TAG,"CONFIRMS   446     "+BeneAccountNumber_conf)
 
         if (AccountNo!!.length != 12){
-            Toast.makeText(applicationContext,"Select valid  account number",Toast.LENGTH_LONG).show()
+           // Toast.makeText(applicationContext,"Select valid  account number",Toast.LENGTH_LONG).show()
+            CustomBottomSheeet.Show(this,"Select valid  account number","0")
         }
         else if(BeneName!!.equals("")){
-            Toast.makeText(applicationContext,"Please enter Beneficiary name",Toast.LENGTH_LONG).show()
+            //Toast.makeText(applicationContext,"Please enter Beneficiary name",Toast.LENGTH_LONG).show()
+            CustomBottomSheeet.Show(this,"Please enter Beneficiary name","0")
         }
         else if(BeneAccountNumber!!.equals("")){
-            Toast.makeText(applicationContext,"Beneficiary account number is required",Toast.LENGTH_LONG).show()
+            //Toast.makeText(applicationContext,"Beneficiary account number is required",Toast.LENGTH_LONG).show()
+            CustomBottomSheeet.Show(this,"Beneficiary account number is required","0")
         }
         else if(BeneAccountNumber_conf!!.equals("")){
-            Toast.makeText(applicationContext,"Confirm Beneficiary account number is required",Toast.LENGTH_LONG).show()
+           // Toast.makeText(applicationContext,"Confirm Beneficiary account number is required",Toast.LENGTH_LONG).show()
+            CustomBottomSheeet.Show(this,"Confirm Beneficiary account number is required","0")
         }
         else if(!BeneAccountNumber!!.equals(BeneAccountNumber_conf!!)){
-            Toast.makeText(applicationContext,"Beneficiary account numbers don't match",Toast.LENGTH_LONG).show()
+           // Toast.makeText(applicationContext,"Beneficiary account numbers don't match",Toast.LENGTH_LONG).show()
+            CustomBottomSheeet.Show(this,"Beneficiary account numbers don't match","0")
         }else if(BeneIFSC!!.equals("") || BeneIFSC!!.length != 11){
-            Toast.makeText(applicationContext,"Please enter valid IFSC",Toast.LENGTH_LONG).show()
+           // Toast.makeText(applicationContext,"Please enter valid IFSC",Toast.LENGTH_LONG).show()
+            CustomBottomSheeet.Show(this,"Please enter valid IFSC","0")
         }else if(BeneIFSC!!.equals("") || BeneIFSC!!.length != 11){
-            Toast.makeText(applicationContext,"Please enter valid IFSC",Toast.LENGTH_LONG).show()
+            //Toast.makeText(applicationContext,"Please enter valid IFSC",Toast.LENGTH_LONG).show()
+            CustomBottomSheeet.Show(this,"Please enter valid IFSC","0")
         }
         else if(Amount!!.length == 0 ||Amount!!.toDouble() <= 0){
-            Toast.makeText(applicationContext,"Enter Amount",Toast.LENGTH_LONG).show()
+          //  Toast.makeText(applicationContext,"Enter Amount",Toast.LENGTH_LONG).show()
+            CustomBottomSheeet.Show(this,"Enter Amount","0")
         }else{
 
 
