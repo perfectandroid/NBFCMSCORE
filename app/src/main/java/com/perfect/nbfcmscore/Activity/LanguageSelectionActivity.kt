@@ -59,6 +59,12 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
         tvHeader2!!.setText(SkipSP.getString("Skip",null))*/
         //}
 
+       /* val SkipSP = this.getSharedPreferences(Config.SHARED_PREF39, 0)
+        val LanguageslctSP = this.getSharedPreferences(Config.SHARED_PREF38, 0)
+
+        tvHeader2!!.setText(LanguageslctSP.getString("SelectLanguage", null))
+        tvskip!!.setText(SkipSP.getString("Skip", null))*/
+
 
     }
 

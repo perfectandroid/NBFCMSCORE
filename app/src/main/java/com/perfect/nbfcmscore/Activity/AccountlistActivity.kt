@@ -7,6 +7,7 @@ import android.view.Gravity
 import android.view.View
 import android.widget.ImageView
 import android.widget.Switch
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -16,6 +17,7 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.perfect.nbfcmscore.Fragment.DepositFragment
 import com.perfect.nbfcmscore.Fragment.LoanlistFragment
+import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.R
 import java.util.*
 
@@ -24,6 +26,7 @@ class AccountlistActivity : AppCompatActivity(), View.OnClickListener {
     private var viewPager: ViewPager? = null
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
+    var tv_mycart: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,12 +40,29 @@ class AccountlistActivity : AppCompatActivity(), View.OnClickListener {
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)
 
+        tv_mycart = findViewById<View>(R.id.tv_mycart) as TextView
+
+        val ID_Myacc = applicationContext.getSharedPreferences(Config.SHARED_PREF50,0)
+        tv_mycart!!.setText(ID_Myacc.getString("Myaccounts",null))
+
+
     }
 
     private fun setupViewPager(viewPager: ViewPager?) {
         val adapter = ViewPagerAdapter(supportFragmentManager)
-        adapter.addFragment(DepositFragment(), "Deposit")
-        adapter.addFragment(LoanlistFragment(), "Loan")
+
+        val ID_DEPOSIT = applicationContext.getSharedPreferences(Config.SHARED_PREF85,0)
+        val ID_LOAN = applicationContext.getSharedPreferences(Config.SHARED_PREF86,0)
+
+        var deposit =ID_DEPOSIT.getString("DEPOSIT",null)
+        var loan =ID_LOAN.getString("LOAN",null)
+
+        if (deposit != null) {
+            adapter.addFragment(DepositFragment(), deposit)
+        }
+        if (loan != null) {
+            adapter.addFragment(LoanlistFragment(), loan)
+        }
         viewPager!!.adapter = adapter
     }
 

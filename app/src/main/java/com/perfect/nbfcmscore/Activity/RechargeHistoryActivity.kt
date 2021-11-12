@@ -37,6 +37,7 @@ class RechargeHistoryActivity : AppCompatActivity(), View.OnClickListener {
     private var progressDialog: ProgressDialog? = null
     var im_back: ImageView? = null
     var im_home: ImageView? = null
+    var tv_header: TextView? = null
 
     var rvrechargeHistory: RecyclerView? = null
     var jsonArray: JSONArray? = null
@@ -49,6 +50,8 @@ class RechargeHistoryActivity : AppCompatActivity(), View.OnClickListener {
         setInitialise()
         setRegister()
 
+        val HistorySP = applicationContext.getSharedPreferences(Config.SHARED_PREF102, 0)
+        tv_header!!.setText(HistorySP.getString("RechargeHistory", null))
         getRecentRecharges()
 
     }
@@ -62,6 +65,7 @@ class RechargeHistoryActivity : AppCompatActivity(), View.OnClickListener {
     private fun setInitialise() {
         im_back = findViewById<ImageView>(R.id.im_back)
         im_home = findViewById<ImageView>(R.id.im_home)
+        tv_header = findViewById<TextView>(R.id.tv_header)
 
         rvrechargeHistory = findViewById<RecyclerView>(R.id.rvrechargeHistory)
 

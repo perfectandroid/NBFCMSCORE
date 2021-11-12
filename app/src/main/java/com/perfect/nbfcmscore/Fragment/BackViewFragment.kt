@@ -62,6 +62,7 @@ class BackViewFragment : Fragment() , OnClickListener{
     var txtv_points2: TextView? = null
     var txtv_points3: TextView? = null
     var txtv_points4: TextView? = null
+    var txtv_header: TextView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -87,6 +88,7 @@ class BackViewFragment : Fragment() , OnClickListener{
         txtv_points2 = v.findViewById<View>(R.id.txtv_points2) as TextView?
         txtv_points3 = v.findViewById<View>(R.id.txtv_points3) as TextView?
         txtv_points4 = v.findViewById<View>(R.id.txtv_points4) as TextView?
+        txtv_header= v.findViewById<View>(R.id.txtv_header) as TextView?
 
         txtv_purpose!!.setText(R.string.purpose)
         txtv_purpose!!.visibility = View.VISIBLE
@@ -107,6 +109,12 @@ class BackViewFragment : Fragment() , OnClickListener{
 
         txtv_addrs!!.text = AddressSP.getString("Address",null)
         txtv_phone!!.text = CusMobileSP.getString("CusMobile",null)
+
+        val ID_Virtual = activity!!.getSharedPreferences(Config.SHARED_PREF74,0)
+        val ID_Purpose = activity!!.getSharedPreferences(Config.SHARED_PREF105,0)
+        txtv_header!!.setText(ID_Virtual.getString("VirtualCard",null))
+        txtv_purpose!!.setText(ID_Purpose.getString("PurposeofVirtualCard",null))
+
 
         getVritualcardCombination()
 

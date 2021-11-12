@@ -37,6 +37,7 @@ class DueReminderActivity : AppCompatActivity() , View.OnClickListener{
     private var rv_duereminder: RecyclerView? = null
     var submode: String=""
     var imgBack: ImageView? = null
+    var tv_mycart: TextView? = null
     var imgHome: ImageView? = null
     private var jresult: JSONArray? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +49,7 @@ class DueReminderActivity : AppCompatActivity() , View.OnClickListener{
     }
 
     private fun setRegViews() {
+        tv_mycart = findViewById<TextView>(R.id.tv_mycart)
         radiogrp = findViewById<RadioGroup>(R.id.radio_group)
         radio1 = findViewById<RadioButton>(R.id.radio1)
         radio2 = findViewById<RadioButton>(R.id.radio2)
@@ -58,22 +60,32 @@ class DueReminderActivity : AppCompatActivity() , View.OnClickListener{
         imgHome!!.setOnClickListener(this)
         rv_duereminder = findViewById(R.id.rv_duereminder)
 
+        val ID_Deposit = this.getSharedPreferences(Config.SHARED_PREF88,0)
+        val ID_Loan = this.getSharedPreferences(Config.SHARED_PREF89,0)
+        val ID_dueremind = this.getSharedPreferences(Config.SHARED_PREF53,0)
+
+        tv_mycart!!.setText(ID_dueremind.getString("duereminder",null))
+        radio1!!.setText(ID_Deposit.getString("Deposit",null))
+        radio2!!.setText(ID_Loan.getString("Loan",null))
+
         // Assigning id of the checked radio button
        // radioButton = findViewById(selectedOption)
 
         // Displaying text of the checked radio button in the form of toast
         //Toast.makeText(baseContext, radioButton.text, Toast.LENGTH_SHORT).show()
 
+
+
         if(radio1!!.isChecked())
         {
-            if(radio1!!.text.equals("Deposit"))
+            if(radio1!!.text.equals(ID_Deposit.getString("Deposit",null)))
             {
                 submode="1"
             }
         }
         else if(radio2!!.isChecked())
         {
-            if(radio2!!.text.equals("Loan"))
+            if(radio2!!.text.equals(ID_Loan.getString("Loan",null)))
             {
                 submode="2"
             }

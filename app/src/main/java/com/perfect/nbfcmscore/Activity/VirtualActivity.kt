@@ -16,6 +16,7 @@ import com.perfect.nbfcmscore.Fragment.BackViewFragment
 import com.perfect.nbfcmscore.Fragment.DepositFragment
 import com.perfect.nbfcmscore.Fragment.FrontViewFragment
 import com.perfect.nbfcmscore.Fragment.LoanlistFragment
+import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.R
 import java.util.*
 
@@ -40,6 +41,9 @@ class VirtualActivity : AppCompatActivity() , View.OnClickListener{
 
         setInitialise()
         setRegister()
+
+        val ID_Virtual = applicationContext.getSharedPreferences(Config.SHARED_PREF74,0)
+        tv_header!!.setText(ID_Virtual.getString("VirtualCard",null))
 
         viewPager = findViewById<View>(R.id.viewpager) as ViewPager
         setupViewPager(viewPager)
@@ -80,8 +84,22 @@ class VirtualActivity : AppCompatActivity() , View.OnClickListener{
 
     private fun setupViewPager(viewPager: ViewPager?) {
         val adapter = ViewPagerAdapter(supportFragmentManager)
-        adapter.addFragment(FrontViewFragment(), "Frontview")
-        adapter.addFragment(BackViewFragment(), "Backview")
+
+        val ID_Front = applicationContext.getSharedPreferences(Config.SHARED_PREF103,0)
+        val ID_Back = applicationContext.getSharedPreferences(Config.SHARED_PREF104,0)
+
+
+        var front =ID_Front.getString("FRONTVIEW",null)
+        var back =ID_Back.getString("BACKVIEW",null)
+
+        if (front != null) {
+            adapter.addFragment(FrontViewFragment(), front)
+        }
+        if (back != null) {
+            adapter.addFragment(BackViewFragment(), back)
+        }
+        //adapter.addFragment(FrontViewFragment(), "Frontview")
+      //  adapter.addFragment(BackViewFragment(), "Backview")
         viewPager!!.adapter = adapter
     }
 

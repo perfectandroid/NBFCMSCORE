@@ -507,6 +507,7 @@
                                     android:src="@drawable/mynotification" />
 
                                 <TextView
+                                    android:id="@+id/txtvnotif"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
@@ -583,6 +584,7 @@
                                     android:src="@drawable/myonwbank" />
 
                                 <TextView
+                                    android:id="@+id/txtv_ownbnk"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
@@ -626,6 +628,7 @@
                                     android:src="@drawable/myotherbank" />
 
                                 <TextView
+                                    android:id="@+id/txtv_othrbnk"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
@@ -669,6 +672,7 @@
                                     android:src="@drawable/myquickpay" />
 
                                 <TextView
+                                    android:id="@+id/txtv_quickpay"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
@@ -882,6 +886,7 @@
                                     android:src="@drawable/myprepaidmobile" />
 
                                 <TextView
+                                    android:id="@+id/txtv_prepaid"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
@@ -925,6 +930,7 @@
                                     android:src="@drawable/mypostpaidmobile" />
 
                                 <TextView
+                                    android:id="@+id/txtv_pospaid"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
@@ -968,6 +974,7 @@
                                     android:src="@drawable/mylandline" />
 
                                 <TextView
+                                    android:id="@+id/txtv_landline"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
@@ -1022,6 +1029,7 @@
                                     android:src="@drawable/mydth" />
 
                                 <TextView
+                                    android:id="@+id/txtv_dth"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
@@ -1064,6 +1072,7 @@
                                     android:src="@drawable/mydatacard" />
 
                                 <TextView
+                                    android:id="@+id/txtv_datacrd"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
@@ -1106,6 +1115,7 @@
                                     android:src="@drawable/mykseb" />
 
                                 <TextView
+                                    android:id="@+id/txtv_Kseb"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
@@ -1160,6 +1170,7 @@
                                     android:src="@drawable/myhistory" />
 
                                 <TextView
+                                    android:id="@+id/txtv_history"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
@@ -1262,6 +1273,7 @@
                                     android:src="@drawable/mydashboard" />
 
                                 <TextView
+                                    android:id="@+id/txtv_dashbrd"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
@@ -1305,6 +1317,7 @@
                                     android:src="@drawable/myvirtualcard" />
 
                                 <TextView
+                                    android:id="@+id/txtv_virtual"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
@@ -1348,6 +1361,7 @@
                                     android:src="@drawable/mybranchdetails" />
 
                                 <TextView
+                                    android:id="@+id/txtv_branch"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
@@ -1402,6 +1416,7 @@
                                     android:src="@drawable/myloanapplication" />
 
                                 <TextView
+                                    android:id="@+id/txtv_loanaplctn"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
@@ -1444,6 +1459,7 @@
                                     android:src="@drawable/myloanstatus" />
 
                                 <TextView
+                                    android:id="@+id/txtv_loanstats"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
@@ -1487,6 +1503,7 @@
                                     android:src="@drawable/myproductdetails" />
 
                                 <TextView
+                                    android:id="@+id/txtv_prdctdetail"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
@@ -1563,6 +1580,7 @@
                                     android:src="@drawable/emicalculator" />
 
                                 <TextView
+                                    android:id="@+id/txtv_emi"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
@@ -1588,6 +1606,7 @@
                             app:cardUseCompatPadding="true">
 
                             <LinearLayout
+                                android:id="@+id/llDeposit"
                                 android:layout_width="match_parent"
                                 android:gravity="center"
                                 android:layout_gravity="center"
@@ -1605,6 +1624,7 @@
                                     android:src="@drawable/mydepositcal" />
 
                                 <TextView
+                                    android:id="@+id/txtv_deposit"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
@@ -1648,6 +1668,7 @@
                                     android:src="@drawable/mygoldloaneligible" />
 
                                 <TextView
+                                    android:id="@+id/txtv_goldloan"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
@@ -1701,6 +1722,7 @@
                                     android:src="@drawable/myenquiry" />
 
                                 <TextView
+                                    android:id="@+id/txtv_enqry"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
@@ -1744,6 +1766,7 @@
                                     android:src="@drawable/myholidaylist" />
 
                                 <TextView
+                                    android:id="@+id/txtv_holidy"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
@@ -1786,6 +1809,7 @@
                                     android:src="@drawable/myexecutivecall" />
 
                                 <TextView
+                                    android:id="@+id/txtv_exectve"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"

@@ -60,6 +60,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var ll_rechargehistory : LinearLayout?=null
     var ll_holidaylist : LinearLayout?=null
     var llownbank : LinearLayout?=null
+    var llDeposit:LinearLayout?=null
     var ll_dth : LinearLayout?=null
     var llEmi : LinearLayout?=null
     var llnotif : LinearLayout?=null
@@ -86,7 +87,31 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var txtv_quickbal: TextView? = null
     var txtvstatmnt: TextView? = null
     var txtv_dueremndr: TextView? = null
+    var txtvnotif: TextView? = null
+    var txtv_ownbnk: TextView? = null
+    var txtv_othrbnk: TextView? = null
+    var txtv_quickpay: TextView? = null
+    var txtv_prepaid: TextView? = null
+    var txtv_pospaid: TextView? = null
+    var txtv_landline: TextView? = null
+    var txtv_dth: TextView? = null
+    var txtv_datacrd: TextView? = null
+    var txtv_Kseb: TextView? = null
+    var txtv_history: TextView? = null
+    var txtv_dashbrd: TextView? = null
+    var txtv_virtual: TextView? = null
+    var txtv_branch: TextView? = null
+    var txtv_loanaplctn: TextView? = null
+    var txtv_loanstats: TextView? = null
+    var txtv_prdctdetail: TextView? = null
     var tv_viewall: TextView? = null
+    var txtv_emi: TextView? = null
+    var txtv_deposit: TextView? = null
+    var txtv_goldloan: TextView? = null
+    var txtv_enqry: TextView? = null
+    var txtv_holidy: TextView? = null
+    var txtv_exectve: TextView? = null
+
 
     private var mPager: ViewPager? = null
     private var indicator: CircleIndicator? = null
@@ -115,6 +140,35 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         val ID_QuickbalSP = applicationContext.getSharedPreferences(Config.SHARED_PREF52,0)
         val ID_DueremindSP = applicationContext.getSharedPreferences(Config.SHARED_PREF53,0)
         val ID_StatmntSP = applicationContext.getSharedPreferences(Config.SHARED_PREF59,0)
+        val ID_NotifSP = applicationContext.getSharedPreferences(Config.SHARED_PREF62,0)
+        val ID_OwnBankSP = applicationContext.getSharedPreferences(Config.SHARED_PREF63,0)
+        val ID_OtherBankSP = applicationContext.getSharedPreferences(Config.SHARED_PREF64,0)
+        val ID_QuickpaySP = applicationContext.getSharedPreferences(Config.SHARED_PREF65,0)
+
+        val ID_Prepaid = applicationContext.getSharedPreferences(Config.SHARED_PREF66,0)
+        val ID_Postpaid = applicationContext.getSharedPreferences(Config.SHARED_PREF67,0)
+        val ID_Landline = applicationContext.getSharedPreferences(Config.SHARED_PREF68,0)
+        val ID_DTH = applicationContext.getSharedPreferences(Config.SHARED_PREF69,0)
+        val ID_Datacrdpay = applicationContext.getSharedPreferences(Config.SHARED_PREF70,0)
+        val ID_KSEB = applicationContext.getSharedPreferences(Config.SHARED_PREF71,0)
+        val ID_Histry = applicationContext.getSharedPreferences(Config.SHARED_PREF72,0)
+
+        val ID_Dashbrd = applicationContext.getSharedPreferences(Config.SHARED_PREF73,0)
+        val ID_Virtualcrd = applicationContext.getSharedPreferences(Config.SHARED_PREF74,0)
+        val ID_Branch = applicationContext.getSharedPreferences(Config.SHARED_PREF75,0)
+        val ID_Loanapplictn = applicationContext.getSharedPreferences(Config.SHARED_PREF76,0)
+        val ID_Loanstatus = applicationContext.getSharedPreferences(Config.SHARED_PREF77,0)
+        val ID_PrdctDetail = applicationContext.getSharedPreferences(Config.SHARED_PREF78,0)
+
+        val ID_Emi = applicationContext.getSharedPreferences(Config.SHARED_PREF79,0)
+        val ID_Deposit = applicationContext.getSharedPreferences(Config.SHARED_PREF80,0)
+        val ID_Goldloan = applicationContext.getSharedPreferences(Config.SHARED_PREF81,0)
+        val ID_Enqry = applicationContext.getSharedPreferences(Config.SHARED_PREF82,0)
+        val ID_Holidy = applicationContext.getSharedPreferences(Config.SHARED_PREF83,0)
+        val ID_Executve = applicationContext.getSharedPreferences(Config.SHARED_PREF84,0)
+
+
+
 
 
         txtv_myacc!!.setText(ID_MyaccSP.getString("Myaccounts",null))
@@ -122,6 +176,34 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         txtv_quickbal!!.setText(ID_QuickbalSP.getString("quickbalance",null))
         txtv_dueremndr!!.setText(ID_DueremindSP.getString("duereminder",null))
         txtvstatmnt!!.setText(ID_StatmntSP.getString("statement",null))
+        txtvnotif!!.setText(ID_NotifSP.getString("NotificationandMessages",null))
+        txtv_ownbnk!!.setText(ID_OwnBankSP.getString("OwnBank",null))
+        txtv_othrbnk!!.setText(ID_OtherBankSP.getString("OtherBank",null))
+        txtv_quickpay!!.setText(ID_QuickpaySP.getString("QuickPay",null))
+
+        txtv_prepaid!!.setText(ID_Prepaid.getString("PrepaidMobile",null))
+        txtv_pospaid!!.setText(ID_Postpaid.getString("PostpaidMobile",null))
+        txtv_landline!!.setText(ID_Landline.getString("Landline",null))
+        txtv_dth!!.setText(ID_DTH.getString("DTH",null))
+        txtv_datacrd!!.setText(ID_Datacrdpay.getString("DataCard",null))
+        txtv_Kseb!!.setText(ID_KSEB.getString("KSEB",null))
+        txtv_history!!.setText(ID_Histry.getString("History",null))
+
+        txtv_dashbrd!!.setText(ID_Dashbrd.getString("Dashboard",null))
+        txtv_virtual!!.setText(ID_Virtualcrd.getString("VirtualCard",null))
+        txtv_branch!!.setText(ID_Branch.getString("BranchDetails",null))
+        txtv_loanaplctn!!.setText(ID_Loanapplictn.getString("LoanApplication",null))
+        txtv_loanstats!!.setText(ID_Loanstatus.getString("LoanStatus",null))
+        txtv_prdctdetail!!.setText(ID_PrdctDetail.getString("ProductDetails",null))
+
+        txtv_emi!!.setText(ID_Emi.getString("EMICalculator",null))
+        txtv_deposit!!.setText(ID_Deposit.getString("DepositCalculator",null))
+        txtv_goldloan!!.setText(ID_Goldloan.getString("GoldLoanEligibileCalculator",null))
+        txtv_enqry!!.setText(ID_Enqry.getString("Enquires",null))
+        txtv_holidy!!.setText(ID_Holidy.getString("HolidayList",null))
+        txtv_exectve!!.setText(ID_Executve.getString("ExecutiveCallBack",null))
+
+
 
 
         val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
@@ -611,6 +693,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         tv_header = findViewById(R.id.tv_header)
         llloanapplication = findViewById(R.id.llloanapplication)
         lldashboard = findViewById(R.id.lldashboard)
+        llDeposit = findViewById(R.id.llDeposit)
         llprdctdetail = findViewById(R.id.llprdctdetail)
         llmyaccounts = findViewById(R.id.llmyaccounts)
         imgMenu = findViewById(R.id.imgMenu)
@@ -630,6 +713,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
          txtv_quickbal= findViewById(R.id.txtv_quickbal)
          txtvstatmnt= findViewById(R.id.txtvstatmnt)
         txtv_dueremndr= findViewById(R.id.txtv_dueremndr)
+        txtvnotif= findViewById(R.id.txtvnotif)
 
         llnotif= findViewById(R.id.llnotif)
 
@@ -648,6 +732,34 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         tv_def_availablebal = findViewById<TextView>(R.id.tv_def_availablebal)
         tv_lastlogin = findViewById<TextView>(R.id.tv_lastlogin)
         tv_viewall = findViewById<TextView>(R.id.tv_viewall)
+
+        txtv_ownbnk = findViewById<TextView>(R.id.txtv_ownbnk)
+        txtv_othrbnk = findViewById<TextView>(R.id.txtv_othrbnk)
+        txtv_quickpay = findViewById<TextView>(R.id.txtv_quickpay)
+
+        txtv_prepaid = findViewById<TextView>(R.id.txtv_prepaid)
+        txtv_pospaid = findViewById<TextView>(R.id.txtv_pospaid)
+        txtv_landline = findViewById<TextView>(R.id.txtv_landline)
+        txtv_dth = findViewById<TextView>(R.id.txtv_dth)
+        txtv_datacrd = findViewById<TextView>(R.id.txtv_datacrd)
+        txtv_Kseb = findViewById<TextView>(R.id.txtv_Kseb)
+        txtv_history = findViewById<TextView>(R.id.txtv_history)
+
+        txtv_dashbrd = findViewById<TextView>(R.id.txtv_dashbrd)
+        txtv_virtual = findViewById<TextView>(R.id.txtv_virtual)
+        txtv_branch = findViewById<TextView>(R.id.txtv_branch)
+        txtv_loanaplctn = findViewById<TextView>(R.id.txtv_loanaplctn)
+        txtv_loanstats = findViewById<TextView>(R.id.txtv_loanstats)
+        txtv_prdctdetail = findViewById<TextView>(R.id.txtv_prdctdetail)
+
+        txtv_emi = findViewById<TextView>(R.id.txtv_emi)
+        txtv_deposit = findViewById<TextView>(R.id.txtv_deposit)
+        txtv_goldloan = findViewById<TextView>(R.id.txtv_goldloan)
+        txtv_enqry = findViewById<TextView>(R.id.txtv_enqry)
+        txtv_holidy = findViewById<TextView>(R.id.txtv_holidy)
+        txtv_exectve = findViewById<TextView>(R.id.txtv_exectve)
+
+
 
     }
 
@@ -680,6 +792,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         llnotif!!.setOnClickListener(this)
         llstatement!!.setOnClickListener(this)
         tv_viewall!!.setOnClickListener(this)
+        llDeposit!!.setOnClickListener(this)
     }
 
     open fun setHomeNavMenu() {
@@ -995,6 +1108,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             R.id.ll_virtualcard -> {
 
                 var intent = Intent(this@HomeActivity, VirtualActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.llDeposit->
+            {
+                var intent = Intent(this@HomeActivity, DepositCalculatorActivity::class.java)
                 startActivity(intent)
             }
             R.id.ll_otherbank -> {
