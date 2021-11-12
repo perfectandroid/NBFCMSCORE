@@ -282,14 +282,9 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                                             arrayList1!!.add(
                                                     Splitupdetail(
                                                             json.getString("AccountNumber"),
-                                                            json.getString(
-                                                                    "FK_Account"
-                                                            ),
-                                                            json.getString(
-                                                                    "SubModule"
-                                                            )
-                                                    )
-                                            )
+                                                            json.getString("FK_Account"),
+                                                            json.getString("SubModule"),
+                                                            json.getString("BranchName")))
 
                                         } catch (e: JSONException) {
                                             e.printStackTrace()
