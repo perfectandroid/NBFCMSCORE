@@ -655,6 +655,7 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
                         requestObject1.put("MPIN", MscoreApplication.encryptStart(varOtp))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(getResources().getString(R.string.BankHeader)))
 
                         Log.e(TAG,"requestObject1  139   "+requestObject1)
                         Log.e(TAG,"varOtp  139   "+varOtp)
@@ -672,7 +673,7 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
                         okhttp3.MediaType.parse("application/json; charset=utf-8"),
                         requestObject1.toString()
                     )
-                    val call = apiService.getOTP(body)
+                    val call = apiService.getMPINVarificationMaintenance(body)
                     call.enqueue(object : retrofit2.Callback<String> {
                         override fun onResponse(
                             call: retrofit2.Call<String>, response:

@@ -13,6 +13,9 @@ interface ApiInterface {
     @POST("Customer/VarificationMaintenance")
     fun getOTP(@Body body: RequestBody):Call<String>
 
+    @POST("Customer/MPINVarificationMaintenance")
+    fun getMPINVarificationMaintenance(@Body body: RequestBody):Call<String>
+
     @POST("Customer/Languages")
     fun getLanguages(@Body body: RequestBody):Call<String>
 
