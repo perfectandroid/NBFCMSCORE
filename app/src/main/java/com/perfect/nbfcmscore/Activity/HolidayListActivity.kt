@@ -290,17 +290,9 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("24"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-                        requestObject1.put(
-                            "BranchCode",
-                            MscoreApplication.encryptStart(branchid)
-                        )
-                        requestObject1.put(
-                            "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                    R.string.BankKey
-                                )
-                            )
-                        )
+                        requestObject1.put("BranchCode", MscoreApplication.encryptStart(branchid))
+                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
 
 
                         Log.e("TAG", "requestObject1  171   " + requestObject1)
