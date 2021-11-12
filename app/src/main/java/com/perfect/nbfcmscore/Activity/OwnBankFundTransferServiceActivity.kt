@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -38,6 +39,13 @@ class OwnBankFundTransferServiceActivity: AppCompatActivity(), View.OnClickListe
     var ll_source_acc_list_other:LinearLayout? = null
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
+    var txt_ownacc: TextView? = null
+    var txtotheracc: TextView? = null
+    var tv_mycart: TextView? = null
+    var txtv_Selacc: TextView? = null
+    var txtv_Selacc1: TextView? = null
+
+
     private var jresult: JSONArray? = null
     private var jresult1: JSONArray? = null
     private var progressDialog: ProgressDialog? = null
@@ -56,6 +64,12 @@ class OwnBankFundTransferServiceActivity: AppCompatActivity(), View.OnClickListe
         ll_source_acc_list_other = findViewById<LinearLayout>(R.id.ll_source_acc_list_other)
         ll_source_acc_list_own = findViewById<LinearLayout>(R.id.ll_source_acc_list_own)
 
+        txt_ownacc = findViewById<TextView>(R.id.txt_ownacc)
+        txtotheracc = findViewById<TextView>(R.id.txtotheracc)
+        tv_mycart = findViewById<TextView>(R.id.tv_mycart)
+        txtv_Selacc= findViewById<TextView>(R.id.txtv_Selacc)
+        txtv_Selacc1= findViewById<TextView>(R.id.txtv_Selacc1)
+
         imgBack = findViewById<ImageView>(R.id.imgBack)
         imgBack!!.setOnClickListener(this)
         imgHome = findViewById<ImageView>(R.id.imgHome)
@@ -64,6 +78,17 @@ class OwnBankFundTransferServiceActivity: AppCompatActivity(), View.OnClickListe
 
         rltv_ownaccount!!.setOnClickListener(this)
         rltv_otheraccount!!.setOnClickListener(this)
+
+        val ID_Ownacc = applicationContext.getSharedPreferences(Config.SHARED_PREF90,0)
+        val ID_Otheracc = applicationContext.getSharedPreferences(Config.SHARED_PREF91,0)
+        val ID_ownbnk = applicationContext.getSharedPreferences(Config.SHARED_PREF63,0)
+        val SelectaccSP = applicationContext.getSharedPreferences(Config.SHARED_PREF101, 0)
+
+        txt_ownacc!!.setText(ID_Ownacc.getString("OWNACCOUNT",null))
+        txtotheracc!!.setText(ID_Otheracc.getString("OTHERACCOUNT",null))
+        tv_mycart!!.setText(ID_ownbnk.getString("OwnBank",null))
+        txtv_Selacc!!.setText(SelectaccSP.getString("SelectYourAccount", null))
+        txtv_Selacc1!!.setText(SelectaccSP.getString("SelectYourAccount", null))
 
     }
 

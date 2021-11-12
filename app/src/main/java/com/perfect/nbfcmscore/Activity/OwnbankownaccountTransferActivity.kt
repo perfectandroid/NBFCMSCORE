@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
@@ -35,11 +36,16 @@ class OwnbankownaccountTransferActivity : AppCompatActivity(),View.OnClickListen
     private var rv_ownacnt: RecyclerView? = null
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
+    var tv_accnt: TextView? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ownbankownaccount)
 
         setRegViews()
+        val SelectaccSP = applicationContext.getSharedPreferences(Config.SHARED_PREF101, 0)
+        tv_accnt!!.setText(SelectaccSP.getString("SelectYourAccount", null))
+
         getOwnbankownAccount()
 
 
@@ -51,6 +57,7 @@ class OwnbankownaccountTransferActivity : AppCompatActivity(),View.OnClickListen
         imgBack!!.setOnClickListener(this)
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)
+        tv_accnt = findViewById(R.id.tv_accnt)
     }
 
     private fun getOwnbankownAccount() {

@@ -59,6 +59,12 @@ class DepositFragment : Fragment(){
         getAccountlist("1")
         switch1 = v.findViewById<View>(R.id.switch1) as Switch?
 
+        val ID_Active = activity!!.getSharedPreferences(Config.SHARED_PREF87,0)
+        switch1!!.setText(ID_Active.getString("Active",null))
+
+        /*val ID_Active = activity!!.getSharedPreferences(Config.SHARED_PREF87,0)
+        switch1!!.setText(ID_Active.getString("Active",null))*/
+
         switch1?.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked){
                 switch1!!.setText("Closed")
@@ -66,7 +72,8 @@ class DepositFragment : Fragment(){
 
                 getAccountlist("0")
             }else{
-                switch1!!.setText("Active")
+              //  switch1!!.setText("Active")
+                switch1!!.setText(ID_Active.getString("Active",null))
                 switch1!!.setTextColor(resources.getColor(R.color.green))
                 getAccountlist("1")
             }

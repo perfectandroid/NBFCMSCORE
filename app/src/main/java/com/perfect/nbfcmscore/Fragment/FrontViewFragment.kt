@@ -41,6 +41,7 @@ class FrontViewFragment : Fragment() {
     var txtv_points2: TextView? = null
     var txtv_points3: TextView? = null
     var txtv_points4: TextView? = null
+    var txtv_header: TextView? = null
 
     var img_applogo: ImageView? = null
 
@@ -55,6 +56,7 @@ class FrontViewFragment : Fragment() {
         txt_custname = v.findViewById<View>(R.id.txt_custname) as TextView?
         txt_custid = v.findViewById<View>(R.id.txt_custid) as TextView?
         tv_vritualcard = v.findViewById<View>(R.id.tv_vritualcard) as TextView?
+        txtv_header = v.findViewById<View>(R.id.txtv_header) as TextView?
 
         txtv_purpose = v.findViewById<View>(R.id.txtv_purpose) as TextView?
         txtv_points1 = v.findViewById<View>(R.id.txtv_points1) as TextView?
@@ -70,6 +72,12 @@ class FrontViewFragment : Fragment() {
         txtv_points2!!.visibility = View.VISIBLE
         txtv_points3!!.visibility = View.VISIBLE
         txtv_points4!!.visibility = View.VISIBLE
+
+
+        val ID_Virtual = activity!!.getSharedPreferences(Config.SHARED_PREF74,0)
+        val ID_Purpose = activity!!.getSharedPreferences(Config.SHARED_PREF105,0)
+        txtv_header!!.setText(ID_Virtual.getString("VirtualCard",null))
+        txtv_purpose!!.setText(ID_Purpose.getString("PurposeofVirtualCard",null))
 
         val FK_CustomerSP = activity!!.getSharedPreferences(Config.SHARED_PREF1, 0)
         cusid = FK_CustomerSP.getString("FK_Customer", null)

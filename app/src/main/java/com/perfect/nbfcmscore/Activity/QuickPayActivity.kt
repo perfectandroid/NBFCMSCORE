@@ -53,11 +53,12 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener {
     private  var txt_amtinword:TextView? = null
     var BranchName: String? = null
     private var mBtnSubmit: Button? = null
-    public var arrayList1: ArrayList<Splitupdetail>? = null
     private var jresult: JSONArray? = null
     private val accountlist = ArrayList<String>()
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
+    public var branchname:String?=null
+    var btn_forgot_mpin: Button? = null
     private var progressDialog: ProgressDialog? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,6 +69,8 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener {
     }
 
     private fun setRegviews() {
+
+        btn_forgot_mpin= findViewById<Button>(R.id.btn_forgot_mpin)
 
         add_new_sender = findViewById<TextView>(R.id.add_new_sender)
         add_new_receiver = findViewById<TextView>(R.id.add_new_receiver)
@@ -80,8 +83,9 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener {
         mBtnSubmit!!.setOnClickListener(this)
         add_new_sender!!.setOnClickListener(this)
         add_new_receiver!!.setOnClickListener(this)
+        btn_forgot_mpin!!.setOnClickListener(this)
 
-       // mAccountSpinner!!.onItemSelectedListener = this
+        mAccountSpinner!!.onItemSelectedListener = this
 
     }
 
@@ -183,6 +187,17 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener {
                                                     json.getString("FK_Account"),
                                                     json.getString("SubModule"),
                                                     json.getString("BranchName")))
+                                                    json.getString(
+                                                        "FK_Account"
+                                                    ),
+                                                    json.getString(
+                                                        "SubModule"
+                                                    ),
+                                                        json.getString(
+                                                                "BranchName"
+                                                        )
+                                                )
+                                            )
 
                                         } catch (e: JSONException) {
                                             e.printStackTrace()
@@ -566,4 +581,15 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener {
             }
         }
     }
+
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+        val splitupdetail: Splitupdetail = arrayList1!!.get(position)
+        branchname = splitupdetail.getBranchname()
+    }
+
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+        TODO("Not yet implemented")
+    }
 }
+
+
