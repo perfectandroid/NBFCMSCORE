@@ -68,6 +68,10 @@
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">14sp</item>
     </style>
+    <style name="SpinnerPass" parent="Widget.AppCompat.Light.DropDownItem.Spinner">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">14sp</item>
+    </style>
     <style name="service_chooser_before">
         <item name="android:background">@drawable/service_chooser_button_before</item>
         <item name="android:textColor">@color/blue</item>
