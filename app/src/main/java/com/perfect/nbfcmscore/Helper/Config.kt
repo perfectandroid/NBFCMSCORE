@@ -1,7 +1,6 @@
 package com.perfect.nbfcmscore.Helper
 
 import android.content.Context
-import android.content.Context.INPUT_METHOD_SERVICE
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -17,7 +16,7 @@ import java.text.DecimalFormat
 import javax.net.ssl.*
 
 object Config {
-    val CERT_NAME = "static-vm.pem"  //QA
+    val CERT_NAME = "staticvm.pem"  //QA
   val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/api/"  //DEVELOPMENT
     val IMAGE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/"  ///DEVELOPMENT*/
 

@@ -18,7 +18,7 @@ class DepositCalculatorActivity : AppCompatActivity() , View.OnClickListener{
     var imgHome: ImageView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_about)
+        setContentView(R.layout.activity_deposit)
 
         imCompanylogo = findViewById<ImageView>(R.id.imCompanylogo)
         applogo = findViewById<ImageView>(R.id.applogo)
