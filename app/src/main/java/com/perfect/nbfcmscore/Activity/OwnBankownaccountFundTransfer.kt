@@ -40,6 +40,17 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
     private var tv_account_no: TextView? = null
     private var tv_branch_name: TextView? = null
     private var txt_amtinword: TextView? = null
+
+    private var textView: TextView? = null
+    private var txtv_acno: TextView? = null
+    private var txtv_payingto: TextView? = null
+    private var txtv_acno1: TextView? = null
+    private var txtamtpayable: TextView? = null
+    private var txtvremark: TextView? = null
+
+
+
+
     private var tv_availbal: TextView? = null
     var status_spinner: Spinner? = null
     private var edt_txt_amount: EditText? = null
@@ -89,6 +100,33 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
         ll_remittance= findViewById(R.id.ll_needTochange)
         txt_amtinword= findViewById(R.id.txt_amtinword)
         edt_txt_amount = findViewById(R.id.edt_txt_amount)
+
+        textView= findViewById(R.id.textView)
+        txtv_acno= findViewById(R.id.txtv_acno)
+        txtv_payingto= findViewById(R.id.txtv_payingto)
+        txtv_acno1= findViewById(R.id.txtv_acno1)
+        txtamtpayable= findViewById(R.id.txtamtpayable)
+        txtvremark= findViewById(R.id.txtvremark)
+
+
+        val PayingFromSP = applicationContext.getSharedPreferences(Config.SHARED_PREF93, 0)
+        val AccnoSP = applicationContext.getSharedPreferences(Config.SHARED_PREF107, 0)
+        val PayingToSP = applicationContext.getSharedPreferences(Config.SHARED_PREF94, 0)
+        val AMtpaybleSP = applicationContext.getSharedPreferences(Config.SHARED_PREF95, 0)
+        val RemarkeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF96, 0)
+        val PAYSP = applicationContext.getSharedPreferences(Config.SHARED_PREF97, 0)
+
+
+        textView!!.setText(PayingFromSP.getString("PayingFrom", null))
+        txtv_acno!!.setText(AccnoSP.getString("AccountNo", null))
+        txtv_acno1!!.setText(AccnoSP.getString("AccountNo", null))
+        txtv_payingto!!.setText(PayingToSP.getString("PayingTo", null))
+        txtamtpayable!!.setText(AMtpaybleSP.getString("AmountPayable", null))
+        txtvremark!!.setText(RemarkeSP.getString("Remark", null))
+
+
+
+
 
         tv_availbal= findViewById(R.id.tv_availbal)
         edt_txt_remark= findViewById(R.id.edt_txt_remark)
@@ -180,9 +218,10 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                             originalString = originalString.replace(",".toRegex(), "")
                         }
                         val num = ("" + originalString).toDouble()
-                        btn_submit!!.setText("PAY  " + "\u20B9 " + Config.getDecimelFormate(num))
+                       // btn_submit!!.setText(PAYSP.getString("PAY", null))
+                        btn_submit!!.setText(PAYSP.getString("PAY", null)+ "\u20B9 " + Config.getDecimelFormate(num))
                     } else {
-                        btn_submit!!.setText("PAY")
+                        btn_submit!!.setText(PAYSP.getString("PAY", null))
                     }
                 } catch (e: NumberFormatException) {
                 }

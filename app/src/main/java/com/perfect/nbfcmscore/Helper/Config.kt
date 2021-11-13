@@ -133,6 +133,12 @@ object Config {
     const val SHARED_PREF103 = "FRONTVIEW"
     const val SHARED_PREF104 = "BACKVIEW"
     const val SHARED_PREF105 = "PurposeofVirtualCard"
+    const val SHARED_PREF106 = "quit"
+    const val SHARED_PREF107 = "AccountNo"
+    const val SHARED_PREF108 = "EnterDistrict"
+    const val SHARED_PREF109 = "BankDetails"
+    const val SHARED_PREF110 = "Mobile Number"
+    const val SHARED_PREF111 = "Operator"
 
 
 

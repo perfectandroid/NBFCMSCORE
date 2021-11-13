@@ -70,6 +70,7 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
     var mapFragment: SupportMapFragment? = null
     var tv_branch: TextView? = null
     var tv_bankdetails: TextView? = null
+    var tv_header: TextView? = null
     var strBranches ="";
     var mMap : GoogleMap?=null
     val TAG: String = "BranchDetailActivity"
@@ -361,10 +362,15 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
         im_home = findViewById<ImageView>(R.id.im_home)
 
         act_district = findViewById<AutoCompleteTextView>(R.id.act_district)
+        tv_header= findViewById<AutoCompleteTextView>(R.id.tv_header)
         card_branches= findViewById<CardView>(R.id.card_branches)
         ll_branches= findViewById<LinearLayout>(R.id.ll_branches)
 
+        val EnterDistSP = applicationContext.getSharedPreferences(Config.SHARED_PREF108, 0)
+        val BranchdetailSP = applicationContext.getSharedPreferences(Config.SHARED_PREF75, 0)
 
+     //   act_district!!.setText(EnterDistSP.getString("EnterDistrict", null))
+        tv_header!!.setText(BranchdetailSP.getString("BranchDetails", null))
     }
 
     override fun onMapReady(googleMap: GoogleMap) {

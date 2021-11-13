@@ -566,7 +566,58 @@ class LanguageLsitAdaptor(internal val mContext: Context, internal val jsInfo: J
                                     ID_PurposeEditer.commit()
 
 
+                                    val ID_Quit = mContext.getSharedPreferences(Config.SHARED_PREF106, 0)
+                                    val ID_QuitEditer = ID_Quit.edit()
+                                    ID_QuitEditer.putString("quit", jresult3.get("quit") as String)
+                                    ID_QuitEditer.commit()
 
+                                    val ID_Accno = mContext.getSharedPreferences(Config.SHARED_PREF107, 0)
+                                    val ID_AccnoEditer = ID_Accno.edit()
+                                    ID_AccnoEditer.putString("AccountNo", jresult3.get("AccountNo") as String)
+                                    ID_AccnoEditer.commit()
+
+                                    val ID_Enterdist = mContext.getSharedPreferences(Config.SHARED_PREF108, 0)
+                                    val ID_EnterdistEditer = ID_Enterdist.edit()
+                                    ID_EnterdistEditer.putString("EnterDistrict", jresult3.get("EnterDistrict") as String)
+                                    ID_EnterdistEditer.commit()
+
+
+                                    /* val ID_Quit = mContext.getSharedPreferences(Config.SHARED_PREF106, 0)
+                                     val ID_QuitEditer = ID_Quit.edit()
+                                     ID_QuitEditer.putString("quit", jresult3.get("quit") as String)
+                                     ID_QuitEditer.commit()
+
+                                     val ID_Quit = mContext.getSharedPreferences(Config.SHARED_PREF106, 0)
+                                     val ID_QuitEditer = ID_Quit.edit()
+                                     ID_QuitEditer.putString("quit", jresult3.get("quit") as String)
+                                     ID_QuitEditer.commit()
+
+                                     val ID_Quit = mContext.getSharedPreferences(Config.SHARED_PREF106, 0)
+                                     val ID_QuitEditer = ID_Quit.edit()
+                                     ID_QuitEditer.putString("quit", jresult3.get("quit") as String)
+                                     ID_QuitEditer.commit()*/
+
+
+                                   /* val ID_Quit = mContext.getSharedPreferences(Config.SHARED_PREF106, 0)
+                                    val ID_QuitEditer = ID_Quit.edit()
+                                    ID_QuitEditer.putString("quit", jresult3.get("quit") as String)
+                                    ID_QuitEditer.commit()
+
+                                    val ID_Quit = mContext.getSharedPreferences(Config.SHARED_PREF106, 0)
+                                    val ID_QuitEditer = ID_Quit.edit()
+                                    ID_QuitEditer.putString("quit", jresult3.get("quit") as String)
+                                    ID_QuitEditer.commit()
+
+                                    val ID_Quit = mContext.getSharedPreferences(Config.SHARED_PREF106, 0)
+                                    val ID_QuitEditer = ID_Quit.edit()
+                                    ID_QuitEditer.putString("quit", jresult3.get("quit") as String)
+                                    ID_QuitEditer.commit()*/
+
+
+                                  /*  val ID_Quit = mContext.getSharedPreferences(Config.SHARED_PREF106, 0)
+                                    val ID_QuitEditer = ID_Quit.edit()
+                                    ID_QuitEditer.putString("quit", jresult3.get("quit") as String)
+                                    ID_QuitEditer.commit()*/
 
 
 
