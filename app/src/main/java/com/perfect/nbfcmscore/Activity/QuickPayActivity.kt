@@ -33,13 +33,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.*
 
-class QuickPayActivity : AppCompatActivity(),View.OnClickListener {
+class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.OnItemSelectedListener {
     private var mAccountSpinner: Spinner? = null
     private val mAmountEt: AppCompatEditText? = null
     private val mMessageEt: AppCompatEditText? = null
     private var add_new_sender: TextView?=null
     private var add_new_receiver: TextView?=null
-
+    public var arrayList1: ArrayList<Splitupdetail>? = null
     private val mPin: AppCompatEditText? = null
     private val mProgressDialog: ProgressDialog? = null
     private val mSenderSpinner: Spinner? = null
@@ -170,7 +170,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener {
                             try {
                                 //  progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
-                                Log.i("Response2", response.body())
+                                Log.i("Response2-AccountNumber", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
                                         jObject.getJSONObject("OwnAccountdetails")
@@ -184,9 +184,6 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener {
                                             arrayList1!!.add(
                                                 Splitupdetail(
                                                     json.getString("AccountNumber"),
-                                                    json.getString("FK_Account"),
-                                                    json.getString("SubModule"),
-                                                    json.getString("BranchName")))
                                                     json.getString(
                                                         "FK_Account"
                                                     ),
@@ -306,7 +303,158 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener {
                 startActivity(Intent(this@QuickPayActivity, AddSender::class.java))
 
             }
+            R.id.btn_forgot_mpin -> {
+                ForgotMpin()
+
+            }
+
         }
+    }
+
+    private fun ForgotMpin() {
+
+        when(ConnectivityUtils.isConnected(this)) {
+            true -> {
+                progressDialog = ProgressDialog(this@QuickPayActivity, R.style.Progress)
+                progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
+                progressDialog!!.setCancelable(false)
+                progressDialog!!.setIndeterminate(true)
+                progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
+                progressDialog!!.show()
+                try {
+                    val client = OkHttpClient.Builder()
+                            .sslSocketFactory(Config.getSSLSocketFactory(this@QuickPayActivity))
+                            .hostnameVerifier(Config.getHostnameVerifier())
+                            .build()
+                    val gson = GsonBuilder()
+                            .setLenient()
+                            .create()
+                    val retrofit = Retrofit.Builder()
+                            .baseUrl(Config.BASE_URL)
+                            .addConverterFactory(ScalarsConverterFactory.create())
+                            .addConverterFactory(GsonConverterFactory.create(gson))
+                            .client(client)
+                            .build()
+                    val apiService = retrofit.create(ApiInterface::class.java!!)
+                    val requestObject1 = JSONObject()
+                    try {
+
+                        val FK_CustomerSP = this.applicationContext.getSharedPreferences(
+                                Config.SHARED_PREF1,
+                                0
+                        )
+                        val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
+
+                        val TokenSP = this!!.applicationContext.getSharedPreferences(
+                                Config.SHARED_PREF8,
+                                0
+                        )
+                        val Token = TokenSP.getString("Token", null)
+
+                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("41"))
+                        requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
+                        requestObject1.put("SenderID", MscoreApplication.encryptStart("9539036341"))
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
+
+
+                        Log.e("TAG", "requestObject1  171   " + requestObject1)
+                    } catch (e: Exception) {
+                        progressDialog!!.dismiss()
+                        e.printStackTrace()
+                        val mySnackbar = Snackbar.make(
+                                findViewById(R.id.rl_main),
+                                " Some technical issues.", Snackbar.LENGTH_SHORT
+                        )
+                        mySnackbar.show()
+                    }
+                    val body = RequestBody.create(
+                            okhttp3.MediaType.parse("application/json; charset=utf-8"),
+                            requestObject1.toString()
+                    )
+                    val call = apiService.getResendMpin(body)
+                    call.enqueue(object : retrofit2.Callback<String> {
+                        override fun onResponse(
+                                call: retrofit2.Call<String>, response:
+                                Response<String>
+                        ) {
+                            try {
+                                progressDialog!!.dismiss()
+                                val jObject = JSONObject(response.body())
+                                Log.i("Response-forgotmpin", response.body())
+                                if (jObject.getString("StatusCode") == "0") {
+                                    /*val jsonObj1: JSONObject =
+                                            jObject.getJSONObject("PassBookAccountStatement")
+                                    val jsonobj2 = JSONObject(jsonObj1.toString())*/
+
+
+                                } else {
+                                    val builder = AlertDialog.Builder(
+                                            this@QuickPayActivity,
+                                            R.style.MyDialogTheme
+                                    )
+                                    builder.setMessage("" + jObject.getString("EXMessage"))
+                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                    }
+                                    val alertDialog: AlertDialog = builder.create()
+                                    alertDialog.setCancelable(false)
+                                    alertDialog.show()
+                                }
+                            } catch (e: Exception) {
+                                progressDialog!!.dismiss()
+
+                                val builder = AlertDialog.Builder(
+                                        this@QuickPayActivity,
+                                        R.style.MyDialogTheme
+                                )
+                                builder.setMessage("Some technical issues.")
+                                builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                }
+                                val alertDialog: AlertDialog = builder.create()
+                                alertDialog.setCancelable(false)
+                                alertDialog.show()
+                                e.printStackTrace()
+                            }
+                        }
+
+                        override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
+                            progressDialog!!.dismiss()
+
+                            val builder = AlertDialog.Builder(
+                                    this@QuickPayActivity,
+                                    R.style.MyDialogTheme
+                            )
+                            builder.setMessage("Some technical issues.")
+                            builder.setPositiveButton("Ok") { dialogInterface, which ->
+                            }
+                            val alertDialog: AlertDialog = builder.create()
+                            alertDialog.setCancelable(false)
+                            alertDialog.show()
+                        }
+                    })
+                } catch (e: Exception) {
+                    progressDialog!!.dismiss()
+                    val builder = AlertDialog.Builder(this@QuickPayActivity, R.style.MyDialogTheme)
+                    builder.setMessage("Some technical issues.")
+                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                    }
+                    val alertDialog: AlertDialog = builder.create()
+                    alertDialog.setCancelable(false)
+                    alertDialog.show()
+                    e.printStackTrace()
+                }
+            }
+            false -> {
+                val builder = AlertDialog.Builder(this@QuickPayActivity, R.style.MyDialogTheme)
+                builder.setMessage("No Internet Connection.")
+                builder.setPositiveButton("Ok") { dialogInterface, which ->
+                }
+                val alertDialog: AlertDialog = builder.create()
+                alertDialog.setCancelable(false)
+                alertDialog.show()
+            }
+        }
+
     }
 
     private fun QuickConfirmation() {

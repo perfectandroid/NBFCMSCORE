@@ -293,7 +293,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                                                             json.getString(
                                                                     "BranchName"
                                                             )
-                                                    )
+
 
                                             )
 
@@ -587,7 +587,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                         )
                         )
                         requestObject1.put("QRCode", MscoreApplication.encryptStart(""))
-                        requestObject1.put("Remark", MscoreApplication.encryptStart(remark))
+                        requestObject1.put("Remark", MscoreApplication.encryptStart(edt_txt_remark!!.text.toString()))
                         requestObject1.put(
                                 "BankKey", MscoreApplication.encryptStart(
                                 getResources().getString(
@@ -1178,18 +1178,5 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
             alertDialog.dismiss()
         }
         alertDialog.show()
-    }
-    private fun isValid(): Boolean {
-        val amount: String = edt_txt_amount!!.getText().toString()
-        if (amount.length < 1) return false
-        //        final double amt = Double.parseDouble(amount);
-
-//        if(amt < 1 || amt > 50000) {
-//
-//            edtTxtAmount.setError("Please enter amount between 0 and 50000");
-//            return false;
-//        }
-        edt_txt_amount!!.setError(null)
-        return true
     }
 }
