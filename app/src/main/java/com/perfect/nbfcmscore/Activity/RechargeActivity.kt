@@ -103,21 +103,29 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 
         if(intent.getStringExtra("from")!!.equals("prepaid")){
             ProvidersMode = "1"
-            tv_header!!.text = "Prepaid Mobile"
+          //  tv_header!!.text = "Prepaid Mobile"
+            val PrepaidSP = applicationContext.getSharedPreferences(Config.SHARED_PREF66, 0)
+            tv_header!!.setText(PrepaidSP.getString("PrepaidMobile", null))
             rltv_subscriber!!.visibility = View.GONE
         }
         if(intent.getStringExtra("from")!!.equals("postpaid")){
-            tv_header!!.text = "Postpaid Mobile"
+            val PostpaidSP = applicationContext.getSharedPreferences(Config.SHARED_PREF67, 0)
+            tv_header!!.setText(PostpaidSP.getString("PostpaidMobile", null))
+          //  tv_header!!.text = "Postpaid Mobile"
             ProvidersMode = "4"
             rltv_subscriber!!.visibility = View.GONE
         }
         if(intent.getStringExtra("from")!!.equals("landline")){
-            tv_header!!.text = "Landline"
+         //   tv_header!!.text = "Landline"
+            val LandlineSP = applicationContext.getSharedPreferences(Config.SHARED_PREF68, 0)
+            tv_header!!.setText(LandlineSP.getString("Landline", null))
             ProvidersMode = "3"
             rltv_subscriber!!.visibility = View.GONE
         }
         if(intent.getStringExtra("from")!!.equals("dth")){
-            tv_header!!.text = "DTH"
+            val dthSP = applicationContext.getSharedPreferences(Config.SHARED_PREF69, 0)
+            tv_header!!.setText(dthSP.getString("DTH", null))
+          //  tv_header!!.text = "DTH"
             ProvidersMode = "2"
             rltv_mobile!!.visibility = View.GONE
         }
@@ -192,8 +200,29 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
         tie_circle = findViewById<TextInputEditText>(R.id.tie_circle)
         tie_account = findViewById<TextInputEditText>(R.id.tie_account)
 
+
+
+
         tie_amount = findViewById<TextInputEditText>(R.id.tie_amount)
+
+        val MobileSP = applicationContext.getSharedPreferences(Config.SHARED_PREF110, 0)
+        val SubscriberSP = applicationContext.getSharedPreferences(Config.SHARED_PREF116, 0)
+        val OperatorSP = applicationContext.getSharedPreferences(Config.SHARED_PREF111, 0)
+        val CircleSP = applicationContext.getSharedPreferences(Config.SHARED_PREF112, 0)
+        val AmountSP = applicationContext.getSharedPreferences(Config.SHARED_PREF113, 0)
+        val RechrgSP = applicationContext.getSharedPreferences(Config.SHARED_PREF114, 0)
+
+
+        tie_mobilenumber!!.setHint(MobileSP.getString("MobileNumber", null))
+        tie_subscriber!!.setHint(SubscriberSP.getString("SubscriberID", null))
+        tie_operator!!.setHint(OperatorSP.getString("Operator", null))
+        tie_circle!!.setHint(CircleSP.getString("Circle", null))
+        tie_amount!!.setHint(AmountSP.getString("Amount", null))
+
+
+
         but_recharge = findViewById<Button>(R.id.but_recharge)
+        but_recharge!!.setText(RechrgSP.getString("RECHARGE", null))
 
         rvrecentRecharge = findViewById<FullLenghRecyclertview>(R.id.rvrecentRecharge)
 

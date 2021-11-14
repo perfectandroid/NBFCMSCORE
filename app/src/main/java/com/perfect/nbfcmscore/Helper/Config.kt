@@ -137,8 +137,16 @@ object Config {
     const val SHARED_PREF107 = "AccountNo"
     const val SHARED_PREF108 = "EnterDistrict"
     const val SHARED_PREF109 = "BankDetails"
-    const val SHARED_PREF110 = "Mobile Number"
+    const val SHARED_PREF110 = "MobileNumber"
     const val SHARED_PREF111 = "Operator"
+    const val SHARED_PREF112 = "Circle"
+    const val SHARED_PREF113 = "Amount"
+    const val SHARED_PREF114 = "RECHARGE"
+    const val SHARED_PREF115 = "SelectOperator"
+    const val SHARED_PREF116 = "SubscriberID"
+
+
+
 
 
 

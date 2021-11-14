@@ -131,7 +131,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:background="@android:color/transparent"
-                                    android:hint="Mobile Number"
+                                    android:hint=""
                                     android:inputType="phone"
                                     android:textColorHint="@color/colorPrimarylight" />
 
@@ -179,7 +179,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:background="@android:color/transparent"
-                                    android:hint="Subscriber ID"
+                                    android:hint=""
                                     android:inputType="phone"
                                     android:textColorHint="@color/colorPrimarylight" />
 
@@ -212,7 +212,7 @@
                                     android:background="@android:color/transparent"
                                     android:clickable="true"
                                     android:focusable="false"
-                                    android:hint="Operator"
+                                    android:hint=""
                                     android:textColorHint="@color/colorPrimarylight" />
 
                             </com.google.android.material.textfield.TextInputLayout>
@@ -244,7 +244,7 @@
                                     android:background="@android:color/transparent"
                                     android:clickable="true"
                                     android:focusable="false"
-                                    android:hint="Circle"
+                                    android:hint=""
                                     android:textColorHint="@color/colorPrimarylight" />
 
                             </com.google.android.material.textfield.TextInputLayout>
@@ -275,7 +275,7 @@
                                     android:layout_height="wrap_content"
                                     android:background="@android:color/transparent"
                                     android:enabled="true"
-                                    android:hint="Amount"
+                                    android:hint=""
                                     android:inputType="numberDecimal"
                                     android:textColorHint="@color/colorPrimarylight" />
 
@@ -323,7 +323,7 @@
                                     android:background="@android:color/transparent"
                                     android:clickable="true"
                                     android:focusable="false"
-                                    android:hint="Account Number"
+                                    android:hint=""
                                     android:textColorHint="@color/colorPrimarylight" />
 
                             </com.google.android.material.textfield.TextInputLayout>
