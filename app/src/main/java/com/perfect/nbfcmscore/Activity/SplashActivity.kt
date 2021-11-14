@@ -329,11 +329,11 @@ class SplashActivity : AppCompatActivity() {
                         val Token = TokenSP.getString("Token", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("43"))
-                        requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-                        requestObject1.put(
+                      //  requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+                       /* requestObject1.put(
                                 "FK_Customer",
-                                MscoreApplication.encryptStart(FK_Customer)
-                        )
+                                MscoreApplication.encryptStart("")
+                        )*/
                         requestObject1.put(
                                 "BankKey", MscoreApplication.encryptStart(
                                 getResources().getString(
