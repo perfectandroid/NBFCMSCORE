@@ -228,19 +228,17 @@
                                 android:id="@+id/llOutput"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginRight="20dp"
                                 android:layout_marginLeft="20dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginRight="20dp"
                                 android:visibility="gone">
 
-<!--                                <androidx.cardview.widget.CardView-->
-<!--                                    android:layout_width="match_parent"-->
-<!--                                    android:layout_height="wrap_content"-->
-<!--                                    android:layout_marginLeft="5dp"-->
-<!--                                    android:layout_marginTop="25dp"-->
-<!--                                    android:layout_marginRight="5dp"-->
-<!--                                    android:layout_weight="1"-->
-<!--                                    app:cardCornerRadius="15dp"-->
-<!--                                    tools:ignore="MissingConstraints">-->
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    app:cardBackgroundColor="@color/greylight"
+                                    app:cardCornerRadius="10dp"
+                                    app:cardElevation="5dp">
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -265,11 +263,12 @@
                                                 android:textSize="14dp"
                                                 android:textStyle="bold"
                                                 tools:ignore="Autofill" />
+
                                             <TextView
                                                 android:layout_width="10dp"
                                                 android:layout_height="wrap_content"
-                                                android:text=":"
                                                 android:layout_gravity="center"
+                                                android:text=":"
                                                 android:textColor="@color/black"
                                                 android:textSize="15dp"
                                                 android:textStyle="bold" />
@@ -278,9 +277,9 @@
                                                 android:id="@+id/tv_instalment"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
                                                 android:layout_weight="1.8"
                                                 android:gravity="end"
-                                                android:layout_gravity="center"
                                                 android:textColor="@color/black"
                                                 android:textSize="14dp"
                                                 android:textStyle="bold"
@@ -297,17 +296,18 @@
                                             <TextView
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:text="Total Interest"
                                                 android:layout_weight="1"
+                                                android:text="Total Interest"
                                                 android:textColor="@color/black"
                                                 android:textSize="14dp"
                                                 android:textStyle="bold"
                                                 tools:ignore="Autofill" />
+
                                             <TextView
                                                 android:layout_width="10dp"
                                                 android:layout_height="wrap_content"
-                                                android:text=":"
                                                 android:layout_gravity="center"
+                                                android:text=":"
                                                 android:textColor="@color/black"
                                                 android:textSize="15dp"
                                                 android:textStyle="bold"
@@ -317,9 +317,9 @@
                                                 android:id="@+id/tv_interest_total"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
                                                 android:layout_weight="1.8"
                                                 android:gravity="end"
-                                                android:layout_gravity="center"
                                                 android:inputType="number"
                                                 android:textColor="@color/black"
                                                 android:textSize="14dp"
@@ -348,8 +348,8 @@
                                             <TextView
                                                 android:layout_width="10dp"
                                                 android:layout_height="wrap_content"
-                                                android:text=":"
                                                 android:layout_gravity="center"
+                                                android:text=":"
                                                 android:textColor="@color/black"
                                                 android:textSize="15dp"
                                                 android:textStyle="bold"
@@ -360,10 +360,10 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_gravity="center"
-                                                android:gravity="end"
                                                 android:layout_weight="1.8"
-                                                android:text=""
+                                                android:gravity="end"
                                                 android:inputType="number"
+                                                android:text=""
                                                 android:textColor="@color/black"
                                                 android:textSize="14dp"
                                                 android:textStyle="bold"
@@ -371,7 +371,10 @@
                                         </LinearLayout>
 
                                     </LinearLayout>
-<!--                                </androidx.cardview.widget.CardView>-->
+
+                                </androidx.cardview.widget.CardView>
+
+
                             </LinearLayout>
 
 

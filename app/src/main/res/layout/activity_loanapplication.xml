@@ -232,49 +232,60 @@
                                 android:layout_marginBottom="20dp"
                                 android:visibility="gone">
 
-                                <LinearLayout
+                                <androidx.cardview.widget.CardView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="10dp">
+                                    app:cardBackgroundColor="@color/greylight"
+                                    app:cardCornerRadius="10dp"
+                                    app:cardElevation="5dp">
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="10dp"
+                                        android:layout_height="match_parent"
                                         android:layout_gravity="center"
                                         android:gravity="center"
-                                        android:orientation="vertical">
+                                        android:orientation="vertical"
+                                        android:padding="10dp">
 
-                                        <TextView
+                                        <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:layout_weight="1"
-                                            android:text="Your loan application is few step away."
-                                            android:textColor="@color/black"
-                                            android:textSize="14dp"
-                                            android:textStyle="bold"
+                                            android:layout_marginTop="10dp"
                                             android:layout_gravity="center"
                                             android:gravity="center"
-                                            tools:ignore="Autofill" />
+                                            android:orientation="vertical">
 
-                                        <TextView
-                                            android:id="@+id/tv_instalment"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_weight="1.8"
-                                            android:layout_gravity="center"
-                                            android:gravity="center"
-                                            android:textColor="@color/black"
-                                            android:textSize="18dp"
-                                            android:textStyle="bold"
-                                            tools:ignore="Autofill" />
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1"
+                                                android:text="Your loan application is few step away."
+                                                android:textColor="@color/black"
+                                                android:textSize="14dp"
+                                                android:textStyle="bold"
+                                                android:layout_gravity="center"
+                                                android:gravity="center"
+                                                tools:ignore="Autofill" />
+
+                                            <TextView
+                                                android:id="@+id/tv_instalment"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1.8"
+                                                android:layout_gravity="center"
+                                                android:gravity="center"
+                                                android:textColor="@color/black"
+                                                android:textSize="18dp"
+                                                android:textStyle="bold"
+                                                tools:ignore="Autofill" />
+                                        </LinearLayout>
+
+
                                     </LinearLayout>
 
+                                </androidx.cardview.widget.CardView>
 
-                                </LinearLayout>
+
                             </LinearLayout>
 
 
