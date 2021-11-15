@@ -31,7 +31,7 @@
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="15dp"
-                    android:text="   Deposit Calculator"
+                    android:text="Executive Call Back"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
@@ -106,12 +106,12 @@
                                     app:hintTextColor="@color/bottom_line1">
 
                                     <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/tie_principal"
+                                        android:id="@+id/txtv_Name"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:background="@android:color/transparent"
-                                        android:hint="PRINCIPAL AMOUNT"
-                                        android:inputType="numberDecimal"
+                                        android:hint="Name"
+                                        android:inputType="text"
                                         android:textColorHint="@color/bottom_line1"
                                         android:textSize="15dp" />
 
@@ -140,12 +140,12 @@
                                     app:hintTextColor="@color/bottom_line1">
 
                                     <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/tie_interest"
+                                        android:id="@+id/txtv_mob"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:background="@android:color/transparent"
-                                        android:hint="Interest Rate"
-                                        android:inputType="numberDecimal"
+                                        android:hint="Mobile"
+                                        android:inputType="number"
                                         android:textColorHint="@color/bottom_line1"
                                         android:textSize="15dp" />
 
@@ -174,11 +174,11 @@
                                     app:hintTextColor="@color/bottom_line1">
 
                                     <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/tie_years"
+                                        android:id="@+id/txtv_Date"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:background="@android:color/transparent"
-                                        android:hint="Amount"
+                                        android:hint="Date"
                                         android:inputType="number"
                                         android:maxLength="4"
                                         android:textColorHint="@color/bottom_line1"
@@ -208,13 +208,14 @@
                                     app:hintTextColor="@color/bottom_line1">
 
                                     <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/tie_emi"
+                                        android:id="@+id/txt_time"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:background="@android:color/transparent"
                                         android:clickable="true"
                                         android:focusable="false"
-                                        android:hint="Select emi type"
+                                        android:inputType=""
+                                        android:hint="Time"
                                         android:textColorHint="@color/bottom_line1"
                                         android:textSize="15dp" />
 
@@ -383,13 +384,13 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/btn_clear"
+                                    android:id="@+id/btn_submit"
                                     android:layout_width="match_parent"
                                     android:layout_height="36dp"
                                     android:layout_margin="5dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/but_ronded1"
-                                    android:text="Reset"
+                                    android:text="Submit"
                                     android:textColor="@color/white" />
 
 
@@ -398,6 +399,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="5dp"
+                                    android:visibility="gone"
                                     android:layout_weight="1"
                                     android:background="@drawable/but_rounded2"
                                     android:text="Calculate"

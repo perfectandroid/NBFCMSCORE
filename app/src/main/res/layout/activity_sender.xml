@@ -97,11 +97,12 @@
                         app:hintTextColor="@color/bottom_line1">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/first_name"
+                            android:id="@+id/txtv_first_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@android:color/transparent"
                             android:hint="@string/first_name"
+                            android:inputType="text"
                             android:textColorHint="@color/bottom_line1"
                             android:textSize="16sp" />
 
@@ -129,11 +130,12 @@
                         app:hintTextColor="@color/bottom_line1">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/last_name"
+                            android:id="@+id/txtv_last_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@android:color/transparent"
                             android:hint="@string/last_name"
+                            android:inputType="text"
                             android:textColorHint="@color/bottom_line1"
                             android:textSize="16sp" />
 
@@ -161,7 +163,7 @@
                         app:hintTextColor="@color/bottom_line1">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/mobile_number"
+                            android:id="@+id/txtv_mobile_number"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@android:color/transparent"
@@ -195,7 +197,7 @@
                         app:hintTextColor="@color/bottom_line1">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/tie_dob"
+                            android:id="@+id/txtv_dob"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@android:color/transparent"
@@ -215,7 +217,7 @@
                         android:gravity="center">
 
                         <ImageView
-                            android:id="@+id/im_contact"
+                            android:id="@+id/imgv_datepick"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:backgroundTint="@color/colorPrimarylight"
@@ -238,7 +240,7 @@
                     android:orientation="vertical">
 
                     <Button
-                        android:id="@+id/btn_submit"
+                        android:id="@+id/btn_register"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"

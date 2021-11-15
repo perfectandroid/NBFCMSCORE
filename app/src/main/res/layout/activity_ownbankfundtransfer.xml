@@ -98,6 +98,7 @@
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal">
                                     <TextView
+                                        android:id="@+id/txtv_acno"
                                         android:layout_width="fill_parent"
                                         android:layout_height="wrap_content"
                                         android:gravity="center_vertical"
@@ -202,7 +203,7 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/textView5"
+                                android:id="@+id/txtv_payingto"
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="start"
@@ -217,6 +218,7 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:id="@+id/txtv_acno1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:gravity="center_vertical"
@@ -544,6 +546,7 @@
 
 
                         <TextView
+                            android:id="@+id/txtamtpayable"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:gravity="start"
@@ -659,6 +662,7 @@
 
                         </LinearLayout>
                         <TextView
+                            android:id="@+id/txtvremark"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:gravity="start"

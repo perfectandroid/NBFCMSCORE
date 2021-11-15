@@ -566,7 +566,60 @@ class LanguageLsitAdaptor(internal val mContext: Context, internal val jsInfo: J
                                     ID_PurposeEditer.commit()
 
 
+                                    val ID_Quit = mContext.getSharedPreferences(Config.SHARED_PREF106, 0)
+                                    val ID_QuitEditer = ID_Quit.edit()
+                                    ID_QuitEditer.putString("quit", jresult3.get("quit") as String)
+                                    ID_QuitEditer.commit()
 
+                                    val ID_Accno = mContext.getSharedPreferences(Config.SHARED_PREF107, 0)
+                                    val ID_AccnoEditer = ID_Accno.edit()
+                                    ID_AccnoEditer.putString("AccountNo", jresult3.get("AccountNo") as String)
+                                    ID_AccnoEditer.commit()
+
+                                    val ID_Enterdist = mContext.getSharedPreferences(Config.SHARED_PREF108, 0)
+                                    val ID_EnterdistEditer = ID_Enterdist.edit()
+                                    ID_EnterdistEditer.putString("EnterDistrict", jresult3.get("EnterDistrict") as String)
+                                    ID_EnterdistEditer.commit()
+
+
+
+
+                                     val ID_Mobilenum = mContext.getSharedPreferences(Config.SHARED_PREF110, 0)
+                                     val ID_MobilenumEditer = ID_Mobilenum.edit()
+                                    ID_MobilenumEditer.putString("MobileNumber", jresult3.get("MobileNumber") as String)
+                                    ID_MobilenumEditer.commit()
+
+                                     val ID_Operator = mContext.getSharedPreferences(Config.SHARED_PREF111, 0)
+                                     val ID_OperatorEditer = ID_Operator.edit()
+                                    ID_OperatorEditer.putString("Operator", jresult3.get("Operator") as String)
+                                    ID_OperatorEditer.commit()
+
+                                     val ID_Circle = mContext.getSharedPreferences(Config.SHARED_PREF112, 0)
+                                     val ID_CircleEditer = ID_Circle.edit()
+                                    ID_CircleEditer.putString("Circle", jresult3.get("Circle") as String)
+                                    ID_CircleEditer.commit()
+
+
+                                   val ID_Amt = mContext.getSharedPreferences(Config.SHARED_PREF113, 0)
+                                    val ID_AmtEditer = ID_Amt.edit()
+                                    ID_AmtEditer.putString("Amount", jresult3.get("Amount") as String)
+                                    ID_AmtEditer.commit()
+
+                                    val ID_Rechrg = mContext.getSharedPreferences(Config.SHARED_PREF114, 0)
+                                    val ID_RechrgEditer = ID_Rechrg.edit()
+                                    ID_RechrgEditer.putString("RECHARGE", jresult3.get("RECHARGE") as String)
+                                    ID_RechrgEditer.commit()
+
+                                    val ID_Selctop = mContext.getSharedPreferences(Config.SHARED_PREF115, 0)
+                                    val ID_SelctopEditer = ID_Selctop.edit()
+                                    ID_SelctopEditer.putString("SelectOperator", jresult3.get("SelectOperator") as String)
+                                    ID_SelctopEditer.commit()
+
+
+                                   val ID_Subscriber = mContext.getSharedPreferences(Config.SHARED_PREF116, 0)
+                                    val ID_SubscriberEditer = ID_Subscriber.edit()
+                                    ID_SubscriberEditer.putString("SubscriberID", jresult3.get("SubscriberID") as String)
+                                    ID_SubscriberEditer.commit()
 
 
 

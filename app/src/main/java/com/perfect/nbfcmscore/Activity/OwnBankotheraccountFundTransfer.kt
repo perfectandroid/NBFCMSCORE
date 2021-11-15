@@ -76,6 +76,17 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
     private  var btn_clear:android.widget.Button? = null
     private var edtTxtAmount: EditText? = null
     private var edt_txt_remark: EditText? = null
+
+    private var txtvPayingfrom: TextView? = null
+    private var txtvac_no: TextView? = null
+    private var txtv_recivactype: TextView? = null
+    private var txtv_acno2: TextView? = null
+    private var txtv_confrmacc: TextView? = null
+    private var txtv_amtpayable: TextView? = null
+    private var txtv_remark: TextView? = null
+
+
+
     var compareValue = "Select Account"
     var tv_popuptitle: TextView? = null
     private val CustomerList = ArrayList<BarcodeAgainstCustomerAccountList>()
@@ -161,14 +172,44 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
         edtTxtAmount = findViewById(R.id.edt_txt_amount)
         edt_txt_remark = findViewById(R.id.edt_txt_remark)
 
+        txtvPayingfrom = findViewById(R.id.txtvPayingfrom)
+        txtvac_no = findViewById(R.id.txtv_accno)
+        txtv_recivactype = findViewById(R.id.textView5)
+        txtv_acno2 = findViewById(R.id.txtv_acno2)
+        txtv_confrmacc = findViewById(R.id.txtv_confrmacc)
+        txtv_amtpayable = findViewById(R.id.txtv_amtpayable)
+        txtv_remark = findViewById(R.id.txtv_remark)
+        btnScanAccounttNo = findViewById<Button>(R.id.btn_scan_acnt_no)
+
+
 
         btn_submit = findViewById<Button>(R.id.btn_submit)
         btn_clear = findViewById(R.id.btn_clear)
 
+
+
+        val PayingFromSP = applicationContext.getSharedPreferences(Config.SHARED_PREF93, 0)
+        val AccnoSP = applicationContext.getSharedPreferences(Config.SHARED_PREF107, 0)
+        val PayingToSP = applicationContext.getSharedPreferences(Config.SHARED_PREF98, 0)
+        val ConfirmaccSP = applicationContext.getSharedPreferences(Config.SHARED_PREF99, 0)
+        val AMtpaybleSP = applicationContext.getSharedPreferences(Config.SHARED_PREF95, 0)
+        val RemarkeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF96, 0)
+        val PAYSP = applicationContext.getSharedPreferences(Config.SHARED_PREF97, 0)
+        val ScanSP = applicationContext.getSharedPreferences(Config.SHARED_PREF100, 0)
+
+        txtvPayingfrom!!.setText(PayingFromSP.getString("PayingFrom", null))
+        txtvac_no!!.setText(AccnoSP.getString("AccountNo", null))
+        txtv_recivactype!!.setText(PayingToSP.getString("ConfirmAccountNo", null))
+        txtv_acno2!!.setText(AccnoSP.getString("AccountNo", null))
+        txtv_confrmacc!!.setText(ConfirmaccSP.getString("ConfirmAccountNo", null))
+        txtv_amtpayable!!.setText(AMtpaybleSP.getString("AmountPayable", null))
+        txtv_remark!!.setText(RemarkeSP.getString("Remark", null))
+        btnScanAccounttNo!!.setText(ScanSP.getString("Scan", null))
+
         btn_submit!!.setOnClickListener(this)
         btn_clear!!.setOnClickListener(this)
 
-        btnScanAccounttNo = findViewById<Button>(R.id.btn_scan_acnt_no)
+
         btnScanAccounttNo!!.setOnClickListener(this)
 
         mAccountNumberEt!!.addTextChangedListener(object : TextWatcher {
@@ -247,9 +288,10 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                             originalString = originalString.replace(",".toRegex(), "")
                         }
                         val num = ("" + originalString).toDouble()
-                        btn_submit!!.setText("PAY  " + "\u20B9 " + Config.getDecimelFormate(num))
+                        //txtv_remark!!.setText(RemarkeSP.getString("Remark", null))
+                        btn_submit!!.setText(PAYSP.getString("PAY", null) + "\u20B9 " + Config.getDecimelFormate(num))
                     } else {
-                        btn_submit!!.setText("PAY")
+                        btn_submit!!.setText(PAYSP.getString("PAY", null) )
                     }
                 } catch (e: NumberFormatException) {
                 }

@@ -72,6 +72,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var llstatement: LinearLayout? = null
     var llquickpay: LinearLayout? = null
     var llprofile: LinearLayout? = null
+    var llexecutive: LinearLayout? = null
 
     var tv_def_account: TextView? = null
     var tv_def_availablebal: TextView? = null
@@ -706,7 +707,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         ll_postpaid = findViewById(R.id.ll_postpaid)
         ll_landline = findViewById(R.id.ll_landline)
         ll_rechargehistory = findViewById(R.id.ll_rechargehistory)
-
+        llexecutive = findViewById(R.id.llexecutive)
 
          txtv_myacc= findViewById(R.id.txtv_myacc)
          txtv_pasbk= findViewById(R.id.txtv_pasbk)
@@ -793,6 +794,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         llstatement!!.setOnClickListener(this)
         tv_viewall!!.setOnClickListener(this)
         llDeposit!!.setOnClickListener(this)
+        llexecutive!!.setOnClickListener(this)
     }
 
     open fun setHomeNavMenu() {
@@ -803,6 +805,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         val ID_TermsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF58,0)
         val ID_SetngsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF60,0)
         val ID_LogoutSP = applicationContext.getSharedPreferences(Config.SHARED_PREF61,0)
+        val ID_Quit = applicationContext.getSharedPreferences(Config.SHARED_PREF106,0)
 
 
         var abt =ID_AbtusSP.getString("aboutus",null)
@@ -812,8 +815,9 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         var terms =ID_TermsSP.getString("termsandconditions",null)
         var setngs =ID_SetngsSP.getString("settings",null)
         var logout =ID_LogoutSP.getString("logout",null)
+        var quit =ID_Quit.getString("quit",null)
 
-        val menulist= arrayOf(abt,cntct,feebk,privacy,terms,setngs,logout,"Quit")
+        val menulist= arrayOf(abt,cntct,feebk,privacy,terms,setngs,logout,quit)
       /*  val menulist = arrayOf(
                 "About Us",
                 "Contact Us",
@@ -1118,6 +1122,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             R.id.ll_otherbank -> {
 
                 var intent = Intent(this@HomeActivity, OtherBankActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.llexecutive -> {
+
+                var intent = Intent(this@HomeActivity, ExecutiveActivity::class.java)
                 startActivity(intent)
             }
             R.id.ll_rechargehistory -> {

@@ -1,7 +1,6 @@
 package com.perfect.nbfcmscore.Helper
 
 import android.content.Context
-import android.content.Context.INPUT_METHOD_SERVICE
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -17,7 +16,7 @@ import java.text.DecimalFormat
 import javax.net.ssl.*
 
 object Config {
-    val CERT_NAME = "static-vm.pem"  //QA
+    val CERT_NAME = "staticvm.pem"  //QA
   val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/api/"  //DEVELOPMENT
     val IMAGE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/"  ///DEVELOPMENT*/
 
@@ -134,6 +133,20 @@ object Config {
     const val SHARED_PREF103 = "FRONTVIEW"
     const val SHARED_PREF104 = "BACKVIEW"
     const val SHARED_PREF105 = "PurposeofVirtualCard"
+    const val SHARED_PREF106 = "quit"
+    const val SHARED_PREF107 = "AccountNo"
+    const val SHARED_PREF108 = "EnterDistrict"
+    const val SHARED_PREF109 = "BankDetails"
+    const val SHARED_PREF110 = "MobileNumber"
+    const val SHARED_PREF111 = "Operator"
+    const val SHARED_PREF112 = "Circle"
+    const val SHARED_PREF113 = "Amount"
+    const val SHARED_PREF114 = "RECHARGE"
+    const val SHARED_PREF115 = "SelectOperator"
+    const val SHARED_PREF116 = "SubscriberID"
+
+
+
 
 
 

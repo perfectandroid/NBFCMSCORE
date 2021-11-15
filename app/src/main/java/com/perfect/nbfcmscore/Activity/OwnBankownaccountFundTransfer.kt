@@ -30,6 +30,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import java.text.DecimalFormat
 import java.util.*
 
 class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener {
@@ -39,6 +40,17 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
     private var tv_account_no: TextView? = null
     private var tv_branch_name: TextView? = null
     private var txt_amtinword: TextView? = null
+
+    private var textView: TextView? = null
+    private var txtv_acno: TextView? = null
+    private var txtv_payingto: TextView? = null
+    private var txtv_acno1: TextView? = null
+    private var txtamtpayable: TextView? = null
+    private var txtvremark: TextView? = null
+
+
+
+
     private var tv_availbal: TextView? = null
     var status_spinner: Spinner? = null
     private var edt_txt_amount: EditText? = null
@@ -56,6 +68,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
     public var BranchName: String? = null
     public var Balance: String? = null
     public var Submod: String? = null
+    public var branchName1: String? = null
     public var Acnt: String? = null
     private var jresult: JSONArray? = null
     public var fkaccount:String?=null
@@ -87,6 +100,33 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
         ll_remittance= findViewById(R.id.ll_needTochange)
         txt_amtinword= findViewById(R.id.txt_amtinword)
         edt_txt_amount = findViewById(R.id.edt_txt_amount)
+
+        textView= findViewById(R.id.textView)
+        txtv_acno= findViewById(R.id.txtv_acno)
+        txtv_payingto= findViewById(R.id.txtv_payingto)
+        txtv_acno1= findViewById(R.id.txtv_acno1)
+        txtamtpayable= findViewById(R.id.txtamtpayable)
+        txtvremark= findViewById(R.id.txtvremark)
+
+
+        val PayingFromSP = applicationContext.getSharedPreferences(Config.SHARED_PREF93, 0)
+        val AccnoSP = applicationContext.getSharedPreferences(Config.SHARED_PREF107, 0)
+        val PayingToSP = applicationContext.getSharedPreferences(Config.SHARED_PREF94, 0)
+        val AMtpaybleSP = applicationContext.getSharedPreferences(Config.SHARED_PREF95, 0)
+        val RemarkeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF96, 0)
+        val PAYSP = applicationContext.getSharedPreferences(Config.SHARED_PREF97, 0)
+
+
+        textView!!.setText(PayingFromSP.getString("PayingFrom", null))
+        txtv_acno!!.setText(AccnoSP.getString("AccountNo", null))
+        txtv_acno1!!.setText(AccnoSP.getString("AccountNo", null))
+        txtv_payingto!!.setText(PayingToSP.getString("PayingTo", null))
+        txtamtpayable!!.setText(AMtpaybleSP.getString("AmountPayable", null))
+        txtvremark!!.setText(RemarkeSP.getString("Remark", null))
+
+
+
+
 
         tv_availbal= findViewById(R.id.tv_availbal)
         edt_txt_remark= findViewById(R.id.edt_txt_remark)
@@ -178,9 +218,10 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                             originalString = originalString.replace(",".toRegex(), "")
                         }
                         val num = ("" + originalString).toDouble()
-                        btn_submit!!.setText("PAY  " + "\u20B9 " + Config.getDecimelFormate(num))
+                       // btn_submit!!.setText(PAYSP.getString("PAY", null))
+                        btn_submit!!.setText(PAYSP.getString("PAY", null)+ "\u20B9 " + Config.getDecimelFormate(num))
                     } else {
-                        btn_submit!!.setText("PAY")
+                        btn_submit!!.setText(PAYSP.getString("PAY", null))
                     }
                 } catch (e: NumberFormatException) {
                 }
@@ -282,10 +323,17 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                                             arrayList1!!.add(
                                                     Splitupdetail(
                                                             json.getString("AccountNumber"),
-                                                            json.getString("FK_Account"),
-                                                            json.getString("SubModule"),
-                                                        json.getString("BranchName")
+                                                            json.getString(
+                                                                    "FK_Account"
+                                                            ),
+                                                            json.getString(
+                                                                    "SubModule"
+                                                            ),
+                                                            json.getString(
+                                                                    "BranchName"
+                                                            )
                                                     )
+
                                             )
 
                                         } catch (e: JSONException) {
@@ -381,9 +429,117 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                 startActivity(Intent(this@OwnBankownaccountFundTransfer, HomeActivity::class.java))
             }
             R.id.btn_submit -> {
-                getOwnAccountFundTransfer()
+                if (this == null) return
+                // String recieverAccountNo = confirmAndSetRecieversAccountNo();
+                val accountPayingTo: String = spn_account_num!!.getSelectedItem().toString()
+                try {
+                    if (accountPayingTo !== "Select Account") {
+                        val recieverAccountNo = accountPayingTo.substring(0, 12)
+                        Log.e("TAG", "recieverAccountNo   619   $recieverAccountNo")
+                        if (isValid() && recieverAccountNo.length == 12) {
+                            if (ConnectivityUtils.isConnected(this)) {
+//                final String accountNumber = mAccountSpinner.getSelectedItem().toString();
+                                var SourceAccountNumber=tv_account_no!!.text.toString()
+                                val accountNumber: String = SourceAccountNumber
+                                var amount: String = edt_txt_amount!!.getText().toString()
+                                val remark = edt_txt_remark!!.text.toString()
+                                val fromAccountNo = accountNumber.substring(0, 12)
+                                val type = accountPayingTo.substring(accountPayingTo.indexOf("(") + 1, accountPayingTo.indexOf(")"))
+                                Log.e("TAG", "type   763  $type")
+                                amount = amount.replace(",", "")
+                                if (amount.length != 0 && amount.toFloat() > 0) {
+                                    if (accountNumber != accountPayingTo) {
+                                        val dialogBuilder = AlertDialog.Builder(this)
+                                        val inflater = this.layoutInflater
+                                        val dialogView: View = inflater.inflate(R.layout.confirmation_fund_popup, null)
+                                        dialogBuilder.setCancelable(false)
+                                        dialogBuilder.setView(dialogView)
+                                        val amnt: String = edt_txt_amount!!.getText().toString().replace(",".toRegex(), "")
+                                        val text_confirmationmsg = dialogView.findViewById<TextView>(R.id.text_confirmationmsg)
+                                        val tv_amount = dialogView.findViewById<TextView>(R.id.tv_amount)
+                                        val txtvAcntno = dialogView.findViewById<TextView>(R.id.txtvAcntno)
+                                        val txtvbranch = dialogView.findViewById<TextView>(R.id.txtvbranch)
+                                        val txtvbalnce = dialogView.findViewById<TextView>(R.id.txtvbalnce)
+                                        val txtvAcntnoto = dialogView.findViewById<TextView>(R.id.txtvAcntnoto)
+                                        val txtvbranchto = dialogView.findViewById<TextView>(R.id.txtvbranchto)
+                                        val txtvbalnceto = dialogView.findViewById<TextView>(R.id.txtvbalnceto)
+                                        txtvAcntno.text = "A/C No : $SourceAccountNumber"
+                                        txtvbranch.text = "Branch :$BranchName"
+                                        val num1 = Balance!!.toDouble()
+                                        val fmt = DecimalFormat("#,##,###.00")
+                                        txtvbalnce.text = "Available Bal: " + "\u20B9 " + Config.getDecimelFormate(num1)
+                                        val tv_amount_words = dialogView.findViewById<TextView>(R.id.tv_amount_words)
+                                        val butOk = dialogView.findViewById<Button>(R.id.btnOK)
+                                        val butCan = dialogView.findViewById<Button>(R.id.btnCncl)
+                                        txtvAcntnoto.text = "A/C No: " + spn_account_num!!.getSelectedItem().toString()
+                                        txtvbranchto.text = "Branch :$branchName1"
+                                        val num = ("" + amnt).toDouble()
+                                        var stramnt: String? = Config.getDecimelFormate(num)
+                                        text_confirmationmsg.text = "Proceed Transaction with above receipt amount" + "..?"
+
+                                        // text_confirmationmsg.setText("Proceed Transaction with above receipt amount to A/C no " + accNumber + " ..?");
+                                        val netAmountArr = amnt.split("\\.".toRegex()).toTypedArray()
+                                        var amountInWordPop = ""
+                                        if (netAmountArr.size > 0) {
+                                            val integerValue = netAmountArr[0].toInt()
+                                            amountInWordPop = "Rupees " + NumberToWord.convertNumberToWords(integerValue)
+                                            if (netAmountArr.size > 1) {
+                                                val decimalValue = netAmountArr[1].toInt()
+                                                if (decimalValue != 0) {
+                                                    amountInWordPop += " and " + NumberToWord.convertNumberToWords(decimalValue).toString() + " paise"
+                                                }
+                                            }
+                                            amountInWordPop += " only"
+                                        }
+                                        tv_amount_words.text = "" + amountInWordPop
+                                        tv_amount.text = "₹ $stramnt"
+                                        val alertDialog = dialogBuilder.create()
+                                        alertDialog.show()
+                                        val finalAmount = amount
+                                        butOk.setOnClickListener { v: View? ->
+                                            alertDialog.dismiss()
+                                            getOwnAccountFundTransfer(accountNumber,Submod,recieverAccountNo,submodule,finalAmount,remark)
+                                            //startTransfer(accountNumber, type, recieverAccountNo, finalAmount, remark)
+                                        }
+                                        butCan.setOnClickListener { alertDialog.dismiss() }
+                                    } else {
+                                        val builder = AlertDialog.Builder(this)
+                                        builder.setMessage("Account Numbers Are Same, Please Select Other Account For Transaction.")
+                                                .setCancelable(false)
+                                                .setPositiveButton("OK") { dialog, id -> }
+
+                                        //Creating dialog box
+                                        val alert = builder.create()
+                                        alert.show()
+                                    }
+                                } else {
+                                    Toast.makeText(this, "Please Enter Valid Amount.", Toast.LENGTH_LONG).show()
+                                }
+                            } else {
+                                alertMessage1("", "Network is currently unavailable. Please try again later.")
+
+                                // DialogUtil.showAlert(this,
+                                //  "Network is currently unavailable. Please try again later.");
+                            }
+                        }
+                    } else {
+                        Toast.makeText(this, "Please Select Paying To Account Number.", Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: java.lang.Exception) {
+                    e.printStackTrace()
+                }
+
 
             }
+            R.id.ll_needToPayAdvance -> {
+                if (ll_remittance!!.visibility == View.GONE) {
+                    ll_remittance!!.visibility = View.VISIBLE
+                } else {
+                    ll_remittance!!.visibility = View.GONE
+                }
+
+            }
+
             R.id.btn_clear -> {
                 getAccountnumber()
 
@@ -394,7 +550,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
         }
     }
 
-    private fun getOwnAccountFundTransfer() {
+    private fun getOwnAccountFundTransfer(accountNumber: String, Submod: String?, recieverAccountNo: String, submodule: String?, finalAmount: String, remark: String) {
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(
@@ -447,15 +603,21 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                                 "FK_Customer",
                                 MscoreApplication.encryptStart(FK_Customer)
                         )
-                        requestObject1.put(
+                       /* requestObject1.put(
                                 "AccountNo",
                                 MscoreApplication.encryptStart(tv_account_no!!.text.toString())
+                        )*/
+                        requestObject1.put(
+                                "AccountNo",
+                                MscoreApplication.encryptStart(accountNumber)
                         )
+
                         requestObject1.put("SubModule", MscoreApplication.encryptStart(Submod))
-                        requestObject1.put("Amount", MscoreApplication.encryptStart(amount))
+                    //    requestObject1.put("SubModule", MscoreApplication.encryptStart(this.Submod))
+                        requestObject1.put("Amount", MscoreApplication.encryptStart(finalAmount))
                         requestObject1.put(
                                 "ReceiverAccountNo", MscoreApplication.encryptStart(
-                                spn_account_num!!.selectedItem.toString()
+                                recieverAccountNo
                         )
                         )
                         requestObject1.put(
@@ -464,7 +626,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                         )
                         )
                         requestObject1.put("QRCode", MscoreApplication.encryptStart(""))
-                        requestObject1.put("Remark", MscoreApplication.encryptStart(edt_txt_remark!!.text.toString()))
+                        requestObject1.put("Remark", MscoreApplication.encryptStart(remark))
                         requestObject1.put(
                                 "BankKey", MscoreApplication.encryptStart(
                                 getResources().getString(
@@ -587,6 +749,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
         val splitupdetail: Splitupdetail = arrayList1!!.get(position)
         fkaccount = splitupdetail.getFkaccount()
         submodule = splitupdetail.getSubmodule()
+        branchName1 =splitupdetail.getBranchname()
         //  Toast.makeText(getApplicationContext(),AccountAdapter.getItem(position).getBranchName(),Toast.LENGTH_LONG).show();
 //                                                tv_as_on_date.setVisibility(View.VISIBLE);
         ll_needTochange!!.visibility = View.GONE
@@ -1054,5 +1217,18 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
             alertDialog.dismiss()
         }
         alertDialog.show()
+    }
+    private fun isValid(): Boolean {
+        val amount: String = edt_txt_amount!!.getText().toString()
+        if (amount.length < 1) return false
+        //        final double amt = Double.parseDouble(amount);
+
+//        if(amt < 1 || amt > 50000) {
+//
+//            edtTxtAmount.setError("Please enter amount between 0 and 50000");
+//            return false;
+//        }
+        edt_txt_amount!!.setError(null)
+        return true
     }
 }
