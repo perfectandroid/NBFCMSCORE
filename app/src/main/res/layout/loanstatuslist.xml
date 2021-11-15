@@ -50,25 +50,6 @@
                             android:textColor="@color/redDark"
                             android:textSize="18sp" />
                     </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:id="@+id/tvApplicationNo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_weight="1"
-                            android:textStyle="bold"
-                            android:drawablePadding="10dp"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="15sp" />
-                    </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
@@ -76,6 +57,77 @@
                         android:background="@color/greylight"
                         android:layout_marginTop="10dp"/>
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:text="Application Number"
+                            android:gravity="center"
+                            android:drawablePadding="10dp"
+                            android:textColor="#000"
+                            android:textSize="12sp" />
+                        <TextView
+                            android:id="@+id/tvApplicationNo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="5dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:text="Loan Period"
+                            android:gravity="center"
+                            android:drawablePadding="10dp"
+                            android:textColor="#000"
+                            android:textSize="12sp" />
+                        <TextView
+                            android:id="@+id/tvPeriod"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:textStyle="bold"
+                            android:drawablePadding="10dp"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/greylight"
+                    android:layout_margin="10dp"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -53,7 +53,8 @@ class LoanStatusAdaptor(internal val mContext: Context, internal val jsInfo: JSO
                 holder.tvType!!.setText(jsonObject!!.getString("LoanType") )
                 holder.tvPurpose!!.setText(jsonObject!!.getString("LoanPurpose"))
                 holder.tvStatus!!.setText(jsonObject!!.getString("LoanStatus") )
-                holder.tvApplicationNo!!.setText("Application Number : "+jsonObject!!.getString("ApplicationNumber"))
+                holder.tvApplicationNo!!.setText(jsonObject!!.getString("ApplicationNumber"))
+                holder.tvPeriod!!.setText(jsonObject!!.getString("LoanPeriod"))
                 holder.tvdate!!.setText(jsonObject!!.getString("ApplicationDate") )
                 holder.tvamount!!.setText( "\u20B9 " + Config.getDecimelFormate(jsonObject!!.getDouble("ApplicationAmount")))
 
@@ -73,6 +74,7 @@ var tvPurpose: TextView? = null
 var tvamount: TextView? = null
 var tvdate: TextView? = null
 var tvStatus: TextView? = null
+var tvPeriod: TextView? = null
 var tvApplicationNo: TextView? = null
 
 
@@ -86,6 +88,7 @@ var tvApplicationNo: TextView? = null
         tvdate = v.findViewById<View>(R.id.tvdate) as TextView
         tvStatus = v.findViewById<View>(R.id.tvStatus) as TextView
         tvApplicationNo = v.findViewById<View>(R.id.tvApplicationNo) as TextView
+        tvPeriod = v.findViewById<View>(R.id.tvPeriod) as TextView
 
 
     }
