@@ -448,10 +448,16 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                     val apiService = retrofit.create(ApiInterface::class.java!!)
                     val requestObject1 = JSONObject()
                     try {
+
+                        val FK_CustomerSP = this.applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
+                        val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
+
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("8"))
                         requestObject1.put("FK_District", MscoreApplication.encryptStart(FK_District))
+                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
                         requestObject1.put("BankHeader", MscoreApplication.encryptStart(getResources().getString(R.string.BankHeader)))
+
 
                         Log.e(TAG,"requestObject1  171   "+requestObject1)
                     } catch (e: Exception) {
@@ -475,11 +481,12 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                         ) {
                             try {
                                 progressDialog!!.dismiss()
+                                Log.e(TAG,"response  195   "+response.body())
                                 val jObject = JSONObject(response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     card_branches!!.visibility = View.VISIBLE
                                     ll_branches!!.visibility = View.VISIBLE
-                                    Log.e(TAG,"response  195   "+response.body())
+
 
                                     val jobjt = jObject.getJSONObject("BankBranchDetails")
                                     jsonArray = jobjt.getJSONArray("BankBranchDetailsListInfo")
