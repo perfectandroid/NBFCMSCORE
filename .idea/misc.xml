@@ -16,6 +16,7 @@
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/but_rounded2.xml" value="0.21614583333333334" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/circle_white.xml" value="0.27239583333333334" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/ic_back1.xml" value="0.2713541666666667" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/ic_location.xml" value="0.3671875" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/ic_visibility_off.xml" value="0.2713541666666667" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/main_bglight.xml" value="0.28802083333333334" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/ratenav.xml" value="0.2921875" />
@@ -35,6 +36,7 @@
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_accountdetails.xml" value="0.25625" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_branch_detail.xml" value="0.221875" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_changempin.xml" value="0.22083333333333333" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_contactus.xml" value="0.35104166666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_emi.xml" value="0.2109375" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_emi_new.xml" value="0.246875" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_forget.xml" value="0.22083333333333333" />
