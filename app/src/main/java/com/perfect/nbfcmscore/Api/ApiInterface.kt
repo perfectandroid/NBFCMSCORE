@@ -165,6 +165,13 @@ interface ApiInterface {
     @POST("AccountSummary/QuickPayResendMPIN")
     fun getResendMpin(@Body body: RequestBody): Call<String>
 
+    @POST("AccountSummary/LoanTypeDetails")
+    fun getLoanTypeDetails(@Body body: RequestBody): Call<String>
+
+    @POST("AccountSummary/LoanPurposeDetails")
+    fun getLoanPurposeDetails(@Body body: RequestBody): Call<String>
+
+
     @POST("AccountSummary/Addnewsender")
     fun getaddSender(@Body body: RequestBody): Call<String>
 

@@ -39,6 +39,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListener {
+
     private var progressDialog: ProgressDialog? = null
     val TAG: String = "EMIActivity"
     private var rv_loanslab: RecyclerView? = null
@@ -85,52 +86,52 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
         setRegister()
 
 
-//        principal!!.addTextChangedListener(object : TextWatcher {
-//            override fun afterTextChanged(s: Editable) {
-//                principal!!.removeTextChangedListener(this)
-//                try {
-//                    var originalString = s.toString()
-//                    if (originalString != "") {
-//                        val longval: Double
-//                        if (originalString.contains(",")) {
-//                            originalString = originalString.replace(",".toRegex(), "")
-//                        }
-//                        longval = originalString.toDouble()
-//
-//                        val formattedString: String? = Config!!.getDecimelFormateForEditText(longval)
-//                        principal!!.setText(formattedString)
-//                        val selection: Int = principal!!.length()
-//                        principal!!.setSelection(selection)
-//                        // tie_amount!!.setSelection(tie_amount!!.getText().length)
-//                        val amnt: String = principal!!.getText().toString().replace(",".toRegex(), "")
-//                        val netAmountArr = amnt.split("\\.".toRegex()).toTypedArray()
-//
-//                    } else {
-//                        principal!!.setText("")
-//                    }
-//                } catch (nfe: NumberFormatException) {
-//                    nfe.printStackTrace()
-//                }
-//                principal!!.addTextChangedListener(this)
-//            }
-//
-//            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-//            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-//                try {
-//                    if (s.length != 0) {
-//                        var originalString = s.toString()
-//                        if (originalString.contains(",")) {
-//                            originalString = originalString.replace(",".toRegex(), "")
-//                        }
-//                        val num = ("" + originalString).toDouble()
-//                        // btn_submit!!.setText("PAY  " + "\u20B9 " + Config.getDecimelFormate(num))
-//                    } else {
-//                        //  btn_submit!!.setText("PAY")
-//                    }
-//                } catch (e: NumberFormatException) {
-//                }
-//            }
-//        })
+        principal!!.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable) {
+                principal!!.removeTextChangedListener(this)
+                try {
+                    var originalString = s.toString()
+                    if (originalString != "") {
+                        val longval: Double
+                        if (originalString.contains(",")) {
+                            originalString = originalString.replace(",".toRegex(), "")
+                        }
+                        longval = originalString.toDouble()
+
+                        val formattedString: String? = Config!!.getDecimelFormateForEditText(longval)
+                        principal!!.setText(formattedString)
+                        val selection: Int = principal!!.length()
+                        principal!!.setSelection(selection)
+                        // tie_amount!!.setSelection(tie_amount!!.getText().length)
+                        val amnt: String = principal!!.getText().toString().replace(",".toRegex(), "")
+                        val netAmountArr = amnt.split("\\.".toRegex()).toTypedArray()
+
+                    } else {
+                        principal!!.setText("")
+                    }
+                } catch (nfe: NumberFormatException) {
+                    nfe.printStackTrace()
+                }
+                principal!!.addTextChangedListener(this)
+            }
+
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                try {
+                    if (s.length != 0) {
+                        var originalString = s.toString()
+                        if (originalString.contains(",")) {
+                            originalString = originalString.replace(",".toRegex(), "")
+                        }
+                        val num = ("" + originalString).toDouble()
+                        // btn_submit!!.setText("PAY  " + "\u20B9 " + Config.getDecimelFormate(num))
+                    } else {
+                        //  btn_submit!!.setText("PAY")
+                    }
+                } catch (e: NumberFormatException) {
+                }
+            }
+        })
 
 //        getStandingInstruction()
     }
@@ -415,8 +416,6 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
         dialogEmii!!.setCancelable(true)
         dialogEmii!!.show()
     }
-
-
 
     override fun onClick(position: Int, data: String) {
         if (data.equals("emi")){
