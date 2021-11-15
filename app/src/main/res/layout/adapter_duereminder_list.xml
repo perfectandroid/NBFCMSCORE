@@ -5,129 +5,178 @@
     android:orientation="horizontal"
     android:gravity="center_vertical">
 
-    <LinearLayout
-        android:id="@+id/ll_branchrow"
+    <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:orientation="horizontal"
-        android:background="@drawable/border_rectangle">
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="2dp"
+        app:cardUseCompatPadding="true">
 
-        <ImageView
-            android:layout_marginLeft="5dp"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:scaleType="fitXY"
-            android:background="@drawable/bell"
-            ></ImageView>
         <LinearLayout
+            android:id="@+id/ll_branchrow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+<!--            android:background="@drawable/border_rectangle"-->
+
+            <LinearLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:scaleType="center"
+                    android:background="@drawable/bell"/>
+
+            </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
             android:orientation="vertical"
-            android:layout_margin="5dp"
-            android:layout_weight="1">
+            android:gravity="center_vertical">
 
-          <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="horizontal">
-              <TextView
-                  android:id="@+id/tv_Acno"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:gravity="center_vertical"
-                  android:layout_marginLeft="8dp"
-                  android:textSize="12dp"
-                  android:layout_weight="1"
-                  android:padding="2dp"
-                  android:textStyle="bold"
-                  android:textColor="@color/black"
-                  android:text="A/c No :" />
-              <TextView
-                  android:id="@+id/tv_Acno1"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:gravity="center_vertical"
-                  android:textSize="12dp"
-                  android:layout_weight="0.3"
-                  android:padding="2dp"
-                  android:textStyle="bold"
-                  android:textColor="@color/black"
-                  android:text="erwrwr" />
-          </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/tv_Amt"
-                    android:layout_marginLeft="8dp"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:layout_weight="1">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:textSize="12dp"
-                    android:layout_weight="1.1"
-                    android:padding="2dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:text="Amount:" />
-                <TextView
-                    android:id="@+id/tv_amt1"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tv_Acno"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="8dp"
+                        android:textSize="12dp"
+                        android:layout_weight="1"
+                        android:padding="2dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text="A/c No " />
+
+                    <TextView
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="12dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text=":"
+                        android:visibility="gone"/>
+                    <TextView
+                        android:id="@+id/tv_Acno1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:textSize="12dp"
+                        android:layout_weight="0.4"
+                        android:padding="2dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text="" />
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:textSize="12dp"
-                    android:layout_weight="0.4"
-                    android:padding="2dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:text="" />
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tv_Amt"
+                        android:layout_marginLeft="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:textSize="12dp"
+                        android:layout_weight="1"
+                        android:padding="2dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text="Amount" />
+
+                    <TextView
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="12dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text=":"
+                        android:visibility="gone"/>
+                    <TextView
+                        android:id="@+id/tv_amt1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:textSize="12dp"
+                        android:layout_weight="0.4"
+                        android:padding="2dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text=""
+                        android:visibility="visible"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tv_duedate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:textSize="12dp"
+                        android:layout_weight="1"
+                        android:padding="2dp"
+                        android:layout_marginLeft="8dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text="Duedate" />
+
+                    <TextView
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="12dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text=":"
+                        android:visibility="gone"/>
+                    <TextView
+                        android:id="@+id/tv_duedate1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:textSize="12dp"
+                        android:layout_weight="0.4"
+                        android:padding="2dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text="" />
+                </LinearLayout>
+
+
+
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/tv_duedate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:textSize="12dp"
-                    android:layout_weight="1"
-                    android:padding="2dp"
-                    android:layout_marginLeft="8dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:text="Duedate:" />
-                <TextView
-                    android:id="@+id/tv_duedate1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:textSize="12dp"
-                    android:layout_weight="0.3"
-                    android:padding="2dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:text="erwrwr" />
-            </LinearLayout>
-
-
-
-
-
-
-
-
 
         </LinearLayout>
 
 
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 
-
-
-    </LinearLayout>
 
 
 
