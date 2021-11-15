@@ -214,7 +214,7 @@
                                         android:background="@android:color/transparent"
                                         android:clickable="true"
                                         android:focusable="false"
-                                        android:inputType=""
+                                        android:inputType="text"
                                         android:hint="Time"
                                         android:textColorHint="@color/bottom_line1"
                                         android:textSize="15dp" />
