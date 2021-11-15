@@ -4,6 +4,7 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -53,7 +54,10 @@ class ExecutiveActivity : AppCompatActivity() ,View.OnClickListener{
                 startActivity(Intent(this@ExecutiveActivity, HomeActivity::class.java))
             }
             R.id.btn_submit -> {
-                sendEmail()
+                if (isValid()){
+                    sendEmail()
+                }
+
             }
         }
     }
@@ -75,5 +79,41 @@ class ExecutiveActivity : AppCompatActivity() ,View.OnClickListener{
             startActivity(Intent.createChooser(emailIntent, "Send mail..."))
         } catch (ex: ActivityNotFoundException) {
         }
+    }
+
+    private fun isValid(): Boolean {
+
+        val name = txtv_Name!!.text.toString()
+        val mob = txtv_mob!!.text.toString()
+        val date = txtv_Date!!.text.toString()
+        val time = txt_time!!.text.toString()
+
+        if (TextUtils.isEmpty(name)) {
+            txtv_Name!!.error = "Please Enter Name"
+            return false
+        }
+        if (TextUtils.isEmpty(mob)) {
+            txtv_mob!!.error = "Please Enter Mobile Number"
+            return false
+        }
+        if (TextUtils.isEmpty(date)) {
+            txtv_Date!!.error = "Please Select Date"
+            return false
+        }
+        if (TextUtils.isEmpty(time)) {
+            txt_time!!.error = "Please Enter Time"
+            return false
+        }
+
+
+        /* val mPinString = mPin!!.text.toString()
+         if (mPinString.trim { it <= ' ' }.length == 0) {
+             mPin!!.error = "Please enter the M-PIN"
+             return false
+         }
+ */
+
+        return true
+
     }
 }
