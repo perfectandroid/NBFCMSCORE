@@ -178,5 +178,8 @@ interface ApiInterface {
     @POST("AccountSummary/Addnewreceiver")
     fun getaddReceiver(@Body body: RequestBody): Call<String>
 
+    @POST("AccountSummary/LoanRequseStatusDetails")
+    fun getLoanRequseStatusDetails(@Body body: RequestBody): Call<String>
+
 }
 

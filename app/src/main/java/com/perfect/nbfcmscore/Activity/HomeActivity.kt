@@ -45,6 +45,7 @@ import java.util.*
 
 class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
+    var llloanstatus: LinearLayout? = null
     var llloanapplication: LinearLayout? = null
     var lldashboard: LinearLayout? = null
     var llprdctdetail: LinearLayout? = null
@@ -684,6 +685,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     open fun setInitialise() {
 
 
+        llloanstatus = findViewById(R.id.llloanstatus)
         im_applogo = findViewById(R.id.im_applogo)
 
 
@@ -765,6 +767,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     }
 
     open fun setRegister() {
+        llloanstatus!!.setOnClickListener(this)
         improfile!!.setOnClickListener(this)
         lldashboard!!.setOnClickListener(this)
         llprdctdetail!!.setOnClickListener(this)
@@ -1078,6 +1081,9 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             }
             R.id.llloanapplication -> {
                 startActivity(Intent(this@HomeActivity, LoanApplicationActivity::class.java))
+            }
+            R.id.llloanstatus-> {
+                startActivity(Intent(this@HomeActivity, LoanStatusActivity::class.java))
             }
             R.id.ll_prepaid -> {
 
