@@ -31,7 +31,7 @@
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="15dp"
-                    android:text="Executive Call Back"
+                    android:text="   Loan Application"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
@@ -80,11 +80,7 @@
                             android:paddingRight="20dp">
 
 
-                            <ImageView
-                                android:layout_width="250dp"
-                                android:layout_height="150dp"
-                                android:layout_gravity="center_horizontal"
-                                android:src="@drawable/emi_top" />
+
 
                             <RelativeLayout
                                 android:id="@+id/rltv_principal"
@@ -106,12 +102,12 @@
                                     app:hintTextColor="@color/bottom_line1">
 
                                     <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/txtv_Name"
+                                        android:id="@+id/tie_principal"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:background="@android:color/transparent"
-                                        android:hint="Name"
-                                        android:inputType="text"
+                                        android:hint="PRINCIPAL AMOUNT"
+                                        android:inputType="numberDecimal"
                                         android:textColorHint="@color/bottom_line1"
                                         android:textSize="15dp" />
 
@@ -119,39 +115,6 @@
 
                             </RelativeLayout>
 
-
-                            <RelativeLayout
-                                android:id="@+id/rltv_interest"
-                                android:layout_width="match_parent"
-                                android:layout_height="50dp"
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginRight="20dp"
-                                android:background="@drawable/bg_light_grey2"
-                                android:orientation="horizontal"
-                                android:padding="5dp">
-
-                                <com.google.android.material.textfield.TextInputLayout
-                                    android:id="@+id/til_interest"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@android:color/transparent"
-                                    android:textColorHint="@color/bottom_line1"
-                                    app:hintTextColor="@color/bottom_line1">
-
-                                    <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/txtv_mob"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:background="@android:color/transparent"
-                                        android:hint="Mobile"
-                                        android:inputType="number"
-                                        android:textColorHint="@color/bottom_line1"
-                                        android:textSize="15dp" />
-
-                                </com.google.android.material.textfield.TextInputLayout>
-
-                            </RelativeLayout>
 
 
                             <RelativeLayout
@@ -174,11 +137,11 @@
                                     app:hintTextColor="@color/bottom_line1">
 
                                     <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/txtv_Date"
+                                        android:id="@+id/tie_years"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:background="@android:color/transparent"
-                                        android:hint="Date"
+                                        android:hint="Month"
                                         android:inputType="number"
                                         android:maxLength="4"
                                         android:textColorHint="@color/bottom_line1"
@@ -208,14 +171,47 @@
                                     app:hintTextColor="@color/bottom_line1">
 
                                     <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/txt_time"
+                                        android:id="@+id/tie_emi"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:background="@android:color/transparent"
                                         android:clickable="true"
                                         android:focusable="false"
-                                        android:inputType="text"
-                                        android:hint="Time"
+                                        android:hint="Select loan type"
+                                        android:textColorHint="@color/bottom_line1"
+                                        android:textSize="15dp" />
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
+
+                            </RelativeLayout>
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginRight="20dp"
+                                android:background="@drawable/bg_light_grey2"
+                                android:orientation="vertical"
+                                android:padding="5dp">
+
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParentBottom="true"
+                                    android:background="@android:color/transparent"
+                                    android:textColorHint="@color/bottom_line1"
+                                    app:hintTextColor="@color/bottom_line1">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/tie_porpose"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="@android:color/transparent"
+                                        android:clickable="true"
+                                        android:focusable="false"
+                                        android:hint="Select loan purpose"
                                         android:textColorHint="@color/bottom_line1"
                                         android:textSize="15dp" />
 
@@ -229,19 +225,12 @@
                                 android:id="@+id/llOutput"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:background="@color/bg_textview"
                                 android:layout_marginRight="20dp"
                                 android:layout_marginLeft="20dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginBottom="20dp"
                                 android:visibility="gone">
-
-                                <!--                                <androidx.cardview.widget.CardView-->
-                                <!--                                    android:layout_width="match_parent"-->
-                                <!--                                    android:layout_height="wrap_content"-->
-                                <!--                                    android:layout_marginLeft="5dp"-->
-                                <!--                                    android:layout_marginTop="25dp"-->
-                                <!--                                    android:layout_marginRight="5dp"-->
-                                <!--                                    android:layout_weight="1"-->
-                                <!--                                    app:cardCornerRadius="15dp"-->
-                                <!--                                    tools:ignore="MissingConstraints">-->
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -255,124 +244,37 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="10dp"
-                                        android:orientation="horizontal">
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:orientation="vertical">
 
                                         <TextView
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
-                                            android:text="Installment Amount"
+                                            android:text="Your loan application is few step away."
                                             android:textColor="@color/black"
                                             android:textSize="14dp"
                                             android:textStyle="bold"
-                                            tools:ignore="Autofill" />
-                                        <TextView
-                                            android:layout_width="10dp"
-                                            android:layout_height="wrap_content"
-                                            android:text=":"
                                             android:layout_gravity="center"
-                                            android:textColor="@color/black"
-                                            android:textSize="15dp"
-                                            android:textStyle="bold" />
+                                            android:gravity="center"
+                                            tools:ignore="Autofill" />
 
                                         <TextView
                                             android:id="@+id/tv_instalment"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1.8"
-                                            android:gravity="end"
                                             android:layout_gravity="center"
+                                            android:gravity="center"
                                             android:textColor="@color/black"
-                                            android:textSize="14dp"
+                                            android:textSize="18dp"
                                             android:textStyle="bold"
                                             tools:ignore="Autofill" />
                                     </LinearLayout>
 
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:orientation="horizontal">
-
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:text="Total Interest"
-                                            android:layout_weight="1"
-                                            android:textColor="@color/black"
-                                            android:textSize="14dp"
-                                            android:textStyle="bold"
-                                            tools:ignore="Autofill" />
-                                        <TextView
-                                            android:layout_width="10dp"
-                                            android:layout_height="wrap_content"
-                                            android:text=":"
-                                            android:layout_gravity="center"
-                                            android:textColor="@color/black"
-                                            android:textSize="15dp"
-                                            android:textStyle="bold"
-                                            tools:ignore="Autofill" />
-
-                                        <TextView
-                                            android:id="@+id/tv_interest_total"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_weight="1.8"
-                                            android:gravity="end"
-                                            android:layout_gravity="center"
-                                            android:inputType="number"
-                                            android:textColor="@color/black"
-                                            android:textSize="14dp"
-                                            android:textStyle="bold"
-                                            tools:ignore="Autofill" />
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_marginBottom="10dp"
-                                        android:orientation="horizontal">
-
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_weight="1"
-                                            android:text="Principal Interest"
-                                            android:textColor="@color/black"
-                                            android:textSize="14dp"
-                                            android:textStyle="bold"
-                                            tools:ignore="Autofill" />
-
-                                        <TextView
-                                            android:layout_width="10dp"
-                                            android:layout_height="wrap_content"
-                                            android:text=":"
-                                            android:layout_gravity="center"
-                                            android:textColor="@color/black"
-                                            android:textSize="15dp"
-                                            android:textStyle="bold"
-                                            tools:ignore="Autofill" />
-
-                                        <TextView
-                                            android:id="@+id/tv_interest_principal"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center"
-                                            android:gravity="end"
-                                            android:layout_weight="1.8"
-                                            android:text=""
-                                            android:inputType="number"
-                                            android:textColor="@color/black"
-                                            android:textSize="14dp"
-                                            android:textStyle="bold"
-                                            tools:ignore="Autofill" />
-                                    </LinearLayout>
 
                                 </LinearLayout>
-                                <!--                                </androidx.cardview.widget.CardView>-->
                             </LinearLayout>
 
 
@@ -384,13 +286,13 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/btn_submit"
+                                    android:id="@+id/btn_clear"
                                     android:layout_width="match_parent"
                                     android:layout_height="36dp"
                                     android:layout_margin="5dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/but_ronded1"
-                                    android:text="Submit"
+                                    android:text="Reset"
                                     android:textColor="@color/white" />
 
 
@@ -399,7 +301,6 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="5dp"
-                                    android:visibility="gone"
                                     android:layout_weight="1"
                                     android:background="@drawable/but_rounded2"
                                     android:text="Calculate"
