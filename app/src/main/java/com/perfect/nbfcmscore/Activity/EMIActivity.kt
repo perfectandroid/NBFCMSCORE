@@ -39,6 +39,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListener {
+
     private var progressDialog: ProgressDialog? = null
     val TAG: String = "EMIActivity"
     private var rv_loanslab: RecyclerView? = null
@@ -415,8 +416,6 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
         dialogEmii!!.setCancelable(true)
         dialogEmii!!.show()
     }
-
-
 
     override fun onClick(position: Int, data: String) {
         if (data.equals("emi")){
