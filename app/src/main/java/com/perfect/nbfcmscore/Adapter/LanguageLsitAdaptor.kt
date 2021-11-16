@@ -621,8 +621,50 @@ class LanguageLsitAdaptor(internal val mContext: Context, internal val jsInfo: J
                                     ID_SubscriberEditer.putString("SubscriberID", jresult3.get("SubscriberID") as String)
                                     ID_SubscriberEditer.commit()
 
+                                    val ID_Accnt = mContext.getSharedPreferences(Config.SHARED_PREF117, 0)
+                                    val ID_AccntEditer = ID_Accnt.edit()
+                                    ID_AccntEditer.putString("Account", jresult3.get("Account") as String)
+                                    ID_AccntEditer.commit()
 
+                                    val ID_viewall = mContext.getSharedPreferences(Config.SHARED_PREF118, 0)
+                                    val ID_viewallEditer = ID_viewall.edit()
+                                    ID_viewallEditer.putString("ViewAllAccounts", jresult3.get("ViewAllAccounts") as String)
+                                    ID_viewallEditer.commit()
 
+                                    val ID_availbal = mContext.getSharedPreferences(Config.SHARED_PREF119, 0)
+                                    val ID_availbalEditer = ID_availbal.edit()
+                                    ID_availbalEditer.putString("AvailableBalance", jresult3.get("AvailableBalance") as String)
+                                    ID_availbalEditer.commit()
+
+                                    val ID_lastlog = mContext.getSharedPreferences(Config.SHARED_PREF120, 0)
+                                    val ID_lastlogEditer = ID_lastlog.edit()
+                                    ID_lastlogEditer.putString("LastLogin", jresult3.get("LastLogin") as String)
+                                    ID_lastlogEditer.commit()
+
+                                    val ID_acntdetl = mContext.getSharedPreferences(Config.SHARED_PREF121, 0)
+                                    val ID_acntdetlEditer = ID_acntdetl.edit()
+                                    ID_acntdetlEditer.putString("AccountDetails", jresult3.get("AccountDetails") as String)
+                                    ID_acntdetlEditer.commit()
+
+                                    val ID_fundtrns = mContext.getSharedPreferences(Config.SHARED_PREF122, 0)
+                                    val ID_fundtrnsEditer = ID_fundtrns.edit()
+                                    ID_fundtrnsEditer.putString("FundTransfer", jresult3.get("FundTransfer") as String)
+                                    ID_fundtrnsEditer.commit()
+
+                                    val ID_rchrgbill = mContext.getSharedPreferences(Config.SHARED_PREF123, 0)
+                                    val ID_rchrgbillEditer = ID_rchrgbill.edit()
+                                    ID_rchrgbillEditer.putString("RechargeBills", jresult3.get("RechargeBills") as String)
+                                    ID_rchrgbillEditer.commit()
+
+                                    val ID_reprts = mContext.getSharedPreferences(Config.SHARED_PREF124, 0)
+                                    val ID_reportsEditer = ID_reprts.edit()
+                                    ID_reportsEditer.putString("ReportsOtherServices", jresult3.get("ReportsOtherServices") as String)
+                                    ID_reportsEditer.commit()
+
+                                    val ID_tools = mContext.getSharedPreferences(Config.SHARED_PREF125, 0)
+                                    val ID_toolsEditer = ID_tools.edit()
+                                    ID_toolsEditer.putString("ToolsSettings", jresult3.get("ToolsSettings") as String)
+                                    ID_toolsEditer.commit()
                                     // mContext.startActivity(Intent(mContext, WelcomeActivity::class.java))
 
 

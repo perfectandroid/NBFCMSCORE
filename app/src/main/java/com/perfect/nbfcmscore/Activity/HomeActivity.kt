@@ -80,6 +80,13 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var tv_def_account: TextView? = null
     var tv_def_availablebal: TextView? = null
     var tv_lastlogin: TextView? = null
+    var txtv_availbal: TextView? = null
+
+    var txtv_acntdetail: TextView? = null
+    var txtv_fundtrans: TextView? = null
+    var txtv_rechbill: TextView? = null
+    var txtv_reprts: TextView? = null
+    var txtv_tools: TextView? = null
 
     var improfile: ImageView? = null
     var im_applogo: ImageView? = null
@@ -115,6 +122,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var txtv_enqry: TextView? = null
     var txtv_holidy: TextView? = null
     var txtv_exectve: TextView? = null
+    var txtv_accnt: TextView? = null
 
 
     private var mPager: ViewPager? = null
@@ -171,9 +179,10 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         val ID_Holidy = applicationContext.getSharedPreferences(Config.SHARED_PREF83,0)
         val ID_Executve = applicationContext.getSharedPreferences(Config.SHARED_PREF84,0)
 
-
-
-
+        val ID_Accnt = applicationContext.getSharedPreferences(Config.SHARED_PREF117,0)
+        val ID_Viewall = applicationContext.getSharedPreferences(Config.SHARED_PREF118,0)
+        val ID_Availbal = applicationContext.getSharedPreferences(Config.SHARED_PREF119,0)
+        val ID_Lastlog = applicationContext.getSharedPreferences(Config.SHARED_PREF120,0)
 
         txtv_myacc!!.setText(ID_MyaccSP.getString("Myaccounts",null))
         txtv_pasbk!!.setText(ID_PassbkSP.getString("passbook",null))
@@ -207,6 +216,22 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         txtv_holidy!!.setText(ID_Holidy.getString("HolidayList",null))
         txtv_exectve!!.setText(ID_Executve.getString("ExecutiveCallBack",null))
 
+        txtv_accnt!!.setText(ID_Accnt.getString("Account",null))
+        tv_viewall!!.setText(ID_Viewall.getString("ViewAllAccounts",null))
+        txtv_availbal!!.setText(ID_Availbal.getString("AvailableBalance",null))
+        tv_lastlogin!!.setText(ID_Lastlog.getString("LastLogin",null))
+
+        val ID_Accntdetail = applicationContext.getSharedPreferences(Config.SHARED_PREF121,0)
+        val ID_Fundtrans = applicationContext.getSharedPreferences(Config.SHARED_PREF122,0)
+        val ID_Rebill = applicationContext.getSharedPreferences(Config.SHARED_PREF123,0)
+        val ID_Reprts = applicationContext.getSharedPreferences(Config.SHARED_PREF124,0)
+        val ID_Tools = applicationContext.getSharedPreferences(Config.SHARED_PREF125,0)
+
+        txtv_acntdetail!!.setText(ID_Accntdetail.getString("AccountDetails",null))
+        txtv_fundtrans!!.setText(ID_Fundtrans.getString("FundTransfer",null))
+        txtv_rechbill!!.setText(ID_Rebill.getString("RechargeBills",null))
+        txtv_reprts!!.setText(ID_Reprts.getString("ReportsOtherServices",null))
+        txtv_tools!!.setText(ID_Tools.getString("ToolsSettings",null))
 
 
 
@@ -689,6 +714,13 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
         llloanstatus = findViewById(R.id.llloanstatus)
         im_applogo = findViewById(R.id.im_applogo)
+        txtv_availbal = findViewById(R.id.txtv_availbal)
+
+        txtv_acntdetail = findViewById(R.id.txtv_acntdetail)
+        txtv_fundtrans = findViewById(R.id.txtv_fundtrans)
+        txtv_rechbill = findViewById(R.id.txtv_rechbill)
+        txtv_reprts = findViewById(R.id.txtv_reprts)
+        txtv_tools = findViewById(R.id.txtv_tools)
 
 
         tv_mobile = findViewById(R.id.tv_mobile)
@@ -712,6 +744,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         ll_landline = findViewById(R.id.ll_landline)
         ll_rechargehistory = findViewById(R.id.ll_rechargehistory)
         llexecutive = findViewById(R.id.llexecutive)
+        txtv_accnt= findViewById(R.id.txtv_accnt)
 
          txtv_myacc= findViewById(R.id.txtv_myacc)
          txtv_pasbk= findViewById(R.id.txtv_pasbk)

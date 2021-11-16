@@ -94,6 +94,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <TextView
+                                android:id="@+id/txtv_accnt"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -129,18 +130,21 @@
                             android:textColor="@color/black"
                             android:textStyle="bold"
                             android:text="0010011001"/>
-                            <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/black"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
-                                    android:layout_marginTop="10dp"
-                                    android:textSize="15dp"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:text="Available Balance"/>
-                            <TextView
+
+                        <TextView
+                            android:id="@+id/txtv_availbal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:gravity="center"
+                            android:text="Available Balance"
+                            android:textColor="@color/black"
+                            android:textSize="15dp" />
+
+                        <TextView
                                 android:id="@+id/tv_def_availablebal"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -229,6 +233,7 @@
 
 
                     <TextView
+                        android:id="@+id/txtv_acntdetail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -536,6 +541,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/txtv_fundtrans"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -838,6 +844,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/txtv_rechbill"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -1225,6 +1232,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/txtv_reprts"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -1533,6 +1541,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/txtv_tools"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
