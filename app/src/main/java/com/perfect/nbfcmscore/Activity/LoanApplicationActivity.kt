@@ -12,6 +12,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
@@ -84,6 +85,8 @@ class LoanApplicationActivity : AppCompatActivity()   , View.OnClickListener, It
         setInitialise()
         setRegister()
 
+        val imlogo: ImageView = findViewById(R.id.imlogo)
+        Glide.with(this).load(R.drawable.loanapplicationgif).into(imlogo)
         principal!!.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
                 principal!!.removeTextChangedListener(this)
