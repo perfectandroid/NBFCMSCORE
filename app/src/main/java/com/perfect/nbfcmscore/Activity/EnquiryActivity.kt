@@ -21,6 +21,8 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
     var imgHome: ImageView? = null
     var spn_feedbk: Spinner? = null
     var feedbackText: EditText? = null
+    var tv_mycart: TextView? = null
+
     var btn_submit: Button? = null
     var feedback = arrayOfNulls<String>(0)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,11 +30,14 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
         setContentView(R.layout.activity_enquiry)
 
         setRegViews()
-
+        val ID_enqry = applicationContext.getSharedPreferences(Config.SHARED_PREF82,0)
+        tv_mycart!!.setText(ID_enqry.getString("Enquires",null))
 
     }
 
     private fun setRegViews() {
+
+        tv_mycart = findViewById<TextView>(R.id.tv_mycart) as TextView
 
         imgBack = findViewById<ImageView>(R.id.imgBack) as ImageView
         imgHome = findViewById<ImageView>(R.id.imgHome) as ImageView

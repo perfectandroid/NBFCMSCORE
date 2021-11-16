@@ -17,11 +17,11 @@ import javax.net.ssl.*
 
 object Config {
     val CERT_NAME = "staticvm.pem"  //QA
-  val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/api/"  //DEVELOPMENT
-    val IMAGE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/"  ///DEVELOPMENT*/
+ // val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/api/"  //DEVELOPMENT
+   // val IMAGE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/"  ///DEVELOPMENT
 
-//   val BASE_URL="https://202.164.150.65:14262/NbfcAndroidAPIQA/api/"  //Qa new ip
-//    val IMAGE_URL="https://202.164.150.65:14262/NbfcAndroidAPIQA/"
+   val BASE_URL="https://202.164.150.65:14262/NbfcAndroidAPIQA/api/"  //Qa new ip
+    val IMAGE_URL="https://202.164.150.65:14262/NbfcAndroidAPIQA/"
 
 
     const val SHARED_PREF = "loginsession"
@@ -153,6 +153,16 @@ object Config {
     const val SHARED_PREF123= "RechargeBills"
     const val SHARED_PREF124= "ReportsOtherServices"
     const val SHARED_PREF125= "ToolsSettings"
+
+    const val SHARED_PREF126= "Selectaperiodofyourchoice"
+    const val SHARED_PREF127= "OR"
+    const val SHARED_PREF128= "Selectacustomdateofyourchoice."
+    const val SHARED_PREF129= "View"
+    const val SHARED_PREF130= "Download"
+    const val SHARED_PREF131= "LastMonth"
+    const val SHARED_PREF132= "Last3Months"
+    const val SHARED_PREF133= "Last6Months"
+    const val SHARED_PREF134= "Last1Year"
 
 
 

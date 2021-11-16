@@ -1,27 +1,26 @@
 package com.perfect.nbfcmscore.Activity
 
+import android.R.attr
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.github.mikephil.charting.animation.Easing
+import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.charts.PieChart
-import com.github.mikephil.charting.components.Legend
-import com.github.mikephil.charting.data.BarEntry
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.PieData
-import com.github.mikephil.charting.data.PieDataSet
-import com.github.mikephil.charting.formatter.PercentFormatter
+import com.github.mikephil.charting.data.*
+import com.github.mikephil.charting.formatter.DefaultValueFormatter
+import com.github.mikephil.charting.highlight.Highlight
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener
+import com.github.mikephil.charting.utils.ColorTemplate
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Api.ApiInterface
@@ -32,7 +31,6 @@ import com.perfect.nbfcmscore.R
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
 import org.json.JSONArray
-import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -41,29 +39,20 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.*
 
 
-class DashboardActivity : AppCompatActivity(),View.OnClickListener  {
+class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValueSelectedListener {
     private var progressDialog: ProgressDialog? = null
     var imgBack: ImageView? = null
     var myListsAll = JSONArray()
     var arrayList1 = ArrayList<Float>()
     var imgHome: ImageView? = null
+    var status: String? = null
     var piechart: PieChart? = null
     var rvOverduelist: RecyclerView? = null
-    var lay_chart: LinearLayout? = null
-    var lay_nodata:LinearLayout? = null
-    var tv_nodata: TextView? = null
-    var list2 = ArrayList<String>()
-    var jsonArraypie: JSONArray? = null
     private var jresult: JSONArray? = null
-    var PieEntryLabelsTotal: ArrayList<String>? = null
-    var entriesTotal: ArrayList<Entry>? = null
-    var pieDataSetTotal: PieDataSet? = null
-    var pieDataTotal: PieData? = null
-    var nnnn : Int=0
-    var dashTextSize : Float = 10f
-
-    val pieChartData = arrayListOf<String>()
-
+    private var jresult2: JSONArray? = null
+    private var jresult3: JSONArray? = null
+    var barChart: BarChart? = null
+    var linechart: LineChart? = null
     val color = intArrayOf(
             R.color.colorPrimary,
             R.color.btngreen,
@@ -81,8 +70,8 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener  {
 
 
         getDashboardassetlist()
-       // getDashboardliabilitylist()
-       // getDashboardpaymentandreceiptlist()
+        getDashboardliabilitylist()
+        getDashboardpaymentandreceiptlist()
 
 
 
@@ -178,34 +167,49 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener  {
 
                                     jresult = jsonobj2.getJSONArray("DashBoardAssestDetails")
 
-                                    for (i in 0 until jresult!!.length()) {
-                                        try {
-                                            val json = jresult!!.getJSONObject(i)
-                                            var str = json.getInt("Balance")
-                                             myListsAll = JSONArray(str)
-                                        } catch (e: JSONException) {
-                                            e.printStackTrace()
-                                            Log.e("Exception",e.toString())
-                                        }
+
+                                    //val jaTotal1 = json.getJSONArray("Details")
+                                    //   val myListsAll = JSONArray(str)
+                                    val yvalues = ArrayList<Entry>()
+                                    val xVals = ArrayList<String>()
+                                    for (x in 0 until jresult!!.length()) {
+                                        val json = jresult!!.getJSONObject(x)
+
+                                        val str = json.getString("Balance")
+                                        val str1 = json.getString("Account")
+                                        val tokens = StringTokenizer(str1, "(")
+                                        val first = tokens.nextToken() // this will contain "Fruit"
+                                        yvalues.add(Entry(str.toFloat(), 0))
+                                        xVals.add(first)
                                     }
 
-                                    //  val json: JSONObject = jresult!!.getJSONObject(0)
-                                    //  val json = jresult!!.getJSONObject(0)
-                                    //  var str = json.getString("Balance")
-                                    //val bal: Double = str.toDouble()
-                                    //  val jObject = JSONObject(s)
-                                    //val jaTotal1 = json.getJSONArray("Details")
-                                    //     val myListsAll = JSONArray(str)
+                                    // Log.e("TAG", "Response1  254   " + jresult!!.length() + "  " + myListsAll)
 
-                                    Log.e(
-                                            "TAG",
-                                            "Response-array   " + myListsAll.length() + "  " + myListsAll
-                                    )
-                                    entriesTotal = ArrayList()
-                                    PieEntryLabelsTotal = ArrayList<String>()
+                                    /*entriesTotal = ArrayList()
+                                    PieEntryLabelsTotal = ArrayList<String>()*/
 
 
-                                    for (x in 0 until myListsAll.length()) {
+                                    val dataSet = PieDataSet(yvalues, "")
+
+                                    /*  xVals.add("Earned")
+                                    xVals.add("Redeemed")
+                                    xVals.add("Balance")*/
+
+                                    val data = PieData(xVals, dataSet)
+                                    data.setValueFormatter(DefaultValueFormatter(0))
+                                    piechart!!.setData(data)
+                                    //pieChart.setDescription("This is Pie Chart");
+
+                                    piechart!!.setDrawHoleEnabled(true);
+                                    piechart!!.setTransparentCircleRadius(25f);
+                                    piechart!!.setHoleRadius(25f);
+
+                                    dataSet.setColors(ColorTemplate.LIBERTY_COLORS);
+                                    data.setValueTextSize(8f);
+                                    data.setValueTextColor(Color.DKGRAY);
+                                    piechart!!.setOnChartValueSelectedListener(this@DashboardActivity);
+                                    piechart!!.animateXY(1400, 1400);
+                                    /*  for (x in 0 until jresult!!.length()) {
                                         val jsonobject = myListsAll[x] as JSONObject
                                         entriesTotal!!.add(
                                                 BarEntry(
@@ -215,13 +219,13 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener  {
                                         PieEntryLabelsTotal!!.add(jsonobject.optString("Key"));
 
                                     }
+*/
 
-
-                                    Log.e("TAG", "Response1  266   " + entriesTotal)
+                                    /*  Log.e("TAG", "Response1  266   " + entriesTotal)
                                     Log.e("TAG", "Response1  267   " + PieEntryLabelsTotal + "  ")
+*/
 
-
-                                    pieDataSetTotal = PieDataSet(entriesTotal, "")
+                                    /*   pieDataSetTotal = PieDataSet(entriesTotal, "")
                                     pieDataSetTotal!!.valueFormatter = PercentFormatter()
 
                                     pieDataTotal = PieData(PieEntryLabelsTotal, pieDataSetTotal)
@@ -245,7 +249,7 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener  {
 
                                     val l: Legend = piechart!!.getLegend()
                                     l.setEnabled(false);
-
+*/
 
                                 } else {
                                     val builder = AlertDialog.Builder(
@@ -319,6 +323,7 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener  {
     private fun setRegviews() {
         imgBack = findViewById<ImageView>(R.id.imgBack)
         imgBack!!.setOnClickListener(this)
+        barChart = findViewById(R.id.barchart);
 
         rvOverduelist = findViewById<RecyclerView>(R.id.rvOverduelist)
 
@@ -326,6 +331,7 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener  {
         imgHome!!.setOnClickListener(this)
 
         piechart = findViewById(R.id.piechart)
+        linechart = findViewById(R.id.linechart)
 
      //   txtvDate = findViewById<TextView>(R.id.txtvDate)
       //  rv_pie = findViewById(R.id.rv_pie)
@@ -419,47 +425,44 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener  {
                                 val jObject = JSONObject(response.body())
                                 Log.i("Response-liability", response.body())
 
-                                /* if (jObject.getString("StatusCode") == "0") {
-                                     val jsonObj1: JSONObject =
-                                         jObject.getJSONObject("PassBookAccountStatement")
-                                     val jsonobj2 = JSONObject(jsonObj1.toString())
+                                if (jObject.getString("StatusCode") == "0") {
+                                    val jsonObj1: JSONObject =
+                                            jObject.getJSONObject("DashBoardDataLaibilityDetailsIfo")
+                                    val jsonobj2 = JSONObject(jsonObj1.toString())
 
-                                     jresult1 = jsonobj2.getJSONArray("PassBookAccountStatementList")
-                                     if (jresult1!!.length() != 0) {
-                                         tv_list_days!!.visibility = View.VISIBLE
-                                         rv_passbook!!.visibility = View.VISIBLE
-                                         empty_list!!.visibility = View.GONE
-                                         val lLayout =
-                                             GridLayoutManager(this@PassbookActivity, 1)
-                                         rv_passbook!!.layoutManager = lLayout
-                                         rv_passbook!!.setHasFixedSize(true)
-                                         val adapter = PassbookTranscationListAdapter(
-                                             this@PassbookActivity,
-                                             jresult1!!,
-                                             submodule
-                                         )
-                                         rv_passbook!!.adapter = adapter
-                                     } else {
-                                         rv_passbook!!.visibility = View.GONE
-                                         tv_list_days!!.visibility = View.GONE
-                                         empty_list!!.visibility = View.VISIBLE
-                                         empty_list!!.text =
-                                             "There are no transactions to display for the last $noofdays days"
-                                     }
+                                    jresult2 = jsonobj2.getJSONArray("DashBoardLabilityDetails")
+                                    val entries: ArrayList<BarEntry> = ArrayList()
+                                    val labels = ArrayList<String>()
 
+                                    for (x in 0 until jresult2!!.length()) {
+                                        val json = jresult2!!.getJSONObject(x)
 
-                                 } else {
-                                     val builder = AlertDialog.Builder(
-                                         this@PassbookActivity,
-                                         R.style.MyDialogTheme
-                                     )
-                                     builder.setMessage("" + jObject.getString("EXMessage"))
-                                     builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                     }
-                                     val alertDialog: AlertDialog = builder.create()
-                                     alertDialog.setCancelable(false)
-                                     alertDialog.show()
-                                 }*/
+                                        val str = json.getString("Balance")
+                                        val str1 = json.getString("Account")
+                                        val tokens = StringTokenizer(str1, "(")
+                                        val first = tokens.nextToken() // this will contain "Fruit"
+                                        entries.add(BarEntry(str.toFloat(), 0))
+                                        labels.add(first)
+                                    }
+                                    val dataset = BarDataSet(entries, "")
+                                    val bardata = BarData(labels, dataset)
+                                    dataset.setColors(ColorTemplate.JOYFUL_COLORS);
+                                    barChart!!.setData(bardata);
+                                    barChart!!.animateY(5000);
+                                    barChart!!.animateX(3000);
+
+                                } else {
+                                    val builder = AlertDialog.Builder(
+                                            this@DashboardActivity,
+                                            R.style.MyDialogTheme
+                                    )
+                                    builder.setMessage("" + jObject.getString("EXMessage"))
+                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                    }
+                                    val alertDialog: AlertDialog = builder.create()
+                                    alertDialog.setCancelable(false)
+                                    alertDialog.show()
+                                }
                             } catch (e: Exception) {
                                 //  progressDialog!!.dismiss()
 
@@ -598,47 +601,63 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener  {
                                 //     progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 Log.i("Response-payment", response.body())
-                                /* if (jObject.getString("StatusCode") == "0") {
-                                     val jsonObj1: JSONObject =
-                                         jObject.getJSONObject("PassBookAccountStatement")
-                                     val jsonobj2 = JSONObject(jsonObj1.toString())
+                                if (jObject.getString("StatusCode") == "0") {
+                                    val jsonObj1: JSONObject =
+                                            jObject.getJSONObject("DashBoardDataPaymentAndReceiptDetailsIfo")
+                                    val jsonobj2 = JSONObject(jsonObj1.toString())
 
-                                     jresult1 = jsonobj2.getJSONArray("PassBookAccountStatementList")
-                                     if (jresult1!!.length() != 0) {
-                                         tv_list_days!!.visibility = View.VISIBLE
-                                         rv_passbook!!.visibility = View.VISIBLE
-                                         empty_list!!.visibility = View.GONE
-                                         val lLayout =
-                                             GridLayoutManager(this@PassbookActivity, 1)
-                                         rv_passbook!!.layoutManager = lLayout
-                                         rv_passbook!!.setHasFixedSize(true)
-                                         val adapter = PassbookTranscationListAdapter(
-                                             this@PassbookActivity,
-                                             jresult1!!,
-                                             submodule
-                                         )
-                                         rv_passbook!!.adapter = adapter
-                                     } else {
-                                         rv_passbook!!.visibility = View.GONE
-                                         tv_list_days!!.visibility = View.GONE
-                                         empty_list!!.visibility = View.VISIBLE
-                                         empty_list!!.text =
-                                             "There are no transactions to display for the last $noofdays days"
-                                     }
+                                    jresult3 = jsonobj2.getJSONArray("DashBoardDataPaymentDetails")
 
+                                    //  val entries1 = arrayListOf<Entry>()
 
-                                 } else {
-                                     val builder = AlertDialog.Builder(
-                                         this@PassbookActivity,
-                                         R.style.MyDialogTheme
-                                     )
-                                     builder.setMessage("" + jObject.getString("EXMessage"))
-                                     builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                     }
-                                     val alertDialog: AlertDialog = builder.create()
-                                     alertDialog.setCancelable(false)
-                                     alertDialog.show()
-                                 }*/
+                                    var entries1 = ArrayList<Entry>()
+                                    val labels1 = ArrayList<String>()
+                                    for (x in 0 until jresult3!!.length()) {
+                                        val json = jresult3!!.getJSONObject(x)
+
+                                        val str = json.getString("Amount")
+                                        val str1 = json.getString("TransType")
+                                        if (str1.equals("R")) {
+                                            status = "Receipt"
+                                        } else if (str1.equals("P")) {
+                                            status = "Payment"
+                                        }
+                                        // val tokens = StringTokenizer(str1, "(")
+                                        // val first = tokens.nextToken() // this will contain "Fruit"
+                                        //   entries1.add("what you want to add", 0)
+                                        //  entries1.toMutableList().add(str.toFloat,0)
+                                        // entries1.addAll(listOf(str.toFloat(), 0))
+                                        //  entries1.add(MutableMap.MutableEntry<Any?, Any?>(str.toFloat(), 0))
+                                        //  val chart = entries1.map{ LineChart(it) }.toTypedArray()
+                                        entries1.add(Entry(str.toFloat(), 0))
+                                        labels1.add(status.toString())
+
+                                    }
+
+                                    val dataset1 = LineDataSet(entries1, "")
+                                    val data1 = LineData(labels1, dataset1)
+
+                                    dataset1.setColors(ColorTemplate.COLORFUL_COLORS);
+                                    linechart!!.setData(data1);
+                                    linechart!!.animateY(5000);
+                                    linechart!!.animateX(3000);
+                                    /*=====for cubic form========*/
+                                    dataset1.setDrawCubic(true);
+                                    /*========Fill the color below the line=========*/
+                                    dataset1.setDrawFilled(true);
+                                    //  lineChart.setDescription(&quot;Description&quot;);
+                                } else {
+                                    val builder = AlertDialog.Builder(
+                                            this@DashboardActivity,
+                                            R.style.MyDialogTheme
+                                    )
+                                    builder.setMessage("" + jObject.getString("EXMessage"))
+                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                    }
+                                    val alertDialog: AlertDialog = builder.create()
+                                    alertDialog.setCancelable(false)
+                                    alertDialog.show()
+                                }
                             } catch (e: Exception) {
                                 // progressDialog!!.dismiss()
 
@@ -703,5 +722,13 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener  {
                 startActivity(Intent(this@DashboardActivity, HomeActivity::class.java))
             }
         }
+    }
+
+    override fun onValueSelected(e: Entry?, dataSetIndex: Int, h: Highlight?) {
+
+    }
+
+    override fun onNothingSelected() {
+      
     }
 }
