@@ -128,22 +128,22 @@
 
                     <EditText
                         android:id="@+id/etxt_mob"
-                        android:layout_width="wrap_content"
+                        android:layout_width="132dp"
                         android:layout_height="wrap_content"
-                        android:hint="Enter Mobile Number"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:textSize="15dp"
                         android:layout_gravity="center"
-                        android:background="@color/color_activity_transparent"
-                        android:maxLength="10"
-                        android:gravity="center"
-                        android:inputType="phone"
-                        android:textColorHint="@color/white"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"/>
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/color_activity_transparent"
+                        android:gravity="center"
+                        android:hint="Enter Mobile Number"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
 
