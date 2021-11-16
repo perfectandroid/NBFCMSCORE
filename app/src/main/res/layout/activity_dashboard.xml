@@ -150,8 +150,8 @@
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
-                    <com.github.mikephil.charting.charts.BarChart
-                        android:id="@+id/barchart"
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/linechart1"
                         android:layout_width="match_parent"
                         android:layout_height="151dp"
                         android:layout_gravity="center"
