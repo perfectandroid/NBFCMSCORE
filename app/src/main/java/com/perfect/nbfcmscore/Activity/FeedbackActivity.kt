@@ -22,18 +22,19 @@ class FeedbackActivity : AppCompatActivity() , View.OnClickListener, AdapterView
     var spn_feedbk: Spinner? = null
     var feedbackText: EditText? = null
     var btn_submit: Button? = null
+    var tv_mycart: TextView? = null
     var feedback = arrayOfNulls<String>(0)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feedback)
 
         setRegViews()
-
-
+        val ID_feedbk = applicationContext.getSharedPreferences(Config.SHARED_PREF56,0)
+        tv_mycart!!.setText(ID_feedbk.getString("feedback",null))
     }
 
     private fun setRegViews() {
-
+        tv_mycart = findViewById<TextView>(R.id.tv_mycart) as TextView
         imgBack = findViewById<ImageView>(R.id.imgBack) as ImageView
         imgHome = findViewById<ImageView>(R.id.imgHome) as ImageView
         feedbackText = findViewById<EditText>(R.id.feedbackText) as EditText

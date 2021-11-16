@@ -56,7 +56,7 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
 
     private fun setRegViews() {
         imgv_datepick = findViewById<ImageView>(R.id.imgv_datepick)
-        imgBack = findViewById<ImageView>(R.id.im_back)
+        imgBack = findViewById<ImageView>(R.id.imgBack)
         imgHome = findViewById<ImageView>(R.id.imgHome)
         txtv_first_name = findViewById<TextInputEditText>(R.id.txtv_first_name)
         txtv_last_name = findViewById<TextInputEditText>(R.id.txtv_last_name)

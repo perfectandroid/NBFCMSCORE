@@ -43,6 +43,7 @@ class QuickBalanceActivity : AppCompatActivity(), OnItemSelectedListener,View.On
     private var txtLastUpdatedAt: TextView? = null
     private var empty_list: TextView? = null
     private var tv_list_days: TextView? = null
+    private var tv_mycart: TextView? = null
     private var rv_passbook: RecyclerView? = null
     private var ll_balance1: CardView? = null
 
@@ -55,9 +56,13 @@ class QuickBalanceActivity : AppCompatActivity(), OnItemSelectedListener,View.On
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quickbalance)
         setRegViews()
+
+        val ID_Quick = applicationContext.getSharedPreferences(Config.SHARED_PREF52,0)
+        tv_mycart!!.setText(ID_Quick.getString("quickbalance",null))
         getAccList()
     }
     private fun setRegViews() {
+        tv_mycart = findViewById(R.id.tv_mycart)
         tv_list_days = findViewById(R.id.tv_list_days)
         ll_balance = findViewById(R.id.ll_balance)
         ll_balance1 = findViewById(R.id.ll_balance1)
