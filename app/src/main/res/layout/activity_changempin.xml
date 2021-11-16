@@ -101,7 +101,7 @@
                             android:drawableLeft="@drawable/mpinicon"
                             android:maxLength="6"
                             android:padding="10dp"
-                            android:inputType="phone"
+                            android:inputType="number"
                             android:layout_marginLeft="25dp"
                             android:layout_marginRight="25dp"
                             android:layout_marginTop="10dp"
@@ -123,7 +123,7 @@
                             android:textSize="15dp"
                             android:background="@drawable/btn_bg2"
                             android:maxLength="6"
-                            android:inputType="phone"
+                            android:inputType="number"
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="10dp"/>
 
