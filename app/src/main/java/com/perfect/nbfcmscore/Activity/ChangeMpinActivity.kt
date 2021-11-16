@@ -128,8 +128,8 @@ class ChangeMpinActivity : AppCompatActivity(), View.OnClickListener {
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("3"))
                         requestObject1.put("FK_Customer",  MscoreApplication.encryptStart(FK_Customer))
-                        requestObject1.put("MPIN", MscoreApplication.encryptStart(varmpin))
-                        requestObject1.put("OldMPIN", MscoreApplication.encryptStart(varnewmpin))
+                        requestObject1.put("OldMPIN", MscoreApplication.encryptStart(varmpin))
+                        requestObject1.put("MPIN", MscoreApplication.encryptStart(varnewmpin))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put(
                             "BankKey", MscoreApplication.encryptStart(
