@@ -44,12 +44,32 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
     var btn_registr: Button? = null
     public var arrayList2: ArrayList<SenderReceiverlist>? = null
     var imgHome: ImageView? = null
+    var tv_title: TextView? = null
+    var txtv_sndrname: TextView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_receiver)
 
          setRegviews()
          getSenderReceiver()
+
+        val Fundtransfrsp = applicationContext.getSharedPreferences(Config.SHARED_PREF122, 0)
+        tv_title!!.setText(Fundtransfrsp.getString("FundTransfer", null))
+
+        val Sndrnamesp = applicationContext.getSharedPreferences(Config.SHARED_PREF147, 0)
+        txtv_sndrname!!.setHint(Sndrnamesp.getString("SenderName", null))
+
+        val ifscsp = applicationContext.getSharedPreferences(Config.SHARED_PREF150, 0)
+        ifsc_code!!.setHint(ifscsp.getString("IFSCCode", null))
+
+        val accnosp = applicationContext.getSharedPreferences(Config.SHARED_PREF107, 0)
+        account_number!!.setHint(accnosp.getString("AccountNo", null))
+
+        val confrmaccnosp = applicationContext.getSharedPreferences(Config.SHARED_PREF149, 0)
+        confirm_account_number!!.setHint(confrmaccnosp.getString("ConfirmAccountNumber", null))
+
+        val Registerp = applicationContext.getSharedPreferences(Config.SHARED_PREF146, 0)
+        btn_registr!!.setText(Registerp.getString("REGISTER", null))
 
 
     }
@@ -256,6 +276,9 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
         account_number = findViewById<AppCompatEditText>(R.id.account_number)
         confirm_account_number = findViewById<AppCompatEditText>(R.id.confirm_account_number)
         btn_registr = findViewById<Button>(R.id.btn_registr)
+
+        tv_title= findViewById<TextView>(R.id.tv_title)
+        txtv_sndrname= findViewById<TextView>(R.id.txtv_sndrname)
 
         sender_name_spinner!!.setOnItemSelectedListener(this)
         btn_registr!!.setOnClickListener(this)

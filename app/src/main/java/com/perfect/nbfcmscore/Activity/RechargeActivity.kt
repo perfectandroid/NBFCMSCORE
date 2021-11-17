@@ -211,6 +211,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
         val CircleSP = applicationContext.getSharedPreferences(Config.SHARED_PREF112, 0)
         val AmountSP = applicationContext.getSharedPreferences(Config.SHARED_PREF113, 0)
         val RechrgSP = applicationContext.getSharedPreferences(Config.SHARED_PREF114, 0)
+        val SelctaccSP = applicationContext.getSharedPreferences(Config.SHARED_PREF135, 0)
 
 
         tie_mobilenumber!!.setHint(MobileSP.getString("MobileNumber", null))
@@ -218,6 +219,8 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
         tie_operator!!.setHint(OperatorSP.getString("Operator", null))
         tie_circle!!.setHint(CircleSP.getString("Circle", null))
         tie_amount!!.setHint(AmountSP.getString("Amount", null))
+        tie_account!!.setHint(SelctaccSP.getString("SelectAccount", null))
+
 
 
 
