@@ -92,6 +92,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/txtv_slctacnt"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
@@ -129,6 +130,7 @@
                             android:layout_height="wrap_content">
 
                             <TextView
+                                android:id="@+id/txtv_slctsndr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentLeft="true"
@@ -158,7 +160,7 @@
                                 android:paddingEnd="8dp"
                                 android:text="@string/add_new_sender"
                                 android:textColor="@color/RoyalBlue"
-                                android:textSize="16sp"
+                                android:textSize="10sp"
                                 android:textStyle="normal"
                                 tools:ignore="RelativeOverlap" />
                         </RelativeLayout>
@@ -186,6 +188,7 @@
                             android:layout_height="wrap_content">
 
                             <TextView
+                                android:id="@+id/txtv_slctrecvr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentLeft="true"
@@ -215,7 +218,7 @@
                                 android:paddingStart="8dp"
                                 android:text="@string/add_new_receiver"
                                 android:textColor="@color/RoyalBlue"
-                                android:textSize="16sp"
+                                android:textSize="10sp"
                                 android:textStyle="normal"
                                 tools:ignore="RelativeOverlap" />
                         </RelativeLayout>
