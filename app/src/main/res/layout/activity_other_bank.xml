@@ -49,7 +49,7 @@
                     android:textSize="18dp"
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/white"
-                    android:text="" />
+                    android:text="Other Bank" />
 
             </LinearLayout>
 
@@ -120,18 +120,6 @@
                                 android:layout_height="50dp"
                                 android:src="@drawable/icon_imps" />
 
-
-
-                        <TextView
-                            android:id="@+id/tv_imps"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:textSize="18dp"
-                            android:padding="10dp"
-                            android:layout_gravity="center"
-                            android:textColor="@color/colortopheader"
-                            android:text="" />
                             <TextView
                                 android:id="@+id/tv_imps"
                                 android:layout_width="wrap_content"
@@ -198,16 +186,6 @@
                                 android:layout_marginLeft="10dp"
                                 android:src="@drawable/icon_neft" />
 
-                        <TextView
-                            android:id="@+id/tv_neft"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:textSize="18dp"
-                            android:padding="10dp"
-                            android:layout_gravity="center"
-                            android:textColor="@color/colortopheader"
-                            android:text="" />
                             <TextView
                                 android:id="@+id/tv_neft"
                                 android:layout_width="match_parent"
@@ -274,16 +252,6 @@
                                 android:layout_marginLeft="10dp"
                                 android:src="@drawable/icon_rtgs" />
 
-                        <TextView
-                            android:id="@+id/tv_rtgs"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:textSize="18dp"
-                            android:padding="10dp"
-                            android:layout_gravity="center"
-                            android:textColor="@color/colortopheader"
-                            android:text="" />
                             <TextView
                                 android:id="@+id/tv_rtgs"
                                 android:layout_width="match_parent"
@@ -355,16 +323,6 @@
                                     android:layout_marginLeft="10dp"
                                     android:src="@drawable/icon_fundtrans" />
 
-                        <TextView
-                            android:id="@+id/tv_fndtransfer"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:textSize="18dp"
-                            android:padding="10dp"
-                            android:layout_gravity="center"
-                            android:textColor="@color/colortopheader"
-                            android:text="" />
                                 <TextView
                                     android:id="@+id/tv_fndtransfer"
                                     android:layout_width="match_parent"
