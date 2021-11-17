@@ -36,6 +36,7 @@ class AccountDetailsActivity : AppCompatActivity() , View.OnClickListener {
     var IsShareAc: String=""
     var EnableDownloadStatement: String=""
     var IsDue: String=""
+    var EnableLoanSlab: String=""
 
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
@@ -73,6 +74,7 @@ class AccountDetailsActivity : AppCompatActivity() , View.OnClickListener {
         IsShareAc = intent.getStringExtra("IsShareAc")!!
         EnableDownloadStatement = intent.getStringExtra("EnableDownloadStatement")!!
         IsDue = intent.getStringExtra("IsDue")!!
+        EnableLoanSlab = intent.getStringExtra("EnableLoanSlab")!!
 
         tvaccounttype!!.setText(LoanType)
         tvaccountno!!.setText(AccountNumber)
@@ -80,6 +82,14 @@ class AccountDetailsActivity : AppCompatActivity() , View.OnClickListener {
 
         data =FK_Account+","+SubModule
         sendpassbookData()
+
+        if (IsShareAc.equals("0")){
+            imgshare!!.visibility = View.GONE
+
+        }
+        if (EnableLoanSlab.equals("0")){
+            imgloanslab!!.visibility = View.GONE
+        }
     }
 
 
