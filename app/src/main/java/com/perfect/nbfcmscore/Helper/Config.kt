@@ -20,8 +20,8 @@ object Config {
   val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/api/"  //DEVELOPMENT
     val IMAGE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/"  ///DEVELOPMENT
 
- //  val BASE_URL="https://202.164.150.65:14262/NbfcAndroidAPIQA/api/"  //Qa new ip
- //   val IMAGE_URL="https://202.164.150.65:14262/NbfcAndroidAPIQA/"
+  // val BASE_URL="https://202.164.150.65:14262/NbfcAndroidAPIQA/api/"  //Qa new ip
+   // val IMAGE_URL="https://202.164.150.65:14262/NbfcAndroidAPIQA/"
 
 
     const val SHARED_PREF = "loginsession"
@@ -163,6 +163,23 @@ object Config {
     const val SHARED_PREF132= "Last3Months"
     const val SHARED_PREF133= "Last6Months"
     const val SHARED_PREF134= "Last1Year"
+
+    const val SHARED_PREF135= "SelectAccount"
+    const val SHARED_PREF136= "SelectSender"
+    const val SHARED_PREF137= "SelectReceiver"
+    const val SHARED_PREF138= "AddNewSender"
+    const val SHARED_PREF139= "AddNewReceiver"
+    const val SHARED_PREF140= "MPIN"
+    const val SHARED_PREF141= "ForgotMPIN"
+    const val SHARED_PREF142= "MAKEPAYMENT"
+    const val SHARED_PREF143= "FirstName"
+    const val SHARED_PREF144= "LastName"
+    const val SHARED_PREF145= "DOB"
+    const val SHARED_PREF146= "REGISTER"
+    const val SHARED_PREF147= "SenderName"
+    const val SHARED_PREF148= "ReceiverName"
+    const val SHARED_PREF149= "ConfirmAccountNumber"
+
 
 
 

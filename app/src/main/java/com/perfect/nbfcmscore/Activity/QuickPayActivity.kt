@@ -64,6 +64,10 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
     var etxt_amount: EditText? = null
     var etxt_mpin: EditText? = null
 
+    var txtv_slctacnt: TextView? = null
+    var txtv_slctsndr: TextView? = null
+    var txtv_slctrecvr: TextView? = null
+
     public var branchname:String?=null
     var btn_forgot_mpin: Button? = null
     private var progressDialog: ProgressDialog? = null
@@ -74,7 +78,676 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
         getAccountnumber()
         getSenderReceiver()
 
+        val slctacntSP = applicationContext.getSharedPreferences(Config.SHARED_PREF135, 0)
+        txtv_slctacnt!!.setText(slctacntSP.getString("SelectAccount", null))
+
+        val slctsndrSP = applicationContext.getSharedPreferences(Config.SHARED_PREF136, 0)
+        txtv_slctsndr!!.setText(slctsndrSP.getString("SelectSender", null))
+
+        val slctrcvrSP = applicationContext.getSharedPreferences(Config.SHARED_PREF137, 0)
+        txtv_slctrecvr!!.setText(slctrcvrSP.getString("SelectReceiver", null))
+
+        val slctaddnwsndSP = applicationContext.getSharedPreferences(Config.SHARED_PREF138, 0)
+        add_new_sender!!.setText(slctaddnwsndSP.getString("AddNewSender", null))
+
+        val slctaddnwrecvrSP = applicationContext.getSharedPreferences(Config.SHARED_PREF139, 0)
+        add_new_receiver!!.setText(slctaddnwrecvrSP.getString("AddNewReceiver", null))
+
+        val amtpaybleSP = applicationContext.getSharedPreferences(Config.SHARED_PREF95, 0)
+        etxt_amount!!.setHint(amtpaybleSP.getString("AmountPayable", null))
+
+        val MpinSP = applicationContext.getSharedPreferences(Config.SHARED_PREF140, 0)
+        etxt_mpin!!.setHint(MpinSP.getString("MPIN", null))
+
+        val frgtMpinSP = applicationContext.getSharedPreferences(Config.SHARED_PREF141, 0)
+        btn_forgot_mpin!!.setText(frgtMpinSP.getString("ForgotMPIN", null))
+
+        val Makepaymntsp = applicationContext.getSharedPreferences(Config.SHARED_PREF142, 0)
+        mBtnSubmit!!.setText(Makepaymntsp.getString("MAKEPAYMENT", null))
+
+
+     //   getVerifyPaymentOTP()
+       // getVerifySenderOTP()
+      //  getVerifyReceiverOTP()
+
     }
+
+    private fun getVerifyPaymentOTP() {
+        when(ConnectivityUtils.isConnected(this)) {
+            true -> {
+                /*  progressDialog = ProgressDialog(this@PassbookActivity, R.style.Progress)
+                  progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
+                  progressDialog!!.setCancelable(false)
+                  progressDialog!!.setIndeterminate(true)
+                  progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
+                  progressDialog!!.show()*/
+                try {
+                    val client = OkHttpClient.Builder()
+                            .sslSocketFactory(Config.getSSLSocketFactory(this@QuickPayActivity))
+                            .hostnameVerifier(Config.getHostnameVerifier())
+                            .build()
+                    val gson = GsonBuilder()
+                            .setLenient()
+                            .create()
+                    val retrofit = Retrofit.Builder()
+                            .baseUrl(Config.BASE_URL)
+                            .addConverterFactory(ScalarsConverterFactory.create())
+                            .addConverterFactory(GsonConverterFactory.create(gson))
+                            .client(client)
+                            .build()
+                    val apiService = retrofit.create(ApiInterface::class.java!!)
+                    val requestObject1 = JSONObject()
+                    try {
+
+                        val FK_CustomerSP = this.applicationContext.getSharedPreferences(
+                                Config.SHARED_PREF1,
+                                0
+                        )
+                        val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
+
+                        val TokenSP = this!!.applicationContext.getSharedPreferences(
+                                Config.SHARED_PREF8,
+                                0
+                        )
+                        val Token = TokenSP.getString("Token", null)
+
+                     //   requestObject1.put("Reqmode", MscoreApplication.encryptStart("40"))
+                        requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+                        requestObject1.put(
+                                "FK_Customer",
+                                MscoreApplication.encryptStart(FK_Customer)
+                        )
+                        requestObject1.put(
+                                "FK_Sender",
+                                MscoreApplication.encryptStart("1")
+                        )
+                        requestObject1.put(
+                                "FK_Receiver",
+                                MscoreApplication.encryptStart("2")
+                        )
+                        requestObject1.put(
+                                "TransactionID",
+                                MscoreApplication.encryptStart("1")
+                        )
+                        requestObject1.put(
+                                "OTP",
+                                MscoreApplication.encryptStart("1234")
+                        )
+                        requestObject1.put(
+                                "otpRefNo",
+                                MscoreApplication.encryptStart("1455")
+                        )
+                        requestObject1.put(
+                                "BankKey", MscoreApplication.encryptStart(
+                                getResources().getString(
+                                        R.string.BankKey
+                                )
+                        )
+                        )
+
+
+                        Log.e("TAG", "requestObject1  verifypayment   " + requestObject1)
+                    } catch (e: Exception) {
+                        // progressDialog!!.dismiss()
+                        e.printStackTrace()
+                        val mySnackbar = Snackbar.make(
+                                findViewById(R.id.rl_main),
+                                " Some technical issues.", Snackbar.LENGTH_SHORT
+                        )
+                        mySnackbar.show()
+                    }
+                    val body = RequestBody.create(
+                            okhttp3.MediaType.parse("application/json; charset=utf-8"),
+                            requestObject1.toString()
+                    )
+                    val call = apiService.getVerifyPaymentotp(body)
+                    call.enqueue(object : retrofit2.Callback<String> {
+                        override fun onResponse(
+                                call: retrofit2.Call<String>, response:
+                                Response<String>
+                        ) {
+                            try {
+                                //  progressDialog!!.dismiss()
+                                val jObject = JSONObject(response.body())
+                                Log.i("Response-verifypayment", response.body())
+                               /* if (jObject.getString("StatusCode") == "0") {
+                                    val jsonObj1: JSONObject =
+                                            jObject.getJSONObject("QuickPaySenderReciver")
+                                    val jsonobj2 = JSONObject(jsonObj1.toString())
+
+                                    val jresult = jsonobj2.getJSONObject("QuickPaySenderReciverlist")
+                                    arrayList2 = ArrayList<SenderReceiverlist>()
+                                    for (i in 0 until jresult!!.length()) {
+                                        try {
+                                            val json = jresult!!.getJSONObject(i.toString())
+                                            arrayList2!!.add(
+                                                    SenderReceiverlist(
+                                                            json.getString("userId"),
+                                                            json.getString(
+                                                                    "fkSenderId"
+                                                            ),
+                                                            json.getString(
+                                                                    "senderName"
+                                                            ),
+                                                            json.getString(
+                                                                    "senderMobile"
+                                                            ), json.getString(
+                                                            "receiverAccountno"
+                                                    ), json.getString(
+                                                            "receiverAccountno"
+                                                    )
+                                                    )
+                                            )
+
+                                        } catch (e: JSONException) {
+                                            e.printStackTrace()
+                                        }
+                                    }
+                                    mSenderSpinner!!.adapter = ArrayAdapter(
+                                            this@QuickPayActivity,
+                                            android.R.layout.simple_spinner_dropdown_item, arrayList1!!
+                                    )
+                                    mReceiverSpinner!!.adapter = ArrayAdapter(
+                                            this@QuickPayActivity,
+                                            android.R.layout.simple_spinner_dropdown_item, arrayList1!!
+                                    )
+
+                                    //    spn_account_num!!.setSelection(arrayList1.indexOf("Select Account"));
+
+                                } else {
+                                    val builder = AlertDialog.Builder(
+                                            this@QuickPayActivity,
+                                            R.style.MyDialogTheme
+                                    )
+                                    builder.setMessage("" + jObject.getString("EXMessage"))
+                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                    }
+                                    val alertDialog: AlertDialog = builder.create()
+                                    alertDialog.setCancelable(false)
+                                    alertDialog.show()
+                                }*/
+                            } catch (e: Exception) {
+                                //  progressDialog!!.dismiss()
+
+                                val builder = AlertDialog.Builder(
+                                        this@QuickPayActivity,
+                                        R.style.MyDialogTheme
+                                )
+                                builder.setMessage("Some technical issues.")
+                                builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                }
+                                val alertDialog: AlertDialog = builder.create()
+                                alertDialog.setCancelable(false)
+                                alertDialog.show()
+                                e.printStackTrace()
+                            }
+                        }
+
+                        override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
+                            //  progressDialog!!.dismiss()
+
+                            val builder = AlertDialog.Builder(
+                                    this@QuickPayActivity,
+                                    R.style.MyDialogTheme
+                            )
+                            builder.setMessage("Some technical issues.")
+                            builder.setPositiveButton("Ok") { dialogInterface, which ->
+                            }
+                            val alertDialog: AlertDialog = builder.create()
+                            alertDialog.setCancelable(false)
+                            alertDialog.show()
+                        }
+                    })
+                } catch (e: Exception) {
+                    //  progressDialog!!.dismiss()
+                    val builder = AlertDialog.Builder(
+                            this@QuickPayActivity,
+                            R.style.MyDialogTheme
+                    )
+                    builder.setMessage("Some technical issues.")
+                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                    }
+                    val alertDialog: AlertDialog = builder.create()
+                    alertDialog.setCancelable(false)
+                    alertDialog.show()
+                    e.printStackTrace()
+                }
+            }
+            false -> {
+                val builder = AlertDialog.Builder(
+                        this@QuickPayActivity,
+                        R.style.MyDialogTheme
+                )
+                builder.setMessage("No Internet Connection.")
+                builder.setPositiveButton("Ok") { dialogInterface, which ->
+                }
+                val alertDialog: AlertDialog = builder.create()
+                alertDialog.setCancelable(false)
+                alertDialog.show()
+            }
+        }
+    }
+    private fun getVerifySenderOTP() {
+        when(ConnectivityUtils.isConnected(this)) {
+            true -> {
+                /*  progressDialog = ProgressDialog(this@PassbookActivity, R.style.Progress)
+                  progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
+                  progressDialog!!.setCancelable(false)
+                  progressDialog!!.setIndeterminate(true)
+                  progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
+                  progressDialog!!.show()*/
+                try {
+                    val client = OkHttpClient.Builder()
+                            .sslSocketFactory(Config.getSSLSocketFactory(this@QuickPayActivity))
+                            .hostnameVerifier(Config.getHostnameVerifier())
+                            .build()
+                    val gson = GsonBuilder()
+                            .setLenient()
+                            .create()
+                    val retrofit = Retrofit.Builder()
+                            .baseUrl(Config.BASE_URL)
+                            .addConverterFactory(ScalarsConverterFactory.create())
+                            .addConverterFactory(GsonConverterFactory.create(gson))
+                            .client(client)
+                            .build()
+                    val apiService = retrofit.create(ApiInterface::class.java!!)
+                    val requestObject1 = JSONObject()
+                    try {
+
+                        val FK_CustomerSP = this.applicationContext.getSharedPreferences(
+                                Config.SHARED_PREF1,
+                                0
+                        )
+                        val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
+
+                        val TokenSP = this!!.applicationContext.getSharedPreferences(
+                                Config.SHARED_PREF8,
+                                0
+                        )
+                        val Token = TokenSP.getString("Token", null)
+
+                     //   requestObject1.put("Reqmode", MscoreApplication.encryptStart("40"))
+                        requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+                        requestObject1.put(
+                                "FK_Customer",
+                                MscoreApplication.encryptStart(FK_Customer)
+                        )
+                        requestObject1.put(
+                                "SenderID",
+                                MscoreApplication.encryptStart("1")
+                        )
+                        requestObject1.put(
+                                "OTP",
+                                MscoreApplication.encryptStart("1234")
+                        )
+                        requestObject1.put(
+                                "otpRefNo",
+                                MscoreApplication.encryptStart("1455")
+                        )
+                        requestObject1.put(
+                                "MobileNumber",
+                                MscoreApplication.encryptStart("9539036341")
+                        )
+                        requestObject1.put(
+                                "BankKey", MscoreApplication.encryptStart(
+                                getResources().getString(
+                                        R.string.BankKey
+                                )
+                        )
+                        )
+
+
+                        Log.e("TAG", "requestObject1  verifysender   " + requestObject1)
+                    } catch (e: Exception) {
+                        // progressDialog!!.dismiss()
+                        e.printStackTrace()
+                        val mySnackbar = Snackbar.make(
+                                findViewById(R.id.rl_main),
+                                " Some technical issues.", Snackbar.LENGTH_SHORT
+                        )
+                        mySnackbar.show()
+                    }
+                    val body = RequestBody.create(
+                            okhttp3.MediaType.parse("application/json; charset=utf-8"),
+                            requestObject1.toString()
+                    )
+                    val call = apiService.getVerifySenderotp(body)
+                    call.enqueue(object : retrofit2.Callback<String> {
+                        override fun onResponse(
+                                call: retrofit2.Call<String>, response:
+                                Response<String>
+                        ) {
+                            try {
+                                //  progressDialog!!.dismiss()
+                                val jObject = JSONObject(response.body())
+                                Log.i("Response-verifysender", response.body())
+                               /* if (jObject.getString("StatusCode") == "0") {
+                                    val jsonObj1: JSONObject =
+                                            jObject.getJSONObject("QuickPaySenderReciver")
+                                    val jsonobj2 = JSONObject(jsonObj1.toString())
+
+                                    val jresult = jsonobj2.getJSONObject("QuickPaySenderReciverlist")
+                                    arrayList2 = ArrayList<SenderReceiverlist>()
+                                    for (i in 0 until jresult!!.length()) {
+                                        try {
+                                            val json = jresult!!.getJSONObject(i.toString())
+                                            arrayList2!!.add(
+                                                    SenderReceiverlist(
+                                                            json.getString("userId"),
+                                                            json.getString(
+                                                                    "fkSenderId"
+                                                            ),
+                                                            json.getString(
+                                                                    "senderName"
+                                                            ),
+                                                            json.getString(
+                                                                    "senderMobile"
+                                                            ), json.getString(
+                                                            "receiverAccountno"
+                                                    ), json.getString(
+                                                            "receiverAccountno"
+                                                    )
+                                                    )
+                                            )
+
+                                        } catch (e: JSONException) {
+                                            e.printStackTrace()
+                                        }
+                                    }
+                                    mSenderSpinner!!.adapter = ArrayAdapter(
+                                            this@QuickPayActivity,
+                                            android.R.layout.simple_spinner_dropdown_item, arrayList1!!
+                                    )
+                                    mReceiverSpinner!!.adapter = ArrayAdapter(
+                                            this@QuickPayActivity,
+                                            android.R.layout.simple_spinner_dropdown_item, arrayList1!!
+                                    )
+
+                                    //    spn_account_num!!.setSelection(arrayList1.indexOf("Select Account"));
+
+                                } else {
+                                    val builder = AlertDialog.Builder(
+                                            this@QuickPayActivity,
+                                            R.style.MyDialogTheme
+                                    )
+                                    builder.setMessage("" + jObject.getString("EXMessage"))
+                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                    }
+                                    val alertDialog: AlertDialog = builder.create()
+                                    alertDialog.setCancelable(false)
+                                    alertDialog.show()
+                                }*/
+                            } catch (e: Exception) {
+                                //  progressDialog!!.dismiss()
+
+                                val builder = AlertDialog.Builder(
+                                        this@QuickPayActivity,
+                                        R.style.MyDialogTheme
+                                )
+                                builder.setMessage("Some technical issues.")
+                                builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                }
+                                val alertDialog: AlertDialog = builder.create()
+                                alertDialog.setCancelable(false)
+                                alertDialog.show()
+                                e.printStackTrace()
+                            }
+                        }
+
+                        override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
+                            //  progressDialog!!.dismiss()
+
+                            val builder = AlertDialog.Builder(
+                                    this@QuickPayActivity,
+                                    R.style.MyDialogTheme
+                            )
+                            builder.setMessage("Some technical issues.")
+                            builder.setPositiveButton("Ok") { dialogInterface, which ->
+                            }
+                            val alertDialog: AlertDialog = builder.create()
+                            alertDialog.setCancelable(false)
+                            alertDialog.show()
+                        }
+                    })
+                } catch (e: Exception) {
+                    //  progressDialog!!.dismiss()
+                    val builder = AlertDialog.Builder(
+                            this@QuickPayActivity,
+                            R.style.MyDialogTheme
+                    )
+                    builder.setMessage("Some technical issues.")
+                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                    }
+                    val alertDialog: AlertDialog = builder.create()
+                    alertDialog.setCancelable(false)
+                    alertDialog.show()
+                    e.printStackTrace()
+                }
+            }
+            false -> {
+                val builder = AlertDialog.Builder(
+                        this@QuickPayActivity,
+                        R.style.MyDialogTheme
+                )
+                builder.setMessage("No Internet Connection.")
+                builder.setPositiveButton("Ok") { dialogInterface, which ->
+                }
+                val alertDialog: AlertDialog = builder.create()
+                alertDialog.setCancelable(false)
+                alertDialog.show()
+            }
+        }
+    }
+
+    private fun getVerifyReceiverOTP() {
+        when(ConnectivityUtils.isConnected(this)) {
+            true -> {
+                /*  progressDialog = ProgressDialog(this@PassbookActivity, R.style.Progress)
+                  progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
+                  progressDialog!!.setCancelable(false)
+                  progressDialog!!.setIndeterminate(true)
+                  progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
+                  progressDialog!!.show()*/
+                try {
+                    val client = OkHttpClient.Builder()
+                            .sslSocketFactory(Config.getSSLSocketFactory(this@QuickPayActivity))
+                            .hostnameVerifier(Config.getHostnameVerifier())
+                            .build()
+                    val gson = GsonBuilder()
+                            .setLenient()
+                            .create()
+                    val retrofit = Retrofit.Builder()
+                            .baseUrl(Config.BASE_URL)
+                            .addConverterFactory(ScalarsConverterFactory.create())
+                            .addConverterFactory(GsonConverterFactory.create(gson))
+                            .client(client)
+                            .build()
+                    val apiService = retrofit.create(ApiInterface::class.java!!)
+                    val requestObject1 = JSONObject()
+                    try {
+
+                        val FK_CustomerSP = this.applicationContext.getSharedPreferences(
+                                Config.SHARED_PREF1,
+                                0
+                        )
+                        val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
+
+                        val TokenSP = this!!.applicationContext.getSharedPreferences(
+                                Config.SHARED_PREF8,
+                                0
+                        )
+                        val Token = TokenSP.getString("Token", null)
+
+                      //  requestObject1.put("Reqmode", MscoreApplication.encryptStart("40"))
+                        requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+                        requestObject1.put(
+                                "FK_Customer",
+                                MscoreApplication.encryptStart(FK_Customer)
+                        )
+                        requestObject1.put(
+                                "SenderID",
+                                MscoreApplication.encryptStart("1")
+                        )
+                        requestObject1.put(
+                                "OTP",
+                                MscoreApplication.encryptStart("1234")
+                        )
+                        requestObject1.put(
+                                "otpRefNo",
+                                MscoreApplication.encryptStart("1455")
+                        )
+                        requestObject1.put(
+                                "BankKey", MscoreApplication.encryptStart(
+                                getResources().getString(
+                                        R.string.BankKey
+                                )
+                        )
+                        )
+
+
+                        Log.e("TAG", "requestObject1  verifyreceiver   " + requestObject1)
+                    } catch (e: Exception) {
+                        // progressDialog!!.dismiss()
+                        e.printStackTrace()
+                        val mySnackbar = Snackbar.make(
+                                findViewById(R.id.rl_main),
+                                " Some technical issues.", Snackbar.LENGTH_SHORT
+                        )
+                        mySnackbar.show()
+                    }
+                    val body = RequestBody.create(
+                            okhttp3.MediaType.parse("application/json; charset=utf-8"),
+                            requestObject1.toString()
+                    )
+                    val call = apiService.getVerifyReceiverotp(body)
+                    call.enqueue(object : retrofit2.Callback<String> {
+                        override fun onResponse(
+                                call: retrofit2.Call<String>, response:
+                                Response<String>
+                        ) {
+                            try {
+                                //  progressDialog!!.dismiss()
+                                val jObject = JSONObject(response.body())
+                                Log.i("Response-receiverotp", response.body())
+                                if (jObject.getString("StatusCode") == "0") {
+                                    val jsonObj1: JSONObject =
+                                            jObject.getJSONObject("QuickPaySenderReciver")
+                                    val jsonobj2 = JSONObject(jsonObj1.toString())
+
+                                    val jresult = jsonobj2.getJSONObject("QuickPaySenderReciverlist")
+                                    arrayList2 = ArrayList<SenderReceiverlist>()
+                                    for (i in 0 until jresult!!.length()) {
+                                        try {
+                                            val json = jresult!!.getJSONObject(i.toString())
+                                            arrayList2!!.add(
+                                                    SenderReceiverlist(
+                                                            json.getString("userId"),
+                                                            json.getString(
+                                                                    "fkSenderId"
+                                                            ),
+                                                            json.getString(
+                                                                    "senderName"
+                                                            ),
+                                                            json.getString(
+                                                                    "senderMobile"
+                                                            ), json.getString(
+                                                            "receiverAccountno"
+                                                    ), json.getString(
+                                                            "receiverAccountno"
+                                                    )
+                                                    )
+                                            )
+
+                                        } catch (e: JSONException) {
+                                            e.printStackTrace()
+                                        }
+                                    }
+                                    mSenderSpinner!!.adapter = ArrayAdapter(
+                                            this@QuickPayActivity,
+                                            android.R.layout.simple_spinner_dropdown_item, arrayList1!!
+                                    )
+                                    mReceiverSpinner!!.adapter = ArrayAdapter(
+                                            this@QuickPayActivity,
+                                            android.R.layout.simple_spinner_dropdown_item, arrayList1!!
+                                    )
+
+                                    //    spn_account_num!!.setSelection(arrayList1.indexOf("Select Account"));
+
+                                } else {
+                                    val builder = AlertDialog.Builder(
+                                            this@QuickPayActivity,
+                                            R.style.MyDialogTheme
+                                    )
+                                    builder.setMessage("" + jObject.getString("EXMessage"))
+                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                    }
+                                    val alertDialog: AlertDialog = builder.create()
+                                    alertDialog.setCancelable(false)
+                                    alertDialog.show()
+                                }
+                            } catch (e: Exception) {
+                                //  progressDialog!!.dismiss()
+
+                                val builder = AlertDialog.Builder(
+                                        this@QuickPayActivity,
+                                        R.style.MyDialogTheme
+                                )
+                                builder.setMessage("Some technical issues.")
+                                builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                }
+                                val alertDialog: AlertDialog = builder.create()
+                                alertDialog.setCancelable(false)
+                                alertDialog.show()
+                                e.printStackTrace()
+                            }
+                        }
+
+                        override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
+                            //  progressDialog!!.dismiss()
+
+                            val builder = AlertDialog.Builder(
+                                    this@QuickPayActivity,
+                                    R.style.MyDialogTheme
+                            )
+                            builder.setMessage("Some technical issues.")
+                            builder.setPositiveButton("Ok") { dialogInterface, which ->
+                            }
+                            val alertDialog: AlertDialog = builder.create()
+                            alertDialog.setCancelable(false)
+                            alertDialog.show()
+                        }
+                    })
+                } catch (e: Exception) {
+                    //  progressDialog!!.dismiss()
+                    val builder = AlertDialog.Builder(
+                            this@QuickPayActivity,
+                            R.style.MyDialogTheme
+                    )
+                    builder.setMessage("Some technical issues.")
+                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                    }
+                    val alertDialog: AlertDialog = builder.create()
+                    alertDialog.setCancelable(false)
+                    alertDialog.show()
+                    e.printStackTrace()
+                }
+            }
+            false -> {
+                val builder = AlertDialog.Builder(
+                        this@QuickPayActivity,
+                        R.style.MyDialogTheme
+                )
+                builder.setMessage("No Internet Connection.")
+                builder.setPositiveButton("Ok") { dialogInterface, which ->
+                }
+                val alertDialog: AlertDialog = builder.create()
+                alertDialog.setCancelable(false)
+                alertDialog.show()
+            }
+        }
+    }
+
+
 
     private fun getSenderReceiver() {
         when(ConnectivityUtils.isConnected(this)) {
@@ -276,6 +949,11 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
 
         btn_forgot_mpin= findViewById<Button>(R.id.btn_forgot_mpin)
         txt_amtinword= findViewById<TextView>(R.id.txt_amtinword)
+
+        txtv_slctacnt= findViewById<TextView>(R.id.txtv_slctacnt)
+        txtv_slctsndr= findViewById<TextView>(R.id.txtv_slctsndr)
+        txtv_slctrecvr= findViewById<TextView>(R.id.txtv_slctrecvr)
+
 
         add_new_sender = findViewById<TextView>(R.id.add_new_sender)
         add_new_receiver = findViewById<TextView>(R.id.add_new_receiver)
