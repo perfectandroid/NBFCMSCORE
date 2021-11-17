@@ -160,8 +160,18 @@ class LoginActivity : AppCompatActivity() , View.OnClickListener {
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jobjt = jObject.getJSONObject("CustomerLoginVerification")
                                     val builder = AlertDialog.Builder(this@LoginActivity, R.style.MyDialogTheme)
+                                    val ID_ResponseSP = applicationContext.getSharedPreferences(Config.SHARED_PREF47,0)
+
                                     Log.i("popup",jobjt.getString("ResponseMessage"))
-                                    builder.setMessage(""+jobjt.getString("ResponseMessage"))
+                                    if(jobjt.getString("ResponseMessage").equals("User Login Verified"))
+                                    {
+                                        builder.setMessage(""+ID_ResponseSP.getString("userloginverified",null))
+                                    }
+                                    else
+                                    {
+                                        builder.setMessage(""+jobjt.getString("ResponseMessage"))
+                                    }
+
                                     builder.setPositiveButton("Ok"){dialogInterface, which ->
 
                                         val jobjt = jObject.getJSONObject("CustomerLoginVerification")

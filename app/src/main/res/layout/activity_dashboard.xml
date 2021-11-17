@@ -49,6 +49,7 @@
         android:background="@color/bgcolour"
         android:layout_marginBottom="10dp"
         android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -87,7 +88,7 @@
                 <com.github.mikephil.charting.charts.PieChart
                     android:id="@+id/piechart"
                     android:layout_width="match_parent"
-                    android:layout_height="151dp"
+                    android:layout_height="165dp"
                     android:layout_gravity="center"
                     android:visibility="visible" />
 
@@ -150,7 +151,7 @@
                         android:textStyle="bold" />
 
                     <com.github.mikephil.charting.charts.LineChart
-                        android:id="@+id/line"
+                        android:id="@+id/linechart1"
                         android:layout_width="match_parent"
                         android:layout_height="151dp"
                         android:layout_gravity="center"
@@ -215,7 +216,7 @@
                         android:textStyle="bold" />
 
                     <com.github.mikephil.charting.charts.LineChart
-                        android:id="@+id/line2"
+                        android:id="@+id/linechart"
                         android:layout_width="match_parent"
                         android:layout_height="151dp"
                         android:layout_gravity="center"

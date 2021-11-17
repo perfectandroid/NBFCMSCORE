@@ -54,16 +54,23 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
     private var progressDialog: ProgressDialog? = null
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
+    var tv_mycart: TextView? = null
+
     var act_account: AutoCompleteTextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_passbook)
         setRegViews()
+        val ID_Passbk = applicationContext.getSharedPreferences(Config.SHARED_PREF51,0)
+        tv_mycart!!.setText(ID_Passbk.getString("passbook",null))
+
+
         getAccList()
     }
     private fun setRegViews() {
         tv_list_days = findViewById(R.id.tv_list_days)
+        tv_mycart = findViewById(R.id.tv_mycart)
         ll_balance = findViewById(R.id.ll_balance)
         ll_balance1 = findViewById(R.id.ll_balance1)
         spnAccountNum = findViewById(R.id.spnAccountNum)
@@ -83,7 +90,6 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
         imgHome!!.setOnClickListener(this)
 
         act_account!!.setOnClickListener(this)
-
 
     }
     private fun getAccList() {

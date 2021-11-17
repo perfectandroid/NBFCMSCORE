@@ -3,22 +3,20 @@ package com.perfect.nbfcmscore.Activity
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
-import android.widget.TextView
-import com.bumptech.glide.Glide
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
+import com.perfect.nbfcmscore.Adapter.LoanSlabAdaptor
+import com.perfect.nbfcmscore.Adapter.LoanStatusAdaptor
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
 import com.perfect.nbfcmscore.Helper.MscoreApplication
-import com.perfect.nbfcmscore.Helper.PicassoTrustAll
 import com.perfect.nbfcmscore.R
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
@@ -28,75 +26,29 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
-class ChangeMpinActivity : AppCompatActivity(), View.OnClickListener {
-
+class LoanStatusActivity : AppCompatActivity()  , View.OnClickListener {
     private var progressDialog: ProgressDialog? = null
-    var etxt_oldpin: EditText? = null
-    var etxt_newpin: EditText? = null
 
+    private var rv_status: RecyclerView? = null
+
+    var imgBack: ImageView? = null
+    var imgHome: ImageView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_changempin)
-        setRegViews()
+        setContentView(R.layout.activity_loanstatus)
 
-
-        val imgLogo: ImageView = findViewById(R.id.imgLogo)
-        val tv_product_name: TextView = findViewById(R.id.tv_product_name)
-
-        val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14,0)
-        val ProductNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF12,0)
-        var IMAGRURL = Config.IMAGE_URL+AppIconImageCodeSP.getString("AppIconImageCode",null)
-
-        try { val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
-            Log.e("TAG","imagepath  116   "+imagepath)
-            //PicassoTrustAll.getInstance(this)!!.load(imagepath).error(null).into(im_applogo)
-            PicassoTrustAll.getInstance(this@ChangeMpinActivity)!!.load(imagepath).error(android.R.color.transparent).into(imgLogo!!)
-
-        }catch (e: Exception) {
-            e.printStackTrace()}
-
-//        Glide.with(this).load(IMAGRURL).placeholder(R.drawable.login_icon).into(imgLogo);
-        tv_product_name!!.setText(ProductNameSP.getString("ProductName",null))
+        rv_status  = findViewById<View>(R.id.rv_status) as RecyclerView?
+        imgBack = findViewById<ImageView>(R.id.imgBack)
+        imgBack!!.setOnClickListener(this)
+        imgHome = findViewById<ImageView>(R.id.imgHome)
+        imgHome!!.setOnClickListener(this)
+        getStandingInstruction()
     }
 
-    private fun setRegViews() {
-        etxt_oldpin = findViewById<EditText>(R.id.etxt_oldpin) as EditText
-        etxt_newpin = findViewById<EditText>(R.id.etxt_newpin) as EditText
-        val btcontinue = findViewById<Button>(R.id.btcontinue) as Button
-        btcontinue!!.setOnClickListener(this)
-    }
-
-    override fun onClick(v: View) {
-        when(v.id){
-            R.id.btcontinue->{
-                validation()
-
-            }
-        }
-    }
-
-    private fun validation() {
-        if (etxt_oldpin!!.text.toString() == null || etxt_oldpin!!.text.toString().isEmpty()) {
-            etxt_oldpin!!.setError("Please Enter MPIN")
-        }
-        else if (etxt_oldpin!!.text.toString().isNotEmpty() && etxt_oldpin!!.text.toString().length!=6) {
-            etxt_oldpin!!.setError("Please Enter Valid 6 Digit MPIN")
-        }
-        else if (etxt_newpin!!.text.toString() == null || etxt_newpin!!.text.toString().isEmpty()) {
-            etxt_newpin!!.setError("Please Enter New MPIN")
-        }
-        else if (etxt_newpin!!.text.toString().isNotEmpty() && etxt_newpin!!.text.toString().length!=6) {
-            etxt_newpin!!.setError("Please Enter Valid 6 Digit New MPIN")
-        }
-        else{
-            getChangeMpin(etxt_oldpin!!.text.toString(), etxt_newpin!!.text.toString())
-        }
-    }
-
-    private fun getChangeMpin(varmpin: String,varnewmpin: String) {
+    private fun getStandingInstruction() {
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
-                progressDialog = ProgressDialog(this@ChangeMpinActivity, R.style.Progress)
+                progressDialog = ProgressDialog(this@LoanStatusActivity, R.style.Progress)
                 progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
                 progressDialog!!.setCancelable(false)
                 progressDialog!!.setIndeterminate(true)
@@ -104,7 +56,7 @@ class ChangeMpinActivity : AppCompatActivity(), View.OnClickListener {
                 progressDialog!!.show()
                 try {
                     val client = OkHttpClient.Builder()
-                        .sslSocketFactory(Config.getSSLSocketFactory(this@ChangeMpinActivity))
+                        .sslSocketFactory(Config.getSSLSocketFactory(this@LoanStatusActivity))
                         .hostnameVerifier(Config.getHostnameVerifier())
                         .build()
                     val gson = GsonBuilder()
@@ -126,10 +78,10 @@ class ChangeMpinActivity : AppCompatActivity(), View.OnClickListener {
                         val TokenSP = applicationContext.getSharedPreferences(Config.SHARED_PREF8, 0)
                         val Token = TokenSP.getString("Token", null)
 
-                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("3"))
+                        val FK_AccountSP = applicationContext.getSharedPreferences(Config.SHARED_PREF19, 0)
+
+                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("45"))
                         requestObject1.put("FK_Customer",  MscoreApplication.encryptStart(FK_Customer))
-                        requestObject1.put("OldMPIN", MscoreApplication.encryptStart(varmpin))
-                        requestObject1.put("MPIN", MscoreApplication.encryptStart(varnewmpin))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put(
                             "BankKey", MscoreApplication.encryptStart(
@@ -138,6 +90,13 @@ class ChangeMpinActivity : AppCompatActivity(), View.OnClickListener {
                                 )
                             )
                         )
+                        /*   requestObject1.put(
+                               "BankHeader", MscoreApplication.encryptStart(
+                                   getResources().getString(
+                                       R.string.BankHeader
+                                   )
+                               )
+                           )*/
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -151,7 +110,7 @@ class ChangeMpinActivity : AppCompatActivity(), View.OnClickListener {
                         okhttp3.MediaType.parse("application/json; charset=utf-8"),
                         requestObject1.toString()
                     )
-                    val call = apiService.getOTP(body)
+                    val call = apiService.getLoanRequseStatusDetails(body)
                     call.enqueue(object : retrofit2.Callback<String> {
                         override fun onResponse(
                             call: retrofit2.Call<String>, response:
@@ -161,26 +120,18 @@ class ChangeMpinActivity : AppCompatActivity(), View.OnClickListener {
                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 if (jObject.getString("StatusCode") == "0") {
-                                    val jobjt = jObject.getJSONObject("VarificationMaintenance")
-                                    val builder = AlertDialog.Builder(
-                                        this@ChangeMpinActivity,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jobjt.getString("ResponseMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                        startActivity(
-                                            Intent(
-                                                this@ChangeMpinActivity,
-                                                MpinActivity::class.java
-                                            )
-                                        )
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+
+                                    val jobjt = jObject.getJSONObject("LoanRequseStatusDetails")
+                                    val jarray =
+                                        jobjt.getJSONArray("LoanRequseStatusList")
+
+                                    val obj_adapter = LoanStatusAdaptor(applicationContext!!, jarray)
+                                    rv_status!!.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
+                                    rv_status!!.adapter = obj_adapter
+
                                 } else {
                                     val builder = AlertDialog.Builder(
-                                        this@ChangeMpinActivity,
+                                        this@LoanStatusActivity,
                                         R.style.MyDialogTheme
                                     )
                                     builder.setMessage("" + jObject.getString("EXMessage"))
@@ -189,12 +140,11 @@ class ChangeMpinActivity : AppCompatActivity(), View.OnClickListener {
                                     val alertDialog: AlertDialog = builder.create()
                                     alertDialog.setCancelable(false)
                                     alertDialog.show()
-                                }
-                            } catch (e: Exception) {
+                                }                            } catch (e: Exception) {
                                 progressDialog!!.dismiss()
 
                                 val builder = AlertDialog.Builder(
-                                    this@ChangeMpinActivity,
+                                    this@LoanStatusActivity,
                                     R.style.MyDialogTheme
                                 )
                                 builder.setMessage("Some technical issues.")
@@ -210,7 +160,7 @@ class ChangeMpinActivity : AppCompatActivity(), View.OnClickListener {
                             progressDialog!!.dismiss()
 
                             val builder = AlertDialog.Builder(
-                                this@ChangeMpinActivity,
+                                this@LoanStatusActivity,
                                 R.style.MyDialogTheme
                             )
                             builder.setMessage("Some technical issues.")
@@ -223,7 +173,7 @@ class ChangeMpinActivity : AppCompatActivity(), View.OnClickListener {
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(this@ChangeMpinActivity, R.style.MyDialogTheme)
+                    val builder = AlertDialog.Builder(this@LoanStatusActivity, R.style.MyDialogTheme)
                     builder.setMessage("Some technical issues.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->
                     }
@@ -234,7 +184,7 @@ class ChangeMpinActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@ChangeMpinActivity, R.style.MyDialogTheme)
+                val builder = AlertDialog.Builder(this@LoanStatusActivity, R.style.MyDialogTheme)
                 builder.setMessage("No Internet Connection.")
                 builder.setPositiveButton("Ok") { dialogInterface, which ->
                 }
@@ -244,5 +194,16 @@ class ChangeMpinActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
 
+    }
+
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.imgBack ->{
+                finish()
+            }
+            R.id.imgHome ->{
+                startActivity(Intent(this@LoanStatusActivity, HomeActivity::class.java))
+            }
+        }
     }
 }

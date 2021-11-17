@@ -170,7 +170,7 @@
                         android:background="@color/color_activity_transparent"
                         android:maxLength="10"
                         android:textColorHint="@color/white"
-                        android:inputType="phone"
+                        android:inputType="number"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"

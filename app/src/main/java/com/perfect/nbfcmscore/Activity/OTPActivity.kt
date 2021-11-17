@@ -668,12 +668,20 @@ class OTPActivity : AppCompatActivity() , View.OnClickListener {
                                     val LastLoginTimeEditer = LastLoginTimeSP.edit()
                                     LastLoginTimeEditer.putString("LastLoginTime", localTime)
                                     LastLoginTimeEditer.commit()
-
+                                    val ID_ResponseSP = applicationContext.getSharedPreferences(Config.SHARED_PREF48,0)
                                     val builder = AlertDialog.Builder(
                                         this@OTPActivity,
                                         R.style.MyDialogTheme
                                     )
-                                    builder.setMessage("" + jobjt.getString("ResponseMessage"))
+                                    if(jobjt.getString("ResponseMessage").equals("OTP Verified"))
+                                    {
+                                        builder.setMessage(""+ID_ResponseSP.getString("Otpverification",null))
+                                    }
+                                    else
+                                    {
+                                        builder.setMessage(""+jobjt.getString("ResponseMessage"))
+                                    }
+                                   // builder.setMessage("" + jobjt.getString("ResponseMessage"))
                                     builder.setPositiveButton("Ok") { dialogInterface, which ->
                                         startActivity(
                                             Intent(

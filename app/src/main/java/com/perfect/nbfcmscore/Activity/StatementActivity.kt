@@ -52,9 +52,6 @@ import android.webkit.MimeTypeMap
 import android.webkit.URLUtil
 
 import androidx.annotation.RequiresApi
-import com.downloader.Error
-import com.downloader.OnDownloadListener
-import com.downloader.PRDownloader
 import javax.net.ssl.HttpsURLConnection
 import javax.net.ssl.SSLSocketFactory
 
@@ -75,9 +72,13 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
     var rad_last_6_month: RadioButton? = null
     var rad_last_12_month: RadioButton? = null
 
-    var tv_view: TextView? = null
-    var tv_download: TextView? = null
+    var txtv_slctperd: TextView? = null
+    var txtv_slctcustomdte: TextView? = null
 
+    var tv_view: TextView? = null
+    var tv_header: TextView? = null
+    var tv_download: TextView? = null
+    var txtv_or: TextView? = null
     var edt_fromDate: EditText? = null
     var edt_toDate: EditText? = null
 
@@ -108,6 +109,28 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
         setInitialise()
         setRegister()
 
+        val ID_Statmnt = applicationContext.getSharedPreferences(Config.SHARED_PREF59,0)
+        tv_header!!.setText(ID_Statmnt.getString("statement",null))
+        val ID_selectperd = applicationContext.getSharedPreferences(Config.SHARED_PREF126,0)
+        txtv_slctperd!!.setText(ID_selectperd.getString("Selectaperiodofyourchoice",null))
+        val ID_Or = applicationContext.getSharedPreferences(Config.SHARED_PREF127,0)
+        txtv_or!!.setText(ID_Or.getString("OR",null))
+        val ID_customdate = applicationContext.getSharedPreferences(Config.SHARED_PREF128,0)
+        txtv_slctcustomdte!!.setText(ID_customdate.getString("Selectacustomdateofyourchoice.",null))
+        val ID_View = applicationContext.getSharedPreferences(Config.SHARED_PREF129,0)
+        tv_view!!.setText(ID_View.getString("View",null))
+         val ID_downld = applicationContext.getSharedPreferences(Config.SHARED_PREF130,0)
+        tv_download!!.setText(ID_downld.getString("Download",null))
+         val ID_lastmnth = applicationContext.getSharedPreferences(Config.SHARED_PREF131,0)
+        rad_last_month!!.setText(ID_lastmnth.getString("LastMonth",null))
+        val ID_lastthreemnth = applicationContext.getSharedPreferences(Config.SHARED_PREF132,0)
+        rad_last_3_month!!.setText(ID_lastthreemnth.getString("Last3Months",null))
+        val ID_lastsixmnth = applicationContext.getSharedPreferences(Config.SHARED_PREF133,0)
+        rad_last_6_month!!.setText(ID_lastsixmnth.getString("Last6Months",null))
+        val ID_Last1yr = applicationContext.getSharedPreferences(Config.SHARED_PREF134,0)
+        rad_last_12_month!!.setText(ID_Last1yr.getString("Last1Year",null))
+        // val ID_Passbk = applicationContext.getSharedPreferences(Config.SHARED_PREF51,0)
+
 
         getOwnAccount()
 
@@ -116,9 +139,14 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun setInitialise() {
-
+        tv_header = findViewById<TextView>(R.id.tv_header)
         im_back = findViewById<ImageView>(R.id.im_back)
         im_home = findViewById<ImageView>(R.id.im_home)
+        txtv_or= findViewById(R.id.txtv_or)
+
+        txtv_slctperd = findViewById<TextView>(R.id.txtv_slctperd)
+        txtv_slctcustomdte = findViewById<TextView>(R.id.txtv_slctcustomdte)
+
 
         act_account = findViewById<AutoCompleteTextView>(R.id.act_account)
 
@@ -963,7 +991,7 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
     }
 
 
-    private fun downloadPdfFromInternet(url: URL, dirPath: File, fileName: String) {
+ /*   private fun downloadPdfFromInternet(url: URL, dirPath: File, fileName: String) {
 
         PRDownloader.download(
             url.toString(),
@@ -989,7 +1017,7 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
                 }
             })
 
-    }
+    }*/
 
 
 }

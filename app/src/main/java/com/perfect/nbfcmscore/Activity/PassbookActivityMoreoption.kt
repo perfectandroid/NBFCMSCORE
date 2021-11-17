@@ -45,7 +45,7 @@ class PassbookActivityMoreoption : AppCompatActivity(), OnItemSelectedListener,V
     private var tv_list_days: TextView? = null
     private var rv_passbook: RecyclerView? = null
     private var ll_balance1: CardView? = null
-
+    var tv_mycart: TextView? = null
     private var ll_balance: LinearLayout? = null
     var noofdays = 0
     private var progressDialog: ProgressDialog? = null
@@ -62,9 +62,14 @@ class PassbookActivityMoreoption : AppCompatActivity(), OnItemSelectedListener,V
         submodlemore = intent.getStringExtra("submodule")
         Log.i("Checkget",fkaccmore+"\n"+submodlemore)
         //getAccList()
+
+        val ID_Passbk = applicationContext.getSharedPreferences(Config.SHARED_PREF51,0)
+        tv_mycart!!.setText(ID_Passbk.getString("passbook",null))
+
         getPassBookAccountStatement()
     }
     private fun setRegViews() {
+        tv_mycart = findViewById(R.id.tv_mycart)
         tv_list_days = findViewById(R.id.tv_list_days)
         ll_balance = findViewById(R.id.ll_balance)
         ll_balance1 = findViewById(R.id.ll_balance1)
