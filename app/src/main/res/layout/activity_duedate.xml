@@ -4,11 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/bgcolour">
+    android:background="@color/white">
+
+
     <RelativeLayout
         android:id="@+id/relativeLayout1"
         android:background="@color/colorPrimary"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -46,277 +47,291 @@
         </LinearLayout>
     </RelativeLayout>
 
-        <ScrollView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:id="@+id/tvDeposit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Deposit"
+            android:layout_marginLeft="5dp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:background="@drawable/tab_select"
+            android:contentDescription="@string/address"
+            android:src="@drawable/ic_right_arrow"/>
+        <TextView
+            android:id="@+id/tvLoan"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:text="Loan"
+            android:background="@drawable/tab_unselect"
+            android:contentDescription="@string/address"
+            android:src="@drawable/ic_right_arrow"/>
+    </LinearLayout>
+
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
             <LinearLayout
+                android:id="@+id/ll_standnginstr"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
+                android:visibility="gone"
+                android:layout_above="@+id/llreminder"
                 android:orientation="vertical">
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:background="@drawable/view_bg">
-                    <TextView
-                        android:id="@+id/tvDeposit"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Deposit"
-                        android:textStyle="bold"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:textColor="@color/colorPrimary"
-                        android:background="@drawable/toggle1"
-                        android:contentDescription="@string/address"
-                        android:src="@drawable/ic_right_arrow"/>
-                    <TextView
-                        android:id="@+id/tvLoan"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:textStyle="bold"
-                        android:layout_weight="1"
-                        android:text="Loan"
-                        android:background="@drawable/toggle3"
-                        android:contentDescription="@string/address"
-                        android:src="@drawable/ic_right_arrow"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/ll_standnginstr"
+                    android:id="@+id/llReport"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:visibility="gone"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/gray_borderdark">
+
                     <LinearLayout
-                        android:id="@+id/llReport"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginRight="1dp"
+                        android:background="@drawable/settings_page_top">
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/ic_summary"
+                            android:padding="2dp"
+                            tools:ignore="VectorDrawableCompat" />
+
+                        <TextView
+                            android:id="@+id/tvTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="Due Date list for upcoming two weeks"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimary"
+                        android:orientation="horizontal"
                         android:layout_marginLeft="3dp"
-                        android:layout_marginRight="3dp"
-                        android:background="@drawable/gray_borderdark">
+                        android:layout_marginRight="3dp">
 
-                        <LinearLayout
+                        <TextView
+                            android:id="@+id/tvSLNO"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginLeft="1dp"
-                            android:layout_marginRight="1dp"
-                            android:background="@drawable/settings_page_top">
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:src="@drawable/ic_summary"
-                                android:padding="2dp"
-                                tools:ignore="VectorDrawableCompat" />
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_weight="3.9"
+                            android:gravity="center_horizontal"
+                            android:text="SN"
+                            android:textAlignment="gravity"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
-                            <TextView
-                                android:id="@+id/tvTitle"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:text="Due Date list for upcoming two weeks"
-                                android:textColor="@color/white"
-                                android:textSize="15dp" />
-                        </LinearLayout>
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/colorPrimary" />
 
-                        <LinearLayout
+                        <!-- <TextView
+                             android:id="@+id/txtv_AcntType"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:layout_gravity="center_vertical"
+                             android:layout_marginLeft="2dp"
+                             android:layout_marginTop="5dp"
+                             android:layout_marginRight="2dp"
+                             android:layout_marginBottom="5dp"
+                             android:layout_weight="3.2"
+                             android:gravity="center_horizontal"
+                             android:text="AccountType"
+                             android:textAlignment="gravity"
+                             android:textColor="@color/colorPrimaryDark"
+                             android:textSize="14sp"
+                             android:textStyle="bold" />
+
+                         <View
+                             android:layout_width="1dp"
+                             android:layout_height="match_parent"
+                             android:background="@color/colorPrimary" />-->
+
+                        <TextView
+                            android:id="@+id/txtv_Accno"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@color/blue"
-                            android:orientation="horizontal"
-                            android:layout_marginLeft="3dp"
-                            android:layout_marginRight="3dp">
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_weight="3"
+                            android:gravity="center_horizontal"
+                            android:text="Account No"
+                            android:textAlignment="gravity"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
-                            <TextView
-                                android:id="@+id/tvSLNO"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="2dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginRight="2dp"
-                                android:layout_marginBottom="5dp"
-                                android:layout_weight="3.9"
-                                android:gravity="center_horizontal"
-                                android:text="SN"
-                                android:textAlignment="gravity"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                            <View
-                                android:layout_width="1dp"
-                                android:layout_height="match_parent"
-                                android:background="@color/colorPrimary" />
-
-                            <!-- <TextView
-                                 android:id="@+id/txtv_AcntType"
-                                 android:layout_width="match_parent"
-                                 android:layout_height="wrap_content"
-                                 android:layout_gravity="center_vertical"
-                                 android:layout_marginLeft="2dp"
-                                 android:layout_marginTop="5dp"
-                                 android:layout_marginRight="2dp"
-                                 android:layout_marginBottom="5dp"
-                                 android:layout_weight="3.2"
-                                 android:gravity="center_horizontal"
-                                 android:text="AccountType"
-                                 android:textAlignment="gravity"
-                                 android:textColor="@color/colorPrimaryDark"
-                                 android:textSize="14sp"
-                                 android:textStyle="bold" />
-
-                             <View
-                                 android:layout_width="1dp"
-                                 android:layout_height="match_parent"
-                                 android:background="@color/colorPrimary" />-->
-
-                            <TextView
-                                android:id="@+id/txtv_Accno"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="2dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginRight="2dp"
-                                android:layout_marginBottom="5dp"
-                                android:layout_weight="3"
-                                android:gravity="center_horizontal"
-                                android:text="Account No"
-                                android:textAlignment="gravity"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                            <View
-                                android:layout_width="1dp"
-                                android:layout_height="match_parent"
-                                android:background="@color/colorPrimary" />
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/colorPrimary" />
 
 
-                            <TextView
-                                android:id="@+id/tvamt"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="2dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginRight="2dp"
-                                android:layout_marginBottom="5dp"
-                                android:layout_weight="3.5"
-                                android:gravity="center_horizontal"
-                                android:text="Amount *"
-                                android:textAlignment="gravity"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-
-                            <View
-                                android:layout_width="1dp"
-                                android:layout_height="match_parent"
-                                android:background="@color/grey" />
-
-
-                            <TextView
-                                android:id="@+id/txtv_Duedate"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="right|center"
-                                android:gravity="right|center"
-                                android:layout_marginLeft="2dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="5dp"
-                                android:layout_weight="3.5"
-                                android:text="Duedate"
-                                android:textAlignment="gravity"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-                            <View
-                                android:layout_width="1dp"
-                                android:layout_height="match_parent"/>
-
-                            <TextView
-                                android:id="@+id/addReminder"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_weight="4"
-                                android:text="**"
-                                android:paddingRight="8dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginRight="2dp"
-                                android:layout_marginBottom="5dp"
-                                android:gravity="center_horizontal"
-                                android:textAlignment="gravity"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:textSize="14sp"
-                                android:textStyle="bold"
-                                />
-
-                        </LinearLayout>
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/rv_standinginst"
+                        <TextView
+                            android:id="@+id/tvamt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="3dp"
-                            android:layout_marginRight="3dp"
-                            android:layout_marginBottom="3dp"
-                            android:background="@color/white" />
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_weight="3.5"
+                            android:gravity="center_horizontal"
+                            android:text="Amount *"
+                            android:textAlignment="gravity"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/grey" />
+
+
+                        <TextView
+                            android:id="@+id/txtv_Duedate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right|center"
+                            android:gravity="right|center"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_weight="3.5"
+                            android:text="Duedate"
+                            android:textAlignment="gravity"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"/>
+
+                        <TextView
+                            android:id="@+id/addReminder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="4"
+                            android:text="**"
+                            android:paddingRight="8dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_marginBottom="5dp"
+                            android:gravity="center_horizontal"
+                            android:textAlignment="gravity"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            />
 
                     </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_standinginst"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:background="@color/white" />
+
+
                 </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/llreminder"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llreminder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="5dp"
+                android:layout_alignParentBottom="true"
+                android:visibility="gone"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:visibility="gone"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:visibility="gone"
-                        android:paddingLeft="8dp"
-                        android:src="@drawable/addreminder"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="left"
-                        android:textStyle="bold|italic"
-                        android:textSize="13dp"
-                        android:text="@string/remainder"
-                        android:textColor="@color/red"/>
-                </LinearLayout>
-                <com.perfect.nbfcmscore.Helper.MovableFloatingActionButton
-                    android:id="@+id/fab"
+                    android:paddingLeft="8dp"
+                    android:src="@drawable/addreminder"/>
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    app:backgroundTint="#141875"
-                    android:visibility="gone"
-                    android:src="@drawable/ic_date_white"
-                    android:layout_marginRight="12dp"
-                    android:layout_marginEnd="12dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/fab_background"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    tools:ignore="VectorDrawableCompat" />
-
+                    android:layout_gravity="center"
+                    android:gravity="left"
+                    android:padding="5dp"
+                    android:textStyle="bold|italic"
+                    android:textSize="13dp"
+                    android:text="@string/remainder"
+                    android:textColor="@color/grey"/>
             </LinearLayout>
-        </ScrollView>
+            <com.perfect.nbfcmscore.Helper.MovableFloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                app:backgroundTint="#141875"
+                android:visibility="gone"
+                android:src="@drawable/ic_date_white"
+                android:layout_marginRight="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/fab_background"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                tools:ignore="VectorDrawableCompat" />
+
+        </RelativeLayout>
+
+<!--    </ScrollView>-->
+
+
 
 
 </LinearLayout>
