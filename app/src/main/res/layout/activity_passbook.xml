@@ -53,9 +53,9 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         app:cardCornerRadius="10dp"
-        app:cardBackgroundColor="@color/card_color"
         app:cardElevation="0dp"
         app:cardMaxElevation="0dp">
+<!--        app:cardBackgroundColor="@color/card_color"-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -63,7 +63,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@drawable/main_bglight">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -75,7 +76,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/passtext"
                         android:drawablePadding="10dp"
                         android:text="Account Type"/>
 
@@ -92,17 +93,16 @@
                     android:background="@android:color/transparent"
                     android:gravity="left"
                     android:text=""
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
+                    android:textColor="@color/passtext"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:textSize="15dp"
                     android:layout_gravity="left"
                     android:gravity="left"
                     android:text="Account Number"/>
@@ -130,15 +130,14 @@
                         android:layout_marginRight="10dp"
                         android:dropDownHeight="wrap_content"
                         android:text=""
-                        android:textStyle="bold"
-                        android:textColorHint="@color/white"
+                        android:textColorHint="@color/grey"
                         android:hint="Select Account"
                         android:clickable="true"
                         android:drawableRight="@drawable/arrow_down"
                         android:focusable="false"
                         android:paddingBottom="5dp"
-                        android:textSize="17sp"
-                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textColor="@color/black"
                         android:background="@android:color/transparent"/>
 
 
@@ -165,8 +164,7 @@
                         android:textStyle="normal"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="5dp"
-                        android:textColor="@color/white"
-                        android:textSize="15dp"
+                        android:textColor="@color/passtext"
                         android:drawablePadding="10dp"
                         android:text="Available Balance"/>
 
@@ -180,7 +178,7 @@
                         android:textStyle="bold"
                         android:textSize="15sp"
                         android:layout_gravity="center_horizontal"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:drawablePadding="10dp"
                         android:text="0"/>
                 </LinearLayout>
