@@ -101,7 +101,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@android:color/transparent"
-                            android:hint="@string/first_name"
+                            android:hint=""
                             android:inputType="text"
                             android:textColorHint="@color/bottom_line1"
                             android:textSize="16sp" />
@@ -134,7 +134,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@android:color/transparent"
-                            android:hint="@string/last_name"
+                            android:hint=""
                             android:inputType="text"
                             android:textColorHint="@color/bottom_line1"
                             android:textSize="16sp" />
@@ -167,7 +167,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@android:color/transparent"
-                            android:hint="@string/caps_mobile_no"
+                            android:hint="MOBILE NUMBER"
                             android:inputType="number"
                             android:textColorHint="@color/bottom_line1"
                             android:textSize="16sp" />

@@ -787,6 +787,32 @@ class LanguageLsitAdaptor(internal val mContext: Context, internal val jsInfo: J
                                     ID_confrmaccEditer.putString("ConfirmAccountNumber", jresult3.get("ConfirmAccountNumber") as String)
                                     ID_confrmaccEditer.commit()
 
+                                    val ID_ifsc = mContext.getSharedPreferences(Config.SHARED_PREF150, 0)
+                                    val ID_ifscEditer = ID_ifsc.edit()
+                                    ID_ifscEditer.putString("IFSCCode", jresult3.get("IFSCCode") as String)
+                                    ID_ifscEditer.commit()
+
+                                    val ID_imps = mContext.getSharedPreferences(Config.SHARED_PREF151, 0)
+                                    val ID_impsEditer = ID_imps.edit()
+                                    ID_impsEditer.putString("IMPS", jresult3.get("IMPS") as String)
+                                    ID_impsEditer.commit()
+
+                                    val ID_neft = mContext.getSharedPreferences(Config.SHARED_PREF152, 0)
+                                    val ID_neftEditer = ID_neft.edit()
+                                    ID_neftEditer.putString("NEFT", jresult3.get("NEFT") as String)
+                                    ID_neftEditer.commit()
+
+                                    val ID_rtgs = mContext.getSharedPreferences(Config.SHARED_PREF153, 0)
+                                    val ID_rtgsEditer = ID_rtgs.edit()
+                                    ID_rtgsEditer.putString("RTGS", jresult3.get("RTGS") as String)
+                                    ID_rtgsEditer.commit()
+
+                                    val ID_fundstat = mContext.getSharedPreferences(Config.SHARED_PREF154, 0)
+                                    val ID_fundstatEditer = ID_fundstat.edit()
+                                    ID_fundstatEditer.putString("FUNDTRANSFERSTATUS", jresult3.get("FUNDTRANSFERSTATUS") as String)
+                                    ID_fundstatEditer.commit()
+
+
                                     // mContext.startActivity(Intent(mContext, WelcomeActivity::class.java))
 
 

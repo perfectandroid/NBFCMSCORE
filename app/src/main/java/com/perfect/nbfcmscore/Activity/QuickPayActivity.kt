@@ -63,7 +63,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
     var imgHome: ImageView? = null
     var etxt_amount: EditText? = null
     var etxt_mpin: EditText? = null
-
+    var tv_header: TextView? = null
     var txtv_slctacnt: TextView? = null
     var txtv_slctsndr: TextView? = null
     var txtv_slctrecvr: TextView? = null
@@ -104,6 +104,9 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
 
         val Makepaymntsp = applicationContext.getSharedPreferences(Config.SHARED_PREF142, 0)
         mBtnSubmit!!.setText(Makepaymntsp.getString("MAKEPAYMENT", null))
+
+        val Fundtransfrsp = applicationContext.getSharedPreferences(Config.SHARED_PREF122, 0)
+        tv_header!!.setText(Fundtransfrsp.getString("FundTransfer", null))
 
 
      //   getVerifyPaymentOTP()
@@ -953,6 +956,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
         txtv_slctacnt= findViewById<TextView>(R.id.txtv_slctacnt)
         txtv_slctsndr= findViewById<TextView>(R.id.txtv_slctsndr)
         txtv_slctrecvr= findViewById<TextView>(R.id.txtv_slctrecvr)
+        tv_header= findViewById<TextView>(R.id.tv_header)
 
 
         add_new_sender = findViewById<TextView>(R.id.add_new_sender)

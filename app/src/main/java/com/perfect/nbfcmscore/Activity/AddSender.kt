@@ -41,6 +41,7 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
     var txtv_mobile_number: TextInputEditText? = null
     var txtv_dob: TextInputEditText? = null
     var btn_register: Button? = null
+    var tv_title: TextView? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,12 +50,26 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
 
         setRegViews()
 
+        val Fundtransfrsp = applicationContext.getSharedPreferences(Config.SHARED_PREF122, 0)
+        tv_title!!.setText(Fundtransfrsp.getString("FundTransfer", null))
 
+        val Firsttimesp = applicationContext.getSharedPreferences(Config.SHARED_PREF143, 0)
+        txtv_first_name!!.setHint(Firsttimesp.getString("FirstName", null))
 
+        val Lastnamesp = applicationContext.getSharedPreferences(Config.SHARED_PREF144, 0)
+        txtv_last_name!!.setHint(Lastnamesp.getString("LastName", null))
+
+        val Registerp = applicationContext.getSharedPreferences(Config.SHARED_PREF146, 0)
+        btn_register!!.setText(Registerp.getString("REGISTER", null))
+
+       /* val mobilesp = applicationContext.getSharedPreferences(Config.SHARED_PREF145, 0)
+        txtv_mobile_number!!.setText(mobilesp.getString("DOB", null))
+*/
 
     }
 
     private fun setRegViews() {
+        tv_title = findViewById<TextView>(R.id.tv_title)
         imgv_datepick = findViewById<ImageView>(R.id.imgv_datepick)
         imgBack = findViewById<ImageView>(R.id.imgBack)
         imgHome = findViewById<ImageView>(R.id.imgHome)

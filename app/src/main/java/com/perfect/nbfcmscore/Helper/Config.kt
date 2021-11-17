@@ -181,6 +181,12 @@ object Config {
     const val SHARED_PREF147= "SenderName"
     const val SHARED_PREF148= "ReceiverName"
     const val SHARED_PREF149= "ConfirmAccountNumber"
+    const val SHARED_PREF150= "IFSCCode"
+
+    const val SHARED_PREF151= "IMPS"
+    const val SHARED_PREF152= "NEFT"
+    const val SHARED_PREF153= "RTGS"
+    const val SHARED_PREF154= "FUNDTRANSFERSTATUS"
 
 
 
