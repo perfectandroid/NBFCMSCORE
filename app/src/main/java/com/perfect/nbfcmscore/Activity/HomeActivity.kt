@@ -1672,7 +1672,9 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 startActivity(Intent(this@HomeActivity, EMIActivity::class.java))
             }
             R.id.lldueremindrer -> {
-                startActivity(Intent(this@HomeActivity, DueReminderActivity::class.java))
+              //  startActivity(Intent(this@HomeActivity, DueReminderActivity::class.java))
+                var intent = Intent(this@HomeActivity, DuedateActivity::class.java)
+                startActivity(intent)
             }
             R.id.improfile -> {
                 startActivity(Intent(this@HomeActivity, ProfileActivity::class.java))
@@ -1717,8 +1719,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             }
             R.id.llnotif -> {
 
-                var intent = Intent(this@HomeActivity, DuedateActivity::class.java)
-                startActivity(intent)
+//                var intent = Intent(this@HomeActivity, DuedateActivity::class.java)
+//                startActivity(intent)
             }
             R.id.ll_landline -> {
 

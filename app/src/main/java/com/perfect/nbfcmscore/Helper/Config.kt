@@ -22,6 +22,8 @@ object Config {
 
   // val BASE_URL="https://202.164.150.65:14262/NbfcAndroidAPIQA/api/"  //Qa new ip
    // val IMAGE_URL="https://202.164.150.65:14262/NbfcAndroidAPIQA/"
+//   val BASE_URL="https://202.164.150.65:14262/NbfcAndroidAPIQA/api/"  //Qa new ip
+//    val IMAGE_URL="https://202.164.150.65:14262/NbfcAndroidAPIQA/"
 
 
     const val SHARED_PREF = "loginsession"

@@ -37,6 +37,7 @@ import java.util.*
 
 class DuedateActivity : AppCompatActivity() , View.OnClickListener{
 
+    val TAG : String = "DuedateActivity"
     var imgBack: ImageView? = null
     var applogo: ImageView? = null
     var imCompanylogo: ImageView? = null
@@ -110,20 +111,20 @@ class DuedateActivity : AppCompatActivity() , View.OnClickListener{
             }
             R.id.tvDeposit -> {
                 tvTitle!!.text = "Due Date list for upcoming two weeks"
-                tvLoan!!.background = ContextCompat.getDrawable(this@DuedateActivity, R.drawable.toggle3)
-                tvDeposit!!.background = ContextCompat.getDrawable(this@DuedateActivity, R.drawable.toggle1)
-                tvLoan!!.setTextColor(Color.parseColor("#000000"))
-                tvDeposit!!.setTextColor(Color.parseColor("#ffffff"))
+                tvLoan!!.background = ContextCompat.getDrawable(this@DuedateActivity, R.drawable.tab_unselect)
+                tvDeposit!!.background = ContextCompat.getDrawable(this@DuedateActivity, R.drawable.tab_select)
+//                tvLoan!!.setTextColor(Color.parseColor("#000000"))
+//                tvDeposit!!.setTextColor(Color.parseColor("#ffffff"))
                 acctype = "1"
                 getDuedate()
                 strHeader = "Deposit"
             }
             R.id.tvLoan -> {
                 tvTitle!!.text = "Demand list for upcoming two weeks"
-                tvLoan!!.background = ContextCompat.getDrawable(this@DuedateActivity, R.drawable.toggle)
-                tvDeposit!!.background = ContextCompat.getDrawable(this@DuedateActivity, R.drawable.toggle4)
-                tvLoan!!.setTextColor(Color.parseColor("#ffffff"))
-                tvDeposit!!.setTextColor(Color.parseColor("#000000"))
+                tvLoan!!.background = ContextCompat.getDrawable(this@DuedateActivity, R.drawable.tab_select)
+                tvDeposit!!.background = ContextCompat.getDrawable(this@DuedateActivity, R.drawable.tab_unselect)
+//                tvLoan!!.setTextColor(Color.parseColor("#ffffff"))
+//                tvDeposit!!.setTextColor(Color.parseColor("#000000"))
                 acctype = "2"
                 getDuedate()
                 strHeader = "Loan"
@@ -135,6 +136,9 @@ class DuedateActivity : AppCompatActivity() , View.OnClickListener{
     }
 
     private fun getDuedate() {
+
+        ll_standnginstr!!.visibility = View.GONE
+        llreminder!!.visibility = View.GONE
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@DuedateActivity, R.style.Progress)
@@ -194,6 +198,7 @@ class DuedateActivity : AppCompatActivity() , View.OnClickListener{
 
                         Log.e("TAG", "requestObject1  171   " + requestObject1)
                     } catch (e: Exception) {
+                        Log.e(TAG, "Exception  198   ")
                         progressDialog!!.dismiss()
                         e.printStackTrace()
                         val mySnackbar = Snackbar.make(
@@ -215,12 +220,11 @@ class DuedateActivity : AppCompatActivity() , View.OnClickListener{
                             try {
                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
-                                Log.i("Response-duedate", response.body())
+                                Log.e("Response-duedate","  19821   "+ response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     ll_standnginstr!!.visibility = View.VISIBLE
                                     llreminder!!.visibility = View.VISIBLE
-                                    val jsonObj1: JSONObject =
-                                            jObject.getJSONObject("AccountDueDateDetailsIfo")
+                                    val jsonObj1: JSONObject = jObject.getJSONObject("AccountDueDateDetailsIfo")
                                     val jsonobj2 = JSONObject(jsonObj1.toString())
 
                                     jresult = jsonobj2.getJSONArray("AccountDueDateDetails")
@@ -259,6 +263,7 @@ class DuedateActivity : AppCompatActivity() , View.OnClickListener{
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
+                                Log.e(TAG, "Exception  1981   "+e.toString())
 
                                 val builder = AlertDialog.Builder(
                                         this@DuedateActivity,
@@ -276,7 +281,7 @@ class DuedateActivity : AppCompatActivity() , View.OnClickListener{
 
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
-
+                            Log.e(TAG, "onFailure  1982   "+t.message)
                             val builder = AlertDialog.Builder(
                                     this@DuedateActivity,
                                     R.style.MyDialogTheme
@@ -291,6 +296,7 @@ class DuedateActivity : AppCompatActivity() , View.OnClickListener{
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
+                    Log.e(TAG, "Exception  1983   "+e.toString())
                     val builder = AlertDialog.Builder(this@DuedateActivity, R.style.MyDialogTheme)
                     builder.setMessage("Some technical issues.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->

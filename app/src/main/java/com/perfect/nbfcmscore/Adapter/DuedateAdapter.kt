@@ -10,7 +10,11 @@ import android.content.ContentValues
 import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.net.Uri
+import android.os.Build
 import android.provider.CalendarContract
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,12 +32,17 @@ import org.json.JSONObject
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
+import android.provider.CalendarContract.Reminders
+
+import android.widget.Toast
+import java.text.DateFormat
+
 
 class DuedateAdapter(internal val mContext: Context, internal val jsInfo: JSONArray, strHeader: String) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var jsonObject: JSONObject? = null
     var etdate: EditText? = null
     var ettime: EditText? = null
-    var title: String? = null
+    var title: String? = ""
     private var mYear = 0
     private  var mMonth:Int = 0
     private  var mDay:Int = 0
@@ -115,6 +124,9 @@ class DuedateAdapter(internal val mContext: Context, internal val jsInfo: JSONAr
             ettime!!.setKeyListener(null)
             builder.setView(layout)
             val alertDialog = builder.create()
+            alertDialog.getWindow()!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+            alertDialog.setView(layout, 0, 0, 0, 0);
+
             etdis.setText("Your " + accountType.toLowerCase() + " account in " + mContext.getString(R.string.app_name) +
                     "(" + branchName.toLowerCase() + ") will due on " + dueDate + ". Please do the needful actions.")
             val c = Calendar.getInstance()
@@ -182,6 +194,22 @@ class DuedateAdapter(internal val mContext: Context, internal val jsInfo: JSONAr
             ll_ok.setOnClickListener {
                 //  alertDialog.dismiss();
                 if (newDate!!.after(datecurrent)) {
+
+//                    val inFormat = SimpleDateFormat("dd-MM-yyyy")
+//                    val date = inFormat.parse(etdate!!.text.toString())
+
+                    val dates1 = etdate!!.text.toString()
+                    val dateParts = dates1.split("-").toTypedArray()
+
+                    day = dateParts[0].toInt()
+                    month = dateParts[1].toInt()
+                    yr = dateParts[2].toInt()
+
+                    Log.e("TAG","day    201   "+day)
+                    Log.e("TAG","month  201   "+month)
+                    Log.e("TAG","year   201   "+yr)
+
+
                     addEvent(yr, month, day, hr, min, etdis.text.toString(), title + " Due Notification")
                     alertDialog.dismiss()
                 }
@@ -199,6 +227,14 @@ class DuedateAdapter(internal val mContext: Context, internal val jsInfo: JSONAr
                             val alert = builder.create()
                             alert.show()
                         } else {
+
+                            val dates1 = etdate!!.text.toString()
+                            val dateParts = dates1.split("-").toTypedArray()
+
+                            day = dateParts[0].toInt()
+                            month = dateParts[1].toInt()
+                            yr = dateParts[2].toInt()
+
                             addEvent(yr, month, day, hr, min, etdis.text.toString(), title + " Due Notification")
                             alertDialog.dismiss()
                         }
@@ -277,32 +313,78 @@ class DuedateAdapter(internal val mContext: Context, internal val jsInfo: JSONAr
         if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions((mContext as Activity?)!!, arrayOf(Manifest.permission.WRITE_CALENDAR), 1)
         }
-        val cr: ContentResolver = mContext.getContentResolver()
-        val beginTime = Calendar.getInstance()
-        beginTime[2019, 11 - 1, 28, 9] = 30
-        val endTime = Calendar.getInstance()
-        endTime[iyr, imnth, iday, ihour] = imin
-        val values = ContentValues()
-        values.put(CalendarContract.Events.DTSTART, endTime.timeInMillis)
-        values.put(CalendarContract.Events.DTEND, endTime.timeInMillis)
-        values.put(CalendarContract.Events.TITLE, Title)
-        values.put(CalendarContract.Events.DESCRIPTION, "[ $descriptn ]")
-        values.put(CalendarContract.Events.CALENDAR_ID, 1)
-        val tz = TimeZone.getDefault()
-        values.put(CalendarContract.Events.EVENT_TIMEZONE, tz.id)
-        values.put(CalendarContract.Events.EVENT_LOCATION, "India")
-        val uri = cr.insert(CalendarContract.Events.CONTENT_URI, values)
-        val reminders = ContentValues()
-        reminders.put(CalendarContract.Reminders.EVENT_ID, uri!!.lastPathSegment)
-        reminders.put(CalendarContract.Reminders.METHOD, CalendarContract.Reminders.METHOD_ALERT)
-        reminders.put(CalendarContract.Reminders.MINUTES, 10)
-        cr.insert(CalendarContract.Reminders.CONTENT_URI, reminders)
-        val builder = AlertDialog.Builder(mContext)
-        builder.setMessage("Due date reminder set on calender successfully.")
+
+        try {
+//            val cr: ContentResolver = mContext.getContentResolver()
+//            val beginTime = Calendar.getInstance()
+//            beginTime[iyr, imnth, iday, ihour] = imin
+//            beginTime[2019, 11 - 1, 28, 9] = 30
+//            val endTime = Calendar.getInstance()
+//            endTime[iyr, imnth, iday, ihour] = imin
+//            val values = ContentValues()
+//            values.put(CalendarContract.Events.DTSTART, endTime.timeInMillis)
+//            values.put(CalendarContract.Events.DTEND, endTime.timeInMillis)
+//            values.put(CalendarContract.Events.TITLE, Title)
+//            values.put(CalendarContract.Events.DESCRIPTION, "[ $descriptn ]")
+//            values.put(CalendarContract.Events.CALENDAR_ID, 1)
+//            val tz = TimeZone.getDefault()
+//            values.put(CalendarContract.Events.EVENT_TIMEZONE, tz.id)
+//            values.put(CalendarContract.Events.EVENT_LOCATION, "India")
+//            val uri = cr.insert(CalendarContract.Events.CONTENT_URI, values)
+//            val reminders = ContentValues()
+//            reminders.put(CalendarContract.Reminders.EVENT_ID, uri!!.lastPathSegment)
+//            reminders.put(CalendarContract.Reminders.METHOD, CalendarContract.Reminders.METHOD_ALERT)
+//            reminders.put(CalendarContract.Reminders.MINUTES, 10)
+//            cr.insert(CalendarContract.Reminders.CONTENT_URI, reminders)
+//            val builder = AlertDialog.Builder(mContext)
+//            builder.setMessage("Due date reminder set on calender successfully.")
+//                .setCancelable(false)
+//                .setPositiveButton("OK") { dialog, id -> dialog.dismiss() }
+//            val alert = builder.create()
+//            alert.show()
+
+
+            val cal = Calendar.getInstance()
+            val EVENTS_URI: Uri = Uri.parse(getCalendarUriBase(true).toString() + "events")
+            val cr: ContentResolver = mContext.getContentResolver()
+            val endTime = Calendar.getInstance()
+            endTime[iyr, imnth-1, iday, ihour] = imin
+
+            val timeZone = TimeZone.getDefault()
+
+            var values = ContentValues()
+            values.put(CalendarContract.Events.CALENDAR_ID, 1)
+            values.put(CalendarContract.Events.TITLE,Title)
+            values.put(CalendarContract.Events.DESCRIPTION, "[ $descriptn ]")
+            values.put(CalendarContract.Events.ALL_DAY, 0)
+//            values.put(CalendarContract.Events.DTSTART, endTime.timeInMillis+ 1 * 60 * 1000)
+//            values.put(CalendarContract.Events.DTEND, endTime.timeInMillis+ 1 * 60 * 1000)
+            values.put(CalendarContract.Events.DTSTART, endTime.timeInMillis)
+            values.put(CalendarContract.Events.DTEND, endTime.timeInMillis)
+            values.put(CalendarContract.Events.EVENT_TIMEZONE, timeZone.id)
+            values.put(CalendarContract.Events.HAS_ALARM, 1)
+            val event: Uri? = cr.insert(EVENTS_URI, values)
+
+          //  Toast.makeText(mContext, "Event added :: ID :: " + event!!.getLastPathSegment(), Toast.LENGTH_SHORT).show()
+
+            val REMINDERS_URI: Uri = Uri.parse(getCalendarUriBase(true).toString() + "reminders")
+            values = ContentValues()
+            values.put(Reminders.EVENT_ID, event!!.getLastPathSegment()!!.toLong())
+            values.put(Reminders.METHOD, Reminders.METHOD_ALERT)
+            values.put(Reminders.MINUTES, 10)
+            cr.insert(REMINDERS_URI, values)
+            Log.e("TAG","Success  1963    "+endTime.time)
+            val builder = AlertDialog.Builder(mContext)
+            builder.setMessage("Due date reminder set on calender successfully.")
                 .setCancelable(false)
                 .setPositiveButton("OK") { dialog, id -> dialog.dismiss() }
-        val alert = builder.create()
-        alert.show()
+            val alert = builder.create()
+            alert.show()
+        }
+        catch (e: Exception){
+            Log.e("TAG","Exception  1964    "+e.toString())
+        }
+
     }
 
 
@@ -333,6 +415,21 @@ class DuedateAdapter(internal val mContext: Context, internal val jsInfo: JSONAr
             addReminder = v.findViewById(R.id.addReminder)
 
         }
+    }
+
+    private fun getCalendarUriBase(eventUri: Boolean): String? {
+        var calendarURI: Uri? = null
+        try {
+            calendarURI = if (Build.VERSION.SDK_INT <= 7) {
+                if (eventUri) Uri.parse("content://calendar/") else Uri.parse("content://calendar/calendars")
+            } else {
+                if (eventUri) Uri.parse("content://com.android.calendar/") else Uri
+                    .parse("content://com.android.calendar/calendars")
+            }
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
+        return calendarURI.toString()
     }
 
 

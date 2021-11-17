@@ -15,10 +15,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
-import com.perfect.nbfcmscore.Activity.AccountDetailsActivity
-import com.perfect.nbfcmscore.Activity.OTPActivity
-import com.perfect.nbfcmscore.Activity.WelcomeActivity
-import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.R
 import org.json.JSONArray
 import org.json.JSONException
