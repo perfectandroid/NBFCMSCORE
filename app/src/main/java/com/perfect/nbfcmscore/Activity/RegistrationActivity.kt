@@ -119,7 +119,7 @@ class RegistrationActivity : AppCompatActivity()  , View.OnClickListener {
     }
 
     private fun getRegister() {
-        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF135, 0)
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {

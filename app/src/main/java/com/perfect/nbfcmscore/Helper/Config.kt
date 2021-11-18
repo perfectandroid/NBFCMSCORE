@@ -163,7 +163,6 @@ object Config {
     const val SHARED_PREF132= "Last3Months"
     const val SHARED_PREF133= "Last6Months"
     const val SHARED_PREF134= "Last1Year"
-    const val SHARED_PREF135= "baseurl"
 
     const val SHARED_PREF135= "SelectAccount"
     const val SHARED_PREF136= "SelectSender"
@@ -196,6 +195,7 @@ object Config {
     const val SHARED_PREF160= "BeneficiaryCNo"
     const val SHARED_PREF161= "ConfirmBeneficiaryACNo"
     const val SHARED_PREF162= "SaveBeneficiaryForFuture"
+    const val SHARED_PREF163= "baseurl"
 
 
 
