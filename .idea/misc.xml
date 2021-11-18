@@ -18,7 +18,9 @@
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_virtual.xml" value="0.29635416666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/fragment_moreoption.xml" value="0.3026041666666667" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/fragment_statementdownloadview.xml" value="0.31927083333333334" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/passbook_listrow.xml" value="0.29739583333333336" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/rv_account_listing.xml" value="0.27291666666666664" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/rv_ministatement.xml" value="0.29739583333333336" />
       </map>
     </option>
   </component>
