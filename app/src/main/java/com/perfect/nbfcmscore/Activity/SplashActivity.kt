@@ -211,6 +211,11 @@ class SplashActivity : AppCompatActivity() {
                                     IsNBFCEditer.putString("IsNBFC", jobjt.getString("IsNBFC"))
                                     IsNBFCEditer.commit()
 
+                                    val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF135,0)
+                                    val baseurlSPEditer = baseurlSP.edit()
+                                    baseurlSPEditer.putString("baseurl", Config.BASE_URL)
+                                    baseurlSPEditer.commit()
+
                                     try {
                                         val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
                                         PicassoTrustAll.getInstance(this@SplashActivity)!!.load(imagepath).error(android.R.color.transparent).into(imglogo!!)
