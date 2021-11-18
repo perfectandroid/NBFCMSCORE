@@ -18,6 +18,7 @@
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/tab_selector_round.xml" value="0.20677083333333332" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_accountdetails.xml" value="0.33" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_branch_detail.xml" value="0.20520833333333333" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_contactus.xml" value="0.29375" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_duedate.xml" value="0.35104166666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_enquiry.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_feedback.xml" value="0.2526041666666667" />
@@ -31,6 +32,7 @@
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_quickbalance.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_recharge.xml" value="0.2984375" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_virtual.xml" value="0.29635416666666664" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_welcome.xml" value="0.29375" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/adapter_branch_list.xml" value="0.20520833333333333" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/fragment_moreoption.xml" value="0.3026041666666667" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/fragment_statementdownloadview.xml" value="0.31927083333333334" />
@@ -38,6 +40,7 @@
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/passbook_listrow.xml" value="0.29739583333333336" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/reminder_popup.xml" value="0.2526041666666667" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/rv_account_listing.xml" value="0.27291666666666664" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/rv_language_listing.xml" value="0.29375" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/rv_ministatement.xml" value="0.29739583333333336" />
       </map>
     </option>
