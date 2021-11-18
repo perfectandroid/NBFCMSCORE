@@ -219,7 +219,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         txtv_accnt!!.setText(ID_Accnt.getString("Account",null))
         tv_viewall!!.setText(ID_Viewall.getString("ViewAllAccounts",null))
         txtv_availbal!!.setText(ID_Availbal.getString("AvailableBalance",null))
-        tv_lastlogin!!.setText(ID_Lastlog.getString("LastLogin",null))
+        val LastLoginTimeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF29,0)
+        tv_lastlogin!!.setText(ID_Lastlog.getString("LastLogin",null)+" : "+LastLoginTimeSP.getString("LastLoginTime",""))
 
         val ID_Accntdetail = applicationContext.getSharedPreferences(Config.SHARED_PREF121,0)
         val ID_Fundtrans = applicationContext.getSharedPreferences(Config.SHARED_PREF122,0)
