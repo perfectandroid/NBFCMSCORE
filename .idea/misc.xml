@@ -17,6 +17,7 @@
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/tab_selector_round.xml" value="0.20677083333333332" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_accountdetails.xml" value="0.33" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_duedate.xml" value="0.35104166666666664" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_enquiry.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_feedback.xml" value="0.2526041666666667" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_goldslabestimator.xml" value="0.2526041666666667" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_home.xml" value="0.20520833333333333" />
@@ -37,7 +38,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
