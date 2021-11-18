@@ -99,6 +99,7 @@ class AccountLsitAdaptor(internal val mContext: Context, internal val jsInfo: JS
                       intent.putExtra("EnableDownloadStatement", jsonObject!!.getString("EnableDownloadStatement"))
                       intent.putExtra("IsDue", jsonObject!!.getString("IsDue"))
                       intent.putExtra("EnableLoanSlab", jsonObject!!.getString("EnableLoanSlab"))
+                      intent.putExtra("ImagePath", jsonObject!!.getString("ImagePath"))
                       v.context.startActivity(intent)
                     }
                 }

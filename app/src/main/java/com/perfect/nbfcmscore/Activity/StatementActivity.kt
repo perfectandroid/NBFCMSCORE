@@ -200,12 +200,29 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
                 act_account!!.showDropDown()
             }
             R.id.edt_fromDate ->{
+                rad_last_month!!.isChecked =false
+                rad_last_3_month!!.isChecked =false
+                rad_last_6_month!!.isChecked =false
+                rad_last_12_month!!.isChecked =false
+
                fromDatePicker()
             }
             R.id.edt_toDate ->{
+
+                rad_last_month!!.isChecked =false
+                rad_last_3_month!!.isChecked =false
+                rad_last_6_month!!.isChecked =false
+                rad_last_12_month!!.isChecked =false
+
                 toDatePicker()
             }
             R.id.rad_last_month ->{
+
+                FromDate = ""
+                ToDate = ""
+                edt_fromDate!!.setText("")
+                edt_toDate!!.setText("")
+
                 val calendar: Calendar = Calendar.getInstance()
                 calendar.add(Calendar.MONTH, -1)
                 calendar.set(Calendar.DATE, calendar.getActualMinimum(Calendar.DAY_OF_MONTH))
@@ -226,6 +243,12 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
                 Log.e(TAG,"nextMonthLastDay    1061   "+LastDay+"   "+ToDate)
             }
             R.id.rad_last_3_month ->{
+
+                FromDate = ""
+                ToDate = ""
+                edt_fromDate!!.setText("")
+                edt_toDate!!.setText("")
+
                 val calendar: Calendar = Calendar.getInstance()
                 calendar.add(Calendar.MONTH, -3)
                 calendar.set(Calendar.DATE, calendar.getActualMinimum(Calendar.DAY_OF_MONTH))
@@ -249,6 +272,13 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
                 Log.e(TAG,"nextMonthLastDay    1063   "+LastDay+"   "+ToDate)
             }
             R.id.rad_last_6_month ->{
+
+
+                FromDate = ""
+                ToDate = ""
+                edt_fromDate!!.setText("")
+                edt_toDate!!.setText("")
+
                 val calendar: Calendar = Calendar.getInstance()
                 calendar.add(Calendar.MONTH, -6)
                 calendar.set(Calendar.DATE, calendar.getActualMinimum(Calendar.DAY_OF_MONTH))
@@ -271,6 +301,12 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
                 Log.e(TAG,"nextMonthLastDay    1066   "+LastDay+"   "+ToDate)
             }
             R.id.rad_last_12_month ->{
+
+                FromDate = ""
+                ToDate = ""
+                edt_fromDate!!.setText("")
+                edt_toDate!!.setText("")
+
                 val calendar: Calendar = Calendar.getInstance()
                 calendar.add(Calendar.MONTH, -12)
                 calendar.set(Calendar.DATE, calendar.getActualMinimum(Calendar.DAY_OF_MONTH))
@@ -295,13 +331,28 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
 
             R.id.tv_view ->{
                 docType = "1"
-               validation()
+                validation1()
             }
             R.id.tv_download ->{
                 docType = "2"
-                validation()
+                validation1()
             }
 
+        }
+    }
+
+    private fun validation1() {
+        if (rad_last_month!!.isChecked || rad_last_3_month!!.isChecked || rad_last_6_month!!.isChecked || rad_last_12_month!!.isChecked){
+            validation()
+        }
+        else if (edt_fromDate!!.text.toString().equals("")){
+            CustomBottomSheeet.Show(this@StatementActivity,"Select From Date","0")
+        }
+        else if (edt_toDate!!.text.toString().equals("")){
+            CustomBottomSheeet.Show(this@StatementActivity,"Select End Date","0")
+        }
+        else {
+            validation()
         }
     }
 

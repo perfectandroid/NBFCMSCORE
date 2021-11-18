@@ -73,9 +73,12 @@ class GoldSlabEstimatorActivity : AppCompatActivity()  , View.OnClickListener {
                     try {
                         val TokenSP = applicationContext.getSharedPreferences(Config.SHARED_PREF8, 0)
                         val Token = TokenSP.getString("Token", null)
+                        val FK_CustomerSP = this.applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
+                        val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("23"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
                         requestObject1.put("Goldweight", MscoreApplication.encryptStart("10"))
                         requestObject1.put("GoldMarketValue", MscoreApplication.encryptStart("2500"))
                         requestObject1.put(

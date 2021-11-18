@@ -165,6 +165,38 @@ object Config {
     const val SHARED_PREF134= "Last1Year"
     const val SHARED_PREF135= "baseurl"
 
+    const val SHARED_PREF135= "SelectAccount"
+    const val SHARED_PREF136= "SelectSender"
+    const val SHARED_PREF137= "SelectReceiver"
+    const val SHARED_PREF138= "AddNewSender"
+    const val SHARED_PREF139= "AddNewReceiver"
+    const val SHARED_PREF140= "MPIN"
+    const val SHARED_PREF141= "ForgotMPIN"
+    const val SHARED_PREF142= "MAKEPAYMENT"
+    const val SHARED_PREF143= "FirstName"
+    const val SHARED_PREF144= "LastName"
+    const val SHARED_PREF145= "DOB"
+    const val SHARED_PREF146= "REGISTER"
+    const val SHARED_PREF147= "SenderName"
+    const val SHARED_PREF148= "ReceiverName"
+    const val SHARED_PREF149= "ConfirmAccountNumber"
+    const val SHARED_PREF150= "IFSCCode"
+
+    const val SHARED_PREF151= "IMPS"
+    const val SHARED_PREF152= "NEFT"
+    const val SHARED_PREF153= "RTGS"
+    const val SHARED_PREF154= "FUNDTRANSFERSTATUS"
+
+    const val SHARED_PREF155= "StatementAccountNumber"
+    const val SHARED_PREF156= "StatementSubModule"
+
+    const val SHARED_PREF157= "BeneficiaryList"
+    const val SHARED_PREF158= "AccountNumber"
+    const val SHARED_PREF159= "BeneficiaryName"
+    const val SHARED_PREF160= "BeneficiaryCNo"
+    const val SHARED_PREF161= "ConfirmBeneficiaryACNo"
+    const val SHARED_PREF162= "SaveBeneficiaryForFuture"
+
 
 
     fun getHostnameVerifier(): HostnameVerifier {

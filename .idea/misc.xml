@@ -5,11 +5,27 @@
       <map>
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/bg_grey_border.xml" value="0.2824074074074074" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/main_bglight.xml" value="0.3828125" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/tab_bg1.xml" value="0.3828125" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/tab_selector.xml" value="0.23072916666666668" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/tab_selector1.xml" value="0.3828125" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/tab_selector2.xml" value="0.23072916666666668" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/tab_selector_round.xml" value="0.20677083333333332" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_accountdetails.xml" value="0.33" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_duedate.xml" value="0.35104166666666664" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_feedback.xml" value="0.2526041666666667" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_goldslabestimator.xml" value="0.2526041666666667" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_home.xml" value="0.20520833333333333" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_notice.xml" value="0.35104166666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_other_bank.xml" value="0.23981481481481481" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_passbook.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_quickbalance.xml" value="0.36666666666666664" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_virtual.xml" value="0.29635416666666664" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/fragment_moreoption.xml" value="0.3026041666666667" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/fragment_statementdownloadview.xml" value="0.31927083333333334" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/goldslablist.xml" value="0.2526041666666667" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/passbook_listrow.xml" value="0.29739583333333336" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/rv_account_listing.xml" value="0.27291666666666664" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/rv_ministatement.xml" value="0.29739583333333336" />
       </map>
     </option>
   </component>

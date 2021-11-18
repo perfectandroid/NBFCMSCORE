@@ -5,6 +5,7 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
@@ -17,13 +18,16 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.perfect.nbfcmscore.Fragment.*
 import com.perfect.nbfcmscore.Helper.Config
+import com.perfect.nbfcmscore.Helper.PicassoTrustAll
 import com.perfect.nbfcmscore.R
+import java.lang.Exception
 import java.util.ArrayList
 
 class AccountDetailsActivity : AppCompatActivity() , View.OnClickListener {
     private var progressDialog: ProgressDialog? = null
 
 
+    val TAG : String? = "AccountDetailsActivity"
     var LoanType: String=""
     var Balance: String=""
     var AccountNumber: String=""
@@ -42,6 +46,7 @@ class AccountDetailsActivity : AppCompatActivity() , View.OnClickListener {
     var imgHome: ImageView? = null
     var imgloanslab: ImageView? = null
     var imgshare: ImageView? = null
+    var img_accounttype: ImageView? = null
     var tvaccounttype: TextView? = null
     var tvaccountno: TextView? = null
     var tvbal: TextView? = null
@@ -80,6 +85,25 @@ class AccountDetailsActivity : AppCompatActivity() , View.OnClickListener {
         tvaccountno!!.setText(AccountNumber)
         tvbal!!.setText(Balance)
 
+
+        try {
+            val imagepath = Config.IMAGE_URL+intent.getStringExtra("ImagePath")!!
+            Log.e(TAG,"imagepath  55   "+imagepath)
+            PicassoTrustAll.getInstance(applicationContext)!!.load(imagepath).error(android.R.color.transparent).into(img_accounttype!!)
+        }catch (e : Exception){
+
+        }
+
+        val StatemenAccountNumber = applicationContext.getSharedPreferences(Config.SHARED_PREF155, 0)
+        val StatementAccountNumberEditer = StatemenAccountNumber.edit()
+        StatementAccountNumberEditer.putString("StatementAccountNumber", AccountNumber as String)
+        StatementAccountNumberEditer.commit()
+
+        val StatementSubModule = applicationContext.getSharedPreferences(Config.SHARED_PREF156, 0)
+        val StatementSubModuleEditer = StatementSubModule.edit()
+        StatementSubModuleEditer.putString("StatementSubModule", SubModule as String)
+        StatementSubModuleEditer.commit()
+
         data =FK_Account+","+SubModule
         sendpassbookData()
 
@@ -102,6 +126,7 @@ class AccountDetailsActivity : AppCompatActivity() , View.OnClickListener {
         tvaccountno = findViewById<TextView>(R.id.tvaccountno)
         tvbal = findViewById<TextView>(R.id.tvbal)
         imgBack = findViewById<ImageView>(R.id.imgBack)
+        img_accounttype = findViewById<ImageView>(R.id.img_accounttype)
         imgBack!!.setOnClickListener(this)
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)

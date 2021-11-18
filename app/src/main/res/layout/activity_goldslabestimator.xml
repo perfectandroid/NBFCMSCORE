@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@drawable/button_corner"
+            android:background="@drawable/gray_borderdark"
             android:orientation="vertical"
             android:padding="5dp">
 
@@ -68,7 +68,7 @@
                     android:fontFamily="sans-serif-condensed-light"
                     android:gravity="center_horizontal"
                     android:text="Type Name"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <View
@@ -85,7 +85,7 @@
                     android:fontFamily="sans-serif-condensed-light"
                     android:gravity="center_horizontal"
                     android:text="Period"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <View
@@ -102,7 +102,7 @@
                     android:fontFamily="sans-serif-condensed-light"
                     android:gravity="center_horizontal"
                     android:text="Roi"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <View
@@ -119,7 +119,7 @@
                     android:fontFamily="sans-serif-condensed-light"
                     android:gravity="center_horizontal"
                     android:text="AmtOrgm"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <View
@@ -136,7 +136,7 @@
                     android:fontFamily="sans-serif-condensed-light"
                     android:gravity="center_horizontal"
                     android:text="Elg"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
                 <View
                     android:layout_width="1dp"
@@ -152,7 +152,7 @@
                     android:fontFamily="sans-serif-condensed-light"
                     android:gravity="center_horizontal"
                     android:text="Elg Loan Amt"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 <View
                     android:layout_width="1dp"
@@ -168,7 +168,7 @@
                     android:fontFamily="sans-serif-condensed-light"
                     android:gravity="center_horizontal"
                     android:text="Loan Limit Amt"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
 

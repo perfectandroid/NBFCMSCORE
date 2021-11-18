@@ -44,7 +44,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
     var tv_header: TextView? = null
     var submode: String? = null
     var tv_beneficiaryname: TextView? = null
-
+    var txtTrans: TextView? = null
 
     var tv_beneficiarylist: TextView? = null
 
@@ -106,7 +106,46 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
             tv_beneficiaryname!!.setText("RTGS")
         }
 
+        val ID_header = applicationContext.getSharedPreferences(Config.SHARED_PREF122,0)
+        tv_header!!.setText(ID_header.getString("FundTransfer",null))
+
+        val ID_Hist = applicationContext.getSharedPreferences(Config.SHARED_PREF72,0)
+        txtTrans!!.setText(ID_Hist.getString("History",null))
+
+        val ID_Benflist = applicationContext.getSharedPreferences(Config.SHARED_PREF157,0)
+        tv_beneficiarylist!!.setText(ID_Benflist.getString("BeneficiaryList",null))
+
+        val ID_Accno = applicationContext.getSharedPreferences(Config.SHARED_PREF158,0)
+        tie_accountnumber!!.setHint(ID_Accno.getString("AccountNumber",null))
+
+        val ID_Benfname = applicationContext.getSharedPreferences(Config.SHARED_PREF159,0)
+        tie_beneficiary!!.setHint(ID_Benfname.getString("BeneficiaryName",null))
+
+        val ID_Benfaccno = applicationContext.getSharedPreferences(Config.SHARED_PREF160,0)
+        tie_beneficiary_aacno!!.setHint(ID_Benfaccno.getString("BeneficiaryCNo",null))
+
+
+        val ID_confBenfacc = applicationContext.getSharedPreferences(Config.SHARED_PREF161,0)
+        tie_Conf_beneficiary_aacno!!.setHint(ID_confBenfacc.getString("ConfirmBeneficiaryACNo",null))
+
+
+        val ID_ifsc = applicationContext.getSharedPreferences(Config.SHARED_PREF150,0)
+        tie_ifsc_code!!.setHint(ID_ifsc.getString("IFSCCode",null))
+
+        val ID_amtpyble = applicationContext.getSharedPreferences(Config.SHARED_PREF95,0)
+        tie_amount!!.setHint(ID_amtpyble.getString("AmountPayable",null))
+
+        val ID_chkbenf = applicationContext.getSharedPreferences(Config.SHARED_PREF162,0)
+        chk_beneficiary!!.setText(ID_chkbenf.getString("SaveBeneficiaryForFuture",null))
+
+        val ID_Pay = applicationContext.getSharedPreferences(Config.SHARED_PREF97,0)
+        but_pay!!.setText(ID_Pay.getString("PAY",null))
+
+
+
+
         getOwnAccount()
+
 
 //        tie_beneficiary!!.isEnabled = false
 
@@ -162,10 +201,12 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
     }
 
     private fun setInitialise() {
+
         im_back = findViewById<ImageView>(R.id.im_back)
         im_home = findViewById<ImageView>(R.id.im_home)
         tv_header = findViewById<TextView>(R.id.tv_header)
         tv_beneficiaryname = findViewById<TextView>(R.id.tv_beneficiaryname)
+        txtTrans = findViewById<TextView>(R.id.txtTrans)
 
         tv_beneficiarylist = findViewById<TextView>(R.id.tv_beneficiarylist)
 

@@ -96,7 +96,7 @@ class PassbookTranscationListAdapter(internal val mContext: Context, internal va
                     )
                     holder.trans_amount!!.setTextColor(
                             ContextCompat.getColor(
-                                    mContext!!, R.color.grey
+                                    mContext!!, R.color.redDark
                             )
                     )
                 }
