@@ -80,6 +80,16 @@ class AccountDetailsActivity : AppCompatActivity() , View.OnClickListener {
         tvaccountno!!.setText(AccountNumber)
         tvbal!!.setText(Balance)
 
+        val StatemenAccountNumber = applicationContext.getSharedPreferences(Config.SHARED_PREF155, 0)
+        val StatementAccountNumberEditer = StatemenAccountNumber.edit()
+        StatementAccountNumberEditer.putString("StatementAccountNumber", AccountNumber as String)
+        StatementAccountNumberEditer.commit()
+
+        val StatementSubModule = applicationContext.getSharedPreferences(Config.SHARED_PREF156, 0)
+        val StatementSubModuleEditer = StatementSubModule.edit()
+        StatementSubModuleEditer.putString("StatementSubModule", SubModule as String)
+        StatementSubModuleEditer.commit()
+
         data =FK_Account+","+SubModule
         sendpassbookData()
 

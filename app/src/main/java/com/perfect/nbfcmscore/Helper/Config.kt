@@ -188,6 +188,9 @@ object Config {
     const val SHARED_PREF153= "RTGS"
     const val SHARED_PREF154= "FUNDTRANSFERSTATUS"
 
+    const val SHARED_PREF155= "StatementAccountNumber"
+    const val SHARED_PREF156= "StatementSubModule"
+
 
 
 
