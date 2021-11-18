@@ -181,5 +181,14 @@ interface ApiInterface {
     @POST("AccountSummary/LoanRequseStatusDetails")
     fun getLoanRequseStatusDetails(@Body body: RequestBody): Call<String>
 
+    @POST("AccountSummary/VerifyReceiverOTP")
+    fun getVerifyReceiverotp(@Body body: RequestBody): Call<String>
+
+    @POST("AccountSummary/VerifySenderOTP")
+    fun getVerifySenderotp(@Body body: RequestBody): Call<String>
+
+    @POST("AccountSummary/VerifyPaymentOTP")
+    fun getVerifyPaymentotp(@Body body: RequestBody): Call<String>
+
 }
 

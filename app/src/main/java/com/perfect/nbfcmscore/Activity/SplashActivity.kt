@@ -46,6 +46,8 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
       //  doSplash()
 
+        Log.e("BASE_URL","BASE_URL  49    "+Config.BASE_URL)
+
         tv_error_message = findViewById<TextView>(R.id.tv_error_message)
         btn_proceed = findViewById<Button>(R.id.btn_proceed)
 

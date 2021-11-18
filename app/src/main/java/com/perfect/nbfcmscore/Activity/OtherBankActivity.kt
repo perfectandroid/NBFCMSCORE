@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.R
 
 class OtherBankActivity : AppCompatActivity()  , View.OnClickListener{
@@ -23,8 +24,10 @@ class OtherBankActivity : AppCompatActivity()  , View.OnClickListener{
     var ll_neft: LinearLayout? = null
     var ll_fundtransfer: LinearLayout? = null
     var ll_rtgs: LinearLayout? = null
-
-
+    var tv_imps: TextView? = null
+    var tv_neft: TextView? = null
+    var tv_rtgs: TextView? = null
+    var tv_fndtransfer: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,11 +36,32 @@ class OtherBankActivity : AppCompatActivity()  , View.OnClickListener{
         setInitialise()
         setRegister()
 
+        val ImpsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF151, 0)
+        tv_imps!!.setText(ImpsSP.getString("IMPS", null))
+
+        val NeftSP = applicationContext.getSharedPreferences(Config.SHARED_PREF152, 0)
+        tv_neft!!.setText(NeftSP.getString("NEFT", null))
+
+        val RtgsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF153, 0)
+        tv_rtgs!!.setText(RtgsSP.getString("RTGS", null))
+
+        val fundtransfrstatsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF154, 0)
+        tv_fndtransfer!!.setText(fundtransfrstatsSP.getString("FUNDTRANSFERSTATUS", null))
+
+        val OthrbnkSP = applicationContext.getSharedPreferences(Config.SHARED_PREF64, 0)
+        tv_header!!.setText(OthrbnkSP.getString("OtherBank", null))
+
     }
 
     private fun setInitialise() {
         im_back = findViewById<ImageView>(R.id.im_back)
         im_home = findViewById<ImageView>(R.id.im_home)
+
+        tv_imps = findViewById<TextView>(R.id.tv_imps)
+        tv_neft = findViewById<TextView>(R.id.tv_neft)
+        tv_rtgs = findViewById<TextView>(R.id.tv_rtgs)
+        tv_fndtransfer = findViewById<TextView>(R.id.tv_fndtransfer)
+
 
         tv_header = findViewById<TextView>(R.id.tv_header)
         ll_imps = findViewById<LinearLayout>(R.id.ll_imps)

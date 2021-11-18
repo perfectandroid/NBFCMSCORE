@@ -711,6 +711,108 @@ class LanguageLsitAdaptor(internal val mContext: Context, internal val jsInfo: J
                                       ID_lastoneEditer.putString("Last1Year", jresult3.get("Last1Year") as String)
                                       ID_lastoneEditer.commit()
 
+                                    val ID_selctacc = mContext.getSharedPreferences(Config.SHARED_PREF135, 0)
+                                    val ID_selctaccEditer = ID_selctacc.edit()
+                                    ID_selctaccEditer.putString("SelectAccount", jresult3.get("SelectAccount") as String)
+                                    ID_selctaccEditer.commit()
+
+                                    val ID_selctsndr = mContext.getSharedPreferences(Config.SHARED_PREF136, 0)
+                                    val ID_selctsndrEditer = ID_selctsndr.edit()
+                                    ID_selctsndrEditer.putString("SelectSender", jresult3.get("SelectSender") as String)
+                                    ID_selctsndrEditer.commit()
+
+                                    val ID_selctrecvr = mContext.getSharedPreferences(Config.SHARED_PREF137, 0)
+                                    val ID_selctrecvrEditer = ID_selctrecvr.edit()
+                                    ID_selctrecvrEditer.putString("SelectReceiver", jresult3.get("SelectReceiver") as String)
+                                    ID_selctrecvrEditer.commit()
+
+                                    val ID_addnewsndr = mContext.getSharedPreferences(Config.SHARED_PREF138, 0)
+                                    val ID_addnewsndrEditer = ID_addnewsndr.edit()
+                                    ID_addnewsndrEditer.putString("AddNewSender", jresult3.get("AddNewSender") as String)
+                                    ID_addnewsndrEditer.commit()
+
+                                    val ID_addnewrecvr = mContext.getSharedPreferences(Config.SHARED_PREF139, 0)
+                                    val ID_addnewrecvrEditer = ID_addnewrecvr.edit()
+                                    ID_addnewrecvrEditer.putString("AddNewReceiver", jresult3.get("AddNewReceiver") as String)
+                                    ID_addnewrecvrEditer.commit()
+
+                                    val ID_mpin = mContext.getSharedPreferences(Config.SHARED_PREF140, 0)
+                                    val ID_mpinEditer = ID_mpin.edit()
+                                    ID_mpinEditer.putString("MPIN", jresult3.get("MPIN") as String)
+                                    ID_mpinEditer.commit()
+
+
+                                    val ID_frgtmpin = mContext.getSharedPreferences(Config.SHARED_PREF141, 0)
+                                    val ID_frgtmpinEditer = ID_frgtmpin.edit()
+                                    ID_frgtmpinEditer.putString("ForgotMPIN", jresult3.get("ForgotMPIN") as String)
+                                    ID_frgtmpinEditer.commit()
+
+                                    val ID_Makepaymnt = mContext.getSharedPreferences(Config.SHARED_PREF142, 0)
+                                    val ID_MakepaymntEditer = ID_Makepaymnt.edit()
+                                    ID_MakepaymntEditer.putString("MAKEPAYMENT", jresult3.get("MAKEPAYMENT") as String)
+                                    ID_MakepaymntEditer.commit()
+
+                                    val ID_FirstName = mContext.getSharedPreferences(Config.SHARED_PREF143, 0)
+                                    val ID_FirstNameEditer = ID_FirstName.edit()
+                                    ID_FirstNameEditer.putString("FirstName", jresult3.get("FirstName") as String)
+                                    ID_FirstNameEditer.commit()
+
+                                    val ID_LastName = mContext.getSharedPreferences(Config.SHARED_PREF144, 0)
+                                    val ID_LastNameEditer = ID_LastName.edit()
+                                    ID_LastNameEditer.putString("LastName", jresult3.get("LastName") as String)
+                                    ID_LastNameEditer.commit()
+
+                                    val ID_Dob = mContext.getSharedPreferences(Config.SHARED_PREF145, 0)
+                                    val ID_DobEditer = ID_Dob.edit()
+                                    ID_DobEditer.putString("DOB", jresult3.get("DOB") as String)
+                                    ID_DobEditer.commit()
+
+                                    val ID_Registr = mContext.getSharedPreferences(Config.SHARED_PREF146, 0)
+                                    val ID_RegistrEditer = ID_Registr.edit()
+                                    ID_RegistrEditer.putString("REGISTER", jresult3.get("REGISTER") as String)
+                                    ID_RegistrEditer.commit()
+
+                                    val ID_SendrName = mContext.getSharedPreferences(Config.SHARED_PREF147, 0)
+                                    val ID_SendrNameEditer = ID_SendrName.edit()
+                                    ID_SendrNameEditer.putString("SenderName", jresult3.get("SenderName") as String)
+                                    ID_SendrNameEditer.commit()
+
+                                    val ID_ReceivrName = mContext.getSharedPreferences(Config.SHARED_PREF148, 0)
+                                    val ID_ReceivrNameEditer = ID_ReceivrName.edit()
+                                    ID_ReceivrNameEditer.putString("ReceiverName", jresult3.get("ReceiverName") as String)
+                                    ID_ReceivrNameEditer.commit()
+
+                                    val ID_confrmacc = mContext.getSharedPreferences(Config.SHARED_PREF149, 0)
+                                    val ID_confrmaccEditer = ID_confrmacc.edit()
+                                    ID_confrmaccEditer.putString("ConfirmAccountNumber", jresult3.get("ConfirmAccountNumber") as String)
+                                    ID_confrmaccEditer.commit()
+
+                                    val ID_ifsc = mContext.getSharedPreferences(Config.SHARED_PREF150, 0)
+                                    val ID_ifscEditer = ID_ifsc.edit()
+                                    ID_ifscEditer.putString("IFSCCode", jresult3.get("IFSCCode") as String)
+                                    ID_ifscEditer.commit()
+
+                                    val ID_imps = mContext.getSharedPreferences(Config.SHARED_PREF151, 0)
+                                    val ID_impsEditer = ID_imps.edit()
+                                    ID_impsEditer.putString("IMPS", jresult3.get("IMPS") as String)
+                                    ID_impsEditer.commit()
+
+                                    val ID_neft = mContext.getSharedPreferences(Config.SHARED_PREF152, 0)
+                                    val ID_neftEditer = ID_neft.edit()
+                                    ID_neftEditer.putString("NEFT", jresult3.get("NEFT") as String)
+                                    ID_neftEditer.commit()
+
+                                    val ID_rtgs = mContext.getSharedPreferences(Config.SHARED_PREF153, 0)
+                                    val ID_rtgsEditer = ID_rtgs.edit()
+                                    ID_rtgsEditer.putString("RTGS", jresult3.get("RTGS") as String)
+                                    ID_rtgsEditer.commit()
+
+                                    val ID_fundstat = mContext.getSharedPreferences(Config.SHARED_PREF154, 0)
+                                    val ID_fundstatEditer = ID_fundstat.edit()
+                                    ID_fundstatEditer.putString("FUNDTRANSFERSTATUS", jresult3.get("FUNDTRANSFERSTATUS") as String)
+                                    ID_fundstatEditer.commit()
+
+
                                     // mContext.startActivity(Intent(mContext, WelcomeActivity::class.java))
 
 

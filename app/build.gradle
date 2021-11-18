@@ -94,5 +94,8 @@ dependencies {
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
     implementation 'com.mindorks.android:prdownloader:0.6.0'
+    implementation 'com.applandeo:material-calendar-view:1.7.0'
+    implementation 'com.github.markj:CompactCalendarView:2.0.2.2'
+    implementation 'com.github.mahimrocky:EventCalender:v1.0.0'
 
 }

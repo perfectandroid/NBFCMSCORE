@@ -51,7 +51,7 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
     private var jresult: JSONArray? = null
     private var jresult2: JSONArray? = null
     private var jresult3: JSONArray? = null
-    var barChart: BarChart? = null
+    var linechart1: LineChart? = null
     var linechart: LineChart? = null
     val color = intArrayOf(
             R.color.colorPrimary,
@@ -323,7 +323,7 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
     private fun setRegviews() {
         imgBack = findViewById<ImageView>(R.id.imgBack)
         imgBack!!.setOnClickListener(this)
-        barChart = findViewById(R.id.barchart);
+        linechart1 = findViewById(R.id.linechart1);
 
         rvOverduelist = findViewById<RecyclerView>(R.id.rvOverduelist)
 
@@ -431,7 +431,8 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                                     val jsonobj2 = JSONObject(jsonObj1.toString())
 
                                     jresult2 = jsonobj2.getJSONArray("DashBoardLabilityDetails")
-                                    val entries: ArrayList<BarEntry> = ArrayList()
+                                    var entries = ArrayList<Entry>()
+                                   // val entries: ArrayList<BarEntry> = ArrayList()
                                     val labels = ArrayList<String>()
 
                                     for (x in 0 until jresult2!!.length()) {
@@ -441,15 +442,29 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                                         val str1 = json.getString("Account")
                                         val tokens = StringTokenizer(str1, "(")
                                         val first = tokens.nextToken() // this will contain "Fruit"
-                                        entries.add(BarEntry(str.toFloat(), 0))
+                                        entries.add(Entry(str.toFloat(), 0))
+                                       // entries.add(BarEntry(str.toFloat(), 0))
                                         labels.add(first)
                                     }
-                                    val dataset = BarDataSet(entries, "")
+                                    /*val dataset = BarDataSet(entries, "")
                                     val bardata = BarData(labels, dataset)
                                     dataset.setColors(ColorTemplate.JOYFUL_COLORS);
                                     barChart!!.setData(bardata);
                                     barChart!!.animateY(5000);
-                                    barChart!!.animateX(3000);
+                                    barChart!!.animateX(3000);*/
+
+
+                                    val dataset = LineDataSet(entries, "")
+                                    val linedata = LineData(labels, dataset)
+
+                                    dataset.setColors(ColorTemplate.COLORFUL_COLORS);
+                                    linechart1!!.setData(linedata);
+                                    linechart1!!.animateY(5000);
+                                    linechart1!!.animateX(3000);
+                                    /*=====for cubic form========*/
+                                    dataset.setDrawCubic(true);
+                                    /*========Fill the color below the line=========*/
+                                    dataset.setDrawFilled(true);
 
                                 } else {
                                     val builder = AlertDialog.Builder(
@@ -729,6 +744,6 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
     }
 
     override fun onNothingSelected() {
-      
+
     }
 }

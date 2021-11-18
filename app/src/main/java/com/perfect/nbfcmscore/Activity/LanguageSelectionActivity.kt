@@ -5,6 +5,7 @@ import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -115,6 +116,8 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("7"))
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey))
                         )
+
+                        Log.e("TAG", "requestObject1  language   " + requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()

@@ -98,6 +98,7 @@ class AccountLsitAdaptor(internal val mContext: Context, internal val jsInfo: JS
                       intent.putExtra("IsShareAc", jsonObject!!.getString("IsShareAc"))
                       intent.putExtra("EnableDownloadStatement", jsonObject!!.getString("EnableDownloadStatement"))
                       intent.putExtra("IsDue", jsonObject!!.getString("IsDue"))
+                      intent.putExtra("EnableLoanSlab", jsonObject!!.getString("EnableLoanSlab"))
                       v.context.startActivity(intent)
                     }
                 }
