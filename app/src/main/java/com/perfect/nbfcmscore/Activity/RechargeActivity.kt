@@ -1720,17 +1720,21 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 
                                     //  AccountNobottomSheet(jArrayAccount!!)
 
-                                } else {
-//                                    val builder = AlertDialog.Builder(
-//                                        this@RechargeActivity,
-//                                        R.style.MyDialogTheme
-//                                    )
-//                                    builder.setMessage("" + jObject.getString("EXMessage"))
-//                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-//                                    }
-//                                    val alertDialog: AlertDialog = builder.create()
-//                                    alertDialog.setCancelable(false)
-//                                    alertDialog.show()
+                                }
+                                else if(jObject.getString("StatusCode") == "-2"){
+
+                                }
+                                else {
+                                    val builder = AlertDialog.Builder(
+                                        this@RechargeActivity,
+                                        R.style.MyDialogTheme
+                                    )
+                                    builder.setMessage("" + jObject.getString("EXMessage"))
+                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                    }
+                                    val alertDialog: AlertDialog = builder.create()
+                                    alertDialog.setCancelable(false)
+                                    alertDialog.show()
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
