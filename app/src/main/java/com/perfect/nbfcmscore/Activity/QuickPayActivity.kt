@@ -1654,11 +1654,18 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                                 Log.i("Response-quickpay", response.body())
 
                                if (jObject.getString("StatusCode") == "0") {
-                                    val jsonObj1: JSONObject =
+                                    /*val jsonObj1: JSONObject =
                                             jObject.getJSONObject("QuickPayMoneyTransferPayment")
+*/
+
+                                }
+                                else if (jObject.getString("StatusCode") == "200") {
+                                   // otprefno!=0
+                                   startActivity(Intent(this@QuickPayActivity, HomeActivity::class.java))
 
 
-                                } else {
+                                }
+                                else {
                                     val builder = AlertDialog.Builder(
                                             this@QuickPayActivity,
                                             R.style.MyDialogTheme
