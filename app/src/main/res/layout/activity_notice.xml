@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@drawable/button_corner"
+            android:background="@drawable/gray_borderdark"
             android:orientation="vertical"
             android:padding="5dp">
 
@@ -67,7 +67,7 @@
                     android:fontFamily="sans-serif-condensed-light"
                     android:gravity="center_horizontal"
                     android:text="Sl No."
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <View
@@ -84,7 +84,7 @@
                     android:fontFamily="sans-serif-condensed-light"
                     android:gravity="center_horizontal"
                     android:text="Notice Type"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <View
@@ -101,7 +101,7 @@
                     android:fontFamily="sans-serif-condensed-light"
                     android:gravity="center_horizontal"
                     android:text="Account Type"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <View
@@ -118,7 +118,7 @@
                     android:fontFamily="sans-serif-condensed-light"
                     android:gravity="center_horizontal"
                     android:text="Account No."
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <View
@@ -135,7 +135,7 @@
                     android:fontFamily="sans-serif-condensed-light"
                     android:gravity="center_horizontal"
                     android:text="Notice Date"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <View
@@ -152,7 +152,7 @@
                     android:fontFamily="sans-serif-condensed-light"
                     android:gravity="center_horizontal"
                     android:text="Due Amount"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
 
