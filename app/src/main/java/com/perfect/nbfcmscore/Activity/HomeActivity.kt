@@ -89,6 +89,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var txtv_tools: TextView? = null
 
     var improfile: ImageView? = null
+    var imquit: ImageView? = null
+    var imlogout: ImageView? = null
     var im_applogo: ImageView? = null
     var tv_header: TextView? = null
     var tvuser: TextView? = null
@@ -728,6 +730,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         tvuser = findViewById(R.id.tvuser)
         llprofile = findViewById(R.id.llprofile)
         improfile = findViewById(R.id.improfile)
+        imquit = findViewById(R.id.imquit)
+        imlogout = findViewById(R.id.imlogout)
         tv_header = findViewById(R.id.tv_header)
         llloanapplication = findViewById(R.id.llloanapplication)
         lldashboard = findViewById(R.id.lldashboard)
@@ -806,6 +810,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     open fun setRegister() {
         llloanstatus!!.setOnClickListener(this)
         improfile!!.setOnClickListener(this)
+        imquit!!.setOnClickListener(this)
+        imlogout!!.setOnClickListener(this)
         lldashboard!!.setOnClickListener(this)
         llprdctdetail!!.setOnClickListener(this)
         llgoldslab!!.setOnClickListener(this)
@@ -1679,6 +1685,40 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             }
             R.id.improfile -> {
                 startActivity(Intent(this@HomeActivity, ProfileActivity::class.java))
+            }
+            R.id.imquit -> {
+               quit()
+            }
+            R.id.imlogout -> {
+                try {
+
+                    val dialogBuilder = android.app.AlertDialog.Builder(this@HomeActivity)
+                    val inflater: LayoutInflater = this@HomeActivity.getLayoutInflater()
+                    val dialogView: View = inflater.inflate(R.layout.logout_popup, null)
+                    dialogBuilder.setView(dialogView)
+                    val alertDialog = dialogBuilder.create()
+                    val tv_share = dialogView.findViewById<TextView>(R.id.tv_share)
+                    val tv_cancel = dialogView.findViewById<TextView>(R.id.tv_cancel)
+
+
+                    tv_cancel.setOnClickListener { alertDialog.dismiss() }
+                    tv_share.setOnClickListener {
+                        alertDialog.dismiss()
+                        logout()
+                        val intent = Intent(this, WelcomeActivity::class.java)
+                        intent.putExtra("from", "true")
+                        this.startActivity(intent)
+                        this.finish()
+                    }
+                    alertDialog.show()
+
+
+
+
+
+                } catch (e: java.lang.Exception) {
+                    e.printStackTrace()
+                }
             }
             R.id.llprofile -> {
                 startActivity(Intent(this@HomeActivity, ProfileActivity::class.java))
