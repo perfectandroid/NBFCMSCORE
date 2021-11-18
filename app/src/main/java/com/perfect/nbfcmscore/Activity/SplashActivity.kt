@@ -211,7 +211,7 @@ class SplashActivity : AppCompatActivity() {
                                     IsNBFCEditer.putString("IsNBFC", jobjt.getString("IsNBFC"))
                                     IsNBFCEditer.commit()
 
-                                    val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF135,0)
+                                    val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163,0)
                                     val baseurlSPEditer = baseurlSP.edit()
                                     baseurlSPEditer.putString("baseurl", Config.BASE_URL)
                                     baseurlSPEditer.commit()
