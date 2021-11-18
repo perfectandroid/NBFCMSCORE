@@ -812,6 +812,36 @@ class LanguageLsitAdaptor(internal val mContext: Context, internal val jsInfo: J
                                     ID_fundstatEditer.putString("FUNDTRANSFERSTATUS", jresult3.get("FUNDTRANSFERSTATUS") as String)
                                     ID_fundstatEditer.commit()
 
+                                    val ID_Benflist = mContext.getSharedPreferences(Config.SHARED_PREF157, 0)
+                                    val ID_BenflistEditer = ID_Benflist.edit()
+                                    ID_BenflistEditer.putString("BeneficiaryList", jresult3.get("BeneficiaryList") as String)
+                                    ID_BenflistEditer.commit()
+
+                                    val ID_acc = mContext.getSharedPreferences(Config.SHARED_PREF158, 0)
+                                    val ID_accEditer = ID_acc.edit()
+                                    ID_accEditer.putString("AccountNumber", jresult3.get("AccountNumber") as String)
+                                    ID_accEditer.commit()
+
+                                    val ID_Benfname = mContext.getSharedPreferences(Config.SHARED_PREF159, 0)
+                                    val ID_BenfnameEditer = ID_Benfname.edit()
+                                    ID_BenfnameEditer.putString("BeneficiaryName", jresult3.get("BeneficiaryName") as String)
+                                    ID_BenfnameEditer.commit()
+
+                                    val ID_Benfaccno = mContext.getSharedPreferences(Config.SHARED_PREF160, 0)
+                                    val ID_BenfaccnoEditer = ID_Benfaccno.edit()
+                                    ID_BenfaccnoEditer.putString("BeneficiaryCNo", jresult3.get("BeneficiaryCNo") as String)
+                                    ID_BenfaccnoEditer.commit()
+
+                                    val ID_Benfconfrmacc = mContext.getSharedPreferences(Config.SHARED_PREF161, 0)
+                                    val ID_BenfconfrmaccEditer = ID_Benfconfrmacc.edit()
+                                    ID_BenfconfrmaccEditer.putString("ConfirmBeneficiaryACNo", jresult3.get("ConfirmBeneficiaryACNo") as String)
+                                    ID_BenfconfrmaccEditer.commit()
+
+                                    val ID_Savedbenf = mContext.getSharedPreferences(Config.SHARED_PREF162, 0)
+                                    val ID_SavedbenfEditer = ID_Savedbenf.edit()
+                                    ID_SavedbenfEditer.putString("SaveBeneficiaryForFuture", jresult3.get("SaveBeneficiaryForFuture") as String)
+                                    ID_SavedbenfEditer.commit()
+
 
                                     // mContext.startActivity(Intent(mContext, WelcomeActivity::class.java))
 

@@ -111,6 +111,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -120,15 +121,14 @@
                     android:id="@+id/tv_beneficiaryname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:padding="5dp"
                     android:text=""
-                    android:layout_gravity="center"
-                    android:textStyle="bold"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -172,7 +172,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/colorPrimarylight"
-                        android:hint="Account Number"
+                        android:hint=""
                         android:focusable="false"
                         android:clickable="true"
                         android:background="@android:color/transparent"/>
@@ -204,7 +204,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/colorPrimarylight"
-                        android:hint="Beneficiary Name"
+                        android:hint=""
                         android:inputType="none"
                         android:textColor="@color/black"
                         android:background="@android:color/transparent"/>
@@ -236,7 +236,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/colorPrimarylight"
-                        android:hint="Beneficiary Ac/ No"
+                        android:hint=""
                         android:inputType="none"
                         android:textColor="@color/black"
                         android:background="@android:color/transparent"/>
@@ -268,7 +268,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/colorPrimarylight"
-                        android:hint="Confirm Beneficiary Ac/ No"
+                        android:hint=""
                         android:inputType="none"
                         android:textColor="@color/black"
                         android:background="@android:color/transparent"/>
@@ -300,7 +300,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/colorPrimarylight"
-                        android:hint="IFSC Code"
+                        android:hint=""
                         android:inputType="none"
                         android:textColor="@color/black"
                         android:maxLength="11"
@@ -334,7 +334,7 @@
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/colorPrimarylight"
                         android:textColor="@color/black"
-                        android:hint="Amount Payable"
+                        android:hint=""
                         android:maxLength="11"
                         android:inputType="number"
                         android:background="@android:color/transparent"/>

@@ -189,6 +189,12 @@ object Config {
     const val SHARED_PREF155= "StatementAccountNumber"
     const val SHARED_PREF156= "StatementSubModule"
 
+    const val SHARED_PREF157= "BeneficiaryList"
+    const val SHARED_PREF158= "AccountNumber"
+    const val SHARED_PREF159= "BeneficiaryName"
+    const val SHARED_PREF160= "BeneficiaryCNo"
+    const val SHARED_PREF161= "ConfirmBeneficiaryACNo"
+    const val SHARED_PREF162= "SaveBeneficiaryForFuture"
 
 
 
