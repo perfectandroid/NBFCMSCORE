@@ -90,6 +90,8 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
     }
 
     private fun getSender(firstName: String, lastName: String, mobileNumber: String, dob: String) {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@AddSender, R.style.Progress)
@@ -107,7 +109,7 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)

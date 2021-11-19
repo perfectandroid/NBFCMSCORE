@@ -81,6 +81,8 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
     }
 
     private fun getSenderReceiver() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 /*  progressDialog = ProgressDialog(this@PassbookActivity, R.style.Progress)
@@ -98,7 +100,7 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)
@@ -295,6 +297,9 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
     }
 
     private fun getReceiver(receiverName: String, mobileNumber: String, ifscCode: String, accNumber: String, confirmAccNumber: String) {
+
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@AddReceiver, R.style.Progress)
@@ -312,7 +317,7 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)

@@ -36,6 +36,10 @@ class SplashActivity : AppCompatActivity() {
     var btn_proceed: Button? = null
     var imglogo: ImageView? = null
 
+    val CERT_NAME = "staticvm.pem"  //QA
+    val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/api/"  //DEVELOPMENT
+    val IMAGE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(
@@ -45,7 +49,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
       //  doSplash()
 
-        Log.e("BASE_URL","BASE_URL  49    "+Config.BASE_URL)
+        Log.e("BASE_URL","BASE_URL  49    "+BASE_URL)
 
         tv_error_message = findViewById<TextView>(R.id.tv_error_message)
         btn_proceed = findViewById<Button>(R.id.btn_proceed)
@@ -56,7 +60,7 @@ class SplashActivity : AppCompatActivity() {
         Glide.with(this).load(R.drawable.splashgif).into(imgSplash)
         try {
             val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
-            val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+            val imagepath = IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
             PicassoTrustAll.getInstance(this@SplashActivity)!!.load(imagepath).error(android.R.color.transparent).into(imglogo!!)
 
         }catch (e: Exception) {
@@ -107,11 +111,11 @@ class SplashActivity : AppCompatActivity() {
     private fun getResellerDetails() {
         val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164,0)
         val certificateSPEditer = certificateSP.edit()
-        certificateSPEditer.putString("sslcertificate", Config.CERT_NAME)
+        certificateSPEditer.putString("sslcertificate", CERT_NAME)
         certificateSPEditer.commit()
         val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163,0)
         val baseurlSPEditer = baseurlSP.edit()
-        baseurlSPEditer.putString("baseurl", Config.BASE_URL)
+        baseurlSPEditer.putString("baseurl", BASE_URL)
         baseurlSPEditer.commit()
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
@@ -130,7 +134,7 @@ class SplashActivity : AppCompatActivity() {
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(BASE_URL)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)
@@ -218,7 +222,7 @@ class SplashActivity : AppCompatActivity() {
                                     IsNBFCEditer.putString("IsNBFC", jobjt.getString("IsNBFC"))
                                     IsNBFCEditer.commit()
 
-                                  /*  val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163,0)
+                                    val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163,0)
                                     val baseurlSPEditer = baseurlSP.edit()
                                     baseurlSPEditer.putString("baseurl", jobjt.getString("TestingURL"))
                                     baseurlSPEditer.commit()
@@ -232,10 +236,10 @@ class SplashActivity : AppCompatActivity() {
                                         val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
                                         val certificateSPEditer = certificateSP.edit()
                                         certificateSPEditer.putString("sslcertificate", Config.CERT_NAME)
-                                        certificateSPEditer.commit()}*/
+                                        certificateSPEditer.commit()}
 
                                     try {
-                                        val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+                                        val imagepath = IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
                                         PicassoTrustAll.getInstance(this@SplashActivity)!!.load(imagepath).error(android.R.color.transparent).into(imglogo!!)
 
                                     }catch (e: Exception) {
@@ -315,6 +319,8 @@ class SplashActivity : AppCompatActivity() {
 
     private fun getMaintenanceMessage() {
 
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@SplashActivity, R.style.Progress)
@@ -332,7 +338,7 @@ class SplashActivity : AppCompatActivity() {
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)

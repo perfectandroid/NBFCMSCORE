@@ -212,6 +212,8 @@ class LoanApplicationActivity : AppCompatActivity()   , View.OnClickListener, It
 
 
     private fun getLoanTypes() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@LoanApplicationActivity, R.style.Progress)
@@ -229,7 +231,7 @@ class LoanApplicationActivity : AppCompatActivity()   , View.OnClickListener, It
                         .setLenient()
                         .create()
                     val retrofit = Retrofit.Builder()
-                        .baseUrl(Config.BASE_URL)
+                        .baseUrl(baseurl)
                         .addConverterFactory(ScalarsConverterFactory.create())
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .client(client)
@@ -399,6 +401,8 @@ class LoanApplicationActivity : AppCompatActivity()   , View.OnClickListener, It
 
 
     private fun getLoanPurpose() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@LoanApplicationActivity, R.style.Progress)
@@ -416,7 +420,7 @@ class LoanApplicationActivity : AppCompatActivity()   , View.OnClickListener, It
                         .setLenient()
                         .create()
                     val retrofit = Retrofit.Builder()
-                        .baseUrl(Config.BASE_URL)
+                        .baseUrl(baseurl)
                         .addConverterFactory(ScalarsConverterFactory.create())
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .client(client)
@@ -679,6 +683,8 @@ class LoanApplicationActivity : AppCompatActivity()   , View.OnClickListener, It
     }
 
     private fun getLoanApplication() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         llOutput!!.visibility = View.GONE
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
@@ -697,7 +703,7 @@ class LoanApplicationActivity : AppCompatActivity()   , View.OnClickListener, It
                         .setLenient()
                         .create()
                     val retrofit = Retrofit.Builder()
-                        .baseUrl(Config.BASE_URL)
+                        .baseUrl(baseurl)
                         .addConverterFactory(ScalarsConverterFactory.create())
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .client(client)

@@ -78,6 +78,8 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
     }
 
     private fun getDashboardassetlist() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@DashboardActivity, R.style.Progress)
@@ -95,7 +97,7 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)
@@ -342,6 +344,8 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
 
 
     private fun getDashboardliabilitylist() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 /*   progressDialog = ProgressDialog(this@DashboardActivity, R.style.Progress)
@@ -359,7 +363,7 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)
@@ -534,6 +538,8 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
         }
     }
     private fun getDashboardpaymentandreceiptlist() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 /* progressDialog = ProgressDialog(this@DashboardActivity, R.style.Progress)
@@ -551,7 +557,7 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)

@@ -123,6 +123,8 @@ class LanguageLsitAdaptor(internal val mContext: Context, internal val jsInfo: J
     }
 
     private fun getlabels(id: String) {
+        val baseurlSP = mContext.applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(mContext)) {
             true -> {
                 /*   progressDialog = ProgressDialog(this@LanguageSelectionActivity, R.style.Progress)
@@ -140,7 +142,7 @@ class LanguageLsitAdaptor(internal val mContext: Context, internal val jsInfo: J
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)
