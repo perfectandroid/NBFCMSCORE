@@ -1186,7 +1186,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 )
             }
             R.id.llgoldslab -> {
-                startActivity(Intent(this@HomeActivity, GoldSlabEstimatorActivity::class.java))
+//                startActivity(Intent(this@HomeActivity, GoldSlabEstimatorActivity::class.java))
+                startActivity(Intent(this@HomeActivity, GoldLoanActivity::class.java))
             }
             R.id.llloanapplication -> {
                 startActivity(Intent(this@HomeActivity, LoanApplicationActivity::class.java))

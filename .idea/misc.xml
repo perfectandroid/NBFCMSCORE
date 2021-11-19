@@ -3,11 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/bg_button.xml" value="0.3671875" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/bg_grey_border.xml" value="0.2824074074074074" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/bg_grey_border1.xml" value="0.5" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/bg_light_grey1.xml" value="0.26875" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/bg_light_grey2.xml" value="0.26875" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/bg_light_grey_line.xml" value="0.26875" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/checkbox_selector.xml" value="0.3671875" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/etbackgroung1.xml" value="0.26875" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/etbackgroung2.xml" value="0.22135416666666666" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/main_bglight.xml" value="0.3828125" />
@@ -24,8 +26,9 @@
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_duereminder.xml" value="0.29375" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_enquiry.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_feedback.xml" value="0.2526041666666667" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_gold_loan.xml" value="0.33" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_goldslabestimator.xml" value="0.2526041666666667" />
-        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_home.xml" value="0.25" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_home.xml" value="0.5" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_languagesectection.xml" value="0.18229166666666666" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_notice.xml" value="0.35104166666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_other_bank.xml" value="0.23981481481481481" />
@@ -40,9 +43,11 @@
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/adapter_language.xml" value="0.16" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/fragment_moreoption.xml" value="0.3026041666666667" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/fragment_statementdownloadview.xml" value="0.31927083333333334" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/goldlist.xml" value="0.35104166666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/goldslablist.xml" value="0.2526041666666667" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/passbook_listrow.xml" value="0.29739583333333336" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/popup_language.xml" value="0.18229166666666666" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/quit_popup.xml" value="0.3338541666666667" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/reminder_popup.xml" value="0.2526041666666667" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/rv_account_listing.xml" value="0.27291666666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/rv_language_listing.xml" value="0.29375" />
