@@ -17,6 +17,7 @@ import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
 import com.perfect.nbfcmscore.Helper.MscoreApplication
+import com.perfect.nbfcmscore.Model.SenderReceiver
 import com.perfect.nbfcmscore.Model.SenderReceiverlist
 import com.perfect.nbfcmscore.R
 import okhttp3.OkHttpClient
@@ -46,6 +47,7 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
     var imgHome: ImageView? = null
     var tv_title: TextView? = null
     var txtv_sndrname: TextView? = null
+    public var arrayList1: ArrayList<SenderReceiver>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_receiver)
@@ -70,6 +72,10 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
 
         val Registerp = applicationContext.getSharedPreferences(Config.SHARED_PREF146, 0)
         btn_registr!!.setText(Registerp.getString("REGISTER", null))
+
+        val Receiversp = applicationContext.getSharedPreferences(Config.SHARED_PREF148, 0)
+        receiver_name!!.setHint(Receiversp.getString("ReceiverName", null))
+
 
 
     }
@@ -151,32 +157,32 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
                             try {
                                 //  progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
-                                Log.i("Response-senderreceiver", response.body())
+                                Log.i("Response-receiverotp", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
                                             jObject.getJSONObject("QuickPaySenderReciver")
                                     val jsonobj2 = JSONObject(jsonObj1.toString())
 
-                                    val jresult = jsonobj2.getJSONObject("QuickPaySenderReciverlist")
+                                    val jresult = jsonobj2.getJSONArray("QuickPaySenderReciverlist")
                                     arrayList2 = ArrayList<SenderReceiverlist>()
                                     for (i in 0 until jresult!!.length()) {
                                         try {
-                                            val json = jresult!!.getJSONObject(i.toString())
+                                            val json = jresult!!.getJSONObject(i)
                                             arrayList2!!.add(
                                                     SenderReceiverlist(
-                                                            json.getString("userId"),
+                                                            json.getString("UserID"),
                                                             json.getString(
-                                                                    "fkSenderId"
+                                                                    "FK_SenderID"
                                                             ),
                                                             json.getString(
-                                                                    "senderName"
+                                                                    "SenderName"
                                                             ),
                                                             json.getString(
-                                                                    "senderMobile"
+                                                                    "SenderMobile"
                                                             ), json.getString(
-                                                            "receiverAccountno"
+                                                            "ReceiverAccountno"
                                                     ), json.getString(
-                                                            "receiverAccountno"
+                                                            "Mode"
                                                     )
                                                     )
                                             )
@@ -189,6 +195,7 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
                                             this@AddReceiver,
                                             android.R.layout.simple_spinner_dropdown_item, arrayList2!!
                                     )
+
 
                                     //    spn_account_num!!.setSelection(arrayList1.indexOf("Select Account"));
 
@@ -392,6 +399,15 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
 
                                     var message = jsonobj2.getString("message")
                                     var status = jsonobj2.getString("Status")
+                                    var senderid = jsonobj2.getString("ID_Sender")
+                                    var receiverid = jsonobj2.getString("ID_Receiver")
+                                    var otpRefNo = jsonobj2.getString("otpRefNo")
+                                    var statuscode = jsonobj2.getString("StatusCode")
+
+                                    arrayList1 = ArrayList<SenderReceiver>()
+                                    arrayList1!!.add(SenderReceiver(
+                                            message, status, senderid, receiverid,otpRefNo,statuscode
+                                    ))
                                     alertMessage1(status, message)
 
 

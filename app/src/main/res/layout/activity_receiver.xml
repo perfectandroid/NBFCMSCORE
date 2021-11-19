@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/ll1"
         android:layout_below="@+id/relativeLayout1"
-        android:background="@color/bgcolour"
+        android:background="@color/white"
         android:orientation="vertical">
 
 
