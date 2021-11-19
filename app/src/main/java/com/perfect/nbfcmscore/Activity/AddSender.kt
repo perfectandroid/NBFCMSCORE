@@ -20,6 +20,8 @@ import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
 import com.perfect.nbfcmscore.Helper.MscoreApplication
+import com.perfect.nbfcmscore.Model.SenderReceiver
+import com.perfect.nbfcmscore.Model.SenderReceiverlist
 import com.perfect.nbfcmscore.R
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
@@ -43,7 +45,7 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
     var btn_register: Button? = null
     var tv_title: TextView? = null
 
-
+    public var arrayList2: ArrayList<SenderReceiver>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sender)
@@ -62,6 +64,8 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
         val Registerp = applicationContext.getSharedPreferences(Config.SHARED_PREF146, 0)
         btn_register!!.setText(Registerp.getString("REGISTER", null))
 
+        val defaultDate = "01-01-1990"
+        txtv_dob!!.setText(defaultDate)
        /* val mobilesp = applicationContext.getSharedPreferences(Config.SHARED_PREF145, 0)
         txtv_mobile_number!!.setText(mobilesp.getString("DOB", null))
 */
@@ -124,7 +128,7 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
                         )
                         val Token = TokenSP.getString("Token", null)
 
-                      //  requestObject1.put("Reqmode", MscoreApplication.encryptStart("40"))
+                        //  requestObject1.put("Reqmode", MscoreApplication.encryptStart("40"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put(
                                 "FK_Customer",
@@ -179,14 +183,24 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 Log.i("Response-sender", response.body())
-                                        if (jObject.getString("StatusCode") == "0") {
+                                if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
                                             jObject.getJSONObject("Addnewsender")
                                     val jsonobj2 = JSONObject(jsonObj1.toString())
 
-                                            var message = jsonobj2.getString("message")
-                                            var status = jsonobj2.getString("Status")
-                                            alertMessage1(status, message)
+                                    var message = jsonobj2.getString("message")
+                                    var status = jsonobj2.getString("Status")
+                                    var senderid = jsonobj2.getString("ID_Sender")
+                                    var receiverid = jsonobj2.getString("ID_Receiver")
+                                    var otpRefNo = jsonobj2.getString("otpRefNo")
+                                    var statuscode = jsonobj2.getString("StatusCode")
+
+                                    arrayList2 = ArrayList<SenderReceiver>()
+                                    arrayList2!!.add(SenderReceiver(
+                                           message, status, senderid, receiverid,otpRefNo,statuscode
+                                    ))
+
+                                    alertMessage1(status, message)
 
 
                                 } else {
@@ -257,6 +271,8 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
         }
     }
 
+
+
     override fun onClick(v: View) {
         when (v.id) {
             R.id.imgv_datepick -> {
@@ -275,7 +291,7 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
                     val lastName: String = txtv_last_name!!.getText().toString()
                     val mobileNumber: String = txtv_mobile_number!!.getText().toString()
                     val dob: String = txtv_dob!!.getText().toString()
-                    getSender(firstName,lastName,mobileNumber,dob)
+                    getSender(firstName, lastName, mobileNumber, dob)
                 }
             }
         }
@@ -341,8 +357,10 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
         tv_msg2.text = msg2
         val tv_cancel = dialogView.findViewById<TextView>(R.id.tv_cancel)
         tv_cancel.setOnClickListener { alertDialog.dismiss() }
-        tv_share.setOnClickListener { //  finishAffinity();
+        tv_share.setOnClickListener {
+            //  finishAffinity();
             alertDialog.dismiss()
+
         }
         alertDialog.show()
     }

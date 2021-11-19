@@ -201,7 +201,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@android:color/transparent"
-                            android:hint="@string/dob"
+                            android:hint=""
                             android:clickable="true"
                             android:focusable="false"
                             android:textColorHint="@color/bottom_line1"
