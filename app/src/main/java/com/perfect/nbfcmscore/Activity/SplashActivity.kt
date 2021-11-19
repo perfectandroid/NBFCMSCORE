@@ -29,7 +29,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
-
 class SplashActivity : AppCompatActivity() {
 
     private var progressDialog: ProgressDialog? = null
@@ -215,6 +214,11 @@ class SplashActivity : AppCompatActivity() {
                                     val baseurlSPEditer = baseurlSP.edit()
                                     baseurlSPEditer.putString("baseurl", Config.BASE_URL)
                                     baseurlSPEditer.commit()
+
+                                    val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164,0)
+                                    val certificateSPEditer = certificateSP.edit()
+                                    certificateSPEditer.putString("sslcertificate", Config.CERT_NAME)
+                                    certificateSPEditer.commit()
 
                                     try {
                                         val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
