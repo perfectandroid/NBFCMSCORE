@@ -98,4 +98,5 @@ dependencies {
     implementation 'com.github.markj:CompactCalendarView:2.0.2.2'
     implementation 'com.github.mahimrocky:EventCalender:v1.0.0'
 
+
 }
