@@ -190,5 +190,8 @@ interface ApiInterface {
     @POST("AccountSummary/VerifyPaymentOTP")
     fun getVerifyPaymentotp(@Body body: RequestBody): Call<String>
 
+    @POST("AccountSummary/GoldEstimatorDetails")
+    fun getGoldEstimatorDetails(@Body body: RequestBody): Call<String>
+
 }
 
