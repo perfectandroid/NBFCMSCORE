@@ -195,6 +195,8 @@ object Config {
     const val SHARED_PREF160= "BeneficiaryCNo"
     const val SHARED_PREF161= "ConfirmBeneficiaryACNo"
     const val SHARED_PREF162= "SaveBeneficiaryForFuture"
+    const val SHARED_PREF163= "baseurl"
+    const val SHARED_PREF164= "sslcertificate"
 
 
 
@@ -245,10 +247,14 @@ object Config {
         KeyManagementException::class
     )
     fun getSSLSocketFactory(context: Context): SSLSocketFactory {
+
+        val sslcertificateSP = context.applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
+        val sslcertificate = sslcertificateSP.getString("sslcertificate", null)
+
         val cf = CertificateFactory.getInstance("X.509")
         //  InputStream caInput = getResources().openRawResource(Common.getCertificateAssetName());
         // File path: app\src\main\res\raw\your_cert.cer
-        val caInput = context!!.assets.open(CERT_NAME)
+        val caInput = context!!.assets.open(sslcertificate!!)
         val ca = cf.generateCertificate(caInput)
         caInput.close()
         val keyStore = KeyStore.getInstance("BKS")

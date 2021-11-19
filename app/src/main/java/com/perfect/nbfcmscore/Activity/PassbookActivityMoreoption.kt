@@ -66,6 +66,14 @@ class PassbookActivityMoreoption : AppCompatActivity(), OnItemSelectedListener,V
         val ID_Passbk = applicationContext.getSharedPreferences(Config.SHARED_PREF51,0)
         tv_mycart!!.setText(ID_Passbk.getString("passbook",null))
 
+        val updateDaysSP = applicationContext.getSharedPreferences(Config.SHARED_PREF21,0)
+        if (updateDaysSP.getString("updateDays",null) == null){
+
+        }else{
+            noofdays = (updateDaysSP.getString("updateDays",null))!!.toInt()
+        }
+
+
         getPassBookAccountStatement()
     }
     private fun setRegViews() {
@@ -130,17 +138,8 @@ class PassbookActivityMoreoption : AppCompatActivity(), OnItemSelectedListener,V
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("12"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-                        requestObject1.put(
-                                "FK_Customer",
-                                MscoreApplication.encryptStart(FK_Customer)
-                        )
-                        requestObject1.put(
-                                "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                        R.string.BankKey
-                                )
-                        )
-                        )
+                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
 
 
                         Log.e("TAG", "requestObject1  171   " + requestObject1)
@@ -342,32 +341,17 @@ class PassbookActivityMoreoption : AppCompatActivity(), OnItemSelectedListener,V
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("13"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-                        requestObject1.put(
-                                "FK_Account",
-                                MscoreApplication.encryptStart(fkaccmore)
-                        )
-                        requestObject1.put(
-                                "FK_Customer",
-                                MscoreApplication.encryptStart(FK_Customer)
-                        )
-                        requestObject1.put(
-                                "SubModule",
-                                MscoreApplication.encryptStart(submodlemore)
-                        )
-                        requestObject1.put(
-                                "NoOfDays",
-                                MscoreApplication.encryptStart("" + noofdays)
-                        )
-                        requestObject1.put(
-                                "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
+                        requestObject1.put("FK_Account", MscoreApplication.encryptStart(fkaccmore))
+                        requestObject1.put("FK_Customer",MscoreApplication.encryptStart(FK_Customer))
+                        requestObject1.put("SubModule", MscoreApplication.encryptStart(submodlemore))
+                        requestObject1.put("NoOfDays", MscoreApplication.encryptStart("" + noofdays))
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(
                                         R.string.BankKey
-                                )
-                        )
-                        )
+                                )))
 
 
                         Log.e("TAG", "requestObject1  171   " + requestObject1)
+                        Log.e("TAG", "noofdays  171   " + noofdays)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()

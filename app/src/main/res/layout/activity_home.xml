@@ -86,9 +86,9 @@
                     android:orientation="vertical">
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="140dp"
-                        android:background="@drawable/transparent_bg"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical">
+<!--                        android:background="@drawable/transparent_bg"-->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1864,6 +1864,7 @@
                 android:src="@drawable/profilenav" />
 
             <ImageView
+                android:id="@+id/imlanguage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -1872,6 +1873,7 @@
                 android:src="@drawable/langicon" />
 
             <ImageView
+                android:id="@+id/imlogout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -1880,6 +1882,7 @@
                 android:src="@drawable/logout" />
 
             <ImageView
+                android:id="@+id/imquit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

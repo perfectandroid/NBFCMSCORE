@@ -1720,7 +1720,11 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 
                                     //  AccountNobottomSheet(jArrayAccount!!)
 
-                                } else {
+                                }
+                                else if(jObject.getString("StatusCode") == "-2"){
+
+                                }
+                                else {
                                     val builder = AlertDialog.Builder(
                                         this@RechargeActivity,
                                         R.style.MyDialogTheme
