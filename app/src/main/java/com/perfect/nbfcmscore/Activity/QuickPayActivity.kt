@@ -20,7 +20,6 @@ import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
 import com.perfect.nbfcmscore.Helper.MscoreApplication
 import com.perfect.nbfcmscore.Helper.NumberToWord
-import com.perfect.nbfcmscore.Model.SenderReceiver
 import com.perfect.nbfcmscore.Model.SenderReceiverlist
 import com.perfect.nbfcmscore.Model.Splitupdetail
 import com.perfect.nbfcmscore.R
@@ -38,12 +37,12 @@ import java.util.*
 class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.OnItemSelectedListener {
     private var mAccountSpinner: Spinner? = null
     private val mAmountEt: AppCompatEditText? = null
-    private val mMessageEt: AppCompatEditText? = null
+    private var mMessageEt: EditText? = null
     private var add_new_sender: TextView?=null
     private var add_new_receiver: TextView?=null
     public var arrayList1: ArrayList<Splitupdetail>? = null
     public var arrayList2: ArrayList<SenderReceiverlist>? = null
-  //  public var arrayList2: ArrayList<SenderReceiverlist>? = null
+    public var arrayList3: ArrayList<SenderReceiverlist>? = null
     private val mPin: AppCompatEditText? = null
     private val mProgressDialog: ProgressDialog? = null
     private var mSenderSpinner: Spinner? = null
@@ -51,6 +50,14 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
     private val mOtpResendLink: String? = null
     private val mCanLoadSenderReceiver = false
     var reference: String? = null
+    var submodule: String? = null
+    var fkSenderId: String? = null
+    var senderName: String? = null
+    var senderMobile: String? = null
+    var receiverAccountno: String? = null
+    var receiverid: String? = null
+
+
     private val mLnrAnimatorContainer: LinearLayout? = null
     private val mRltvError: RelativeLayout? = null
     private val mTxtError: TextView? = null
@@ -67,10 +74,12 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
     var txtv_slctacnt: TextView? = null
     var txtv_slctsndr: TextView? = null
     var txtv_slctrecvr: TextView? = null
-
+    var sendername: String? = null
+    var senderid: String? = null
     public var branchname:String?=null
     var btn_forgot_mpin: Button? = null
     private var progressDialog: ProgressDialog? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quickpay)
@@ -154,7 +163,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                         )
                         val Token = TokenSP.getString("Token", null)
 
-                     //   requestObject1.put("Reqmode", MscoreApplication.encryptStart("40"))
+                        //   requestObject1.put("Reqmode", MscoreApplication.encryptStart("40"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put(
                                 "FK_Customer",
@@ -213,7 +222,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                                 //  progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 Log.i("Response-verifypayment", response.body())
-                               /* if (jObject.getString("StatusCode") == "0") {
+                                /* if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
                                             jObject.getJSONObject("QuickPaySenderReciver")
                                     val jsonobj2 = JSONObject(jsonObj1.toString())
@@ -369,7 +378,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                         )
                         val Token = TokenSP.getString("Token", null)
 
-                     //   requestObject1.put("Reqmode", MscoreApplication.encryptStart("40"))
+                        //   requestObject1.put("Reqmode", MscoreApplication.encryptStart("40"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put(
                                 "FK_Customer",
@@ -424,7 +433,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                                 //  progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 Log.i("Response-verifysender", response.body())
-                               /* if (jObject.getString("StatusCode") == "0") {
+                                /* if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
                                             jObject.getJSONObject("QuickPaySenderReciver")
                                     val jsonobj2 = JSONObject(jsonObj1.toString())
@@ -581,7 +590,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                         )
                         val Token = TokenSP.getString("Token", null)
 
-                      //  requestObject1.put("Reqmode", MscoreApplication.encryptStart("40"))
+                        //  requestObject1.put("Reqmode", MscoreApplication.encryptStart("40"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put(
                                 "FK_Customer",
@@ -656,7 +665,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                                                             ), json.getString(
                                                             "receiverAccountno"
                                                     ), json.getString(
-                                                            "receiverAccountno"
+                                                            "mode"
                                                     )
                                                     )
                                             )
@@ -835,26 +844,27 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                                             jObject.getJSONObject("QuickPaySenderReciver")
                                     val jsonobj2 = JSONObject(jsonObj1.toString())
 
-                                    val jresult = jsonobj2.getJSONObject("QuickPaySenderReciverlist")
+                                    val jresult = jsonobj2.getJSONArray("QuickPaySenderReciverlist")
                                     arrayList2 = ArrayList<SenderReceiverlist>()
+
                                     for (i in 0 until jresult!!.length()) {
                                         try {
-                                            val json = jresult!!.getJSONObject(i.toString())
+                                            val json = jresult!!.getJSONObject(i)
                                             arrayList2!!.add(
                                                     SenderReceiverlist(
-                                                            json.getString("userId"),
+                                                            json.getString("UserID"),
                                                             json.getString(
-                                                                    "fkSenderId"
+                                                                    "FK_SenderID"
                                                             ),
                                                             json.getString(
-                                                                    "senderName"
+                                                                    "SenderName"
                                                             ),
                                                             json.getString(
-                                                                    "senderMobile"
+                                                                    "SenderMobile"
                                                             ), json.getString(
-                                                            "receiverAccountno"
+                                                            "ReceiverAccountno"
                                                     ), json.getString(
-                                                            "receiverAccountno"
+                                                            "Mode"
                                                     )
                                                     )
                                             )
@@ -865,11 +875,11 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                                     }
                                     mSenderSpinner!!.adapter = ArrayAdapter(
                                             this@QuickPayActivity,
-                                            android.R.layout.simple_spinner_dropdown_item, arrayList1!!
+                                            android.R.layout.simple_spinner_dropdown_item, arrayList2!!
                                     )
                                     mReceiverSpinner!!.adapter = ArrayAdapter(
                                             this@QuickPayActivity,
-                                            android.R.layout.simple_spinner_dropdown_item, arrayList1!!
+                                            android.R.layout.simple_spinner_dropdown_item, arrayList2!!
                                     )
 
                                     //    spn_account_num!!.setSelection(arrayList1.indexOf("Select Account"));
@@ -952,6 +962,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
 
         btn_forgot_mpin= findViewById<Button>(R.id.btn_forgot_mpin)
         txt_amtinword= findViewById<TextView>(R.id.txt_amtinword)
+        mMessageEt= findViewById<EditText>(R.id.message)
 
         txtv_slctacnt= findViewById<TextView>(R.id.txtv_slctacnt)
         txtv_slctsndr= findViewById<TextView>(R.id.txtv_slctsndr)
@@ -1251,10 +1262,8 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                 startActivity(Intent(this@QuickPayActivity, HomeActivity::class.java))
             }
             R.id.btn_submit -> {
-                //  QuickConfirmation()
-                if (isValid()) {
-                    getQuickPay()
-                }
+                QuickConfirmation()
+
 
             }
             R.id.add_new_receiver -> {
@@ -1266,11 +1275,106 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
 
             }
             R.id.btn_forgot_mpin -> {
-                ForgotMpin()
+                if (senderid.equals("-100")) {
+                    Toast.makeText(this, "Please select sender", Toast.LENGTH_LONG).show()
+                } else {
+                    ForgotMpin(senderid)
+                }
+
 
             }
 
         }
+    }
+
+    private fun QuickConfirmation() {
+
+        if (isValid()) {
+                 if(ConnectivityUtils.isConnected(this))
+                 {
+
+                     try {
+                         val amount =etxt_amount!!.text.toString().replace(",".toRegex(), "")
+                         val receiverObj = mReceiverSpinner!!.selectedItem.toString()
+                         val accountNumber = mAccountSpinner!!.selectedItem.toString()
+                         val tokens = StringTokenizer(accountNumber, "(")
+                         val first = tokens.nextToken()
+                         val message = mMessageEt!!.text.toString()
+                         val senderObj = mSenderSpinner!!.selectedItem.toString()
+                         val sender: String = senderid!!
+                         val senderName: String = sendername!!
+                         val senderAccountno: String = receiverAccountno!!
+                         val senderMobile: String = senderMobile!!
+                         val recievererName: String = senderName
+                         val receiverAccountno: String = receiverAccountno!!
+                         val recieverMobile: String = senderMobile
+                         val receiver: String = receiverid!!
+                         val mPinString = etxt_mpin!!.text.toString()
+                         var branch = branchname
+                         var submodle =submodule
+                         val builder = AlertDialog.Builder(this)
+                         val inflater1 = this.getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
+                         val layout = inflater1.inflate(R.layout.quick_pay_confirmation_popup, null)
+                         val tvbranch = layout.findViewById<TextView>(R.id.tvbranch)
+                         val tv_sender_name = layout.findViewById<TextView>(R.id.tv_sender_name)
+                         val tv_sender_acc_no = layout.findViewById<TextView>(R.id.tv_sender_acc_no)
+                         val tv_sender_mob_no = layout.findViewById<TextView>(R.id.tv_sender_mob_no)
+                         val tv_reciever_name = layout.findViewById<TextView>(R.id.tv_reciever_name)
+                         val tv_reciever_acc_no = layout.findViewById<TextView>(R.id.tv_reciever_acc_no)
+                         val tv_reciever_mob_no = layout.findViewById<TextView>(R.id.tv_reciever_mob_no)
+                         val tv_amount = layout.findViewById<TextView>(R.id.tv_amount)
+                         val tv_amount_words = layout.findViewById<TextView>(R.id.tv_amount_words)
+                         val text_confirmationmsg = layout.findViewById<TextView>(R.id.text_confirmationmsg)
+                         val bt_ok = layout.findViewById<TextView>(R.id.bt_ok)
+                         val bt_cancel = layout.findViewById<TextView>(R.id.bt_cancel)
+                         builder.setView(layout)
+                         val alertDialog = builder.create()
+                         tvbranch.text = branch
+                         tv_sender_name.text = senderName
+                         tv_sender_acc_no.text = accountNumber
+                         tv_sender_mob_no.text = senderMobile
+                         tv_reciever_name.text = recievererName
+                         tv_reciever_acc_no.text = receiverAccountno
+                         tv_reciever_mob_no.text = recieverMobile
+                         val num = ("" + amount).toDouble()
+                         val stramnt: String? = Config.getDecimelFormate(num)
+                         text_confirmationmsg.text = "Proceed Payment With Above Amount" + "..?"
+                         val netAmountArr = amount.split("\\.".toRegex()).toTypedArray()
+                         var amountInWordPop = ""
+                         if (netAmountArr.size > 0) {
+                             val integerValue = netAmountArr[0].toInt()
+                             amountInWordPop = "Rupees " + NumberToWord.convertNumberToWords(integerValue)
+                             if (netAmountArr.size > 1) {
+                                 val decimalValue = netAmountArr[1].toInt()
+                                 if (decimalValue != 0) {
+                                     amountInWordPop += " And " + NumberToWord.convertNumberToWords(decimalValue).toString() + " Paise"
+                                 }
+                             }
+                             amountInWordPop += " Only"
+                         }
+                         tv_amount_words.text = "" + amountInWordPop
+                         tv_amount.text = "₹ $stramnt"
+                         bt_cancel.setOnClickListener { alertDialog.dismiss() }
+                         bt_ok.setOnClickListener {
+                             if (branch != null) {
+                                 getQuickPay(first, fkSenderId!!, receiver, amount, message, mPinString, senderName, senderAccountno, senderMobile, recievererName, receiverAccountno, recieverMobile, branch, submodle)
+                             }
+                            // com.creativethoughts.iscore.money_transfer.QuickPayMoneyTransferFragment.MoneyTransferAsyncTask(accountNumber, sender, receiver, amount, message, mPinString, senderName, senderAccountno, senderMobile, recievererName, receiverAccountno, recieverMobile, branch).execute()
+                             alertDialog.dismiss()
+                         }
+                         alertDialog.show()
+                     } catch (e: java.lang.Exception) {
+                         e.printStackTrace()
+                     }
+                 }
+            else {
+                     alertMessage1("", "Network is currently unavailable. Please try again later.")
+
+
+            }
+
+        }
+
     }
 
     private fun isValid(): Boolean {
@@ -1297,18 +1401,22 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
 
         etxt_amount!!.error = null
 
-       /* val mPinString = mPin!!.text.toString()
-        if (mPinString.trim { it <= ' ' }.length == 0) {
-            mPin!!.error = "Please enter the M-PIN"
+        val mPinString = etxt_mpin!!.text.toString()
+        if (mPinString.equals("0")) {
+            etxt_mpin!!.error = "Please enter the M-PIN"
             return false
         }
-*/
+        else if (mPinString.equals("")) {
+            etxt_mpin!!.error = "Please enter the M-PIN"
+            return false
+        }
+        etxt_mpin!!.error = null
 
         return true
 
     }
 
-    private fun ForgotMpin() {
+    private fun ForgotMpin(senderid: String?) {
 
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
@@ -1351,7 +1459,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("41"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
-                        requestObject1.put("SenderID", MscoreApplication.encryptStart("9539036341"))
+                        requestObject1.put("SenderID", MscoreApplication.encryptStart(senderid))
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
 
 
@@ -1380,6 +1488,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                                 val jObject = JSONObject(response.body())
                                 Log.i("Response-forgotmpin", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
+                                    Toast.makeText(applicationContext, "M-Pin is resend to your mobile", Toast.LENGTH_LONG).show()
                                     /*val jsonObj1: JSONObject =
                                             jObject.getJSONObject("PassBookAccountStatement")
                                     val jsonobj2 = JSONObject(jsonObj1.toString())*/
@@ -1454,7 +1563,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
 
     }
 
-    private fun QuickConfirmation() {
+    /*private fun QuickConfirmation() {
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
 
@@ -1548,9 +1657,9 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
 
             }
 
-    }
+    }*/
 
-    private fun getQuickPay() {
+    private fun getQuickPay(accountNumber: String, sender: String, receiver: String, amount: String, message: String, mPinString: String, senderName: String, senderAccountno: String, senderMobile: String, recievererName: String, receiverAccountno: String, recieverMobile: String, branch: String, submodle: String?) {
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@QuickPayActivity, R.style.Progress)
@@ -1593,7 +1702,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put(
                                 "FK_Sender",
-                                MscoreApplication.encryptStart("1")
+                                MscoreApplication.encryptStart(sender)
                         )
                         requestObject1.put(
                                 "FK_Customer",
@@ -1601,23 +1710,23 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                         )
                         requestObject1.put(
                                 "FK_Receiver",
-                                MscoreApplication.encryptStart("2")
+                                MscoreApplication.encryptStart(receiver)
                         )
                         requestObject1.put(
                                 "Amount",
-                                MscoreApplication.encryptStart(etxt_amount!!.text.toString())
+                                MscoreApplication.encryptStart(amount)
                         )
                         requestObject1.put(
                                 "AccountNo",
-                                MscoreApplication.encryptStart("001001001002")
+                                MscoreApplication.encryptStart(accountNumber)
                         )
                         requestObject1.put(
                                 "SubModule",
-                                MscoreApplication.encryptStart("ddsb")
+                                MscoreApplication.encryptStart(submodle)
                         )
                         requestObject1.put(
                                 "MPIN",
-                                MscoreApplication.encryptStart("123456")
+                                MscoreApplication.encryptStart(mPinString)
                         )
                         requestObject1.put(
                                 "BankKey", MscoreApplication.encryptStart(
@@ -1653,19 +1762,17 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                                 val jObject = JSONObject(response.body())
                                 Log.i("Response-quickpay", response.body())
 
-                               if (jObject.getString("StatusCode") == "0") {
+                                if (jObject.getString("StatusCode") == "0") {
                                     /*val jsonObj1: JSONObject =
                                             jObject.getJSONObject("QuickPayMoneyTransferPayment")
 */
 
-                                }
-                                else if (jObject.getString("StatusCode") == "200") {
-                                   // otprefno!=0
-                                   startActivity(Intent(this@QuickPayActivity, HomeActivity::class.java))
+                                } else if (jObject.getString("StatusCode") == "200") {
+                                    // otprefno!=0
+                                    startActivity(Intent(this@QuickPayActivity, HomeActivity::class.java))
 
 
-                                }
-                                else {
+                                } else {
                                     val builder = AlertDialog.Builder(
                                             this@QuickPayActivity,
                                             R.style.MyDialogTheme
@@ -1736,11 +1843,39 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
         val splitupdetail: Splitupdetail = arrayList1!!.get(position)
         branchname = splitupdetail.getBranchname()
-       // val senderreceiver: SenderReceiverlist = arrayList1!!.get(position)
+        submodule = splitupdetail.getSubmodule()
+
+        val senderreceiver: SenderReceiverlist = arrayList2!!.get(position)
+        senderid = senderreceiver.getFkSenderId()
+        sendername =senderreceiver.getSenderName()
+        fkSenderId=senderreceiver.getUserId()
+        senderName=senderreceiver.getSenderName()
+        senderMobile=senderreceiver.getSenderMobile()
+        receiverAccountno=senderreceiver.getReceiverAccountno()
+        receiverid = senderreceiver.getUserId()
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
         TODO("Not yet implemented")
+    }
+
+    private fun alertMessage1(msg1: String, msg2: String) {
+        val dialogBuilder = AlertDialog.Builder(this@QuickPayActivity)
+        val inflater: LayoutInflater = this@QuickPayActivity.getLayoutInflater()
+        val dialogView: View = inflater.inflate(R.layout.alert_layout, null)
+        dialogBuilder.setView(dialogView)
+        val alertDialog = dialogBuilder.create()
+        val tv_share = dialogView.findViewById<TextView>(R.id.tv_share)
+        val tv_msg = dialogView.findViewById<TextView>(R.id.txt1)
+        val tv_msg2 = dialogView.findViewById<TextView>(R.id.txt2)
+        tv_msg.text = msg1
+        tv_msg2.text = msg2
+        val tv_cancel = dialogView.findViewById<TextView>(R.id.tv_cancel)
+        tv_cancel.setOnClickListener { alertDialog.dismiss() }
+        tv_share.setOnClickListener { //  finishAffinity();
+            alertDialog.dismiss()
+        }
+        alertDialog.show()
     }
 }
 

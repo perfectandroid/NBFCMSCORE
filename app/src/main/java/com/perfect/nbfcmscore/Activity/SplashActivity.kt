@@ -29,7 +29,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
-
 class SplashActivity : AppCompatActivity() {
 
     private var progressDialog: ProgressDialog? = null
@@ -106,6 +105,14 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun getResellerDetails() {
+        val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164,0)
+        val certificateSPEditer = certificateSP.edit()
+        certificateSPEditer.putString("sslcertificate", Config.CERT_NAME)
+        certificateSPEditer.commit()
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163,0)
+        val baseurlSPEditer = baseurlSP.edit()
+        baseurlSPEditer.putString("baseurl", Config.BASE_URL)
+        baseurlSPEditer.commit()
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@SplashActivity, R.style.Progress)
@@ -211,10 +218,21 @@ class SplashActivity : AppCompatActivity() {
                                     IsNBFCEditer.putString("IsNBFC", jobjt.getString("IsNBFC"))
                                     IsNBFCEditer.commit()
 
-                                    val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163,0)
+                                  /*  val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163,0)
                                     val baseurlSPEditer = baseurlSP.edit()
-                                    baseurlSPEditer.putString("baseurl", Config.BASE_URL)
+                                    baseurlSPEditer.putString("baseurl", jobjt.getString("TestingURL"))
                                     baseurlSPEditer.commit()
+
+                                    if(jobjt.getString("CertificateStatus").equals("Live")) {
+                                        val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
+                                        val certificateSPEditer = certificateSP.edit()
+                                        certificateSPEditer.putString("sslcertificate", Config.CERT_NAME)
+                                        certificateSPEditer.commit()
+                                    }else{
+                                        val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
+                                        val certificateSPEditer = certificateSP.edit()
+                                        certificateSPEditer.putString("sslcertificate", Config.CERT_NAME)
+                                        certificateSPEditer.commit()}*/
 
                                     try {
                                         val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
