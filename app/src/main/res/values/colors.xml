@@ -111,6 +111,8 @@
 
     <color name="bg_transfer">#f3f2f8</color>
     <color name="color_prodlist">#f2f3f5</color>
+    <color name="color_langround">#62b484</color>
+    <color name="black_lang">#BF2C2B2B</color>
 
 
     <color name="test">#fbfbfb</color>
