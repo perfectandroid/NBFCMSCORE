@@ -105,6 +105,8 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
     }
 
     private fun getDistricts() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
 //                progressDialog = ProgressDialog(this@BranchDetailActivity, R.style.Progress)
@@ -122,7 +124,7 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                         .setLenient()
                         .create()
                     val retrofit = Retrofit.Builder()
-                        .baseUrl(Config.BASE_URL)
+                        .baseUrl(baseurl)
                         .addConverterFactory(ScalarsConverterFactory.create())
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .client(client)
@@ -422,6 +424,8 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
     }
 
     private fun getBranchList1(mMap: GoogleMap,FK_District: String) {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         closeKeyBoard()
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
@@ -440,7 +444,7 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                         .setLenient()
                         .create()
                     val retrofit = Retrofit.Builder()
-                        .baseUrl(Config.BASE_URL)
+                        .baseUrl(baseurl)
                         .addConverterFactory(ScalarsConverterFactory.create())
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .client(client)

@@ -212,6 +212,8 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
 
 
     private fun getEMITypes() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@EMIActivity, R.style.Progress)
@@ -229,7 +231,7 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
                         .setLenient()
                         .create()
                     val retrofit = Retrofit.Builder()
-                        .baseUrl(Config.BASE_URL)
+                        .baseUrl(baseurl)
                         .addConverterFactory(ScalarsConverterFactory.create())
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .client(client)
@@ -461,6 +463,8 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
     }
 
     private fun getStandingInstruction() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         llOutput!!.visibility = View.GONE
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
@@ -479,7 +483,7 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
                         .setLenient()
                         .create()
                     val retrofit = Retrofit.Builder()
-                        .baseUrl(Config.BASE_URL)
+                        .baseUrl(baseurl)
                         .addConverterFactory(ScalarsConverterFactory.create())
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .client(client)

@@ -417,6 +417,8 @@ class StatementFragment : Fragment() , View.OnClickListener{
     }
 
     private fun getStatementOfAccountDocs(FromNo: String) {
+        val baseurlSP = context!!.applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(activity!!)) {
             true -> {
                 progressDialog = ProgressDialog(activity!!, R.style.Progress)
@@ -434,7 +436,7 @@ class StatementFragment : Fragment() , View.OnClickListener{
                         .setLenient()
                         .create()
                     val retrofit = Retrofit.Builder()
-                        .baseUrl(Config.BASE_URL)
+                        .baseUrl(baseurl)
                         .addConverterFactory(ScalarsConverterFactory.create())
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .client(client)

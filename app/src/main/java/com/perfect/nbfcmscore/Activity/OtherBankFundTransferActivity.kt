@@ -285,6 +285,8 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
 
 
     private fun getOwnAccount() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@OtherBankFundTransferActivity, R.style.Progress)
@@ -302,7 +304,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                         .setLenient()
                         .create()
                     val retrofit = Retrofit.Builder()
-                        .baseUrl(Config.BASE_URL)
+                        .baseUrl(baseurl)
                         .addConverterFactory(ScalarsConverterFactory.create())
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .client(client)
@@ -656,6 +658,8 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
     private fun RetreiveOtp(accountNo: String, subModule: String?, beneName: String, beneIFSC: String, beneAccountNumber: String,
                                  amount: String, eftType: String?, beneAdd: String, otpRef: String, otpCode: String) {
 
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         OTPRef = ""
         Log.e(TAG,"RetreiveOtp   575")
         when(ConnectivityUtils.isConnected(this)) {
@@ -675,7 +679,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                         .setLenient()
                         .create()
                     val retrofit = Retrofit.Builder()
-                        .baseUrl(Config.BASE_URL)
+                        .baseUrl(baseurl)
                         .addConverterFactory(ScalarsConverterFactory.create())
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .client(client)
@@ -842,6 +846,8 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
     private fun FundTransfer(accountNo: String, subModule: String?, beneName: String, beneIFSC: String, beneAccountNumber: String,
                             amount: String, eftType: String?, beneAdd: String, otpRef: String, otpCode: String) {
 
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         OTPRef = ""
         Log.e(TAG,"RetreiveOtp   575")
         when(ConnectivityUtils.isConnected(this)) {
@@ -861,7 +867,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                         .setLenient()
                         .create()
                     val retrofit = Retrofit.Builder()
-                        .baseUrl(Config.BASE_URL)
+                        .baseUrl(baseurl)
                         .addConverterFactory(ScalarsConverterFactory.create())
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .client(client)

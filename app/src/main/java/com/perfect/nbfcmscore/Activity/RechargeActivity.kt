@@ -329,6 +329,8 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 
 
     private fun getOperator() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@RechargeActivity, R.style.Progress)
@@ -346,7 +348,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                         .setLenient()
                         .create()
                     val retrofit = Retrofit.Builder()
-                        .baseUrl(Config.BASE_URL)
+                        .baseUrl(baseurl)
                         .addConverterFactory(ScalarsConverterFactory.create())
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .client(client)
@@ -471,6 +473,8 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
     }
 
     private fun getCircle() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@RechargeActivity, R.style.Progress)
@@ -488,7 +492,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                         .setLenient()
                         .create()
                     val retrofit = Retrofit.Builder()
-                        .baseUrl(Config.BASE_URL)
+                        .baseUrl(baseurl)
                         .addConverterFactory(ScalarsConverterFactory.create())
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .client(client)
@@ -612,6 +616,8 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
     }
 
     private fun getOwnAccount() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@RechargeActivity, R.style.Progress)
@@ -629,7 +635,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                         .setLenient()
                         .create()
                     val retrofit = Retrofit.Builder()
-                        .baseUrl(Config.BASE_URL)
+                        .baseUrl(baseurl)
                         .addConverterFactory(ScalarsConverterFactory.create())
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .client(client)
@@ -1295,6 +1301,8 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
     private fun rechargedth(subscriberId: String, providersCode: String, circleMode: String?, mAccountNumber: String?, subModule: String?, idProviders: String?,
         idRechargecircle: String?, fkAccount: String?, amount: String) {
 
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@RechargeActivity, R.style.Progress)
@@ -1312,7 +1320,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                         .setLenient()
                         .create()
                     val retrofit = Retrofit.Builder()
-                        .baseUrl(Config.BASE_URL)
+                        .baseUrl(baseurl)
                         .addConverterFactory(ScalarsConverterFactory.create())
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .client(client)
@@ -1465,6 +1473,8 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
     private fun recharge(mobileNumber: String, providersCode: String, circleMode: String?, mAccountNumber: String?, subModule: String?,
                          idProviders: String?, idRechargecircle: String?, fkAccount: String?, amount: String?) {
 
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@RechargeActivity, R.style.Progress)
@@ -1482,7 +1492,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                         .setLenient()
                         .create()
                     val retrofit = Retrofit.Builder()
-                        .baseUrl(Config.BASE_URL)
+                        .baseUrl(baseurl)
                         .addConverterFactory(ScalarsConverterFactory.create())
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .client(client)
@@ -1635,6 +1645,8 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 
     private fun getRecentRecharges() {
 
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         ll_recentrecharge!!.visibility = View.GONE
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
@@ -1653,7 +1665,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                         .setLenient()
                         .create()
                     val retrofit = Retrofit.Builder()
-                        .baseUrl(Config.BASE_URL)
+                        .baseUrl(baseurl)
                         .addConverterFactory(ScalarsConverterFactory.create())
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .client(client)

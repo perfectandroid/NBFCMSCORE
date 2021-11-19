@@ -125,6 +125,8 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
     }
 
     private fun getVerifyPaymentOTP() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 /*  progressDialog = ProgressDialog(this@PassbookActivity, R.style.Progress)
@@ -142,7 +144,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)
@@ -340,6 +342,8 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
         }
     }
     private fun getVerifySenderOTP() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 /*  progressDialog = ProgressDialog(this@PassbookActivity, R.style.Progress)
@@ -357,7 +361,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)
@@ -552,6 +556,8 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
     }
 
     private fun getVerifyReceiverOTP() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 /*  progressDialog = ProgressDialog(this@PassbookActivity, R.style.Progress)
@@ -569,7 +575,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)
@@ -762,6 +768,8 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
 
 
     private fun getSenderReceiver() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 /*  progressDialog = ProgressDialog(this@PassbookActivity, R.style.Progress)
@@ -779,7 +787,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)
@@ -1060,6 +1068,8 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
     }
 
     private fun getAccountnumber() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 /*  progressDialog = ProgressDialog(this@PassbookActivity, R.style.Progress)
@@ -1077,7 +1087,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)
@@ -1418,6 +1428,8 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
 
     private fun ForgotMpin(senderid: String?) {
 
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@QuickPayActivity, R.style.Progress)
@@ -1435,7 +1447,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)
@@ -1660,6 +1672,9 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
     }*/
 
     private fun getQuickPay(accountNumber: String, sender: String, receiver: String, amount: String, message: String, mPinString: String, senderName: String, senderAccountno: String, senderMobile: String, recievererName: String, receiverAccountno: String, recieverMobile: String, branch: String, submodle: String?) {
+
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@QuickPayActivity, R.style.Progress)
@@ -1677,7 +1692,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)

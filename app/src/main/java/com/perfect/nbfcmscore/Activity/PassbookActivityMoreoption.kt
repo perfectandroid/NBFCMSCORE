@@ -98,6 +98,8 @@ class PassbookActivityMoreoption : AppCompatActivity(), OnItemSelectedListener,V
 
     }
     private fun getAccList() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@PassbookActivityMoreoption, R.style.Progress)
@@ -115,7 +117,7 @@ class PassbookActivityMoreoption : AppCompatActivity(), OnItemSelectedListener,V
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)
@@ -301,6 +303,8 @@ class PassbookActivityMoreoption : AppCompatActivity(), OnItemSelectedListener,V
 
     private fun getPassBookAccountStatement() {
 
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@PassbookActivityMoreoption, R.style.Progress)
@@ -318,7 +322,7 @@ class PassbookActivityMoreoption : AppCompatActivity(), OnItemSelectedListener,V
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)

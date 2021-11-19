@@ -229,6 +229,8 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
         })
     }
     private fun getAccountnumber() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 /*  progressDialog = ProgressDialog(this@PassbookActivity, R.style.Progress)
@@ -246,7 +248,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)
@@ -551,6 +553,9 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
     }
 
     private fun getOwnAccountFundTransfer(accountNumber: String, Submod: String?, recieverAccountNo: String, submodule: String?, finalAmount: String, remark: String) {
+
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(
@@ -571,7 +576,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)
@@ -762,6 +767,8 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
 
     private fun balanceSplitUpDetails(fkaccount: String?, submodule: String?) {
 
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@OwnBankownaccountFundTransfer, R.style.Progress)
@@ -779,7 +786,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)
@@ -1028,6 +1035,9 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
     }
 
     private fun remittanceDetails(s: String, toSubModule: String, tofkAccount: String, isAdvance: String) {
+
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@OwnBankownaccountFundTransfer, R.style.Progress)
@@ -1045,7 +1055,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)

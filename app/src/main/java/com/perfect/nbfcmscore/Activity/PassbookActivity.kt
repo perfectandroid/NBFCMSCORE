@@ -93,6 +93,8 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
 
     }
     private fun getAccList() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@PassbookActivity, R.style.Progress)
@@ -110,7 +112,7 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)
@@ -385,6 +387,8 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
 
     private fun getPassBookAccountStatement(fkaccount: String, submodule: String, noofdays: Int) {
 
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@PassbookActivity, R.style.Progress)
@@ -402,7 +406,7 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)

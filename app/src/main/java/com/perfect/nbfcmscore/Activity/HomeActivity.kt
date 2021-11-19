@@ -275,6 +275,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     }
 
     private fun versioncheck() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 /* progressDialog = ProgressDialog(this@PassbookActivity, R.style.Progress)
@@ -292,7 +294,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)
@@ -518,6 +520,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     }
 
     private fun init() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 /* progressDialog = ProgressDialog(this@PassbookActivity, R.style.Progress)
@@ -535,7 +539,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)
@@ -1186,7 +1190,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 )
             }
             R.id.llgoldslab -> {
-                startActivity(Intent(this@HomeActivity, GoldSlabEstimatorActivity::class.java))
+//                startActivity(Intent(this@HomeActivity, GoldSlabEstimatorActivity::class.java))
+                startActivity(Intent(this@HomeActivity, GoldLoanActivity::class.java))
             }
             R.id.llloanapplication -> {
                 startActivity(Intent(this@HomeActivity, LoanApplicationActivity::class.java))
@@ -1272,6 +1277,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
 
     private fun getOwnAccount() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
 
@@ -1284,7 +1291,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)
@@ -1427,6 +1434,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
 
     private fun getLanguagelist() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@HomeActivity, R.style.Progress)
@@ -1444,7 +1453,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                         .setLenient()
                         .create()
                     val retrofit = Retrofit.Builder()
-                        .baseUrl(Config.BASE_URL)
+                        .baseUrl(baseurl)
                         .addConverterFactory(ScalarsConverterFactory.create())
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .client(client)
@@ -1598,6 +1607,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
 
     private fun getlabels(id: String) {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this@HomeActivity)) {
             true -> {
                   progressDialog = ProgressDialog(this@HomeActivity, R.style.Progress)
@@ -1617,7 +1628,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                         .setLenient()
                         .create()
                     val retrofit = Retrofit.Builder()
-                        .baseUrl(Config.BASE_URL)
+                        .baseUrl(baseurl)
                         .addConverterFactory(ScalarsConverterFactory.create())
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .client(client)

@@ -17,7 +17,7 @@ import javax.net.ssl.*
 
 object Config {
     val CERT_NAME = "staticvm.pem"  //QA
-  val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/api/"  //DEVELOPMENT
+ // val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/api/"  //DEVELOPMENT
     val IMAGE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/"  ///DEVELOPMENT
 
   // val BASE_URL="https://202.164.150.65:14262/NbfcAndroidAPIQA/api/"  //Qa new ip

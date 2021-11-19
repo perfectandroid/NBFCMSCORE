@@ -87,6 +87,8 @@ class RechargeHistoryActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun getRecentRecharges() {
 
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@RechargeHistoryActivity, R.style.Progress)
@@ -104,7 +106,7 @@ class RechargeHistoryActivity : AppCompatActivity(), View.OnClickListener {
                         .setLenient()
                         .create()
                     val retrofit = Retrofit.Builder()
-                        .baseUrl(Config.BASE_URL)
+                        .baseUrl(baseurl)
                         .addConverterFactory(ScalarsConverterFactory.create())
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .client(client)

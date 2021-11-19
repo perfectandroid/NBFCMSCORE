@@ -137,6 +137,8 @@ class DuedateActivity : AppCompatActivity() , View.OnClickListener{
 
     private fun getDuedate() {
 
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         ll_standnginstr!!.visibility = View.GONE
         llreminder!!.visibility = View.GONE
         when(ConnectivityUtils.isConnected(this)) {
@@ -156,7 +158,7 @@ class DuedateActivity : AppCompatActivity() , View.OnClickListener{
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)

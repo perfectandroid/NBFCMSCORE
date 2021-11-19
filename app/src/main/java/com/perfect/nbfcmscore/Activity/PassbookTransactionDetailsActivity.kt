@@ -52,6 +52,8 @@ class PassbookTransactionDetailsActivity : AppCompatActivity(), View.OnClickList
     }
 
     private fun getPassbookStatementDetails(transactionID: String?, subModule: String?) {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@PassbookTransactionDetailsActivity, R.style.Progress)
@@ -69,7 +71,7 @@ class PassbookTransactionDetailsActivity : AppCompatActivity(), View.OnClickList
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)
