@@ -501,8 +501,10 @@ class StatementFragment : Fragment() , View.OnClickListener{
                                     val strNew: String? = filename.substringAfterLast("NbfcAndroidAPI\\")
                                     Log.e(TAG,"strNew  51622   "+strNew)
 
+                                    val ImageURLSP = context!!.applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+                                    val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
 //                                    val filename2: String = Config.BASE_URL + "\\" + strNew + "\\" + filename1
-                                    val filename2: String = Config.IMAGE_URL + "\\" + strNew
+                                    val filename2: String = IMAGE_URL + "\\" + strNew
                                     Log.e(TAG,"filename2  51623   "+filename2)
 
                                     if (docType.equals("1")){

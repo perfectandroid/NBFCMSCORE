@@ -49,7 +49,9 @@ class OperatorAdapter(internal val mContext: Context, internal val jsInfo: JSONA
             if (holder is OperatorAdapter.MainViewHolder) {
                 holder.tv_adp_operator!!.setText(jsonObject!!.getString("ProvidersName"))
 
-                val imagepath = Config.IMAGE_URL+jsonObject!!.getString("ProvidersImagePath")
+                val ImageURLSP = mContext.applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+                val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
+                val imagepath = IMAGE_URL+jsonObject!!.getString("ProvidersImagePath")
 
                 Log.e(TAG,"IMGEURL  48   "+imagepath)
                 PicassoTrustAll.getInstance(mContext)!!.load(imagepath).error(com.perfect.nbfcmscore.R.drawable.no_image).into(holder.im_operator)

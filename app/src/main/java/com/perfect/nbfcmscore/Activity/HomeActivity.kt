@@ -252,10 +252,12 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
 
 
+        val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+        val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
         val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
         val ProductNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF12, 0)
         try {
-            val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString(
+            val imagepath = IMAGE_URL+AppIconImageCodeSP!!.getString(
                     "AppIconImageCode",
                     null
             )
@@ -977,9 +979,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             val btn_cancel = dialog1.findViewById(R.id.tv_cancel) as TextView
             val imglogo = dialog1.findViewById(R.id.imglogo) as ImageView
 
+            val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+            val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
             val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
             try {
-                val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+                val imagepath = IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
                 PicassoTrustAll.getInstance(this@HomeActivity)!!.load(imagepath).error(android.R.color.transparent).into(imglogo!!)
             }catch (e: Exception) {
                 e.printStackTrace()

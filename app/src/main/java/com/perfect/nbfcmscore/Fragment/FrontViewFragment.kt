@@ -93,8 +93,10 @@ class FrontViewFragment : Fragment() {
         txt_custid!!.text = CustomerNumberSP.getString("CustomerNumber",null)
 
         try {
+            val ImageURLSP = context!!.applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+            val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
             val AppIconImageCodeSP = activity!!.getSharedPreferences(Config.SHARED_PREF14, 0)
-            val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+            val imagepath = IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
             PicassoTrustAll.getInstance(activity!!)!!.load(imagepath).error(android.R.color.transparent).into(img_applogo!!)
         }catch (e : java.lang.Exception){
 

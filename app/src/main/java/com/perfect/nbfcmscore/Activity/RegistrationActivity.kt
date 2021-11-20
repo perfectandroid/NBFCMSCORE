@@ -46,10 +46,12 @@ class RegistrationActivity : AppCompatActivity()  , View.OnClickListener {
         val tv_product_name: TextView = findViewById(R.id.tv_product_name)
 //        Glide.with(this).load(R.drawable.login_reg_gif).into(imgLogo)
 
+        val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+        val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
         val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
         val ProductNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF12,0)
 //        var IMAGRURL = Config.IMAGE_URL+AppIconImageCodeSP.getString("AppIconImageCode",null)
-        val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+        val imagepath = IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
 
        // Glide.with(this).load(IMAGRURL).placeholder(R.drawable.login_reg_gif).into(imgLogo);
 //        Glide.with(this).load(IMAGRURL).placeholder(null).into(imgLogo);

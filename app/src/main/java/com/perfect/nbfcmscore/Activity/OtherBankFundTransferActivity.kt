@@ -612,8 +612,10 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
         txtvAcntnoto!!.setText(""+BeneAccountNumber)
         tv_amount!!.setText(""+Config.getDecimelFormate(amount!!.toDouble()))
 
+        val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+        val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
         val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
-        val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+        val imagepath = IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
         Log.e(TAG,"imagepath  566   "+imagepath)
        // img_aapicon!!.setImageResource(R.drawable.applogo)
         PicassoTrustAll.getInstance(this@OtherBankFundTransferActivity)!!.load(imagepath).error(android.R.color.transparent).into(img_aapicon!!)

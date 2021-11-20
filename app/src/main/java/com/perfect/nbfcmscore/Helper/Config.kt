@@ -18,7 +18,7 @@ import javax.net.ssl.*
 object Config {
     val CERT_NAME = "staticvm.pem"  //QA
  // val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/api/"  //DEVELOPMENT
-    val IMAGE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/"  ///DEVELOPMENT
+  //  val IMAGE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/"  ///DEVELOPMENT
 
   // val BASE_URL="https://202.164.150.65:14262/NbfcAndroidAPIQA/api/"  //Qa new ip
    // val IMAGE_URL="https://202.164.150.65:14262/NbfcAndroidAPIQA/"
@@ -197,6 +197,7 @@ object Config {
     const val SHARED_PREF162= "SaveBeneficiaryForFuture"
     const val SHARED_PREF163= "baseurl"
     const val SHARED_PREF164= "sslcertificate"
+    const val SHARED_PREF165= "ImageURL"
 
 
 

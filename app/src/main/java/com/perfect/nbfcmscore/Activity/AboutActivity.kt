@@ -29,12 +29,14 @@ class AboutActivity : AppCompatActivity() , View.OnClickListener{
         val imlogo: ImageView = findViewById(R.id.imlogo)
         Glide.with(this).load(R.drawable.aboutusgif).into(imlogo)
 
+        val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+        val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
         try {
             val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14,0)
-            val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode",null)
+            val imagepath = IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode",null)
 
             val CompanyLogoImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF13,0)
-            val imagepathcompanylog = Config.IMAGE_URL+CompanyLogoImageCodeSP!!.getString("CompanyLogoImageCode",null)
+            val imagepathcompanylog = IMAGE_URL+CompanyLogoImageCodeSP!!.getString("CompanyLogoImageCode",null)
 
             PicassoTrustAll.getInstance(this@AboutActivity)!!.load(imagepath).error(android.R.color.transparent).into(applogo!!)
             PicassoTrustAll.getInstance(this@AboutActivity)!!.load(imagepathcompanylog).error(android.R.color.transparent).into(imCompanylogo!!)

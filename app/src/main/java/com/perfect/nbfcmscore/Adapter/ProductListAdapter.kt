@@ -50,8 +50,10 @@ class ProductListAdapter(internal val mContext: Context, internal val jsInfo: JS
               /*  val date = SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.US).parse(jsonObject!!.getString("HolidayDate"))
                 val formattedDatesString = SimpleDateFormat("MMM dd, yyyy", Locale.US).format(date)*/
 
+                val ImageURLSP = mContext.applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+                val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
                     try {
-                        val imagepath = Config.IMAGE_URL+jsonObject!!.getString("ProductImagePath")
+                        val imagepath = IMAGE_URL+jsonObject!!.getString("ProductImagePath")
                         PicassoTrustAll.getInstance(mContext)!!.load(imagepath).error(android.R.color.transparent).into(holder.img_product!!)
                     }catch (e: Exception){
 
