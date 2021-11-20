@@ -1217,8 +1217,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             }
             R.id.llnotif -> {
 
-//                var intent = Intent(this@HomeActivity, DuedateActivity::class.java)
-//                startActivity(intent)
+               var intent = Intent(this@HomeActivity, MessagesActivity::class.java)
+                startActivity(intent)
             }
             R.id.ll_landline -> {
 

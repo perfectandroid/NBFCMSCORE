@@ -193,5 +193,14 @@ interface ApiInterface {
     @POST("AccountSummary/GoldEstimatorDetails")
     fun getGoldEstimatorDetails(@Body body: RequestBody): Call<String>
 
+    @POST("AccountSummary/BenefitDetails")
+    fun getBenefdetails(@Body body: RequestBody): Call<String>
+
+    @POST("AccountSummary/DepositCalculator")
+    fun getDepositcalcltr(@Body body: RequestBody): Call<String>
+
+    @POST("Customer/MessagesDetails")
+    fun getMessages(@Body body: RequestBody): Call<String>
+
 }
 
