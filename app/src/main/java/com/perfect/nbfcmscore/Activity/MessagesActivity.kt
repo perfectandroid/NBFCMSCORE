@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -34,6 +35,7 @@ class MessagesActivity : AppCompatActivity() , View.OnClickListener{
 
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
+    var tv_header: TextView? = null
     private var jresult: JSONArray? = null
     private var rv_messages: RecyclerView? = null
     private var progressDialog: ProgressDialog? = null
@@ -228,6 +230,11 @@ class MessagesActivity : AppCompatActivity() , View.OnClickListener{
         imgHome!!.setOnClickListener(this)
 
         rv_messages = findViewById(R.id.rv_messages)
+
+        tv_header = findViewById(R.id.tv_header)
+
+        val NotifctnSP = applicationContext.getSharedPreferences(Config.SHARED_PREF62, 0)
+        tv_header!!.setText(NotifctnSP.getString("NotificationandMessages",null))
     }
 
     override fun onClick(v: View) {

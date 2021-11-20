@@ -2,7 +2,6 @@ package com.perfect.nbfcmscore.Activity
 
 import android.app.AlertDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
@@ -10,45 +9,52 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.*
-import com.bumptech.glide.Glide
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.*
-import com.perfect.nbfcmscore.Model.Splitupdetail
+import com.perfect.nbfcmscore.Model.Beneflist
 import com.perfect.nbfcmscore.R
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
+import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
-import java.util.ArrayList
+import java.util.*
 
 class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,AdapterView.OnItemSelectedListener {
 
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
-
+    private var jresult: JSONArray? = null
     var spn_deposit_type: Spinner? = null
     var spn_beneficiary: Spinner? = null
     var spn_tenure: Spinner? = null
     var peroidtype: String? = null
+    var llOutput: LinearLayout? = null
     var beneficiary: String? = null
     var txt_amtinword: TextView? = null
-
     var etxt_amount: EditText? = null
     var edt_txt_tenure: EditText? = null
+    var tv_type: TextView? = null
+    var tv_period: TextView? = null
+    var tv_rateofinterest: TextView? = null
+    var tv_amt: TextView? = null
+    var tv_maturityamt: TextView? = null
 
     var btn_submit: Button? = null
     var tv_header: TextView? = null
     var submodule: String? = null
+    var benefid: String? = null
     var deposittype = arrayOfNulls<String>(0)
     var benefcry = arrayOfNulls<String>(0)
     var tenure = arrayOfNulls<String>(0)
-
+    public var arrayList1: ArrayList<Beneflist>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_deposit)
@@ -59,9 +65,7 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
 
     }
 
-    private fun getBenefit() {
-        TODO("Not yet implemented")
-    }
+
 
     private fun setRegViews() {
         imgBack = findViewById(R.id.imgBack)
@@ -78,10 +82,19 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
         spn_deposit_type = findViewById(R.id.spn_deposit_type)
 
         tv_header = findViewById(R.id.tv_header)
+        llOutput = findViewById(R.id.llOutput)
 
         btn_submit = findViewById(R.id.btn_submit)
 
         btn_submit!!.setOnClickListener(this)
+
+        tv_type = findViewById(R.id.tv_type)
+        tv_period = findViewById(R.id.tv_period)
+        tv_rateofinterest = findViewById(R.id.tv_rateofinterest)
+        tv_amt = findViewById(R.id.tv_amt)
+        tv_maturityamt = findViewById(R.id.tv_maturityamt)
+
+
 
         spn_deposit_type!!.setOnItemSelectedListener(this)
         spn_beneficiary!!.setOnItemSelectedListener(this)
@@ -163,9 +176,9 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                         }
                         val num = ("" + originalString).toDouble()
 
-                       // btn_submit!!.setText(PAYSP.getString("PAY", null)+ "\u20B9 " + Config.getDecimelFormate(num))
+                        // btn_submit!!.setText(PAYSP.getString("PAY", null)+ "\u20B9 " + Config.getDecimelFormate(num))
                     } else {
-                       // btn_submit!!.setText(PAYSP.getString("PAY", null))
+                        // btn_submit!!.setText(PAYSP.getString("PAY", null))
                     }
                 } catch (e: NumberFormatException) {
                 }
@@ -181,18 +194,21 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
     }
 
     private fun getBenefcryType() {
-        val bb: ArrayAdapter<*> = ArrayAdapter<Any?>(this!!, android.R.layout.simple_spinner_item, benefcry)
+      /*  val bb: ArrayAdapter<*> = ArrayAdapter<Any?>(this!!, android.R.layout.simple_spinner_item, benefcry)
         bb.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
         spn_beneficiary!!.adapter = bb
+*/
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
+        when(ConnectivityUtils.isConnected(this)) {
 
-      /*  when(ConnectivityUtils.isConnected(this)) {
             true -> {
-                *//*  progressDialog = ProgressDialog(this@PassbookActivity, R.style.Progress)
+                /*  progressDialog = ProgressDialog(this@PassbookActivity, R.style.Progress)
                   progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
                   progressDialog!!.setCancelable(false)
                   progressDialog!!.setIndeterminate(true)
                   progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
-                  progressDialog!!.show()*//*
+                  progressDialog!!.show()*/
                 try {
                     val client = OkHttpClient.Builder()
                             .sslSocketFactory(Config.getSSLSocketFactory(this@DepositCalculatorActivity))
@@ -202,7 +218,7 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)
@@ -263,29 +279,22 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                                 //  progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 Log.i("Responsebeneficiary", response.body())
-                             *//*   if (jObject.getString("StatusCode") == "0") {
+                                if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
-                                            jObject.getJSONObject("OwnAccountdetails")
+                                            jObject.getJSONObject("BenefitDetails")
                                     val jsonobj2 = JSONObject(jsonObj1.toString())
 
-                                    jresult = jsonobj2.getJSONArray("OwnAccountdetailsList")
-                                    arrayList1 = ArrayList<Splitupdetail>()
+                                    val jresult = jsonobj2.getJSONArray("BenefitDetailsList")
+                                    arrayList1 = ArrayList<Beneflist>()
                                     for (i in 0 until jresult!!.length()) {
                                         try {
                                             val json = jresult!!.getJSONObject(i)
                                             arrayList1!!.add(
-                                                    Splitupdetail(
-                                                            json.getString("AccountNumber"),
+                                                    Beneflist(
+                                                            json.getString("ID_Benefit"),
                                                             json.getString(
-                                                                    "FK_Account"
-                                                            ),
-                                                            json.getString(
-                                                                    "SubModule"
-                                                            ),
-                                                            json.getString(
-                                                                    "BranchName"
-                                                            )
-                                                    )
+                                                                    "BenName"
+                                                            ))
 
                                             )
 
@@ -293,8 +302,8 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                                             e.printStackTrace()
                                         }
                                     }
-                                    spn_account_num!!.adapter = ArrayAdapter(
-                                            this@OwnBankownaccountFundTransfer,
+                                    spn_beneficiary!!.adapter = ArrayAdapter(
+                                            this@DepositCalculatorActivity,
                                             android.R.layout.simple_spinner_dropdown_item, arrayList1!!
                                     )
 
@@ -302,7 +311,7 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
 
                                 } else {
                                     val builder = AlertDialog.Builder(
-                                            this@OwnBankownaccountFundTransfer,
+                                            this@DepositCalculatorActivity,
                                             R.style.MyDialogTheme
                                     )
                                     builder.setMessage("" + jObject.getString("EXMessage"))
@@ -311,7 +320,7 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                                     val alertDialog: AlertDialog = builder.create()
                                     alertDialog.setCancelable(false)
                                     alertDialog.show()
-                                }*//*
+                                }
                             } catch (e: Exception) {
                                 //  progressDialog!!.dismiss()
 
@@ -371,7 +380,7 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                 alertDialog.setCancelable(false)
                 alertDialog.show()
             }
-        }*/
+        }
     }
 
     private fun getDepositType() {
@@ -389,9 +398,9 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                 startActivity(Intent(this@DepositCalculatorActivity, HomeActivity::class.java))
             }
             R.id.btn_submit -> {
-                if (isValid()){
+                if (isValid()) {
 
-                      getDepositCalculatr()
+                    getDepositCalculatr()
                 }
             }
 
@@ -461,7 +470,7 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                         )
                         requestObject1.put(
                                 "BenefitType",
-                                MscoreApplication.encryptStart(beneficiary)
+                                MscoreApplication.encryptStart(benefid)
                         )
                         requestObject1.put(
                                 "BankKey", MscoreApplication.encryptStart(
@@ -496,46 +505,24 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                                 //  progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 Log.i("Response Deposit", response.body())
-                             /*   if (jObject.getString("StatusCode") == "0") {
+                                if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
-                                            jObject.getJSONObject("OwnAccountdetails")
+                                            jObject.getJSONObject("DepositCalculator")
                                     val jsonobj2 = JSONObject(jsonObj1.toString())
 
-                                    jresult = jsonobj2.getJSONArray("OwnAccountdetailsList")
-                                    arrayList1 = ArrayList<Splitupdetail>()
-                                    for (i in 0 until jresult!!.length()) {
-                                        try {
-                                            val json = jresult!!.getJSONObject(i)
-                                            arrayList1!!.add(
-                                                    Splitupdetail(
-                                                            json.getString("AccountNumber"),
-                                                            json.getString(
-                                                                    "FK_Account"
-                                                            ),
-                                                            json.getString(
-                                                                    "SubModule"
-                                                            ),
-                                                            json.getString(
-                                                                    "BranchName"
-                                                            )
-                                                    )
 
-                                            )
+                                    llOutput!!.visibility = View.VISIBLE
 
-                                        } catch (e: JSONException) {
-                                            e.printStackTrace()
-                                        }
-                                    }
-                                    spn_account_num!!.adapter = ArrayAdapter(
-                                            this@OwnBankownaccountFundTransfer,
-                                            android.R.layout.simple_spinner_dropdown_item, arrayList1!!
-                                    )
+                                    tv_type!!.setText("" + jsonobj2.getString("TypeName"))
+                                    tv_period!!.setText("" + jsonObj1.getString("Period"))
+                                    tv_rateofinterest!!.setText("" + jsonObj1.getString("ROI"))
+                                    tv_amt!!.setText("" + jsonObj1.getString("Amount"))
+                                    tv_maturityamt!!.setText("" + jsonObj1.getString("MaturityAmount"))
 
-                                    //    spn_account_num!!.setSelection(arrayList1.indexOf("Select Account"));
 
                                 } else {
                                     val builder = AlertDialog.Builder(
-                                            this@OwnBankownaccountFundTransfer,
+                                            this@DepositCalculatorActivity,
                                             R.style.MyDialogTheme
                                     )
                                     builder.setMessage("" + jObject.getString("EXMessage"))
@@ -544,7 +531,7 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                                     val alertDialog: AlertDialog = builder.create()
                                     alertDialog.setCancelable(false)
                                     alertDialog.show()
-                                }*/
+                                }
                             } catch (e: Exception) {
                                 //  progressDialog!!.dismiss()
 
@@ -632,6 +619,8 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+
+
         //tenure
         if(spn_tenure!!.selectedItem.toString().equals("Day"))
         {
@@ -653,17 +642,19 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
         {
             submodule = "TDCC"
         }
+        val beneflist: Beneflist = arrayList1!!.get(position)
+        benefid = beneflist.getID_Benefit()
 
         //benefiuciary
 
-        if(spn_beneficiary!!.selectedItem.toString().equals("Normal"))
+        /*if(spn_beneficiary!!.selectedItem.toString().equals("Normal"))
         {
             beneficiary = "1"
         }
         else if(spn_beneficiary!!.selectedItem.toString().equals("Senior Citizen"))
         {
             beneficiary = "2"
-        }
+        }*/
 
 
     }
