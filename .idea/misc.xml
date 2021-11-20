@@ -22,13 +22,14 @@
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_accountdetails.xml" value="0.33" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_branch_detail.xml" value="0.20520833333333333" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_contactus.xml" value="0.29375" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_dashboard.xml" value="0.2796875" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_duedate.xml" value="0.35104166666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_duereminder.xml" value="0.29375" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_enquiry.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_feedback.xml" value="0.2526041666666667" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_gold_loan.xml" value="0.33" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_goldslabestimator.xml" value="0.2526041666666667" />
-        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_home.xml" value="0.5" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_home.xml" value="0.33" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_languagesectection.xml" value="0.18229166666666666" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_notice.xml" value="0.35104166666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_other_bank.xml" value="0.23981481481481481" />
@@ -40,7 +41,9 @@
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_virtual.xml" value="0.29635416666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_welcome.xml" value="0.29375" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/adapter_branch_list.xml" value="0.20520833333333333" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/adapter_duedate.xml" value="0.2296875" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/adapter_language.xml" value="0.16" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/fragment_front_view.xml" value="0.2296875" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/fragment_moreoption.xml" value="0.3026041666666667" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/fragment_statementdownloadview.xml" value="0.31927083333333334" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/goldlist.xml" value="0.35104166666666664" />
@@ -55,7 +58,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

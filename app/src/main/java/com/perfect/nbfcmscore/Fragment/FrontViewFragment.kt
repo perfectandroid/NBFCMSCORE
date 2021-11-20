@@ -24,6 +24,9 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class FrontViewFragment : Fragment() {
 
@@ -100,9 +103,22 @@ class FrontViewFragment : Fragment() {
 
         }
 
+        val currentTime = Calendar.getInstance().time
+        Log.e(TAG,"currentTime  "+currentTime)
+        val date: DateFormat = SimpleDateFormat("dd-MM-yyyy")
+        val localTime = date.format(currentTime)
 
+        Log.e(TAG,"localTime   110    "+localTime)
+        val dateParts = localTime.split("-").toTypedArray()
+        val day = dateParts[0].toInt()
+        val month = dateParts[1].toInt()
+        val yr = dateParts[2].toInt()
 
-        getVritualcardCombination()
+        Log.e(TAG,"Monthndat  1101    "+month+"   "+day)
+
+        tv_vritualcard!!.text = day.toString()+CustomerNumberSP.getString("CustomerNumber",null)+month.toString()
+
+      //  getVritualcardCombination()
 
         return v
 
