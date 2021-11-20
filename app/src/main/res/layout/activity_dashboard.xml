@@ -92,6 +92,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="151dp"
                     android:layout_gravity="center"
+                    android:visibility="gone" />
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/piechartAsset"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center"
                     android:visibility="visible" />
 
                 <LinearLayout
@@ -102,8 +109,7 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rvOverassetlist"
-                        android:layout_below="@+id/layoutTop"
-                        android:layout_marginBottom="10dp"
+                        android:layout_margin="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -155,6 +161,20 @@
                         android:id="@+id/linechart1"
                         android:layout_width="match_parent"
                         android:layout_height="151dp"
+                        android:layout_gravity="center"
+                        android:visibility="gone" />
+
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/barchart1"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:visibility="gone"/>
+
+
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/piechartLiability"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
                         android:layout_gravity="center"
                         android:visibility="visible" />
 
@@ -219,6 +239,13 @@
                         android:id="@+id/linechart"
                         android:layout_width="match_parent"
                         android:layout_height="151dp"
+                        android:layout_gravity="center"
+                        android:visibility="gone" />
+
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/piechartPayment"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
                         android:layout_gravity="center"
                         android:visibility="visible" />
 

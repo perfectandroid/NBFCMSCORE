@@ -114,6 +114,23 @@
     <color name="color_langround">#62b484</color>
     <color name="black_lang">#BF2C2B2B</color>
 
+    <color name="color_asset1">#001219</color>
+    <color name="color_asset2">#0a9396</color>
+    <color name="color_asset3">#94d2bd</color>
+    <color name="color_asset4">#005f73</color>
+
+    <color name="color_liability1">#023047</color>
+    <color name="color_liability2">#457b9d</color>
+    <color name="color_liability3">#219ebc</color>
+    <color name="color_liability4">#8ecae6</color>
+
+
+    <color name="color_payment1">#ecf39e</color>
+    <color name="color_payment2">#90a955</color>
+    <color name="color_payment3">#4f772d</color>
+    <color name="color_payment4">#31572c</color>
+
+
 
     <color name="test">#fbfbfb</color>
 
