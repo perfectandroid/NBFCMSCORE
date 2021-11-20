@@ -73,11 +73,13 @@ class OTPActivity : AppCompatActivity() , View.OnClickListener {
         val ID_OtpverifySP = applicationContext.getSharedPreferences(Config.SHARED_PREF48,0)
 
 
+        val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+        val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
         val imgLogo: ImageView = findViewById(R.id.imgLogo)
       //  Glide.with(this).load(R.drawable.otpgif).into(imgLogo)
         val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14,0)
         val ProductNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF12,0)
-        var IMAGRURL = Config.IMAGE_URL+AppIconImageCodeSP.getString("AppIconImageCode",null)
+        var IMAGRURL = IMAGE_URL+AppIconImageCodeSP.getString("AppIconImageCode",null)
 
         Glide.with(this).load(IMAGRURL).placeholder(null).into(imgLogo);
 

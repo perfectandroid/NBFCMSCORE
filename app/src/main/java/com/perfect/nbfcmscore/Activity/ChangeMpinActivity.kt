@@ -40,14 +40,16 @@ class ChangeMpinActivity : AppCompatActivity(), View.OnClickListener {
         setRegViews()
 
 
+        val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+        val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
         val imgLogo: ImageView = findViewById(R.id.imgLogo)
         val tv_product_name: TextView = findViewById(R.id.tv_product_name)
 
         val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14,0)
         val ProductNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF12,0)
-        var IMAGRURL = Config.IMAGE_URL+AppIconImageCodeSP.getString("AppIconImageCode",null)
+        var IMAGRURL = IMAGE_URL+AppIconImageCodeSP.getString("AppIconImageCode",null)
 
-        try { val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+        try { val imagepath = IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
             Log.e("TAG","imagepath  116   "+imagepath)
             //PicassoTrustAll.getInstance(this)!!.load(imagepath).error(null).into(im_applogo)
             PicassoTrustAll.getInstance(this@ChangeMpinActivity)!!.load(imagepath).error(android.R.color.transparent).into(imgLogo!!)

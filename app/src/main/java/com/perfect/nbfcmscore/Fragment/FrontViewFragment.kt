@@ -24,6 +24,9 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class FrontViewFragment : Fragment() {
 
@@ -93,16 +96,31 @@ class FrontViewFragment : Fragment() {
         txt_custid!!.text = CustomerNumberSP.getString("CustomerNumber",null)
 
         try {
+            val ImageURLSP = context!!.applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+            val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
             val AppIconImageCodeSP = activity!!.getSharedPreferences(Config.SHARED_PREF14, 0)
-            val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+            val imagepath = IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
             PicassoTrustAll.getInstance(activity!!)!!.load(imagepath).error(android.R.color.transparent).into(img_applogo!!)
         }catch (e : java.lang.Exception){
 
         }
 
+        val currentTime = Calendar.getInstance().time
+        Log.e(TAG,"currentTime  "+currentTime)
+        val date: DateFormat = SimpleDateFormat("dd-MM-yyyy")
+        val localTime = date.format(currentTime)
 
+        Log.e(TAG,"localTime   110    "+localTime)
+        val dateParts = localTime.split("-").toTypedArray()
+        val day = dateParts[0].toInt()
+        val month = dateParts[1].toInt()
+        val yr = dateParts[2].toInt()
 
-        getVritualcardCombination()
+        Log.e(TAG,"Monthndat  1101    "+month+"   "+day)
+
+        tv_vritualcard!!.text = day.toString()+CustomerNumberSP.getString("CustomerNumber",null)+month.toString()
+
+      //  getVritualcardCombination()
 
         return v
 

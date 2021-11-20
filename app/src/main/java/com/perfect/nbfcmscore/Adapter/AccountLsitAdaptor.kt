@@ -51,8 +51,10 @@ class AccountLsitAdaptor(internal val mContext: Context, internal val jsInfo: JS
                 holder.tvbal!!.setText("₹ "+ Config.getDecimelFormate(jsonObject!!.getDouble("Balance")))
                 holder.tvbranch!!.setText(jsonObject!!.getString("BranchName"))
 
+                val ImageURLSP = mContext.applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+                val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
                 try {
-                    val imagepath = Config.IMAGE_URL+jsonObject!!.getString("ImagePath")
+                    val imagepath = IMAGE_URL+jsonObject!!.getString("ImagePath")
                     Log.e(TAG,"imagepath  55   "+imagepath)
                     PicassoTrustAll.getInstance(mContext)!!.load(imagepath).error(android.R.color.transparent).into(holder.img_accounttype!!)
                 }catch (e : Exception){

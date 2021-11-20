@@ -122,6 +122,7 @@ class GoldLoanActivity : AppCompatActivity() , View.OnClickListener{
                 tie_amountweight!!.setText("")
               //  tie_amountweight!!.setHint("Enter Amount")
                 til_amountweight!!.setHint("Enter Amount")
+                ll_estimatelist!!.visibility = View.GONE
             }
 
             R.id.chk_weight ->{
@@ -132,11 +133,13 @@ class GoldLoanActivity : AppCompatActivity() , View.OnClickListener{
                 tie_amountweight!!.setText("")
                 //tie_amountweight!!.setHint("Enter Weight")
                 til_amountweight!!.setHint("Enter Weight")
+                ll_estimatelist!!.visibility = View.GONE
             }
 
             R.id.but_calculate ->{
                 Config.Utils.hideSoftKeyBoard(this@GoldLoanActivity,v)
                 ll_estimatelist!!.visibility = View.GONE
+
                 if (tie_amountweight!!.text.toString().equals("")){
 
                     if (CalcMethod.equals("1")){
