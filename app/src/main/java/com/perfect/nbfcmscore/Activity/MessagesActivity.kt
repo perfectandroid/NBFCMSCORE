@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
+import com.perfect.nbfcmscore.Adapter.MessageAdapter
 import com.perfect.nbfcmscore.Adapter.PassbookTranscationListAdapter
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
@@ -139,12 +140,12 @@ class MessagesActivity : AppCompatActivity() , View.OnClickListener{
                                                 GridLayoutManager(this@MessagesActivity, 1)
                                         rv_messages!!.layoutManager = lLayout
                                         rv_messages!!.setHasFixedSize(true)
-                                       /* val adapter = PassbookTranscationListAdapter(
+                                        val adapter = MessageAdapter(
                                                 this@MessagesActivity,
-                                                jresult!!,
-                                                submodule
+                                                jresult!!
+
                                         )
-                                        rv_passbook!!.adapter = adapter*/
+                                        rv_messages!!.adapter = adapter
                                     } else {
                                         rv_messages!!.visibility = View.GONE
 
