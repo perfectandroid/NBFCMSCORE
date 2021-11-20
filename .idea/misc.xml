@@ -41,6 +41,9 @@
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_virtual.xml" value="0.29635416666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_welcome.xml" value="0.29375" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/adapter_branch_list.xml" value="0.20520833333333333" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/adapter_dash_assets.xml" value="0.3020833333333333" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/adapter_dash_liability.xml" value="0.33" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/adapter_dash_payments.xml" value="0.30052083333333335" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/adapter_duedate.xml" value="0.2296875" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/adapter_language.xml" value="0.16" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/fragment_front_view.xml" value="0.2296875" />

@@ -13,6 +13,7 @@ import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.BarChart
@@ -28,6 +29,10 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
+import com.perfect.nbfcmscore.Adapter.DashAssetAdapter
+import com.perfect.nbfcmscore.Adapter.DashLiabilityAdapter
+import com.perfect.nbfcmscore.Adapter.DashPaymentAdapter
+import com.perfect.nbfcmscore.Adapter.RechargeHistoryAdapter
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
@@ -100,7 +105,13 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
     var pieDataSetPayment: PieDataSet? = null
     var pieDataPayment: PieData? = null
 
+    var rvAssetList: RecyclerView? = null
+    var rvliability: RecyclerView? = null
+    var rvpayment: RecyclerView? = null
+
     var dashTextSize : Float = 10f
+
+
 
 
     val TAG: String? = "DashboardActivity"
@@ -284,7 +295,8 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                                         val first = tokens.nextToken() // this will contain "Fruit"
 
                                         entriesAsset!!.add(BarEntry(str.toFloat(), x))
-                                        PieEntryLabelsAsset!!.add(first);
+//                                        PieEntryLabelsAsset!!.add(first);
+                                        PieEntryLabelsAsset!!.add("");
 
                                     }
 
@@ -308,6 +320,12 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
 
                                     val l: Legend = piechartAsset!!.getLegend()
                                     l.setEnabled(false);
+
+                                    val lLayout = GridLayoutManager(this@DashboardActivity, 2)
+                                    rvAssetList!!.setLayoutManager(lLayout)
+                                    rvAssetList!!.setHasFixedSize(true)
+                                    val asset_adapter = DashAssetAdapter(applicationContext!!, jresult!!)
+                                    rvAssetList!!.adapter = asset_adapter
 
                                 } else {
                                     val builder = AlertDialog.Builder(
@@ -383,7 +401,7 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
         imgBack!!.setOnClickListener(this)
         linechart1 = findViewById(R.id.linechart1);
 
-        rvOverduelist = findViewById<RecyclerView>(R.id.rvOverduelist)
+     //   rvOverduelist = findViewById<RecyclerView>(R.id.rvOverduelist)
 
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)
@@ -393,6 +411,10 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
         piechartAsset = findViewById(R.id.piechartAsset)
         piechartPayment = findViewById(R.id.piechartPayment)
         linechart = findViewById(R.id.linechart)
+
+        rvAssetList = findViewById(R.id.rvAssetList)
+        rvliability = findViewById(R.id.rvliability)
+        rvpayment = findViewById(R.id.rvpayment)
 
      //   txtvDate = findViewById<TextView>(R.id.txtvDate)
       //  rv_pie = findViewById(R.id.rv_pie)
@@ -596,7 +618,8 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                                         val tokens = StringTokenizer(str1, "(")
                                         val first = tokens.nextToken() // this will contain "Fruit"
                                         entriesLiability!!.add(BarEntry(str.toFloat(), x))
-                                        PieEntryLabelsLiability!!.add(first);
+//                                        PieEntryLabelsLiability!!.add(first);
+                                        PieEntryLabelsLiability!!.add("");
 
                                     }
 
@@ -620,6 +643,12 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
 
                                     val l: Legend = piechartLiability!!.getLegend()
                                     l.setEnabled(false);
+
+                                    val lLayout = GridLayoutManager(this@DashboardActivity, 2)
+                                    rvliability!!.setLayoutManager(lLayout)
+                                    rvliability!!.setHasFixedSize(true)
+                                    val liability_adapter = DashLiabilityAdapter(applicationContext!!, jresult2!!)
+                                    rvliability!!.adapter = liability_adapter
 
 
                                 } else {
@@ -837,7 +866,8 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                                         }
 
                                         entriesPayment!!.add(BarEntry(str.toFloat(), x))
-                                        PieEntryLabelsPayment!!.add(status.toString());
+//                                        PieEntryLabelsPayment!!.add(status.toString());
+                                        PieEntryLabelsPayment!!.add("");
 
                                     }
 
@@ -863,6 +893,11 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                                     l.setEnabled(false);
 
 
+                                    val lLayout = GridLayoutManager(this@DashboardActivity, 2)
+                                    rvpayment!!.setLayoutManager(lLayout)
+                                    rvpayment!!.setHasFixedSize(true)
+                                    val payment_adapter = DashPaymentAdapter(applicationContext!!, jresult3!!)
+                                    rvpayment!!.adapter = payment_adapter
 
                                 } else {
                                     val builder = AlertDialog.Builder(
