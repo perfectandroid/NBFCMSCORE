@@ -41,7 +41,9 @@ class RecentRechargeAdapter(internal val mContext: Context, internal val jsInfo:
 
             if (holder is RecentRechargeAdapter.MainViewHolder) {
 
-                val imagepath = Config.IMAGE_URL+jsonObject!!.getString("ProvidersImagePath")
+                val ImageURLSP = mContext.applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+                val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
+                val imagepath = IMAGE_URL+jsonObject!!.getString("ProvidersImagePath")
                 PicassoTrustAll.getInstance(mContext)!!.load(imagepath).error(R.drawable.no_image).into(holder.img_operator)
 
                 holder.tv_name!!.setText(jsonObject!!.getString("ProvidersName"))

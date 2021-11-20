@@ -117,6 +117,8 @@ class SplashActivity : AppCompatActivity() {
         val baseurlSPEditer = baseurlSP.edit()
         baseurlSPEditer.putString("baseurl", BASE_URL)
         baseurlSPEditer.commit()
+        val baseUrlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseUrlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@SplashActivity, R.style.Progress)
@@ -134,7 +136,7 @@ class SplashActivity : AppCompatActivity() {
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)
@@ -226,6 +228,10 @@ class SplashActivity : AppCompatActivity() {
                                     val baseurlSPEditer = baseurlSP.edit()
                                     baseurlSPEditer.putString("baseurl", jobjt.getString("TestingURL"))
                                     baseurlSPEditer.commit()
+                                    val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165,0)
+                                    val ImageURLSPEditer = ImageURLSP.edit()
+                                    ImageURLSPEditer.putString("ImageURL", jobjt.getString("TestingImageURL"))
+                                    ImageURLSPEditer.commit()
 
                                     if(jobjt.getString("CertificateStatus").equals("Live")) {
                                         val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)

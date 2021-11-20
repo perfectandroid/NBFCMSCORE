@@ -36,10 +36,12 @@ class ProfileActivity : AppCompatActivity() , View.OnClickListener{
         tv_dob = findViewById<TextView>(R.id.tv_dob)
         tv_cusnumber = findViewById<TextView>(R.id.tv_cusnumber)
 
+        val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+        val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
 
         val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14,0)
         try {
-            val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode",null)
+            val imagepath = IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode",null)
           //  PicassoTrustAll.getInstance(this)!!.load(imagepath).error(R.drawable.no_image).into(im_applogo)
         }catch (e: Exception) {
             e.printStackTrace()}

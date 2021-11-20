@@ -86,8 +86,10 @@ class AccountDetailsActivity : AppCompatActivity() , View.OnClickListener {
         tvbal!!.setText(Balance)
 
 
+        val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+        val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
         try {
-            val imagepath = Config.IMAGE_URL+intent.getStringExtra("ImagePath")!!
+            val imagepath = IMAGE_URL+intent.getStringExtra("ImagePath")!!
             Log.e(TAG,"imagepath  55   "+imagepath)
             PicassoTrustAll.getInstance(applicationContext)!!.load(imagepath).error(android.R.color.transparent).into(img_accounttype!!)
         }catch (e : Exception){

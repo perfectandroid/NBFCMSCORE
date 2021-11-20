@@ -46,8 +46,10 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
         val tv_product_name: TextView = findViewById(R.id.tv_product_name)
         val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
         val ProductNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF12, 0)
-        var IMAGRURL = Config.IMAGE_URL+AppIconImageCodeSP.getString("AppIconImageCode", null)
-        val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+        val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+        val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
+        var IMAGRURL = IMAGE_URL+AppIconImageCodeSP.getString("AppIconImageCode", null)
+        val imagepath = IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
 
         //  Glide.with(this).load(IMAGRURL).placeholder(null).into(imwelcome!!);
         PicassoTrustAll.getInstance(this@WelcomeActivity)!!.load(imagepath).error(android.R.color.transparent).into(imwelcome!!)

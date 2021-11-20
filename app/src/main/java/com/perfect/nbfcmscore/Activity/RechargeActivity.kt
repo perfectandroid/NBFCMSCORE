@@ -1073,8 +1073,10 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
         tv_oper!!.setText(""+tie_operator!!.text.toString())
         tv_cir!!.setText(""+tie_circle!!.text.toString())
 
+        val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+        val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
         val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
-        val imagepath = Config.IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+        val imagepath = IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
         PicassoTrustAll.getInstance(this@RechargeActivity)!!.load(imagepath).error(android.R.color.transparent).into(img_aapicon)
 
         text_confirmationmsg!!.setText("Proceed Recharge With Above Amount ..?")
