@@ -2,6 +2,7 @@ package com.perfect.nbfcmscore.Activity
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -33,6 +34,7 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
     var tvfasterway:TextView?=null
     var btlogin:Button?=null
     var btregistration:Button?=null
+    private var progressDialog: ProgressDialog? = null
     var skip:String?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -124,12 +126,12 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
         val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
-                /*   progressDialog = ProgressDialog(this@LanguageSelectionActivity, R.style.Progress)
+                   progressDialog = ProgressDialog(this@WelcomeActivity, R.style.Progress)
                    progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
                    progressDialog!!.setCancelable(false)
                    progressDialog!!.setIndeterminate(true)
                    progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
-                   progressDialog!!.show()*/
+                   progressDialog!!.show()
                 try {
                     val client = OkHttpClient.Builder()
                             .sslSocketFactory(Config.getSSLSocketFactory(this))
@@ -178,7 +180,7 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
 
                         Log.e("TAG", "requestObject1  labels   " + requestObject1)
                     } catch (e: Exception) {
-                        // progressDialog!!.dismiss()
+                         progressDialog!!.dismiss()
                         e.printStackTrace()
                         val mSnackbar = Snackbar.make((this as Activity).findViewById(android.R.id.content), "Some technical issues.", Snackbar.LENGTH_INDEFINITE)
                     }
@@ -193,7 +195,7 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                 Response<String>
                         ) {
                             try {
-                                // progressDialog!!.dismiss()
+                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 Log.i("Response-labels", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
@@ -838,6 +840,34 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                     val ID_SavedbenfEditer = ID_Savedbenf.edit()
                                     ID_SavedbenfEditer.putString("SaveBeneficiaryForFuture", jresult3.get("SaveBeneficiaryForFuture") as String)
                                     ID_SavedbenfEditer.commit()
+
+                                    val ID_Otpmsg = this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF166, 0)
+                                    val ID_OtpmsgEditer = ID_Otpmsg.edit()
+                                    ID_OtpmsgEditer.putString("please enter validation code senttoyourregisteredmobilenumber", jresult3.get("please enter validation code senttoyourregisteredmobilenumber") as String)
+                                    ID_OtpmsgEditer.commit()
+
+                                    val ID_Languagsp = this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF167, 0)
+                                    val ID_LanguagspEditer = ID_Languagsp.edit()
+                                    ID_LanguagspEditer.putString("Language", jresult3.get("Language") as String)
+                                    ID_LanguagspEditer.commit()
+
+                                    val ID_Mpinverifysp = this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF168, 0)
+                                    val ID_MpinverifyspEditer = ID_Mpinverifysp.edit()
+                                    ID_MpinverifyspEditer.putString("MPINVerification", jresult3.get("MPINVerification") as String)
+                                    ID_MpinverifyspEditer.commit()
+
+
+                                    val ID_Plsunlocksp = this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF169,0)
+                                    val ID_PlsunlockspEditer = ID_Plsunlocksp.edit()
+                                    ID_PlsunlockspEditer.putString("PleaseunlockwithyourMPIN", jresult3.get("PleaseunlockwithyourMPIN") as String)
+                                    ID_PlsunlockspEditer.commit()
+
+
+                                    val ID_ChangeMpinsp = this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF170, 0)
+                                    val ID_ChangeMpinEditer = ID_ChangeMpinsp.edit()
+                                    ID_ChangeMpinEditer.putString("ChangeMPIN", jresult3.get("ChangeMPIN") as String)
+                                    ID_ChangeMpinEditer.commit()
+
 
 
                                     val WelcomeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF34, 0)

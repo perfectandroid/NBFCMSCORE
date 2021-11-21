@@ -199,6 +199,14 @@ object Config {
     const val SHARED_PREF164= "sslcertificate"
     const val SHARED_PREF165= "ImageURL"
 
+    const val SHARED_PREF166= "please enter validation code senttoyourregisteredmobilenumber"
+    const val SHARED_PREF167= "Language"
+
+    const val SHARED_PREF168= "MPINVerification"
+    const val SHARED_PREF169= "PleaseunlockwithyourMPIN"
+    const val SHARED_PREF170= "ChangeMPIN"
+   // const val SHARED_PREF171= "Language"
+
 
 
     fun getHostnameVerifier(): HostnameVerifier {

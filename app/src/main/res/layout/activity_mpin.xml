@@ -50,20 +50,22 @@
                         android:layout_marginTop="5dp" />
 
                     <TextView
+                        android:id="@+id/txtv_mpinverf"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="MPIN Verification"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:textSize="18dp"
                         android:layout_gravity="center"
-                        android:gravity="center"
+                        android:layout_marginBottom="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"/>
+                        android:gravity="center"
+                        android:text="MPIN Verification"
+                        android:textColor="@color/white"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/txtv_unlock"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Please unlock with your MPIN. "

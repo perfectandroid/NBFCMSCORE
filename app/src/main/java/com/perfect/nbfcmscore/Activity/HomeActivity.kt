@@ -875,6 +875,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         val ID_SetngsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF60,0)
         val ID_LogoutSP = applicationContext.getSharedPreferences(Config.SHARED_PREF61,0)
         val ID_Quit = applicationContext.getSharedPreferences(Config.SHARED_PREF106,0)
+        val ID_Lang = applicationContext.getSharedPreferences(Config.SHARED_PREF167,0)
 
 
         var abt =ID_AbtusSP.getString("aboutus",null)
@@ -885,8 +886,9 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         var setngs =ID_SetngsSP.getString("settings",null)
         var logout =ID_LogoutSP.getString("logout",null)
         var quit =ID_Quit.getString("quit",null)
+        var lang =ID_Lang.getString("Language",null)
 
-        val menulist= arrayOf(abt,cntct,feebk,privacy,terms,setngs,"Language",logout,quit)
+        val menulist= arrayOf(abt,cntct,feebk,privacy,terms,setngs,lang,logout,quit)
       /*  val menulist = arrayOf(
                 "About Us",
                 "Contact Us",

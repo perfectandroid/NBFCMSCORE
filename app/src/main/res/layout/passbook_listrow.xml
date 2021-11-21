@@ -44,7 +44,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
-                        android:text=""
+                        android:text="21-11-2021"
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:layout_marginLeft="5dp"
@@ -74,7 +74,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
-                        android:text=""
+                        android:text="Debited to XXXXXX1231 through Mobile Banking"
                         android:textColor="@color/black"
                         android:layout_marginLeft="5dp"
                         android:textSize="12sp"/>
@@ -87,7 +87,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:layout_weight="1.5">
+                    android:layout_weight="2">
 
                     <TextView
                         android:id="@+id/trans_type"
@@ -95,17 +95,17 @@
                         android:layout_height="wrap_content"
                         android:text=""
                         android:textColor="#333333"
-                        android:textSize="14sp"
+                        android:textSize="10sp"
                         android:visibility="gone"/>
                     <TextView
                         android:id="@+id/trans_amount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="10dp"
+
                         android:text="100"
                         android:textColor="@color/red"
-                        android:textSize="15dp"
+                        android:textSize="10dp"
                         android:textStyle="bold"
                         tools:ignore="RelativeOverlap" />
 
