@@ -114,21 +114,21 @@
     <color name="color_langround">#62b484</color>
     <color name="black_lang">#BF2C2B2B</color>
 
-    <color name="color_asset1">#001219</color>
-    <color name="color_asset2">#0a9396</color>
-    <color name="color_asset3">#94d2bd</color>
-    <color name="color_asset4">#005f73</color>
+    <color name="color_asset1">#006064</color>
+    <color name="color_asset2">#01579b</color>
+    <color name="color_asset3">#1a237e</color>
+    <color name="color_asset4">#4a148c</color>
 
-    <color name="color_liability1">#023047</color>
+    <color name="color_liability1">#512DA8</color>
     <color name="color_liability2">#457b9d</color>
-    <color name="color_liability3">#219ebc</color>
-    <color name="color_liability4">#8ecae6</color>
+    <color name="color_liability3">#303F9F</color>
+    <color name="color_liability4">#33691e</color>
 
 
-    <color name="color_payment1">#ecf39e</color>
-    <color name="color_payment2">#90a955</color>
-    <color name="color_payment3">#4f772d</color>
-    <color name="color_payment4">#31572c</color>
+    <color name="color_payment1">#2C272E</color>
+    <color name="color_payment2">#753188</color>
+    <color name="color_payment3">#E59934</color>
+    <color name="color_payment4">#66806A</color>
 
 
 
