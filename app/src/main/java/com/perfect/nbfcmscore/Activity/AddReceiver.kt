@@ -338,7 +338,7 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
                         )
                         val Token = TokenSP.getString("Token", null)
 
-                      //  requestObject1.put("Reqmode", MscoreApplication.encryptStart("40"))
+                        //  requestObject1.put("Reqmode", MscoreApplication.encryptStart("40"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put(
                                 "FK_Customer",
@@ -411,26 +411,45 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
 
                                     arrayList1 = ArrayList<SenderReceiver>()
                                     arrayList1!!.add(SenderReceiver(
-                                            message, status, senderid, receiverid,otpRefNo,statuscode
+                                            message, status, senderid, receiverid, otpRefNo, statuscode
                                     ))
                                     alertMessage1(status, message)
 
 
+                                }  else if (jObject.getString("StatusCode").equals("200") && !jObject.getString("otpRefNo").equals("0")) {
 
+                                }
 
-                                } else {
+                                    else {
+                                        val builder = AlertDialog.Builder(
+                                                this@AddReceiver,
+                                                R.style.MyDialogTheme
+                                        )
+                                        builder.setMessage("" + jObject.getString("EXMessage"))
+                                        builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                        }
+                                        val alertDialog: AlertDialog = builder.create()
+                                        alertDialog.setCancelable(false)
+                                        alertDialog.show()
+                                    }
+                                } catch (e: Exception) {
+                                    progressDialog!!.dismiss()
+
                                     val builder = AlertDialog.Builder(
                                             this@AddReceiver,
                                             R.style.MyDialogTheme
                                     )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
+                                    builder.setMessage("Some technical issues.")
                                     builder.setPositiveButton("Ok") { dialogInterface, which ->
                                     }
                                     val alertDialog: AlertDialog = builder.create()
                                     alertDialog.setCancelable(false)
                                     alertDialog.show()
+                                    e.printStackTrace()
                                 }
-                            } catch (e: Exception) {
+                            }
+
+                            override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                                 progressDialog!!.dismiss()
 
                                 val builder = AlertDialog.Builder(
@@ -443,47 +462,30 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
                                 val alertDialog: AlertDialog = builder.create()
                                 alertDialog.setCancelable(false)
                                 alertDialog.show()
-                                e.printStackTrace()
                             }
+                        })
+                    } catch (e: Exception) {
+                        progressDialog!!.dismiss()
+                        val builder = AlertDialog.Builder(this@AddReceiver, R.style.MyDialogTheme)
+                        builder.setMessage("Some technical issues.")
+                        builder.setPositiveButton("Ok") { dialogInterface, which ->
                         }
-
-                        override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
-                            progressDialog!!.dismiss()
-
-                            val builder = AlertDialog.Builder(
-                                    this@AddReceiver,
-                                    R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
-                        }
-                    })
-                } catch (e: Exception) {
-                    progressDialog!!.dismiss()
+                        val alertDialog: AlertDialog = builder.create()
+                        alertDialog.setCancelable(false)
+                        alertDialog.show()
+                        e.printStackTrace()
+                    }
+                }
+                false -> {
                     val builder = AlertDialog.Builder(this@AddReceiver, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
+                    builder.setMessage("No Internet Connection.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->
                     }
                     val alertDialog: AlertDialog = builder.create()
                     alertDialog.setCancelable(false)
                     alertDialog.show()
-                    e.printStackTrace()
                 }
             }
-            false -> {
-                val builder = AlertDialog.Builder(this@AddReceiver, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
-            }
-        }
     }
 
     override fun onClick(v: View) {
@@ -497,7 +499,7 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
                     val ifscCode: String = ifsc_code!!.getText().toString()
                     val accNumber: String = account_number!!.getText().toString()
                     val confirmAccNumber: String = confirm_account_number!!.getText().toString()
-                    getReceiver(receiverName,mobileNumber,ifscCode,accNumber,confirmAccNumber)
+                    getReceiver(receiverName, mobileNumber, ifscCode, accNumber, confirmAccNumber)
                 }
             }
             R.id.imgBack -> {

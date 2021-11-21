@@ -1,6 +1,7 @@
 package com.perfect.nbfcmscore.Activity
 
 import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -38,6 +39,7 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
     var peroidtype: String? = null
     var llOutput: LinearLayout? = null
     var beneficiary: String? = null
+    private var progressDialog: ProgressDialog? = null
     var txt_amtinword: TextView? = null
     var etxt_amount: EditText? = null
     var edt_txt_tenure: EditText? = null
@@ -414,12 +416,12 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
         when(ConnectivityUtils.isConnected(this)) {
 
             true -> {
-                /*  progressDialog = ProgressDialog(this@PassbookActivity, R.style.Progress)
+                  progressDialog = ProgressDialog(this@DepositCalculatorActivity, R.style.Progress)
                   progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
                   progressDialog!!.setCancelable(false)
                   progressDialog!!.setIndeterminate(true)
                   progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
-                  progressDialog!!.show()*/
+                  progressDialog!!.show()
                 try {
                     val client = OkHttpClient.Builder()
                             .sslSocketFactory(Config.getSSLSocketFactory(this@DepositCalculatorActivity))
@@ -483,7 +485,7 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
 
                         Log.e("TAG", "requestObject1  deposit   " + requestObject1)
                     } catch (e: Exception) {
-                        // progressDialog!!.dismiss()
+                         progressDialog!!.dismiss()
                         e.printStackTrace()
                         val mySnackbar = Snackbar.make(
                                 findViewById(R.id.rl_main),
@@ -502,7 +504,7 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                                 Response<String>
                         ) {
                             try {
-                                //  progressDialog!!.dismiss()
+                                  progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 Log.i("Response Deposit", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
@@ -533,7 +535,7 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                                     alertDialog.show()
                                 }
                             } catch (e: Exception) {
-                                //  progressDialog!!.dismiss()
+                                  progressDialog!!.dismiss()
 
                                 val builder = AlertDialog.Builder(
                                         this@DepositCalculatorActivity,
@@ -550,7 +552,7 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                         }
 
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
-                            //  progressDialog!!.dismiss()
+                              progressDialog!!.dismiss()
 
                             val builder = AlertDialog.Builder(
                                     this@DepositCalculatorActivity,
