@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
@@ -53,7 +54,7 @@ class LanguageLsitAdaptor(internal val mContext: Context, internal val jsInfo: J
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         try {
 
-            getlabels("1")
+
             jsonObject = jsInfo.getJSONObject(position)
             var id = jsonObject!!.getString("ID_Languages")
             if (holder is MainViewHolder) {
@@ -82,33 +83,37 @@ class LanguageLsitAdaptor(internal val mContext: Context, internal val jsInfo: J
 
 
 
-                    if(id.equals("1"))
+               /*     if(id.equals("1"))
                     {
                         id="1"
 
-                    /*    getlabels(id)
+                    *//*    getlabels(id)
                         val intent = Intent(v.context, WelcomeActivity::class.java)
                         intent.putExtra("id", id)
-                        v.context.startActivity(intent)*/
+                        v.context.startActivity(intent)*//*
 
                     }
                     else if(id.equals("2"))
                     {
 
                         id="2"
-                      /*  getlabels(id)
+                      *//*  getlabels(id)
                         val intent = Intent(v.context, WelcomeActivity::class.java)
                         intent.putExtra("id", id)
-                        v.context.startActivity(intent)*/
+                        v.context.startActivity(intent)*//*
 
 
                     }
-                    getlabels(id)
+                    getlabels(id)*/
 
-
-                    val intent = Intent(v.context, WelcomeActivity::class.java)
-                    intent.putExtra("id", id)
-                    v.context.startActivity(intent)
+                    val myIntent = Intent(v.context, WelcomeActivity::class.java)
+                    myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    v.context.startActivity(myIntent)
+                   // (v.context as Activity).finish()
+                  //  val intent = Intent(v.context, WelcomeActivity::class.java)
+                //    intent.putExtra("id", id)
+                   // v.context.startActivity(intent)
+                 //   (v.context as Activity).finish()
                   /*  else
                     {
 
@@ -431,7 +436,7 @@ class LanguageLsitAdaptor(internal val mContext: Context, internal val jsInfo: J
                                     ID_PrdctDetailEditer.putString("ProductDetails", jresult3.get("ProductDetails") as String)
                                     ID_PrdctDetailEditer.commit()
 
-                                    val ID_Emi= mContext.getSharedPreferences(Config.SHARED_PREF79, 0)
+                                    val ID_Emi = mContext.getSharedPreferences(Config.SHARED_PREF79, 0)
                                     val ID_EmiEditer = ID_Emi.edit()
                                     ID_EmiEditer.putString("EMICalculator", jresult3.get("EMICalculator") as String)
                                     ID_EmiEditer.commit()
@@ -584,25 +589,23 @@ class LanguageLsitAdaptor(internal val mContext: Context, internal val jsInfo: J
                                     ID_EnterdistEditer.commit()
 
 
-
-
-                                     val ID_Mobilenum = mContext.getSharedPreferences(Config.SHARED_PREF110, 0)
-                                     val ID_MobilenumEditer = ID_Mobilenum.edit()
+                                    val ID_Mobilenum = mContext.getSharedPreferences(Config.SHARED_PREF110, 0)
+                                    val ID_MobilenumEditer = ID_Mobilenum.edit()
                                     ID_MobilenumEditer.putString("MobileNumber", jresult3.get("MobileNumber") as String)
                                     ID_MobilenumEditer.commit()
 
-                                     val ID_Operator = mContext.getSharedPreferences(Config.SHARED_PREF111, 0)
-                                     val ID_OperatorEditer = ID_Operator.edit()
+                                    val ID_Operator = mContext.getSharedPreferences(Config.SHARED_PREF111, 0)
+                                    val ID_OperatorEditer = ID_Operator.edit()
                                     ID_OperatorEditer.putString("Operator", jresult3.get("Operator") as String)
                                     ID_OperatorEditer.commit()
 
-                                     val ID_Circle = mContext.getSharedPreferences(Config.SHARED_PREF112, 0)
-                                     val ID_CircleEditer = ID_Circle.edit()
+                                    val ID_Circle = mContext.getSharedPreferences(Config.SHARED_PREF112, 0)
+                                    val ID_CircleEditer = ID_Circle.edit()
                                     ID_CircleEditer.putString("Circle", jresult3.get("Circle") as String)
                                     ID_CircleEditer.commit()
 
 
-                                   val ID_Amt = mContext.getSharedPreferences(Config.SHARED_PREF113, 0)
+                                    val ID_Amt = mContext.getSharedPreferences(Config.SHARED_PREF113, 0)
                                     val ID_AmtEditer = ID_Amt.edit()
                                     ID_AmtEditer.putString("Amount", jresult3.get("Amount") as String)
                                     ID_AmtEditer.commit()
@@ -618,7 +621,7 @@ class LanguageLsitAdaptor(internal val mContext: Context, internal val jsInfo: J
                                     ID_SelctopEditer.commit()
 
 
-                                   val ID_Subscriber = mContext.getSharedPreferences(Config.SHARED_PREF116, 0)
+                                    val ID_Subscriber = mContext.getSharedPreferences(Config.SHARED_PREF116, 0)
                                     val ID_SubscriberEditer = ID_Subscriber.edit()
                                     ID_SubscriberEditer.putString("SubscriberID", jresult3.get("SubscriberID") as String)
                                     ID_SubscriberEditer.commit()
@@ -668,22 +671,22 @@ class LanguageLsitAdaptor(internal val mContext: Context, internal val jsInfo: J
                                     ID_toolsEditer.putString("ToolsSettings", jresult3.get("ToolsSettings") as String)
                                     ID_toolsEditer.commit()
 
-                                  val ID_Slctprd = mContext.getSharedPreferences(Config.SHARED_PREF126, 0)
+                                    val ID_Slctprd = mContext.getSharedPreferences(Config.SHARED_PREF126, 0)
                                     val ID_SlctprdEditer = ID_Slctprd.edit()
                                     ID_SlctprdEditer.putString("Selectaperiodofyourchoice", jresult3.get("Selectaperiodofyourchoice") as String)
                                     ID_SlctprdEditer.commit()
 
-                                      val ID_Or = mContext.getSharedPreferences(Config.SHARED_PREF127, 0)
-                                     val ID_OrEditer = ID_Or.edit()
-                                     ID_OrEditer.putString("OR", jresult3.get("OR") as String)
-                                     ID_OrEditer.commit()
+                                    val ID_Or = mContext.getSharedPreferences(Config.SHARED_PREF127, 0)
+                                    val ID_OrEditer = ID_Or.edit()
+                                    ID_OrEditer.putString("OR", jresult3.get("OR") as String)
+                                    ID_OrEditer.commit()
 
-                                     val ID_customdate = mContext.getSharedPreferences(Config.SHARED_PREF128, 0)
-                                      val ID_customdateEditer = ID_customdate.edit()
-                                      ID_customdateEditer.putString("Selectacustomdateofyourchoice.", jresult3.get("Selectacustomdateofyourchoice.") as String)
-                                      ID_customdateEditer.commit()
+                                    val ID_customdate = mContext.getSharedPreferences(Config.SHARED_PREF128, 0)
+                                    val ID_customdateEditer = ID_customdate.edit()
+                                    ID_customdateEditer.putString("Selectacustomdateofyourchoice.", jresult3.get("Selectacustomdateofyourchoice.") as String)
+                                    ID_customdateEditer.commit()
 
-                                   val ID_View = mContext.getSharedPreferences(Config.SHARED_PREF129, 0)
+                                    val ID_View = mContext.getSharedPreferences(Config.SHARED_PREF129, 0)
                                     val ID_ViewEditer = ID_View.edit()
                                     ID_ViewEditer.putString("View", jresult3.get("View") as String)
                                     ID_ViewEditer.commit()
@@ -698,20 +701,20 @@ class LanguageLsitAdaptor(internal val mContext: Context, internal val jsInfo: J
                                     ID_lastmnthEditer.putString("LastMonth", jresult3.get("LastMonth") as String)
                                     ID_lastmnthEditer.commit()
 
-                                       val ID_lastthree = mContext.getSharedPreferences(Config.SHARED_PREF132, 0)
-                                     val ID_lastthreeEditer = ID_lastthree.edit()
-                                     ID_lastthreeEditer.putString("Last3Months", jresult3.get("Last3Months") as String)
-                                     ID_lastthreeEditer.commit()
+                                    val ID_lastthree = mContext.getSharedPreferences(Config.SHARED_PREF132, 0)
+                                    val ID_lastthreeEditer = ID_lastthree.edit()
+                                    ID_lastthreeEditer.putString("Last3Months", jresult3.get("Last3Months") as String)
+                                    ID_lastthreeEditer.commit()
 
-                                       val ID_lastsix = mContext.getSharedPreferences(Config.SHARED_PREF133, 0)
-                                      val ID_lastsixEditer = ID_lastsix.edit()
-                                      ID_lastsixEditer.putString("Last6Months", jresult3.get("Last6Months") as String)
-                                      ID_lastsixEditer.commit()
+                                    val ID_lastsix = mContext.getSharedPreferences(Config.SHARED_PREF133, 0)
+                                    val ID_lastsixEditer = ID_lastsix.edit()
+                                    ID_lastsixEditer.putString("Last6Months", jresult3.get("Last6Months") as String)
+                                    ID_lastsixEditer.commit()
 
-                                      val ID_lastone = mContext.getSharedPreferences(Config.SHARED_PREF134, 0)
-                                      val ID_lastoneEditer = ID_lastone.edit()
-                                      ID_lastoneEditer.putString("Last1Year", jresult3.get("Last1Year") as String)
-                                      ID_lastoneEditer.commit()
+                                    val ID_lastone = mContext.getSharedPreferences(Config.SHARED_PREF134, 0)
+                                    val ID_lastoneEditer = ID_lastone.edit()
+                                    ID_lastoneEditer.putString("Last1Year", jresult3.get("Last1Year") as String)
+                                    ID_lastoneEditer.commit()
 
                                     val ID_selctacc = mContext.getSharedPreferences(Config.SHARED_PREF135, 0)
                                     val ID_selctaccEditer = ID_selctacc.edit()
@@ -934,6 +937,7 @@ class LanguageLsitAdaptor(internal val mContext: Context, internal val jsInfo: J
             lang_name = v.findViewById<View>(R.id.lang_name) as TextView
             lang_shortname = v.findViewById<View>(R.id.lang_shortname) as TextView
             imlogo = v.findViewById<View>(R.id.imlogo) as ImageView
+        //    tvskip = v.findViewById<View>(R.id.tvskip) as TextView
 
 
         }

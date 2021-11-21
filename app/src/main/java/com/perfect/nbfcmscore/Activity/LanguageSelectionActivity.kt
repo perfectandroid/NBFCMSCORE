@@ -153,7 +153,7 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
                                     val obj_adapter = LanguageLsitAdaptor(applicationContext!!, jarray)
                                     rv_Languagelist!!.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
                                     rv_Languagelist!!.adapter = obj_adapter
-
+                                    obj_adapter!!.notifyDataSetChanged()
                                 } else {
                                     val builder = AlertDialog.Builder(
                                         this@LanguageSelectionActivity,
