@@ -33,13 +33,27 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
     var tvfasterway:TextView?=null
     var btlogin:Button?=null
     var btregistration:Button?=null
+    var skip:String?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_welcome)
 
-        val ID_Mylan = applicationContext.getSharedPreferences(Config.SHARED_PREF9,0)
-        Languageid =  ID_Mylan.getString("ID_Languages", null)
+        skip = intent.getStringExtra("skip")
+        if(skip.equals("1"))
+        {
+            getlabels(skip)
+        }
+        else
+        {
+            val ID_Mylan = applicationContext.getSharedPreferences(Config.SHARED_PREF9,0)
+            Languageid =  ID_Mylan.getString("ID_Languages", null)
+
+            getlabels(Languageid)
+        }
+
+        //Languageid = intent.getStringExtra("id")
+
 
 
       //  Languageid = intent.getStringExtra("id")
@@ -49,7 +63,14 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
 
 
         setRegViews()
-        getlabels(Languageid)
+       /* if(Languageid.equals(""))
+        {
+            Languageid="1"
+            getlabels(Languageid)
+        }
+        else {
+
+        }*/
 
         val imwelcome: ImageView = findViewById(R.id.imwelcome)
         val tv_product_name: TextView = findViewById(R.id.tv_product_name)

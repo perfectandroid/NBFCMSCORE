@@ -82,6 +82,7 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
         when(v.id){
             R.id.tvskip->{
                 intent = Intent(applicationContext, WelcomeActivity::class.java)
+                intent.putExtra("skip", "1")
                 startActivity(intent)
             }
         }
