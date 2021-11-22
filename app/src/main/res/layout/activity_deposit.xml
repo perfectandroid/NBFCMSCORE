@@ -683,7 +683,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:cardBackgroundColor="@color/greylight"
+                    app:cardBackgroundColor="@color/colorAccentlight"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="5dp">
 
@@ -692,8 +692,8 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="10dp">
+                        android:padding="10dp"
+                        android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -709,7 +709,6 @@
                                 android:text="TypeName"
                                 android:textColor="@color/black"
                                 android:textSize="14dp"
-                                android:textStyle="bold"
                                 tools:ignore="Autofill" />
 
                             <TextView
@@ -749,7 +748,6 @@
                                 android:text="Period"
                                 android:textColor="@color/black"
                                 android:textSize="14dp"
-                                android:textStyle="bold"
                                 tools:ignore="Autofill" />
 
                             <TextView
@@ -791,7 +789,6 @@
                                 android:text="Rate of Interest"
                                 android:textColor="@color/black"
                                 android:textSize="14dp"
-                                android:textStyle="bold"
                                 tools:ignore="Autofill" />
 
                             <TextView
@@ -833,7 +830,6 @@
                                 android:text="Amount"
                                 android:textColor="@color/black"
                                 android:textSize="14dp"
-                                android:textStyle="bold"
                                 tools:ignore="Autofill" />
 
                             <TextView
@@ -874,7 +870,6 @@
                                 android:text="Maturity Amount"
                                 android:textColor="@color/black"
                                 android:textSize="14dp"
-                                android:textStyle="bold"
                                 tools:ignore="Autofill" />
 
                             <TextView
