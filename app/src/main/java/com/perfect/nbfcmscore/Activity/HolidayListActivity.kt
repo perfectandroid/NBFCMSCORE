@@ -44,6 +44,7 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
     var branchid:String?=null
     var arrayList1 = ArrayList<String>()
     public var arrayList2: ArrayList<Branchcode>? = null
+    val TAG: String? = "HolidayListActivity"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,7 +53,8 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         setRegViews()
         getBranchlist()
         rv_holiday!!.visibility=View.GONE
-        getHolidayList(branchid)
+//        getHolidayList(branchid)
+
 
 
 
@@ -63,6 +65,7 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         imgBack!!.setOnClickListener(this)
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)
+
 
         tv_header= findViewById<TextView>(R.id.tv_header)
 
@@ -132,7 +135,7 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 
                         Log.e("TAG", "requestObject1  171   " + requestObject1)
                     } catch (e: Exception) {
-                        progressDialog!!.dismiss()
+                       // progressDialog!!.dismiss()
                         e.printStackTrace()
                         val mySnackbar = Snackbar.make(
                             findViewById(R.id.rl_main),
@@ -151,7 +154,7 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                             Response<String>
                         ) {
                             try {
-                                progressDialog!!.dismiss()
+                              //  progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 Log.i("Response", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
@@ -186,6 +189,7 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 
 
                                 } else {
+                                    Log.e(TAG,"Exception  1961   ")
                                     val builder = AlertDialog.Builder(
                                         this@HolidayListActivity,
                                         R.style.MyDialogTheme
@@ -199,6 +203,7 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                                 }
                             } catch (e: Exception) {
                                 //  progressDialog!!.dismiss()
+                                    Log.e(TAG,"Exception  1962   "+e.toString())
 
                                 val builder = AlertDialog.Builder(
                                     this@HolidayListActivity,
@@ -216,7 +221,7 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             //  progressDialog!!.dismiss()
-
+                            Log.e(TAG,"Exception  1963   "+t.message)
                             val builder = AlertDialog.Builder(
                                 this@HolidayListActivity,
                                 R.style.MyDialogTheme
@@ -230,6 +235,7 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                         }
                     })
                 } catch (e: Exception) {
+                    Log.e(TAG,"Exception  1964   "+e.toString())
                     // progressDialog!!.dismiss()
                     val builder = AlertDialog.Builder(
                         this@HolidayListActivity,
@@ -259,6 +265,7 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 
 
     private fun getHolidayList(branchid: String?) {
+        rv_holiday!!.visibility=View.GONE
         val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
@@ -331,6 +338,7 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                                 val jObject = JSONObject(response.body())
                                 Log.i("Response", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
+                                    rv_holiday!!.visibility=View.VISIBLE
                                     val jsonObj1: JSONObject =
                                         jObject.getJSONObject("HolidayDetails")
                                     val jsonobj2 = JSONObject(jsonObj1.toString())

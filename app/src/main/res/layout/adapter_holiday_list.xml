@@ -5,44 +5,79 @@
     android:orientation="horizontal"
     android:gravity="center_vertical">
 
-    <LinearLayout
-        android:id="@+id/ll_branchrow"
+    <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:orientation="horizontal"
-        android:background="@drawable/border_rectangle">
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="5dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        app:cardElevation="5dp">
 
         <LinearLayout
+            android:id="@+id/ll_branchrow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="5dp"
-            android:layout_weight="1">
+            android:padding="5dp"
+            android:orientation="horizontal">
 
-
-            <TextView
-                android:id="@+id/tv_Date"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:textSize="15dp"
-                android:drawableLeft="@drawable/book"
-                android:padding="2dp"
-                android:textStyle="bold"
-                android:textColor="@color/blue"
-                android:text="" />
+                android:orientation="horizontal"
+                android:layout_margin="5dp"
+                android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/tv_Reason"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:textSize="13dp"
-                android:paddingLeft="2dp"
-                android:textColor="#444444"
-                android:text="" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/book"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/tv_Date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:textSize="15dp"
+                        android:padding="2dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/blue"
+                        android:text="" />
+
+                    <TextView
+                        android:id="@+id/tv_Reason"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:textSize="13dp"
+                        android:paddingLeft="2dp"
+                        android:textColor="#444444"
+                        android:text="" />
+
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
 
 
 
@@ -51,12 +86,9 @@
 
         </LinearLayout>
 
+    </androidx.cardview.widget.CardView>
 
 
-
-
-
-    </LinearLayout>
 
 
 
