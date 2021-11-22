@@ -38,11 +38,17 @@ class ProductListDetailsActivity : AppCompatActivity(), View.OnClickListener {
     var tv_prdctdesc: TextView? = null
     private var jresult: JSONArray? = null
     var imgHome: ImageView? = null
+    var tv_header: TextView? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_productsummary)
 
         setRegviews()
+
+        val HeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF195, 0)
+        tv_header!!.setText(HeaderSP.getString("ProductListDetails", null))
+
         fkproduct = intent.getStringExtra("FK_Product")
         ProductCaption = intent.getStringExtra("ProductCaption")
 
@@ -57,6 +63,8 @@ class ProductListDetailsActivity : AppCompatActivity(), View.OnClickListener {
         imgBack!!.setOnClickListener(this)
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)
+
+        tv_header = findViewById<TextView>(R.id.tv_header)
     }
 
     private fun getProductdetail(fkproduct: String?) {

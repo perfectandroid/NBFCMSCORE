@@ -74,6 +74,7 @@ class LoanApplicationActivity : AppCompatActivity()   , View.OnClickListener, It
     var tv_interest_total: TextView? = null
     var tv_interest_principal: TextView? = null
     var llOutput: LinearLayout? = null
+    var tv_header: TextView? = null
 
 
 
@@ -84,6 +85,29 @@ class LoanApplicationActivity : AppCompatActivity()   , View.OnClickListener, It
 
         setInitialise()
         setRegister()
+
+        val ID_header = applicationContext.getSharedPreferences(Config.SHARED_PREF76,0)
+        tv_header!!.setText(ID_header.getString("LoanApplication",null))
+
+        val ID_princamt = applicationContext.getSharedPreferences(Config.SHARED_PREF191,0)
+        principal!!.setHint(ID_princamt.getString("PRINCIPALAMOUNT",null))
+
+        val ID_month = applicationContext.getSharedPreferences(Config.SHARED_PREF193,0)
+        years!!.setHint(ID_month.getString("MONTH",null))
+
+        val ID_loantype = applicationContext.getSharedPreferences(Config.SHARED_PREF197,0)
+        tie_emi!!.setHint(ID_loantype.getString("SelectLoantype",null))
+
+        val ID_loanpurpse = applicationContext.getSharedPreferences(Config.SHARED_PREF198,0)
+        tie_porpose!!.setHint(ID_loanpurpse.getString("Selectloanpurpose",null))
+
+        val ID_reset = applicationContext.getSharedPreferences(Config.SHARED_PREF189,0)
+        btn_clear!!.setText(ID_reset.getString("RESET",null))
+
+        val ID_calc = applicationContext.getSharedPreferences(Config.SHARED_PREF190,0)
+        btn_calculate!!.setText(ID_calc.getString("CALCULATE",null))
+
+
 
         val imlogo: ImageView = findViewById(R.id.imlogo)
         Glide.with(this).load(R.drawable.loanapplicationgif).into(imlogo)
@@ -161,6 +185,8 @@ class LoanApplicationActivity : AppCompatActivity()   , View.OnClickListener, It
 
         btn_calculate = findViewById<Button>(R.id.btn_calculate)
         btn_clear = findViewById<Button>(R.id.btn_clear)
+
+        tv_header = findViewById<TextView>(R.id.tv_header)
 
         tv_instalment = findViewById<TextView>(R.id.tv_instalment)
         tv_interest_total = findViewById<TextView>(R.id.tv_interest_total)
