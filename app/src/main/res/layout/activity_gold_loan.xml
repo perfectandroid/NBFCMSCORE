@@ -605,6 +605,25 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_marginRight="5dp"
+                            android:layout_weight="1.3"
+                            android:fontFamily="sans-serif-condensed-light"
+                            android:gravity="center_horizontal"
+                            android:text="SN"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="?android:attr/dividerVertical" />
+
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginRight="5dp"
                             android:layout_weight="1.05"
                             android:fontFamily="sans-serif-condensed-light"
                             android:gravity="center_horizontal"
@@ -625,7 +644,7 @@
                             android:layout_weight="1.18"
                             android:fontFamily="sans-serif-condensed-light"
                             android:gravity="center_horizontal"
-                            android:text="Period From To"
+                            android:text="Period From To (D)"
                             android:textColor="@color/white"
                             android:textStyle="bold" />
 
@@ -642,7 +661,7 @@
                             android:layout_weight="1.18"
                             android:fontFamily="sans-serif-condensed-light"
                             android:gravity="center_horizontal"
-                            android:text="Roi"
+                            android:text="Roi (%)"
                             android:textColor="@color/white"
                             android:textStyle="bold" />
 
@@ -679,7 +698,7 @@
                             android:layout_weight="1.15"
                             android:fontFamily="sans-serif-condensed-light"
                             android:gravity="center_horizontal"
-                            android:text="Weight"
+                            android:text="Weight ( gms )"
                             android:textColor="@color/white"
                             android:textStyle="bold" />
 
