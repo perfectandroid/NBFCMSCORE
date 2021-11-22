@@ -646,39 +646,50 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
 
     }
 
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+    override fun onItemSelected(parent: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+        if (parent!!.id == R.id.spn_tenure) {
+            if(spn_tenure!!.selectedItem.toString().equals("Day"))
+            {
+                val enterdysp = applicationContext.getSharedPreferences(Config.SHARED_PREF182, 0)
+                var dy =enterdysp.getString("PleaseEnterDay", null)
+
+
+                edt_txt_tenure!!.setHint(dy)
+                peroidtype = "D"
+            }
+            else if(spn_tenure!!.selectedItem.toString().equals("Month"))
+            {
+                val entrmnthsp = applicationContext.getSharedPreferences(Config.SHARED_PREF181, 0)
+                var mnth =entrmnthsp.getString("PleaseEnterMonth", null)
+
+                edt_txt_tenure!!.setHint(mnth)
+                peroidtype = "M"
+            }
+
+        }
+
+        else if (parent!!.id == R.id.spn_deposit_type) {
+            if(spn_deposit_type!!.selectedItem.toString().equals("Fixed Deposit"))
+            {
+                submodule = "TDFD"
+            }
+            else if(spn_deposit_type!!.selectedItem.toString().equals("Cumulative Deposit"))
+            {
+                submodule = "TDCC"
+            }
+
+
+        }
+
+        else if (parent!!.id == R.id.spn_beneficiary) {
+            val beneflist: Beneflist = arrayList1!!.get(position)
+            benefid = beneflist.getID_Benefit()
+        }
 
 
         //tenure
-        if(spn_tenure!!.selectedItem.toString().equals("Day"))
-        {
-            val enterdysp = applicationContext.getSharedPreferences(Config.SHARED_PREF182, 0)
-            var dy =enterdysp.getString("PleaseEnterDay", null)
-
-
-            edt_txt_tenure!!.setHint(dy)
-            peroidtype = "D"
-        }
-        else if(spn_tenure!!.selectedItem.toString().equals("Month"))
-        {
-            val entrmnthsp = applicationContext.getSharedPreferences(Config.SHARED_PREF181, 0)
-            var mnth =entrmnthsp.getString("PleaseEnterMonth", null)
-
-            edt_txt_tenure!!.setHint(mnth)
-            peroidtype = "M"
-        }
 
         //deposit
-        if(spn_deposit_type!!.selectedItem.toString().equals("Fixed Deposit"))
-        {
-            submodule = "TDFD"
-        }
-        else if(spn_deposit_type!!.selectedItem.toString().equals("Cumulative Deposit"))
-        {
-            submodule = "TDCC"
-        }
-        val beneflist: Beneflist = arrayList1!!.get(position)
-        benefid = beneflist.getID_Benefit()
 
         //benefiuciary
 
