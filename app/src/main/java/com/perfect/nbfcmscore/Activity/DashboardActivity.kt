@@ -133,7 +133,7 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
 
         getDashboardassetlist()
         getDashboardliabilitylist()
-        getDashboardpaymentandreceiptlist()
+     //   getDashboardpaymentandreceiptlist()
 
 
 

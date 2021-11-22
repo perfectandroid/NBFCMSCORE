@@ -338,6 +338,7 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                                 val jObject = JSONObject(response.body())
                                 Log.i("Response", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
+                                    rv_holiday!!.visibility=View.VISIBLE
                                     val jsonObj1: JSONObject =
                                         jObject.getJSONObject("HolidayDetails")
                                     val jsonobj2 = JSONObject(jsonObj1.toString())
