@@ -29,6 +29,8 @@ class FeedbackActivity : AppCompatActivity() , View.OnClickListener, AdapterView
         setContentView(R.layout.activity_feedback)
 
         setRegViews()
+        val imfeedbacklogo: ImageView = findViewById(R.id.imfeedbacklogo)
+        Glide.with(this).load(R.drawable.feedbackgif).into(imfeedbacklogo)
         val ID_feedbk = applicationContext.getSharedPreferences(Config.SHARED_PREF56,0)
         tv_mycart!!.setText(ID_feedbk.getString("feedback",null))
     }

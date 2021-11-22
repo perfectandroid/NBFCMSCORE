@@ -84,8 +84,7 @@
                                 android:id="@+id/imemilogo"
                                 android:layout_width="250dp"
                                 android:layout_height="150dp"
-                                android:layout_gravity="center_horizontal"
-                                android:src="@drawable/emi_top" />
+                                android:layout_gravity="center_horizontal"/>
 
                             <RelativeLayout
                                 android:id="@+id/rltv_principal"

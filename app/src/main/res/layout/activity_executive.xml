@@ -81,10 +81,11 @@
 
 
                             <ImageView
+                                android:id="@+id/imcallbacklogo"
                                 android:layout_width="250dp"
                                 android:layout_height="150dp"
                                 android:layout_gravity="center_horizontal"
-                                android:src="@drawable/emi_top" />
+                                />
 
                             <RelativeLayout
                                 android:id="@+id/rltv_principal"

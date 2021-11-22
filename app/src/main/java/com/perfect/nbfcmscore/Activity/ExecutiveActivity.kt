@@ -8,6 +8,7 @@ import android.text.TextUtils
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputEditText
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.R
@@ -33,6 +34,10 @@ class ExecutiveActivity : AppCompatActivity() ,View.OnClickListener{
         setContentView(R.layout.activity_executive)
 
         setRegViews()
+
+        val imcallbacklogo: ImageView = findViewById(R.id.imcallbacklogo)
+        Glide.with(this).load(R.drawable.callbackgif).into(imcallbacklogo)
+
 
         val HeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF84, 0)
         val NameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF171, 0)
