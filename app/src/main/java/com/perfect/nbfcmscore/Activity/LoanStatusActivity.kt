@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -30,6 +31,7 @@ class LoanStatusActivity : AppCompatActivity()  , View.OnClickListener {
     private var progressDialog: ProgressDialog? = null
 
     private var rv_status: RecyclerView? = null
+    var tv_header: TextView? = null
 
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
@@ -37,12 +39,23 @@ class LoanStatusActivity : AppCompatActivity()  , View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loanstatus)
 
+        setRegViews()
+
+
+        val HeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF196, 0)
+        tv_header!!.setText(HeaderSP.getString("LoanApplicationStatus", null))
+
+        getStandingInstruction()
+    }
+
+    private fun setRegViews() {
         rv_status  = findViewById<View>(R.id.rv_status) as RecyclerView?
         imgBack = findViewById<ImageView>(R.id.imgBack)
         imgBack!!.setOnClickListener(this)
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)
-        getStandingInstruction()
+
+        tv_header= findViewById<TextView>(R.id.tv_header)
     }
 
     private fun getStandingInstruction() {

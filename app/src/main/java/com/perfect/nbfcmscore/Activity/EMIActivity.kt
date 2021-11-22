@@ -74,7 +74,7 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
     var tv_interest_total: TextView? = null
     var tv_interest_principal: TextView? = null
     var llOutput: LinearLayout? = null
-
+    var tv_header: TextView? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,6 +84,28 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
 
         setInitialise()
         setRegister()
+
+        val ID_header = applicationContext.getSharedPreferences(Config.SHARED_PREF79,0)
+        tv_header!!.setText(ID_header.getString("EMICalculator",null))
+
+        val ID_princamt = applicationContext.getSharedPreferences(Config.SHARED_PREF191,0)
+        principal!!.setHint(ID_princamt.getString("PRINCIPALAMOUNT",null))
+
+        val ID_rate = applicationContext.getSharedPreferences(Config.SHARED_PREF192,0)
+        interest!!.setHint(ID_rate.getString("INTERESTRATE",null))
+
+        val ID_mnth = applicationContext.getSharedPreferences(Config.SHARED_PREF193,0)
+        years!!.setHint(ID_mnth.getString("MONTH",null))
+
+        val ID_emityp = applicationContext.getSharedPreferences(Config.SHARED_PREF194,0)
+        tie_emi!!.setHint(ID_emityp.getString("Selectemitype",null))
+
+        val ID_reset = applicationContext.getSharedPreferences(Config.SHARED_PREF189,0)
+        btn_clear!!.setText(ID_reset.getString("RESET",null))
+
+        val ID_calc = applicationContext.getSharedPreferences(Config.SHARED_PREF190,0)
+        btn_calculate!!.setText(ID_calc.getString("CALCULATE",null))
+
 
 
         principal!!.addTextChangedListener(object : TextWatcher {
@@ -153,6 +175,8 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
         interest  = findViewById<View>(R.id.tie_interest) as TextInputEditText?
         years  = findViewById<View>(R.id.tie_years) as TextInputEditText?
         tie_emi  = findViewById<View>(R.id.tie_emi) as TextInputEditText?
+
+        tv_header= findViewById<View>(R.id.tv_header) as TextView?
 
         rv_loanslab  = findViewById<View>(R.id.rv_loanslab) as RecyclerView?
         imgBack = findViewById<ImageView>(R.id.imgBack)

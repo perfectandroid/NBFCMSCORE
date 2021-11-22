@@ -50,6 +50,7 @@ class GoldLoanActivity : AppCompatActivity() , View.OnClickListener{
     var ll_estimatelist: LinearLayout? = null
     var tv_weight: TextView? = null
     var tv_amount: TextView? = null
+    var tv_header: TextView? = null
 
     var CalcMethod: String? = ""
     var Amount: String? = ""
@@ -61,6 +62,20 @@ class GoldLoanActivity : AppCompatActivity() , View.OnClickListener{
 
         setInitialise()
         setRegister()
+
+        val ResetSP = applicationContext.getSharedPreferences(Config.SHARED_PREF189,0)
+        but_reset!!.setText(ResetSP.getString("RESET",null))
+
+        val CalcSP = applicationContext.getSharedPreferences(Config.SHARED_PREF190,0)
+        but_calculate!!.setText(CalcSP.getString("CALCULATE",null))
+
+        val AmtSP = applicationContext.getSharedPreferences(Config.SHARED_PREF113,0)
+        chk_amount!!.setText(AmtSP.getString("Amount",null))
+
+        val goldSP = applicationContext.getSharedPreferences(Config.SHARED_PREF81,0)
+        tv_header!!.setText(goldSP.getString("GoldLoanEligibileCalculator",null))
+
+
 
 
         CalcMethod = "2"
@@ -76,6 +91,9 @@ class GoldLoanActivity : AppCompatActivity() , View.OnClickListener{
         im_back = findViewById<ImageView>(R.id.im_back)
         im_home = findViewById<ImageView>(R.id.im_home)
         img_top = findViewById<ImageView>(R.id.img_top)
+
+        tv_header = findViewById<TextView>(R.id.tv_header)
+
 
         chk_amount = findViewById<CheckBox>(R.id.chk_amount)
         chk_weight = findViewById<CheckBox>(R.id.chk_weight)

@@ -225,6 +225,24 @@ object Config {
     const val SHARED_PREF184= "Liability"
     const val SHARED_PREF185= "PaymentReceipt"
 
+    const val SHARED_PREF186= "Assets"
+    const val SHARED_PREF187= "Liability"
+    const val SHARED_PREF188= "PaymentReceipt"
+
+
+    const val SHARED_PREF189= "RESET"
+    const val SHARED_PREF190= "CALCULATE"
+
+    const val SHARED_PREF191= "PRINCIPALAMOUNT"
+    const val SHARED_PREF192= "INTERESTRATE"
+    const val SHARED_PREF193= "MONTH"
+    const val SHARED_PREF194= "Selectemitype"
+    const val SHARED_PREF195= "ProductListDetails"
+
+    const val SHARED_PREF196="LoanApplicationStatus"
+    const val SHARED_PREF197="SelectLoantype"
+    const val SHARED_PREF198="Selectloanpurpose"
+
 
 
     fun getHostnameVerifier(): HostnameVerifier {
