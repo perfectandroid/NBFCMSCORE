@@ -330,26 +330,55 @@
 
                         </RelativeLayout>
 
-
-                        <RelativeLayout
-                            android:id="@+id/rltv_recharge"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="30dp"
-                            android:background="@drawable/bg_button"
-                            android:backgroundTint="#61B383"
-                            android:orientation="vertical">
+                            android:layout_marginTop="50dp"
+                            android:orientation="horizontal">
 
-                            <Button
-                                android:id="@+id/but_recharge"
+                            <RelativeLayout
+                                android:id="@+id/rltv_clear"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:background="@android:color/transparent"
-                                android:text="recharge"
-                                android:textAllCaps="true"
-                                android:textColor="@color/white" />
+                                android:layout_marginRight="10dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/but_rounded2"
+                                android:orientation="vertical">
 
-                        </RelativeLayout>
+                                <Button
+                                    android:id="@+id/but_clear"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@android:color/transparent"
+                                    android:text="clear"
+                                    android:textAllCaps="true"
+                                    android:textColor="@color/white" />
+
+                            </RelativeLayout>
+
+
+                            <RelativeLayout
+                                android:id="@+id/rltv_recharge"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/bg_button"
+                                android:orientation="vertical">
+
+                                <Button
+                                    android:id="@+id/but_recharge"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@android:color/transparent"
+                                    android:text="recharge"
+                                    android:textAllCaps="true"
+                                    android:textColor="@color/white" />
+
+                            </RelativeLayout>
+
+
+                        </LinearLayout>
 
 
                     </LinearLayout>

@@ -90,6 +90,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 
     var rltv_recharge: RelativeLayout? = null
     var but_recharge: Button? = null
+    var but_clear: Button? = null
     var rvrecentRecharge: FullLenghRecyclertview? = null
     var jArrayRecent: JSONArray? = null
 
@@ -225,6 +226,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 
 
         but_recharge = findViewById<Button>(R.id.but_recharge)
+        but_clear = findViewById<Button>(R.id.but_clear)
         but_recharge!!.setText(RechrgSP.getString("RECHARGE", null))
 
         rvrecentRecharge = findViewById<FullLenghRecyclertview>(R.id.rvrecentRecharge)
@@ -245,6 +247,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
         tie_circle!!.setOnClickListener(this)
         tie_account!!.setOnClickListener(this)
         but_recharge!!.setOnClickListener(this)
+        but_clear!!.setOnClickListener(this)
 
     }
 
@@ -288,6 +291,26 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                 else if(ProvidersMode.equals("2")){
                     dthValidation()
                 }
+
+            }
+            R.id.but_clear ->{
+
+                tie_mobilenumber!!.setText("")
+                tie_subscriber!!.setText("")
+                tie_operator!!.setText("")
+                tie_circle!!.setText("")
+                tie_amount!!.setText("")
+                tie_account!!.setText("")
+
+                ID_Providers = ""
+                ProvidersCode = ""
+                ID_RechargeCircle = ""
+                CircleMode =  ""
+                FK_Account = ""
+                AccountNo = ""
+                SubModule= ""
+                BranchName= ""
+
 
             }
             R.id.im_offers ->{
