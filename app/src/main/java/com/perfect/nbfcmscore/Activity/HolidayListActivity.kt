@@ -39,6 +39,8 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
     var spnBranch: Spinner? = null
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
+    var tv_header: TextView? = null
+
     var branchid:String?=null
     var arrayList1 = ArrayList<String>()
     public var arrayList2: ArrayList<Branchcode>? = null
@@ -64,6 +66,11 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)
 
+
+        tv_header= findViewById<TextView>(R.id.tv_header)
+
+        val HeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF83, 0)
+        tv_header!!.setText(HeaderSP.getString("HolidayList", null))
 
         rv_holiday = findViewById(R.id.rv_holiday)
         spnBranch = findViewById( R.id.spnBranch)
@@ -331,7 +338,6 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                                 val jObject = JSONObject(response.body())
                                 Log.i("Response", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
-                                    rv_holiday!!.visibility=View.VISIBLE
                                     val jsonObj1: JSONObject =
                                         jObject.getJSONObject("HolidayDetails")
                                     val jsonobj2 = JSONObject(jsonObj1.toString())

@@ -205,7 +205,11 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
                                     alertMessage1(status, message)
 
 
-                                } else {
+                                }
+                                else if ( ! jObject.getString("otpRefNo").equals("0") &&  jObject.getString("Status").equals("200") ){
+                                    startActivity(Intent(this@AddSender, TransactionOTPActivity::class.java))
+                                }
+                                else {
                                     val builder = AlertDialog.Builder(
                                             this@AddSender,
                                             R.style.MyDialogTheme

@@ -71,6 +71,7 @@ class OTPActivity : AppCompatActivity() , View.OnClickListener {
         setContentView(R.layout.activity_o_t_p)
         setRegViews()
         val ID_OtpverifySP = applicationContext.getSharedPreferences(Config.SHARED_PREF48,0)
+        val ID_OtpmsgSP = applicationContext.getSharedPreferences(Config.SHARED_PREF166,0)
 
 
         val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
@@ -87,7 +88,9 @@ class OTPActivity : AppCompatActivity() , View.OnClickListener {
         Token = intent.getStringExtra("Token")!!
         CusMobile = intent.getStringExtra("CusMobile")!!
         val mask: String = CusMobile.replace("\\w(?=\\w{3})".toRegex(),"*")
-        tvotpmsg!!.text="Please enter the validation code send to your registered mobile number "+mask
+     //   tvotpmsg!!.text="Please enter the validation code send to your registered mobile number "+mask
+        tvotpmsg!!.setText(ID_OtpmsgSP.getString("please enter validation code senttoyourregisteredmobilenumber",null)+mask)
+
 
         txtv_otpverify!!.setText(ID_OtpverifySP.getString("Otpverification",null))
 

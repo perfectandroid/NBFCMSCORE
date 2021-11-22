@@ -1,6 +1,7 @@
 package com.perfect.nbfcmscore.Activity
 
 import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -38,6 +39,7 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
     var peroidtype: String? = null
     var llOutput: LinearLayout? = null
     var beneficiary: String? = null
+    private var progressDialog: ProgressDialog? = null
     var txt_amtinword: TextView? = null
     var etxt_amount: EditText? = null
     var edt_txt_tenure: EditText? = null
@@ -54,12 +56,33 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
     var deposittype = arrayOfNulls<String>(0)
     var benefcry = arrayOfNulls<String>(0)
     var tenure = arrayOfNulls<String>(0)
+
+    var txtv_type: TextView? = null
+    var txtv_beneficiary: TextView? = null
+    var txtamt: TextView? = null
+    var txtv_tenure: TextView? = null
+
     public var arrayList1: ArrayList<Beneflist>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_deposit)
 
         setRegViews()
+
+        val Headersp = applicationContext.getSharedPreferences(Config.SHARED_PREF80, 0)
+        tv_header!!.setText(Headersp.getString("DepositCalculator", null))
+
+        val Benefsp = applicationContext.getSharedPreferences(Config.SHARED_PREF179, 0)
+        txtv_beneficiary!!.setText(Benefsp.getString("Beneficiary", null))
+
+        val Typesp = applicationContext.getSharedPreferences(Config.SHARED_PREF178, 0)
+        txtv_type!!.setText(Typesp.getString("TypeofDeposit", null))
+
+        val Amtsp = applicationContext.getSharedPreferences(Config.SHARED_PREF113, 0)
+        txtamt!!.setText(Amtsp.getString("Amount", null))
+
+        val Tenresp = applicationContext.getSharedPreferences(Config.SHARED_PREF180, 0)
+        txtv_tenure!!.setText(Tenresp.getString("Tenure", null))
 
 
 
@@ -71,6 +94,11 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
         imgBack = findViewById(R.id.imgBack)
         imgHome = findViewById(R.id.imgHome)
         txt_amtinword= findViewById(R.id.txt_amtinword)
+
+        txtv_type= findViewById(R.id.txtv_type)
+        txtv_beneficiary= findViewById(R.id.txtv_beneficiary)
+        txtamt= findViewById(R.id.txtamt)
+        txtv_tenure= findViewById(R.id.txtv_tenure)
 
         spn_deposit_type = findViewById(R.id.spn_deposit_type)
         spn_beneficiary = findViewById(R.id.spn_beneficiary)
@@ -414,12 +442,12 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
         when(ConnectivityUtils.isConnected(this)) {
 
             true -> {
-                /*  progressDialog = ProgressDialog(this@PassbookActivity, R.style.Progress)
+                  progressDialog = ProgressDialog(this@DepositCalculatorActivity, R.style.Progress)
                   progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
                   progressDialog!!.setCancelable(false)
                   progressDialog!!.setIndeterminate(true)
                   progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
-                  progressDialog!!.show()*/
+                  progressDialog!!.show()
                 try {
                     val client = OkHttpClient.Builder()
                             .sslSocketFactory(Config.getSSLSocketFactory(this@DepositCalculatorActivity))
@@ -483,7 +511,7 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
 
                         Log.e("TAG", "requestObject1  deposit   " + requestObject1)
                     } catch (e: Exception) {
-                        // progressDialog!!.dismiss()
+                         progressDialog!!.dismiss()
                         e.printStackTrace()
                         val mySnackbar = Snackbar.make(
                                 findViewById(R.id.rl_main),
@@ -502,7 +530,7 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                                 Response<String>
                         ) {
                             try {
-                                //  progressDialog!!.dismiss()
+                                  progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 Log.i("Response Deposit", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
@@ -533,7 +561,7 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                                     alertDialog.show()
                                 }
                             } catch (e: Exception) {
-                                //  progressDialog!!.dismiss()
+                                  progressDialog!!.dismiss()
 
                                 val builder = AlertDialog.Builder(
                                         this@DepositCalculatorActivity,
@@ -550,7 +578,7 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                         }
 
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
-                            //  progressDialog!!.dismiss()
+                              progressDialog!!.dismiss()
 
                             val builder = AlertDialog.Builder(
                                     this@DepositCalculatorActivity,
@@ -618,32 +646,50 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
 
     }
 
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+    override fun onItemSelected(parent: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+        if (parent!!.id == R.id.spn_tenure) {
+            if(spn_tenure!!.selectedItem.toString().equals("Day"))
+            {
+                val enterdysp = applicationContext.getSharedPreferences(Config.SHARED_PREF182, 0)
+                var dy =enterdysp.getString("PleaseEnterDay", null)
+
+
+                edt_txt_tenure!!.setHint(dy)
+                peroidtype = "D"
+            }
+            else if(spn_tenure!!.selectedItem.toString().equals("Month"))
+            {
+                val entrmnthsp = applicationContext.getSharedPreferences(Config.SHARED_PREF181, 0)
+                var mnth =entrmnthsp.getString("PleaseEnterMonth", null)
+
+                edt_txt_tenure!!.setHint(mnth)
+                peroidtype = "M"
+            }
+
+        }
+
+        else if (parent!!.id == R.id.spn_deposit_type) {
+            if(spn_deposit_type!!.selectedItem.toString().equals("Fixed Deposit"))
+            {
+                submodule = "TDFD"
+            }
+            else if(spn_deposit_type!!.selectedItem.toString().equals("Cumulative Deposit"))
+            {
+                submodule = "TDCC"
+            }
+
+
+        }
+
+        else if (parent!!.id == R.id.spn_beneficiary) {
+            val beneflist: Beneflist = arrayList1!!.get(position)
+            benefid = beneflist.getID_Benefit()
+        }
 
 
         //tenure
-        if(spn_tenure!!.selectedItem.toString().equals("Day"))
-        {
-            edt_txt_tenure!!.setHint("Please Enter Day")
-            peroidtype = "D"
-        }
-        else if(spn_tenure!!.selectedItem.toString().equals("Month"))
-        {
-            edt_txt_tenure!!.setHint("Please Enter Month")
-            peroidtype = "M"
-        }
 
         //deposit
-        if(spn_deposit_type!!.selectedItem.toString().equals("Fixed Deposit"))
-        {
-            submodule = "TDFD"
-        }
-        else if(spn_deposit_type!!.selectedItem.toString().equals("Cumulative Deposit"))
-        {
-            submodule = "TDCC"
-        }
-        val beneflist: Beneflist = arrayList1!!.get(position)
-        benefid = beneflist.getID_Benefit()
 
         //benefiuciary
 

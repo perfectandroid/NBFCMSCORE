@@ -69,6 +69,10 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
     var pinValue: String = ""
     var IMAGRURL: String =""
 
+    var txtv_mpinverf: TextView? = null
+    var txtv_unlock: TextView? = null
+
+
 
 
 
@@ -92,6 +96,7 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
         IMAGRURL = IMAGE_URL+AppIconImageCodeSP.getString("AppIconImageCode",null)
         Log.e(TAG,"IMAGRURL  86  "+IMAGRURL)
 
+
 //        Glide.with(this).load("https://picsum.photos/200").into(imgLogo)
 //        Glide.with(this).load(IMAGRURL).placeholder(null)
 //                    .into(imgLogo);
@@ -108,6 +113,15 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
 
 
         setRegViews()
+        val MpinverifSP = applicationContext.getSharedPreferences(Config.SHARED_PREF168, 0)
+        val UnlockSP = applicationContext.getSharedPreferences(Config.SHARED_PREF169, 0)
+        val ForgotMpinsp = applicationContext.getSharedPreferences(Config.SHARED_PREF141, 0)
+        val ChangeMpinSP = applicationContext.getSharedPreferences(Config.SHARED_PREF170, 0)
+
+        txtv_mpinverf!!.setText(MpinverifSP.getString("MPINVerification",null))
+        txtv_unlock!!.setText(UnlockSP.getString("PleaseunlockwithyourMPIN",null))
+        tvchangepassword!!.setText(ChangeMpinSP.getString("ChangeMPIN",null))
+        tvforgetpassword!!.setText(ForgotMpinsp.getString("ForgotMPIN",null))
 
 
 
@@ -162,6 +176,11 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
     private fun setRegViews() {
          tvforgetpassword = findViewById<TextView>(R.id.tvforgetpassword) as TextView
          tvchangepassword = findViewById<TextView>(R.id.tvchangepassword) as TextView
+
+        txtv_mpinverf = findViewById<TextView>(R.id.txtv_mpinverf) as TextView
+        txtv_unlock = findViewById<TextView>(R.id.txtv_unlock) as TextView
+
+
 //        val btverify = findViewById<Button>(R.id.btverify) as Button
        // pinview = findViewById<Pinview>(R.id.pinview) as Pinview
 //        btverify!!.setOnClickListener(this)

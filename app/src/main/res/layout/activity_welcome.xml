@@ -57,7 +57,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
                         android:textStyle="bold"
-                        android:text="Welcome"
+                        android:text=""
                         android:textColor="@color/white"/>
                     <TextView
                         android:id="@+id/tvfasterway"
@@ -69,7 +69,7 @@
                         android:layout_marginRight="20dp"
                         android:layout_marginBottom="20dp"
                         android:textSize="13dp"
-                        android:text="Faster way to help you."
+                        android:text=""
                         android:textColor="@color/white"/>
                 </LinearLayout>
             </ScrollView>
@@ -87,7 +87,7 @@
                     android:id="@+id/btlogin"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:text="Sign In"
+                    android:text=""
                     android:textSize="13dp"
                     android:textStyle="bold"
                     android:textColor="@color/white"
@@ -95,7 +95,7 @@
                 <Button
                     android:id="@+id/btregistration"
                     android:layout_width="match_parent"
-                    android:text="Register Now"
+                    android:text=""
                     android:textColor="@color/white"
                     android:background="@color/color_activity_transparent"
                     android:textSize="13dp"

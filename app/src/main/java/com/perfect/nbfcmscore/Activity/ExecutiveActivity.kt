@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
+import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.R
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -23,14 +24,33 @@ class ExecutiveActivity : AppCompatActivity() ,View.OnClickListener{
     var txt_time: TextInputEditText? = null
     var btn_submit: Button? = null
 
+    var tv_header: TextView? = null
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_executive)
 
         setRegViews()
+
+        val HeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF84, 0)
+        val NameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF171, 0)
+        val MobileSP = applicationContext.getSharedPreferences(Config.SHARED_PREF172, 0)
+        val DateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF173, 0)
+        val TimeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF174, 0)
+        val SubmitSP = applicationContext.getSharedPreferences(Config.SHARED_PREF174, 0)
+
+        tv_header!!.setText(HeaderSP.getString("ExecutiveCallBack", null))
+        txtv_Name!!.setHint(NameSP.getString("Name", null))
+        txtv_mob!!.setHint(MobileSP.getString("Mobile", null))
+        txt_time!!.setHint(TimeSP.getString("Time", null))
+        txtv_Date!!.setHint(DateSP.getString("Date", null))
+
     }
 
     private fun setRegViews() {
+        tv_header = findViewById<TextView>(R.id.tv_header)
         imgBack = findViewById<ImageView>(R.id.imgBack)
         imgBack!!.setOnClickListener(this)
         imgHome = findViewById<ImageView>(R.id.imgHome)
@@ -45,6 +65,8 @@ class ExecutiveActivity : AppCompatActivity() ,View.OnClickListener{
 
 
         btn_submit!!.setOnClickListener(this)
+
+
     }
 
     override fun onClick(v: View) {

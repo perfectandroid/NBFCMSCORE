@@ -84,7 +84,7 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/txtv_payingto"
+                                android:id="@+id/txtv_type"
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="start"
@@ -482,7 +482,7 @@
 
 
                         <TextView
-                            android:id="@+id/txtamtpayable"
+                            android:id="@+id/txtamt"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:gravity="start"

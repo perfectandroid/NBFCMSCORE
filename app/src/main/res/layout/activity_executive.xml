@@ -26,7 +26,7 @@
                     android:layout_weight=".2"
                     android:src="@drawable/navback" />
                 <TextView
-                    android:id="@+id/tv_mycart"
+                    android:id="@+id/tv_header"
                     android:layout_width="0dp"
                     android:textColor="@color/white"
                     android:textStyle="bold"
@@ -110,7 +110,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:background="@android:color/transparent"
-                                        android:hint="Name"
+                                        android:hint=""
                                         android:inputType="text"
                                         android:textColorHint="@color/bottom_line1"
                                         android:textSize="15dp" />
@@ -144,7 +144,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:background="@android:color/transparent"
-                                        android:hint="Mobile"
+                                        android:hint=""
                                         android:inputType="number"
                                         android:textColorHint="@color/bottom_line1"
                                         android:textSize="15dp" />
@@ -178,7 +178,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:background="@android:color/transparent"
-                                        android:hint="Date"
+                                        android:hint=""
                                         android:inputType="number"
                                         android:maxLength="4"
                                         android:textColorHint="@color/bottom_line1"
@@ -215,7 +215,7 @@
                                         android:clickable="true"
                                         android:focusable="false"
                                         android:inputType="text"
-                                        android:hint="Time"
+                                        android:hint=""
                                         android:textColorHint="@color/bottom_line1"
                                         android:textSize="15dp" />
 
