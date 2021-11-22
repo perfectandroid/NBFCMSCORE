@@ -205,7 +205,25 @@ object Config {
     const val SHARED_PREF168= "MPINVerification"
     const val SHARED_PREF169= "PleaseunlockwithyourMPIN"
     const val SHARED_PREF170= "ChangeMPIN"
-   // const val SHARED_PREF171= "Language"
+
+    const val SHARED_PREF171= "Name"
+    const val SHARED_PREF172= "Mobile"
+    const val SHARED_PREF173= "Date"
+    const val SHARED_PREF174= "Time"
+
+    const val SHARED_PREF175= "Reportanerror"
+    const val SHARED_PREF176= "Giveasuggestion"
+    const val SHARED_PREF177= "Anythingelse"
+
+    const val SHARED_PREF178= "TypeofDeposit"
+    const val SHARED_PREF179= "Beneficiary"
+    const val SHARED_PREF180= "Tenure"
+    const val SHARED_PREF181= "PleaseEnterMonth"
+    const val SHARED_PREF182= "PleaseEnterDay"
+
+    const val SHARED_PREF183= "Assets"
+    const val SHARED_PREF184= "Liability"
+    const val SHARED_PREF185= "PaymentReceipt"
 
 
 

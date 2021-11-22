@@ -32,6 +32,8 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
         setRegViews()
         val ID_enqry = applicationContext.getSharedPreferences(Config.SHARED_PREF82,0)
         tv_mycart!!.setText(ID_enqry.getString("Enquires",null))
+        val ID_feedbk = applicationContext.getSharedPreferences(Config.SHARED_PREF56,0)
+        feedbackText!!.setHint(ID_feedbk.getString("feedback",null))
 
     }
 
@@ -51,7 +53,15 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
 
         spn_feedbk!!.onItemSelectedListener = this
 
-        feedback = arrayOf<String?>("Report An Error", "Give a Suggestion", "Anything Else")
+        val ID_reprterr = applicationContext.getSharedPreferences(Config.SHARED_PREF175,0)
+        val ID_suggstn = applicationContext.getSharedPreferences(Config.SHARED_PREF176,0)
+        val ID_anyth= applicationContext.getSharedPreferences(Config.SHARED_PREF177,0)
+
+        var reprt =ID_reprterr.getString("Reportanerror",null)
+        var sugg=ID_suggstn.getString("Giveasuggestion",null)
+        var anythng=ID_anyth.getString("Anythingelse",null)
+
+        feedback = arrayOf<String?>(reprt, sugg, anythng)
         getFeedback()
     }
 

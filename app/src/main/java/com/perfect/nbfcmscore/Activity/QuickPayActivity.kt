@@ -884,7 +884,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 Log.i("Response-forgotmpin", response.body())
-                                if (jObject.getString("StatusCode") == "0") {
+                                if (response.toString()== "1") {
                                     Toast.makeText(applicationContext, "M-Pin is resend to your mobile", Toast.LENGTH_LONG).show()
                                     /*val jsonObj1: JSONObject =
                                             jObject.getJSONObject("PassBookAccountStatement")
