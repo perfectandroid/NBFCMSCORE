@@ -902,7 +902,38 @@
 
 
             </LinearLayout>
+
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_clear"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/but_ronded1"
+                    android:text="Reset"
+                    android:textColor="@color/white" />
+
+
+                <Button
+                    android:id="@+id/btn_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/but_rounded2"
+                    android:text="Calculate"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+          <!--  <LinearLayout
                 android:id="@+id/ll_bottombar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -910,8 +941,8 @@
                 android:layout_alignParentBottom="true"
                 android:orientation="horizontal"
                 >
-                <!--            android:layout_marginLeft="10dp"-->
-                <!--            android:layout_marginRight="10dp"-->
+                &lt;!&ndash;            android:layout_marginLeft="10dp"&ndash;&gt;
+                &lt;!&ndash;            android:layout_marginRight="10dp"&ndash;&gt;
 
 
                 <Button
@@ -930,7 +961,7 @@
                     tools:ignore="ButtonStyle" />
 
 
-            </LinearLayout>
+            </LinearLayout>-->
         </LinearLayout>
 
     </ScrollView>

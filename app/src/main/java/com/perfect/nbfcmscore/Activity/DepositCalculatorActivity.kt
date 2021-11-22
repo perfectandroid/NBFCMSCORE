@@ -49,6 +49,7 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
     var tv_amt: TextView? = null
     var tv_maturityamt: TextView? = null
 
+    var btn_clear: Button? = null
     var btn_submit: Button? = null
     var tv_header: TextView? = null
     var submodule: String? = null
@@ -84,6 +85,12 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
         val Tenresp = applicationContext.getSharedPreferences(Config.SHARED_PREF180, 0)
         txtv_tenure!!.setText(Tenresp.getString("Tenure", null))
 
+        val ID_reset = applicationContext.getSharedPreferences(Config.SHARED_PREF189,0)
+        btn_clear!!.setText(ID_reset.getString("RESET",null))
+
+        val ID_calc = applicationContext.getSharedPreferences(Config.SHARED_PREF190,0)
+        btn_submit!!.setText(ID_calc.getString("CALCULATE",null))
+
 
 
     }
@@ -113,8 +120,10 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
         llOutput = findViewById(R.id.llOutput)
 
         btn_submit = findViewById(R.id.btn_submit)
+        btn_clear = findViewById(R.id.btn_clear)
 
         btn_submit!!.setOnClickListener(this)
+        btn_clear!!.setOnClickListener(this)
 
         tv_type = findViewById(R.id.tv_type)
         tv_period = findViewById(R.id.tv_period)
@@ -155,10 +164,12 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
 //                        DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
 //                        formatter.applyPattern("#,###,###,###");
 //                        String formattedString = formatter.format(longval);
+
                         val formattedString: String? =
                                 Config!!.getDecimelFormateForEditText(longval)
                         //
                         //setting text after format to EditText
+                        val rupee = getString(R.string.Rs)
                         etxt_amount!!.setText(formattedString)
                         etxt_amount!!.setSelection(etxt_amount!!.getText().length)
                         val amnt: String = etxt_amount!!.getText().toString().replace(
@@ -431,9 +442,19 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                     getDepositCalculatr()
                 }
             }
+            R.id.btn_clear ->{
+
+                clearFields()
+            }
 
         }
 
+    }
+
+    private fun clearFields() {
+        etxt_amount!!.setText("")
+        edt_txt_tenure!!.setText("")
+        llOutput!!.visibility = View.GONE
     }
 
     private fun getDepositCalculatr() {
@@ -442,12 +463,12 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
         when(ConnectivityUtils.isConnected(this)) {
 
             true -> {
-                  progressDialog = ProgressDialog(this@DepositCalculatorActivity, R.style.Progress)
-                  progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
-                  progressDialog!!.setCancelable(false)
-                  progressDialog!!.setIndeterminate(true)
-                  progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
-                  progressDialog!!.show()
+                progressDialog = ProgressDialog(this@DepositCalculatorActivity, R.style.Progress)
+                progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
+                progressDialog!!.setCancelable(false)
+                progressDialog!!.setIndeterminate(true)
+                progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
+                progressDialog!!.show()
                 try {
                     val client = OkHttpClient.Builder()
                             .sslSocketFactory(Config.getSSLSocketFactory(this@DepositCalculatorActivity))
@@ -511,7 +532,7 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
 
                         Log.e("TAG", "requestObject1  deposit   " + requestObject1)
                     } catch (e: Exception) {
-                         progressDialog!!.dismiss()
+                        progressDialog!!.dismiss()
                         e.printStackTrace()
                         val mySnackbar = Snackbar.make(
                                 findViewById(R.id.rl_main),
@@ -530,7 +551,7 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                                 Response<String>
                         ) {
                             try {
-                                  progressDialog!!.dismiss()
+                                progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 Log.i("Response Deposit", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
@@ -561,7 +582,7 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                                     alertDialog.show()
                                 }
                             } catch (e: Exception) {
-                                  progressDialog!!.dismiss()
+                                progressDialog!!.dismiss()
 
                                 val builder = AlertDialog.Builder(
                                         this@DepositCalculatorActivity,
@@ -578,7 +599,7 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                         }
 
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
-                              progressDialog!!.dismiss()
+                            progressDialog!!.dismiss()
 
                             val builder = AlertDialog.Builder(
                                     this@DepositCalculatorActivity,

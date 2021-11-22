@@ -36,6 +36,7 @@
     <string name="select_receiver">Select receiver</string>
     <string name="add_new_receiver">[add new receiver]</string>
     <string name="make_payment">MAKE PAYMENT</string>
+    <string name="Rs">\u20B9</string>
 
 
     <string name="privacy1">We may collect any or all the information that you gives us depending on the type of
