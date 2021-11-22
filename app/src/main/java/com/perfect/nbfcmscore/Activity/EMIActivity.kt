@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
@@ -84,6 +85,9 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
 
         setInitialise()
         setRegister()
+
+        val imemilogo: ImageView = findViewById(R.id.imemilogo)
+        Glide.with(this).load(R.drawable.emigif).into(imemilogo)
 
         val ID_header = applicationContext.getSharedPreferences(Config.SHARED_PREF79,0)
         tv_header!!.setText(ID_header.getString("EMICalculator",null))
