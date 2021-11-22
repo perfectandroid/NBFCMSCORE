@@ -4,6 +4,8 @@ import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -84,6 +86,61 @@ class GoldLoanActivity : AppCompatActivity() , View.OnClickListener{
         img_top!!.setImageResource(R.drawable.imagemoney)
 
 
+        tie_amountweight!!.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable) {
+                tie_amountweight!!.removeTextChangedListener(this)
+                try {
+                    if(CalcMethod.equals("2")){
+                        var originalString = s.toString()
+                        if (originalString != "") {
+                            val longval: Double
+                            if (originalString.contains(",")) {
+                                originalString = originalString.replace(",".toRegex(), "")
+                            }
+                            longval = originalString.toDouble()
+
+                            val formattedString: String? = Config!!.getDecimelFormateForEditText(longval)
+                            tie_amountweight!!.setText(formattedString)
+                            val selection: Int = tie_amountweight!!.length()
+                            tie_amountweight!!.setSelection(selection)
+                            // tie_amount!!.setSelection(tie_amount!!.getText().length)
+                            val amnt: String = tie_amountweight!!.getText().toString().replace(",".toRegex(), "")
+                            val netAmountArr = amnt.split("\\.".toRegex()).toTypedArray()
+
+                        } else {
+                            tie_amountweight!!.setText("")
+                        }
+                    }
+
+
+                } catch (nfe: NumberFormatException) {
+                    nfe.printStackTrace()
+                }
+                tie_amountweight!!.addTextChangedListener(this)
+            }
+
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                try {
+                    if(CalcMethod.equals("2")){
+                        if (s.length != 0) {
+                            var originalString = s.toString()
+                            if (originalString.contains(",")) {
+                                originalString = originalString.replace(",".toRegex(), "")
+                            }
+                            val num = ("" + originalString).toDouble()
+                            // btn_submit!!.setText("PAY  " + "\u20B9 " + Config.getDecimelFormate(num))
+                        } else {
+                            //  btn_submit!!.setText("PAY")
+                        }
+                    }
+
+                } catch (e: NumberFormatException) {
+                }
+            }
+        })
+
+
 
     }
 
@@ -157,8 +214,8 @@ class GoldLoanActivity : AppCompatActivity() , View.OnClickListener{
             R.id.but_calculate ->{
                 Config.Utils.hideSoftKeyBoard(this@GoldLoanActivity,v)
                 ll_estimatelist!!.visibility = View.GONE
-
-                if (tie_amountweight!!.text.toString().equals("")){
+                Amount = tie_amountweight!!.text.toString().replace(",", "");
+                if (Amount.equals("")){
 
                     if (CalcMethod.equals("1")){
                         CustomBottomSheeet.Show(this,"Please enter weight","0")
@@ -168,7 +225,7 @@ class GoldLoanActivity : AppCompatActivity() , View.OnClickListener{
                 }else{
 
                     if ( chk_amount!!.isChecked){
-                        Amount = tie_amountweight!!.text.toString()
+                        Amount = tie_amountweight!!.text.toString().replace(",", "");
                         Weight = "0"
                     }
                     if ( chk_weight!!.isChecked){
