@@ -44,11 +44,14 @@ class GoldEstimatorAdaptor (internal val mContext: Context, internal val jsInfo:
                 }
 
                 // holder.txt_slno!!.setText()
+                val pos = position+1
+
+                holder.txt_sn!!.setText(""+pos)
                 holder.txt_Type!!.setText(jsonObject!!.getString("TypeName"))
                 holder.txt_period!!.setText(jsonObject!!.getString("PeriodFrom")+" - "+jsonObject!!.getString("PeriodTo") )
-                holder.txt_roi!!.setText(jsonObject!!.getString("ROI") )
+                holder.txt_roi!!.setText(Config.getDecimelFormate(jsonObject!!.getString("ROI").toDouble()) )
                 holder.txt_Amount!!.setText("₹ "+ Config.getDecimelFormate(jsonObject!!.getDouble("Amount")))
-                holder.txt_weight!!.setText(jsonObject!!.getString("OrnWeight") )
+                holder.txt_weight!!.setText(Config.getDecimelFormate(jsonObject!!.getString("OrnWeight").toDouble()))
 
 
             }
@@ -64,6 +67,7 @@ class GoldEstimatorAdaptor (internal val mContext: Context, internal val jsInfo:
         internal var ll_Amount: LinearLayout? = null
         internal var ll_weight: LinearLayout? = null
         //var txt_slno: TextView? = null
+        var txt_sn: TextView? = null
         var txt_Type: TextView? = null
         var txt_period: TextView? = null
         var txt_roi: TextView? = null
@@ -78,6 +82,7 @@ class GoldEstimatorAdaptor (internal val mContext: Context, internal val jsInfo:
             ll_Amount = v.findViewById<View>(R.id.ll_Amount) as LinearLayout
             ll_weight = v.findViewById<View>(R.id.ll_weight) as LinearLayout
 
+            txt_sn = v.findViewById<View>(R.id.txt_sn) as TextView
             txt_Type = v.findViewById<View>(R.id.txt_Type) as TextView
             txt_period = v.findViewById<View>(R.id.txt_period) as TextView
             txt_roi = v.findViewById<View>(R.id.txt_roi) as TextView

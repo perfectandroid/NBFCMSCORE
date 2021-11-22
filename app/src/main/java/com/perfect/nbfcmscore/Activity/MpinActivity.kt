@@ -711,13 +711,46 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
 
                                     val currentTime = Calendar.getInstance().time
                                     Log.e(TAG,"currentTime  "+currentTime)
-                                    val date: DateFormat = SimpleDateFormat("dd-MM-yyyy HH:mm a")
-                                    val localTime = date.format(currentTime)
-                                    Log.e(TAG,"localTime  "+localTime)
+                                    val date: DateFormat = SimpleDateFormat("dd-MM-yyyy")
+                                    val time: DateFormat = SimpleDateFormat("HH:mm")
+//                                    val date: DateFormat = SimpleDateFormat("dd-MM-yyyy HH:mm a")
+                                    val localDate = date.format(currentTime)
+                                    val localtime = time.format(currentTime)
+                                    val timeParts = localtime.split(":").toTypedArray()
+
+                                    var hour = timeParts[0].toInt()
+                                    val min = timeParts[1].toInt()
+
+                                    var suffix: String =""
+                                    if(hour>11) {
+                                        suffix = "PM";
+                                        if(hour>12)
+                                            hour -= 12;
+                                    } else {
+                                        suffix = "AM";
+                                        if(hour==0)
+                                            hour = 12;
+                                    }
+                                    var hours : String =""
+                                    var mins : String =""
+                                    if (hour.toString().length==1){
+                                        hours = "0"+hour.toString()
+                                    }else{
+                                        hours = hour.toString()
+                                    }
+
+                                    if (min.toString().length==1){
+                                        mins = "0"+hour.toString()
+                                    }else{
+                                        mins = min.toString()
+                                    }
+
+                                    val localDateTime = localDate+" "+hours+" : "+mins +" "+suffix
+                                    Log.e(TAG,"hr  7192   "+localDateTime)
 
                                     val LastLoginTimeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF29,0)
                                     val LastLoginTimeEditer = LastLoginTimeSP.edit()
-                                    LastLoginTimeEditer.putString("LastLoginTime", localTime)
+                                    LastLoginTimeEditer.putString("LastLoginTime", localDateTime)
                                     LastLoginTimeEditer.commit()
 
                                     startActivity(
