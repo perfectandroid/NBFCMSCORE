@@ -68,7 +68,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="10dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:padding="5dp">
@@ -90,7 +90,7 @@
                                 android:gravity="start"
                                 android:layout_marginTop="2dp"
                                 android:text="Type of Deposit: "
-                                android:textColor="#00C6FF"
+                                android:textColor="@color/redDark"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
                             <LinearLayout
@@ -133,7 +133,73 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="10dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_margin="5dp"
+
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/txtv_beneficiary"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:layout_marginTop="2dp"
+                                android:text="Beneficiary: "
+                                android:textColor="@color/redDark"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+
+                                <Spinner
+                                    android:id="@+id/spn_beneficiary"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="start"
+                                    android:gravity="start"
+                                    android:popupBackground="#cccccc"
+                                    android:layout_marginBottom="5dp"
+                                    android:spinnerMode="dialog"
+                                    android:backgroundTint="@color/blue"/>
+
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--                            <TextView-->
+                        <!--                                android:id="@+id/tv_as_on_date"-->
+                        <!--                                android:layout_width="match_parent"-->
+                        <!--                                android:layout_height="wrap_content"-->
+                        <!--                                android:textColor="@color/FireBrick"-->
+                        <!--                                android:visibility="gone"-->
+                        <!--                                android:paddingLeft="30dp"-->
+                        <!--                                android:paddingBottom="5dp"-->
+                        <!--                                android:textSize="12sp"-->
+                        <!--                                android:textStyle="bold"/>-->
+
+
+
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+<!--
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:padding="5dp">
@@ -177,16 +243,16 @@
 
                             </LinearLayout>
                         </LinearLayout>
-                        <!--                            <TextView-->
-                        <!--                                android:id="@+id/tv_as_on_date"-->
-                        <!--                                android:layout_width="match_parent"-->
-                        <!--                                android:layout_height="wrap_content"-->
-                        <!--                                android:textColor="@color/FireBrick"-->
-                        <!--                                android:visibility="gone"-->
-                        <!--                                android:paddingLeft="30dp"-->
-                        <!--                                android:paddingBottom="5dp"-->
-                        <!--                                android:textSize="12sp"-->
-                        <!--                                android:textStyle="bold"/>-->
+                        &lt;!&ndash;                            <TextView&ndash;&gt;
+                        &lt;!&ndash;                                android:id="@+id/tv_as_on_date"&ndash;&gt;
+                        &lt;!&ndash;                                android:layout_width="match_parent"&ndash;&gt;
+                        &lt;!&ndash;                                android:layout_height="wrap_content"&ndash;&gt;
+                        &lt;!&ndash;                                android:textColor="@color/FireBrick"&ndash;&gt;
+                        &lt;!&ndash;                                android:visibility="gone"&ndash;&gt;
+                        &lt;!&ndash;                                android:paddingLeft="30dp"&ndash;&gt;
+                        &lt;!&ndash;                                android:paddingBottom="5dp"&ndash;&gt;
+                        &lt;!&ndash;                                android:textSize="12sp"&ndash;&gt;
+                        &lt;!&ndash;                                android:textStyle="bold"/>&ndash;&gt;
                         <TextView
 
                             android:layout_width="wrap_content"
@@ -463,6 +529,7 @@
                         </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+-->
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -475,7 +542,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:background="@drawable/bg_light_grey2"
+                        android:background="@color/white"
                         android:layout_marginBottom="15dp"
                         android:orientation="vertical">
 
@@ -488,7 +555,7 @@
                             android:gravity="start"
                             android:layout_marginTop="2dp"
                             android:layout_marginLeft="7dp"
-                            android:textColor="#00C6FF"
+                            android:textColor="@color/redDark"
                             android:textSize="16sp"
                             android:textStyle="bold"
                             android:text="Amount:"/>
@@ -514,7 +581,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
-                                android:textColor="@color/blue"
+                                android:textColor="@color/green"
                                 android:textSize="15dp"
                                 android:textStyle="bold"/>
 
@@ -534,14 +601,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="10dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:padding="5dp">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_margin="5dp"
-                        android:background="@drawable/bg_light_grey2"
+                        android:background="@color/white"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
                         <LinearLayout
@@ -556,7 +623,7 @@
                                 android:gravity="start"
                                 android:layout_marginTop="2dp"
                                 android:text="Tenure:"
-                                android:textColor="#00C6FF"
+                                android:textColor="@color/redDark"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
                             <LinearLayout
@@ -592,7 +659,7 @@
                                 android:textStyle="bold"
                                 android:textSize="15dp"
                                 android:maxLength="13"
-                                android:backgroundTint="@color/blue"/>
+                                android:backgroundTint="@color/grey"/>
                                </LinearLayout>
 
 
@@ -609,9 +676,9 @@
                 android:id="@+id/llOutput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
                 android:visibility="gone">
 
                 <androidx.cardview.widget.CardView
@@ -843,7 +910,7 @@
                 android:id="@+id/ll_bottombar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="65dp"
+                android:layout_marginTop="15dp"
                 android:layout_alignParentBottom="true"
                 android:orientation="horizontal"
                 >
