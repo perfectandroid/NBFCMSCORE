@@ -47,6 +47,10 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.*
+import com.github.mikephil.charting.components.XAxis
+
+
+
 
 
 class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValueSelectedListener {
@@ -88,6 +92,8 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
     var piechartAsset: PieChart? = null
     var piechartLiability: PieChart? = null
     var piechartPayment: PieChart? = null
+
+    var barchart_payment: BarChart? = null
 
 
     var PieEntryLabelsAsset: ArrayList<String>? = null
@@ -411,6 +417,8 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
         piechartAsset = findViewById(R.id.piechartAsset)
         piechartPayment = findViewById(R.id.piechartPayment)
         linechart = findViewById(R.id.linechart)
+
+        barchart_payment = findViewById(R.id.barchart_payment)
 
         rvAssetList = findViewById(R.id.rvAssetList)
         rvliability = findViewById(R.id.rvliability)
@@ -898,6 +906,8 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                                     rvpayment!!.setHasFixedSize(true)
                                     val payment_adapter = DashPaymentAdapter(applicationContext!!, jresult3!!)
                                     rvpayment!!.adapter = payment_adapter
+
+
 
                                 } else {
                                     val builder = AlertDialog.Builder(

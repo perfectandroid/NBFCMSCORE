@@ -251,6 +251,12 @@
                         android:layout_gravity="center"
                         android:visibility="visible" />
 
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/barchart_payment"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:visibility="gone"/>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

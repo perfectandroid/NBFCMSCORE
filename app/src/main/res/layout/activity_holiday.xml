@@ -48,7 +48,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         app:cardCornerRadius="10dp"
@@ -59,16 +59,61 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <Spinner
-                android:id="@+id/spnBranch"
+            <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                app:cardUseCompatPadding="true"
+                android:visibility="visible">
+
+                <Spinner
+                    android:id="@+id/spnBranch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:theme="@style/Spinner"
+                    android:popupBackground="#cccccc"
+                    android:background="@color/white"
+                    android:spinnerMode="dialog"/>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
-                android:layout_marginTop="15dp"
-                android:theme="@style/Spinner"
-                android:popupBackground="#cccccc"
-                android:background="@color/colorAccent"
-                android:spinnerMode="dialog"/>
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                app:cardUseCompatPadding="true"
+                android:visibility="gone">
+
+                <AutoCompleteTextView
+                    android:id="@+id/act_account"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:dropDownHeight="wrap_content"
+                    android:text=""
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:hint="Select Branch"
+                    android:padding="5dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/black"
+                    android:drawableRight="@drawable/arrow_down"
+                    android:drawablePadding="5dp"
+                    android:background="@drawable/corner_round_white"/>
+
+            </androidx.cardview.widget.CardView>
+
+
             <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -107,7 +152,8 @@
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp">
                 <ExpandableListView
                     android:id="@+id/listViewDateAccountDetails"
                     android:layout_width="fill_parent"
@@ -118,11 +164,12 @@
                     android:dividerHeight="0dp"
                     android:visibility="gone"
                     android:paddingBottom="12dp"/>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_holiday"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="15dp"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp" />
 
                 <TextView
                     android:id="@+id/empty_list"
