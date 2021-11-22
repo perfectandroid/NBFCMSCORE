@@ -639,7 +639,6 @@
                                     android:layout_gravity="start"
                                     android:gravity="start"
                                     android:popupBackground="#cccccc"
-                                    android:layout_marginBottom="5dp"
                                     android:spinnerMode="dialog"
                                     android:backgroundTint="@color/blue"/>
 
@@ -700,6 +699,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
                             android:orientation="horizontal">
 
                             <TextView
@@ -738,6 +738,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
+                            android:layout_marginBottom="10dp"
                             android:orientation="horizontal">
 
 
