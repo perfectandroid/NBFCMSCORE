@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
@@ -31,19 +32,25 @@ class ProductListActivity : AppCompatActivity(),View.OnClickListener {
     private var progressDialog: ProgressDialog? = null
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
+    var tv_header: TextView? = null
+
     private var rv_productdetail: RecyclerView? = null
     private var jresult1: JSONArray? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_productdetail)
         setRegViews()
+
+        val HeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF78, 0)
+        tv_header!!.setText(HeaderSP.getString("ProductDetails", null))
+
         getProductDetails()
     }
 
 
     private fun setRegViews() {
         rv_productdetail = findViewById(R.id.rv_productdetail)
-
+        tv_header = findViewById<TextView>(R.id.tv_header)
 
         imgBack = findViewById<ImageView>(R.id.imgBack)
         imgBack!!.setOnClickListener(this)

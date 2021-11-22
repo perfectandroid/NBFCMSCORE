@@ -946,6 +946,62 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                     ID_paymntEditer.putString("PaymentReceipt", jresult3.get("PaymentReceipt") as String)
                                     ID_paymntEditer.commit()
 
+                                    val ID_calc= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF190, 0)
+                                    val ID_calcEditer = ID_calc.edit()
+                                    ID_calcEditer.putString("CALCULATE", jresult3.get("CALCULATE") as String)
+                                    ID_calcEditer.commit()
+
+
+                                    val ID_reset= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF189, 0)
+                                    val ID_resetEditer = ID_reset.edit()
+                                    ID_resetEditer.putString("RESET", jresult3.get("RESET") as String)
+                                    ID_resetEditer.commit()
+
+                                    val ID_princamt= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF191, 0)
+                                    val ID_princamtEditer = ID_princamt.edit()
+                                    ID_princamtEditer.putString("PRINCIPALAMOUNT", jresult3.get("PRINCIPALAMOUNT") as String)
+                                    ID_princamtEditer.commit()
+
+                                    val ID_intrstrate= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF192, 0)
+                                    val ID_intrstrateEditer = ID_intrstrate.edit()
+                                    ID_intrstrateEditer.putString("INTERESTRATE", jresult3.get("INTERESTRATE") as String)
+                                    ID_intrstrateEditer.commit()
+
+                                    val ID_month= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF193, 0)
+                                    val ID_monthEditer = ID_month.edit()
+                                    ID_monthEditer.putString("MONTH", jresult3.get("MONTH") as String)
+                                    ID_monthEditer.commit()
+
+                                    val ID_emi= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF194, 0)
+                                    val ID_emiEditer = ID_emi.edit()
+                                    ID_emiEditer.putString("Selectemitype", jresult3.get("Selectemitype") as String)
+                                    ID_emiEditer.commit()
+
+                                    val ID_prodctdetl= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF195, 0)
+                                    val ID_prodctdetlEditer = ID_prodctdetl.edit()
+                                    ID_prodctdetlEditer.putString("ProductListDetails", jresult3.get("ProductListDetails") as String)
+                                    ID_prodctdetlEditer.commit()
+
+                                    val ID_loanappstatus= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF196, 0)
+                                    val ID_loanappstatusEditer = ID_loanappstatus.edit()
+                                    ID_loanappstatusEditer.putString("LoanApplicationStatus", jresult3.get("LoanApplicationStatus") as String)
+                                    ID_loanappstatusEditer.commit()
+
+                                    val ID_loantype= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF197, 0)
+                                    val ID_loantypeEditer = ID_loantype.edit()
+                                    ID_loantypeEditer.putString("SelectLoantype", jresult3.get("SelectLoantype") as String)
+                                    ID_loantypeEditer.commit()
+
+                                    val ID_loanpurpse= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF198, 0)
+                                    val ID_loanpurpseEditer = ID_loanpurpse.edit()
+                                    ID_loanpurpseEditer.putString("Selectloanpurpose", jresult3.get("Selectloanpurpose") as String)
+                                    ID_loanpurpseEditer.commit()
+
+
+
+
+
+
 
 
 
