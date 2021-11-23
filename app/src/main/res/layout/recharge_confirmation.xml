@@ -205,7 +205,7 @@
                             android:textStyle="normal"
                             android:background="@drawable/bg_unselect"
                             android:text="Cancel"
-                            android:textColor="@color/RoyalBlue" />
+                            android:textColor="@color/white" />
                         <Button
                             android:id="@+id/bt_ok"
                             android:text="OK"
