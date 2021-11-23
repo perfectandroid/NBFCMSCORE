@@ -997,13 +997,35 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                     ID_loanpurpseEditer.putString("Selectloanpurpose", jresult3.get("Selectloanpurpose") as String)
                                     ID_loanpurpseEditer.commit()
 
+                                    val ID_closd= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF199, 0)
+                                    val ID_closdEditer = ID_closd.edit()
+                                    ID_closdEditer.putString("Closed", jresult3.get("Closed") as String)
+                                    ID_closdEditer.commit()
 
+                                    val ID_frmdte= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF200, 0)
+                                    val ID_frmdteEditer = ID_frmdte.edit()
+                                    ID_frmdteEditer.putString("FromDate", jresult3.get("FromDate") as String)
+                                    ID_frmdteEditer.commit()
 
+                                    val ID_enddte= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF201, 0)
+                                    val ID_enddteEditer = ID_enddte.edit()
+                                    ID_enddteEditer.putString("EndDate", jresult3.get("EndDate") as String)
+                                    ID_enddteEditer.commit()
 
+                                    val ID_duedtecal= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF202, 0)
+                                    val ID_duedtecalEditer = ID_duedtecal.edit()
+                                    ID_duedtecalEditer.putString("DueDatesCalender", jresult3.get("DueDatesCalender") as String)
+                                    ID_duedtecalEditer.commit()
 
+                                    val ID_duedtelistforupcom= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF203, 0)
+                                    val ID_duedtelistforupcomEditer = ID_duedtelistforupcom.edit()
+                                    ID_duedtelistforupcomEditer.putString("Duedatelistforupcomingtwoweeks.", jresult3.get("Duedatelistforupcomingtwoweeks.") as String)
+                                    ID_duedtelistforupcomEditer.commit()
 
-
-
+                                    val ID_duedate= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF204, 0)
+                                    val ID_duedateEditer = ID_duedate.edit()
+                                    ID_duedateEditer.putString("Duedate", jresult3.get("Duedate") as String)
+                                    ID_duedateEditer.commit()
 
 
                                     val WelcomeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF34, 0)

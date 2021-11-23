@@ -59,9 +59,12 @@ class LoanlistFragment : Fragment(){
         val ID_Active = activity!!.getSharedPreferences(Config.SHARED_PREF87,0)
         switch1!!.setText(ID_Active.getString("Active",null))
 
+        val ID_Closed = activity!!.getSharedPreferences(Config.SHARED_PREF199,0)
+
         switch1?.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked){
-                switch1!!.setText("Closed")
+                switch1!!.setText(ID_Closed.getString("Closed",null))
+               // switch1!!.setText("Closed")
                 switch1!!.setTextColor(resources.getColor(R.color.redDark))
 
                 getAccountlist("0")

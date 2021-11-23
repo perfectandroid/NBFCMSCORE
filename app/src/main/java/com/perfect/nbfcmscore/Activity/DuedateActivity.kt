@@ -53,6 +53,15 @@ class DuedateActivity : AppCompatActivity() , View.OnClickListener{
     var tvDeposit: TextView? = null
     var tvLoan:TextView? = null
     var tvTitle:TextView? = null
+    var tv_header:TextView? = null
+    var txtv_Accno:TextView? = null
+    var tvamt:TextView? = null
+    var txtv_Duedate:TextView? = null
+
+
+
+
+
     var strHeader = "Deposit"
     var fab: FloatingActionButton? = null
 
@@ -61,10 +70,34 @@ class DuedateActivity : AppCompatActivity() , View.OnClickListener{
         setContentView(R.layout.activity_duedate)
         setRegViews()
 
+        val DepositSp = applicationContext.getSharedPreferences(Config.SHARED_PREF88,0)
+        tvDeposit!!.setText(DepositSp.getString("Deposit",null))
+
+        val LoanSp = applicationContext.getSharedPreferences(Config.SHARED_PREF89,0)
+        tvLoan!!.setText(LoanSp.getString("Loan",null))
+
+        val HeaderSp = applicationContext.getSharedPreferences(Config.SHARED_PREF202,0)
+        tv_header!!.setText(HeaderSp.getString("DueDatesCalender",null))
+
+
+       val Accountnosp = applicationContext.getSharedPreferences(Config.SHARED_PREF107,0)
+        txtv_Accno!!.setText(Accountnosp.getString("AccountNo",null))
+
+        val Amtsp = applicationContext.getSharedPreferences(Config.SHARED_PREF113,0)
+        tvamt!!.setText(Amtsp.getString("Amount",null))
+
+        val duedtesp = applicationContext.getSharedPreferences(Config.SHARED_PREF204,0)
+        txtv_Duedate!!.setText(duedtesp.getString("Duedate",null))
+
 
     }
 
     private fun setRegViews() {
+
+        tv_header = findViewById(R.id.tv_header)
+        txtv_Accno= findViewById(R.id.txtv_Accno)
+        txtv_Duedate= findViewById(R.id.txtv_Duedate)
+        tvamt= findViewById(R.id.tvamt)
 
         ll_standnginstr = findViewById(R.id.ll_standnginstr)
         llreminder = findViewById(R.id.llreminder)
@@ -94,7 +127,9 @@ class DuedateActivity : AppCompatActivity() , View.OnClickListener{
             val resultdate = Date(c.timeInMillis)
             val lastDate = sdf.format(resultdate)
             // tvTitle.setText("Due Date List [ "+currentDate+" to "+lastDate+" ]");
-            tvTitle!!.setText("Due Date list for upcoming two weeks")
+         //   tvTitle!!.setText("Due Date list for upcoming two weeks")
+            val DuedaatelistSp= applicationContext.getSharedPreferences(Config.SHARED_PREF203,0)
+            tvTitle!!.setText(DuedaatelistSp.getString("Duedatelistforupcomingtwoweeks.",null))
         } catch (e: ParseException) {
             e.printStackTrace()
         }
@@ -110,7 +145,9 @@ class DuedateActivity : AppCompatActivity() , View.OnClickListener{
                 startActivity(Intent(this@DuedateActivity, HomeActivity::class.java))
             }
             R.id.tvDeposit -> {
-                tvTitle!!.text = "Due Date list for upcoming two weeks"
+                val DuedaatelistSp= applicationContext.getSharedPreferences(Config.SHARED_PREF203,0)
+                tvTitle!!.setText(DuedaatelistSp.getString("Duedatelistforupcomingtwoweeks.",null))
+              //  tvTitle!!.text = "Due Date list for upcoming two weeks"
                 tvLoan!!.background = ContextCompat.getDrawable(this@DuedateActivity, R.drawable.tab_unselect)
                 tvDeposit!!.background = ContextCompat.getDrawable(this@DuedateActivity, R.drawable.tab_select)
 //                tvLoan!!.setTextColor(Color.parseColor("#000000"))

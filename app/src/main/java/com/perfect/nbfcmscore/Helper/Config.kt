@@ -243,6 +243,18 @@ object Config {
     const val SHARED_PREF197="SelectLoantype"
     const val SHARED_PREF198="Selectloanpurpose"
 
+    const val SHARED_PREF199="Closed"
+
+    const val SHARED_PREF200="FromDate"
+    const val SHARED_PREF201="EndDate"
+
+    const val SHARED_PREF202="DueDatesCalender"
+    const val SHARED_PREF203="Duedatelistforupcomingtwoweeks"
+
+    const val SHARED_PREF204="Duedate"
+
+
+
 
 
     fun getHostnameVerifier(): HostnameVerifier {
