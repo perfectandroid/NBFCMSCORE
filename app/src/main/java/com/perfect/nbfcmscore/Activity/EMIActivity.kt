@@ -574,10 +574,9 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
 //                                    rv_loanslab!!.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
 //                                    rv_loanslab!!.adapter = obj_adapter
 
-                                    tv_instalment!!.setText(""+jobjt.getString("InstallmentAmount"))
-                                    tv_interest_total!!.setText(""+jobjt.getString("TotalInterest"))
-                                    tv_interest_principal!!.setText(""+jobjt.getString("PrincipalInterest"))
-
+                                    tv_instalment!!.setText("\u20B9 " + Config.getDecimelFormate(jobjt.getDouble("InstallmentAmount")))
+                                    tv_interest_total!!.setText("\u20B9 " + Config.getDecimelFormate(jobjt.getDouble("TotalInterest")))
+                                    tv_interest_principal!!.setText("\u20B9 " + Config.getDecimelFormate(jobjt.getDouble("PrincipalInterest")))
                                 } else {
                                     val builder = AlertDialog.Builder(
                                         this@EMIActivity,

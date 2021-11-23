@@ -261,7 +261,6 @@
                                                 android:text="Installment Amount"
                                                 android:textColor="@color/black"
                                                 android:textSize="14dp"
-                                                android:textStyle="bold"
                                                 tools:ignore="Autofill" />
 
                                             <TextView
@@ -300,7 +299,6 @@
                                                 android:text="Total Interest"
                                                 android:textColor="@color/black"
                                                 android:textSize="14dp"
-                                                android:textStyle="bold"
                                                 tools:ignore="Autofill" />
 
                                             <TextView
@@ -342,7 +340,6 @@
                                                 android:text="Principal Interest"
                                                 android:textColor="@color/black"
                                                 android:textSize="14dp"
-                                                android:textStyle="bold"
                                                 tools:ignore="Autofill" />
 
                                             <TextView

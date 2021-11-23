@@ -170,6 +170,7 @@ class DepositFragment : Fragment(){
                                     val jObject = JSONObject(response.body())
                                     if (jObject.getString("StatusCode") == "0") {
                                         //   val jobjt = jObject.getJSONObject("VarificationMaintenance")
+                                        rv_Accountlist!!.visibility=View.VISIBLE
 
                                         val jobjt =
                                             jObject.getJSONObject("CustomerLoanAndDepositDetails")
@@ -181,6 +182,7 @@ class DepositFragment : Fragment(){
                                         rv_Accountlist!!.adapter = obj_adapter
 
                                     } else {
+                                        rv_Accountlist!!.visibility=View.GONE
                                         val builder = AlertDialog.Builder(
                                             context!!,
                                             R.style.MyDialogTheme
@@ -193,6 +195,7 @@ class DepositFragment : Fragment(){
                                         alertDialog.show()
                                     }
                                 } else {
+                                    rv_Accountlist!!.visibility=View.GONE
                                     val builder = AlertDialog.Builder(
                                         context!!,
                                         R.style.MyDialogTheme
