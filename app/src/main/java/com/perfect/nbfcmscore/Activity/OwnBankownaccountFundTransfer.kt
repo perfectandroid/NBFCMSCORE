@@ -470,6 +470,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                                         val txtvbalnce = dialogView.findViewById<TextView>(R.id.txtvbalnce)
                                         val txtvAcntnoto = dialogView.findViewById<TextView>(R.id.txtvAcntnoto)
                                         val txtvbranchto = dialogView.findViewById<TextView>(R.id.txtvbranchto)
+                                        val img_aapicon: ImageView = dialogView.findViewById<ImageView>(R.id.img_aapicon)
                                         val txtvbalnceto = dialogView.findViewById<TextView>(R.id.txtvbalnceto)
                                         txtvAcntno.text = "A/C No : $SourceAccountNumber"
                                         txtvbranch.text = "Branch :$BranchName"
@@ -484,6 +485,13 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                                         val num = ("" + amnt).toDouble()
                                         var stramnt: String? = Config.getDecimelFormate(num)
                                         text_confirmationmsg.text = "Proceed Transaction with above receipt amount" + "..?"
+
+                                        val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+                                        val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
+                                        val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
+                                        val imagepath = IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+
+                                        PicassoTrustAll.getInstance(this@OwnBankownaccountFundTransfer)!!.load(imagepath).error(android.R.color.transparent).into(img_aapicon!!)
 
                                         // text_confirmationmsg.setText("Proceed Transaction with above receipt amount to A/C no " + accNumber + " ..?");
                                         val netAmountArr = amnt.split("\\.".toRegex()).toTypedArray()

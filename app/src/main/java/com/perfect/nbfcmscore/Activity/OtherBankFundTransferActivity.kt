@@ -541,13 +541,13 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
             //Toast.makeText(applicationContext,"Please enter Beneficiary name",Toast.LENGTH_LONG).show()
             CustomBottomSheeet.Show(this,"Please enter Beneficiary name","0")
         }
-        else if(BeneAccountNumber!!.equals("")){
+        else if(BeneAccountNumber!!.equals("") || BeneAccountNumber!!.length != 12){
             //Toast.makeText(applicationContext,"Beneficiary account number is required",Toast.LENGTH_LONG).show()
-            CustomBottomSheeet.Show(this,"Beneficiary account number is required","0")
+            CustomBottomSheeet.Show(this,"Please enter valid Beneficiary account number ","0")
         }
         else if(BeneAccountNumber_conf!!.equals("")){
            // Toast.makeText(applicationContext,"Confirm Beneficiary account number is required",Toast.LENGTH_LONG).show()
-            CustomBottomSheeet.Show(this,"Confirm Beneficiary account number is required","0")
+            CustomBottomSheeet.Show(this,"Please enter valid Confirm Beneficiary account number","0")
         }
         else if(!BeneAccountNumber!!.equals(BeneAccountNumber_conf!!)){
            // Toast.makeText(applicationContext,"Beneficiary account numbers don't match",Toast.LENGTH_LONG).show()
@@ -694,6 +694,8 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
 
                         val FK_CustomerSP = this.applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
                         val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
+
+                        Log.e(TAG,"amount  698  "+amount)
 
 //                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("26"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))

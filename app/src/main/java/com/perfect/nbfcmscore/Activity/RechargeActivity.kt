@@ -1110,7 +1110,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
         val netAmountArr: Array<String> = stramnt.split("\\.").toTypedArray()
         var amountInWordPop = ""
       //  tv_amount.setText(""+stramnt)
-        tv_amount!!.setText(""+Config.getDecimelFormate(amount!!.toDouble()))
+        tv_amount!!.setText("₹ "+Config.getDecimelFormate(amount!!.toDouble()))
 
 
         if (netAmountArr.size > 0) {
