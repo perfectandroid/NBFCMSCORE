@@ -610,7 +610,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
         txtvAcntno.text = ""+ accountNo
         txtvbranch!!.setText(""+BranchName)
         txtvAcntnoto!!.setText(""+BeneAccountNumber)
-        tv_amount!!.setText(""+Config.getDecimelFormate(amount!!.toDouble()))
+        tv_amount!!.setText("₹ "+Config.getDecimelFormate(amount!!.toDouble()))
 
         val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
         val IMAGE_URL = ImageURLSP.getString("ImageURL", null)

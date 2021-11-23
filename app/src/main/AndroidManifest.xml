@@ -175,7 +175,8 @@
             android:name=".Activity.HomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            tools:ignore="MissingClass"/>
         <activity
             android:name=".Activity.MyaccountsummaryActivity"
             android:screenOrientation="portrait"

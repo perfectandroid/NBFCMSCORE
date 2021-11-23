@@ -753,8 +753,10 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
                                     LastLoginTimeEditer.putString("LastLoginTime", localDateTime)
                                     LastLoginTimeEditer.commit()
 
-                                    startActivity(
-                                        Intent(this@MpinActivity, HomeActivity::class.java))
+                                    intent = Intent(applicationContext, HomeActivity::class.java)
+                                    startActivity(intent)
+//                                    startActivity(Intent(this@MpinActivity, HomeActivity::class.java))
+                                    finish()
 
 //                                    val builder = AlertDialog.Builder(
 //                                        this@MpinActivity,
