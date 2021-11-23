@@ -64,9 +64,6 @@
             android:textStyle="bold" />
 
 
-
-
-
         <Button
 
             android:id="@+id/btn_submit"
@@ -74,7 +71,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_marginBottom="0dp"
             android:text="Confirm" />
+
         <Button
             android:id="@+id/btn_resend"
             android:layout_width="wrap_content"
