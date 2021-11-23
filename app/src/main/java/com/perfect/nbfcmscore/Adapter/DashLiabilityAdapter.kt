@@ -18,7 +18,13 @@ class DashLiabilityAdapter (internal val mContext: Context, internal val jsInfo:
         R.color.color_liability1,
         R.color.color_liability2,
         R.color.color_liability3,
-        R.color.color_liability4
+        R.color.color_liability4,
+        R.color.color_liability5,
+        R.color.color_liability6,
+        R.color.color_liability7,
+        R.color.color_liability8,
+        R.color.color_liability9,
+        R.color.color_liability10
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): RecyclerView.ViewHolder {

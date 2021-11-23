@@ -732,6 +732,7 @@ class OTPActivity : AppCompatActivity() , View.OnClickListener {
                                                 HomeActivity::class.java
                                             )
                                         )
+                                        finish()
                                     }
                                     val alertDialog: AlertDialog = builder.create()
                                     alertDialog.setCancelable(false)

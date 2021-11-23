@@ -72,14 +72,26 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
             R.color.color_asset1,
             R.color.color_asset2,
             R.color.color_asset3,
-            R.color.color_asset4
+            R.color.color_asset4,
+            R.color.color_asset5,
+            R.color.color_asset6,
+            R.color.color_asset7,
+            R.color.color_asset8,
+            R.color.color_asset9,
+            R.color.color_asset10
     )
 
     val color2 = intArrayOf(
         R.color.color_liability1,
         R.color.color_liability2,
         R.color.color_liability3,
-        R.color.color_liability4
+        R.color.color_liability4,
+        R.color.color_liability5,
+        R.color.color_liability6,
+        R.color.color_liability7,
+        R.color.color_liability8,
+        R.color.color_liability9,
+        R.color.color_liability10
     )
 
     val color3 = intArrayOf(

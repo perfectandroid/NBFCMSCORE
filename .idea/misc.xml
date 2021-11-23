@@ -26,6 +26,7 @@
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/tab_selector_round.xml" value="0.20677083333333332" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/tvbg.xml" value="0.3671875" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_accountdetails.xml" value="0.33" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_beneficiary_list.xml" value="0.2760416666666667" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_branch_detail.xml" value="0.20520833333333333" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_contactus.xml" value="0.29375" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_dashboard.xml" value="0.2796875" />
@@ -38,7 +39,9 @@
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_holiday.xml" value="0.1537037037037037" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_home.xml" value="0.33" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_languagesectection.xml" value="0.18229166666666666" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_login.xml" value="0.2640625" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_notice.xml" value="0.35104166666666664" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_o_t_p.xml" value="0.2640625" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_other_bank.xml" value="0.23981481481481481" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_other_bank_fund_transfer.xml" value="0.35104166666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_own_bank_fund_transfer_service_chooser.xml" value="0.25" />

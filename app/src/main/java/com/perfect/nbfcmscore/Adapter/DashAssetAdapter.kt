@@ -22,7 +22,14 @@ class DashAssetAdapter(internal val mContext: Context, internal val jsInfo: JSON
         R.color.color_asset1,
         R.color.color_asset2,
         R.color.color_asset3,
-        R.color.color_asset4
+        R.color.color_asset4,
+        R.color.color_asset5,
+        R.color.color_asset6,
+        R.color.color_asset7,
+        R.color.color_asset8,
+        R.color.color_asset9,
+        R.color.color_asset10
+
     )
 
 
