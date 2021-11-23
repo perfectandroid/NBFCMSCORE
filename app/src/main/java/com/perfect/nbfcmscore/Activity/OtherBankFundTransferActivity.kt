@@ -695,6 +695,8 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                         val FK_CustomerSP = this.applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
                         val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
 
+                        Log.e(TAG,"amount  698  "+amount)
+
 //                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("26"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))

@@ -24,10 +24,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Adapter.CustomListAdapter
 import com.perfect.nbfcmscore.Api.ApiInterface
-import com.perfect.nbfcmscore.Helper.Config
-import com.perfect.nbfcmscore.Helper.ConnectivityUtils
-import com.perfect.nbfcmscore.Helper.MscoreApplication
-import com.perfect.nbfcmscore.Helper.NumberToWord
+import com.perfect.nbfcmscore.Helper.*
 import com.perfect.nbfcmscore.Model.BarcodeAgainstCustomerAccountList
 import com.perfect.nbfcmscore.R
 import okhttp3.OkHttpClient
@@ -326,6 +323,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                         val txtvAcntnoto = dialogView.findViewById<TextView>(R.id.txtvAcntnoto)
                         val txtvbranchto = dialogView.findViewById<TextView>(R.id.txtvbranchto)
                         val txtvbalnceto = dialogView.findViewById<TextView>(R.id.txtvbalnceto)
+                        val img_aapicon: ImageView = dialogView.findViewById<ImageView>(R.id.img_aapicon)
                         txtvAcntno.text = "A/C No : $SourceAccountNumber"
                         txtvbranch.text = "Branch :$BranchName"
                         val num1 = Balance!!.toDouble()
@@ -342,6 +340,12 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                         val stramnt: String? = Config.getDecimelFormate(amnt.toDouble())
                         text_confirmationmsg.text = "Proceed Transaction with above receipt amount" + "..?"
                         //   text_confirmationmsg.setText("Proceed Transaction with above receipt amount to A/C no " + accNumber + " ..?");
+                        val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+                        val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
+                        val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
+                        val imagepath = IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+
+                        PicassoTrustAll.getInstance(this@OwnBankotheraccountFundTransfer)!!.load(imagepath).error(android.R.color.transparent).into(img_aapicon!!)
                         val netAmountArr = amnt.split("\\.".toRegex()).toTypedArray()
                         var amountInWordPop = ""
                         if (netAmountArr.size > 0) {
