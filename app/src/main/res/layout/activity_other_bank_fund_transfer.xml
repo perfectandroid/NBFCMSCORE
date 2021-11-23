@@ -82,15 +82,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/rltv_header"
-        android:padding="20dp"
-        android:background="@color/bgcolour">
+        android:background="@color/bgcolour"
+        android:padding="20dp">
 
         <LinearLayout
             android:id="@+id/llhist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="right"
             android:layout_alignParentRight="true"
+            android:gravity="right"
             android:padding="5dp">
 
             <TextView
@@ -103,7 +103,6 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
-
 
 
         <LinearLayout
@@ -141,41 +140,41 @@
                     android:id="@+id/tv_beneficiarylist"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="end"
                     android:padding="5dp"
                     android:text="Beneficiary List"
-                    android:layout_gravity="end"
-                    android:textStyle="bold"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:orientation="vertical"
-                android:padding="5dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/bg_light_grey">
+                android:background="@drawable/bg_light_grey"
+                android:orientation="vertical"
+                android:padding="5dp">
 
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textColorHint="@color/colorPrimarylight"
-                    app:hintTextColor="@color/colorPrimarylight"
                     android:layout_alignParentBottom="true"
-                    android:background="@android:color/transparent">
+                    android:background="@android:color/transparent"
+                    android:textColorHint="@color/colorPrimarylight"
+                    app:hintTextColor="@color/colorPrimarylight">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tie_accountnumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColorHint="@color/colorPrimarylight"
-                        android:hint=""
-                        android:focusable="false"
+                        android:background="@android:color/transparent"
                         android:clickable="true"
-                        android:background="@android:color/transparent"/>
+                        android:focusable="false"
+                        android:hint=""
+                        android:textColorHint="@color/colorPrimarylight" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -185,29 +184,29 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:orientation="horizontal"
-                android:padding="5dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/bg_light_grey">
+                android:background="@drawable/bg_light_grey"
+                android:orientation="horizontal"
+                android:padding="5dp">
 
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_mobilenumber"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
                     android:textColorHint="@color/colorPrimarylight"
-                    app:hintTextColor="@color/colorPrimarylight"
-                    android:background="@android:color/transparent">
+                    app:hintTextColor="@color/colorPrimarylight">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tie_beneficiary"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColorHint="@color/colorPrimarylight"
+                        android:background="@android:color/transparent"
                         android:hint=""
                         android:inputType="none"
                         android:textColor="@color/black"
-                        android:background="@android:color/transparent"/>
+                        android:textColorHint="@color/colorPrimarylight" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -217,29 +216,30 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:orientation="horizontal"
-                android:padding="5dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/bg_light_grey">
+                android:background="@drawable/bg_light_grey"
+                android:orientation="horizontal"
+                android:padding="5dp">
 
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_beneficiary_aacno"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
                     android:textColorHint="@color/colorPrimarylight"
-                    app:hintTextColor="@color/colorPrimarylight"
-                    android:background="@android:color/transparent">
+                    app:hintTextColor="@color/colorPrimarylight">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tie_beneficiary_aacno"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColorHint="@color/colorPrimarylight"
+                        android:background="@android:color/transparent"
                         android:hint=""
-                        android:inputType="none"
+                        android:inputType="number"
+                        android:maxLength="12"
                         android:textColor="@color/black"
-                        android:background="@android:color/transparent"/>
+                        android:textColorHint="@color/colorPrimarylight" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -249,29 +249,30 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:orientation="horizontal"
-                android:padding="5dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/bg_light_grey">
+                android:background="@drawable/bg_light_grey"
+                android:orientation="horizontal"
+                android:padding="5dp">
 
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_Conf_beneficiary_aacno"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
                     android:textColorHint="@color/colorPrimarylight"
-                    app:hintTextColor="@color/colorPrimarylight"
-                    android:background="@android:color/transparent">
+                    app:hintTextColor="@color/colorPrimarylight">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tie_Conf_beneficiary_aacno"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColorHint="@color/colorPrimarylight"
+                        android:background="@android:color/transparent"
                         android:hint=""
-                        android:inputType="none"
+                        android:inputType="number"
+                        android:maxLength="12"
                         android:textColor="@color/black"
-                        android:background="@android:color/transparent"/>
+                        android:textColorHint="@color/colorPrimarylight" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -281,30 +282,30 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:orientation="horizontal"
-                android:padding="5dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/bg_light_grey">
+                android:background="@drawable/bg_light_grey"
+                android:orientation="horizontal"
+                android:padding="5dp">
 
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_ifsc_code"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
                     android:textColorHint="@color/colorPrimarylight"
-                    app:hintTextColor="@color/colorPrimarylight"
-                    android:background="@android:color/transparent">
+                    app:hintTextColor="@color/colorPrimarylight">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tie_ifsc_code"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColorHint="@color/colorPrimarylight"
+                        android:background="@android:color/transparent"
                         android:hint=""
-                        android:inputType="none"
-                        android:textColor="@color/black"
+                        android:inputType="text"
                         android:maxLength="11"
-                        android:background="@android:color/transparent"/>
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/colorPrimarylight" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -314,30 +315,30 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:orientation="horizontal"
-                android:padding="5dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/bg_light_grey">
+                android:background="@drawable/bg_light_grey"
+                android:orientation="horizontal"
+                android:padding="5dp">
 
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_amount"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
                     android:textColorHint="@color/colorPrimarylight"
-                    app:hintTextColor="@color/colorPrimarylight"
-                    android:background="@android:color/transparent">
+                    app:hintTextColor="@color/colorPrimarylight">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tie_amount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColorHint="@color/colorPrimarylight"
-                        android:textColor="@color/black"
+                        android:background="@android:color/transparent"
                         android:hint=""
+                        android:inputType="numberDecimal"
                         android:maxLength="11"
-                        android:inputType="number"
-                        android:background="@android:color/transparent"/>
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/colorPrimarylight" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -358,8 +359,8 @@
                     android:layout_centerInParent="true"
                     android:backgroundTint="@color/colorPrimary"
                     android:buttonTint="@color/colorPrimary"
-                    android:textColor="@color/black"
-                    android:text="Save beneficiary for future" />
+                    android:text="Save beneficiary for future"
+                    android:textColor="@color/black" />
 
 
             </LinearLayout>
@@ -368,9 +369,9 @@
                 android:id="@+id/rltv_recharge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/bg_button"
-                android:layout_marginTop="30dp">
+                android:orientation="vertical">
 
                 <Button
                     android:id="@+id/but_pay"
@@ -382,7 +383,6 @@
                     android:textColor="@color/white" />
 
             </RelativeLayout>
-
 
 
         </LinearLayout>

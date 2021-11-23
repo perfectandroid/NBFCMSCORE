@@ -541,13 +541,13 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
             //Toast.makeText(applicationContext,"Please enter Beneficiary name",Toast.LENGTH_LONG).show()
             CustomBottomSheeet.Show(this,"Please enter Beneficiary name","0")
         }
-        else if(BeneAccountNumber!!.equals("")){
+        else if(BeneAccountNumber!!.equals("") || BeneAccountNumber!!.length != 12){
             //Toast.makeText(applicationContext,"Beneficiary account number is required",Toast.LENGTH_LONG).show()
-            CustomBottomSheeet.Show(this,"Beneficiary account number is required","0")
+            CustomBottomSheeet.Show(this,"Please enter valid Beneficiary account number ","0")
         }
         else if(BeneAccountNumber_conf!!.equals("")){
            // Toast.makeText(applicationContext,"Confirm Beneficiary account number is required",Toast.LENGTH_LONG).show()
-            CustomBottomSheeet.Show(this,"Confirm Beneficiary account number is required","0")
+            CustomBottomSheeet.Show(this,"Please enter valid Confirm Beneficiary account number","0")
         }
         else if(!BeneAccountNumber!!.equals(BeneAccountNumber_conf!!)){
            // Toast.makeText(applicationContext,"Beneficiary account numbers don't match",Toast.LENGTH_LONG).show()
