@@ -565,8 +565,8 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                                     tv_type!!.setText("" + jsonobj2.getString("TypeName"))
                                     tv_period!!.setText("" + jsonObj1.getString("Period"))
                                     tv_rateofinterest!!.setText("" + jsonObj1.getString("ROI"))
-                                    tv_amt!!.setText("" + jsonObj1.getString("Amount"))
-                                    tv_maturityamt!!.setText("" + jsonObj1.getString("MaturityAmount"))
+                                    tv_amt!!.setText("\u20B9 " + Config.getDecimelFormate(jsonObj1.getDouble("Amount")))
+                                    tv_maturityamt!!.setText("\u20B9 " + Config.getDecimelFormate(jsonObj1.getDouble("MaturityAmount")))
 
 
                                 } else {

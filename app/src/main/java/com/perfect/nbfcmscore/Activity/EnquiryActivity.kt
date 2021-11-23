@@ -30,6 +30,8 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
         setContentView(R.layout.activity_enquiry)
 
         setRegViews()
+        val imfeedbacklogo: ImageView = findViewById(R.id.imfeedbacklogo)
+        Glide.with(this).load(R.drawable.feedbackgif).into(imfeedbacklogo)
         val ID_enqry = applicationContext.getSharedPreferences(Config.SHARED_PREF82,0)
         tv_mycart!!.setText(ID_enqry.getString("Enquires",null))
         val ID_feedbk = applicationContext.getSharedPreferences(Config.SHARED_PREF56,0)

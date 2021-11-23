@@ -30,7 +30,7 @@
                 android:id="@+id/im_back"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:src="@drawable/arrow_back" />
+                android:src="@drawable/navback" />
 
         </LinearLayout>
 
@@ -131,7 +131,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/ll_dist"
-                android:layout_weight="5"
+                android:layout_weight="12"
                 android:orientation="vertical">
 <!--                android:layout_height="300dp"-->
 
@@ -151,7 +151,7 @@
                 android:orientation="vertical"
                 android:layout_below="@+id/ll_mapview"
                 android:layout_weight="6"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="5dp">
 
                 <androidx.cardview.widget.CardView
                     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -159,7 +159,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:elevation="20dp"
-                    android:layout_margin="2dp"
                     android:id="@+id/card_branches"
                     android:outlineAmbientShadowColor="@color/colorPrimary"
                     android:outlineSpotShadowColor="@color/colorPrimary"
@@ -171,8 +170,6 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:layout_marginTop="2dp"
-                        android:layout_marginLeft="2dp"
-                        android:layout_marginRight="2dp"
                         android:layout_marginBottom="5dp">
 
                         <LinearLayout
@@ -217,7 +214,6 @@
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rvBranchList"
-                            android:layout_margin="2dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
 

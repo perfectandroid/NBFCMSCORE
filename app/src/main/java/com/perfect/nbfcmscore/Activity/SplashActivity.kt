@@ -5,6 +5,7 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.provider.Settings.Secure
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
@@ -28,6 +29,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+
 
 class SplashActivity : AppCompatActivity() {
 
@@ -227,14 +229,25 @@ class SplashActivity : AppCompatActivity() {
                                     IsNBFCEditer.putString("IsNBFC", jobjt.getString("IsNBFC"))
                                     IsNBFCEditer.commit()
 
-                                    val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163,0)
-                                    val baseurlSPEditer = baseurlSP.edit()
-                                    baseurlSPEditer.putString("baseurl", jobjt.getString("TestingURL"))
-                                    baseurlSPEditer.commit()
-                                    val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165,0)
-                                    val ImageURLSPEditer = ImageURLSP.edit()
-                                    ImageURLSPEditer.putString("ImageURL", jobjt.getString("TestingImageURL"))
-                                    ImageURLSPEditer.commit()
+                                    val m_androidId = Secure.getString(contentResolver, Secure.ANDROID_ID)
+                                    if(m_androidId.equals(jobjt.getString("TestingMachineId"))){
+                                        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163,0)
+                                        val baseurlSPEditer = baseurlSP.edit()
+                                        baseurlSPEditer.putString("baseurl", jobjt.getString("TestingURL"))
+                                        baseurlSPEditer.commit()
+                                        val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165,0)
+                                        val ImageURLSPEditer = ImageURLSP.edit()
+                                        ImageURLSPEditer.putString("ImageURL", jobjt.getString("TestingImageURL"))
+                                        ImageURLSPEditer.commit()
+                                    }else{
+                                        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163,0)
+                                        val baseurlSPEditer = baseurlSP.edit()
+                                        baseurlSPEditer.putString("baseurl", BASE_URL)
+                                        baseurlSPEditer.commit()
+                                        val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165,0)
+                                        val ImageURLSPEditer = ImageURLSP.edit()
+                                        ImageURLSPEditer.putString("ImageURL", IMAGE_URL)
+                                        ImageURLSPEditer.commit()}
 
                                     if(jobjt.getString("CertificateStatus").equals("Live")) {
                                         val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)

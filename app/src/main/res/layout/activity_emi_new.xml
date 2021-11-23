@@ -84,8 +84,7 @@
                                 android:id="@+id/imemilogo"
                                 android:layout_width="250dp"
                                 android:layout_height="150dp"
-                                android:layout_gravity="center_horizontal"
-                                android:src="@drawable/emi_top" />
+                                android:layout_gravity="center_horizontal"/>
 
                             <RelativeLayout
                                 android:id="@+id/rltv_principal"
@@ -262,7 +261,6 @@
                                                 android:text="Installment Amount"
                                                 android:textColor="@color/black"
                                                 android:textSize="14dp"
-                                                android:textStyle="bold"
                                                 tools:ignore="Autofill" />
 
                                             <TextView
@@ -301,7 +299,6 @@
                                                 android:text="Total Interest"
                                                 android:textColor="@color/black"
                                                 android:textSize="14dp"
-                                                android:textStyle="bold"
                                                 tools:ignore="Autofill" />
 
                                             <TextView
@@ -343,7 +340,6 @@
                                                 android:text="Principal Interest"
                                                 android:textColor="@color/black"
                                                 android:textSize="14dp"
-                                                android:textStyle="bold"
                                                 tools:ignore="Autofill" />
 
                                             <TextView
