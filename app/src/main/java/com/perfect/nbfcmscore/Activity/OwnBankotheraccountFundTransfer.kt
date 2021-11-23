@@ -6,7 +6,11 @@ import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
@@ -20,6 +24,7 @@ import android.widget.TextView.OnEditorActionListener
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.app.ActivityCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Adapter.CustomListAdapter
@@ -35,7 +40,12 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import java.io.File
+import java.io.FileNotFoundException
+import java.io.FileOutputStream
+import java.io.IOException
 import java.text.DecimalFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener, OnEditorActionListener, OnFocusChangeListener, TextWatcher {
@@ -47,6 +57,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
     private var tv_branch_name: TextView? = null
     private var txt_amtinword: TextView? = null
     var tv_maxamount: TextView? = null
+    private var mRecyclerView: RecyclerView? = null
     public var tv_balance: TextView? = null
     public var spn_account_type: Spinner? = null
     public var BranchName: String? = null
@@ -81,6 +92,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
     private var txtv_confrmacc: TextView? = null
     private var txtv_amtpayable: TextView? = null
     private var txtv_remark: TextView? = null
+    private var txtv_header: TextView? = null
 
 
 
@@ -102,6 +114,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
     private fun setRegViews() {
 
 
+        txtv_header= findViewById(R.id.tv_header)
         mAccountNumberEt = findViewById(R.id.account_number)
         mConfirmAccountNumberEt = findViewById(R.id.confirm_account_number)
 
@@ -193,6 +206,8 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
         val RemarkeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF96, 0)
         val PAYSP = applicationContext.getSharedPreferences(Config.SHARED_PREF97, 0)
         val ScanSP = applicationContext.getSharedPreferences(Config.SHARED_PREF100, 0)
+
+
 
         txtvPayingfrom!!.setText(PayingFromSP.getString("PayingFrom", null))
         txtvac_no!!.setText(AccnoSP.getString("AccountNo", null))
@@ -796,17 +811,31 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                                 "FK_Customer",
                                 MscoreApplication.encryptStart(FK_Customer)
                         )
+                        val tokens1 = StringTokenizer(accountNumber, "(")
+                        val acno = tokens1.nextToken() //
+                        var accno = acno.replace(" ", "");
                         requestObject1.put(
+                                "AccountNo",
+                                MscoreApplication.encryptStart(accno)
+                        )
+                       /* requestObject1.put(
                                 "AccountNo",
                                 //MscoreApplication.encryptStart(tv_account_no!!.text.toString())
                                 MscoreApplication.encryptStart(accountNumber)
-                        )
+                        )*/
                         requestObject1.put("SubModule", MscoreApplication.encryptStart(Submod))
                         requestObject1.put("Amount", MscoreApplication.encryptStart(Finalamount))
+                        val tokens = StringTokenizer(recieverAccountNo, "(")
+                        val recacno = tokens.nextToken()
 
-                        var accno =
+                        requestObject1.put(
+                                "ReceiverAccountNo", MscoreApplication.encryptStart(
+                                recacno
+                        )
+                        )
+                        /*var accno =
                                 requestObject1.put(
-                                        "ReceiverAccountNo", MscoreApplication.encryptStart(recieverAccountNo))
+                                        "ReceiverAccountNo", MscoreApplication.encryptStart(recieverAccountNo))*/
                         val rtype: String = spn_account_type!!.getSelectedItem().toString()
                        /* var type = ""
 
@@ -856,9 +885,14 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                                     val jsonObj1: JSONObject =
                                             jObject.getJSONObject("FundTransferToOwnBank")
                                     val jsonobj2 = JSONObject(jsonObj1.toString())
+
                                     var result = jsonobj2.getString("ResponseMessage")
+                                    var refid = jsonobj2.getString("RefID")
+                                    var amt = jsonobj2.getString("Amount")
+                                    var reacc = jsonobj2.getString("RecAccNumber")
                                     Log.i("Result", result)
-                                    alertMessage1("", result)
+                                    alertPopup(refid, amt, reacc, result)
+                                   // alertMessage1("", result)
                                     // Toast.makeText(applicationContext, result, Toast.LENGTH_LONG)
                                     //  .show()
 
@@ -1243,5 +1277,199 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
         edtTxtAmount!!.setSelection(edtTxtAmount!!.getText().length)
         alertDialog!!.dismiss()
 
+    }
+    private fun alertPopup(refid: String, amt: String, reacc: String, result: String) {
+
+
+        val dialogBuilder = AlertDialog.Builder(this)
+// ...Irrelevant code for customizing the buttons and title
+        // ...Irrelevant code for customizing the buttons and title
+        val inflater = this.layoutInflater
+        val dialogView: View = inflater.inflate(R.layout.activity_success_popup, null)
+        dialogBuilder.setView(dialogView)
+
+        // EditText editText = (EditText) dialogView.findViewById(R.id.label_field);
+
+        // EditText editText = (EditText) dialogView.findViewById(R.id.label_field);
+        val rltv_share = dialogView.findViewById<RelativeLayout>(R.id.rltv_share)
+        val lay_share = dialogView.findViewById<RelativeLayout>(R.id.lay_share)
+        mRecyclerView = dialogView.findViewById(R.id.recycler_message)
+        val imgIcon = dialogView.findViewById<ImageView>(R.id.img_success)
+        val img_share = dialogView.findViewById<ImageView>(R.id.img_share)
+        val txtTitle = dialogView.findViewById<TextView>(R.id.txt_success)
+        val txtMessage = dialogView.findViewById<TextView>(R.id.txt_message)
+        val tvrefe = dialogView.findViewById<TextView>(R.id.tvrefe)
+
+        val tvdate = dialogView.findViewById<TextView>(R.id.tvdate)
+        val tvtime = dialogView.findViewById<TextView>(R.id.tvtime)
+        val tv_amount_words = dialogView.findViewById<TextView>(R.id.tv_amount_words)
+
+        val tv_amount = dialogView.findViewById<TextView>(R.id.tv_amount)
+        val txtvAcntno = dialogView.findViewById<TextView>(R.id.txtvAcntno)
+        val txtvbranch = dialogView.findViewById<TextView>(R.id.txtvbranch)
+        val txtvbalnce = dialogView.findViewById<TextView>(R.id.txtvbalnce)
+
+        val txtvAcntnoto = dialogView.findViewById<TextView>(R.id.txtvAcntnoto)
+        val txtvbranchto = dialogView.findViewById<TextView>(R.id.txtvbranchto)
+        val txtvbalnceto = dialogView.findViewById<TextView>(R.id.txtvbalnceto)
+        tvrefe.text = "Ref.No"+refid
+
+        //current time
+
+        //current time
+        val currentTime = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
+        tvtime.text = "Time : $currentTime"
+
+        //current date
+
+
+        //current date
+        val c = Calendar.getInstance().time
+        println("Current time => $c")
+
+        val df = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+        val formattedDate = df.format(c)
+        tvdate.text = "Date : $formattedDate"
+
+        val amnt: String = edtTxtAmount!!.getText().toString().replace(",".toRegex(), "")
+        val netAmountArr = amnt.split("\\.".toRegex()).toTypedArray()
+        var amountInWordPop = ""
+        if (netAmountArr.size > 0) {
+            val integerValue = netAmountArr[0].toInt()
+            amountInWordPop = "Rupees " + NumberToWord.convertNumberToWords(integerValue)
+            if (netAmountArr.size > 1) {
+                val decimalValue = netAmountArr[1].toInt()
+                if (decimalValue != 0) {
+                    amountInWordPop += " and " + NumberToWord.convertNumberToWords(decimalValue).toString() + " paise"
+                }
+            }
+            amountInWordPop += " only"
+        }
+        tv_amount_words.text = "" + amountInWordPop
+
+        val num = ("" + amnt).toDouble()
+        Log.e("TAG", "CommonUtilities  945   " + Config.getDecimelFormate(num))
+        val stramnt: String? = Config.getDecimelFormate(num)
+
+
+        tv_amount.text = "₹ $stramnt"
+
+
+
+        txtvAcntno.text = "A/C :"+tv_account_no!!.text.toString()
+        txtvbranch.text = "Branch :"+BranchName
+        val num1 = Balance!!.toDouble() - stramnt!!.replace(",", "").toDouble()
+        // double num1 = Double.parseDouble(Balance) - Double.parseDouble(stramnt);
+        // double num1 = Double.parseDouble(Balance) - Double.parseDouble(stramnt);
+        val fmt = DecimalFormat("#,##,###.00")
+
+        txtvbalnce.text = "Available Bal: " + "\u20B9 " + Config.getDecimelFormate(num1)
+
+        txtvAcntnoto.text = "A/C : " + reacc
+        txtvbranchto.text = "Branch :$BranchName"
+
+        dialogView.findViewById<View>(R.id.rltv_footer).setOnClickListener { view1: View? ->
+            try {
+//                getFragmentManager().beginTransaction().replace( R.id.container, FragmentMenuCard.newInstance("EMPTY","EMPTY") )
+//                        .commit();
+                val i = Intent(this, HomeActivity::class.java)
+                startActivity(i)
+                finish()
+            } catch (e: NullPointerException) {
+                //Do nothing
+            }
+        }
+
+        try {
+//            Bundle bundle = getArguments();
+//            boolean isHappy = bundle.getBoolean( HAPPY );
+//            String title = bundle.getString( TITLE );
+//            String message = bundle.getString( MESSAGE );
+            txtMessage.setText(result)
+            txtTitle.text = title
+            /*if (!isHappy) {
+                imgIcon.setImageResource(R.mipmap.ic_failed)
+            }*/
+            //  ArrayList<KeyValuePair> keyValuePairs = bundle.getParcelableArrayList( KEY_VALUE );
+            /*      ArrayList<KeyValuePair> keyValuePairs = keyValueList;
+           SuccessAdapter successAdapter = new SuccessAdapter( keyValuePairs );
+           RecyclerView.LayoutManager layoutManager = new LinearLayoutManager( this );
+           mRecyclerView.setLayoutManager( layoutManager );
+           mRecyclerView.setAdapter( successAdapter );*/lay_share.setOnClickListener {
+                Log.e("img_share", "img_share   1170   ")
+                val bitmap = Bitmap.createBitmap(rltv_share.width,
+                        rltv_share.height, Bitmap.Config.ARGB_8888)
+                val canvas = Canvas(bitmap)
+                rltv_share.draw(canvas)
+                try {
+                    val bmpUri: Uri = getLocalBitmapUri(bitmap)!!
+                    val shareIntent = Intent()
+                    shareIntent.action = Intent.ACTION_SEND
+                    shareIntent.putExtra(Intent.EXTRA_STREAM, bmpUri)
+                    shareIntent.type = "image/*"
+                    shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                    startActivity(Intent.createChooser(shareIntent, "Share"))
+                } catch (e: java.lang.Exception) {
+                    e.printStackTrace()
+                    Log.e("Exception", "Exception   117   $e")
+                }
+            }
+
+
+//            img_share.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//                    Log.e("img_share","img_share   1170   ");
+//                    Bitmap bitmap = Bitmap.createBitmap(rltv_share.getWidth(),
+//                            rltv_share.getHeight(), Bitmap.Config.ARGB_8888);
+//                    Canvas canvas = new Canvas(bitmap);
+//                    rltv_share.draw(canvas);
+//
+//                    try {
+//
+//
+//                        Uri bmpUri = getLocalBitmapUri(bitmap);
+//
+//                        Intent shareIntent = new Intent();
+//                        shareIntent.setAction(Intent.ACTION_SEND);
+//                        shareIntent.putExtra(Intent.EXTRA_STREAM, bmpUri);
+//                        shareIntent.setType("image/*");
+//                        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//                        startActivity(Intent.createChooser(shareIntent, "Share"));
+//
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                        Log.e("Exception","Exception   117   "+e.toString());
+//                    }
+//
+//                }
+//            });
+        } catch (e: java.lang.Exception) {
+            //Do nothing
+        }
+
+        val alertDialog = dialogBuilder.create()
+        alertDialog.show()
+    }
+    private fun getLocalBitmapUri(bmp: Bitmap): Uri? {
+        var bmpUri: Uri? = null
+        //  final String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Screenshots";
+        val file: File = File(applicationContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES), System.currentTimeMillis().toString() + ".png")
+        Log.e("File  ", "File   142   $file")
+        var out: FileOutputStream? = null
+        try {
+            out = FileOutputStream(file)
+            bmp.compress(Bitmap.CompressFormat.PNG, 90, out)
+            try {
+                out.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+            bmpUri = Uri.fromFile(file)
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
+        }
+        return bmpUri
     }
 }
