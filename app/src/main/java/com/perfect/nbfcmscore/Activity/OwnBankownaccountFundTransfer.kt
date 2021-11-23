@@ -1,5 +1,6 @@
 package com.perfect.nbfcmscore.Activity
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
@@ -8,6 +9,8 @@ import android.graphics.Canvas
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.os.StrictMode
+import android.os.StrictMode.VmPolicy
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
@@ -39,11 +42,14 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
+import java.text.DateFormat
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
 class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener {
+
+    val TAG: String? = "OwnBankownaccountFundTransfer"
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
     public var arrayList1: ArrayList<Splitupdetail>? = null
@@ -83,6 +89,9 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ownbankfundtransfer)
+
+        val builder = VmPolicy.Builder()
+        StrictMode.setVmPolicy(builder.build())
 
         setRegViews()
         getAccountnumber()
@@ -693,7 +702,8 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                                     var refid = jsonobj2.getString("RefID")
                                     var amt = jsonobj2.getString("Amount")
                                     var reacc = jsonobj2.getString("RecAccNumber")
-                                    Log.i("Result", result)
+                                    Log.e("Result","706  "+ result)
+                                    Log.e("refid","706   "+  refid)
                                     alertPopup(refid, amt, reacc, result)
                                     //   alertMessage1("", result)
                                     // Toast.makeText(applicationContext, result, Toast.LENGTH_LONG)
@@ -774,6 +784,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
         }
     }
 
+    @SuppressLint("LongLogTag")
     private fun alertPopup(refid: String, amt: String, reacc: String, result: String) {
 
 
@@ -808,13 +819,53 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
         val txtvAcntnoto = dialogView.findViewById<TextView>(R.id.txtvAcntnoto)
         val txtvbranchto = dialogView.findViewById<TextView>(R.id.txtvbranchto)
         val txtvbalnceto = dialogView.findViewById<TextView>(R.id.txtvbalnceto)
-        tvrefe.text = "Ref.No"+refid
+        tvrefe.text = "Ref.No : "+refid
 
         //current time
 
         //current time
-        val currentTime = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
-        tvtime.text = "Time : $currentTime"
+      //  val currentTime = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
+//        tvtime.text = " $currentTime"
+        val currentTime = Calendar.getInstance().time
+        Log.e(TAG,"currentTime  "+currentTime)
+        val date: DateFormat = SimpleDateFormat("dd-MM-yyyy")
+        val time: DateFormat = SimpleDateFormat("HH:mm")
+//                                    val date: DateFormat = SimpleDateFormat("dd-MM-yyyy HH:mm a")
+        val localDate = date.format(currentTime)
+        val localtime = time.format(currentTime)
+        val timeParts = localtime.split(":").toTypedArray()
+
+        var hour = timeParts[0].toInt()
+        val min = timeParts[1].toInt()
+
+        var suffix: String =""
+        if(hour>11) {
+            suffix = "PM";
+            if(hour>12)
+                hour -= 12;
+        } else {
+            suffix = "AM";
+            if(hour==0)
+                hour = 12;
+        }
+        var hours : String =""
+        var mins : String =""
+        if (hour.toString().length==1){
+            hours = "0"+hour.toString()
+        }else{
+            hours = hour.toString()
+        }
+
+        if (min.toString().length==1){
+            mins = "0"+hour.toString()
+        }else{
+            mins = min.toString()
+        }
+
+        val localDateTime = hours+" : "+mins +" "+suffix
+
+        tvtime.text = "$localDateTime"
+
 
         //current date
 
@@ -825,7 +876,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
 
         val df = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
         val formattedDate = df.format(c)
-        tvdate.text = "Date : $formattedDate"
+        tvdate.text = "$formattedDate"
 
         val amnt: String = edt_txt_amount!!.getText().toString().replace(",".toRegex(), "")
         val netAmountArr = amnt.split("\\.".toRegex()).toTypedArray()
@@ -881,6 +932,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
 //            boolean isHappy = bundle.getBoolean( HAPPY );
 //            String title = bundle.getString( TITLE );
 //            String message = bundle.getString( MESSAGE );
+        Log.e("TAG","result   884   "+result)
             txtMessage.setText(result)
             txtTitle.text = title
             /*if (!isHappy) {
