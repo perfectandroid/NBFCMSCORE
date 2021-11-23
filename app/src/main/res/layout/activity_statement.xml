@@ -262,12 +262,12 @@
                                             android:layout_weight="1"
                                             android:layout_marginRight="5dp"
                                             android:padding="10dp"
-                                            android:textSize="12dp"
+                                            android:textSize="10dp"
                                             android:clickable="true"
                                             android:focusable="false"
                                             android:background="@drawable/border_shadow"
                                             android:drawableRight="@drawable/starttime"
-                                            android:hint="From Date"/>
+                                            android:hint=""/>
                                         <EditText
                                             android:id="@+id/edt_toDate"
                                             android:layout_width="match_parent"
@@ -275,12 +275,12 @@
                                             android:layout_marginLeft="5dp"
                                             android:layout_weight="1"
                                             android:padding="10dp"
-                                            android:textSize="12dp"
+                                            android:textSize="10dp"
                                             android:clickable="true"
                                             android:focusable="false"
                                             android:background="@drawable/border_shadow"
                                             android:drawableRight="@drawable/endtime"
-                                            android:hint="End Date"/>
+                                            android:hint=""/>
                                     </LinearLayout>
                                 </LinearLayout>
                             </androidx.cardview.widget.CardView>

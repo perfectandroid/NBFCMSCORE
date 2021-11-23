@@ -129,6 +129,12 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
         rad_last_6_month!!.setText(ID_lastsixmnth.getString("Last6Months",null))
         val ID_Last1yr = applicationContext.getSharedPreferences(Config.SHARED_PREF134,0)
         rad_last_12_month!!.setText(ID_Last1yr.getString("Last1Year",null))
+
+        val ID_frmdte = applicationContext.getSharedPreferences(Config.SHARED_PREF200,0)
+        edt_fromDate!!.setHint(ID_frmdte.getString("FromDate",null))
+
+        val ID_todte = applicationContext.getSharedPreferences(Config.SHARED_PREF201,0)
+        edt_toDate!!.setHint(ID_todte.getString("EndDate",null))
         // val ID_Passbk = applicationContext.getSharedPreferences(Config.SHARED_PREF51,0)
 
 
