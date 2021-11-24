@@ -66,6 +66,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
+                        android:id="@+id/txtv_acnttype"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.9"
@@ -93,6 +94,7 @@
                     android:textSize="13sp"
                     android:textStyle="bold" />
                 <TextView
+                    android:id="@+id/txtvaccno"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/passtext"
@@ -191,6 +193,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/txtv_availbal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"

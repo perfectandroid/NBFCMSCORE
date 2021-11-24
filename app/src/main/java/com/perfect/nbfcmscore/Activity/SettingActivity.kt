@@ -40,8 +40,7 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
     var act_DefAcc: AutoCompleteTextView? = null
 
     var btn_apply: Button? = null
-
-
+    var tv_header: TextView? = null
 
     val daysItems : Array<String> = arrayOf("7", "10", "14", "30", "60", "120", "150", "180")
     val hourItems : Array<String> = arrayOf("00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23")
@@ -58,8 +57,12 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
         setInitialise()
         setRegister()
 
-
         setDropdowns()
+
+        val ID_Passbk = applicationContext.getSharedPreferences(Config.SHARED_PREF60,0)
+        tv_header!!.setText(ID_Passbk.getString("settings",null))
+
+
 
 
 //        val adapterday = ArrayAdapter(this@SettingActivity,
@@ -120,7 +123,7 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
 
         im_back = findViewById<ImageView>(R.id.im_back)
         im_home = findViewById<ImageView>(R.id.im_home)
-
+        tv_header= findViewById<TextView>(R.id.tv_header)
 
         act_UpdateDays = findViewById<AutoCompleteTextView>(R.id.act_UpdateDays)
         act_hours = findViewById<AutoCompleteTextView>(R.id.act_hours)
