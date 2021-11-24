@@ -156,7 +156,7 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                             try {
                               //  progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
-                                Log.i("Response", response.body())
+                                Log.i("Response 156", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
                                         jObject.getJSONObject("BankBranchDetails")
@@ -187,7 +187,7 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                                         android.R.layout.simple_spinner_dropdown_item, arrayList2!!
                                     )
 
-
+                                //    getHolidayList(branchid)
                                 } else {
                                     Log.e(TAG,"Exception  1961   ")
                                     val builder = AlertDialog.Builder(
