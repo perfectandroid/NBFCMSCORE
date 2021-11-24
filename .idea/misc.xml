@@ -7,6 +7,7 @@
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/bg_button.xml" value="0.3671875" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/bg_grey_border.xml" value="0.2824074074074074" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/bg_grey_border1.xml" value="0.5" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/bg_light_grey.xml" value="0.23072916666666668" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/bg_light_grey1.xml" value="0.26875" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/bg_light_grey2.xml" value="0.26875" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/drawable/bg_light_grey_line.xml" value="0.26875" />
@@ -32,6 +33,7 @@
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_dashboard.xml" value="0.2796875" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_duedate.xml" value="0.35104166666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_duereminder.xml" value="0.29375" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_emi_new.xml" value="0.21458333333333332" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_enquiry.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_feedback.xml" value="0.2526041666666667" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_gold_loan.xml" value="0.33" />

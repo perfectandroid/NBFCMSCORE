@@ -20,6 +20,7 @@ import android.view.View
 import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
@@ -73,6 +74,8 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
     private var btn_submit: Button? = null
     private var btn_clear: Button? = null
     private var rv_split_details: FullLenghRecyclertview? = null
+    private var card_split_details: CardView? = null
+    private var ll_list: LinearLayout? = null
     private var ll_needTochange: LinearLayout? = null
     private var ll_needToPayAdvance: LinearLayout? = null
     private var ll_remittance: LinearLayout? = null
@@ -86,6 +89,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
     public var fkaccount:String?=null
     public var submodule:String?=null
     var compareValue = "Select Account"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ownbankfundtransfer)
@@ -134,7 +138,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
 
         textView!!.setText(PayingFromSP.getString("PayingFrom", null))
         txtv_acno!!.setText(AccnoSP.getString("AccountNo", null))
-        txtv_acno1!!.setText(AccnoSP.getString("AccountNo", null))
+        txtv_acno1!!.setText(AccnoSP.getString("AccountNo", null)+" : ")
         txtv_payingto!!.setText(PayingToSP.getString("PayingTo", null))
         txtamtpayable!!.setText(AMtpaybleSP.getString("AmountPayable", null))
         txtvremark!!.setText(RemarkeSP.getString("Remark", null))
@@ -169,6 +173,8 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
         edt_txt_remark!!.setOnClickListener(this)
 
         rv_split_details = findViewById(R.id.rv_split_details)
+//        card_split_details = findViewById(R.id.card_split_details)
+        ll_list = findViewById(R.id.ll_list)
 
         edt_txt_amount!!.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
@@ -306,6 +312,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                         Log.e("TAG", "requestObject1  171   " + requestObject1)
                     } catch (e: Exception) {
                         // progressDialog!!.dismiss()
+                        Log.e("TAG", "Some  3091   " + e.toString())
                         e.printStackTrace()
                         val mySnackbar = Snackbar.make(
                                 findViewById(R.id.rl_main),
@@ -365,6 +372,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                                     //    spn_account_num!!.setSelection(arrayList1.indexOf("Select Account"));
 
                                 } else {
+                                    Log.e("TAG", "Some  3092   ")
                                     val builder = AlertDialog.Builder(
                                             this@OwnBankownaccountFundTransfer,
                                             R.style.MyDialogTheme
@@ -378,7 +386,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                                 }
                             } catch (e: Exception) {
                                 //  progressDialog!!.dismiss()
-
+                                Log.e("TAG", "Some  3093   " + e.toString())
                                 val builder = AlertDialog.Builder(
                                         this@OwnBankownaccountFundTransfer,
                                         R.style.MyDialogTheme
@@ -395,7 +403,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
 
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             //  progressDialog!!.dismiss()
-
+                            Log.e("TAG", "Some  3094   " + t.message)
                             val builder = AlertDialog.Builder(
                                     this@OwnBankownaccountFundTransfer,
                                     R.style.MyDialogTheme
@@ -409,6 +417,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                         }
                     })
                 } catch (e: Exception) {
+                    Log.e("TAG", "Some  3095   " + e.toString())
                     //  progressDialog!!.dismiss()
                     val builder = AlertDialog.Builder(
                             this@OwnBankownaccountFundTransfer,
@@ -672,6 +681,8 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
 
                         Log.e("TAG", "requestObject1  650   " + requestObject1)
                     } catch (e: Exception) {
+
+                        Log.e("TAG", "Some  6791   " + e.toString())
                         progressDialog!!.dismiss()
                         e.printStackTrace()
                         val mySnackbar = Snackbar.make(
@@ -723,6 +734,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                                     alertDialog.show()
                                 }
                             } catch (e: Exception) {
+                                Log.e("TAG", "Some  6792   " + e.toString())
                                 progressDialog!!.dismiss()
 
                                 val builder = AlertDialog.Builder(
@@ -741,7 +753,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
 
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
-
+                            Log.e("TAG", "Some  6793   " + t.message)
                             val builder = AlertDialog.Builder(
                                     this@OwnBankownaccountFundTransfer,
                                     R.style.MyDialogTheme
@@ -756,6 +768,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
+                    Log.e("TAG", "Some  6794   " + e.toString())
                     val builder = AlertDialog.Builder(
                             this@OwnBankownaccountFundTransfer,
                             R.style.MyDialogTheme
@@ -1017,7 +1030,8 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
     }
 
     private fun balanceSplitUpDetails(fkaccount: String?, submodule: String?) {
-
+//        card_split_details!!.setVisibility(View.GONE)
+        ll_list!!.setVisibility(View.GONE)
         val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
@@ -1081,8 +1095,9 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                         )
 
 
-                        Log.e("TAG", "requestObject1  171   " + requestObject1)
+                        Log.e("TAG", "requestObject1  1091   " + requestObject1)
                     } catch (e: Exception) {
+                        Log.e("TAG", "Some  6795   " + e.toString())
                         progressDialog!!.dismiss()
                         e.printStackTrace()
                         val mySnackbar = Snackbar.make(
@@ -1119,6 +1134,8 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                                             var Slimit = "0"
                                             var Advancelimit = "0"
                                             rv_split_details!!.setVisibility(View.VISIBLE)
+//                                            card_split_details!!.setVisibility(View.VISIBLE)
+                                            ll_list!!.setVisibility(View.VISIBLE)
                                             val lLayout = GridLayoutManager(this@OwnBankownaccountFundTransfer, 1)
                                             rv_split_details!!.setLayoutManager(lLayout)
                                             rv_split_details!!.setHasFixedSize(true)
@@ -1210,6 +1227,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                                     alertDialog.show()
                                 }
                             } catch (e: Exception) {
+                                Log.e("TAG", "Some  6796   " + e.toString())
                                 progressDialog!!.dismiss()
 
                                 val builder = AlertDialog.Builder(
@@ -1228,7 +1246,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
 
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
-
+                            Log.e("TAG", "Some  6797   " + t.message)
                             val builder = AlertDialog.Builder(
                                     this@OwnBankownaccountFundTransfer,
                                     R.style.MyDialogTheme
@@ -1243,6 +1261,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
+                    Log.e("TAG", "Some  6798   " + e.toString())
                     val builder = AlertDialog.Builder(this@OwnBankownaccountFundTransfer, R.style.MyDialogTheme)
                     builder.setMessage("Some technical issues.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -1361,6 +1380,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                         Log.e("TAG", "requestObject1  171   " + requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
+                        Log.e("TAG", "Some  6799   " + e.toString())
                         e.printStackTrace()
                         val mySnackbar = Snackbar.make(
                                 findViewById(R.id.rl_main),
@@ -1402,7 +1422,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
-
+                                Log.e("TAG", "Some  67910   " + e.toString())
                                 val builder = AlertDialog.Builder(
                                         this@OwnBankownaccountFundTransfer,
                                         R.style.MyDialogTheme
@@ -1419,7 +1439,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
 
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
-
+                            Log.e("TAG", "Some  67911   " + t.message)
                             val builder = AlertDialog.Builder(
                                     this@OwnBankownaccountFundTransfer,
                                     R.style.MyDialogTheme
@@ -1434,6 +1454,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
+                    Log.e("TAG", "Some  67911   " + e.toString())
                     val builder = AlertDialog.Builder(this@OwnBankownaccountFundTransfer, R.style.MyDialogTheme)
                     builder.setMessage("Some technical issues.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->
