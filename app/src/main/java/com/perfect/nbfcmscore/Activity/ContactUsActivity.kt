@@ -18,18 +18,18 @@ class ContactUsActivity : AppCompatActivity() , View.OnClickListener{
     var tv_mobile: TextView? = null
     var tv_email: TextView? = null
     var tv_address: TextView? = null
+    var tv_header: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contactus)
 
-        tv_mobile = findViewById<TextView>(R.id.tv_mobile)
-        tv_email = findViewById<TextView>(R.id.tv_email)
-        tv_address = findViewById<TextView>(R.id.tv_address)
-        imgBack = findViewById<ImageView>(R.id.imgBack)
-        imgBack!!.setOnClickListener(this)
-        imgHome = findViewById<ImageView>(R.id.imgHome)
-        imgHome!!.setOnClickListener(this)
+        setRegViews()
+
+        val ID_contctus = applicationContext.getSharedPreferences(Config.SHARED_PREF55,0)
+        tv_header!!.setText(ID_contctus.getString("contactus",null))
+
+
 
         val imlogo: ImageView = findViewById(R.id.imlogo)
         Glide.with(this).load(R.drawable.contactusgif).into(imlogo)
@@ -41,6 +41,19 @@ class ContactUsActivity : AppCompatActivity() , View.OnClickListener{
         val AddressSP = applicationContext.getSharedPreferences(Config.SHARED_PREF32,0)
         tv_address!!.setText(AddressSP.getString("ContactAddress",null))
     }
+
+    private fun setRegViews() {
+        tv_mobile = findViewById<TextView>(R.id.tv_mobile)
+        tv_email = findViewById<TextView>(R.id.tv_email)
+        tv_address = findViewById<TextView>(R.id.tv_address)
+        imgBack = findViewById<ImageView>(R.id.imgBack)
+        imgBack!!.setOnClickListener(this)
+        imgHome = findViewById<ImageView>(R.id.imgHome)
+        imgHome!!.setOnClickListener(this)
+
+        tv_header= findViewById<TextView>(R.id.tv_header)
+    }
+
     override fun onClick(v: View) {
         when (v.id) {
             R.id.imgBack ->{

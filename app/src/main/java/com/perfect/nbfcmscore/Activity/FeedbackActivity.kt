@@ -33,6 +33,8 @@ class FeedbackActivity : AppCompatActivity() , View.OnClickListener, AdapterView
         Glide.with(this).load(R.drawable.feedbackgif).into(imfeedbacklogo)
         val ID_feedbk = applicationContext.getSharedPreferences(Config.SHARED_PREF56,0)
         tv_mycart!!.setText(ID_feedbk.getString("feedback",null))
+
+        feedbackText!!.setHint(ID_feedbk.getString("feedback",null))
     }
 
     private fun setRegViews() {
@@ -48,7 +50,16 @@ class FeedbackActivity : AppCompatActivity() , View.OnClickListener, AdapterView
         imgHome!!.setOnClickListener(this)
         spn_feedbk!!.onItemSelectedListener = this
 
-        feedback = arrayOf<String?>("Report An Error", "Give a Suggestion", "Anything Else")
+        val ID_reprterr = applicationContext.getSharedPreferences(Config.SHARED_PREF175,0)
+        val ID_suggstn = applicationContext.getSharedPreferences(Config.SHARED_PREF176,0)
+        val ID_anyth= applicationContext.getSharedPreferences(Config.SHARED_PREF177,0)
+
+        var reprt =ID_reprterr.getString("Reportanerror",null)
+        var sugg=ID_suggstn.getString("Giveasuggestion",null)
+        var anythng=ID_anyth.getString("Anythingelse",null)
+
+       // feedback = arrayOf<String?>("Report An Error", "Give a Suggestion", "Anything Else")
+        feedback = arrayOf<String?>(reprt, sugg, anythng)
         getFeedback()
     }
 

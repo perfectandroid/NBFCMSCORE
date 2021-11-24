@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.PicassoTrustAll
@@ -14,19 +15,31 @@ class TermsnconditionsActivity : AppCompatActivity() , View.OnClickListener{
 
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
+    var tv_header: TextView? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_termsnconditions)
 
-        imgBack = findViewById<ImageView>(R.id.imgBack)
-        imgBack!!.setOnClickListener(this)
-        imgHome = findViewById<ImageView>(R.id.imgHome)
-        imgHome!!.setOnClickListener(this)
+        setRegviews()
+        val ID_terms = applicationContext.getSharedPreferences(Config.SHARED_PREF58,0)
+        tv_header!!.setText(ID_terms.getString("termsandconditions",null))
+
 
         val imlogo: ImageView = findViewById(R.id.imlogo)
         Glide.with(this).load(R.drawable.hand).into(imlogo)
 
     }
+
+    private fun setRegviews() {
+        imgBack = findViewById<ImageView>(R.id.imgBack)
+        imgBack!!.setOnClickListener(this)
+        imgHome = findViewById<ImageView>(R.id.imgHome)
+        imgHome!!.setOnClickListener(this)
+        tv_header = findViewById<TextView>(R.id.tv_header)
+
+    }
+
     override fun onClick(v: View) {
         when (v.id) {
             R.id.imgBack ->{

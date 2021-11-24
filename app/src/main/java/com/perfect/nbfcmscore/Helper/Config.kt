@@ -252,7 +252,10 @@ object Config {
     const val SHARED_PREF203="Duedatelistforupcomingtwoweeks"
 
     const val SHARED_PREF204="Duedate"
-
+    const val SHARED_PREF205="DoYouWanttoDeleteThisAccountAndRegisterWithAnotherAccount?"
+    const val SHARED_PREF206="Yes"
+    const val SHARED_PREF207="No"
+    const val SHARED_PREF208="DoYouWantToQuit?"
 
 
 

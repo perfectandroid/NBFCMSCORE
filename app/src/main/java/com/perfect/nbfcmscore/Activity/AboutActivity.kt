@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.PicassoTrustAll
@@ -16,16 +17,20 @@ class AboutActivity : AppCompatActivity() , View.OnClickListener{
     var applogo: ImageView? = null
     var imCompanylogo: ImageView? = null
     var imgHome: ImageView? = null
+    var tv_header: TextView? = null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
 
-        imCompanylogo = findViewById<ImageView>(R.id.imCompanylogo)
-        applogo = findViewById<ImageView>(R.id.applogo)
-        imgBack = findViewById<ImageView>(R.id.imgBack)
-        imgBack!!.setOnClickListener(this)
-        imgHome = findViewById<ImageView>(R.id.imgHome)
-        imgHome!!.setOnClickListener(this)
+        setRegViews()
+
+        val ID_abtus = applicationContext.getSharedPreferences(Config.SHARED_PREF54,0)
+        tv_header!!.setText(ID_abtus.getString("aboutus",null))
+
+
+
         val imlogo: ImageView = findViewById(R.id.imlogo)
         Glide.with(this).load(R.drawable.aboutusgif).into(imlogo)
 
@@ -46,6 +51,17 @@ class AboutActivity : AppCompatActivity() , View.OnClickListener{
         }catch (e: Exception) {
             e.printStackTrace()}
     }
+
+    private fun setRegViews() {
+        imCompanylogo = findViewById<ImageView>(R.id.imCompanylogo)
+        applogo = findViewById<ImageView>(R.id.applogo)
+        imgBack = findViewById<ImageView>(R.id.imgBack)
+        tv_header= findViewById<TextView>(R.id.tv_header)
+        imgBack!!.setOnClickListener(this)
+        imgHome = findViewById<ImageView>(R.id.imgHome)
+        imgHome!!.setOnClickListener(this)
+    }
+
     override fun onClick(v: View) {
         when (v.id) {
             R.id.imgBack ->{

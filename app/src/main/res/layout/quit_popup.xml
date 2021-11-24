@@ -44,6 +44,7 @@
                         android:layout_gravity="center"
                         android:layout_height="50dp" />
                     <TextView
+                        android:id="@+id/txtv_quit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Do You Want To Quit ?"

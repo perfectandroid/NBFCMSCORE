@@ -46,8 +46,10 @@ class QuickBalanceActivity : AppCompatActivity(), OnItemSelectedListener,View.On
     private var tv_mycart: TextView? = null
     private var rv_passbook: RecyclerView? = null
     private var ll_balance1: CardView? = null
-
+    private var txtv_acnttype: TextView? = null
+    private var txtvaccno: TextView? = null
     private var ll_balance: LinearLayout? = null
+    private var txtv_availbal: TextView? = null
     var noofdays = 0
     private var progressDialog: ProgressDialog? = null
     var imgBack: ImageView? = null
@@ -59,10 +61,24 @@ class QuickBalanceActivity : AppCompatActivity(), OnItemSelectedListener,View.On
 
         val ID_Quick = applicationContext.getSharedPreferences(Config.SHARED_PREF52,0)
         tv_mycart!!.setText(ID_Quick.getString("quickbalance",null))
+
+        val ID_acntno = applicationContext.getSharedPreferences(Config.SHARED_PREF158,0)
+        txtvaccno!!.setText(ID_acntno.getString("AccountNumber",null))
+
+
+        val ID_availbal = applicationContext.getSharedPreferences(Config.SHARED_PREF119,0)
+        txtv_availbal!!.setText(ID_availbal.getString("AvailableBalance",null))
+
+
+
         getAccList()
     }
     private fun setRegViews() {
         tv_mycart = findViewById(R.id.tv_mycart)
+        txtv_acnttype= findViewById(R.id.txtv_acnttype)
+        txtv_availbal= findViewById(R.id.txtv_availbal)
+
+        txtvaccno= findViewById(R.id.txtvaccno)
         tv_list_days = findViewById(R.id.tv_list_days)
         ll_balance = findViewById(R.id.ll_balance)
         ll_balance1 = findViewById(R.id.ll_balance1)

@@ -933,6 +933,9 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             }
             else if (position == 7) {
                 try {
+                    val ID_dlt = applicationContext.getSharedPreferences(Config.SHARED_PREF205,0)
+                    val ID_ys = applicationContext.getSharedPreferences(Config.SHARED_PREF206,0)
+                    val ID_no = applicationContext.getSharedPreferences(Config.SHARED_PREF207,0)
 
                     val dialogBuilder = android.app.AlertDialog.Builder(this@HomeActivity)
                     val inflater: LayoutInflater = this@HomeActivity.getLayoutInflater()
@@ -941,7 +944,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                     val alertDialog = dialogBuilder.create()
                     val tv_share = dialogView.findViewById<TextView>(R.id.tv_share)
                     val tv_cancel = dialogView.findViewById<TextView>(R.id.tv_cancel)
+                    val tv_dlte = dialogView.findViewById<TextView>(R.id.ttxv_dlte)
 
+                    tv_dlte!!.setText(ID_dlt.getString("DoYouWanttoDeleteThisAccountAndRegisterWithAnotherAccount?", null))
+                    tv_share!!.setText(ID_ys.getString("Yes", null))
+                    tv_cancel!!.setText(ID_no.getString("No", null))
 
                     tv_cancel.setOnClickListener { alertDialog.dismiss() }
                     tv_share.setOnClickListener {
@@ -979,6 +986,16 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             dialog1 .setContentView(R.layout.quit_popup)
             val btn_Yes = dialog1.findViewById(R.id.tv_share) as TextView
             val btn_cancel = dialog1.findViewById(R.id.tv_cancel) as TextView
+            val txtv_quit = dialog1.findViewById(R.id.txtv_quit) as TextView
+
+            val ID_quit = applicationContext.getSharedPreferences(Config.SHARED_PREF208,0)
+            val ID_ys = applicationContext.getSharedPreferences(Config.SHARED_PREF206,0)
+            val ID_no = applicationContext.getSharedPreferences(Config.SHARED_PREF207,0)
+
+            txtv_quit!!.setText(ID_quit.getString("DoYouWantToQuit?",null))
+            btn_Yes!!.setText(ID_ys.getString("Yes",null))
+            btn_cancel!!.setText(ID_no.getString("No",null))
+
             val imglogo = dialog1.findViewById(R.id.imglogo) as ImageView
 
             val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)

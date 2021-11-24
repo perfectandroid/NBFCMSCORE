@@ -47,6 +47,7 @@
                         android:layout_height="50dp"
                         android:layout_marginBottom="20dp"/>
                     <TextView
+                        android:id="@+id/ttxv_dlte"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Do You Want To Delete This Account And Register With Another Account?"

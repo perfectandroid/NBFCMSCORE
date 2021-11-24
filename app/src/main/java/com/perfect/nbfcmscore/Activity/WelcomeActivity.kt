@@ -1027,6 +1027,28 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                     ID_duedateEditer.putString("Duedate", jresult3.get("Duedate") as String)
                                     ID_duedateEditer.commit()
 
+                                    val ID_doyouwntdlte= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF205, 0)
+                                    val ID_doyouwntdlteEditer = ID_doyouwntdlte.edit()
+                                    ID_doyouwntdlteEditer.putString("DoYouWanttoDeleteThisAccountAndRegisterWithAnotherAccount?", jresult3.get("DoYouWanttoDeleteThisAccountAndRegisterWithAnotherAccount?") as String)
+                                    ID_doyouwntdlteEditer.commit()
+
+                                    val ID_ys= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF206, 0)
+                                    val ID_ysEditer = ID_ys.edit()
+                                    ID_ysEditer.putString("Yes", jresult3.get("Yes") as String)
+                                    ID_ysEditer.commit()
+
+                                    val ID_no= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF207, 0)
+                                    val ID_noEditer = ID_no.edit()
+                                    ID_noEditer.putString("No", jresult3.get("No") as String)
+                                    ID_noEditer.commit()
+
+                                    val ID_doyouwquit= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF208, 0)
+                                    val ID_doyouwquitEditer = ID_doyouwquit.edit()
+                                    ID_doyouwquitEditer.putString("DoYouWantToQuit?", jresult3.get("DoYouWantToQuit?") as String)
+                                    ID_doyouwquitEditer.commit()
+
+
+
 
                                     val WelcomeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF34, 0)
                                     val FasterSP = applicationContext.getSharedPreferences(Config.SHARED_PREF35, 0)
