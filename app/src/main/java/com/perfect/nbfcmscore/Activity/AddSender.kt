@@ -339,7 +339,7 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
 
     private fun getDatepicker() {
         val c = Calendar.getInstance()
-        c.set(1990, 1, 1);//Year,Month -1,Day
+        c.set(1990, 0, 1);//Year,Month -1,Day
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
