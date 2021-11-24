@@ -31,8 +31,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class OwnBankFundTransferServiceActivity: AppCompatActivity(), View.OnClickListener{
-    var rltv_ownaccount: RelativeLayout? = null
-    var rltv_otheraccount:RelativeLayout? = null
+    var rltv_ownaccount: LinearLayout? = null
+    var rltv_otheraccount:LinearLayout? = null
     var rv_source_acc_list_own: RecyclerView? = null
     var rv_source_acc_list_other:RecyclerView? = null
     var ll_source_acc_list_own: LinearLayout? = null
@@ -57,8 +57,8 @@ class OwnBankFundTransferServiceActivity: AppCompatActivity(), View.OnClickListe
     }
 
     private fun setRegViews() {
-        rltv_ownaccount = findViewById<RelativeLayout>(R.id.rltv_ownaccount)
-        rltv_otheraccount = findViewById<RelativeLayout>(R.id.rltv_otheraccount)
+        rltv_ownaccount = findViewById<LinearLayout>(R.id.rltv_ownaccount)
+        rltv_otheraccount = findViewById<LinearLayout>(R.id.rltv_otheraccount)
         rv_source_acc_list_own = findViewById(R.id.rv_source_acc_list_own)
         rv_source_acc_list_other = findViewById(R.id.rv_source_acc_list_other)
         ll_source_acc_list_other = findViewById<LinearLayout>(R.id.ll_source_acc_list_other)
