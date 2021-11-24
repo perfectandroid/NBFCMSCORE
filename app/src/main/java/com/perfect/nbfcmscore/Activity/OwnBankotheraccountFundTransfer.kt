@@ -11,6 +11,7 @@ import android.graphics.Canvas
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.os.StrictMode
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
@@ -44,6 +45,7 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
+import java.text.DateFormat
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -102,6 +104,9 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_otherbankfundtransfer)
+
+        val builder = StrictMode.VmPolicy.Builder()
+        StrictMode.setVmPolicy(builder.build())
 
         setRegViews()
         setAccountType()
@@ -1312,13 +1317,53 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
         val txtvAcntnoto = dialogView.findViewById<TextView>(R.id.txtvAcntnoto)
         val txtvbranchto = dialogView.findViewById<TextView>(R.id.txtvbranchto)
         val txtvbalnceto = dialogView.findViewById<TextView>(R.id.txtvbalnceto)
-        tvrefe.text = "Ref.No"+refid
+        tvrefe.text = "Ref.No : "+refid
 
         //current time
 
         //current time
-        val currentTime = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
-        tvtime.text = "Time : $currentTime"
+//        val currentTime = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
+//        tvtime.text = "Time : $currentTime"
+
+        val currentTime = Calendar.getInstance().time
+        Log.e("TAG","currentTime  "+currentTime)
+        val date: DateFormat = SimpleDateFormat("dd-MM-yyyy")
+        val time: DateFormat = SimpleDateFormat("HH:mm")
+//                                    val date: DateFormat = SimpleDateFormat("dd-MM-yyyy HH:mm a")
+        val localDate = date.format(currentTime)
+        val localtime = time.format(currentTime)
+        val timeParts = localtime.split(":").toTypedArray()
+
+        var hour = timeParts[0].toInt()
+        val min = timeParts[1].toInt()
+
+        var suffix: String =""
+        if(hour>11) {
+            suffix = "PM";
+            if(hour>12)
+                hour -= 12;
+        } else {
+            suffix = "AM";
+            if(hour==0)
+                hour = 12;
+        }
+        var hours : String =""
+        var mins : String =""
+        if (hour.toString().length==1){
+            hours = "0"+hour.toString()
+        }else{
+            hours = hour.toString()
+        }
+
+        if (min.toString().length==1){
+            mins = "0"+hour.toString()
+        }else{
+            mins = min.toString()
+        }
+
+        val localDateTime = hours+" : "+mins +" "+suffix
+
+        tvtime.text = "$localDateTime"
 
         //current date
 
@@ -1329,7 +1374,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
 
         val df = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
         val formattedDate = df.format(c)
-        tvdate.text = "Date : $formattedDate"
+        tvdate.text = "$formattedDate"
 
         val amnt: String = edtTxtAmount!!.getText().toString().replace(",".toRegex(), "")
         val netAmountArr = amnt.split("\\.".toRegex()).toTypedArray()
