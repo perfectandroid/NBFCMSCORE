@@ -180,13 +180,27 @@
                                         android:layout_height="wrap_content"
                                         android:background="@android:color/transparent"
                                         android:hint=""
-                                        android:inputType="number"
-                                        android:maxLength="4"
+                                        android:clickable="true"
+                                        android:focusable="false"
                                         android:textColorHint="@color/bottom_line1"
                                         android:textSize="15dp" />
 
                                 </com.google.android.material.textfield.TextInputLayout>
+                                <LinearLayout
+                                    android:id="@+id/ll_dob"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_alignParentRight="true"
+                                    android:gravity="center">
 
+                                    <ImageView
+                                        android:id="@+id/imgv_datepick"
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:backgroundTint="@color/colorPrimarylight"
+                                        android:src="@drawable/date_image" />
+
+                                </LinearLayout>
                             </RelativeLayout>
 
                             <RelativeLayout

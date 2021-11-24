@@ -1,5 +1,7 @@
 package com.perfect.nbfcmscore.Activity
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
@@ -14,6 +16,7 @@ import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.R
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 class ExecutiveActivity : AppCompatActivity() ,View.OnClickListener{
 
@@ -24,7 +27,7 @@ class ExecutiveActivity : AppCompatActivity() ,View.OnClickListener{
     var txtv_Date: TextInputEditText? = null
     var txt_time: TextInputEditText? = null
     var btn_submit: Button? = null
-
+    var ll_dob: LinearLayout? = null
     var tv_header: TextView? = null
 
 
@@ -61,6 +64,8 @@ class ExecutiveActivity : AppCompatActivity() ,View.OnClickListener{
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)
 
+        ll_dob= findViewById<LinearLayout>(R.id.ll_dob)
+
         txtv_Name= findViewById<TextInputEditText>(R.id.txtv_Name)
         txtv_mob= findViewById<TextInputEditText>(R.id.txtv_mob)
         txtv_Date= findViewById<TextInputEditText>(R.id.txtv_Date)
@@ -70,8 +75,9 @@ class ExecutiveActivity : AppCompatActivity() ,View.OnClickListener{
 
 
         btn_submit!!.setOnClickListener(this)
-
-
+        txt_time!!.setOnClickListener(this)
+        txtv_Date!!.setOnClickListener(this)
+        ll_dob!!.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
@@ -88,7 +94,37 @@ class ExecutiveActivity : AppCompatActivity() ,View.OnClickListener{
                 }
 
             }
+            R.id.txt_time -> {
+                val c:Calendar= Calendar.getInstance()
+                val hh=c.get(Calendar.HOUR_OF_DAY)
+                val mm=c.get(Calendar.MINUTE)
+                val timePickerDialog:TimePickerDialog= TimePickerDialog(this@ExecutiveActivity,TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
+                    txt_time!!.setText( ""+hourOfDay + ":" + minute);
+                },hh,mm,true)
+                timePickerDialog.show()
+
+            }
+            R.id.ll_dob -> {
+                getDatepicker()
+            }
         }
+    }
+
+    private fun getDatepicker() {
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+        val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener {
+            view, year, monthOfYear, dayOfMonth ->
+            // Display Selected date in TextView
+
+
+            txtv_Date!!.setText("" + dayOfMonth + "-" +(monthOfYear+1) + "-" + year)
+        }, year, month, day)
+        dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+        dpd.show()
     }
 
     private fun sendEmail() {
