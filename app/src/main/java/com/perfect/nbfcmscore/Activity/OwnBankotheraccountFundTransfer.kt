@@ -387,10 +387,18 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                         butOk.setOnClickListener { v: View? ->
                             alertDialog.dismiss()
                             var type: String? = null
-                            val accountType: String = spn_account_type!!.getSelectedItem().toString()
-                            if (accountType.equals("Savings bank")) {
-                                type = "DDSB"
+                          /*  if(!spn_account_type!!.getSelectedItem().toString().equals("Select Account"))
+                            {
+
                             }
+                            else
+                            {*/
+                                val accountType: String = spn_account_type!!.getSelectedItem().toString()
+                                if (accountType.equals("Savings bank")) {
+                                    type = "DDSB"
+                                }
+                           // }
+
                             val Finalamount = amount.replace(",", "")
                             getOwnAccountFundTransfer(accountNumber, type, recieverAccountNo, Finalamount, remark)
                         }
@@ -470,10 +478,18 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                     return false
                 }
             }
+           /* if (spn_account_type!!.selectedItem.toString().equals("Select Account")) {
+
+                Toast.makeText(applicationContext,"Please select account type",Toast.LENGTH_LONG).show()
+
+                  //  edtTxtAmount!!.error = "Please select account type"
+
+
+            }*/
         }
 
 
-        edtTxtAmount!!.error = null
+    //    Toast.makeText(applicationContext,"Please select account type",Toast.LENGTH_LONG).show()
         return true
     }
 
@@ -702,10 +718,9 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
 
     private fun setAccountType() {
         val items = ArrayList<String>()
-        items.add(getString(R.string.savings_bank))
-        items.add("")
-        items.add("")
-
+        items.add(getString(R.string.savings_bank),)
+       // items.add("Select Account")
+       // Collections.reverse(items)
         val spinnerAdapter = ArrayAdapter(this, R.layout.simple_spinner_item_dark, items)
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spn_account_type!!.setAdapter(spinnerAdapter)
