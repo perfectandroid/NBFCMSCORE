@@ -1546,10 +1546,10 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                         requestObject1.put("FK_RechargeCircle", MscoreApplication.encryptStart(idRechargecircle))
                         requestObject1.put("FK_Account", MscoreApplication.encryptStart(FK_Account))
 
-                        Log.e(TAG,"requestObject1  901   "+requestObject1)
+                        Log.e(TAG,"requestObject1  1549   "+requestObject1)
 
                     } catch (e: Exception) {
-                        Log.e(TAG,"Some  9011   "+e.toString())
+                        Log.e(TAG,"Some  15491   "+e.toString())
                         progressDialog!!.dismiss()
                         e.printStackTrace()
                         val mySnackbar = Snackbar.make(
@@ -1572,8 +1572,8 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                                 progressDialog!!.dismiss()
 
                                 val jObject = JSONObject(response.body())
-                                Log.e(TAG,"response  9013   "+response.body())
-                                Log.e(TAG,"response  9014   "+jObject.getString("StatusCode"))
+                                Log.e(TAG,"response  15492   "+response.body())
+                                Log.e(TAG,"response  15493   "+jObject.getString("StatusCode"))
                                 if (jObject.getString("StatusCode") == "0") {
 
 //                                    val jobjt = jObject.getJSONObject("ProvidersDetailsIfo")
@@ -1611,7 +1611,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
-                                Log.e(TAG,"Some  2162   "+e.toString())
+                                Log.e(TAG,"Some  15494   "+e.toString())
                                 val builder = AlertDialog.Builder(
                                     this@RechargeActivity,
                                     R.style.MyDialogTheme
@@ -1627,7 +1627,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                         }
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
-                            Log.e(TAG,"Some  2163   "+t.message)
+                            Log.e(TAG,"Some  15495   "+t.message)
                             val builder = AlertDialog.Builder(
                                 this@RechargeActivity,
                                 R.style.MyDialogTheme
@@ -1642,7 +1642,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    Log.e(TAG,"Some  2165   "+e.toString())
+                    Log.e(TAG,"Some  15496   "+e.toString())
                     val builder = AlertDialog.Builder(this@RechargeActivity, R.style.MyDialogTheme)
                     builder.setMessage("Some technical issues.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->
