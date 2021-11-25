@@ -42,6 +42,8 @@ class SplashActivity : AppCompatActivity() {
     val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/api/"  //DEVELOPMENT
     val IMAGE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/"
 
+//    val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPIQA/api/"  //QA
+//    val IMAGE_URL = "https://202.164.150.65:14262/NbfcAndroidAPIQA/"
   /*  val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPIQA/api/"  //QA
     val IMAGE_URL = "https://202.164.150.65:14262/NbfcAndroidAPIQA/"*/
 //    val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPIQA/api/"  //QA

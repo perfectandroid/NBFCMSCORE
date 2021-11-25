@@ -4,7 +4,12 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.app.ProgressDialog
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
+import android.os.StrictMode
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -30,6 +35,14 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import java.io.File
+import java.io.FileNotFoundException
+import java.io.FileOutputStream
+import java.io.IOException
+import java.text.DateFormat
+import java.text.DecimalFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener,
@@ -86,10 +99,13 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
 
 
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_other_bank_fund_transfer)
-
+        val builder = StrictMode.VmPolicy.Builder()
+        StrictMode.setVmPolicy(builder.build())
         setInitialise()
         setRegister()
 
@@ -663,7 +679,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
         val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurl = baseurlSP.getString("baseurl", null)
         OTPRef = ""
-        Log.e(TAG,"RetreiveOtp   575")
+        Log.e(TAG,"RetreiveOtp   666")
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@OtherBankFundTransferActivity, R.style.Progress)
@@ -695,7 +711,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                         val FK_CustomerSP = this.applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
                         val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
 
-                        Log.e(TAG,"amount  698  "+amount)
+                        Log.e(TAG,"amount  6661  "+amount)
 
 //                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("26"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
@@ -714,9 +730,10 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                         requestObject1.put("OTPCode", MscoreApplication.encryptStart(""))
 
                         Log.e(TAG,"requestObject1  624   "+requestObject1)
+                        Log.e(TAG,"requestObject1  62411   "+requestObject1)
 
                     } catch (e: Exception) {
-                        Log.e(TAG,"Some  6241   "+e.toString())
+                        Log.e(TAG,"Some  6662   "+e.toString())
                         progressDialog!!.dismiss()
                         e.printStackTrace()
                         val mySnackbar = Snackbar.make(
@@ -739,13 +756,13 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                                 progressDialog!!.dismiss()
 
                                 val jObject = JSONObject(response.body())
-                                Log.e(TAG,"response  6243   "+response.body())
-                                Log.e(TAG,"response  6244   "+jObject.getString("StatusCode"))
+                                Log.e(TAG,"response  6663   "+response.body())
+                                Log.e(TAG,"response  6664   "+jObject.getString("StatusCode"))
                                 if (jObject.getString("StatusCode") == "0") {
 
                                     val jobjt = jObject.getJSONObject("FundTransferToOtherBank")
 
-                                    Log.e(TAG,"response  6245   "+jobjt.getString("OtpRefNo"))
+                                    Log.e(TAG,"response  6665   "+jobjt.getString("OtpRefNo"))
                                     OTPRef = jobjt.getString("OtpRefNo")
                                     otpPopup()
 
@@ -763,7 +780,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
-                                Log.e(TAG,"Some  2162   "+e.toString())
+                                Log.e(TAG,"Some  6666   "+e.toString())
                                 val builder = AlertDialog.Builder(
                                     this@OtherBankFundTransferActivity,
                                     R.style.MyDialogTheme
@@ -779,7 +796,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                         }
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
-                            Log.e(TAG,"Some  2163   "+t.message)
+                            Log.e(TAG,"Some  6667   "+t.message)
                             val builder = AlertDialog.Builder(
                                 this@OtherBankFundTransferActivity,
                                 R.style.MyDialogTheme
@@ -794,7 +811,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    Log.e(TAG,"Some  2165   "+e.toString())
+                    Log.e(TAG,"Some  6668   "+e.toString())
                     val builder = AlertDialog.Builder(this@OtherBankFundTransferActivity, R.style.MyDialogTheme)
                     builder.setMessage("Some technical issues.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -852,8 +869,10 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
 
         val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurl = baseurlSP.getString("baseurl", null)
-        OTPRef = ""
-        Log.e(TAG,"RetreiveOtp   575")
+
+        Log.e(TAG,"RetreiveOtp   856  "+otpRef+ "   "+otpCode)
+
+
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@OtherBankFundTransferActivity, R.style.Progress)
@@ -898,13 +917,17 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                         requestObject1.put("Amount", MscoreApplication.encryptStart(amount))
                         requestObject1.put("EftType", MscoreApplication.encryptStart(eftType))
                         requestObject1.put("BeneAdd", MscoreApplication.encryptStart(beneAdd))
-                        requestObject1.put("OTPRef", MscoreApplication.encryptStart(""))
-                        requestObject1.put("OTPCode", MscoreApplication.encryptStart(""))
+                        requestObject1.put("OTPRef", MscoreApplication.encryptStart(otpRef))
+                        requestObject1.put("OTPCode", MscoreApplication.encryptStart(otpCode))
 
-                        Log.e(TAG,"requestObject1  624   "+requestObject1)
+//                        requestObject1.put("OTPRef", MscoreApplication.encryptStart(""))
+//                        requestObject1.put("OTPCode", MscoreApplication.encryptStart(""))
+
+                        Log.e(TAG,"requestObject1  856   "+requestObject1)
+                        Log.e(TAG,"requestObject1  856   "+requestObject1)
 
                     } catch (e: Exception) {
-                        Log.e(TAG,"Some  6241   "+e.toString())
+                        Log.e(TAG,"Some  8561   "+e.toString())
                         progressDialog!!.dismiss()
                         e.printStackTrace()
                         val mySnackbar = Snackbar.make(
@@ -927,31 +950,43 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                                 progressDialog!!.dismiss()
 
                                 val jObject = JSONObject(response.body())
-                                Log.e(TAG,"response  6243   "+response.body())
-                                Log.e(TAG,"response  6244   "+jObject.getString("StatusCode"))
+                                Log.e(TAG,"response  8563   "+response.body())
+                                Log.e(TAG,"response  8564   "+jObject.getString("StatusCode"))
                                 if (jObject.getString("StatusCode") == "0") {
 
                                     val jobjt = jObject.getJSONObject("FundTransferToOtherBank")
 
-                                    Log.e(TAG,"response  6245   "+jobjt.getString("OtpRefNo"))
+                                    Log.e(TAG,"response  8565   "+jobjt.getString("OtpRefNo"))
+
+                                    var result = jobjt.getString("ResponseMessage")
+                                    var refid = jobjt.getString("OtpRefNo")
+                                    var amt = jobjt.getString("Amount")
+                                    var reacc = beneAccountNumber
+
+
+                                    alertPopup(refid, amt, reacc, result)
+
 //                                    OTPRef = jobjt.getString("OtpRefNo")
 //                                    otpPopup()
 
-                                    val builder = AlertDialog.Builder(
-                                        this@OtherBankFundTransferActivity,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+//                                    val builder = AlertDialog.Builder(
+//                                        this@OtherBankFundTransferActivity,
+//                                        R.style.MyDialogTheme
+//                                    )
+//                                    builder.setMessage("" + jObject.getString("EXMessage"))
+//                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+//
+//                                        startActivity(Intent(this@OtherBankFundTransferActivity, HomeActivity::class.java))
+//                                        finish()
+//                                    }
+//                                    val alertDialog: AlertDialog = builder.create()
+//                                    alertDialog.setCancelable(false)
+//                                    alertDialog.show()
 
-                                        startActivity(Intent(this@OtherBankFundTransferActivity, HomeActivity::class.java))
-                                        finish()
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+
 
                                 } else {
+                                    Log.e(TAG,"response  8566   "+jObject.getString("EXMessage"))
                                     val builder = AlertDialog.Builder(
                                         this@OtherBankFundTransferActivity,
                                         R.style.MyDialogTheme
@@ -965,7 +1000,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
-                                Log.e(TAG,"Some  2162   "+e.toString())
+                                Log.e(TAG,"Some  8567   "+e.toString())
                                 val builder = AlertDialog.Builder(
                                     this@OtherBankFundTransferActivity,
                                     R.style.MyDialogTheme
@@ -981,7 +1016,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                         }
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
-                            Log.e(TAG,"Some  2163   "+t.message)
+                            Log.e(TAG,"Some  8568   "+t.message)
                             val builder = AlertDialog.Builder(
                                 this@OtherBankFundTransferActivity,
                                 R.style.MyDialogTheme
@@ -996,7 +1031,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    Log.e(TAG,"Some  2165   "+e.toString())
+                    Log.e(TAG,"Some  8569   "+e.toString())
                     val builder = AlertDialog.Builder(this@OtherBankFundTransferActivity, R.style.MyDialogTheme)
                     builder.setMessage("Some technical issues.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -1020,4 +1055,196 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
         }
 
     }
+
+
+    private fun alertPopup(refid: String, amt: String, reacc: String, result: String) {
+
+
+        val dialogBuilder = AlertDialog.Builder(this)
+        val inflater = this.layoutInflater
+        val dialogView: View = inflater.inflate(R.layout.activity_success_popup, null)
+        dialogBuilder.setView(dialogView)
+
+        val rltv_share = dialogView.findViewById<RelativeLayout>(R.id.rltv_share)
+        val lay_share = dialogView.findViewById<RelativeLayout>(R.id.lay_share)
+        val txtTitle = dialogView.findViewById<TextView>(R.id.txt_success)
+        val txtMessage = dialogView.findViewById<TextView>(R.id.txt_message)
+        val tvrefe = dialogView.findViewById<TextView>(R.id.tvrefe)
+
+        val tvdate = dialogView.findViewById<TextView>(R.id.tvdate)
+        val tvtime = dialogView.findViewById<TextView>(R.id.tvtime)
+        val tv_amount_words = dialogView.findViewById<TextView>(R.id.tv_amount_words)
+
+        val tv_amount = dialogView.findViewById<TextView>(R.id.tv_amount)
+        val txtvAcntno = dialogView.findViewById<TextView>(R.id.txtvAcntno)
+        val txtvbranch = dialogView.findViewById<TextView>(R.id.txtvbranch)
+        val txtvbalnce = dialogView.findViewById<TextView>(R.id.txtvbalnce)
+
+        val txtvAcntnoto = dialogView.findViewById<TextView>(R.id.txtvAcntnoto)
+        val txtvbranchto = dialogView.findViewById<TextView>(R.id.txtvbranchto)
+   //     tv_account_no = dialogView.findViewById<TextView>(R.id.tv_account_no)
+        txtvbranchto!!.visibility = View.GONE
+
+        tvrefe.text = "Ref.No : "+refid
+
+        //current time
+
+        //current time
+//        val currentTime = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
+//        tvtime.text = "Time : $currentTime"
+
+        val currentTime = Calendar.getInstance().time
+        Log.e("TAG","currentTime  "+currentTime)
+        val date: DateFormat = SimpleDateFormat("dd-MM-yyyy")
+        val time: DateFormat = SimpleDateFormat("HH:mm")
+//                                    val date: DateFormat = SimpleDateFormat("dd-MM-yyyy HH:mm a")
+        val localDate = date.format(currentTime)
+        val localtime = time.format(currentTime)
+        val timeParts = localtime.split(":").toTypedArray()
+
+        var hour = timeParts[0].toInt()
+        val min = timeParts[1].toInt()
+
+        var suffix: String =""
+        if(hour>11) {
+            suffix = "PM";
+            if(hour>12)
+                hour -= 12;
+        } else {
+            suffix = "AM";
+            if(hour==0)
+                hour = 12;
+        }
+        var hours : String =""
+        var mins : String =""
+        if (hour.toString().length==1){
+            hours = "0"+hour.toString()
+        }else{
+            hours = hour.toString()
+        }
+
+        if (min.toString().length==1){
+            mins = "0"+hour.toString()
+        }else{
+            mins = min.toString()
+        }
+
+        val localDateTime = hours+" : "+mins +" "+suffix
+
+        tvtime.text = "$localDateTime"
+
+        //current date
+
+
+        //current date
+        val c = Calendar.getInstance().time
+        println("Current time => $c")
+
+        val df = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+        val formattedDate = df.format(c)
+        tvdate.text = "$formattedDate"
+
+        val amnt: String = tie_amount!!.getText().toString().replace(",".toRegex(), "")
+        val netAmountArr = amnt.split("\\.".toRegex()).toTypedArray()
+        var amountInWordPop = ""
+        if (netAmountArr.size > 0) {
+            val integerValue = netAmountArr[0].toInt()
+            amountInWordPop = "Rupees " + NumberToWord.convertNumberToWords(integerValue)
+            if (netAmountArr.size > 1) {
+                val decimalValue = netAmountArr[1].toInt()
+                if (decimalValue != 0) {
+                    amountInWordPop += " and " + NumberToWord.convertNumberToWords(decimalValue).toString() + " paise"
+                }
+            }
+            amountInWordPop += " only"
+        }
+        tv_amount_words.text = "" + amountInWordPop
+
+        val num = ("" + amnt).toDouble()
+        Log.e("TAG", "CommonUtilities  945   " + Config.getDecimelFormate(num))
+        val stramnt: String? = Config.getDecimelFormate(num)
+
+
+        tv_amount.text = "₹ $stramnt"
+
+
+
+        txtvAcntno.text = "A/C :"+tie_accountnumber!!.text.toString()
+        txtvbranch.text = "Branch :"+BranchName
+     //   val num1 = Balance!!.toDouble() - stramnt!!.replace(",", "").toDouble()
+        // double num1 = Double.parseDouble(Balance) - Double.parseDouble(stramnt);
+        // double num1 = Double.parseDouble(Balance) - Double.parseDouble(stramnt);
+        val fmt = DecimalFormat("#,##,###.00")
+
+      //  txtvbalnce.text = "Available Bal: " + "\u20B9 " + Config.getDecimelFormate(num1)
+
+        txtvAcntnoto.text = "A/C : " + reacc
+        txtvbranchto.text = "Branch :$BranchName"
+
+        dialogView.findViewById<View>(R.id.rltv_footer).setOnClickListener { view1: View? ->
+            try {
+//                getFragmentManager().beginTransaction().replace( R.id.container, FragmentMenuCard.newInstance("EMPTY","EMPTY") )
+//                        .commit();
+                val i = Intent(this, HomeActivity::class.java)
+                startActivity(i)
+                finish()
+            } catch (e: NullPointerException) {
+                //Do nothing
+            }
+        }
+
+        try {
+
+            txtMessage.setText(result)
+            txtTitle.text = title
+            lay_share.setOnClickListener {
+                Log.e("img_share", "img_share   1170   ")
+                val bitmap = Bitmap.createBitmap(rltv_share.width,
+                    rltv_share.height, Bitmap.Config.ARGB_8888)
+                val canvas = Canvas(bitmap)
+                rltv_share.draw(canvas)
+                try {
+                    val bmpUri: Uri = getLocalBitmapUri(bitmap)!!
+                    val shareIntent = Intent()
+                    shareIntent.action = Intent.ACTION_SEND
+                    shareIntent.putExtra(Intent.EXTRA_STREAM, bmpUri)
+                    shareIntent.type = "image/*"
+                    shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                    startActivity(Intent.createChooser(shareIntent, "Share"))
+                } catch (e: java.lang.Exception) {
+                    e.printStackTrace()
+                    Log.e("Exception", "Exception   117   $e")
+                }
+            }
+
+        } catch (e: java.lang.Exception) {
+            //Do nothing
+        }
+
+        val alertDialog = dialogBuilder.create()
+        alertDialog.show()
+    }
+
+    private fun getLocalBitmapUri(bmp: Bitmap): Uri? {
+        var bmpUri: Uri? = null
+        //  final String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Screenshots";
+        val file: File = File(applicationContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES), System.currentTimeMillis().toString() + ".png")
+        Log.e("File  ", "File   142   $file")
+        var out: FileOutputStream? = null
+        try {
+            out = FileOutputStream(file)
+            bmp.compress(Bitmap.CompressFormat.PNG, 90, out)
+            try {
+                out.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+            bmpUri = Uri.fromFile(file)
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
+        }
+        return bmpUri
+    }
+
+
 }
