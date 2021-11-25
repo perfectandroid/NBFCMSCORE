@@ -30,6 +30,7 @@
     <string name="savings_bank">Savings Bank</string>
     <string name="current_account">Current Account</string>
     <string name="cash_credit">Cash Credit</string>
+
     <string name="select_account">Select account</string>
     <string name="select_sender">Select sender</string>
     <string name="add_new_sender">[add new sender]</string>
