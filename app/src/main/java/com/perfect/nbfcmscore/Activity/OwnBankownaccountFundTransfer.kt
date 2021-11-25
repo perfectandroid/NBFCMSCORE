@@ -6,6 +6,7 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.graphics.Paint
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -59,6 +60,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
     private var mRecyclerView: RecyclerView? = null
     private var textView: TextView? = null
     private var txtv_acno: TextView? = null
+    private var tvInstallment: TextView? = null
     private var txtv_payingto: TextView? = null
     private var txtv_acno1: TextView? = null
     private var txtamtpayable: TextView? = null
@@ -112,9 +114,14 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
         imgHome!!.setOnClickListener(this)
         ll_needToPayAdvance= findViewById(R.id.ll_needToPayAdvance)
         ll_needTochange= findViewById(R.id.ll_needTochange)
-        ll_remittance= findViewById(R.id.ll_needTochange)
+        ll_remittance= findViewById(R.id.ll_remittance)
         txt_amtinword= findViewById(R.id.txt_amtinword)
         edt_txt_amount = findViewById(R.id.edt_txt_amount)
+        tvInstallment = findViewById(R.id.edt_txt_amount)
+
+        tvInstallment!!.setOnClickListener(this)
+        ll_needTochange!!.setOnClickListener(this)
+        ll_remittance!!.setOnClickListener(this)
 
         textView= findViewById(R.id.textView)
         txtv_acno= findViewById(R.id.txtv_acno)
@@ -242,6 +249,8 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                 }
             }
         })
+     //   tvInstallment!!.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+      //  tvInstallment!!.setPaintFlags(tvInstallment!!.getPaintFlags() or Paint.UNDERLINE_TEXT_FLAG)
     }
     private fun getAccountnumber() {
         val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
@@ -498,7 +507,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                                         val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
                                         val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
                                         val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
-                                        val imagepath = IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+                                        val imagepath = IMAGE_URL + AppIconImageCodeSP!!.getString("AppIconImageCode", null)
 
                                         PicassoTrustAll.getInstance(this@OwnBankownaccountFundTransfer)!!.load(imagepath).error(android.R.color.transparent).into(img_aapicon!!)
 
@@ -555,6 +564,13 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                 }
 
 
+            }
+            R.id.ll_needTochange->{
+                 if (ll_remittance!!.visibility == View.GONE) {
+                    ll_remittance!!.visibility = View.VISIBLE
+                } else {
+                    ll_remittance!!.visibility = View.GONE
+                }
             }
             R.id.ll_needToPayAdvance -> {
                 if (ll_remittance!!.visibility == View.GONE) {
@@ -702,8 +718,8 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                                     var refid = jsonobj2.getString("RefID")
                                     var amt = jsonobj2.getString("Amount")
                                     var reacc = jsonobj2.getString("RecAccNumber")
-                                    Log.e("Result","706  "+ result)
-                                    Log.e("refid","706   "+  refid)
+                                    Log.e("Result", "706  " + result)
+                                    Log.e("refid", "706   " + refid)
                                     alertPopup(refid, amt, reacc, result)
                                     //   alertMessage1("", result)
                                     // Toast.makeText(applicationContext, result, Toast.LENGTH_LONG)
@@ -827,7 +843,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
       //  val currentTime = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
 //        tvtime.text = " $currentTime"
         val currentTime = Calendar.getInstance().time
-        Log.e(TAG,"currentTime  "+currentTime)
+        Log.e(TAG, "currentTime  " + currentTime)
         val date: DateFormat = SimpleDateFormat("dd-MM-yyyy")
         val time: DateFormat = SimpleDateFormat("HH:mm")
 //                                    val date: DateFormat = SimpleDateFormat("dd-MM-yyyy HH:mm a")
@@ -932,7 +948,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
 //            boolean isHappy = bundle.getBoolean( HAPPY );
 //            String title = bundle.getString( TITLE );
 //            String message = bundle.getString( MESSAGE );
-        Log.e("TAG","result   884   "+result)
+        Log.e("TAG", "result   884   " + result)
             txtMessage.setText(result)
             txtTitle.text = title
             /*if (!isHappy) {
@@ -1001,19 +1017,22 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
         alertDialog.show()
     }
 
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-        val splitupdetail: Splitupdetail = arrayList1!!.get(position)
-        fkaccount = splitupdetail.getFkaccount()
-        submodule = splitupdetail.getSubmodule()
-        branchName1 =splitupdetail.getBranchname()
-        //  Toast.makeText(getApplicationContext(),AccountAdapter.getItem(position).getBranchName(),Toast.LENGTH_LONG).show();
+    override fun onItemSelected(parent: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+        if (parent!!.id == R.id.spn_account_type) {
+            val splitupdetail: Splitupdetail = arrayList1!!.get(position)
+            fkaccount = splitupdetail.getFkaccount()
+            submodule = splitupdetail.getSubmodule()
+            branchName1 =splitupdetail.getBranchname()
+            //  Toast.makeText(getApplicationContext(),AccountAdapter.getItem(position).getBranchName(),Toast.LENGTH_LONG).show();
 //                                                tv_as_on_date.setVisibility(View.VISIBLE);
-        ll_needTochange!!.visibility = View.GONE
-        ll_needToPayAdvance!!.visibility = View.GONE
-        ll_remittance!!.visibility = View.GONE
-      //  Toast.makeText(this, "FKAccount: " + fkaccount ,
-      //   Toast.LENGTH_SHORT).show();
-         balanceSplitUpDetails(fkaccount, submodule)
+            ll_needTochange!!.visibility = View.GONE
+            ll_needToPayAdvance!!.visibility = View.GONE
+            ll_remittance!!.visibility = View.GONE
+            //  Toast.makeText(this, "FKAccount: " + fkaccount ,
+            //   Toast.LENGTH_SHORT).show();
+            balanceSplitUpDetails(fkaccount, submodule)
+        }
+
     }
 
     private fun balanceSplitUpDetails(fkaccount: String?, submodule: String?) {

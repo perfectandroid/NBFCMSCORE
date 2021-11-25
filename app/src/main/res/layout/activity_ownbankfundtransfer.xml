@@ -609,7 +609,7 @@
                                     android:layout_marginRight="20dp"
                                     android:layout_gravity="center_vertical"
                                     android:gravity="right"
-                                    android:text="Need To Change Payable Amount"/>
+                                    android:text="@string/needtochange"/>
 
                             </LinearLayout>
                             <LinearLayout
@@ -627,7 +627,7 @@
                                     android:layout_marginRight="20dp"
                                     android:layout_gravity="center_vertical"
                                     android:gravity="right"
-                                    android:text="Need To Pay Advance Amount"/>
+                                    android:text="@string/needtopay"/>
 
                             </LinearLayout>
                         </LinearLayout>
