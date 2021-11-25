@@ -153,7 +153,6 @@ class SplashActivity : AppCompatActivity() {
                     try {
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("5"))
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
-
                         Log.e("requestObject1", "requestObject1  113   " + requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
