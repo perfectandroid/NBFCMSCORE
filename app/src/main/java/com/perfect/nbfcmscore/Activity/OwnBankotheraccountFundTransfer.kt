@@ -216,7 +216,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
 
         txtvPayingfrom!!.setText(PayingFromSP.getString("PayingFrom", null))
         txtvac_no!!.setText(AccnoSP.getString("AccountNo", null))
-        txtv_recivactype!!.setText(PayingToSP.getString("ConfirmAccountNo", null))
+        txtv_recivactype!!.setText(PayingToSP.getString("ReceiverAccountType", null))
         txtv_acno2!!.setText(AccnoSP.getString("AccountNo", null))
         txtv_confrmacc!!.setText(ConfirmaccSP.getString("ConfirmAccountNo", null))
         txtv_amtpayable!!.setText(AMtpaybleSP.getString("AmountPayable", null))

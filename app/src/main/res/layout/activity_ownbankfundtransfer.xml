@@ -51,7 +51,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:background="@color/bgcolour"
+            android:background="@color/white"
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -64,7 +64,8 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    app:cardCornerRadius="10dp">
+                    app:cardBackgroundColor="@color/bg_transfer"
+                    app:cardCornerRadius="5dp">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -93,10 +94,23 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tv_branch_name"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:textColor="@color/black_lang"
+                                    android:layout_gravity="left"
+                                    android:textSize="13sp"
+                                    android:text="rererer"
+                                    android:textStyle="normal" />
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal">
+
+
                                     <TextView
                                         android:id="@+id/txtv_acno"
                                         android:layout_width="fill_parent"
@@ -105,10 +119,9 @@
                                         android:text="Account No."
                                         android:drawablePadding="4dp"
                                         android:layout_weight="1"
-                                        android:drawableLeft="@drawable/bank"
-
+                                        android:drawableLeft="@drawable/accountno"
                                         android:layout_gravity="left"
-                                        android:textColor="#444444"
+                                        android:textColor="@color/black_lang"
                                         android:textSize="13sp"
                                         android:textStyle="normal" />
                                     <TextView
@@ -119,20 +132,12 @@
                                         android:text="rererer"
                                         android:layout_weight="1"
                                         android:layout_gravity="left"
-                                        android:textColor="@color/black"
+                                        android:textColor="@color/colorPrimary"
                                         android:textSize="16sp"
                                         android:textStyle="bold" />
                                 </LinearLayout>
 
-                                <TextView
-                                    android:id="@+id/tv_branch_name"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center_vertical"
-                                    android:layout_gravity="left"
-                                    android:textSize="12sp"
-                                    android:text="rererer"
-                                    android:textStyle="normal" />
+
                             </LinearLayout>
 
                         </LinearLayout>
@@ -150,7 +155,8 @@
                                 android:layout_weight="1"
                                 android:text="Available Balance"
                                 android:layout_gravity="center_vertical"
-                                android:textColor="@color/black"
+                                android:drawableLeft="@drawable/availbal"
+                                android:textColor="@color/black_lang"
                                 android:textSize="12sp"
                                 android:textStyle="normal" />
                             <TextView
@@ -158,10 +164,9 @@
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center_vertical"
-                                android:layout_marginLeft="25dp"
                                 android:layout_weight="1"
                                 android:layout_gravity="center_vertical"
-                                android:textColor="@color/black"
+                                android:textColor="@color/colorPrimary"
                                 android:textSize="10sp"
                                 android:text="ewe"
                                 android:textStyle="bold" />
@@ -186,16 +191,16 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="10dp"
-                    android:layout_marginTop="10dp"
+                    app:cardCornerRadius="2dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginLeft="5dp"
+                    app:cardBackgroundColor="@color/white"
                     android:layout_marginRight="5dp"
                     android:padding="5dp">
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_margin="5dp"
-                        android:background="@color/bgcolour"
                         android:layout_height="wrap_content"
+                       android:background="@color/bg_textview"
                         android:orientation="vertical">
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -207,6 +212,7 @@
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="start"
+                                android:layout_marginLeft="5dp"
                                 android:layout_marginTop="2dp"
                                 android:text="Paying To : "
                                 android:textColor="#00C6FF"
@@ -215,25 +221,27 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:paddingLeft="5dp"
+                                android:background="@drawable/bg_light_grey2"
                                 android:orientation="horizontal">
 
                                 <TextView
                                     android:id="@+id/txtv_acno1"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="30dp"
                                     android:gravity="center_vertical"
                                     android:drawablePadding="4dp"
                                     android:text="Account No. : "
                                     android:layout_gravity="center_vertical"
                                     android:textColor="@color/black"
-                                    android:textSize="14sp"
+                                    android:textSize="16sp"
                                     android:textStyle="normal" />
                                 <Spinner
                                     android:id="@+id/spn_account_type"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="30dp"
                                     android:layout_gravity="start"
-                                    android:gravity="start"
+                                    android:gravity="center_vertical"
                                     android:popupBackground="#cccccc"
                                     android:layout_marginBottom="5dp"
                                     android:spinnerMode="dialog"
@@ -265,66 +273,88 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:visibility="gone" >
-                            <EditText
-                                android:id="@+id/acc_no_block_one"
-                                android:layout_width="60dp"
-                                android:layout_height="match_parent"
-                                android:layout_alignBottom="@+id/acc_no_block_two"
-                                android:layout_marginEnd="2dp"
-                                android:layout_marginRight="2dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_toLeftOf="@+id/acc_no_block_two"
-                                android:layout_toStartOf="@+id/acc_no_block_two"
-                                android:inputType="numberPassword"
-                                android:maxLength="3"
-                                android:paddingEnd="5dp"
-                                android:paddingLeft="5dp"
-                                android:paddingStart="5dp"
-                                />
-                            <EditText
-                                android:id="@+id/acc_no_block_two"
-                                android:layout_width="60dp"
-                                android:layout_height="match_parent"
-                                android:layout_alignBottom="@+id/acc_no_block_three"
-                                android:layout_marginEnd="3dp"
-                                android:layout_marginRight="3dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_toLeftOf="@+id/acc_no_block_three"
-                                android:layout_toStartOf="@+id/acc_no_block_three"
-                                android:ems="3"
-                                android:inputType="numberPassword"
-                                android:maxLength="3"
-                                android:paddingEnd="5dp"
-                                android:paddingLeft="5dp"
-                                android:paddingStart="5dp"
-                                />
-                            <EditText
-                                android:id="@+id/acc_no_block_three"
-                                android:layout_width="100dp"
-                                android:layout_height="fill_parent"
-                                android:layout_alignBottom="@+id/btn_scan_acnt_no"
-                                android:layout_marginEnd="3dp"
-                                android:layout_marginRight="3dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_toLeftOf="@+id/btn_scan_acnt_no"
-                                android:layout_toStartOf="@+id/btn_scan_acnt_no"
-                                android:ems="6"
-                                android:inputType="numberPassword"
-                                android:maxLength="6"
-                                android:paddingEnd="5dp"
-                                android:paddingLeft="5dp"
-                                android:paddingStart="5dp"/>
 
-                            <Button
-                                android:id="@+id/btn_scan_acnt_no"
-                                android:layout_width="70dp"
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_alignParentRight="true"
-                                android:layout_alignParentTop="true"
-                                android:layout_marginTop="5dp"
-                                android:textAllCaps="false"
-                                android:textColor="@color/white" />
+                                android:layout_marginTop="10dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                app:cardBackgroundColor="@color/bg_transfer"
+                                app:cardCornerRadius="5dp">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:visibility="visible" >
+
+
+                                    <EditText
+                                        android:id="@+id/acc_no_block_one"
+                                        android:layout_width="60dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_alignBottom="@+id/acc_no_block_two"
+                                        android:layout_marginEnd="2dp"
+                                        android:layout_marginRight="2dp"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_toLeftOf="@+id/acc_no_block_two"
+                                        android:layout_toStartOf="@+id/acc_no_block_two"
+                                        android:inputType="numberPassword"
+                                        android:maxLength="3"
+                                        android:paddingEnd="5dp"
+                                        android:paddingLeft="5dp"
+                                        android:paddingStart="5dp"
+                                        />
+                                    <EditText
+                                        android:id="@+id/acc_no_block_two"
+                                        android:layout_width="60dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_alignBottom="@+id/acc_no_block_three"
+                                        android:layout_marginEnd="3dp"
+                                        android:layout_marginRight="3dp"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_toLeftOf="@+id/acc_no_block_three"
+                                        android:layout_toStartOf="@+id/acc_no_block_three"
+                                        android:ems="3"
+                                        android:inputType="numberPassword"
+                                        android:maxLength="3"
+                                        android:paddingEnd="5dp"
+                                        android:paddingLeft="5dp"
+                                        android:paddingStart="5dp"
+                                        />
+                                    <EditText
+                                        android:id="@+id/acc_no_block_three"
+                                        android:layout_width="100dp"
+                                        android:layout_height="fill_parent"
+                                        android:layout_alignBottom="@+id/btn_scan_acnt_no"
+                                        android:layout_marginEnd="3dp"
+                                        android:layout_marginRight="3dp"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_toLeftOf="@+id/btn_scan_acnt_no"
+                                        android:layout_toStartOf="@+id/btn_scan_acnt_no"
+                                        android:ems="6"
+                                        android:inputType="numberPassword"
+                                        android:maxLength="6"
+                                        android:paddingEnd="5dp"
+                                        android:paddingLeft="5dp"
+                                        android:paddingStart="5dp"/>
+
+                                    <Button
+                                        android:id="@+id/btn_scan_acnt_no"
+                                        android:layout_width="70dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_alignParentTop="true"
+                                        android:layout_marginTop="5dp"
+                                        android:textAllCaps="false"
+                                        android:textColor="@color/white" />
+
+                                </RelativeLayout>
+
+                            </androidx.cardview.widget.CardView>
+
+
 
                         </RelativeLayout>
                         <TextView
@@ -335,10 +365,12 @@
                             android:paddingStart="8dp"
                             android:text="confirm"
                             android:visibility="gone"/>
+
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:visibility="gone">
+
                             <EditText
                                 android:id="@+id/confirm_acc_no_block_one"
                                 android:layout_width="60dp"
@@ -444,6 +476,7 @@
                                 tools:ignore="RelativeOverlap" />
 
                         </RelativeLayout>
+
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/confirm_account_number_inputlayout"
                             android:layout_width="match_parent"
@@ -481,14 +514,54 @@
                                 android:paddingRight="8dp"
                                 android:textSize="18sp" />
                         </com.google.android.material.textfield.TextInputLayout>
-                        <com.perfect.nbfcmscore.Helper.FullLenghRecyclertview
-                            android:id="@+id/rv_split_details"
-                            android:layout_marginBottom="5dp"
-                            android:background="@color/white"
-                            android:layout_marginLeft="25dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+
+
+
+<!--                        <androidx.cardview.widget.CardView-->
+<!--                            android:id="@+id/card_split_details"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginTop="10dp"-->
+<!--                            android:layout_marginBottom="10dp"-->
+<!--                            android:layout_marginLeft="5dp"-->
+<!--                            android:layout_marginRight="5dp"-->
+<!--                            app:cardBackgroundColor="@color/bg_textview"-->
+<!--                            android:visibility="gone"-->
+<!--                            app:cardCornerRadius="5dp">-->
+
+                            <LinearLayout
+                                android:id="@+id/ll_list"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:visibility="gone">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="3dp"
+                                    android:orientation="vertical">
+
+                                    <com.perfect.nbfcmscore.Helper.FullLenghRecyclertview
+                                        android:id="@+id/rv_split_details"
+                                        android:layout_marginBottom="5dp"
+                                        android:background="@color/bg_textview"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"/>
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+
+
+
+<!--                        </androidx.cardview.widget.CardView>-->
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -526,69 +599,103 @@
 
                         </LinearLayout>
                     </LinearLayout>
+
                 </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:padding="5dp">
+
+
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    app:cardCornerRadius="10dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_marginLeft="5dp"-->
+<!--                    android:layout_marginRight="5dp"-->
+<!--                    android:padding="5dp">-->
+
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:background="@color/bgcolour"
+                        android:background="@color/white"
                         android:layout_marginBottom="15dp"
                         android:orientation="vertical">
 
-
-
-                        <TextView
-                            android:id="@+id/txtamtpayable"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="start"
-                            android:layout_marginTop="2dp"
-                            android:layout_marginLeft="7dp"
-                            android:textColor="#00C6FF"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:text="Amount Payable :"/>
-                        <LinearLayout
+                        <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
-                            <EditText
-                                android:id="@+id/edt_txt_amount"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:inputType="number"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:drawablePadding="10dp"
-                                android:textStyle="bold"
-                                android:textSize="30dp"
-                                android:maxLength="13"
-                                android:backgroundTint="@color/blue"/>
+                            app:cardCornerRadius="3dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp">
 
-                            <TextView
-                                android:id="@+id/txt_amtinword"
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:textColor="@color/blue"
-                                android:textSize="15dp"
-                                android:textStyle="bold"/>
+                                android:orientation="vertical"
+                                android:background="@color/bg_textview">
 
-                            <!--                android:background="@drawable/custom_edt_txt_account_border"-->
+                                <TextView
+                                    android:id="@+id/txtamtpayable"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="start"
+                                    android:layout_marginTop="2dp"
+                                    android:layout_marginLeft="7dp"
+                                    android:textColor="#00C6FF"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold"
+                                    android:text="Amount Payable :"/>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:background="@drawable/bg_light_grey2">
+                                    <EditText
+                                        android:id="@+id/edt_txt_amount"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:inputType="number"
+                                        android:paddingLeft="5dp"
+                                        android:paddingBottom="5dp"
+                                        android:textStyle="bold"
+                                        android:textSize="20dp"
+                                        android:maxLength="13"
+                                        android:text=""
+                                        android:background="@android:color/transparent"/>
+
+
+
+                                    <!--                android:background="@drawable/custom_edt_txt_account_border"-->
 
 
 
 
 
-                        </LinearLayout>
+                                </LinearLayout>
+
+                                <TextView
+                                    android:id="@+id/txt_amtinword"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/colorPrimary"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:paddingLeft="5dp"
+                                    android:textSize="13dp"
+                                    android:text=""
+                                    android:textStyle="bold"/>
+
+
+
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -661,42 +768,61 @@
                             </LinearLayout>
 
                         </LinearLayout>
-                        <TextView
-                            android:id="@+id/txtvremark"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="start"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginLeft="7dp"
-                            android:textColor="#00C6FF"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:text="Remark : "/>
-                        <LinearLayout
+
+                        <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:orientation="vertical">
-                            <EditText
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:drawablePadding="10dp"
-                                android:layout_marginBottom="15dp"
-                                android:id="@+id/edt_txt_remark"
+                            app:cardCornerRadius="3dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp">
+
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="start"
-                                android:padding="5dp"
-                                android:inputType="text"
-                                android:backgroundTint="@color/blue"/>
+                                android:orientation="vertical"
+                                android:background="@color/bg_textview">
 
-                            <!--                android:background="@drawable/custom_edt_txt_account_border"-->
+                                <TextView
+                                    android:id="@+id/txtvremark"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="start"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginLeft="7dp"
+                                    android:textColor="#00C6FF"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold"
+                                    android:text="Remark : "/>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:background="@drawable/bg_light_grey2"
+                                    android:orientation="vertical">
+                                    <EditText
+                                        android:id="@+id/edt_txt_remark"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="start"
+                                        android:padding="5dp"
+                                        android:inputType="text"
+                                        android:background="@android:color/transparent" />
+
+                                    <!--                android:background="@drawable/custom_edt_txt_account_border"-->
 
 
 
 
 
-                        </LinearLayout>
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+
+
                         <!--  <LinearLayout
                               android:layout_width="match_parent"
                               android:layout_height="wrap_content"
@@ -734,14 +860,16 @@
                                 android:textSize="18sp" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+
+
+<!--                </androidx.cardview.widget.CardView>-->
 
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/ll_bottombar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="95dp"
+                android:layout_marginTop="40dp"
                 android:layout_alignParentBottom="true"
                 android:orientation="horizontal"
                 >
@@ -766,11 +894,11 @@
                 <Button
                     android:id="@+id/btn_submit"
                     android:layout_width="match_parent"
-                    android:layout_height="38dp"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginLeft="1dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:backgroundTint="#61B383"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:backgroundTint="@color/but_color1"
                     android:text="PAY"
                     android:textAllCaps="false"
                     android:textColor="#FFFFFF"

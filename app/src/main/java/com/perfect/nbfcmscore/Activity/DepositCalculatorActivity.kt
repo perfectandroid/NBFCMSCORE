@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Api.ApiInterface
@@ -69,6 +70,9 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
         setContentView(R.layout.activity_deposit)
 
         setRegViews()
+
+        val imemilogo: ImageView = findViewById(R.id.imemilogo)
+        Glide.with(this).load(R.drawable.emigif).into(imemilogo)
 
         val Headersp = applicationContext.getSharedPreferences(Config.SHARED_PREF80, 0)
         tv_header!!.setText(Headersp.getString("DepositCalculator", null))
@@ -458,6 +462,7 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
     }
 
     private fun getDepositCalculatr() {
+        llOutput!!.visibility = View.GONE
         val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
