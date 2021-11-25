@@ -20,6 +20,7 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnFocusChangeListener
+import android.view.inputmethod.EditorInfo
 import android.widget.*
 import android.widget.TextView.OnEditorActionListener
 import androidx.appcompat.app.AppCompatActivity
@@ -158,13 +159,13 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
         edtTxtAccountNoSecondBlock!!.setOnEditorActionListener(this)
         edtTxtAccountNoThirdBlock!!.setOnEditorActionListener(this)
 
-        /* edtTxtAccountNoFirstBlock!!.setOnFocusChangeListener(this)
+         edtTxtAccountNoFirstBlock!!.setOnFocusChangeListener(this)
          edtTxtAccountNoSecondBlock!!.setOnFocusChangeListener(this)
-         edtTxtAccountNoThirdBlock!!.setOnFocusChangeListener(this)*/
+         edtTxtAccountNoThirdBlock!!.setOnFocusChangeListener(this)
 
-       /*  edtTxtAccountNoFirstBlock!!.addTextChangedListener(this)
+         edtTxtAccountNoFirstBlock!!.addTextChangedListener(this)
          edtTxtAccountNoSecondBlock!!.addTextChangedListener(this)
-         edtTxtAccountNoThirdBlock!!.addTextChangedListener(this)*/
+         edtTxtAccountNoThirdBlock!!.addTextChangedListener(this)
 
         edtTxtConfirmAccountNoFirstBlock = findViewById(R.id.confirm_acc_no_block_one)
         edtTxtConfirmAccountNoSecondBlock = findViewById(R.id.confirm_acc_no_block_two)
@@ -176,13 +177,13 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
         edtTxtConfirmAccountNoSecondBlock!!.setOnEditorActionListener(this)
         edtTxtConfirmAccountNoThirdBlock!!.setOnEditorActionListener(this)
 
-      /* edtTxtConfirmAccountNoFirstBlock!!.setOnFocusChangeListener(this)
+       edtTxtConfirmAccountNoFirstBlock!!.setOnFocusChangeListener(this)
          edtTxtConfirmAccountNoSecondBlock!!.setOnFocusChangeListener(this)
-         edtTxtConfirmAccountNoThirdBlock!!.setOnFocusChangeListener(this)*/
+         edtTxtConfirmAccountNoThirdBlock!!.setOnFocusChangeListener(this)
 
-       /* edtTxtConfirmAccountNoFirstBlock!!.addTextChangedListener(this)
+        edtTxtConfirmAccountNoFirstBlock!!.addTextChangedListener(this)
       edtTxtConfirmAccountNoSecondBlock!!.addTextChangedListener(this)
-      edtTxtConfirmAccountNoThirdBlock!!.addTextChangedListener(this)*/
+      edtTxtConfirmAccountNoThirdBlock!!.addTextChangedListener(this)
 
         edtTxtAmount = findViewById(R.id.edt_txt_amount)
         edt_txt_remark = findViewById(R.id.edt_txt_remark)
@@ -308,7 +309,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                         //txtv_remark!!.setText(RemarkeSP.getString("Remark", null))
                         btn_submit!!.setText(PAYSP.getString("PAY", null) + "\u20B9 " + Config.getDecimelFormate(num))
                     } else {
-                        btn_submit!!.setText(PAYSP.getString("PAY", null) )
+                        btn_submit!!.setText(PAYSP.getString("PAY", null))
                     }
                 } catch (e: NumberFormatException) {
                 }
@@ -326,7 +327,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                 val recieverAccountNo: String = confirmAndSetRecieversAccountNo()
                 if (isValid() && recieverAccountNo.length == 12) {
                     if (ConnectivityUtils.isConnected(this)) {
-                        var SourceAccountNumber =tv_account_no!!.text.toString()
+                        var SourceAccountNumber = tv_account_no!!.text.toString()
                         val accountNumber: String = SourceAccountNumber
                         val amount = edtTxtAmount!!.text.toString()
                         val remark = edt_txt_remark!!.text.toString()
@@ -363,7 +364,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                         val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
                         val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
                         val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
-                        val imagepath = IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+                        val imagepath = IMAGE_URL + AppIconImageCodeSP!!.getString("AppIconImageCode", null)
 
                         PicassoTrustAll.getInstance(this@OwnBankotheraccountFundTransfer)!!.load(imagepath).error(android.R.color.transparent).into(img_aapicon!!)
                         val netAmountArr = amnt.split("\\.".toRegex()).toTypedArray()
@@ -385,11 +386,19 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                         alertDialog.show()
                         butOk.setOnClickListener { v: View? ->
                             alertDialog.dismiss()
-                            var type:String?=null
-                            val accountType: String = spn_account_type!!.getSelectedItem().toString()
-                            if (accountType.equals("Savings bank" )) {
-                                type = "DDSB"
+                            var type: String? = null
+                          /*  if(!spn_account_type!!.getSelectedItem().toString().equals("Select Account"))
+                            {
+
                             }
+                            else
+                            {*/
+                                val accountType: String = spn_account_type!!.getSelectedItem().toString()
+                                if (accountType.equals("Savings bank")) {
+                                    type = "DDSB"
+                                }
+                           // }
+
                             val Finalamount = amount.replace(",", "")
                             getOwnAccountFundTransfer(accountNumber, type, recieverAccountNo, Finalamount, remark)
                         }
@@ -469,10 +478,18 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                     return false
                 }
             }
+           /* if (spn_account_type!!.selectedItem.toString().equals("Select Account")) {
+
+                Toast.makeText(applicationContext,"Please select account type",Toast.LENGTH_LONG).show()
+
+                  //  edtTxtAmount!!.error = "Please select account type"
+
+
+            }*/
         }
 
 
-        edtTxtAmount!!.error = null
+    //    Toast.makeText(applicationContext,"Please select account type",Toast.LENGTH_LONG).show()
         return true
     }
 
@@ -701,10 +718,9 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
 
     private fun setAccountType() {
         val items = ArrayList<String>()
-        items.add(getString(R.string.savings_bank))
-        items.add("")
-        items.add("")
-
+        items.add(getString(R.string.savings_bank),)
+       // items.add("Select Account")
+       // Collections.reverse(items)
         val spinnerAdapter = ArrayAdapter(this, R.layout.simple_spinner_item_dark, items)
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spn_account_type!!.setAdapter(spinnerAdapter)
@@ -719,27 +735,159 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
 
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
-        TODO("Not yet implemented")
+
     }
 
-    override fun onEditorAction(p0: TextView?, p1: Int, p2: KeyEvent?): Boolean {
-        TODO("Not yet implemented")
+    override fun onEditorAction(v: TextView?, actionId: Int, i: KeyEvent?): Boolean {
+        val editorAction = "editor_action"
+        assert(v != null)
+        val id = v!!.id
+        if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_NEXT || actionId == EditorInfo.IME_ACTION_NONE) {
+            when (id) {
+                R.id.acc_no_block_one -> findValueForEditText(edtTxtAccountNoFirstBlock!!.text.toString(), id, editorAction)
+                R.id.acc_no_block_two -> findValueForEditText(edtTxtAccountNoSecondBlock!!.text.toString(), id, editorAction)
+                R.id.acc_no_block_three -> findValueForEditText(edtTxtAccountNoThirdBlock!!.text.toString(), id, editorAction)
+                R.id.confirm_acc_no_block_one -> findValueForEditText(edtTxtConfirmAccountNoFirstBlock!!.text.toString(), id, editorAction)
+                R.id.confirm_acc_no_block_two -> findValueForEditText(edtTxtConfirmAccountNoSecondBlock!!.text.toString(), id, editorAction)
+                R.id.confirm_acc_no_block_three -> findValueForEditText(edtTxtConfirmAccountNoThirdBlock!!.text.toString(), id, editorAction)
+                else -> {
+                }
+            }
+        }
+        return false
     }
 
-    override fun onFocusChange(p0: View?, p1: Boolean) {
-        TODO("Not yet implemented")
+    private fun findValueForEditText(value: String, id: Int, from: String) {
+
+        val stringLength: Int = value.length
+        var valueS = value
+
+        if ((id == R.id.acc_no_block_one || id == R.id.acc_no_block_two || id == R.id.confirm_acc_no_block_one || id == R.id.confirm_acc_no_block_two)
+                && stringLength > 0 && stringLength < 4) {
+            when (stringLength) {
+                        1 ->
+                            valueS = "00$value"
+                        2 ->
+                            valueS = "0$value"
+
+            }
+        } else if ((id == R.id.acc_no_block_three || id == R.id.confirm_acc_no_block_three) && stringLength > 0 && stringLength < 7) {
+            when (stringLength) {
+                1 ->
+                    valueS = "00000$value"
+                2 ->
+                    valueS = "0000$value"
+                3 ->
+                    valueS = "000$value"
+                4 ->
+                    valueS = "00$value"
+                5 ->
+                    valueS = "0$value"
+
+            }
+        }
+        if (from == "editor_action")
+            assignTextToEdtTextOnKeyBoardImeAction(valueS, id)
+        else assignTextToEdtTextOnFocusChange(valueS, id)
+
+    }
+    private fun assignTextToEdtTextOnFocusChange(value: String, id: Int) {
+        when (id) {
+            R.id.acc_no_block_one -> edtTxtAccountNoFirstBlock!!.setText(value)
+            R.id.acc_no_block_two -> edtTxtAccountNoSecondBlock!!.setText(value)
+            R.id.acc_no_block_three -> edtTxtAccountNoThirdBlock!!.setText(value)
+            R.id.confirm_acc_no_block_one -> edtTxtConfirmAccountNoFirstBlock!!.setText(value)
+            R.id.confirm_acc_no_block_two -> edtTxtConfirmAccountNoSecondBlock!!.setText(value)
+            R.id.confirm_acc_no_block_three -> edtTxtConfirmAccountNoThirdBlock!!.setText(value)
+            else -> {
+            }
+        }
+    }
+    private fun assignTextToEdtTextOnKeyBoardImeAction(value: String, id: Int) {
+        when (id) {
+            R.id.acc_no_block_one -> {
+                edtTxtAccountNoFirstBlock!!.setText(value)
+                edtTxtAccountNoSecondBlock!!.requestFocus()
+            }
+            R.id.acc_no_block_two -> {
+                edtTxtAccountNoSecondBlock!!.setText(value)
+                edtTxtAccountNoThirdBlock!!.requestFocus()
+            }
+            R.id.acc_no_block_three -> edtTxtAccountNoThirdBlock!!.setText(value)
+            R.id.confirm_acc_no_block_one -> {
+                edtTxtConfirmAccountNoFirstBlock!!.setText(value)
+                edtTxtConfirmAccountNoSecondBlock!!.requestFocus()
+            }
+            R.id.confirm_acc_no_block_two -> {
+                edtTxtConfirmAccountNoSecondBlock!!.setText(value)
+                edtTxtConfirmAccountNoSecondBlock!!.requestFocus()
+            }
+            R.id.confirm_acc_no_block_three -> edtTxtConfirmAccountNoThirdBlock!!.setText(value)
+            else -> {
+            }
+        }
+    }
+    override fun onFocusChange(view: View?, hasFocus: Boolean) {
+        val focusChange = "focus_change"
+        if (!hasFocus) {
+            val id: Int = view!!.getId()
+            when (id) {
+                R.id.acc_no_block_one ->
+                    findValueForEditText(edtTxtAccountNoFirstBlock!!.text.toString(), R.id.acc_no_block_one, focusChange)
+                R.id.acc_no_block_two -> {
+                    findValueForEditText(edtTxtAccountNoFirstBlock!!.text.toString(), R.id.acc_no_block_one, focusChange)
+                    findValueForEditText(edtTxtAccountNoSecondBlock!!.text.toString(), R.id.acc_no_block_two, focusChange)
+                }
+                R.id.acc_no_block_three -> {
+                    findValueForEditText(edtTxtAccountNoFirstBlock!!.text.toString(), R.id.acc_no_block_one, focusChange)
+                    findValueForEditText(edtTxtAccountNoSecondBlock!!.text.toString(), R.id.acc_no_block_two, focusChange)
+                    findValueForEditText(edtTxtAccountNoThirdBlock!!.text.toString(), R.id.acc_no_block_three, focusChange)
+                }
+                R.id.confirm_acc_no_block_one -> findValueForEditText(edtTxtConfirmAccountNoFirstBlock!!.text.toString(), R.id.confirm_acc_no_block_one, focusChange)
+                R.id.confirm_acc_no_block_two -> {
+                    findValueForEditText(edtTxtConfirmAccountNoFirstBlock!!.text.toString(), R.id.confirm_acc_no_block_one, focusChange)
+                    findValueForEditText(edtTxtConfirmAccountNoSecondBlock!!.text.toString(), R.id.confirm_acc_no_block_two, focusChange)
+                }
+                R.id.confirm_acc_no_block_three -> {
+                    findValueForEditText(edtTxtConfirmAccountNoFirstBlock!!.text.toString(), R.id.confirm_acc_no_block_one, focusChange)
+                    findValueForEditText(edtTxtConfirmAccountNoSecondBlock!!.text.toString(), R.id.confirm_acc_no_block_two, focusChange)
+                    findValueForEditText(edtTxtConfirmAccountNoThirdBlock!!.text.toString(), R.id.confirm_acc_no_block_three, focusChange)
+                }
+                else -> {
+                }
+            }
+        }
     }
 
     override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-        TODO("Not yet implemented")
+
     }
 
     override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-        TODO("Not yet implemented")
+        try {
+            val id: Int
+            id = currentFocus!!.id
+            changeFocusOnTextFill(id)
+        } catch (e: java.lang.NullPointerException) {
+           // if (IScoreApplication.DEBUG) Log.d("Error", e.toString())
+        }
+    }
+
+    private fun changeFocusOnTextFill(id: Int) {
+
+        when (id) {
+            R.id.acc_no_block_one -> if (edtTxtAccountNoFirstBlock!!.text.toString().length == 3) edtTxtAccountNoSecondBlock!!.requestFocus()
+            R.id.acc_no_block_two -> if (edtTxtAccountNoSecondBlock!!.text.toString().length == 3) edtTxtAccountNoThirdBlock!!.requestFocus()
+            R.id.acc_no_block_three -> if (edtTxtAccountNoThirdBlock!!.text.toString().length == 6) edtTxtConfirmAccountNoFirstBlock!!.requestFocus()
+            R.id.confirm_acc_no_block_one -> if (edtTxtConfirmAccountNoFirstBlock!!.text.toString().length == 3) edtTxtConfirmAccountNoSecondBlock!!.requestFocus()
+            R.id.confirm_acc_no_block_two -> if (edtTxtConfirmAccountNoSecondBlock!!.text.toString().length == 3) edtTxtConfirmAccountNoThirdBlock!!.requestFocus()
+            else -> {
+            }
+        }
     }
 
     override fun afterTextChanged(p0: Editable?) {
-        TODO("Not yet implemented")
+
     }
 
     override fun onRequestPermissionsResult(
@@ -808,8 +956,8 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                                 0
                         )
                         val Token = TokenSP.getString("Token", null)
-                      //  var amount = edtTxtAmount!!.text.toString()
-                       // amount = amount.replace(",", "")
+                        //  var amount = edtTxtAmount!!.text.toString()
+                        // amount = amount.replace(",", "")
                         //requestObject1.put("Reqmode", MscoreApplication.encryptStart("27"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put(
@@ -823,7 +971,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                                 "AccountNo",
                                 MscoreApplication.encryptStart(accno)
                         )
-                       /* requestObject1.put(
+                        /* requestObject1.put(
                                 "AccountNo",
                                 //MscoreApplication.encryptStart(tv_account_no!!.text.toString())
                                 MscoreApplication.encryptStart(accountNumber)
@@ -842,7 +990,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                                 requestObject1.put(
                                         "ReceiverAccountNo", MscoreApplication.encryptStart(recieverAccountNo))*/
                         val rtype: String = spn_account_type!!.getSelectedItem().toString()
-                       /* var type = ""
+                        /* var type = ""
 
                         if (rtype == "Savings bank") {
                             type = "DDSB"
@@ -851,7 +999,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                                 "ReceiverModule", MscoreApplication.encryptStart(type)
                         )
                         requestObject1.put("QRCode", MscoreApplication.encryptStart(""))
-                      //  var remark = edt_txt_remark!!.text.toString()
+                        //  var remark = edt_txt_remark!!.text.toString()
                         requestObject1.put("Remark", MscoreApplication.encryptStart(remark))
                         requestObject1.put(
                                 "BankKey", MscoreApplication.encryptStart(
@@ -897,7 +1045,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                                     var reacc = jsonobj2.getString("RecAccNumber")
                                     Log.i("Result", result)
                                     alertPopup(refid, amt, reacc, result)
-                                   // alertMessage1("", result)
+                                    // alertMessage1("", result)
                                     // Toast.makeText(applicationContext, result, Toast.LENGTH_LONG)
                                     //  .show()
 
@@ -1326,7 +1474,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
 //        tvtime.text = "Time : $currentTime"
 
         val currentTime = Calendar.getInstance().time
-        Log.e("TAG","currentTime  "+currentTime)
+        Log.e("TAG", "currentTime  " + currentTime)
         val date: DateFormat = SimpleDateFormat("dd-MM-yyyy")
         val time: DateFormat = SimpleDateFormat("HH:mm")
 //                                    val date: DateFormat = SimpleDateFormat("dd-MM-yyyy HH:mm a")
@@ -1517,4 +1665,5 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
         }
         return bmpUri
     }
+
 }
