@@ -1,6 +1,5 @@
 package com.perfect.nbfcmscore.Fragment
 
-import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.ProgressDialog
@@ -16,7 +15,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
-import com.perfect.nbfcmscore.Activity.ViewStatementActivity
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
@@ -508,9 +506,9 @@ class StatementFragment : Fragment() , View.OnClickListener{
                                     Log.e(TAG,"filename2  51623   "+filename2)
 
                                     if (docType.equals("1")){
-                                        val i = Intent(activity!!, ViewStatementActivity::class.java)
+                                        /*val i = Intent(activity!!, ViewStatementActivity::class.java)
                                         i.putExtra("docx", filename2)
-                                        startActivity(i)
+                                        startActivity(i)*/
                                     }
 
                                     if (docType.equals("2")){
