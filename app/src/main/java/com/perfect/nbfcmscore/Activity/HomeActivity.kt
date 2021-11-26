@@ -611,7 +611,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     for (i in 0 until jresult!!.length()) {
                                         try {
                                             val json = jresult!!.getJSONObject(i)
-                                            var s = "https://202.164.150.65:14262/NbfcAndroidAPI" + json.getString("ImagePath")
+
+                                            val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165,0)
+                                           // var s = "https://202.164.150.65:14262/NbfcAndroidAPI" + json.getString("ImagePath")
+                                            var s = ImageURLSP.getString("ImageURL",null) + json.getString("ImagePath")
+                                            Log.e(TAG,"s    618    "+s)
 
 
                                             XMENArray!!.add(s)
