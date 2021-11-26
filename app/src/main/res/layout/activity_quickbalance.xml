@@ -41,331 +41,233 @@
 
         </LinearLayout>
     </RelativeLayout>
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardview2"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="0dp"
-        app:cardMaxElevation="0dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/imlogo"
+            android:layout_width="250dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center_horizontal"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/main_bglight"
+            android:background="@drawable/bg_light_grey2"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-<!--                android:background="#E1F5FB"-->
+
+                <TextView
+                    android:id="@+id/txtv_acnttype"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:layout_marginTop="2dp"
+                    android:paddingLeft="10dp"
+                    android:text="Account Type : "
+                    android:textColor="@color/bottom_line1"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
-                        android:id="@+id/txtv_acnttype"
+                        android:id="@+id/Account"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.9"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="10dp"
-                        android:textColor="@color/passtext"
-                        android:drawablePadding="10dp"
-                        android:text="Account Type"/>
-
+                        android:layout_marginRight="2dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_weight="0.8"
+                        android:background="@android:color/transparent"
+                        android:gravity="left"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_light_grey2"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/Account"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="2dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_weight="0.8"
-                    android:background="@android:color/transparent"
-                    android:gravity="left"
-                    android:text=""
-                    android:textColor="@color/black"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
-                <TextView
                     android:id="@+id/txtvaccno"
-                    android:layout_width="match_parent"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/passtext"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_gravity="left"
-                    android:gravity="left"
-                    android:text="Account Number"/>
+                    android:gravity="start"
+                    android:layout_marginTop="2dp"
+                    android:paddingLeft="10dp"
+                    android:text="Account Number: "
+                    android:textColor="@color/bottom_line1"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.8"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="10dp">
+                    android:orientation="horizontal">
+
+
                     <Spinner
                         android:id="@+id/spnAccountNum"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="2dp"
-                        android:theme="@style/Spinner"
+                        android:layout_gravity="start"
+                        android:gravity="start"
                         android:popupBackground="#cccccc"
-                        android:spinnerMode="dialog"/>
-                    <!--   <ImageView
-                           android:layout_width="wrap_content"
-                           android:layout_weight="0.05"
-                           android:background="@drawable/ic_arrow_right"
-                           android:layout_height="match_parent"
-                           android:layout_marginRight="5dp"/>-->
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:spinnerMode="dialog"
+                        android:backgroundTint="@color/blue"/>
 
                 </LinearLayout>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="10dp"
-                    android:visibility="gone"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:layout_margin="5dp"
-                    android:text="Last Login : 12-10-2021 9:30 am"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:visibility="invisible"
-                    android:background="@color/greylight"/>
-
-
             </LinearLayout>
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/ll_balance1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        app:cardCornerRadius="10dp"
-        android:visibility="visible"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"/>
-        <LinearLayout
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/ll_balance1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="3dp"
-            android:background="@color/passavailbal"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/wallet"></ImageView>
-            </LinearLayout>
-            <LinearLayout
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            app:cardCornerRadius="10dp"
+            android:visibility="visible"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp">
+            <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="0.9"
-                android:gravity="center_vertical"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/txtv_availbal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:textColor="@color/white"
-                        android:drawablePadding="10dp"
-                        android:textStyle="bold"
-                        android:textSize="16dp"
-                        android:text="Available Balance"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:textStyle="bold"
-                        android:textSize="16dp"
-                        android:textColor="@color/white"
-                        android:drawablePadding="10dp"
-                        android:text=" : "/>
-
-                    <TextView
-                        android:id="@+id/available_balance"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:gravity="left"
-                        android:text=""
-                        android:textStyle="bold"
-                        android:textSize="16dp"
-                        android:layout_gravity="center_horizontal"
-                        android:textColor="@color/white"
-                        android:drawablePadding="10dp" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_balance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="visible"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:layout_marginRight="10dp"
-                        android:textSize="11dp"
-                        android:layout_gravity="left"
-                        android:gravity="left"
-                        android:text="Unclear Amount"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:textSize="11dp"
-                        android:textColor="@color/white"
-                        android:text=" : "/>
-                    <TextView
-                        android:id="@+id/unclear_balance"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:visibility="visible"
-                        android:layout_marginLeft="10dp"
-                        android:textSize="11dp"
-                        android:layout_gravity="center"
-                        android:gravity="left"
-                        android:textColor="@color/white"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-
-
-
-
-        </LinearLayout>
-
-
-    </androidx.cardview.widget.CardView>
-   <!-- <TextView
-        android:id="@+id/tv_list_days"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="**Listing Data"
-        android:textColor="@color/red"
-        android:textStyle="italic|bold"
-        android:visibility="gone"
-        android:textSize="15sp"
-        android:padding="10dp"/>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        app:cardCornerRadius="10dp"
-        android:layout_marginBottom="20dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <RelativeLayout
-                android:layout_width="fill_parent"
+                android:background="@color/white"/>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingBottom="4dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:visibility="gone"
-                android:paddingTop="4dp">
+                android:padding="3dp"
+                android:background="@drawable/main_bglight"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:gravity="start"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txtLastUpdatedAt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:gravity="start"
-                    android:padding="5dp"
-                    android:text=""
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    tools:ignore="RelativeOverlap" />
-
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="gone">
-                <ExpandableListView
-                    android:id="@+id/listViewDateAccountDetails"
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:background="#CCCCCC"
-                    android:childDivider="@android:color/white"
-                    android:divider="@android:color/transparent"
-                    android:dividerHeight="0dp"
-                    android:visibility="gone"
-                    android:paddingBottom="12dp"/>
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_passbook"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-                <TextView
-                    android:id="@+id/empty_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_margin="20dp"
+                <LinearLayout
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
                     android:gravity="center"
-                    android:textColor="@color/blue"
-                    android:textSize="16sp"
-                    />
-            </RelativeLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>-->
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/wallet"></ImageView>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtv_availbal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:textColor="@color/passtext"
+                            android:drawablePadding="10dp"
+                            android:textStyle="bold"
+                            android:textSize="16dp"
+                            android:text="Available Balance"/>
+                        <TextView
+                            android:id="@+id/available_balance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:gravity="left"
+                            android:text=""
+                            android:textStyle="bold"
+                            android:textSize="40dp"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="@color/passtext"
+                            android:drawablePadding="10dp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_balance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/passtext"
+                            android:layout_marginRight="10dp"
+                            android:textSize="14dp"
+                            android:layout_gravity="left"
+                            android:gravity="left"
+                            android:text="Unclear Amount"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textSize="14dp"
+                            android:textColor="@color/passtext"
+                            android:text=" : "/>
+                        <TextView
+                            android:id="@+id/unclear_balance"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:visibility="visible"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="14dp"
+                            android:layout_gravity="center"
+                            android:gravity="left"
+                            android:textColor="@color/passtext"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
 </LinearLayout>

@@ -83,7 +83,7 @@ class AccountDetailsActivity : AppCompatActivity() , View.OnClickListener {
 
         tvaccounttype!!.setText(LoanType)
         tvaccountno!!.setText(AccountNumber)
-        tvbal!!.setText(Balance)
+        tvbal!!.setText("₹ "+ Config.getDecimelFormate(Balance.toDouble()))
 
 
         val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
