@@ -3,6 +3,7 @@ package com.perfect.nbfcmscore.Activity
 import android.R.attr
 import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
@@ -10,6 +11,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -48,9 +50,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.*
 import com.github.mikephil.charting.components.XAxis
-
-
-
+import lecho.lib.hellocharts.gesture.ZoomType
+import lecho.lib.hellocharts.model.Axis
+import lecho.lib.hellocharts.model.Column
+import lecho.lib.hellocharts.model.ColumnChartData
+import lecho.lib.hellocharts.model.SubcolumnValue
+import lecho.lib.hellocharts.view.ColumnChartView
+import org.json.JSONException
 
 
 class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValueSelectedListener {
@@ -69,29 +75,40 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
     var linechart1: LineChart? = null
     var linechart: LineChart? = null
     val color1 = intArrayOf(
-            R.color.color_asset1,
-            R.color.color_asset2,
-            R.color.color_asset3,
-            R.color.color_asset4,
-            R.color.color_asset5,
-            R.color.color_asset6,
-            R.color.color_asset7,
-            R.color.color_asset8,
-            R.color.color_asset9,
-            R.color.color_asset10
+            R.color.dashboard1,
+            R.color.dashboard2,
+            R.color.dashboard3,
+            R.color.dashboard4,
+            R.color.dashboard5,
+            R.color.dashboard6,
+            R.color.dashboard7,
+            R.color.dashboard8,
+            R.color.dashboard9,
+            R.color.dashboard10,
+            R.color.dashboard11,
+            R.color.dashboard12,
+            R.color.dashboard13,
+            R.color.dashboard14,
+            R.color.dashboard15
+
     )
 
     val color2 = intArrayOf(
-        R.color.color_liability1,
-        R.color.color_liability2,
-        R.color.color_liability3,
-        R.color.color_liability4,
-        R.color.color_liability5,
-        R.color.color_liability6,
-        R.color.color_liability7,
-        R.color.color_liability8,
-        R.color.color_liability9,
-        R.color.color_liability10
+        R.color.dashboard15,
+        R.color.dashboard14,
+        R.color.dashboard13,
+        R.color.dashboard12,
+        R.color.dashboard11,
+        R.color.dashboard10,
+        R.color.dashboard9,
+        R.color.dashboard8,
+        R.color.dashboard7,
+        R.color.dashboard6,
+        R.color.dashboard5,
+        R.color.dashboard4,
+        R.color.dashboard3,
+        R.color.dashboard2,
+        R.color.dashboard1,
     )
 
     val color3 = intArrayOf(
@@ -129,6 +146,15 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
 
     var dashTextSize : Float = 10f
 
+    var columnChartView: ColumnChartView? = null
+    var data: ColumnChartData? = null
+    var txtvDate: TextView? = null
+
+    var imPayment1: ImageView? = null
+    var imPayment2: ImageView? = null
+    var tvPayment1: TextView? = null
+    var tvPayment2: TextView? = null
+
 
 
 
@@ -145,7 +171,7 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
 
         getDashboardassetlist()
         getDashboardliabilitylist()
-     //   getDashboardpaymentandreceiptlist()
+        getDashboardpaymentandreceiptlist()
 
 
 
@@ -327,7 +353,7 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                                     pieDataSetAsset!!.setColors(color1, applicationContext)
                                     pieDataSetAsset!!.setValueTextSize(dashTextSize); // <- here
                                     pieDataSetAsset!!.setDrawValues(true);  // entries enable/disable
-                                    pieDataSetAsset!!.setValueTextColor(ContextCompat.getColor(this@DashboardActivity,R.color.white));
+                                    pieDataSetAsset!!.setValueTextColor(ContextCompat.getColor(this@DashboardActivity,R.color.black));
 
                                     piechartAsset!!.data = pieDataAsset
                                     piechartAsset!!.setDescription("")
@@ -418,6 +444,15 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
         imgBack = findViewById<ImageView>(R.id.imgBack)
         imgBack!!.setOnClickListener(this)
         linechart1 = findViewById(R.id.linechart1);
+
+        columnChartView = findViewById(R.id.chart)
+        txtvDate = findViewById(R.id.txtvDate)
+
+        imPayment1 = findViewById(R.id.imPayment1)
+        imPayment2 = findViewById(R.id.imPayment2)
+        tvPayment1 = findViewById(R.id.tvPayment1)
+        tvPayment2 = findViewById(R.id.tvPayment2)
+
 
      //   rvOverduelist = findViewById<RecyclerView>(R.id.rvOverduelist)
 
@@ -652,7 +687,7 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                                     pieDataSetLiability!!.setColors(color2, applicationContext)
                                     pieDataSetLiability!!.setValueTextSize(dashTextSize); // <- here
                                     pieDataSetLiability!!.setDrawValues(true);  // entries enable/disable
-                                    pieDataSetLiability!!.setValueTextColor(ContextCompat.getColor(this@DashboardActivity,R.color.white));
+                                    pieDataSetLiability!!.setValueTextColor(ContextCompat.getColor(this@DashboardActivity,R.color.black));
 
                                     piechartLiability!!.data = pieDataLiability
                                     piechartLiability!!.setDescription("")
@@ -741,6 +776,12 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
         }
     }
     private fun getDashboardpaymentandreceiptlist() {
+
+        imPayment1!!.setBackgroundColor(resources.getColor(R.color.dashboard16))
+        tvPayment1!!.setText("Payment")
+        imPayment2!!.setBackgroundColor(resources.getColor(R.color.dashboard17))
+        tvPayment2!!.setText("Receipt")
+
         val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
@@ -824,6 +865,63 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                             try {
                                 //     progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
+//                                val jObject = JSONObject("{\n" +
+//                                        "    \"DashBoardDataPaymentAndReceiptDetailsIfo\": {\n" +
+//                                        "        \"DashBoardDataPaymentDetails\": [\n" +
+//                                        "            {\n" +
+//                                        "                \"Month\": \"Jul 21\",\n" +
+//                                        "                \"Amount\": 16555.00,\n" +
+//                                        "                \"TransType\": \"P\"\n" +
+//                                        "            },\n" +
+//                                        "            {\n" +
+//                                        "                \"Month\": \"Jul 21\",\n" +
+//                                        "                \"Amount\": 22688.00,\n" +
+//                                        "                \"TransType\": \"R\"\n" +
+//                                        "            },\n" +
+//                                        "            {\n" +
+//                                        "                \"Month\": \"Aug 21\",\n" +
+//                                        "                \"Amount\": 10965.00,\n" +
+//                                        "                \"TransType\": \"P\"\n" +
+//                                        "            },\n" +
+//                                        "            {\n" +
+//                                        "                \"Month\": \"Aug 21\",\n" +
+//                                        "                \"Amount\": 11068.00,\n" +
+//                                        "                \"TransType\": \"R\"\n" +
+//                                        "            },\n" +
+//                                        "            {\n" +
+//                                        "                \"Month\": \"Sep 21\",\n" +
+//                                        "                \"Amount\": 49822.00,\n" +
+//                                        "                \"TransType\": \"P\"\n" +
+//                                        "            },\n" +
+//                                        "            {\n" +
+//                                        "                \"Month\": \"Sep 21\",\n" +
+//                                        "                \"Amount\": 9110.00,\n" +
+//                                        "                \"TransType\": \"R\"\n" +
+//                                        "            },\n" +
+//                                        "            {\n" +
+//                                        "                \"Month\": \"Oct 21\",\n" +
+//                                        "                \"Amount\": 1340.00,\n" +
+//                                        "                \"TransType\": \"P\"\n" +
+//                                        "            },\n" +
+//                                        "            {\n" +
+//                                        "                \"Month\": \"Nov 21\",\n" +
+//                                        "                \"Amount\": 120.00,\n" +
+//                                        "                \"TransType\": \"P\"\n" +
+//                                        "            },\n" +
+//                                        "            {\n" +
+//                                        "                \"Month\": \"Nov 21\",\n" +
+//                                        "                \"Amount\": 100.00,\n" +
+//                                        "                \"TransType\": \"R\"\n" +
+//                                        "            }\n" +
+//                                        "        ],\n" +
+//                                        "        \"StartDate\": \"26-05-2021\",\n" +
+//                                        "        \"EndDate\": \"26-11-2021\",\n" +
+//                                        "        \"ResponseCode\": \"0\",\n" +
+//                                        "        \"ResponseMessage\": \"Transaction Verified\"\n" +
+//                                        "    },\n" +
+//                                        "    \"StatusCode\": 0,\n" +
+//                                        "    \"EXMessage\": null\n" +
+//                                        "}")
                                 Log.i("Response-payment", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
@@ -871,53 +969,69 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
 //                                    dataset1.setDrawFilled(true);
 //                                    //  lineChart.setDescription(&quot;Description&quot;);
 
-                                    entriesPayment = ArrayList()
+                                        //  Hide 26.11.2021
 
-                                    PieEntryLabelsPayment = ArrayList<String>()
-                                    for (x in 0 until jresult3!!.length()){
-                                        val jsonobject = jresult3!!.getJSONObject(x)
+//                                    entriesPayment = ArrayList()
+//
+//                                    PieEntryLabelsPayment = ArrayList<String>()
+//                                    for (x in 0 until jresult3!!.length()){
+//                                        val jsonobject = jresult3!!.getJSONObject(x)
+//
+//                                        val str = jsonobject.getString("Amount")
+//                                        val str1 = jsonobject.getString("TransType")
+//                                        if (str1.equals("R")) {
+//                                            status = "Receipt"
+//                                        } else if (str1.equals("P")) {
+//                                            status = "Payment"
+//                                        }
+//
+//                                        entriesPayment!!.add(BarEntry(str.toFloat(), x))
+////                                        PieEntryLabelsPayment!!.add(status.toString());
+//                                        PieEntryLabelsPayment!!.add("");
+//
+//                                    }
+//
+//
+//                                    pieDataSetPayment = PieDataSet(entriesPayment, "")
+//                                    pieDataSetPayment!!.valueFormatter = PercentFormatter()
+//
+//                                    pieDataPayment = PieData(PieEntryLabelsPayment, pieDataSetPayment)
+//
+//                                    pieDataSetPayment!!.setColors(color3, applicationContext)
+//                                    pieDataSetPayment!!.setValueTextSize(dashTextSize); // <- here
+//                                    pieDataSetPayment!!.setDrawValues(true);  // entries enable/disable
+//                                    pieDataSetPayment!!.setValueTextColor(ContextCompat.getColor(this@DashboardActivity,R.color.white));
+//
+//                                    piechartPayment!!.data = pieDataPayment
+//                                    piechartPayment!!.setDescription("")
+//                                    piechartPayment!!.setDrawSliceText(true) //// PieEntryLabels enable/disable
+//
+//                                    // pieChart!!.animateY(1000)
+//                                    piechartPayment!!.animateY(1400, Easing.EasingOption.EaseInOutQuad)
+//
+//                                    val l: Legend = piechartPayment!!.getLegend()
+//                                    l.setEnabled(false);
+//
+//
+//                                    val lLayout = GridLayoutManager(this@DashboardActivity, 2)
+//                                    rvpayment!!.setLayoutManager(lLayout)
+//                                    rvpayment!!.setHasFixedSize(true)
+//                                    val payment_adapter = DashPaymentAdapter(applicationContext!!, jresult3!!)
+//                                    rvpayment!!.adapter = payment_adapter
 
-                                        val str = jsonobject.getString("Amount")
-                                        val str1 = jsonobject.getString("TransType")
-                                        if (str1.equals("R")) {
-                                            status = "Receipt"
-                                        } else if (str1.equals("P")) {
-                                            status = "Payment"
-                                        }
-
-                                        entriesPayment!!.add(BarEntry(str.toFloat(), x))
-//                                        PieEntryLabelsPayment!!.add(status.toString());
-                                        PieEntryLabelsPayment!!.add("");
-
-                                    }
+                                    // 26.11.2021
 
 
-                                    pieDataSetPayment = PieDataSet(entriesPayment, "")
-                                    pieDataSetPayment!!.valueFormatter = PercentFormatter()
 
-                                    pieDataPayment = PieData(PieEntryLabelsPayment, pieDataSetPayment)
+                                    val jobj = jObject.getJSONObject("DashBoardDataPaymentAndReceiptDetailsIfo")
+                                    val jcolumnDataArray = jobj.getJSONArray("DashBoardDataPaymentDetails")
 
-                                    pieDataSetPayment!!.setColors(color3, applicationContext)
-                                    pieDataSetPayment!!.setValueTextSize(dashTextSize); // <- here
-                                    pieDataSetPayment!!.setDrawValues(true);  // entries enable/disable
-                                    pieDataSetPayment!!.setValueTextColor(ContextCompat.getColor(this@DashboardActivity,R.color.white));
-
-                                    piechartPayment!!.data = pieDataPayment
-                                    piechartPayment!!.setDescription("")
-                                    piechartPayment!!.setDrawSliceText(true) //// PieEntryLabels enable/disable
-
-                                    // pieChart!!.animateY(1000)
-                                    piechartPayment!!.animateY(1400, Easing.EasingOption.EaseInOutQuad)
-
-                                    val l: Legend = piechartPayment!!.getLegend()
-                                    l.setEnabled(false);
-
-
-                                    val lLayout = GridLayoutManager(this@DashboardActivity, 2)
-                                    rvpayment!!.setLayoutManager(lLayout)
-                                    rvpayment!!.setHasFixedSize(true)
-                                    val payment_adapter = DashPaymentAdapter(applicationContext!!, jresult3!!)
-                                    rvpayment!!.adapter = payment_adapter
+                                    val startDate = jobj.getString("StartDate")
+                                    val endDate = jobj.getString("EndDate")
+                                    txtvDate!!.setText("Data From $startDate to $endDate")
+                                    columnChartView!!.columnChartData =
+                                        generateColumnChartData(jcolumnDataArray)
+                                    columnChartView!!.zoomType = ZoomType.HORIZONTAL
 
 
 
@@ -1006,4 +1120,63 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
     override fun onNothingSelected() {
 
     }
+
+
+
+    private fun generateColumnChartData(jvalues: JSONArray): ColumnChartData? {
+        try {
+            if (jvalues.length() != 0) {
+                val columns: MutableList<Column> = ArrayList()
+                val values: MutableList<SubcolumnValue>
+                values = ArrayList()
+                for (i in 0 until jvalues.length()) {
+                    var qstnArray: JSONObject? = null
+                    qstnArray = jvalues.getJSONObject(i)
+
+
+                    if (qstnArray.getString("TransType") == "P") {
+                        values.add(
+                            SubcolumnValue(
+                                qstnArray.getLong("Amount").toFloat(),
+                                resources.getColor(R.color.dashboard16)
+                            )
+                        )
+                        // values.setLabel("some_label".toCharArray());
+                    } else {
+                        values.add(
+                            SubcolumnValue(
+                                qstnArray.getLong("Amount").toFloat(),
+                                resources.getColor(R.color.dashboard17)
+                            )
+                        )
+                    }
+                }
+
+                Log.e(TAG,"values  1067   "+values)
+
+                columns.add(Column(values))
+                data = ColumnChartData(columns)
+                data!!.setAxisYLeft(
+                    Axis().setName("     ").setHasLines(true).setTextColor(
+                        Color.BLACK
+                    )
+                )
+                //  data.setAxisXBottom(new Axis().setName("").setHasLines(true).setTextColor(Color.BLACK));
+            } else {
+                val builder = AlertDialog.Builder(applicationContext)
+                builder.setMessage("No data found.")
+                    .setCancelable(false)
+                    .setPositiveButton(
+                        "OK"
+                    ) { dialog, id -> dialog.dismiss() }
+                val alert = builder.create()
+                alert.show()
+            }
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+        return data
+    }
+
+
 }
