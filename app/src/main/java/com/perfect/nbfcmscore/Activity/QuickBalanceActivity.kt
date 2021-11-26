@@ -289,11 +289,11 @@ class QuickBalanceActivity : AppCompatActivity(), OnItemSelectedListener,View.On
                     unclear_balance!!.text =
                         "\u20B9 " + Config.getDecimelFormate(json.getDouble("UnclearAmount"))
 //                    unclear_balance!!.setTextColor(Color.RED)
-                    unclear_balance!!.setTextColor(Color.WHITE)
+                   // unclear_balance!!.setTextColor(Color.BLUE)
                 } else {
                     unclear_balance!!.text =
                         "\u20B9 " + Config.getDecimelFormate(json.getDouble("UnclearAmount"))
-                    unclear_balance!!.setTextColor(Color.WHITE)
+                  //  unclear_balance!!.setTextColor(Color.WHITE)
 //                    unclear_balance!!.setTextColor(Color.parseColor("#7E5858"))
                 }
             }

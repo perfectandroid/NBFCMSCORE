@@ -255,6 +255,7 @@
                             android:textSize="14dp"
                             android:layout_gravity="center"
                             android:gravity="left"
+                            android:textStyle="bold"
                             android:textColor="@color/passtext"/>
                     </LinearLayout>
 
