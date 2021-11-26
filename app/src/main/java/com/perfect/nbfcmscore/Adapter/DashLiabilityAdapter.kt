@@ -15,16 +15,21 @@ class DashLiabilityAdapter (internal val mContext: Context, internal val jsInfo:
 
     internal var jsonObject: JSONObject? = null
     val color2 = intArrayOf(
-        R.color.color_liability1,
-        R.color.color_liability2,
-        R.color.color_liability3,
-        R.color.color_liability4,
-        R.color.color_liability5,
-        R.color.color_liability6,
-        R.color.color_liability7,
-        R.color.color_liability8,
-        R.color.color_liability9,
-        R.color.color_liability10
+        R.color.dashboard15,
+        R.color.dashboard14,
+        R.color.dashboard13,
+        R.color.dashboard12,
+        R.color.dashboard11,
+        R.color.dashboard10,
+        R.color.dashboard9,
+        R.color.dashboard8,
+        R.color.dashboard7,
+        R.color.dashboard6,
+        R.color.dashboard5,
+        R.color.dashboard4,
+        R.color.dashboard3,
+        R.color.dashboard2,
+        R.color.dashboard1,
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): RecyclerView.ViewHolder {
