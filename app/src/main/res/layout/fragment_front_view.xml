@@ -58,7 +58,6 @@
             <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/navtopcolour"
                 app:cardCornerRadius="10dp"
                 android:layout_marginTop="15dp"
                 app:cardElevation="5dp"
@@ -67,6 +66,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
+                    android:background="@drawable/main_bglight"
                     android:orientation="vertical">
 <!--                    android:background="@drawable/backcard"-->
 
@@ -129,7 +129,7 @@
                                 android:gravity="start"
                                 android:paddingLeft="5dp"
                                 android:text="Customer Name"
-                                android:textColor="@android:color/white"
+                                android:textColor="@color/colorPrimary"
                                 android:textSize="12dp" />
 
 
@@ -137,7 +137,7 @@
                                 android:id="@+id/txt_custname"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:textColor="@android:color/white"
+                                android:textColor="@color/colorPrimary"
                                 android:paddingLeft="7dp"
                                 android:textAllCaps="false"
                                 android:layout_weight="1"
@@ -160,7 +160,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textColor="@android:color/white"
+                                android:textColor="@color/colorPrimary"
                                 android:text="Customer id"
                                 android:textSize="12dp"                                android:paddingLeft="5dp"
                                 android:layout_weight="2"
@@ -173,7 +173,7 @@
                                 android:id="@+id/txt_custid"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:textColor="@android:color/white"
+                                android:textColor="@color/colorPrimary"
                                 android:paddingLeft="7dp"
                                 android:textAllCaps="false"
                                 android:layout_weight="1"
@@ -203,7 +203,7 @@
                             android:id="@+id/tv_vritualcard"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@android:color/white"
+                            android:textColor="@color/colorPrimary"
                             android:text=""
                             android:textSize="13dp"
                             android:textStyle="normal"
@@ -227,7 +227,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@android:color/white"
+                            android:textColor="@color/colorPrimary"
                             android:text="Electronic use only"
                             android:textSize="14dp"
                             android:textStyle="normal"
