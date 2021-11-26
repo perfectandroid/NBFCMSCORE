@@ -19,6 +19,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
@@ -54,12 +55,14 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
 
     var im_back: ImageView? = null
     var im_home: ImageView? = null
-    var tv_header: TextView? = null
+    //var tv_header: TextView? = null
     var submode: String? = null
     var tv_beneficiaryname: TextView? = null
     var txtTrans: TextView? = null
 
     var tv_beneficiarylist: TextView? = null
+
+    var im_beneficiarylist: ImageView? = null
 
     var tie_accountnumber: TextInputEditText? = null
     var tie_beneficiary: TextInputEditText? = null
@@ -74,6 +77,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
     var  dialogAccount: BottomSheetDialog? = null
     var ll_chk_bene: LinearLayout? = null
     var llhist: LinearLayout? = null
+    var imhist: ImageView? = null
 
     var chk_beneficiary: CheckBox? = null
 
@@ -111,19 +115,19 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
 
         if(intent.getStringExtra("TYPE")!!.equals("IMPS")){
             EftType = "3"
-            tv_beneficiaryname!!.setText("IMPS")
+            tv_beneficiaryname!!.setText("  IMPS")
         }
         if(intent.getStringExtra("TYPE")!!.equals("NEFT")){
             EftType = "2"
-            tv_beneficiaryname!!.setText("NEFT")
+            tv_beneficiaryname!!.setText("  NEFT")
         }
         if(intent.getStringExtra("TYPE")!!.equals("RTGS")){
             EftType = "1"
-            tv_beneficiaryname!!.setText("RTGS")
+            tv_beneficiaryname!!.setText("  RTGS")
         }
 
-        val ID_header = applicationContext.getSharedPreferences(Config.SHARED_PREF122,0)
-        tv_header!!.setText(ID_header.getString("FundTransfer",null))
+       /* val ID_header = applicationContext.getSharedPreferences(Config.SHARED_PREF122,0)
+        tv_header!!.setText(ID_header.getString("FundTransfer",null))*/
 
         val ID_Hist = applicationContext.getSharedPreferences(Config.SHARED_PREF72,0)
         txtTrans!!.setText(ID_Hist.getString("History",null))
@@ -220,10 +224,11 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
 
         im_back = findViewById<ImageView>(R.id.im_back)
         im_home = findViewById<ImageView>(R.id.im_home)
-        tv_header = findViewById<TextView>(R.id.tv_header)
+       // tv_header = findViewById<TextView>(R.id.tv_header)
         tv_beneficiaryname = findViewById<TextView>(R.id.tv_beneficiaryname)
         txtTrans = findViewById<TextView>(R.id.txtTrans)
 
+        im_beneficiarylist = findViewById<ImageView>(R.id.im_beneficiarylist)
         tv_beneficiarylist = findViewById<TextView>(R.id.tv_beneficiarylist)
 
 
@@ -238,15 +243,18 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
         chk_beneficiary = findViewById<CheckBox>(R.id.chk_beneficiary)
         but_pay = findViewById<Button>(R.id.but_pay)
         llhist = findViewById(R.id.llhist)
+        imhist = findViewById(R.id.imhist)
 
     }
 
     private fun setRegister() {
         im_back!!.setOnClickListener(this)
         im_home!!.setOnClickListener(this)
+        imhist!!.setOnClickListener(this)
         llhist!!.setOnClickListener(this)
         tie_accountnumber!!.setOnClickListener(this)
 
+        im_beneficiarylist!!.setOnClickListener(this)
         tv_beneficiarylist!!.setOnClickListener(this)
         but_pay!!.setOnClickListener(this)
 
@@ -286,6 +294,29 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                 }
                 intent.putExtra("submode", submode)
                 startActivity(intent)
+            }
+            R.id.imhist ->{
+                var intent = Intent(this@OtherBankFundTransferActivity, OtherfundTransferHistory::class.java)
+                if(tv_beneficiaryname!!.text.toString().equals("IMPS"))
+                {
+                       submode ="1"
+                }
+                else if(tv_beneficiaryname!!.text.toString().equals("NEFT"))
+                {
+                        submode ="2"
+                }
+                else if(tv_beneficiaryname!!.text.toString().equals("RTGS"))
+                {
+                    submode ="3"
+                }
+                intent.putExtra("submode", submode)
+                startActivity(intent)
+            }
+            R.id.im_beneficiarylist ->{
+
+//            startActivity(Intent(this@OtherBankFundTransferActivity, BeneficiaryListActivity::class.java))
+            val i = Intent(this, BeneficiaryListActivity::class.java)
+            startActivityForResult(i, PICK_BENEFICIARY)
             }
             R.id.tv_beneficiarylist ->{
 
@@ -847,7 +878,8 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
         val edt_txt_otp: EditText = dialog.findViewById<EditText>(R.id.edt_txt_otp)
         val btn_submit: Button = dialog.findViewById<Button>(R.id.btn_submit)
         val btn_resend: Button = dialog.findViewById<Button>(R.id.btn_resend)
-
+        val idImgV1: ImageView = dialog.findViewById<ImageView>(R.id.idImgV1)
+        Glide.with(this).load(R.drawable.otpgif).into(idImgV1)
         btn_submit.setOnClickListener {
             if(edt_txt_otp!!.text.toString(). length == 6){
                 OTPCode = edt_txt_otp!!.text.toString()
