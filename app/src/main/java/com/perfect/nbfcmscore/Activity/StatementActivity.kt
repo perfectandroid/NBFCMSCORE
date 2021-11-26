@@ -52,6 +52,7 @@ import android.webkit.MimeTypeMap
 import android.webkit.URLUtil
 
 import androidx.annotation.RequiresApi
+import com.bumptech.glide.Glide
 import javax.net.ssl.HttpsURLConnection
 import javax.net.ssl.SSLSocketFactory
 
@@ -75,7 +76,7 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
     var txtv_slctperd: TextView? = null
     var txtv_slctcustomdte: TextView? = null
 
-    var tv_view: TextView? = null
+    var tv_reset: TextView? = null
     var tv_header: TextView? = null
     var tv_download: TextView? = null
     var txtv_or: TextView? = null
@@ -109,6 +110,11 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
         setInitialise()
         setRegister()
 
+        val imemilogo: ImageView = findViewById(R.id.imemilogo)
+        Glide.with(this).load(R.drawable.statementgif).into(imemilogo)
+
+
+
         val ID_Statmnt = applicationContext.getSharedPreferences(Config.SHARED_PREF59,0)
         tv_header!!.setText(ID_Statmnt.getString("statement",null))
         val ID_selectperd = applicationContext.getSharedPreferences(Config.SHARED_PREF126,0)
@@ -117,8 +123,8 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
         txtv_or!!.setText(ID_Or.getString("OR",null))
         val ID_customdate = applicationContext.getSharedPreferences(Config.SHARED_PREF128,0)
         txtv_slctcustomdte!!.setText(ID_customdate.getString("Selectacustomdateofyourchoice.",null))
-        val ID_View = applicationContext.getSharedPreferences(Config.SHARED_PREF129,0)
-        tv_view!!.setText(ID_View.getString("View",null))
+        val ID_View = applicationContext.getSharedPreferences(Config.SHARED_PREF189,0)
+        tv_reset!!.setText(ID_View.getString("RESET",null))
          val ID_downld = applicationContext.getSharedPreferences(Config.SHARED_PREF130,0)
         tv_download!!.setText(ID_downld.getString("Download",null))
          val ID_lastmnth = applicationContext.getSharedPreferences(Config.SHARED_PREF131,0)
@@ -164,7 +170,7 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
         edt_fromDate = findViewById<EditText>(R.id.edt_fromDate)
         edt_toDate = findViewById<EditText>(R.id.edt_toDate)
 
-        tv_view = findViewById<TextView>(R.id.tv_view)
+        tv_reset = findViewById<TextView>(R.id.tv_reset)
         tv_download = findViewById<TextView>(R.id.tv_download)
 
     }
@@ -183,7 +189,7 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
         edt_fromDate!!.setOnClickListener(this)
         edt_toDate!!.setOnClickListener(this)
 
-        tv_view!!.setOnClickListener(this)
+        tv_reset!!.setOnClickListener(this)
         tv_download!!.setOnClickListener(this)
 
 
@@ -335,7 +341,7 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
                 Log.e(TAG,"nextMonthLastDay    10612   "+LastDay+"   "+ToDate)
             }
 
-            R.id.tv_view ->{
+            R.id.tv_reset ->{
                 docType = "1"
                 validation1()
             }
@@ -691,9 +697,9 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
                                     Log.e(TAG,"filename2  51623   "+filename2)
 
                                     if (docType.equals("1")){
-                                        val i = Intent(this@StatementActivity, ViewStatementActivity::class.java)
+                                        /*val i = Intent(this@StatementActivity, ViewStatementActivity::class.java)
                                         i.putExtra("docx", filename2)
-                                        startActivity(i)
+                                        startActivity(i)*/
                                     }
 
                                     if (docType.equals("2")){

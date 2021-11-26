@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Adapter.PassbookTranscationListAdapter
@@ -70,6 +71,8 @@ class QuickBalanceActivity : AppCompatActivity(), OnItemSelectedListener,View.On
         txtv_availbal!!.setText(ID_availbal.getString("AvailableBalance",null))
 
 
+        val imlogo: ImageView = findViewById(R.id.imlogo)
+        Glide.with(this).load(R.drawable.quickbalgif).into(imlogo)
 
         getAccList()
     }
@@ -194,7 +197,7 @@ class QuickBalanceActivity : AppCompatActivity(), OnItemSelectedListener,View.On
                                     }
                                     spnAccountNum!!.adapter = ArrayAdapter(
                                             this@QuickBalanceActivity,
-                                            android.R.layout.simple_spinner_dropdown_item, arrayList1
+                                            R.layout.simple_spinner_item, arrayList1
                                     )
 
 
@@ -286,11 +289,11 @@ class QuickBalanceActivity : AppCompatActivity(), OnItemSelectedListener,View.On
                     unclear_balance!!.text =
                         "\u20B9 " + Config.getDecimelFormate(json.getDouble("UnclearAmount"))
 //                    unclear_balance!!.setTextColor(Color.RED)
-                    unclear_balance!!.setTextColor(Color.WHITE)
+                   // unclear_balance!!.setTextColor(Color.BLUE)
                 } else {
                     unclear_balance!!.text =
                         "\u20B9 " + Config.getDecimelFormate(json.getDouble("UnclearAmount"))
-                    unclear_balance!!.setTextColor(Color.WHITE)
+                  //  unclear_balance!!.setTextColor(Color.WHITE)
 //                    unclear_balance!!.setTextColor(Color.parseColor("#7E5858"))
                 }
             }

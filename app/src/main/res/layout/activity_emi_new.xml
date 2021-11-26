@@ -76,8 +76,8 @@
                             android:layout_height="match_parent"
                             android:layout_marginTop="?attr/actionBarSize"
                             android:orientation="vertical"
-                            android:paddingLeft="20dp"
-                            android:paddingRight="20dp">
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
 
 
                             <ImageView
@@ -90,9 +90,9 @@
                                 android:id="@+id/rltv_principal"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:layout_marginLeft="20dp"
+                                android:layout_marginLeft="5dp"
                                 android:layout_marginTop="20dp"
-                                android:layout_marginRight="20dp"
+                                android:layout_marginRight="5dp"
                                 android:background="@drawable/bg_light_grey2"
                                 android:orientation="horizontal"
                                 android:padding="5dp">
@@ -124,9 +124,9 @@
                                 android:id="@+id/rltv_interest"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:layout_marginLeft="20dp"
+                                android:layout_marginLeft="5dp"
                                 android:layout_marginTop="10dp"
-                                android:layout_marginRight="20dp"
+                                android:layout_marginRight="5dp"
                                 android:background="@drawable/bg_light_grey2"
                                 android:orientation="horizontal"
                                 android:padding="5dp">
@@ -158,9 +158,9 @@
                                 android:id="@+id/rltv_years"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:layout_marginLeft="20dp"
+                                android:layout_marginLeft="5dp"
                                 android:layout_marginTop="10dp"
-                                android:layout_marginRight="20dp"
+                                android:layout_marginRight="5dp"
                                 android:background="@drawable/bg_light_grey2"
                                 android:orientation="horizontal"
                                 android:padding="5dp">
@@ -191,9 +191,9 @@
                             <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:layout_marginLeft="20dp"
+                                android:layout_marginLeft="5dp"
                                 android:layout_marginTop="10dp"
-                                android:layout_marginRight="20dp"
+                                android:layout_marginRight="5dp"
                                 android:background="@drawable/bg_light_grey2"
                                 android:orientation="vertical"
                                 android:padding="5dp">

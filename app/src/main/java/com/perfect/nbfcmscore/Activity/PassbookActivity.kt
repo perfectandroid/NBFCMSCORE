@@ -5,6 +5,8 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -196,9 +198,9 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
 
 
                                                 getPassBookAccountStatement(
-                                                        json.getString("FK_Account"),
-                                                        json.getString("SubModule"),
-                                                        noofdayss
+                                                    json.getString("FK_Account"),
+                                                    json.getString("SubModule"),
+                                                    noofdays
                                                 )
 
                                             }
@@ -272,13 +274,13 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                                             rv_passbook!!.visibility = View.GONE
                                         }
 
-                                        Account!!.text = json.getString("AccountType")
-                                        getPassBookAccountStatement(
+                                            Account!!.text = json.getString("AccountType")
+                                            getPassBookAccountStatement(
                                                 json.getString("FK_Account"),
                                                 json.getString("SubModule"),
-                                                noofdays.toString()
-                                        )
-                                        //  }
+                                                noofdays
+                                            )
+                                      //  }
                                     }
 
 //                                    act_account!!.addTextChangedListener(object : TextWatcher {
@@ -412,14 +414,14 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
             getPassBookAccountStatement(
                     json.getString("FK_Account"),
                     json.getString("SubModule"),
-                    noofdays.toString()
+                    noofdays
             )
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
-    private fun getPassBookAccountStatement(fkaccount: String, submodule: String, noofdays: String?) {
+    private fun getPassBookAccountStatement(fkaccount: String, submodule: String, noofdays: Int) {
 
         val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurl = baseurlSP.getString("baseurl", null)
@@ -617,13 +619,13 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
 
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.imgBack -> {
+            R.id.imgBack ->{
                 finish()
             }
-            R.id.imgHome -> {
+            R.id.imgHome ->{
                 startActivity(Intent(this@PassbookActivity, HomeActivity::class.java))
             }
-            R.id.act_account -> {
+            R.id.act_account ->{
                 act_account!!.showDropDown()
             }
         }

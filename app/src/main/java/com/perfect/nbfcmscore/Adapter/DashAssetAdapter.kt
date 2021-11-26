@@ -19,16 +19,21 @@ class DashAssetAdapter(internal val mContext: Context, internal val jsInfo: JSON
 
     internal var jsonObject: JSONObject? = null
     val color1 = intArrayOf(
-        R.color.color_asset1,
-        R.color.color_asset2,
-        R.color.color_asset3,
-        R.color.color_asset4,
-        R.color.color_asset5,
-        R.color.color_asset6,
-        R.color.color_asset7,
-        R.color.color_asset8,
-        R.color.color_asset9,
-        R.color.color_asset10
+        R.color.dashboard1,
+        R.color.dashboard2,
+        R.color.dashboard3,
+        R.color.dashboard4,
+        R.color.dashboard5,
+        R.color.dashboard6,
+        R.color.dashboard7,
+        R.color.dashboard8,
+        R.color.dashboard9,
+        R.color.dashboard10,
+        R.color.dashboard11,
+        R.color.dashboard12,
+        R.color.dashboard13,
+        R.color.dashboard14,
+        R.color.dashboard15
 
     )
 

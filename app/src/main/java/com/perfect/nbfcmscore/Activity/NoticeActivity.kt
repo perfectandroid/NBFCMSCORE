@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
@@ -30,6 +31,7 @@ class NoticeActivity : AppCompatActivity() , View.OnClickListener {
 
     private var rv_notice: RecyclerView? = null
 
+    var ll_noice: LinearLayout? = null
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +39,7 @@ class NoticeActivity : AppCompatActivity() , View.OnClickListener {
         setContentView(R.layout.activity_notice)
 
         rv_notice  = findViewById<View>(R.id.rv_notice) as RecyclerView?
+        ll_noice = findViewById<LinearLayout>(R.id.ll_noice)
         imgBack = findViewById<ImageView>(R.id.imgBack)
         imgBack!!.setOnClickListener(this)
         imgHome = findViewById<ImageView>(R.id.imgHome)
@@ -120,7 +123,7 @@ class NoticeActivity : AppCompatActivity() , View.OnClickListener {
                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 if (jObject.getString("StatusCode") == "0") {
-
+                                    ll_noice!!.visibility=View.VISIBLE
                                     val jobjt = jObject.getJSONObject("NoticePostingInfo")
                                     val jarray =
                                         jobjt.getJSONArray("NoticePostingDetailsList")
@@ -130,6 +133,8 @@ class NoticeActivity : AppCompatActivity() , View.OnClickListener {
                                     rv_notice!!.adapter = obj_adapter
 
                                 } else {
+                                    ll_noice!!.visibility=View.GONE
+
                                     val builder = AlertDialog.Builder(
                                         this@NoticeActivity,
                                         R.style.MyDialogTheme

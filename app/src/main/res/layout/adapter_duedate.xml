@@ -124,7 +124,7 @@
                 android:layout_weight="4"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
-                android:tint="@color/colorPrimary"
+                android:tint="@color/navbottompcolour"
                 android:src="@drawable/addreminder"
                 tools:ignore="UseAppTint" />
 
