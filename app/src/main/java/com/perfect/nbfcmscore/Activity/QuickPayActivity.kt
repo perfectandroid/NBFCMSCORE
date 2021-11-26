@@ -119,8 +119,8 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
         val Makepaymntsp = applicationContext.getSharedPreferences(Config.SHARED_PREF142, 0)
         mBtnSubmit!!.setText(Makepaymntsp.getString("MAKEPAYMENT", null))
 
-        val Fundtransfrsp = applicationContext.getSharedPreferences(Config.SHARED_PREF122, 0)
-        tv_header!!.setText(Fundtransfrsp.getString("FundTransfer", null))
+        val Fundtransfrsp = applicationContext.getSharedPreferences(Config.SHARED_PREF65, 0)
+        tv_header!!.setText(Fundtransfrsp.getString("QuickPay", null))
 
 
 

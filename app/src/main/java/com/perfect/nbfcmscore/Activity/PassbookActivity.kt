@@ -62,9 +62,9 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_passbook)
         setRegViews()
-        val ID_Passbk = applicationContext.getSharedPreferences(Config.SHARED_PREF51,0)
-        tv_mycart!!.setText(ID_Passbk.getString("passbook",null))
-
+        val ID_Passbk = applicationContext.getSharedPreferences(Config.SHARED_PREF51, 0)
+        tv_mycart!!.setText(ID_Passbk.getString("passbook", null))
+        tv_list_days!!.visibility=View.VISIBLE
 
         getAccList()
     }
@@ -182,9 +182,21 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                                     for (i in 0 until jresult!!.length()) {
                                         try {
                                             val json = jresult!!.getJSONObject(i)
-                                            if(i == 0){
+                                            if (i == 0) {
                                                 act_account!!.setText(json.getString("AccountNumber"))
                                                 Account!!.setText(json.getString("AccountType"))
+                                                val noofdays1 = applicationContext.getSharedPreferences(Config.SHARED_PREF21, 0)
+                                                var noofdayss=noofdays1.getString("updateDays", null)
+                                                if (!noofdayss.equals(null))
+                                                {
+                                                    tv_list_days!!.text = "**Listing Data For Past $noofdayss Days.\nYou Can Change It From Settings."
+                                                }
+                                                if (noofdayss.equals(null))
+                                                {
+                                                    tv_list_days!!.text = "**Listing Data For Past 30 Days.\nYou Can Change It From Settings."
+                                                }
+
+
                                                 getPassBookAccountStatement(
                                                     json.getString("FK_Account"),
                                                     json.getString("SubModule"),
@@ -203,40 +215,64 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                                     )
 
                                     val adapter = ArrayAdapter(this@PassbookActivity,
-                                        android.R.layout.simple_list_item_1, arrayList1)
+                                            android.R.layout.simple_list_item_1, arrayList1)
                                     act_account!!.setAdapter(adapter)
 //                                    act_district!!.showDropDown()
-                                    act_account!!.threshold =1
+                                    val json: JSONObject = jresult!!.getJSONObject(0)
+                                    if (json.getString("IsShowBalance").equals("1")) {
+
+                                        //if (isshowbal.equals("1") ) {
+                                        ll_balance!!.visibility = View.VISIBLE
+                                        ll_balance1!!.visibility = View.VISIBLE
+                                        available_balance!!.text =
+                                                "\u20B9 " + Config.getDecimelFormate(json.getDouble("AvailableBalance"))
+                                        if (json.getDouble("UnclearAmount") <= 0) {
+                                            unclear_balance!!.text =
+                                                    "\u20B9 " + Config.getDecimelFormate(json.getDouble("UnclearAmount"))
+                                            unclear_balance!!.setTextColor(Color.WHITE)
+                                        } else {
+                                            unclear_balance!!.text =
+                                                    "\u20B9 " + Config.getDecimelFormate(json.getDouble("UnclearAmount"))
+//                                                    unclear_balance!!.setTextColor(Color.parseColor("#7E5858"))
+                                            unclear_balance!!.setTextColor(Color.WHITE)
+                                        }
+                                    } else {
+                                        ll_balance!!.visibility = View.GONE
+                                        ll_balance1!!.visibility = View.GONE
+                                        tv_list_days!!.visibility = View.GONE
+                                        card_list!!.visibility = View.GONE
+                                        rv_passbook!!.visibility = View.GONE
+                                    }
+                                    act_account!!.threshold = 1
 
                                     act_account!!.setOnItemClickListener { parent, view, position, id ->
 
-                                       // for (i in 0 until jresult!!.length()) {
-                                            val json: JSONObject = jresult!!.getJSONObject(position)
-                                            if (json.getString("IsShowBalance").equals("1")) {
+                                        // for (i in 0 until jresult!!.length()) {
+                                        val json: JSONObject = jresult!!.getJSONObject(position)
+                                        if (json.getString("IsShowBalance").equals("1")) {
 
-                                                //if (isshowbal.equals("1") ) {
-                                                ll_balance!!.visibility = View.VISIBLE
-                                                ll_balance1!!.visibility = View.VISIBLE
-                                                available_balance!!.text =
+                                            //if (isshowbal.equals("1") ) {
+                                            ll_balance!!.visibility = View.VISIBLE
+                                            ll_balance1!!.visibility = View.VISIBLE
+                                            available_balance!!.text =
                                                     "\u20B9 " + Config.getDecimelFormate(json.getDouble("AvailableBalance"))
-                                                if (json.getDouble("UnclearAmount") <= 0) {
-                                                    unclear_balance!!.text =
+                                            if (json.getDouble("UnclearAmount") <= 0) {
+                                                unclear_balance!!.text =
                                                         "\u20B9 " + Config.getDecimelFormate(json.getDouble("UnclearAmount"))
-                                                    //unclear_balance!!.setTextColor(Color.WHITE)
-                                                } else {
-                                                    unclear_balance!!.text =
+                                                unclear_balance!!.setTextColor(Color.WHITE)
+                                            } else {
+                                                unclear_balance!!.text =
                                                         "\u20B9 " + Config.getDecimelFormate(json.getDouble("UnclearAmount"))
 //                                                    unclear_balance!!.setTextColor(Color.parseColor("#7E5858"))
-                                                  //  unclear_balance!!.setTextColor(Color.WHITE)
-                                                }
+                                                unclear_balance!!.setTextColor(Color.WHITE)
                                             }
-                                            else  {
-                                                ll_balance!!.visibility = View.GONE
-                                                ll_balance1!!.visibility = View.GONE
-                                                tv_list_days!!.visibility = View.GONE
-                                                card_list!!.visibility = View.GONE
-                                                rv_passbook!!.visibility = View.GONE
-                                            }
+                                        } else {
+                                            ll_balance!!.visibility = View.GONE
+                                            ll_balance1!!.visibility = View.GONE
+                                            tv_list_days!!.visibility = View.GONE
+                                            card_list!!.visibility = View.GONE
+                                            rv_passbook!!.visibility = View.GONE
+                                        }
 
                                             Account!!.text = json.getString("AccountType")
                                             getPassBookAccountStatement(

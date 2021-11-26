@@ -55,8 +55,8 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
          setRegviews()
          getSenderReceiver()
 
-        val Fundtransfrsp = applicationContext.getSharedPreferences(Config.SHARED_PREF122, 0)
-        tv_title!!.setText(Fundtransfrsp.getString("FundTransfer", null))
+        val Fundtransfrsp = applicationContext.getSharedPreferences(Config.SHARED_PREF139, 0)
+        tv_title!!.setText(Fundtransfrsp.getString("AddNewReceiver", null))
 
         val Sndrnamesp = applicationContext.getSharedPreferences(Config.SHARED_PREF147, 0)
         txtv_sndrname!!.setHint(Sndrnamesp.getString("SenderName", null))

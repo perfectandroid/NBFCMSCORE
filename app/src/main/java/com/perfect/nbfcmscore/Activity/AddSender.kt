@@ -52,8 +52,8 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
 
         setRegViews()
 
-        val Fundtransfrsp = applicationContext.getSharedPreferences(Config.SHARED_PREF122, 0)
-        tv_title!!.setText(Fundtransfrsp.getString("FundTransfer", null))
+        val Fundtransfrsp = applicationContext.getSharedPreferences(Config.SHARED_PREF138, 0)
+        tv_title!!.setText(Fundtransfrsp.getString("AddNewSender", null))
 
         val Firsttimesp = applicationContext.getSharedPreferences(Config.SHARED_PREF143, 0)
         txtv_first_name!!.setHint(Firsttimesp.getString("FirstName", null))
