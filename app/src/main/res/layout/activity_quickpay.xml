@@ -33,7 +33,7 @@
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="15dp"
-                android:text="Fund Transfer"
+                android:text="Quick Pay"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 

@@ -58,6 +58,8 @@ class PassbookActivityMoreoption : AppCompatActivity(), OnItemSelectedListener,V
         setContentView(R.layout.activity_passbookmoreoptn)
         setRegViews()
 
+        tv_list_days!!.visibility=View.VISIBLE
+
         fkaccmore = intent.getStringExtra("fkaccount")
         submodlemore = intent.getStringExtra("submodule")
         Log.i("Checkget",fkaccmore+"\n"+submodlemore)
@@ -68,9 +70,10 @@ class PassbookActivityMoreoption : AppCompatActivity(), OnItemSelectedListener,V
 
         val updateDaysSP = applicationContext.getSharedPreferences(Config.SHARED_PREF21,0)
         if (updateDaysSP.getString("updateDays",null) == null){
-
+            tv_list_days!!.text = "**Listing Data For Past 30 Days.\nYou Can Change It From Settings."
         }else{
             noofdays = (updateDaysSP.getString("updateDays",null))!!.toInt()
+            tv_list_days!!.text = "**Listing Data For Past $noofdays Days.\nYou Can Change It From Settings."
         }
 
 

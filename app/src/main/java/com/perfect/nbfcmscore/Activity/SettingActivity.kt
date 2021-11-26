@@ -82,6 +82,9 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
         val updateMinuteSP = applicationContext.getSharedPreferences(Config.SHARED_PREF23,0)
         val DefaultAccountSP = applicationContext.getSharedPreferences(Config.SHARED_PREF24,0)
 
+
+
+
         Log.e(TAG,"updateDays  69   "+updateDaysSP.getString("updateDays",null))
 
         if (updateDaysSP.getString("updateDays",null) == null && updateHourSP.getString("updateHour",null) == null &&
@@ -223,6 +226,8 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
                 val DefaultAccountEditer = DefaultAccountSP.edit()
                 DefaultAccountEditer.putString("DefaultAccount", upacc)
                 DefaultAccountEditer.commit()
+
+                var nofdays = (updateDaysSP.getString("updateDays", null))
 
                 for (i in 0 until jArrayAccount!!.length()) {
                     val obj: JSONObject = jArrayAccount!!.getJSONObject(i)
