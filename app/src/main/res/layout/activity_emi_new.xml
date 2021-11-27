@@ -47,190 +47,263 @@
             </LinearLayout>
         </RelativeLayout>
 
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/bgcolour">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="5dp"
-                app:cardUseCompatPadding="true">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-
-                    <androidx.core.widget.NestedScrollView
+                    <ScrollView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="?attr/actionBarSize"
-                            android:orientation="vertical"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp">
+                            android:orientation="vertical">
 
 
                             <ImageView
                                 android:id="@+id/imemilogo"
                                 android:layout_width="250dp"
                                 android:layout_height="150dp"
+                                android:visibility="gone"
                                 android:layout_gravity="center_horizontal"/>
 
-                            <RelativeLayout
-                                android:id="@+id/rltv_principal"
+                            <androidx.cardview.widget.CardView
                                 android:layout_width="match_parent"
-                                android:layout_height="50dp"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginTop="20dp"
-                                android:layout_marginRight="5dp"
-                                android:background="@drawable/bg_light_grey2"
-                                android:orientation="horizontal"
-                                android:padding="5dp">
-
-                                <com.google.android.material.textfield.TextInputLayout
-                                    android:id="@+id/til_principal"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginRight="10dp"                       android:padding="5dp"
+                                app:cardBackgroundColor="@color/bg_transfer"
+                                app:cardCornerRadius="5dp">
+                                <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@android:color/transparent"
-                                    android:textColorHint="@color/bottom_line1"
-                                    app:hintTextColor="@color/bottom_line1">
-
-                                    <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/tie_principal"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/bg_light_grey"
+                                    android:orientation="vertical"
+                                    android:padding="5dp">
+                                    <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:background="@android:color/transparent"
-                                        android:hint=""
-                                        android:inputType="numberDecimal"
-                                        android:textColorHint="@color/bottom_line1"
-                                        android:textSize="15dp" />
+                                        android:orientation="vertical">
 
-                                </com.google.android.material.textfield.TextInputLayout>
+                                        <TextView
+                                            android:layout_width="fill_parent"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="start"
+                                            android:layout_marginTop="2dp"
+                                            android:paddingLeft="10dp"
+                                            android:text="Principal Amount : "
+                                            android:textColor="@color/bottom_line1"
+                                            android:textSize="15sp"
+                                            android:textStyle="bold" />
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="10dp"
+                                            android:orientation="horizontal">
 
-                            </RelativeLayout>
+                                                <EditText
+                                                    android:id="@+id/tie_principal"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:inputType="number"
+                                                    android:layout_marginLeft="10dp"
+                                                    android:layout_marginRight="10dp"
+                                                    android:drawableLeft="@drawable/rupee"
+                                                    android:drawablePadding="10dp"
+                                                    android:textStyle="bold"
+                                                    android:textSize="15dp"
+                                                    android:maxLength="13"
+                                                    android:backgroundTint="@color/bottom_line1"/>
 
 
-                            <RelativeLayout
-                                android:id="@+id/rltv_interest"
+
+                                        </LinearLayout>
+                                    </LinearLayout>
+                                </RelativeLayout>
+                            </androidx.cardview.widget.CardView>
+                            <androidx.cardview.widget.CardView
                                 android:layout_width="match_parent"
-                                android:layout_height="50dp"
-                                android:layout_marginLeft="5dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginTop="10dp"                        android:padding="5dp"
+                                app:cardBackgroundColor="@color/bg_transfer"
+                                app:cardCornerRadius="5dp">
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/bg_light_grey"
+                                    android:orientation="vertical"
+                                    android:padding="5dp">
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="fill_parent"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="start"
+                                            android:layout_marginTop="2dp"
+                                            android:paddingLeft="10dp"
+                                            android:text="Interest Rate : "
+                                            android:textColor="@color/bottom_line1"
+                                            android:textSize="15sp"
+                                            android:textStyle="bold" />
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="10dp"
+                                            android:orientation="horizontal">
+
+                                            <EditText
+                                                    android:id="@+id/tie_interest"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:inputType="number"
+                                                    android:layout_marginLeft="10dp"
+                                                    android:layout_marginRight="10dp"
+                                                    android:drawablePadding="10dp"
+                                                    android:textStyle="bold"
+                                                    android:textSize="15dp"
+                                                    android:maxLength="13"
+                                                    android:backgroundTint="@color/bottom_line1"/>
+
+
+                                        </LinearLayout>
+                                    </LinearLayout>
+                                </RelativeLayout>
+                            </androidx.cardview.widget.CardView>
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
                                 android:layout_marginTop="10dp"
-                                android:layout_marginRight="5dp"
-                                android:background="@drawable/bg_light_grey2"
-                                android:orientation="horizontal"
-                                android:padding="5dp">
-
-                                <com.google.android.material.textfield.TextInputLayout
-                                    android:id="@+id/til_interest"
+                                android:padding="5dp"
+                                app:cardBackgroundColor="@color/bg_transfer"
+                                app:cardCornerRadius="5dp">
+                                <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@android:color/transparent"
-                                    android:textColorHint="@color/bottom_line1"
-                                    app:hintTextColor="@color/bottom_line1">
-
-                                    <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/tie_interest"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/bg_light_grey"
+                                    android:orientation="vertical"
+                                    android:padding="5dp">
+                                    <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:background="@android:color/transparent"
-                                        android:hint=""
-                                        android:inputType="numberDecimal"
-                                        android:textColorHint="@color/bottom_line1"
-                                        android:textSize="15dp" />
+                                        android:orientation="vertical">
 
-                                </com.google.android.material.textfield.TextInputLayout>
+                                        <TextView
+                                            android:layout_width="fill_parent"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="start"
+                                            android:layout_marginTop="2dp"
+                                            android:paddingLeft="10dp"
+                                            android:text="Month : "
+                                            android:textColor="@color/bottom_line1"
+                                            android:textSize="15sp"
+                                            android:textStyle="bold" />
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="10dp"
+                                            android:orientation="horizontal">
 
-                            </RelativeLayout>
+                                            <EditText
+                                                    android:id="@+id/tie_years"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:inputType="number"
+                                                    android:layout_marginLeft="10dp"
+                                                    android:layout_marginRight="10dp"
+                                                    android:drawablePadding="10dp"
+                                                    android:textStyle="bold"
+                                                    android:textSize="15dp"
+                                                    android:maxLength="13"
+                                                    android:backgroundTint="@color/bottom_line1"/>
 
 
-                            <RelativeLayout
-                                android:id="@+id/rltv_years"
+                                        </LinearLayout>
+                                    </LinearLayout>
+                                </RelativeLayout>
+                            </androidx.cardview.widget.CardView>
+                            <androidx.cardview.widget.CardView
                                 android:layout_width="match_parent"
-                                android:layout_height="50dp"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginRight="5dp"
-                                android:background="@drawable/bg_light_grey2"
-                                android:orientation="horizontal"
-                                android:padding="5dp">
-
-                                <com.google.android.material.textfield.TextInputLayout
-                                    android:id="@+id/til_years"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginTop="10dp"                        android:padding="5dp"
+                                app:cardBackgroundColor="@color/bg_transfer"
+                                app:cardCornerRadius="5dp">
+                                <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@android:color/transparent"
-                                    android:textColorHint="@color/bottom_line1"
-                                    app:hintTextColor="@color/bottom_line1">
-
-                                    <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/tie_years"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/bg_light_grey"
+                                    android:orientation="vertical"
+                                    android:padding="5dp">
+                                    <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:background="@android:color/transparent"
-                                        android:hint=""
-                                        android:inputType="number"
-                                        android:maxLength="4"
-                                        android:textColorHint="@color/bottom_line1"
-                                        android:textSize="15dp" />
+                                        android:orientation="vertical">
 
-                                </com.google.android.material.textfield.TextInputLayout>
+                                        <TextView
+                                            android:id="@+id/txtv_type"
+                                            android:layout_width="fill_parent"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="start"
+                                            android:layout_marginTop="2dp"
+                                            android:paddingLeft="10dp"
+                                            android:text="EMI Type : "
+                                            android:textColor="@color/bottom_line1"
+                                            android:textSize="15sp"
+                                            android:textStyle="bold" />
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="10dp"
+                                            android:layout_marginLeft="10dp"
+                                            android:layout_marginRight="10dp"
+                                            android:orientation="horizontal">
+                                            <com.google.android.material.textfield.TextInputLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="40dp"
+                                                android:layout_alignParentBottom="true"
+                                                android:background="@android:color/transparent"
+                                                android:textColorHint="@color/bottom_line1"
+                                                app:hintTextColor="@color/bottom_line1">
 
-                            </RelativeLayout>
+                                                <com.google.android.material.textfield.TextInputEditText
+                                                    android:id="@+id/tie_emi"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:background="@android:color/transparent"
+                                                    android:clickable="true"
+                                                    android:focusable="false"
+                                                    android:hint=""
+                                                    android:textStyle="bold"
+                                                    android:backgroundTint="@color/colorPrimary"
+                                                    android:drawableRight="@drawable/ic_arrow_black"
+                                                    android:textColorHint="@color/bottom_line1"
+                                                    android:textSize="15dp" />
 
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="50dp"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginRight="5dp"
-                                android:background="@drawable/bg_light_grey2"
-                                android:orientation="vertical"
-                                android:padding="5dp">
-
-
-                                <com.google.android.material.textfield.TextInputLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_alignParentBottom="true"
-                                    android:background="@android:color/transparent"
-                                    android:textColorHint="@color/bottom_line1"
-                                    app:hintTextColor="@color/bottom_line1">
-
-                                    <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/tie_emi"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:background="@android:color/transparent"
-                                        android:clickable="true"
-                                        android:focusable="false"
-                                        android:hint=""
-                                        android:textColorHint="@color/bottom_line1"
-                                        android:textSize="15dp" />
-
-                                </com.google.android.material.textfield.TextInputLayout>
+                                            </com.google.android.material.textfield.TextInputLayout>
 
 
-                            </RelativeLayout>
+
+                                        </LinearLayout>
+                                    </LinearLayout>
+                                </RelativeLayout>
+                            </androidx.cardview.widget.CardView>
+
+
 
 
                             <LinearLayout
                                 android:id="@+id/llOutput"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="20dp"
+                                android:layout_marginLeft="13dp"
                                 android:layout_marginTop="20dp"
-                                android:layout_marginRight="20dp"
+                                android:layout_marginRight="13dp"
                                 android:visibility="gone">
 
                                 <androidx.cardview.widget.CardView
@@ -245,6 +318,7 @@
                                         android:layout_height="match_parent"
                                         android:layout_gravity="center"
                                         android:gravity="center"
+                                        android:background="@drawable/main_bglight"
                                         android:orientation="vertical"
                                         android:padding="10dp">
 
@@ -406,16 +480,9 @@
 
 
                         </LinearLayout>
-                    </androidx.core.widget.NestedScrollView>
+                    </ScrollView>
 
 
-                </RelativeLayout>
-
-
-            </androidx.cardview.widget.CardView>
-
-
-        </RelativeLayout>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

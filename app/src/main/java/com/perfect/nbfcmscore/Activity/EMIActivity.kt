@@ -47,9 +47,9 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
     var list_view: ListView? = null
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
-    var principal: TextInputEditText? = null
-    var interest: TextInputEditText? = null
-    var years: TextInputEditText? = null
+    var principal: EditText? = null
+    var interest: EditText? = null
+    var years: EditText? = null
     var tie_emi: TextInputEditText? = null
   //  var llemitype: LinearLayout? = null
     var sadapter: EmiListAdapter? = null
@@ -92,7 +92,7 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
         val ID_header = applicationContext.getSharedPreferences(Config.SHARED_PREF79,0)
         tv_header!!.setText(ID_header.getString("EMICalculator",null))
 
-        val ID_princamt = applicationContext.getSharedPreferences(Config.SHARED_PREF191,0)
+        /*val ID_princamt = applicationContext.getSharedPreferences(Config.SHARED_PREF191,0)
         principal!!.setHint(ID_princamt.getString("PRINCIPALAMOUNT",null))
 
         val ID_rate = applicationContext.getSharedPreferences(Config.SHARED_PREF192,0)
@@ -102,7 +102,7 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
         years!!.setHint(ID_mnth.getString("MONTH",null))
 
         val ID_emityp = applicationContext.getSharedPreferences(Config.SHARED_PREF194,0)
-        tie_emi!!.setHint(ID_emityp.getString("Selectemitype",null))
+        tie_emi!!.setHint(ID_emityp.getString("Selectemitype",null))*/
 
         val ID_reset = applicationContext.getSharedPreferences(Config.SHARED_PREF189,0)
         btn_clear!!.setText(ID_reset.getString("RESET",null))
@@ -175,9 +175,9 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
     private fun setInitialise() {
 //        txt_emi  = findViewById<View>(R.id.txt_emi) as TextView?
 //        llemitype  = findViewById<View>(R.id.llemitype) as LinearLayout?
-        principal  = findViewById<View>(R.id.tie_principal) as TextInputEditText?
-        interest  = findViewById<View>(R.id.tie_interest) as TextInputEditText?
-        years  = findViewById<View>(R.id.tie_years) as TextInputEditText?
+        principal  = findViewById<View>(R.id.tie_principal) as EditText?
+        interest  = findViewById<View>(R.id.tie_interest) as EditText?
+        years  = findViewById<View>(R.id.tie_years) as EditText?
         tie_emi  = findViewById<View>(R.id.tie_emi) as TextInputEditText?
 
         tv_header= findViewById<View>(R.id.tv_header) as TextView?

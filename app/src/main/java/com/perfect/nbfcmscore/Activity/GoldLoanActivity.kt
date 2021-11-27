@@ -44,8 +44,8 @@ class GoldLoanActivity : AppCompatActivity() , View.OnClickListener{
 
     var chk_amount: CheckBox? = null
     var chk_weight: CheckBox? = null
-    var tie_amountweight: TextInputEditText? = null
-    var til_amountweight: TextInputLayout? = null
+    var tie_amountweight: EditText? = null
+    var til_amountweight: TextView? = null
     var but_calculate: Button? = null
     var but_reset: Button? = null
     var rv_goldestimator: RecyclerView? = null
@@ -154,8 +154,8 @@ class GoldLoanActivity : AppCompatActivity() , View.OnClickListener{
 
         chk_amount = findViewById<CheckBox>(R.id.chk_amount)
         chk_weight = findViewById<CheckBox>(R.id.chk_weight)
-        tie_amountweight = findViewById<TextInputEditText>(R.id.tie_amountweight)
-        til_amountweight = findViewById<TextInputLayout>(R.id.til_amountweight)
+        tie_amountweight = findViewById<EditText>(R.id.tie_amountweight)
+        til_amountweight = findViewById<TextView>(R.id.til_amountweight)
         but_calculate = findViewById<Button>(R.id.but_calculate)
         but_reset = findViewById<Button>(R.id.but_reset)
 
