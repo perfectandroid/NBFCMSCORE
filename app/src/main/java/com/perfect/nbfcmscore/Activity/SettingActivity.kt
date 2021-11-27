@@ -33,6 +33,7 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
 
     var im_back: ImageView? = null
     var im_home: ImageView? = null
+    var btn_clear: Button? = null
 
     var act_UpdateDays: AutoCompleteTextView? = null
     var act_hours: AutoCompleteTextView? = null
@@ -127,6 +128,7 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
         im_back = findViewById<ImageView>(R.id.im_back)
         im_home = findViewById<ImageView>(R.id.im_home)
         tv_header= findViewById<TextView>(R.id.tv_header)
+        btn_clear= findViewById<Button>(R.id.btn_clear)
 
         act_UpdateDays = findViewById<AutoCompleteTextView>(R.id.act_UpdateDays)
         act_hours = findViewById<AutoCompleteTextView>(R.id.act_hours)
@@ -147,6 +149,7 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
         act_DefAcc!!.setOnClickListener(this)
 
         btn_apply!!.setOnClickListener(this)
+        btn_clear!!.setOnClickListener(this)
 
 
     }
@@ -179,6 +182,11 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_apply ->{
                 validation()
             }
+
+            R.id.btn_clear ->{
+                setDropdowns()
+            }
+
 
         }
     }
