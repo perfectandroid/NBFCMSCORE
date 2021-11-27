@@ -519,7 +519,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
 
     private fun showAlert() {
         if (this == null) return
-        alertMessage1("Oops...", "Both account number and confirm account number are not matching")
+        alertMessage1("", "Both account number and confirm account number are not matching")
     }
 
     private fun getminTransAmount() {
