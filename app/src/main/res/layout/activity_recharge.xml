@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bgcolour"
+    android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".Activity.RechargeActivity">
 
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/bgcolour">
-
-
-
-            <RelativeLayout
+    <RelativeLayout
                 android:id="@+id/rltv_header"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -83,9 +75,7 @@
 
 
             </RelativeLayout>
-
-
-            <ScrollView
+    <ScrollView
                 android:id="@+id/scrl_main"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -96,8 +86,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_horizontal"
-                    android:orientation="vertical"
-                    android:padding="20dp">
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -107,11 +96,18 @@
                         android:layout_marginRight="10dp"
                         android:orientation="vertical">
 
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"                        android:padding="5dp"
+                            app:cardBackgroundColor="@color/bg_transfer"
+                            app:cardCornerRadius="5dp">
                         <RelativeLayout
                             android:id="@+id/rltv_mobile"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:layout_marginTop="20dp"
                             android:background="@drawable/bg_light_grey"
                             android:orientation="horizontal"
                             android:padding="5dp">
@@ -155,12 +151,20 @@
 
 
                         </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
 
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"                        android:padding="5dp"
+                            app:cardBackgroundColor="@color/bg_transfer"
+                            app:cardCornerRadius="5dp">
                         <RelativeLayout
                             android:id="@+id/rltv_subscriber"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:layout_marginTop="20dp"
                             android:background="@drawable/bg_light_grey"
                             android:orientation="horizontal"
                             android:padding="5dp">
@@ -187,11 +191,19 @@
 
 
                         </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
 
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"                        android:padding="5dp"
+                            app:cardBackgroundColor="@color/bg_transfer"
+                            app:cardCornerRadius="5dp">
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:layout_marginTop="10dp"
                             android:background="@drawable/bg_light_grey"
                             android:orientation="vertical"
                             android:padding="5dp">
@@ -219,11 +231,19 @@
 
 
                         </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
 
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"                        android:padding="5dp"
+                            app:cardBackgroundColor="@color/bg_transfer"
+                            app:cardCornerRadius="5dp">
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:layout_marginTop="10dp"
                             android:background="@drawable/bg_light_grey"
                             android:orientation="vertical"
                             android:padding="5dp">
@@ -251,11 +271,19 @@
 
 
                         </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
 
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"                        android:padding="5dp"
+                            app:cardBackgroundColor="@color/bg_transfer"
+                            app:cardCornerRadius="5dp">
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:layout_marginTop="10dp"
                             android:background="@drawable/bg_light_grey"
                             android:orientation="vertical"
                             android:padding="5dp">
@@ -299,11 +327,19 @@
 
 
                         </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
 
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"                        android:padding="5dp"
+                            app:cardBackgroundColor="@color/bg_transfer"
+                            app:cardCornerRadius="5dp">
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:layout_marginTop="10dp"
                             android:background="@drawable/bg_light_grey"
                             android:orientation="vertical"
                             android:padding="5dp">
@@ -329,11 +365,11 @@
                             </com.google.android.material.textfield.TextInputLayout>
 
                         </RelativeLayout>
-
+                        </androidx.cardview.widget.CardView>
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="50dp"
+                            android:layout_marginTop="20dp"
                             android:orientation="horizontal">
 
                             <RelativeLayout
@@ -397,6 +433,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
                             android:text="Recent Recharges"
+                            android:layout_marginLeft="15dp"
                             android:textColor="@color/black"
                             android:textSize="16dp" />
 
@@ -404,7 +441,8 @@
                             android:id="@+id/rvrecentRecharge"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="1dp" />
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp" />
 
 
                     </LinearLayout>
@@ -416,12 +454,4 @@
             </ScrollView>
 
 
-
-        </RelativeLayout>
-
-
-
-
-
-
-</RelativeLayout>
+</LinearLayout>
