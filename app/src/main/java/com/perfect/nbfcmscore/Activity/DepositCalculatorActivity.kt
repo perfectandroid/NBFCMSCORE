@@ -459,6 +459,9 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
         etxt_amount!!.setText("")
         edt_txt_tenure!!.setText("")
         llOutput!!.visibility = View.GONE
+        getDepositType()
+        getTenure()
+        getBenefcryType()
     }
 
     private fun getDepositCalculatr() {
@@ -655,17 +658,27 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
 
 
         if (TextUtils.isEmpty(amt)) {
-            etxt_amount!!.error = "Please Enter Amount"
+           // etxt_amount!!.error = "Please Enter Amount"
+            CustomBottomSheeet.Show(this,"Please Enter Amount","0")
             return false
         }
-        etxt_amount!!.setError(null)
+       // etxt_amount!!.setError(null)
 
         if (TextUtils.isEmpty(tnr)) {
-            edt_txt_tenure!!.setError("Please Enter A Value")
+         //   edt_txt_tenure!!.setError("Please Enter A Value")
+             if(spn_tenure!!.selectedItem.toString().equals("Month"))
+             {
+                 CustomBottomSheeet.Show(this,"Please Enter Month","0")
+             }
+            if(spn_tenure!!.selectedItem.toString().equals("Day"))
+            {
+                CustomBottomSheeet.Show(this,"Please Enter Day","0")
+            }
+
             return false
         }
 
-        etxt_amount!!.setError(null)
+      //  etxt_amount!!.setError(null)
 
 
         return true

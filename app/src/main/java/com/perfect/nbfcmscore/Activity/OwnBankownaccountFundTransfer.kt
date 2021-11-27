@@ -642,11 +642,12 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                             }
                         }
                     } else {
-                        Toast.makeText(
+                        CustomBottomSheeet.Show(this,"Please Select Paying To Account Number.","0")
+                        /*Toast.makeText(
                             this,
                             "Please Select Paying To Account Number.",
                             Toast.LENGTH_LONG
-                        ).show()
+                        ).show()*/
                     }
                 } catch (e: java.lang.Exception) {
                     e.printStackTrace()

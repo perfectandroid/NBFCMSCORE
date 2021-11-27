@@ -465,16 +465,19 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
             val MaximumAmountD = MaximumAmount.toDouble()
             amount = amount.replace(",", "")
             if (amount.length < 1 && MaximumAmountD > 0) {
-                edtTxtAmount!!.error = "Please enter amount between 1 and $MaximumAmount."
+                CustomBottomSheeet.Show(this,"Please enter amount between 1 and $MaximumAmount.","0")
+               // edtTxtAmount!!.error = "Please enter amount between 1 and $MaximumAmount."
                 return false
             } else if (amount.length < 1 && MaximumAmountD == 0.0) {
-                edtTxtAmount!!.error = "Please enter valid amount."
+                CustomBottomSheeet.Show(this,"Please enter valid amount.","0")
+              //  edtTxtAmount!!.error = "Please enter valid amount."
                 return false
             }
             val amt = amount.toDouble()
             if (MaximumAmountD > 0) {
                 if (amt < 1 || amt > MaximumAmountD) {
-                    edtTxtAmount!!.error = "Please enter amount between 1 and $MaximumAmountD."
+                    CustomBottomSheeet.Show(this,"Please enter amount between 1 and $MaximumAmountD.","0")
+                   // edtTxtAmount!!.error = "Please enter amount between 1 and $MaximumAmountD."
                     return false
                 }
             }
@@ -506,12 +509,18 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
         } else if (recieverAccountNo != confirmRecieverAccountNo && recieverAccountNo.length == 12 && confirmRecieverAccountNo.length == 12) {
             showAlert()
         } else {
-            if (edtTxtAccountNoFirstBlock!!.text.toString().length < 3) edtTxtAccountNoFirstBlock!!.error = "Atleast 3 digit are required"
-            if (edtTxtAccountNoSecondBlock!!.text.toString().length < 3) edtTxtAccountNoSecondBlock!!.error = "Atleast 3 digit are required"
-            if (edtTxtAccountNoThirdBlock!!.text.toString().length < 6) edtTxtAccountNoThirdBlock!!.error = "Atleast 6 digits are required"
-            if (edtTxtConfirmAccountNoFirstBlock!!.text.toString().length < 3) edtTxtConfirmAccountNoFirstBlock!!.error = "Atleast 3 digits are required"
-            if (edtTxtConfirmAccountNoSecondBlock!!.text.toString().length < 3) edtTxtConfirmAccountNoSecondBlock!!.error = "Atleast 3 digits are required"
-            if (edtTxtConfirmAccountNoThirdBlock!!.text.toString().length < 6) edtTxtConfirmAccountNoThirdBlock!!.error = "Atleast 6 digits are required"
+            if (edtTxtAccountNoFirstBlock!!.text.toString().length < 3)
+                edtTxtAccountNoFirstBlock!!.error = "Atleast 3 digit are required"
+            if (edtTxtAccountNoSecondBlock!!.text.toString().length < 3)
+                edtTxtAccountNoSecondBlock!!.error = "Atleast 3 digit are required"
+            if (edtTxtAccountNoThirdBlock!!.text.toString().length < 6)
+                edtTxtAccountNoThirdBlock!!.error = "Atleast 6 digits are required"
+            if (edtTxtConfirmAccountNoFirstBlock!!.text.toString().length < 3)
+                edtTxtConfirmAccountNoFirstBlock!!.error = "Atleast 3 digits are required"
+            if (edtTxtConfirmAccountNoSecondBlock!!.text.toString().length < 3)
+                edtTxtConfirmAccountNoSecondBlock!!.error = "Atleast 3 digits are required"
+            if (edtTxtConfirmAccountNoThirdBlock!!.text.toString().length < 6)
+                edtTxtConfirmAccountNoThirdBlock!!.error = "Atleast 6 digits are required"
         }
         return ""
 

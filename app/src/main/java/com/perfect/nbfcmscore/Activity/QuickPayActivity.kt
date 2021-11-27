@@ -16,10 +16,7 @@ import androidx.appcompat.widget.AppCompatEditText
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Api.ApiInterface
-import com.perfect.nbfcmscore.Helper.Config
-import com.perfect.nbfcmscore.Helper.ConnectivityUtils
-import com.perfect.nbfcmscore.Helper.MscoreApplication
-import com.perfect.nbfcmscore.Helper.NumberToWord
+import com.perfect.nbfcmscore.Helper.*
 import com.perfect.nbfcmscore.Model.Receivers
 import com.perfect.nbfcmscore.Model.SenderReceiverlist
 import com.perfect.nbfcmscore.Model.Splitupdetail
@@ -778,34 +775,39 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
 
 
         if (TextUtils.isEmpty(amount)) {
-            etxt_amount!!.error = "Please enter the amount"
+            CustomBottomSheeet.Show(this,"Please enter the amount","0")
+           // etxt_amount!!.error = "Please enter the amount"
             return false
         }
         val amt: Double
         try {
             amt = amount.replace(",".toRegex(), "").toDouble()
         } catch (e: java.lang.Exception) {
-            etxt_amount!!.error = "Invalid format"
+            CustomBottomSheeet.Show(this,"Invalid format","0")
+          //  etxt_amount!!.error = "Invalid format"
             return false
         }
 
         if (amt < 1) {
-            etxt_amount!!.error = "Please enter the amount"
+            CustomBottomSheeet.Show(this,"Please enter the amount","0")
+           // etxt_amount!!.error = "Please enter the amount"
             return false
         }
 
-        etxt_amount!!.error = null
+       // etxt_amount!!.error = null
 
         val mPinString = etxt_mpin!!.text.toString()
         if (mPinString.equals("0")) {
-            etxt_mpin!!.error = "Please enter the M-PIN"
+            CustomBottomSheeet.Show(this,"Please enter the M-PIN","0")
+            //etxt_mpin!!.error = "Please enter the M-PIN"
             return false
         }
         else if (mPinString.equals("")) {
-            etxt_mpin!!.error = "Please enter the M-PIN"
+           // etxt_mpin!!.error = "Please enter the M-PIN"
+            CustomBottomSheeet.Show(this,"Please enter the M-PIN","0")
             return false
         }
-        etxt_mpin!!.error = null
+       // etxt_mpin!!.error = null
 
         return true
 
