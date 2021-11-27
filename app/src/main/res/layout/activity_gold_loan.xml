@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Activity.BranchDetailActivity"
     android:background="@color/white">
 
@@ -31,7 +32,7 @@
                     android:id="@+id/im_back"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:src="@drawable/arrow_back" />
+                    android:src="@drawable/navback" />
 
             </LinearLayout>
 
@@ -79,18 +80,7 @@
 
     </RelativeLayout>
 
-
-    <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/rltv_header"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="5dp"
-        app:cardUseCompatPadding="true">
-
-
-        <LinearLayout
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingLeft="10dp"
@@ -98,20 +88,10 @@
             android:paddingRight="10dp">
 
 
-            <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="5dp"
-                app:cardUseCompatPadding="true"
-                android:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
                     android:orientation="vertical"
                     android:layout_marginBottom="20dp">
 
@@ -130,414 +110,111 @@
                             android:src="@drawable/imagemoney"
                             android:visibility="gone" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="horizontal">
-
-                                <CheckBox
-                                    android:id="@+id/chk_amount"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:buttonTint="@drawable/checkbox_selector"
-                                    android:checked="true"
-                                    android:padding="7dp"
-                                    android:text="Amount"
-                                    android:textSize="18sp" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="horizontal">
-
-                                <CheckBox
-                                    android:id="@+id/chk_weight"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:buttonTint="@drawable/checkbox_selector"
-                                    android:padding="7dp"
-                                    android:text="Weight"
-                                    android:textSize="18sp" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
 
 
                     </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/lnr_main2"
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/lnr_main1"
-                        android:orientation="vertical">
-
+                        android:layout_marginTop="10dp"                        android:padding="5dp"
+                        app:cardBackgroundColor="@color/bg_transfer"
+                        app:cardCornerRadius="5dp">
                         <RelativeLayout
-                            android:id="@+id/rltv_mobile"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:layout_marginTop="20dp"
-                            android:background="@drawable/etbackgroung1"
-                            android:orientation="horizontal"
-                            android:padding="5dp">
-
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/til_amountweight"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@android:color/transparent"
-                                android:textColorHint="@color/black_lang"
-                                app:hintTextColor="@color/black_lang">
-
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/tie_amountweight"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@android:color/transparent"
-                                    android:inputType="number"
-                                    android:textColorHint="@color/black_lang" />
-
-                            </com.google.android.material.textfield.TextInputLayout>
-
-
-                        </RelativeLayout>
-
-
-                        <LinearLayout
-                            android:id="@+id/ll_result"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
+                            android:background="@drawable/bg_light_grey"
                             android:orientation="vertical"
-                            android:visibility="gone">
-
+                            android:padding="5dp">
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
-
                                 <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
+                                    android:layout_height="wrap_content"
                                     android:layout_marginTop="10dp"
                                     android:orientation="horizontal">
 
-
-                                    <TextView
+                                    <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
-                                        android:gravity="center_vertical"
-                                        android:text="Type"
-                                        android:textColor="@color/black"
-                                        android:textSize="16dp" />
+                                        android:orientation="horizontal">
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center_vertical"
-                                        android:text=":"
-                                        android:textColor="@color/black"
-                                        android:textSize="16dp" />
+                                        <CheckBox
+                                            android:id="@+id/chk_amount"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:buttonTint="@drawable/checkbox_selector"
+                                            android:checked="true"
+                                            android:padding="7dp"
+                                            android:text="Amount"
+                                            android:textSize="18sp" />
 
+                                    </LinearLayout>
 
-                                    <TextView
+                                    <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
-                                        android:gravity="end"
-                                        android:text="Type"
-                                        android:textColor="@color/black"
-                                        android:textSize="16dp" />
+                                        android:orientation="horizontal">
 
+                                        <CheckBox
+                                            android:id="@+id/chk_weight"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:buttonTint="@drawable/checkbox_selector"
+                                            android:padding="7dp"
+                                            android:text="Weight"
+                                            android:textSize="18sp" />
+
+                                    </LinearLayout>
 
                                 </LinearLayout>
 
-                                <View
-                                    android:layout_width="match_parent"
-                                    android:layout_height="1dp"
-                                    android:layout_marginTop="5dp"
-                                    android:background="@color/grey" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-
+                                <TextView
+                                    android:id="@+id/til_amountweight"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="start"
+                                    android:layout_marginTop="2dp"
+                                    android:paddingLeft="10dp"
+                                    android:text=""
+                                    android:textColor="@color/bottom_line1"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
                                 <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginTop="10dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
                                     android:orientation="horizontal">
 
-
-                                    <TextView
+                                    <EditText
+                                        android:id="@+id/tie_amountweight"
                                         android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:gravity="center_vertical"
-                                        android:text="Period From"
-                                        android:textColor="@color/black"
-                                        android:textSize="16dp" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center_vertical"
-                                        android:text=":"
-                                        android:textColor="@color/black"
-                                        android:textSize="16dp" />
-
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:gravity="end"
-                                        android:text="Type"
-                                        android:textColor="@color/black"
-                                        android:textSize="16dp" />
+                                        android:layout_height="match_parent"
+                                        android:inputType="number"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginRight="10dp"
+                                        android:drawablePadding="10dp"
+                                        android:textStyle="bold"
+                                        android:textSize="15dp"
+                                        android:maxLength="13"
+                                        android:backgroundTint="@color/bottom_line1"/>
 
 
                                 </LinearLayout>
-
-                                <View
-                                    android:layout_width="match_parent"
-                                    android:layout_height="1dp"
-                                    android:layout_marginTop="5dp"
-                                    android:background="@color/grey" />
-
                             </LinearLayout>
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginTop="10dp"
-                                    android:orientation="horizontal">
-
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:gravity="center_vertical"
-                                        android:text="Period To"
-                                        android:textColor="@color/black"
-                                        android:textSize="16dp" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center_vertical"
-                                        android:text=":"
-                                        android:textColor="@color/black"
-                                        android:textSize="16dp" />
-
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:gravity="end"
-                                        android:text="Type"
-                                        android:textColor="@color/black"
-                                        android:textSize="16dp" />
-
-
-                                </LinearLayout>
-
-                                <View
-                                    android:layout_width="match_parent"
-                                    android:layout_height="1dp"
-                                    android:layout_marginTop="5dp"
-                                    android:background="@color/grey" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginTop="10dp"
-                                    android:orientation="horizontal">
-
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:gravity="center_vertical"
-                                        android:text="Rate of Interest"
-                                        android:textColor="@color/black"
-                                        android:textSize="16dp" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center_vertical"
-                                        android:text=":"
-                                        android:textColor="@color/black"
-                                        android:textSize="16dp" />
-
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:gravity="end"
-                                        android:text="Type"
-                                        android:textColor="@color/black"
-                                        android:textSize="16dp" />
-
-
-                                </LinearLayout>
-
-                                <View
-                                    android:layout_width="match_parent"
-                                    android:layout_height="1dp"
-                                    android:layout_marginTop="5dp"
-                                    android:background="@color/grey" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/ll_amount"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginTop="10dp"
-                                    android:orientation="horizontal">
-
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:gravity="center_vertical"
-                                        android:text="Amount"
-                                        android:textColor="@color/black"
-                                        android:textSize="16dp" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center_vertical"
-                                        android:text=":"
-                                        android:textColor="@color/black"
-                                        android:textSize="16dp" />
-
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:gravity="end"
-                                        android:text="Type"
-                                        android:textColor="@color/black"
-                                        android:textSize="16dp" />
-
-
-                                </LinearLayout>
-
-                                <View
-                                    android:layout_width="match_parent"
-                                    android:layout_height="1dp"
-                                    android:layout_marginTop="5dp"
-                                    android:background="@color/grey" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/ll_weight"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginTop="10dp"
-                                    android:orientation="horizontal">
-
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:gravity="center_vertical"
-                                        android:text="Gold weight"
-                                        android:textColor="@color/black"
-                                        android:textSize="16dp" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center_vertical"
-                                        android:text=":"
-                                        android:textColor="@color/black"
-                                        android:textSize="16dp" />
-
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:gravity="end"
-                                        android:text="Type"
-                                        android:textColor="@color/black"
-                                        android:textSize="16dp" />
-
-
-                                </LinearLayout>
-
-                                <View
-                                    android:layout_width="match_parent"
-                                    android:layout_height="1dp"
-                                    android:layout_marginTop="5dp"
-                                    android:background="@color/grey" />
-
-                            </LinearLayout>
-
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
 
                     <RelativeLayout
                         android:id="@+id/rltv_recharge"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/lnr_main2"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -549,7 +226,7 @@
                             <Button
                                 android:id="@+id/but_reset"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="40dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
                                 android:background="@drawable/but_rounded2"
@@ -561,7 +238,7 @@
                             <Button
                                 android:id="@+id/but_calculate"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="40dp"
                                 android:layout_marginLeft="5dp"
                                 android:layout_weight="1"
                                 android:background="@drawable/but_ronded1"
@@ -576,7 +253,6 @@
                     </RelativeLayout>
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
 
             <LinearLayout
                 android:id="@+id/ll_estimatelist"
@@ -588,10 +264,12 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/gray_borderdark"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/but_color1"
                     android:orientation="vertical"
-                    android:padding="5dp">
+                    android:padding="2dp">
 
 
                     <LinearLayout
@@ -723,11 +401,4 @@
 
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
-
-
-
-
-
-
-</RelativeLayout>
+</LinearLayout>

@@ -44,9 +44,9 @@ class LoanApplicationActivity : AppCompatActivity()   , View.OnClickListener, It
     var list_view: ListView? = null
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
-    var principal: TextInputEditText? = null
+    var principal: EditText? = null
   //  var interest: TextInputEditText? = null
-    var years: TextInputEditText? = null
+    var years: EditText? = null
     var tie_emi: TextInputEditText? = null
     var tie_porpose: TextInputEditText? = null
     //  var llemitype: LinearLayout? = null
@@ -95,12 +95,12 @@ class LoanApplicationActivity : AppCompatActivity()   , View.OnClickListener, It
         val ID_month = applicationContext.getSharedPreferences(Config.SHARED_PREF193,0)
         years!!.setHint(ID_month.getString("MONTH",null))
 
-        val ID_loantype = applicationContext.getSharedPreferences(Config.SHARED_PREF197,0)
-        tie_emi!!.setHint(ID_loantype.getString("SelectLoantype",null))
+        /*val ID_loantype = applicationContext.getSharedPreferences(Config.SHARED_PREF197,0)
+        tie_emi!!.setHint(ID_loantype.getString("SelectLoantype",null))*/
 
-        val ID_loanpurpse = applicationContext.getSharedPreferences(Config.SHARED_PREF198,0)
+       /* val ID_loanpurpse = applicationContext.getSharedPreferences(Config.SHARED_PREF198,0)
         tie_porpose!!.setHint(ID_loanpurpse.getString("Selectloanpurpose",null))
-
+*/
         val ID_reset = applicationContext.getSharedPreferences(Config.SHARED_PREF189,0)
         btn_clear!!.setText(ID_reset.getString("RESET",null))
 
@@ -173,9 +173,9 @@ class LoanApplicationActivity : AppCompatActivity()   , View.OnClickListener, It
     private fun setInitialise() {
 //        txt_emi  = findViewById<View>(R.id.txt_emi) as TextView?
 //        llemitype  = findViewById<View>(R.id.llemitype) as LinearLayout?
-        principal  = findViewById<View>(R.id.tie_principal) as TextInputEditText?
+        principal  = findViewById<View>(R.id.tie_principal) as EditText?
        // interest  = findViewById<View>(R.id.tie_interest) as TextInputEditText?
-        years  = findViewById<View>(R.id.tie_years) as TextInputEditText?
+        years  = findViewById<View>(R.id.tie_years) as EditText?
         tie_emi  = findViewById<View>(R.id.tie_emi) as TextInputEditText?
         tie_porpose  = findViewById<View>(R.id.tie_porpose) as TextInputEditText?
 
