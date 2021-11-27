@@ -342,8 +342,15 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.tv_reset ->{
-                docType = "1"
-                validation1()
+
+                edt_fromDate!!.setText("")
+                edt_toDate!!.setText("")
+                getOwnAccount()
+                rad_last_month!!.isChecked =false
+                rad_last_3_month!!.isChecked =false
+                rad_last_6_month!!.isChecked =false
+                rad_last_12_month!!.isChecked =false
+
             }
             R.id.tv_download ->{
                 docType = "2"
