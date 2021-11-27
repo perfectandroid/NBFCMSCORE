@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.TextView
@@ -40,8 +41,8 @@ class StatementFragment : Fragment() , View.OnClickListener{
     var rad_last_6_month: RadioButton? = null
     var rad_last_12_month: RadioButton? = null
 
-    var tv_view: TextView? = null
-    var tv_download: TextView? = null
+    var tv_reset: Button? = null
+    var tv_download: Button? = null
 
     var edt_fromDate: EditText? = null
     var edt_toDate: EditText? = null
@@ -66,8 +67,8 @@ class StatementFragment : Fragment() , View.OnClickListener{
         edt_fromDate = v.findViewById<EditText>(R.id.edt_fromDate)
         edt_toDate = v.findViewById<EditText>(R.id.edt_toDate)
 
-        tv_view = v.findViewById<TextView>(R.id.tv_view)
-        tv_download = v.findViewById<TextView>(R.id.tv_download)
+        tv_reset = v.findViewById<Button>(R.id.tv_reset)
+        tv_download = v.findViewById<Button>(R.id.tv_download)
 
         val StatemenAccountNumber = context!!.getSharedPreferences(Config.SHARED_PREF155, 0)
         AccountNumber = StatemenAccountNumber.getString("StatementAccountNumber",null)
@@ -84,7 +85,7 @@ class StatementFragment : Fragment() , View.OnClickListener{
         edt_fromDate!!.setOnClickListener(this)
         edt_toDate!!.setOnClickListener(this)
 
-        tv_view!!.setOnClickListener(this)
+        tv_reset!!.setOnClickListener(this)
         tv_download!!.setOnClickListener(this)
 
         Log.e(TAG,"AccountNumber  69     "+AccountNumber+"   "+SubModule)
@@ -352,7 +353,7 @@ class StatementFragment : Fragment() , View.OnClickListener{
                 Log.e(TAG,"nextMonthLastDay    10612   "+LastDay+"   "+ToDate)
             }
 
-            R.id.tv_view ->{
+            R.id.tv_reset ->{
                 docType = "1"
                 validation1()
             }

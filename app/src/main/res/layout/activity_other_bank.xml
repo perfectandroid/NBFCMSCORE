@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.OtherBankActivity"
-    android:background="@color/greylight4">
+    android:background="@color/bgcolour">
 
     <RelativeLayout
         android:id="@+id/rltv_header"
@@ -30,7 +30,7 @@
                     android:id="@+id/im_back"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:src="@drawable/arrow_back" />
+                    android:src="@drawable/navback" />
 
             </LinearLayout>
 
@@ -86,15 +86,21 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_gravity="center"
                 android:layout_margin="15dp"
                 android:orientation="vertical">
-
-                <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="1dp"
+                android:background="@drawable/bg_grey_border1">
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="5dp">
 
@@ -102,7 +108,6 @@
                         android:id="@+id/ll_imps"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/bg_grey_border"
                         android:gravity="center"
                         android:orientation="horizontal">
 
@@ -110,203 +115,165 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal"
-                            android:padding="10dp">
-
-
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="vertical">
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:layout_marginLeft="10dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_marginTop="10dp"
+                                android:scaleType="fitXY"
                                 android:src="@drawable/icon_imps" />
-
                             <TextView
                                 android:id="@+id/tv_imps"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="5dp"
                                 android:gravity="center"
-                                android:padding="5dp"
-                                android:text="IMPS"
-                                android:textColor="@color/passtext"
-                                android:textSize="15dp" />
-
-
+                                android:textStyle="bold"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:textSize="18dp"
+                                android:textColor="@color/colorPrimary"
+                                android:text="IMPS"/>
                         </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="8"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:src="@drawable/icon_arrow" />
-
-                        </LinearLayout>
-
-
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_grey_border1">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp">
 
+            <LinearLayout
+                android:id="@+id/ll_neft"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="10dp"
-                    android:layout_marginTop="10dp"
-                    app:cardElevation="5dp">
-
-                    <LinearLayout
-                        android:id="@+id/ll_neft"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bg_grey_border"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal"
-                            android:padding="10dp">
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical">
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:layout_marginLeft="10dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_marginTop="10dp"
+                                android:scaleType="fitXY"
                                 android:src="@drawable/icon_neft" />
 
                             <TextView
                                 android:id="@+id/tv_neft"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="5dp"
-                                android:gravity="center_vertical"
-                                android:padding="5dp"
-                                android:text="NEFT"
-                                android:textColor="@color/passtext"
-                                android:textSize="15dp" />
+                                android:gravity="center"
+                                android:textStyle="bold"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:textSize="18dp"
+                                android:textColor="@color/colorPrimary"                               android:padding="5dp"
+                                android:text="NEFT"/>
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="8"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
 
-                            <ImageView
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:src="@drawable/icon_arrow" />
-
-
-                        </LinearLayout>
 
 
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
-
-
-                <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="10dp"
-                    android:layout_marginTop="10dp"
-                    app:cardElevation="5dp">
-
-                    <LinearLayout
-                        android:id="@+id/ll_rtgs"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bg_grey_border"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal"
-                            android:padding="10dp">
-
-                            <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:layout_marginLeft="10dp"
-                                android:src="@drawable/icon_rtgs" />
-
-                            <TextView
-                                android:id="@+id/tv_rtgs"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="5dp"
-                                android:gravity="center_vertical"
-                                android:padding="5dp"
-                                android:text="RTGS"
-                                android:textColor="@color/passtext"
-                                android:textSize="15dp" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="8"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:src="@drawable/icon_arrow" />
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
+            </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingBottom="20dp">
-
-                    <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:padding="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_grey_border1">
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="10dp"
-                        android:layout_marginTop="10dp"
+                        app:cardElevation="5dp">
+
+                    <LinearLayout
+                        android:id="@+id/ll_rtgs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_marginTop="10dp"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/icon_rtgs" />
+
+                            <TextView
+                                android:id="@+id/tv_rtgs"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textStyle="bold"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:textSize="18dp"
+                                android:textColor="@color/colorPrimary"                              android:padding="5dp"
+                                android:text="RTGS" />
+
+                        </LinearLayout>
+
+
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_grey_border1">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="10dp"
                         app:cardElevation="5dp">
 
                         <LinearLayout
                             android:id="@+id/ll_fundtransfer"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/bg_grey_border"
                             android:gravity="center"
                             android:orientation="horizontal">
 
@@ -314,44 +281,31 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:gravity="center_vertical"
-                                android:orientation="horizontal"
-                                android:padding="10dp">
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:orientation="vertical">
 
                                 <ImageView
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
-                                    android:layout_marginLeft="10dp"
-                                    android:src="@drawable/icon_fundtrans" />
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:layout_marginTop="10dp"
+                                    android:scaleType="fitXY"                                   android:src="@drawable/icon_fundtrans" />
 
                                 <TextView
                                     android:id="@+id/tv_fndtransfer"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_marginLeft="5dp"
-                                    android:gravity="center_vertical"
-                                    android:padding="5dp"
-                                    android:text="FUND TRANSFER STATUS"
-                                    android:textColor="@color/passtext"
-                                    android:textSize="15dp" />
+                                    android:gravity="center"
+                                    android:textStyle="bold"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:textSize="18dp"
+                                    android:textColor="@color/colorPrimary"
+                                    android:text="FUND TRANSFER STATUS" />
 
                             </LinearLayout>
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_weight="8"
-                                android:gravity="center_vertical"
-                                android:orientation="horizontal">
 
-                                <ImageView
-                                    android:layout_width="25dp"
-                                    android:layout_height="25dp"
-                                    android:src="@drawable/icon_arrow" />
-
-
-                            </LinearLayout>
 
 
                         </LinearLayout>
