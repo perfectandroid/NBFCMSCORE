@@ -111,7 +111,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
         status_spinner!!.setOnItemSelectedListener(this)
         spn_account_num = findViewById<Spinner>(R.id.spn_account_type)
         btn_submit = findViewById<Button>(R.id.btn_submit)
-        btn_clear = findViewById<Button>(R.id.btn_submit)
+        btn_clear = findViewById<Button>(R.id.btn_clear)
         imgBack = findViewById<ImageView>(R.id.imgBack)
         imgBack!!.setOnClickListener(this)
         imgHome = findViewById<ImageView>(R.id.imgHome)
@@ -596,6 +596,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                 txt_amtinword!!.text = ""
 //                setAccountType();
                 edt_txt_amount!!.setText("")
+                edt_txt_remark!!.setText("")
             }
         }
     }
