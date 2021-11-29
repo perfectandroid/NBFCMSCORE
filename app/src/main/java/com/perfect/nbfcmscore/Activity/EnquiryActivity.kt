@@ -5,17 +5,18 @@ import android.app.TimePickerDialog
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
+import android.view.MotionEvent
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.perfect.nbfcmscore.Helper.Config
-import com.perfect.nbfcmscore.Helper.PicassoTrustAll
 import com.perfect.nbfcmscore.R
 import java.util.*
+import java.util.regex.Pattern
 
 class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.OnItemSelectedListener {
 
@@ -28,16 +29,19 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
     var tv_mycart: TextView? = null
     var etxtmob: EditText? = null
     var etxtemail: EditText? = null
-    var rad_callbk:RadioButton?=null
+    var rad_callbk:CheckBox?=null
     var btn_submit: Button? = null
     var lltime: LinearLayout? = null
     var llmob: LinearLayout? = null
     var lltimeinterval: LinearLayout? = null
     var llemail: LinearLayout? = null
+    var lldate: LinearLayout? = null
     var spn_time: Spinner? = null
     var etxt_tmfrm: TextView? = null
     var etxt_tmto: TextView? = null
-
+    var etxtDate: EditText? = null
+    var btn_clear: Button? = null
+    var matter:String?=null
     var feedback = arrayOfNulls<String>(0)
     var time = arrayOfNulls<String>(0)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,15 +61,19 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
     private fun setRegViews() {
 
         tv_mycart = findViewById<TextView>(R.id.tv_mycart) as TextView
-        rad_callbk = findViewById<RadioButton>(R.id.rad_callbk) as RadioButton
+        rad_callbk = findViewById<CheckBox>(R.id.rad_callbk) as CheckBox
         imgBack = findViewById<ImageView>(R.id.imgBack) as ImageView
         imgHome = findViewById<ImageView>(R.id.imgHome) as ImageView
+
+        btn_clear = findViewById<Button>(R.id.btn_clear) as Button
 
         feedbackText = findViewById<EditText>(R.id.feedbackText) as EditText
         etxtmob= findViewById<EditText>(R.id.etxtmob) as EditText
         etxtemail= findViewById<EditText>(R.id.etxtemail) as EditText
+        etxtDate= findViewById<EditText>(R.id.etxtDate) as EditText
 
         lltime= findViewById<LinearLayout>(R.id.lltime) as LinearLayout
+        lldate= findViewById<LinearLayout>(R.id.lldate) as LinearLayout
         llmob= findViewById<LinearLayout>(R.id.llmob) as LinearLayout
         lltimeinterval= findViewById<LinearLayout>(R.id.lltimeinterval) as LinearLayout
         llemail= findViewById<LinearLayout>(R.id.llemail) as LinearLayout
@@ -78,6 +86,7 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
         btn_submit!!.setOnClickListener(this)
         imgBack!!.setOnClickListener(this)
         imgHome!!.setOnClickListener(this)
+        btn_clear!!.setOnClickListener(this)
 
         spn_feedbk!!.onItemSelectedListener = this
         rad_callbk!!.setOnClickListener(this)
@@ -87,22 +96,34 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
 
         etxt_tmfrm!!.setOnClickListener(this)
         etxt_tmto!!.setOnClickListener(this)
+        etxtDate!!.setOnClickListener(this)
 
         rad_callbk!!.setOnClickListener(this)
 
-        val ID_reprterr = applicationContext.getSharedPreferences(Config.SHARED_PREF175,0)
-        val ID_suggstn = applicationContext.getSharedPreferences(Config.SHARED_PREF176,0)
-        val ID_anyth= applicationContext.getSharedPreferences(Config.SHARED_PREF177,0)
+        val ID_reprterr = applicationContext.getSharedPreferences(Config.SHARED_PREF175, 0)
+        val ID_suggstn = applicationContext.getSharedPreferences(Config.SHARED_PREF176, 0)
+        val ID_anyth= applicationContext.getSharedPreferences(Config.SHARED_PREF177, 0)
 
-        var reprt =ID_reprterr.getString("Reportanerror",null)
-        var sugg=ID_suggstn.getString("Giveasuggestion",null)
-        var anythng=ID_anyth.getString("Anythingelse",null)
+        var reprt =ID_reprterr.getString("Reportanerror", null)
+        var sugg=ID_suggstn.getString("Giveasuggestion", null)
+        var anythng=ID_anyth.getString("Anythingelse", null)
 
         feedback = arrayOf<String?>("Reportanerror", "Giveasuggestion", "Anythingelse")
         getFeedback()
 
         time = arrayOf<String?>("Before 1pm", "2pm", "After 2pm")
         getTime()
+
+        etxtDate!!.setOnTouchListener(object : View.OnTouchListener {
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                when (event?.action) {
+                    MotionEvent.ACTION_DOWN ->
+                        getDatepicker()
+                }
+
+                return v?.onTouchEvent(event) ?: true
+            }
+        })
 
     }
 
@@ -119,54 +140,99 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
 
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.imgBack ->{
+            R.id.imgBack -> {
                 finish()
             }
-            R.id.etxt_tmfrm ->{
-                val c:Calendar= Calendar.getInstance()
-                val hh=c.get(Calendar.HOUR_OF_DAY)
-                val mm=c.get(Calendar.MINUTE)
+            R.id.etxt_tmfrm -> {
+                val c: Calendar = Calendar.getInstance()
+                val hh = c.get(Calendar.HOUR_OF_DAY)
+                val mm = c.get(Calendar.MINUTE)
                 val timePickerDialog: TimePickerDialog = TimePickerDialog(this@EnquiryActivity, TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
-                    etxt_tmfrm!!.setText( ""+hourOfDay + ":" + minute);
-                },hh,mm,true)
+                    etxt_tmfrm!!.setText("" + hourOfDay + ":" + minute);
+                }, hh, mm, true)
                 timePickerDialog.show()
             }
-            R.id.etxt_tmto ->{
-                val c:Calendar= Calendar.getInstance()
-                val hh=c.get(Calendar.HOUR_OF_DAY)
-                val mm=c.get(Calendar.MINUTE)
+            R.id.etxt_tmto -> {
+                val c: Calendar = Calendar.getInstance()
+                val hh = c.get(Calendar.HOUR_OF_DAY)
+                val mm = c.get(Calendar.MINUTE)
                 val timePickerDialog: TimePickerDialog = TimePickerDialog(this@EnquiryActivity, TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
-                    etxt_tmto!!.setText( ""+hourOfDay + ":" + minute);
-                },hh,mm,true)
+                    etxt_tmto!!.setText("" + hourOfDay + ":" + minute);
+                }, hh, mm, true)
                 timePickerDialog.show()
             }
-            R.id.rad_callbk ->{
-                if(rad_callbk!!.isChecked)
-                {
-                 //   lltime!!.visibility=View.VISIBLE
-                    etxtmob!!.visibility=View.VISIBLE
-                    etxtemail!!.visibility=View.VISIBLE
-                    spn_time!!.visibility=View.VISIBLE
-                    llmob!!.visibility=View.VISIBLE
-                    lltimeinterval!!.visibility=View.VISIBLE
-                    llemail!!.visibility=View.VISIBLE
+            R.id.rad_callbk -> {
+                if (rad_callbk!!.isChecked) {
+                    //   lltime!!.visibility=View.VISIBLE
+                    etxtmob!!.visibility = View.VISIBLE
+                    etxtemail!!.visibility = View.VISIBLE
+                    spn_time!!.visibility = View.VISIBLE
+                    llmob!!.visibility = View.VISIBLE
+                    lltimeinterval!!.visibility = View.VISIBLE
+                    llemail!!.visibility = View.VISIBLE
+                    lldate!!.visibility = View.VISIBLE
 
-                    val ID_mob = applicationContext.getSharedPreferences(Config.SHARED_PREF2,0)
-                    etxtmob!!.setText(ID_mob.getString("CusMobile",null))
+                    val ID_mob = applicationContext.getSharedPreferences(Config.SHARED_PREF2, 0)
+                    etxtmob!!.setText(ID_mob.getString("CusMobile", null))
 
 
+                } else if (!rad_callbk!!.isChecked) {
+                    etxtmob!!.visibility = View.GONE
+                    etxtemail!!.visibility = View.GONE
+                    spn_time!!.visibility = View.GONE
+                    llmob!!.visibility = View.GONE
+                    lltimeinterval!!.visibility = View.GONE
+                    llemail!!.visibility = View.GONE
+                    lldate!!.visibility = View.GONE
                 }
             }
 
-            R.id.imgHome ->{
+            R.id.imgHome -> {
                 startActivity(Intent(this@EnquiryActivity, HomeActivity::class.java))
             }
-            R.id.btn_submit ->{
-                if (isValid()){
-                    sendEmail()
+            R.id.btn_clear -> {
+                getFeedback()
+                getTime()
+                etxtmob!!.setText("")
+                etxtemail!!.setText("")
+                etxtDate!!.setText("")
+                feedbackText!!.setText("")
+
+            }
+            R.id.btn_submit -> {
+                if (isValid()) {
+                    if (rad_callbk!!.isChecked) {
+                        matter = "Reason: " + feedbackText!!.text.toString() + "\n" + "\n" + spn_feedbk!!.selectedItem.toString() + "\n" + "\n" + "Contact: " + etxtmob!!.text.toString() + "\n" + "Email: " + etxtemail!!.text.toString() + "\n" + "Date: " + etxtDate!!.text.toString() + "\n" + "Selected time: " +
+                                spn_time!!.selectedItem.toString() + "\n" + "\n" + "\n" + "Thank you"
+                    } else {
+                        matter = "Reason: " + feedbackText!!.text.toString() + "\n" + "\n" + spn_feedbk!!.selectedItem.toString() + "\n" + "\n" + "\n" + "Thank you"
+                    }
+
+                    sendEmail(matter!!)
                 }
             }
+            R.id.etxtDate -> {
+                // getDatepicker()
+            }
         }
+    }
+
+    private fun getDatepicker() {
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+        val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            // Display Selected date in TextView
+
+
+            etxtDate!!.setText("" + dayOfMonth + "-" + (monthOfYear + 1) + "-" + year)
+        }, year, month, day)
+        dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+        val now = System.currentTimeMillis() - 1000
+        dpd.getDatePicker().setMaxDate(now + 1000 * 60 * 60 * 24 * 2)
+        dpd.show()
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
@@ -177,7 +243,7 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
 
     }
 
-    private fun sendEmail() {
+    private fun sendEmail(matter: String) {
 
         val TO = arrayOf("psstechteam@gmail.com")
         val emailIntent = Intent(Intent.ACTION_SEND)
@@ -188,11 +254,8 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
 
 
 
+        emailIntent.putExtra(Intent.EXTRA_TEXT, this.matter)
 
-
-            var data ="Reason: "+feedbackText!!.text.toString()+"\n"+"\n"+spn_feedbk!!.selectedItem.toString()+"\n"+"\n"+"Contact: "+etxtmob!!.text.toString()+"\n"+"Email: "+etxtemail!!.text.toString()+"\n"+"Selected time: "+
-                    spn_time!!.selectedItem.toString()
-            emailIntent.putExtra(Intent.EXTRA_TEXT, data)
 
 
 
@@ -231,7 +294,10 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
         val fdbktxt = feedbackText!!.text.toString()
         val fdbkslctn = spn_feedbk!!.selectedItem.toString()
         val mob = etxtmob!!.text.toString()
+        val date = etxtDate!!.text.toString()
         val mail = etxtemail!!.text.toString()
+
+
 
         if (TextUtils.isEmpty(fdbktxt)) {
             feedbackText!!.error = "Please Enter Your Feedback"
@@ -239,21 +305,51 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
         }
         feedbackText!!.setError(null)
 
+
+
+
         if (TextUtils.isEmpty(fdbkslctn)) {
-           Toast.makeText(applicationContext,"Please select a reason",Toast.LENGTH_LONG).show()
+           Toast.makeText(applicationContext, "Please select a reason", Toast.LENGTH_LONG).show()
             return false
         }
-        if (TextUtils.isEmpty(mob)) {
-            etxtmob!!.setError("Please enter mobile number")
-            return false
-        }
+        if (rad_callbk!!.isChecked)
+        {
+            if (TextUtils.isEmpty(mob)) {
+                etxtmob!!.setError("Please enter mobile number")
+                return false
+            }
 
-        if (mob.length > 10 || mob.length < 10) {
-            etxtmob!!.setError("Please enter valid 10 digit mobile number")
-            return false
-        }
+            if (mob.length > 10 || mob.length < 10) {
+                etxtmob!!.setError("Please enter valid 10 digit mobile number")
+                return false
+            }
 
-        etxtmob!!.setError(null)
+            etxtmob!!.setError(null)
+
+            if (TextUtils.isEmpty(date)) {
+                etxtDate!!.error = "Please Select Date"
+                return false
+            }
+            etxtDate!!.setError(null)
+
+            if (TextUtils.isEmpty(mail)) {
+
+            }
+            else
+            {
+                if( !mail.isEmailValid())
+                {
+                    etxtemail!!.error = "Please Enter a Valid Email"
+                    return false
+                }
+                etxtemail!!.setError(null)
+            }
+
+
+
+
+
+        }
 
      /*   if (TextUtils.isEmpty(mail)) {
             etxtemail!!.error = "Please Enter Your Mail id"
@@ -274,6 +370,15 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
         return true
 
     }
-
+    fun String.isEmailValid() =
+            Pattern.compile(
+                    "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+                            "\\@" +
+                            "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+                            "(" +
+                            "\\." +
+                            "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+                            ")+"
+            ).matcher(this).matches()
 
 }

@@ -26,6 +26,7 @@
     <string name="account_type">Account Type</string>
     <string name="available_balance">Available Balance</string>
     <string name="unclear_amount">Unclear Amount</string>
+    <string name="executve">Executive Call Back</string>
 
     <string name="savings_bank">Savings Bank</string>
     <string name="current_account">Current Account</string>
