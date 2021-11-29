@@ -104,12 +104,12 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
         val slctaddnwrecvrSP = applicationContext.getSharedPreferences(Config.SHARED_PREF139, 0)
         add_new_receiver!!.setText(slctaddnwrecvrSP.getString("AddNewReceiver", null))
 
-        val amtpaybleSP = applicationContext.getSharedPreferences(Config.SHARED_PREF95, 0)
+       /* val amtpaybleSP = applicationContext.getSharedPreferences(Config.SHARED_PREF95, 0)
         etxt_amount!!.setHint(amtpaybleSP.getString("AmountPayable", null))
-
-        val MpinSP = applicationContext.getSharedPreferences(Config.SHARED_PREF140, 0)
+*/
+        /*val MpinSP = applicationContext.getSharedPreferences(Config.SHARED_PREF140, 0)
         etxt_mpin!!.setHint(MpinSP.getString("MPIN", null))
-
+*/
         val frgtMpinSP = applicationContext.getSharedPreferences(Config.SHARED_PREF141, 0)
         btn_forgot_mpin!!.setText(frgtMpinSP.getString("ForgotMPIN", null))
 
