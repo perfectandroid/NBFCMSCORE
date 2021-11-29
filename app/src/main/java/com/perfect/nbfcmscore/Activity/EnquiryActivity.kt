@@ -31,6 +31,9 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
     var rad_callbk:RadioButton?=null
     var btn_submit: Button? = null
     var lltime: LinearLayout? = null
+    var llmob: LinearLayout? = null
+    var lltimeinterval: LinearLayout? = null
+    var llemail: LinearLayout? = null
     var spn_time: Spinner? = null
     var etxt_tmfrm: TextView? = null
     var etxt_tmto: TextView? = null
@@ -63,6 +66,9 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
         etxtemail= findViewById<EditText>(R.id.etxtemail) as EditText
 
         lltime= findViewById<LinearLayout>(R.id.lltime) as LinearLayout
+        llmob= findViewById<LinearLayout>(R.id.llmob) as LinearLayout
+        lltimeinterval= findViewById<LinearLayout>(R.id.lltimeinterval) as LinearLayout
+        llemail= findViewById<LinearLayout>(R.id.llemail) as LinearLayout
 
         spn_feedbk = findViewById<Spinner>(R.id.spn_feedbk) as Spinner
         btn_submit = findViewById<Button>(R.id.btn_submit) as Button
@@ -141,6 +147,9 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
                     etxtmob!!.visibility=View.VISIBLE
                     etxtemail!!.visibility=View.VISIBLE
                     spn_time!!.visibility=View.VISIBLE
+                    llmob!!.visibility=View.VISIBLE
+                    lltimeinterval!!.visibility=View.VISIBLE
+                    llemail!!.visibility=View.VISIBLE
 
                     val ID_mob = applicationContext.getSharedPreferences(Config.SHARED_PREF2,0)
                     etxtmob!!.setText(ID_mob.getString("CusMobile",null))
