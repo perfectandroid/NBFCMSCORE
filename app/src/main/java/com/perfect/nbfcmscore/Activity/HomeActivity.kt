@@ -905,7 +905,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         )*/
         val imageId = arrayOf<Int>(
                 R.drawable.aboutnav, R.drawable.contnav,
-                R.drawable.feedbacknav, R.drawable.ppnav, R.drawable.tncnav, R.drawable.ic_settings,R.drawable.ic_settings,
+                R.drawable.feedbacknav, R.drawable.ppnav, R.drawable.tncnav, R.drawable.ic_settings,R.drawable.langicon,
                 R.drawable.logoutnav, R.drawable.exitnav
         )
         val adapter = NavMenuAdapter(this@HomeActivity, menulist, imageId)
@@ -933,6 +933,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             }
             else if (position == 6) {
               //  startActivity(Intent(this@HomeActivity, LanguageSelectionActivity::class.java))
+                getLanguagelist()
                 drawer!!.closeDrawer(GravityCompat.START)
             }
             else if (position == 7) {
