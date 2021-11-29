@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -36,12 +37,12 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
     private var progressDialog: ProgressDialog? = null
     var imgBack: ImageView? = null
     var applogo: ImageView? = null
-    var imgv_datepick: ImageView? = null
+   // var imgv_datepick: ImageView? = null
     var imgHome: ImageView? = null
-    var txtv_first_name: TextInputEditText? = null
-    var txtv_last_name: TextInputEditText? = null
-    var txtv_mobile_number: TextInputEditText? = null
-    var txtv_dob: TextInputEditText? = null
+    var txtv_first_name: EditText? = null
+    var txtv_last_name: EditText? = null
+    var txtv_mobile_number: EditText? = null
+    var txtv_dob: EditText? = null
     var btn_register: Button? = null
     var tv_title: TextView? = null
 
@@ -55,12 +56,12 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
         val Fundtransfrsp = applicationContext.getSharedPreferences(Config.SHARED_PREF138, 0)
         tv_title!!.setText(Fundtransfrsp.getString("AddNewSender", null))
 
-        val Firsttimesp = applicationContext.getSharedPreferences(Config.SHARED_PREF143, 0)
+     /*   val Firsttimesp = applicationContext.getSharedPreferences(Config.SHARED_PREF143, 0)
         txtv_first_name!!.setHint(Firsttimesp.getString("FirstName", null))
 
         val Lastnamesp = applicationContext.getSharedPreferences(Config.SHARED_PREF144, 0)
         txtv_last_name!!.setHint(Lastnamesp.getString("LastName", null))
-
+*/
         val Registerp = applicationContext.getSharedPreferences(Config.SHARED_PREF146, 0)
         btn_register!!.setText(Registerp.getString("REGISTER", null))
 
@@ -74,19 +75,20 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
 
     private fun setRegViews() {
         tv_title = findViewById<TextView>(R.id.tv_title)
-        imgv_datepick = findViewById<ImageView>(R.id.imgv_datepick)
+       // imgv_datepick = findViewById<ImageView>(R.id.imgv_datepick)
         imgBack = findViewById<ImageView>(R.id.imgBack)
         imgHome = findViewById<ImageView>(R.id.imgHome)
-        txtv_first_name = findViewById<TextInputEditText>(R.id.txtv_first_name)
-        txtv_last_name = findViewById<TextInputEditText>(R.id.txtv_last_name)
-        txtv_mobile_number = findViewById<TextInputEditText>(R.id.txtv_mobile_number)
-        txtv_dob = findViewById<TextInputEditText>(R.id.txtv_dob)
+        txtv_first_name = findViewById<EditText>(R.id.txtv_first_name)
+        txtv_last_name = findViewById<EditText>(R.id.txtv_last_name)
+        txtv_mobile_number = findViewById<EditText>(R.id.txtv_mobile_number)
+        txtv_dob = findViewById<EditText>(R.id.txtv_dob)
         btn_register = findViewById<Button>(R.id.btn_register)
 
-        imgv_datepick!!.setOnClickListener(this)
+       // imgv_datepick!!.setOnClickListener(this)
         btn_register!!.setOnClickListener(this)
         imgBack!!.setOnClickListener(this)
         imgHome!!.setOnClickListener(this)
+        txtv_dob!!.setOnClickListener(this)
     }
 
     private fun getSender(firstName: String, lastName: String, mobileNumber: String, dob: String) {
@@ -281,7 +283,7 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
 
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.imgv_datepick -> {
+            R.id.txtv_dob -> {
                 getDatepicker()
 
             }

@@ -37,11 +37,11 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
     var applogo: ImageView? = null
     var imCompanylogo: ImageView? = null
     var sender_name_spinner: Spinner? = null
-    var receiver_name: AppCompatEditText? = null
-    var mobile_number: AppCompatEditText? = null
-    var ifsc_code: AppCompatEditText? = null
-    var account_number: AppCompatEditText? = null
-    var confirm_account_number: AppCompatEditText? = null
+    var receiver_name: EditText? = null
+    var mobile_number: EditText? = null
+    var ifsc_code: EditText? = null
+    var account_number: EditText? = null
+    var confirm_account_number: EditText? = null
     var btn_registr: Button? = null
     public var arrayList2: ArrayList<SenderReceiverlist>? = null
     var imgHome: ImageView? = null
@@ -55,26 +55,26 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
          setRegviews()
          getSenderReceiver()
 
-        val Fundtransfrsp = applicationContext.getSharedPreferences(Config.SHARED_PREF139, 0)
+       val Fundtransfrsp = applicationContext.getSharedPreferences(Config.SHARED_PREF139, 0)
         tv_title!!.setText(Fundtransfrsp.getString("AddNewReceiver", null))
 
-        val Sndrnamesp = applicationContext.getSharedPreferences(Config.SHARED_PREF147, 0)
-        txtv_sndrname!!.setHint(Sndrnamesp.getString("SenderName", null))
+        /*   val Sndrnamesp = applicationContext.getSharedPreferences(Config.SHARED_PREF147, 0)
+          txtv_sndrname!!.setHint(Sndrnamesp.getString("SenderName", null))
 
-        val ifscsp = applicationContext.getSharedPreferences(Config.SHARED_PREF150, 0)
-        ifsc_code!!.setHint(ifscsp.getString("IFSCCode", null))
+          val ifscsp = applicationContext.getSharedPreferences(Config.SHARED_PREF150, 0)
+          ifsc_code!!.setHint(ifscsp.getString("IFSCCode", null))
 
-        val accnosp = applicationContext.getSharedPreferences(Config.SHARED_PREF107, 0)
-        account_number!!.setHint(accnosp.getString("AccountNo", null))
+          val accnosp = applicationContext.getSharedPreferences(Config.SHARED_PREF107, 0)
+          account_number!!.setHint(accnosp.getString("AccountNo", null))
 
-        val confrmaccnosp = applicationContext.getSharedPreferences(Config.SHARED_PREF149, 0)
-        confirm_account_number!!.setHint(confrmaccnosp.getString("ConfirmAccountNumber", null))
-
+          val confrmaccnosp = applicationContext.getSharedPreferences(Config.SHARED_PREF149, 0)
+          confirm_account_number!!.setHint(confrmaccnosp.getString("ConfirmAccountNumber", null))
+  */
         val Registerp = applicationContext.getSharedPreferences(Config.SHARED_PREF146, 0)
         btn_registr!!.setText(Registerp.getString("REGISTER", null))
 
-        val Receiversp = applicationContext.getSharedPreferences(Config.SHARED_PREF148, 0)
-        receiver_name!!.setHint(Receiversp.getString("ReceiverName", null))
+       /* val Receiversp = applicationContext.getSharedPreferences(Config.SHARED_PREF148, 0)
+        receiver_name!!.setHint(Receiversp.getString("ReceiverName", null))*/
 
 
 
@@ -282,11 +282,11 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
         imgBack= findViewById<ImageView>(R.id.imgBack)
         imgHome= findViewById<ImageView>(R.id.imgHome)
         sender_name_spinner = findViewById<Spinner>(R.id.sender_name_spinner)
-        receiver_name = findViewById<AppCompatEditText>(R.id.receiver_name)
-        mobile_number = findViewById<AppCompatEditText>(R.id.mobile_number)
-        ifsc_code = findViewById<AppCompatEditText>(R.id.ifsc_code)
-        account_number = findViewById<AppCompatEditText>(R.id.account_number)
-        confirm_account_number = findViewById<AppCompatEditText>(R.id.confirm_account_number)
+        receiver_name = findViewById<EditText>(R.id.receiver_name)
+        mobile_number = findViewById<EditText>(R.id.mobile_number)
+        ifsc_code = findViewById<EditText>(R.id.ifsc_code)
+        account_number = findViewById<EditText>(R.id.account_number)
+        confirm_account_number = findViewById<EditText>(R.id.confirm_account_number)
         btn_registr = findViewById<Button>(R.id.btn_registr)
 
         tv_title= findViewById<TextView>(R.id.tv_title)
