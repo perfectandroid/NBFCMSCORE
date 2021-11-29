@@ -169,22 +169,52 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
     }
 
     private fun sendEmail() {
-        //val Sendemail = applicationContext.getSharedPreferences("Sendemail", 0)
-        //val Sendmail = Sendemail.getString("Sendemail", "")
-        //  Toast.makeText(this@SuggestionActivity, Sendmail + "", Toast.LENGTH_SHORT).show()
+
         val TO = arrayOf("psstechteam@gmail.com")
         val emailIntent = Intent(Intent.ACTION_SEND)
         emailIntent.data = Uri.parse("mailto:")
         emailIntent.type = "text/plain"
         emailIntent.putExtra(Intent.EXTRA_EMAIL, TO)
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Call back Form")
-        var data =feedbackText!!.text.toString()+"\n"+spn_feedbk!!.selectedItem.toString()
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Enquiry/Executive Call Back")
+
+
+
+
+
+            var data ="Reason: "+feedbackText!!.text.toString()+"\n"+"\n"+spn_feedbk!!.selectedItem.toString()+"\n"+"\n"+"Contact: "+etxtmob!!.text.toString()+"\n"+"Email: "+etxtemail!!.text.toString()+"\n"+"Selected time: "+
+                    spn_time!!.selectedItem.toString()
+            emailIntent.putExtra(Intent.EXTRA_TEXT, data)
+
+
+
+
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send mail..."))
+        } catch (ex: ActivityNotFoundException) {
+        }
+     /*   val TO = arrayOf("psstechteam@gmail.com")
+        val emailIntent = Intent(Intent.ACTION_SEND)
+        emailIntent.data = Uri.parse("mailto:")
+        emailIntent.type = "text/plain"
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO)
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Enquiry")
+        var data=""
+        if(!etxtmob!!.text.toString().equals(""))
+        {
+            data =feedbackText!!.text.toString()+"\n"+spn_feedbk!!.selectedItem.toString()+"\n"+"Contact: "+etxtmob!!.text.toString()+"\n"+"Email"+etxtemail!!.text.toString()+"\n"+"Selected time: "+
+                    spn_time!!.selectedItem.toString()
+        }
+        else
+        {
+            data =feedbackText!!.text.toString()+"\n"+spn_feedbk!!.selectedItem.toString()
+        }
 
         emailIntent.putExtra(Intent.EXTRA_TEXT, data)
         try {
             startActivity(Intent.createChooser(emailIntent, "Send mail..."))
         } catch (ex: ActivityNotFoundException) {
-        }
+        }*/
     }
 
     private fun isValid(): Boolean {
