@@ -170,24 +170,27 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
                                     for (i in 0 until jresult!!.length()) {
                                         try {
                                             val json = jresult!!.getJSONObject(i)
-                                            arrayList2!!.add(
-                                                    SenderReceiverlist(
-                                                            json.getString("UserID"),
-                                                            json.getString(
-                                                                    "FK_SenderID"
-                                                            ),
-                                                            json.getString(
-                                                                    "SenderName"
-                                                            ),
-                                                            json.getString(
-                                                                    "SenderMobile"
-                                                            ), json.getString(
-                                                            "ReceiverAccountno"
-                                                    ), json.getString(
-                                                            "Mode"
-                                                    )
-                                                    )
-                                            )
+                                            if (json.getString("Mode").equals("1")) {
+                                                arrayList2!!.add(
+                                                        SenderReceiverlist(
+                                                                json.getString("UserID"),
+                                                                json.getString(
+                                                                        "FK_SenderID"
+                                                                ),
+                                                                json.getString(
+                                                                        "SenderName"
+                                                                ),
+                                                                json.getString(
+                                                                        "SenderMobile"
+                                                                ), json.getString(
+                                                                "ReceiverAccountno"
+                                                        ), json.getString(
+                                                                "Mode"
+                                                        )
+                                                        )
+                                                )
+                                            }
+
 
                                         } catch (e: JSONException) {
                                             e.printStackTrace()
