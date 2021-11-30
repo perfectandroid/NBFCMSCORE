@@ -58,8 +58,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
     var receiverAccountno: String? = null
     var receiverid: String? = null
     var mode: String? = null
-
-
+    var btn_clear: Button? = null
     private val mLnrAnimatorContainer: LinearLayout? = null
     private val mRltvError: RelativeLayout? = null
     private val mTxtError: TextView? = null
@@ -351,6 +350,8 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
     private fun setRegviews() {
 
         btn_forgot_mpin= findViewById<Button>(R.id.btn_forgot_mpin)
+        btn_clear= findViewById<Button>(R.id.btn_clear)
+
         txt_amtinword= findViewById<TextView>(R.id.txt_amtinword)
         mMessageEt= findViewById<EditText>(R.id.message)
 
@@ -372,6 +373,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
         add_new_sender!!.setOnClickListener(this)
         add_new_receiver!!.setOnClickListener(this)
         btn_forgot_mpin!!.setOnClickListener(this)
+        btn_clear!!.setOnClickListener(this)
 
         mAccountSpinner!!.onItemSelectedListener = this
 
@@ -665,6 +667,14 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
             R.id.add_new_sender -> {
                 startActivity(Intent(this@QuickPayActivity, AddSender::class.java))
 
+            }
+            R.id.btn_clear -> {
+                getSenderReceiver()
+                getAccountnumber()
+                etxt_amount!!.setText("")
+                txt_amtinword!!.setText("")
+                mMessageEt!!.setText("")
+                etxt_mpin!!.setText("")
             }
             R.id.btn_forgot_mpin -> {
                 if (senderid.equals("-100")) {
@@ -1313,6 +1323,10 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
             alertDialog.dismiss()
         }
         alertDialog.show()
+    }
+    override fun onResume() {  // After a pause OR at startup
+        super.onResume()
+        getSenderReceiver()
     }
 }
 

@@ -88,6 +88,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
     var BranchName: String? = ""
 
     var but_pay: Button? = null
+    var btn_clear: Button? = null
 
     // Save
     var AccountNo: String? = ""
@@ -242,6 +243,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
         ll_chk_bene = findViewById<LinearLayout>(R.id.ll_chk_bene)
         chk_beneficiary = findViewById<CheckBox>(R.id.chk_beneficiary)
         but_pay = findViewById<Button>(R.id.but_pay)
+        btn_clear = findViewById<Button>(R.id.btn_clear)
         llhist = findViewById(R.id.llhist)
         imhist = findViewById(R.id.imhist)
 
@@ -257,7 +259,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
         im_beneficiarylist!!.setOnClickListener(this)
         tv_beneficiarylist!!.setOnClickListener(this)
         but_pay!!.setOnClickListener(this)
-
+        btn_clear!!.setOnClickListener(this)
 
      //   tie_beneficiary!!.setOnClickListener(this)
 
@@ -323,8 +325,19 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
 //            startActivity(Intent(this@OtherBankFundTransferActivity, BeneficiaryListActivity::class.java))
             val i = Intent(this, BeneficiaryListActivity::class.java)
             startActivityForResult(i, PICK_BENEFICIARY)
-            } R.id.but_pay ->{
+            }
+            R.id.but_pay ->{
                 payValidation()
+            }
+            R.id.btn_clear ->{
+
+                getOwnAccount()
+                tie_beneficiary!!.setText("")
+                tie_beneficiary_aacno!!.setText("")
+                tie_Conf_beneficiary_aacno!!.setText("")
+                tie_ifsc_code!!.setText("")
+                tie_amount!!.setText("")
+                chk_beneficiary!!.isChecked=false
             }
         }
     }
