@@ -1,7 +1,6 @@
 package com.perfect.nbfcmscore.Activity
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.Dialog
 import android.app.ProgressDialog
 import android.content.*
@@ -42,12 +41,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.net.MalformedURLException
 import java.net.URL
-import java.text.ParseException
-import java.text.SimpleDateFormat
 import java.util.*
-import android.content.Intent
-
-
 
 
 class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener, View.OnClickListener,
@@ -163,92 +157,92 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
         setdefaultAccountDetails()
 
-        val ID_MyaccSP = applicationContext.getSharedPreferences(Config.SHARED_PREF50,0)
-        val ID_PassbkSP = applicationContext.getSharedPreferences(Config.SHARED_PREF51,0)
-        val ID_QuickbalSP = applicationContext.getSharedPreferences(Config.SHARED_PREF52,0)
-        val ID_DueremindSP = applicationContext.getSharedPreferences(Config.SHARED_PREF53,0)
-        val ID_StatmntSP = applicationContext.getSharedPreferences(Config.SHARED_PREF59,0)
-        val ID_NotifSP = applicationContext.getSharedPreferences(Config.SHARED_PREF62,0)
-        val ID_OwnBankSP = applicationContext.getSharedPreferences(Config.SHARED_PREF63,0)
-        val ID_OtherBankSP = applicationContext.getSharedPreferences(Config.SHARED_PREF64,0)
-        val ID_QuickpaySP = applicationContext.getSharedPreferences(Config.SHARED_PREF65,0)
+        val ID_MyaccSP = applicationContext.getSharedPreferences(Config.SHARED_PREF50, 0)
+        val ID_PassbkSP = applicationContext.getSharedPreferences(Config.SHARED_PREF51, 0)
+        val ID_QuickbalSP = applicationContext.getSharedPreferences(Config.SHARED_PREF52, 0)
+        val ID_DueremindSP = applicationContext.getSharedPreferences(Config.SHARED_PREF53, 0)
+        val ID_StatmntSP = applicationContext.getSharedPreferences(Config.SHARED_PREF59, 0)
+        val ID_NotifSP = applicationContext.getSharedPreferences(Config.SHARED_PREF62, 0)
+        val ID_OwnBankSP = applicationContext.getSharedPreferences(Config.SHARED_PREF63, 0)
+        val ID_OtherBankSP = applicationContext.getSharedPreferences(Config.SHARED_PREF64, 0)
+        val ID_QuickpaySP = applicationContext.getSharedPreferences(Config.SHARED_PREF65, 0)
 
-        val ID_Prepaid = applicationContext.getSharedPreferences(Config.SHARED_PREF66,0)
-        val ID_Postpaid = applicationContext.getSharedPreferences(Config.SHARED_PREF67,0)
-        val ID_Landline = applicationContext.getSharedPreferences(Config.SHARED_PREF68,0)
-        val ID_DTH = applicationContext.getSharedPreferences(Config.SHARED_PREF69,0)
-        val ID_Datacrdpay = applicationContext.getSharedPreferences(Config.SHARED_PREF70,0)
-        val ID_KSEB = applicationContext.getSharedPreferences(Config.SHARED_PREF71,0)
-        val ID_Histry = applicationContext.getSharedPreferences(Config.SHARED_PREF72,0)
+        val ID_Prepaid = applicationContext.getSharedPreferences(Config.SHARED_PREF66, 0)
+        val ID_Postpaid = applicationContext.getSharedPreferences(Config.SHARED_PREF67, 0)
+        val ID_Landline = applicationContext.getSharedPreferences(Config.SHARED_PREF68, 0)
+        val ID_DTH = applicationContext.getSharedPreferences(Config.SHARED_PREF69, 0)
+        val ID_Datacrdpay = applicationContext.getSharedPreferences(Config.SHARED_PREF70, 0)
+        val ID_KSEB = applicationContext.getSharedPreferences(Config.SHARED_PREF71, 0)
+        val ID_Histry = applicationContext.getSharedPreferences(Config.SHARED_PREF72, 0)
 
-        val ID_Dashbrd = applicationContext.getSharedPreferences(Config.SHARED_PREF73,0)
-        val ID_Virtualcrd = applicationContext.getSharedPreferences(Config.SHARED_PREF74,0)
-        val ID_Branch = applicationContext.getSharedPreferences(Config.SHARED_PREF75,0)
-        val ID_Loanapplictn = applicationContext.getSharedPreferences(Config.SHARED_PREF76,0)
-        val ID_Loanstatus = applicationContext.getSharedPreferences(Config.SHARED_PREF77,0)
-        val ID_PrdctDetail = applicationContext.getSharedPreferences(Config.SHARED_PREF78,0)
+        val ID_Dashbrd = applicationContext.getSharedPreferences(Config.SHARED_PREF73, 0)
+        val ID_Virtualcrd = applicationContext.getSharedPreferences(Config.SHARED_PREF74, 0)
+        val ID_Branch = applicationContext.getSharedPreferences(Config.SHARED_PREF75, 0)
+        val ID_Loanapplictn = applicationContext.getSharedPreferences(Config.SHARED_PREF76, 0)
+        val ID_Loanstatus = applicationContext.getSharedPreferences(Config.SHARED_PREF77, 0)
+        val ID_PrdctDetail = applicationContext.getSharedPreferences(Config.SHARED_PREF78, 0)
 
-        val ID_Emi = applicationContext.getSharedPreferences(Config.SHARED_PREF79,0)
-        val ID_Deposit = applicationContext.getSharedPreferences(Config.SHARED_PREF80,0)
-        val ID_Goldloan = applicationContext.getSharedPreferences(Config.SHARED_PREF81,0)
-        val ID_Enqry = applicationContext.getSharedPreferences(Config.SHARED_PREF82,0)
-        val ID_Holidy = applicationContext.getSharedPreferences(Config.SHARED_PREF83,0)
-        val ID_Executve = applicationContext.getSharedPreferences(Config.SHARED_PREF84,0)
+        val ID_Emi = applicationContext.getSharedPreferences(Config.SHARED_PREF79, 0)
+        val ID_Deposit = applicationContext.getSharedPreferences(Config.SHARED_PREF80, 0)
+        val ID_Goldloan = applicationContext.getSharedPreferences(Config.SHARED_PREF81, 0)
+        val ID_Enqry = applicationContext.getSharedPreferences(Config.SHARED_PREF82, 0)
+        val ID_Holidy = applicationContext.getSharedPreferences(Config.SHARED_PREF83, 0)
+        val ID_Executve = applicationContext.getSharedPreferences(Config.SHARED_PREF84, 0)
 
-        val ID_Accnt = applicationContext.getSharedPreferences(Config.SHARED_PREF117,0)
-        val ID_Viewall = applicationContext.getSharedPreferences(Config.SHARED_PREF118,0)
-        val ID_Availbal = applicationContext.getSharedPreferences(Config.SHARED_PREF119,0)
-        val ID_Lastlog = applicationContext.getSharedPreferences(Config.SHARED_PREF120,0)
+        val ID_Accnt = applicationContext.getSharedPreferences(Config.SHARED_PREF117, 0)
+        val ID_Viewall = applicationContext.getSharedPreferences(Config.SHARED_PREF118, 0)
+        val ID_Availbal = applicationContext.getSharedPreferences(Config.SHARED_PREF119, 0)
+        val ID_Lastlog = applicationContext.getSharedPreferences(Config.SHARED_PREF120, 0)
 
-        txtv_myacc!!.setText(ID_MyaccSP.getString("Myaccounts",null))
-        txtv_pasbk!!.setText(ID_PassbkSP.getString("passbook",null))
-        txtv_quickbal!!.setText(ID_QuickbalSP.getString("quickbalance",null))
-        txtv_dueremndr!!.setText(ID_DueremindSP.getString("duereminder",null))
-        txtvstatmnt!!.setText(ID_StatmntSP.getString("statement",null))
-        txtvnotif!!.setText(ID_NotifSP.getString("NotificationandMessages",null))
-        txtv_ownbnk!!.setText(ID_OwnBankSP.getString("OwnBank",null))
-        txtv_othrbnk!!.setText(ID_OtherBankSP.getString("OtherBank",null))
-        txtv_quickpay!!.setText(ID_QuickpaySP.getString("QuickPay",null))
+        txtv_myacc!!.setText(ID_MyaccSP.getString("Myaccounts", null))
+        txtv_pasbk!!.setText(ID_PassbkSP.getString("passbook", null))
+        txtv_quickbal!!.setText(ID_QuickbalSP.getString("quickbalance", null))
+        txtv_dueremndr!!.setText(ID_DueremindSP.getString("duereminder", null))
+        txtvstatmnt!!.setText(ID_StatmntSP.getString("statement", null))
+        txtvnotif!!.setText(ID_NotifSP.getString("NotificationandMessages", null))
+        txtv_ownbnk!!.setText(ID_OwnBankSP.getString("OwnBank", null))
+        txtv_othrbnk!!.setText(ID_OtherBankSP.getString("OtherBank", null))
+        txtv_quickpay!!.setText(ID_QuickpaySP.getString("QuickPay", null))
 
-        txtv_prepaid!!.setText(ID_Prepaid.getString("PrepaidMobile",null))
-        txtv_pospaid!!.setText(ID_Postpaid.getString("PostpaidMobile",null))
-        txtv_landline!!.setText(ID_Landline.getString("Landline",null))
-        txtv_dth!!.setText(ID_DTH.getString("DTH",null))
-        txtv_datacrd!!.setText(ID_Datacrdpay.getString("DataCard",null))
-        txtv_Kseb!!.setText(ID_KSEB.getString("KSEB",null))
-        txtv_history!!.setText(ID_Histry.getString("History",null))
+        txtv_prepaid!!.setText(ID_Prepaid.getString("PrepaidMobile", null))
+        txtv_pospaid!!.setText(ID_Postpaid.getString("PostpaidMobile", null))
+        txtv_landline!!.setText(ID_Landline.getString("Landline", null))
+        txtv_dth!!.setText(ID_DTH.getString("DTH", null))
+        txtv_datacrd!!.setText(ID_Datacrdpay.getString("DataCard", null))
+        txtv_Kseb!!.setText(ID_KSEB.getString("KSEB", null))
+        txtv_history!!.setText(ID_Histry.getString("History", null))
 
-        txtv_dashbrd!!.setText(ID_Dashbrd.getString("Dashboard",null))
-        txtv_virtual!!.setText(ID_Virtualcrd.getString("VirtualCard",null))
-        txtv_branch!!.setText(ID_Branch.getString("BranchDetails",null))
-        txtv_loanaplctn!!.setText(ID_Loanapplictn.getString("LoanApplication",null))
-        txtv_loanstats!!.setText(ID_Loanstatus.getString("LoanStatus",null))
-        txtv_prdctdetail!!.setText(ID_PrdctDetail.getString("ProductDetails",null))
+        txtv_dashbrd!!.setText(ID_Dashbrd.getString("Dashboard", null))
+        txtv_virtual!!.setText(ID_Virtualcrd.getString("VirtualCard", null))
+        txtv_branch!!.setText(ID_Branch.getString("BranchDetails", null))
+        txtv_loanaplctn!!.setText(ID_Loanapplictn.getString("LoanApplication", null))
+        txtv_loanstats!!.setText(ID_Loanstatus.getString("LoanStatus", null))
+        txtv_prdctdetail!!.setText(ID_PrdctDetail.getString("ProductDetails", null))
 
-        txtv_emi!!.setText(ID_Emi.getString("EMICalculator",null))
-        txtv_deposit!!.setText(ID_Deposit.getString("DepositCalculator",null))
-        txtv_goldloan!!.setText(ID_Goldloan.getString("GoldLoanEligibileCalculator",null))
-        txtv_enqry!!.setText(ID_Enqry.getString("Enquires",null))
-        txtv_holidy!!.setText(ID_Holidy.getString("HolidayList",null))
-        txtv_exectve!!.setText(ID_Executve.getString("ExecutiveCallBack",null))
+        txtv_emi!!.setText(ID_Emi.getString("EMICalculator", null))
+        txtv_deposit!!.setText(ID_Deposit.getString("DepositCalculator", null))
+        txtv_goldloan!!.setText(ID_Goldloan.getString("GoldLoanEligibileCalculator", null))
+        txtv_enqry!!.setText(ID_Enqry.getString("Enquires", null))
+        txtv_holidy!!.setText(ID_Holidy.getString("HolidayList", null))
+        txtv_exectve!!.setText(ID_Executve.getString("ExecutiveCallBack", null))
 
-        txtv_accnt!!.setText(ID_Accnt.getString("Account",null))
-        tv_viewall!!.setText(ID_Viewall.getString("ViewAllAccounts",null))
-        txtv_availbal!!.setText(ID_Availbal.getString("AvailableBalance",null))
-        val LastLoginTimeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF29,0)
-        tv_lastlogin!!.setText(ID_Lastlog.getString("LastLogin",null)+" : "+LastLoginTimeSP.getString("LastLoginTime",""))
+        txtv_accnt!!.setText(ID_Accnt.getString("Account", null))
+        tv_viewall!!.setText(ID_Viewall.getString("ViewAllAccounts", null))
+        txtv_availbal!!.setText(ID_Availbal.getString("AvailableBalance", null))
+        val LastLoginTimeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF29, 0)
+        tv_lastlogin!!.setText(ID_Lastlog.getString("LastLogin", null) + " : " + LastLoginTimeSP.getString("LastLoginTime", ""))
 
-        val ID_Accntdetail = applicationContext.getSharedPreferences(Config.SHARED_PREF121,0)
-        val ID_Fundtrans = applicationContext.getSharedPreferences(Config.SHARED_PREF122,0)
-        val ID_Rebill = applicationContext.getSharedPreferences(Config.SHARED_PREF123,0)
-        val ID_Reprts = applicationContext.getSharedPreferences(Config.SHARED_PREF124,0)
-        val ID_Tools = applicationContext.getSharedPreferences(Config.SHARED_PREF125,0)
+        val ID_Accntdetail = applicationContext.getSharedPreferences(Config.SHARED_PREF121, 0)
+        val ID_Fundtrans = applicationContext.getSharedPreferences(Config.SHARED_PREF122, 0)
+        val ID_Rebill = applicationContext.getSharedPreferences(Config.SHARED_PREF123, 0)
+        val ID_Reprts = applicationContext.getSharedPreferences(Config.SHARED_PREF124, 0)
+        val ID_Tools = applicationContext.getSharedPreferences(Config.SHARED_PREF125, 0)
 
-        txtv_acntdetail!!.setText(ID_Accntdetail.getString("AccountDetails",null))
-        txtv_fundtrans!!.setText(ID_Fundtrans.getString("FundTransfer",null))
-        txtv_rechbill!!.setText(ID_Rebill.getString("RechargeBills",null))
-        txtv_reprts!!.setText(ID_Reprts.getString("ReportsOtherServices",null))
-        txtv_tools!!.setText(ID_Tools.getString("ToolsSettings",null))
+        txtv_acntdetail!!.setText(ID_Accntdetail.getString("AccountDetails", null))
+        txtv_fundtrans!!.setText(ID_Fundtrans.getString("FundTransfer", null))
+        txtv_rechbill!!.setText(ID_Rebill.getString("RechargeBills", null))
+        txtv_reprts!!.setText(ID_Reprts.getString("ReportsOtherServices", null))
+        txtv_tools!!.setText(ID_Tools.getString("ToolsSettings", null))
 
 
 
@@ -261,7 +255,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                     "AppIconImageCode",
                     null
             )
-            Log.e("TAG","imagepath  116   "+imagepath)
+            Log.e("TAG", "imagepath  116   " + imagepath)
             //PicassoTrustAll.getInstance(this)!!.load(imagepath).error(null).into(im_applogo)
             PicassoTrustAll.getInstance(this@HomeActivity)!!.load(imagepath).error(android.R.color.transparent).into(im_applogo!!)
 
@@ -484,7 +478,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
             val pref = applicationContext.getSharedPreferences(Config.SHARED_PREF11, 0)
             val url = pref.getString("PlayStoreLink", null)
-            Log.i("URL",url.toString())
+            Log.i("URL", url.toString())
             try {
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
             } catch (anfe: ActivityNotFoundException) {
@@ -612,10 +606,10 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                         try {
                                             val json = jresult!!.getJSONObject(i)
 
-                                            val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165,0)
-                                           // var s = "https://202.164.150.65:14262/NbfcAndroidAPI" + json.getString("ImagePath")
-                                            var s = ImageURLSP.getString("ImageURL",null) + json.getString("ImagePath")
-                                            Log.e(TAG,"s    618    "+s)
+                                            val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+                                            // var s = "https://202.164.150.65:14262/NbfcAndroidAPI" + json.getString("ImagePath")
+                                            var s = ImageURLSP.getString("ImageURL", null) + json.getString("ImagePath")
+                                            Log.e(TAG, "s    618    " + s)
 
 
                                             XMENArray!!.add(s)
@@ -871,28 +865,28 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     }
 
     open fun setHomeNavMenu() {
-        val ID_AbtusSP = applicationContext.getSharedPreferences(Config.SHARED_PREF54,0)
-        val ID_ContactSP = applicationContext.getSharedPreferences(Config.SHARED_PREF55,0)
-        val ID_FeebkSP = applicationContext.getSharedPreferences(Config.SHARED_PREF56,0)
-        val ID_PrivacySP = applicationContext.getSharedPreferences(Config.SHARED_PREF57,0)
-        val ID_TermsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF58,0)
-        val ID_SetngsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF60,0)
-        val ID_LogoutSP = applicationContext.getSharedPreferences(Config.SHARED_PREF61,0)
-        val ID_Quit = applicationContext.getSharedPreferences(Config.SHARED_PREF106,0)
-        val ID_Lang = applicationContext.getSharedPreferences(Config.SHARED_PREF167,0)
+        val ID_AbtusSP = applicationContext.getSharedPreferences(Config.SHARED_PREF54, 0)
+        val ID_ContactSP = applicationContext.getSharedPreferences(Config.SHARED_PREF55, 0)
+        val ID_FeebkSP = applicationContext.getSharedPreferences(Config.SHARED_PREF56, 0)
+        val ID_PrivacySP = applicationContext.getSharedPreferences(Config.SHARED_PREF57, 0)
+        val ID_TermsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF58, 0)
+        val ID_SetngsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF60, 0)
+        val ID_LogoutSP = applicationContext.getSharedPreferences(Config.SHARED_PREF61, 0)
+        val ID_Quit = applicationContext.getSharedPreferences(Config.SHARED_PREF106, 0)
+        val ID_Lang = applicationContext.getSharedPreferences(Config.SHARED_PREF167, 0)
 
 
-        var abt =ID_AbtusSP.getString("aboutus",null)
-        var cntct =ID_ContactSP.getString("contactus",null)
-        var feebk =ID_FeebkSP.getString("feedback",null)
-        var privacy =ID_PrivacySP.getString("privacypolicy",null)
-        var terms =ID_TermsSP.getString("termsandconditions",null)
-        var setngs =ID_SetngsSP.getString("settings",null)
-        var logout =ID_LogoutSP.getString("logout",null)
-        var quit =ID_Quit.getString("quit",null)
-        var lang =ID_Lang.getString("Language",null)
+        var abt =ID_AbtusSP.getString("aboutus", null)
+        var cntct =ID_ContactSP.getString("contactus", null)
+        var feebk =ID_FeebkSP.getString("feedback", null)
+        var privacy =ID_PrivacySP.getString("privacypolicy", null)
+        var terms =ID_TermsSP.getString("termsandconditions", null)
+        var setngs =ID_SetngsSP.getString("settings", null)
+        var logout =ID_LogoutSP.getString("logout", null)
+        var quit =ID_Quit.getString("quit", null)
+        var lang =ID_Lang.getString("Language", null)
 
-        val menulist= arrayOf(abt,cntct,feebk,privacy,terms,setngs,lang,logout,quit)
+        val menulist= arrayOf(abt, cntct, feebk, privacy, terms, setngs, lang, logout, quit)
       /*  val menulist = arrayOf(
                 "About Us",
                 "Contact Us",
@@ -905,7 +899,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         )*/
         val imageId = arrayOf<Int>(
                 R.drawable.aboutnav, R.drawable.contnav,
-                R.drawable.feedbacknav, R.drawable.ppnav, R.drawable.tncnav, R.drawable.ic_settings,R.drawable.langicon,
+                R.drawable.feedbacknav, R.drawable.ppnav, R.drawable.tncnav, R.drawable.ic_settings, R.drawable.langicon,
                 R.drawable.logoutnav, R.drawable.exitnav
         )
         val adapter = NavMenuAdapter(this@HomeActivity, menulist, imageId)
@@ -938,9 +932,9 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             }
             else if (position == 7) {
                 try {
-                    val ID_dlt = applicationContext.getSharedPreferences(Config.SHARED_PREF205,0)
-                    val ID_ys = applicationContext.getSharedPreferences(Config.SHARED_PREF206,0)
-                    val ID_no = applicationContext.getSharedPreferences(Config.SHARED_PREF207,0)
+                    val ID_dlt = applicationContext.getSharedPreferences(Config.SHARED_PREF205, 0)
+                    val ID_ys = applicationContext.getSharedPreferences(Config.SHARED_PREF206, 0)
+                    val ID_no = applicationContext.getSharedPreferences(Config.SHARED_PREF207, 0)
 
                     val dialogBuilder = android.app.AlertDialog.Builder(this@HomeActivity)
                     val inflater: LayoutInflater = this@HomeActivity.getLayoutInflater()
@@ -993,13 +987,13 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             val btn_cancel = dialog1.findViewById(R.id.tv_cancel) as TextView
             val txtv_quit = dialog1.findViewById(R.id.txtv_quit) as TextView
 
-            val ID_quit = applicationContext.getSharedPreferences(Config.SHARED_PREF208,0)
-            val ID_ys = applicationContext.getSharedPreferences(Config.SHARED_PREF206,0)
-            val ID_no = applicationContext.getSharedPreferences(Config.SHARED_PREF207,0)
+            val ID_quit = applicationContext.getSharedPreferences(Config.SHARED_PREF208, 0)
+            val ID_ys = applicationContext.getSharedPreferences(Config.SHARED_PREF206, 0)
+            val ID_no = applicationContext.getSharedPreferences(Config.SHARED_PREF207, 0)
 
-            txtv_quit!!.setText(ID_quit.getString("DoYouWantToQuit?",null))
-            btn_Yes!!.setText(ID_ys.getString("Yes",null))
-            btn_cancel!!.setText(ID_no.getString("No",null))
+            txtv_quit!!.setText(ID_quit.getString("DoYouWantToQuit?", null))
+            btn_Yes!!.setText(ID_ys.getString("Yes", null))
+            btn_cancel!!.setText(ID_no.getString("No", null))
 
             val imglogo = dialog1.findViewById(R.id.imglogo) as ImageView
 
@@ -1155,7 +1149,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 startActivity(Intent(this@HomeActivity, EMIActivity::class.java))
             }
             R.id.lldueremindrer -> {
-              //  startActivity(Intent(this@HomeActivity, DueReminderActivity::class.java))
+                //  startActivity(Intent(this@HomeActivity, DueReminderActivity::class.java))
                 var intent = Intent(this@HomeActivity, DuedateActivity::class.java)
                 startActivity(intent)
             }
@@ -1167,7 +1161,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 getLanguagelist()
             }
             R.id.imquit -> {
-               quit()
+                quit()
             }
             R.id.imlogout -> {
                 try {
@@ -1191,9 +1185,6 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                         this.finish()
                     }
                     alertDialog.show()
-
-
-
 
 
                 } catch (e: java.lang.Exception) {
@@ -1224,7 +1215,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             R.id.llloanapplication -> {
                 startActivity(Intent(this@HomeActivity, LoanApplicationActivity::class.java))
             }
-            R.id.llloanstatus-> {
+            R.id.llloanstatus -> {
                 startActivity(Intent(this@HomeActivity, LoanStatusActivity::class.java))
             }
             R.id.ll_prepaid -> {
@@ -1241,7 +1232,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             }
             R.id.llnotif -> {
 
-               var intent = Intent(this@HomeActivity, MessagesActivity::class.java)
+                var intent = Intent(this@HomeActivity, MessagesActivity::class.java)
                 startActivity(intent)
             }
             R.id.ll_landline -> {
@@ -1262,8 +1253,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 var intent = Intent(this@HomeActivity, VirtualActivity::class.java)
                 startActivity(intent)
             }
-            R.id.llDeposit->
-            {
+            R.id.llDeposit -> {
                 var intent = Intent(this@HomeActivity, DepositCalculatorActivity::class.java)
                 startActivity(intent)
             }
@@ -1474,18 +1464,18 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 progressDialog!!.show()
                 try {
                     val client = OkHttpClient.Builder()
-                        .sslSocketFactory(Config.getSSLSocketFactory(this@HomeActivity))
-                        .hostnameVerifier(Config.getHostnameVerifier())
-                        .build()
+                            .sslSocketFactory(Config.getSSLSocketFactory(this@HomeActivity))
+                            .hostnameVerifier(Config.getHostnameVerifier())
+                            .build()
                     val gson = GsonBuilder()
-                        .setLenient()
-                        .create()
+                            .setLenient()
+                            .create()
                     val retrofit = Retrofit.Builder()
-                        .baseUrl(baseurl)
-                        .addConverterFactory(ScalarsConverterFactory.create())
-                        .addConverterFactory(GsonConverterFactory.create(gson))
-                        .client(client)
-                        .build()
+                            .baseUrl(baseurl)
+                            .addConverterFactory(ScalarsConverterFactory.create())
+                            .addConverterFactory(GsonConverterFactory.create(gson))
+                            .client(client)
+                            .build()
                     val apiService = retrofit.create(ApiInterface::class.java!!)
                     val requestObject1 = JSONObject()
                     try {
@@ -1498,20 +1488,20 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                         progressDialog!!.dismiss()
                         e.printStackTrace()
                         val mySnackbar = Snackbar.make(
-                            findViewById(R.id.rl_main),
-                            " Some technical issues.", Snackbar.LENGTH_SHORT
+                                findViewById(R.id.rl_main),
+                                " Some technical issues.", Snackbar.LENGTH_SHORT
                         )
                         mySnackbar.show()
                     }
                     val body = RequestBody.create(
-                        okhttp3.MediaType.parse("application/json; charset=utf-8"),
-                        requestObject1.toString()
+                            okhttp3.MediaType.parse("application/json; charset=utf-8"),
+                            requestObject1.toString()
                     )
                     val call = apiService.getLanguages(body)
                     call.enqueue(object : retrofit2.Callback<String> {
                         override fun onResponse(
-                            call: retrofit2.Call<String>, response:
-                            Response<String>
+                                call: retrofit2.Call<String>, response:
+                                Response<String>
                         ) {
                             try {
                                 progressDialog!!.dismiss()
@@ -1522,14 +1512,14 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     val jobjt = jObject.getJSONObject("Languages")
                                     jArrayLang = jobjt.getJSONArray("LanguagesList")
 
-                                    Log.e(TAG,"jobjt  2056 "+jobjt)
-                                    Log.e(TAG,"jarray  2056 "+jArrayLang)
+                                    Log.e(TAG, "jobjt  2056 " + jobjt)
+                                    Log.e(TAG, "jarray  2056 " + jArrayLang)
                                     LanguagePopup(jArrayLang!!)
 
                                 } else {
                                     val builder = android.app.AlertDialog.Builder(
-                                        this@HomeActivity,
-                                        R.style.MyDialogTheme
+                                            this@HomeActivity,
+                                            R.style.MyDialogTheme
                                     )
                                     builder.setMessage("" + jObject.getString("EXMessage"))
                                     builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -1542,8 +1532,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                 progressDialog!!.dismiss()
 
                                 val builder = android.app.AlertDialog.Builder(
-                                    this@HomeActivity,
-                                    R.style.MyDialogTheme
+                                        this@HomeActivity,
+                                        R.style.MyDialogTheme
                                 )
                                 builder.setMessage("Some technical issues.")
                                 builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -1554,12 +1544,13 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                 e.printStackTrace()
                             }
                         }
+
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
 
                             val builder = android.app.AlertDialog.Builder(
-                                this@HomeActivity,
-                                R.style.MyDialogTheme
+                                    this@HomeActivity,
+                                    R.style.MyDialogTheme
                             )
                             builder.setMessage("Some technical issues.")
                             builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -1595,7 +1586,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
     private fun LanguagePopup(jArrayLang: JSONArray) {
 
-        Log.e(TAG,"jarray  2130 "+jArrayLang!!)
+        Log.e(TAG, "jarray  2130 " + jArrayLang!!)
         try {
             val builder = AlertDialog.Builder(this@HomeActivity)
             val inflater1 = this@HomeActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -1618,16 +1609,16 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             alertDialogLang!!.show()
         } catch (e: Exception) {
             e.printStackTrace()
-            Log.e(TAG,"Exception  2149   "+e.toString())
+            Log.e(TAG, "Exception  2149   " + e.toString())
         }
 
     }
 
     override fun onClick(position: Int, data: String) {
-        Log.e(TAG,"onClick  2155   "+position)
+        Log.e(TAG, "onClick  2155   " + position)
         var jsonObject1 = jArrayLang!!.getJSONObject(position)
         alertDialogLang!!.dismiss()
-        Log.e(TAG,"LanguagesName  2155   "+jsonObject1.getString("LanguagesName"))
+        Log.e(TAG, "LanguagesName  2155   " + jsonObject1.getString("LanguagesName"))
         getlabels(jsonObject1.getString("ID_Languages"))
 
     }
@@ -1639,41 +1630,41 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this@HomeActivity)) {
             true -> {
-                  progressDialog = ProgressDialog(this@HomeActivity, R.style.Progress)
-                   progressDialog!!.setProgressStyle(ProgressDialog.STYLE_SPINNER)
-                  // progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
-                   progressDialog!!.setMessage("Loading..")
-                   progressDialog!!.setCancelable(false)
-                   progressDialog!!.setIndeterminate(true)
-                   progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
-                   progressDialog!!.show()
+                progressDialog = ProgressDialog(this@HomeActivity, R.style.Progress)
+                progressDialog!!.setProgressStyle(ProgressDialog.STYLE_SPINNER)
+                // progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
+                progressDialog!!.setMessage("Loading..")
+                progressDialog!!.setCancelable(false)
+                progressDialog!!.setIndeterminate(true)
+                progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
+                progressDialog!!.show()
                 try {
                     val client = OkHttpClient.Builder()
-                        .sslSocketFactory(Config.getSSLSocketFactory(this@HomeActivity))
-                        .hostnameVerifier(Config.getHostnameVerifier())
-                        .build()
+                            .sslSocketFactory(Config.getSSLSocketFactory(this@HomeActivity))
+                            .hostnameVerifier(Config.getHostnameVerifier())
+                            .build()
                     val gson = GsonBuilder()
-                        .setLenient()
-                        .create()
+                            .setLenient()
+                            .create()
                     val retrofit = Retrofit.Builder()
-                        .baseUrl(baseurl)
-                        .addConverterFactory(ScalarsConverterFactory.create())
-                        .addConverterFactory(GsonConverterFactory.create(gson))
-                        .client(client)
-                        .build()
+                            .baseUrl(baseurl)
+                            .addConverterFactory(ScalarsConverterFactory.create())
+                            .addConverterFactory(GsonConverterFactory.create(gson))
+                            .client(client)
+                            .build()
                     val apiService = retrofit.create(ApiInterface::class.java!!)
                     val requestObject1 = JSONObject()
                     try {
 
                         val FK_CustomerSP = this@HomeActivity.getSharedPreferences(
-                            Config.SHARED_PREF1,
-                            0
+                                Config.SHARED_PREF1,
+                                0
                         )
                         val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
 
                         val TokenSP = this@HomeActivity.getSharedPreferences(
-                            Config.SHARED_PREF8,
-                            0
+                                Config.SHARED_PREF8,
+                                0
                         )
                         val Token = TokenSP.getString("Token", null)
 
@@ -1681,41 +1672,41 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                         // requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         //  requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
                         requestObject1.put(
-                            "FK_Languages",
-                            MscoreApplication.encryptStart(id)
+                                "FK_Languages",
+                                MscoreApplication.encryptStart(id)
                         )
                         requestObject1.put(
-                            "BankKey", MscoreApplication.encryptStart(
+                                "BankKey", MscoreApplication.encryptStart(
                                 this@HomeActivity.getResources().getString(
-                                    R.string.BankKey
+                                        R.string.BankKey
                                 )
-                            )
+                        )
                         )
 
 
                         Log.e("TAG", "requestObject1  labels   " + requestObject1)
                     } catch (e: Exception) {
-                         progressDialog!!.dismiss()
+                        progressDialog!!.dismiss()
                         e.printStackTrace()
                         val mSnackbar = Snackbar.make(this@HomeActivity.findViewById(android.R.id.content), "Some technical issues.", Snackbar.LENGTH_INDEFINITE)
                     }
                     val body = RequestBody.create(
-                        okhttp3.MediaType.parse("application/json; charset=utf-8"),
-                        requestObject1.toString()
+                            okhttp3.MediaType.parse("application/json; charset=utf-8"),
+                            requestObject1.toString()
                     )
                     val call = apiService.getLabels(body)
                     call.enqueue(object : retrofit2.Callback<String> {
                         override fun onResponse(
-                            call: retrofit2.Call<String>, response:
-                            Response<String>
+                                call: retrofit2.Call<String>, response:
+                                Response<String>
                         ) {
                             try {
-                                 progressDialog!!.dismiss()
+                                progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 Log.i("Response-labels", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
-                                        jObject.getJSONObject("LabelDetails")
+                                            jObject.getJSONObject("LabelDetails")
                                     val jsonobj2 = JSONObject(jsonObj1.toString())
 
                                     val jresult3 = jsonobj2.getJSONObject("Labels")
@@ -1945,7 +1936,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_PrdctDetailEditer.putString("ProductDetails", jresult3.get("ProductDetails") as String)
                                     ID_PrdctDetailEditer.commit()
 
-                                    val ID_Emi= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF79, 0)
+                                    val ID_Emi = this@HomeActivity.getSharedPreferences(Config.SHARED_PREF79, 0)
                                     val ID_EmiEditer = ID_Emi.edit()
                                     ID_EmiEditer.putString("EMICalculator", jresult3.get("EMICalculator") as String)
                                     ID_EmiEditer.commit()
@@ -2096,8 +2087,6 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     val ID_EnterdistEditer = ID_Enterdist.edit()
                                     ID_EnterdistEditer.putString("EnterDistrict", jresult3.get("EnterDistrict") as String)
                                     ID_EnterdistEditer.commit()
-
-
 
 
                                     val ID_Mobilenum = this@HomeActivity.getSharedPreferences(Config.SHARED_PREF110, 0)
@@ -2363,15 +2352,15 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
 
                                     val myIntent = Intent(this@HomeActivity, HomeActivity::class.java)
-                                    overridePendingTransition( 0, 0)
+                                    overridePendingTransition(0, 0)
                                     startActivity(myIntent)
-                                    overridePendingTransition( 0, 0)
+                                    overridePendingTransition(0, 0)
 
 
                                 } else {
                                     val builder = android.app.AlertDialog.Builder(
-                                        this@HomeActivity,
-                                        R.style.MyDialogTheme
+                                            this@HomeActivity,
+                                            R.style.MyDialogTheme
                                     )
                                     builder.setMessage("" + jObject.getString("EXMessage"))
                                     builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -2381,11 +2370,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     alertDialog.show()
                                 }
                             } catch (e: Exception) {
-                                  progressDialog!!.dismiss()
+                                progressDialog!!.dismiss()
 
                                 val builder = android.app.AlertDialog.Builder(
-                                    this@HomeActivity,
-                                    R.style.MyDialogTheme
+                                        this@HomeActivity,
+                                        R.style.MyDialogTheme
                                 )
                                 builder.setMessage("Some technical issues.")
                                 builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -2398,11 +2387,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                         }
 
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
-                             progressDialog!!.dismiss()
+                            progressDialog!!.dismiss()
 
                             val builder = android.app.AlertDialog.Builder(
-                                this@HomeActivity,
-                                R.style.MyDialogTheme
+                                    this@HomeActivity,
+                                    R.style.MyDialogTheme
                             )
                             builder.setMessage("Some technical issues.")
                             builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -2413,7 +2402,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                         }
                     })
                 } catch (e: Exception) {
-                      progressDialog!!.dismiss()
+                    progressDialog!!.dismiss()
                     val builder = android.app.AlertDialog.Builder(this@HomeActivity, R.style.MyDialogTheme)
                     builder.setMessage("Some technical issues.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -2436,6 +2425,9 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         }
 
     }
-
+    override fun onResume() {  // After a pause OR at startup
+        super.onResume()
+        setdefaultAccountDetails()
+    }
 
 }
