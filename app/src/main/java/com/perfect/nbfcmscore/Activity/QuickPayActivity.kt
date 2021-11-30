@@ -59,8 +59,6 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
     var receiverid: String? = null
     var mode: String? = null
     var btn_clear: Button? = null
-
-
     private val mLnrAnimatorContainer: LinearLayout? = null
     private val mRltvError: RelativeLayout? = null
     private val mTxtError: TextView? = null
@@ -1325,6 +1323,10 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
             alertDialog.dismiss()
         }
         alertDialog.show()
+    }
+    override fun onResume() {  // After a pause OR at startup
+        super.onResume()
+        getSenderReceiver()
     }
 }
 
