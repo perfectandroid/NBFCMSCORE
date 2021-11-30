@@ -41,260 +41,265 @@
 
         </LinearLayout>
     </RelativeLayout>
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <ImageView
-            android:id="@+id/imlogo"
-            android:layout_width="250dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
-            android:layout_gravity="center_horizontal"/>
+        android:layout_height="match_parent">
 
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="10dp"
-            app:cardBackgroundColor="@color/bg_transfer"
-            app:cardCornerRadius="5dp">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_light_grey"
-            android:orientation="vertical"
-            android:padding="5dp">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/txtv_acnttype"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="start"
-                    android:layout_marginTop="2dp"
-                    android:paddingLeft="10dp"
-                    android:text="Account Type : "
-                    android:textColor="@color/bottom_line1"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/Account"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="2dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginBottom="15dp"
-                        android:layout_weight="0.8"
-                        android:background="@android:color/transparent"
-                        android:gravity="left"
-                        android:text=""
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-        </RelativeLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            app:cardBackgroundColor="@color/bg_transfer"
-            app:cardCornerRadius="5dp">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_light_grey"
-            android:orientation="vertical"
-            android:padding="5dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/txtvaccno"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="start"
-                    android:layout_marginTop="2dp"
-                    android:paddingLeft="10dp"
-                    android:text="Account Number: "
-                    android:textColor="@color/bottom_line1"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-
-                    <Spinner
-                        android:id="@+id/spnAccountNum"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:gravity="start"
-                        android:popupBackground="#cccccc"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:spinnerMode="dialog"
-                        android:backgroundTint="@color/blue"/>
-
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-        </RelativeLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/ll_balance1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            app:cardCornerRadius="10dp"
-            android:visibility="visible"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp">
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"/>
-            <LinearLayout
+                android:id="@+id/imlogo"
+                android:layout_width="250dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center_horizontal"/>
+
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="3dp"
-                android:background="@drawable/main_bglight"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/wallet"></ImageView>
-                </LinearLayout>
-                <LinearLayout
+                android:padding="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="10dp"
+                app:cardBackgroundColor="@color/bg_transfer"
+                app:cardCornerRadius="5dp">
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
-
+                    android:background="@drawable/bg_light_grey"
+                    android:orientation="vertical"
+                    android:padding="5dp">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/txtv_acnttype"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:layout_marginTop="2dp"
+                                android:paddingLeft="10dp"
+                                android:text="Account Type : "
+                                android:textColor="@color/bottom_line1"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/Account"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="2dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="3dp"
+                                    android:layout_marginBottom="15dp"
+                                    android:layout_weight="0.8"
+                                    android:background="@android:color/transparent"
+                                    android:gravity="left"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                app:cardBackgroundColor="@color/bg_transfer"
+                app:cardCornerRadius="5dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_light_grey"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/txtvaccno"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:layout_marginTop="2dp"
+                                android:paddingLeft="10dp"
+                                android:text="Account Number: "
+                                android:textColor="@color/bottom_line1"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+
+                                <Spinner
+                                    android:id="@+id/spnAccountNum"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="start"
+                                    android:gravity="start"
+                                    android:popupBackground="#cccccc"
+                                    android:layout_marginBottom="5dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:spinnerMode="dialog"
+                                    android:backgroundTint="@color/blue"/>
+
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/ll_balance1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                app:cardCornerRadius="10dp"
+                android:visibility="visible"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:background="@drawable/main_bglight"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
                         android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/txtv_availbal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="5dp"
-                            android:textColor="@color/passtext"
-                            android:drawablePadding="10dp"
-                            android:textStyle="bold"
-                            android:textSize="16dp"
-                            android:text="Available Balance"/>
-                        <TextView
-                            android:id="@+id/available_balance"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="5dp"
-                            android:gravity="left"
-                            android:text=""
-                            android:textStyle="bold"
-                            android:textSize="40dp"
-                            android:layout_gravity="center_horizontal"
-                            android:textColor="@color/passtext"
-                            android:drawablePadding="10dp" />
-
-
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/wallet"></ImageView>
                     </LinearLayout>
-
                     <LinearLayout
-                        android:id="@+id/ll_balance"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:visibility="visible"
-                        android:layout_margin="10dp"
-                        android:layout_gravity="center"
-                        android:orientation="horizontal">
-                        <TextView
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/passtext"
-                            android:layout_marginRight="10dp"
-                            android:textSize="14dp"
-                            android:layout_gravity="left"
-                            android:gravity="left"
-                            android:text="Unclear Amount"/>
+                            android:layout_margin="10dp"
+                            android:orientation="vertical">
 
-                        <TextView
+                            <TextView
+                                android:id="@+id/txtv_availbal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="5dp"
+                                android:textColor="@color/passtext"
+                                android:drawablePadding="10dp"
+                                android:textStyle="bold"
+                                android:textSize="16dp"
+                                android:text="Available Balance"/>
+                            <TextView
+                                android:id="@+id/available_balance"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp"
+                                android:gravity="left"
+                                android:text=""
+                                android:textStyle="bold"
+                                android:textSize="40dp"
+                                android:layout_gravity="center_horizontal"
+                                android:textColor="@color/passtext"
+                                android:drawablePadding="10dp" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_balance"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:textSize="14dp"
-                            android:textColor="@color/passtext"
-                            android:text=" : "/>
-                        <TextView
-                            android:id="@+id/unclear_balance"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text=""
                             android:visibility="visible"
-                            android:layout_marginLeft="10dp"
-                            android:textSize="14dp"
+                            android:layout_margin="10dp"
                             android:layout_gravity="center"
-                            android:gravity="left"
-                            android:textStyle="bold"
-                            android:textColor="@color/passtext"/>
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/passtext"
+                                android:layout_marginRight="10dp"
+                                android:textSize="14dp"
+                                android:layout_gravity="left"
+                                android:gravity="left"
+                                android:text="Unclear Amount"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:textSize="14dp"
+                                android:textColor="@color/passtext"
+                                android:text=" : "/>
+                            <TextView
+                                android:id="@+id/unclear_balance"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:visibility="visible"
+                                android:layout_marginLeft="10dp"
+                                android:textSize="14dp"
+                                android:layout_gravity="center"
+                                android:gravity="left"
+                                android:textStyle="bold"
+                                android:textColor="@color/passtext"/>
+                        </LinearLayout>
+
                     </LinearLayout>
+
+
+
+
 
                 </LinearLayout>
 
 
-
-
-
-            </LinearLayout>
-
-
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
