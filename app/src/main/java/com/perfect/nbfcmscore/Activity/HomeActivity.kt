@@ -2377,8 +2377,25 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_lanEditer.putString("Language", jresult3.get("Language") as String)
                                     ID_lanEditer.commit()
 
+                                    val ID_ASSETS= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF183, 0)
+                                    val ID_ASSETSEditer = ID_ASSETS.edit()
+                                    ID_ASSETSEditer.putString("Assets", jresult3.get("Assets") as String)
+                                    ID_ASSETSEditer.commit()
 
+                                    val ID_LIABLTY= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF184, 0)
+                                    val ID_LIABLTYEditer = ID_LIABLTY.edit()
+                                    ID_LIABLTYEditer.putString("Liability", jresult3.get("Liability") as String)
+                                    ID_LIABLTYEditer.commit()
 
+                                    val ID_paymnt= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF185, 0)
+                                    val ID_paymntEditer = ID_paymnt.edit()
+                                    ID_paymntEditer.putString("PaymentReceipt", jresult3.get("PaymentReceipt") as String)
+                                    ID_paymntEditer.commit()
+
+                                    val ID_listasondate= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF209, 0)
+                                    val ID_listasondateEditer = ID_listasondate.edit()
+                                    ID_listasondateEditer.putString("ListasonDate", jresult3.get("ListasonDate") as String)
+                                    ID_listasondateEditer.commit()
 
 
 //                                     startActivity(Intent(this@HomeActivity, HomeActivity::class.java))

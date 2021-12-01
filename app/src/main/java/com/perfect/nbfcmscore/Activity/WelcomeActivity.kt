@@ -635,6 +635,11 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                     ID_availbalEditer.putString("AvailableBalance", jresult3.get("AvailableBalance") as String)
                                     ID_availbalEditer.commit()
 
+                                   /* val LastloginSP = this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF29, 0)
+                                    val LastloginEditer = LastloginSP.edit()
+                                    LastloginEditer.putString("LastLoginTime", "")
+                                    LastloginEditer.commit()*/
+
                                     val ID_lastlog = this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF120, 0)
                                     val ID_lastlogEditer = ID_lastlog.edit()
                                     ID_lastlogEditer.putString("LastLogin", jresult3.get("LastLogin") as String)
@@ -1046,6 +1051,12 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                     val ID_doyouwquitEditer = ID_doyouwquit.edit()
                                     ID_doyouwquitEditer.putString("DoYouWantToQuit?", jresult3.get("DoYouWantToQuit?") as String)
                                     ID_doyouwquitEditer.commit()
+
+                                    val ID_listasondate= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF209, 0)
+                                    val ID_listasondateEditer = ID_listasondate.edit()
+                                    ID_listasondateEditer.putString("ListasonDate", jresult3.get("ListasonDate") as String)
+                                    ID_listasondateEditer.commit()
+
 
 
 

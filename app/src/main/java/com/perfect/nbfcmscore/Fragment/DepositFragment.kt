@@ -54,7 +54,12 @@ class DepositFragment : Fragment(){
 
         tvdate = v.findViewById<View>(R.id.tvdate) as TextView?
         val sdf = SimpleDateFormat("dd-M-yyyy")
-        tvdate!!.text="** List as on "+sdf.format(Date())+"."
+
+        val ID_list = context!!.getSharedPreferences(Config.SHARED_PREF209,0)
+        var listason =  ID_list.getString("ListasonDate", null)
+
+
+        tvdate!!.text="** "+listason+" "+sdf.format(Date())+"."
         rv_Accountlist = v.findViewById<View>(R.id.rv_Accountlist) as RecyclerView?
         getAccountlist("1")
         switch1 = v.findViewById<View>(R.id.switch1) as Switch?
