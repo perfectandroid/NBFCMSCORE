@@ -98,7 +98,8 @@
                     <ScrollView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginBottom="50dp">
+                        android:layout_above="@+id/ll_bottombar"
+                        android:layout_marginBottom="5dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -438,7 +439,7 @@
                         <LinearLayout
                             android:id="@+id/ll_bottombar"
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
@@ -458,7 +459,7 @@
                             <Button
                                 android:id="@+id/tv_download"
                                 android:layout_width="match_parent"
-                                android:layout_height="40dp"
+                                android:layout_height="45dp"
                                 android:layout_margin="5dp"
                                 android:layout_weight="1"
                                 android:background="@drawable/but_rounded2"

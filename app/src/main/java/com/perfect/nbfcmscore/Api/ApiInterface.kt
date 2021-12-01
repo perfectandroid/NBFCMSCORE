@@ -1,9 +1,20 @@
 package com.perfect.nbfcmscore.Api
 
+import com.squareup.okhttp.ResponseBody
+import okhttp3.HttpUrl
 import okhttp3.RequestBody
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.POST
+import retrofit2.Response
+import retrofit2.http.*
+import java.io.File
+import retrofit2.http.Url
+
+import retrofit2.http.GET
+
+import retrofit2.http.Streaming
+
+
+
 
 interface ApiInterface {
 
@@ -201,6 +212,24 @@ interface ApiInterface {
 
     @POST("Customer/MessagesDetails")
     fun getMessages(@Body body: RequestBody): Call<String>
+
+        @GET
+         fun downloadFile(@Url fileUrl:String): Call<File>
+
+//        fun exportPdf(@Url url: HttpUrl): Call<ResponseBody>
+
+    @Streaming
+    @GET
+    fun downloadFileByUrl(@Url fileUrl: String): Call<ResponseBody>
+
+    @GET
+    fun downlload(@Url fileUrl: String?): Call<ResponseBody?>?
+
+
+    @Streaming
+    @GET
+    fun downloadFiles(@Url downloadUrl: String): Call<ResponseBody>
+
 
 }
 
