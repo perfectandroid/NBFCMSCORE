@@ -192,7 +192,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         val ID_Accnt = applicationContext.getSharedPreferences(Config.SHARED_PREF117, 0)
         val ID_Viewall = applicationContext.getSharedPreferences(Config.SHARED_PREF118, 0)
         val ID_Availbal = applicationContext.getSharedPreferences(Config.SHARED_PREF119, 0)
-        val ID_Lastlog = applicationContext.getSharedPreferences(Config.SHARED_PREF120, 0)
+     //   val ID_Lastlog = applicationContext.getSharedPreferences(Config.SHARED_PREF120, 0)
 
         txtv_myacc!!.setText(ID_MyaccSP.getString("Myaccounts", null))
         txtv_pasbk!!.setText(ID_PassbkSP.getString("passbook", null))
@@ -230,7 +230,10 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         tv_viewall!!.setText(ID_Viewall.getString("ViewAllAccounts", null))
         txtv_availbal!!.setText(ID_Availbal.getString("AvailableBalance", null))
         val LastLoginTimeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF29, 0)
-        tv_lastlogin!!.setText(ID_Lastlog.getString("LastLogin", null) + " : " + LastLoginTimeSP.getString("LastLoginTime", ""))
+        val LastLogin = applicationContext.getSharedPreferences(Config.SHARED_PREF120, 0)
+        val s =LastLogin.getString("LastLogin", null)+"\n"+LastLoginTimeSP.getString("LastLoginTime", null)
+        Log.i("Values",s)
+         tv_lastlogin!!.setText(LastLogin.getString("LastLogin", null) + " : " + LastLoginTimeSP.getString("LastLoginTime", ""))
 
         val ID_Accntdetail = applicationContext.getSharedPreferences(Config.SHARED_PREF121, 0)
         val ID_Fundtrans = applicationContext.getSharedPreferences(Config.SHARED_PREF122, 0)
@@ -499,8 +502,9 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         val DefaultAccountSP = applicationContext.getSharedPreferences(Config.SHARED_PREF24, 0)
         val DefaultBalanceSP = applicationContext.getSharedPreferences(Config.SHARED_PREF27, 0)
         val LastLoginTimeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF29, 0)
+        val LastLogin = applicationContext.getSharedPreferences(Config.SHARED_PREF120, 0)
 
-        tv_lastlogin!!.setText("Last Login : " + LastLoginTimeSP.getString("LastLoginTime", null))
+        tv_lastlogin!!.setText(LastLogin.getString("LastLogin", null)+" : " + LastLoginTimeSP.getString("LastLoginTime", null))
         val default = DefaultAccountSP.getString("DefaultAccount", null)
 
         if (DefaultAccountSP.getString("DefaultAccount", null) == null){
@@ -2162,6 +2166,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_lastlogEditer.putString("LastLogin", jresult3.get("LastLogin") as String)
                                     ID_lastlogEditer.commit()
 
+                                   /* val ID_lastlogtime = this@HomeActivity.getSharedPreferences(Config.SHARED_PREF29, 0)
+                                    val ID_lastlogtimeEditer = ID_lastlogtime.edit()
+                                    ID_lastlogtimeEditer.putString("LastLoginTime", jresult3.get("LastLoginTime") as String)
+                                    ID_lastlogtimeEditer.commit()*/
+
                                     val ID_acntdetl = this@HomeActivity.getSharedPreferences(Config.SHARED_PREF121, 0)
                                     val ID_acntdetlEditer = ID_acntdetl.edit()
                                     ID_acntdetlEditer.putString("AccountDetails", jresult3.get("AccountDetails") as String)
@@ -2362,6 +2371,14 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     val ID_SavedbenfEditer = ID_Savedbenf.edit()
                                     ID_SavedbenfEditer.putString("SaveBeneficiaryForFuture", jresult3.get("SaveBeneficiaryForFuture") as String)
                                     ID_SavedbenfEditer.commit()
+
+                                    val ID_lan = this@HomeActivity.getSharedPreferences(Config.SHARED_PREF167, 0)
+                                    val ID_lanEditer = ID_lan.edit()
+                                    ID_lanEditer.putString("Language", jresult3.get("Language") as String)
+                                    ID_lanEditer.commit()
+
+
+
 
 
 //                                     startActivity(Intent(this@HomeActivity, HomeActivity::class.java))
