@@ -431,13 +431,13 @@ class StatementFragment : Fragment() , View.OnClickListener{
                     +"\n"+"FromDate   "+FromDate
                     +"\n"+"ToDate   "+ToDate)
 
-//            getStatementOfAccountDocs(FromNo)
+            getStatementOfAccountDocs(FromNo)
 
             //startActivity(Intent(this@StatementActivity, ViewStatementActivity::class.java))
 
-            if (checkExternalStoragePermission()){
-                downloadFile("filename1","ASD.pdf")
-            }
+//            if (checkExternalStoragePermission()){
+//                downloadFile("filename1","ASD.pdf")
+//            }
 
 
         }
@@ -543,6 +543,10 @@ class StatementFragment : Fragment() , View.OnClickListener{
                                     if (docType.equals("2")){
 
                                         //  downloadFile(filename1,filename2)
+
+                                        if (checkExternalStoragePermission()){
+                                            downloadFile(filename1,"ASD.pdf")
+                                        }
 
 
 //                                           if (checkExternalStoragePermission(this@StatementActivity)){
@@ -699,7 +703,8 @@ class StatementFragment : Fragment() , View.OnClickListener{
         Log.e(TAG,"destPath  675      "+destPath)
         Log.e(TAG,"appName  675      "+appName)
         val request: DownloadRequest = DownloadRequest.Builder()
-            .url("https://202.164.150.65:14262/NbfcAndroidAPI/Statement/ASD7.pdf")
+//            .url("https://202.164.150.65:14262/NbfcAndroidAPI/Statement/ASD7.pdf")
+            .url(filename1)
             .retryTime(5)
             .retryInterval(2, TimeUnit.SECONDS)
             .progressInterval(1, TimeUnit.SECONDS)
