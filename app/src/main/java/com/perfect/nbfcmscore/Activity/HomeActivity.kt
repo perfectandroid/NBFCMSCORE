@@ -501,6 +501,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         val LastLoginTimeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF29, 0)
 
         tv_lastlogin!!.setText("Last Login : " + LastLoginTimeSP.getString("LastLoginTime", null))
+        val default = DefaultAccountSP.getString("DefaultAccount", null)
 
         if (DefaultAccountSP.getString("DefaultAccount", null) == null){
             tv_def_account!!.setText("")
@@ -509,8 +510,9 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
         }else{
             tv_def_account!!.setText(DefaultAccountSP.getString("DefaultAccount", null))
-            val balance = DefaultBalanceSP.getString("DefaultBalance", null)!!.toDouble()
-            tv_def_availablebal!!.setText("Rs. " + Config.getDecimelFormate(balance))
+          //  val balance = DefaultBalanceSP.getString("DefaultBalance", null)!!.toDouble()
+         //   tv_def_availablebal!!.setText("Rs. " + Config.getDecimelFormate(balance))
+            getOwnAccount()
         }
 
     }
@@ -1111,7 +1113,10 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         LastloginEditer.putString("LastLoginTime", "")
         LastloginEditer.commit()
 
-
+        val LastloginSP1 = this!!.getSharedPreferences(Config.SHARED_PREF120, 0)
+        val LastloginEditer1 = LastloginSP1.edit()
+        LastloginEditer1.putString("LastLogin", "")
+        LastloginEditer1.commit()
 
     }
 
@@ -1387,11 +1392,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                                         Config.SHARED_PREF24,
                                                         0
                                                 )
-                                        if (DefaultAccountSP.getString(
-                                                        "DefaultAccount",
-                                                        null
-                                                ) == null
-                                        ) {
+                                        if (DefaultAccountSP.getString("DefaultAccount", null) == null) {
                                             if (i == 0) {
 
                                                 val balance = obj.getString("Balance").toDouble()
@@ -1403,6 +1404,21 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                                 tv_def_account!!.setText(obj.getString("AccountNumber"))
 
                                             }
+
+                                        }
+                                        else if(DefaultAccountSP.getString("DefaultAccount", null).equals(obj.getString("AccountNumber")) )
+                                        {
+
+
+                                                val balance = obj.getString("Balance").toDouble()
+                                                tv_def_availablebal!!.setText(
+                                                        "Rs. " + Config.getDecimelFormate(
+                                                                balance
+                                                        )
+                                                )
+                                                tv_def_account!!.setText(obj.getString("AccountNumber"))
+
+
                                         }
                                     }
 
