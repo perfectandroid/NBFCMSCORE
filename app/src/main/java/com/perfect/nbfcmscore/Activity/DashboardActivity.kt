@@ -155,7 +155,10 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
     var tvPayment1: TextView? = null
     var tvPayment2: TextView? = null
 
-
+    var tv_header: TextView? = null
+    var tv_piechart: TextView? = null
+    var tv_line2: TextView? = null
+    var tv_line1: TextView? = null
 
 
     val TAG: String? = "DashboardActivity"
@@ -167,6 +170,20 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
 
 
         setRegviews()
+
+        val ID_header = applicationContext.getSharedPreferences(Config.SHARED_PREF73,0)
+        tv_header!!.setText(ID_header.getString("Dashboard",null))
+
+        val ID_assets = applicationContext.getSharedPreferences(Config.SHARED_PREF183,0)
+        tv_piechart!!.setText(ID_assets.getString("Assets",null))
+
+        val ID_liability = applicationContext.getSharedPreferences(Config.SHARED_PREF184,0)
+        tv_line1!!.setText(ID_liability.getString("Liability",null))
+
+        val ID_paymnt = applicationContext.getSharedPreferences(Config.SHARED_PREF185,0)
+        tv_line2!!.setText(ID_paymnt.getString("PaymentReceipt",null))
+
+
 
 
         getDashboardassetlist()
@@ -453,8 +470,13 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
         tvPayment1 = findViewById(R.id.tvPayment1)
         tvPayment2 = findViewById(R.id.tvPayment2)
 
+        tv_header = findViewById(R.id.tv_header)
+        tv_piechart = findViewById(R.id.tv_piechart)
+        tv_line2 = findViewById(R.id.tv_line2)
+        tv_line1 = findViewById(R.id.tv_line1)
 
-     //   rvOverduelist = findViewById<RecyclerView>(R.id.rvOverduelist)
+
+        //   rvOverduelist = findViewById<RecyclerView>(R.id.rvOverduelist)
 
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)

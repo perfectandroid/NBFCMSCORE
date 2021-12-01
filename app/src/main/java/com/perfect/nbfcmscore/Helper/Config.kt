@@ -225,9 +225,7 @@ object Config {
     const val SHARED_PREF184= "Liability"
     const val SHARED_PREF185= "PaymentReceipt"
 
-    const val SHARED_PREF186= "Assets"
-    const val SHARED_PREF187= "Liability"
-    const val SHARED_PREF188= "PaymentReceipt"
+
 
 
     const val SHARED_PREF189= "RESET"
@@ -256,6 +254,8 @@ object Config {
     const val SHARED_PREF206="Yes"
     const val SHARED_PREF207="No"
     const val SHARED_PREF208="DoYouWantToQuit?"
+
+
 
 
 
