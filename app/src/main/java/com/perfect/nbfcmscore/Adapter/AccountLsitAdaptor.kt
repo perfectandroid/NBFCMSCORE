@@ -46,6 +46,13 @@ class AccountLsitAdaptor(internal val mContext: Context, internal val jsInfo: JS
         try {
             jsonObject = jsInfo.getJSONObject(position)
             if (holder is MainViewHolder) {
+
+                val ID_accno = mContext.getSharedPreferences(Config.SHARED_PREF158,0)
+                holder.txtv_acntno!!.setText(ID_accno.getString("AccountNumber",null))
+
+                val ID_bal = mContext.getSharedPreferences(Config.SHARED_PREF210,0)
+                holder.txtvbal!!.setText(ID_bal.getString("Balance",null))
+
                 holder.tvaccounttype!!.setText(jsonObject!!.getString("LoanType"))
                 holder.tvaccountno!!.setText(jsonObject!!.getString("AccountNumber"))
                 holder.tvbal!!.setText("₹ "+ Config.getDecimelFormate(jsonObject!!.getDouble("Balance")))
@@ -120,7 +127,8 @@ var tvaccountno: TextView? = null
 var tvbal: TextView? = null
 var tvbranch: TextView? = null
 var img_accounttype: ImageView? = null
-
+    var txtvbal: TextView? = null
+    var txtv_acntno: TextView? = null
 
 
 init {
@@ -132,7 +140,8 @@ tvbal = v.findViewById<View>(R.id.tvbal) as TextView
 tvbranch = v.findViewById<View>(R.id.tvbranch) as TextView
     img_accounttype = v.findViewById<View>(R.id.img_accounttype) as ImageView
 
-
+    txtvbal = v.findViewById<View>(R.id.txtvbal) as TextView
+    txtv_acntno = v.findViewById<View>(R.id.txtv_acntno) as TextView
 }
 }
 }

@@ -1057,6 +1057,11 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                     ID_listasondateEditer.putString("ListasonDate", jresult3.get("ListasonDate") as String)
                                     ID_listasondateEditer.commit()
 
+                                    val ID_bal= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF210, 0)
+                                    val ID_balEditer = ID_bal.edit()
+                                    ID_balEditer.putString("Balance", jresult3.get("Balance") as String)
+                                    ID_balEditer.commit()
+
 
 
 
