@@ -1,64 +1,61 @@
 package com.perfect.nbfcmscore.Activity
 
-import android.Manifest
-import android.Manifest.permission
+import android.Manifest.permission.READ_EXTERNAL_STORAGE
+import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.R.attr
+import android.annotation.SuppressLint
+import android.app.*
+import android.app.DownloadManager
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import android.content.pm.PackageManager
+import android.net.Uri
+import android.os.*
+import android.os.StrictMode.VmPolicy
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
+import com.coolerfall.download.*
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.*
 import com.perfect.nbfcmscore.R
+import com.squareup.okhttp.ResponseBody
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
 import org.json.JSONArray
 import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
-import java.text.SimpleDateFormat
-import java.util.*
-import android.os.AsyncTask
-import android.os.Environment
-import java.net.HttpURLConnection
-import java.net.URL
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
-import androidx.core.app.ActivityCompat.requestPermissions
-
-import android.content.pm.PackageManager
-
-import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-
-import androidx.core.content.ContextCompat
-
-import android.Manifest.permission.READ_EXTERNAL_STORAGE
-
-import android.os.Build
-import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-
-import android.Manifest.permission.READ_EXTERNAL_STORAGE
-import android.app.*
-import android.content.Context
-import android.net.Uri
-import android.webkit.MimeTypeMap
-import android.webkit.URLUtil
-
-import androidx.annotation.RequiresApi
-import com.bumptech.glide.Glide
+import java.net.HttpURLConnection
+import java.net.URL
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.net.ssl.HttpsURLConnection
-import javax.net.ssl.SSLSocketFactory
+import java.util.concurrent.TimeUnit
+import android.R.attr.path
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.view.LayoutInflater
+import java.text.ParseException
 
 
 class StatementActivity : AppCompatActivity(), View.OnClickListener {
 //    https://github.com/barteksc/AndroidPdfViewer
+//    https://www.journaldev.com/22475/android-retrofit-download-file-progress
     private var progressDialog: ProgressDialog? = null
     val TAG: String = "StatementActivity"
 
@@ -102,11 +99,17 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
         WRITE_EXTERNAL_STORAGE
     )
 
+    val REQUEST_PERMISSIONS_CODE_WRITE_STORAGE: Int = 200
+    var mContext: Context? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_statement)
 
+        val builder = VmPolicy.Builder()
+        StrictMode.setVmPolicy(builder.build())
+        mContext = this@StatementActivity
         setInitialise()
         setRegister()
 
@@ -355,9 +358,48 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
             R.id.tv_download ->{
                 docType = "2"
                 validation1()
+
+               // downloadTest()
+
+
             }
 
         }
+    }
+
+    private fun downloadTest() {
+//        Download_Uri =
+//            Uri.parse("http://www.gadgetsaint.com/wp-content/uploads/2016/11/cropped-web_hi_res_512.png")
+
+
+
+        try {
+            val downloadManager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+           // val uri = Uri.parse("https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf")
+            val uri = Uri.parse("https://202.164.150.65:14262/NbfcAndroidAPI/Statement/ASD7.pdf")
+
+            val request = DownloadManager.Request(uri)
+            request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
+            request.setAllowedOverRoaming(false)
+            request.setTitle("GadgetSaint Downloading " + "Sample" + ".png")
+            request.setDescription("Downloading " + "Sample" + ".png")
+            request.setVisibleInDownloadsUi(true)
+            request.setDestinationInExternalPublicDir(
+                Environment.DIRECTORY_DOWNLOADS,
+                "/GadgetSaint/" + "/" + "Sample" + ".png"
+            )
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
+            request.allowScanningByMediaScanner()
+            downloadManager.enqueue(request)
+
+            // refid = downloadManager.enqueue(request)
+
+            Log.e(TAG,"Successs    387    ")
+        }catch (e  :Exception){
+            Log.e(TAG,"Exception    387    "+e.toString())
+        }
+
+
     }
 
     private fun validation1() {
@@ -602,13 +644,70 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
                     +"\n"+"FromDate   "+FromDate
                     +"\n"+"ToDate   "+ToDate)
 
-            getStatementOfAccountDocs(FromNo)
+//            getStatementOfAccountDocs(FromNo)
+            if (checkExternalStoragePermission(this@StatementActivity)){
+                downloadFile("filename1","ASD.pdf")
+            }
 
-            //startActivity(Intent(this@StatementActivity, ViewStatementActivity::class.java))
+
+
 
 
         }
     }
+
+    private fun downloadFile2() {
+        val client = OkHttpClient.Builder()
+            .sslSocketFactory(Config.getSSLSocketFactory(this@StatementActivity))
+            .hostnameVerifier(Config.getHostnameVerifier())
+            .build()
+
+      //  val downloadManager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+        val manager: com.coolerfall.download.DownloadManager? = com.coolerfall.download.DownloadManager.Builder().context(this)
+            .downloader(OkHttpDownloader.create(client))
+            .threadPoolSize(3)
+            .logger(object : Logger {
+                override fun log(message: String?) {
+                    Log.e("TAG", "  675   "+message!!)
+                }
+            })
+            .build()
+
+        val destPath =
+            Environment.getExternalStorageDirectory().toString() + File.separator + "test1.pdf"
+        Log.e(TAG,"destPath  675      "+destPath)
+        val request: DownloadRequest = DownloadRequest.Builder()
+//            .url("http://something.to.download")
+//            .url("https://maven.apache.org/archives/maven-1.x/maven.pdf")
+            .url("https://202.164.150.65:14262/NbfcAndroidAPI/Statement/ASD7.pdf")
+            .retryTime(5)
+            .retryInterval(2, TimeUnit.SECONDS)
+            .progressInterval(1, TimeUnit.SECONDS)
+            .priority(Priority.HIGH)
+            .allowedNetworkTypes(DownloadRequest.NETWORK_WIFI)
+            .destinationFilePath(destPath)
+            .downloadCallback(object : DownloadCallback {
+                override fun onStart(downloadId: Int, totalBytes: Long) {
+                    Log.e(TAG,"onStart  675      "+totalBytes)
+                }
+                override fun onRetry(downloadId: Int) {
+                    Log.e(TAG,"destPath  675      "+destPath)
+                }
+                override fun onProgress(downloadId: Int, bytesWritten: Long, totalBytes: Long) {
+                    Log.e(TAG,"onRetry  675      "+bytesWritten+"    "+totalBytes)
+                }
+                override fun onSuccess(downloadId: Int, filePath: String) {
+                    Log.e(TAG,"onSuccess  675      "+filePath)
+                }
+                override fun onFailure(downloadId: Int, statusCode: Int, errMsg: String) {
+                    Log.e(TAG,"onFailure  675      "+statusCode+"    "+errMsg)
+                }
+            })
+            .build()
+
+        val downloadId = manager!!.add(request)
+    }
+
 
     private fun getStatementOfAccountDocs(FromNo: String) {
         val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
@@ -710,8 +809,10 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
                                     }
 
                                     if (docType.equals("2")){
+                                        if (checkExternalStoragePermission(this@StatementActivity)){
+                                            downloadFile(filename1,filename2)
+                                        }
 
-                                      //  downloadFile(filename1,filename2)
 
 
 //                                           if (checkExternalStoragePermission(this@StatementActivity)){
@@ -817,233 +918,119 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-
-
     private fun downloadFile(filename1: String, filename2: String) {
 
-        Log.e(TAG,"filename1  6491 "+filename1)
-        Log.e(TAG,"filename2  6492 "+filename2)
 
+        val client = OkHttpClient.Builder()
+            .sslSocketFactory(Config.getSSLSocketFactory(this@StatementActivity))
+            .hostnameVerifier(Config.getHostnameVerifier())
+            .build()
 
-        try {
-//            val manager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-//            val uri = Uri.parse("https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf")
-          //  val uri = Uri.parse("https://202.164.150.65:14262/NbfcAndroidAPI/Statement/ASD7.pdf")
-//            val uri = Uri.parse(filename2)
-//            val request = DownloadManager.Request(uri)
-//            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-//            val reference = manager.enqueue(request)
-//            Log.e(TAG,"Download Successfully  701  "+reference)
-//
-//            val downloadManager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-//            val uri = Uri.parse(filename2)
-//            val request = DownloadManager.Request(uri)
-//            val nameOfFile = URLUtil.guessFileName(uri.toString(), null, MimeTypeMap.getFileExtensionFromUrl(uri.toString()))
-//            val destinationInExternalPublicDir = request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS)
-//            request.setAllowedOverMetered(true)
-//            request.setAllowedOverRoaming(true)
-//            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
-//            request.allowScanningByMediaScanner()
-//            downloadManager.enqueue(request)
-
-//            val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
-//            StrictMode.setThreadPolicy(policy)
-
-//            val fileName = "xyz"
-//            val fileExtension = ".pdf"
-
-//           download pdf file.
-
-
-//           download pdf file.
-//            val url = URL("https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf")
-//            val c = url.openConnection() as HttpURLConnection
-//            c.requestMethod = "GET"
-//            c.doOutput = true
-//            c.connect()
-//            val PATH = Environment.getExternalStorageDirectory().toString() + "/mydownload/"
-//            val file: File = File(PATH)
-//            file.mkdirs()
-//            val outputFile = File(file, fileName + fileExtension)
-//            val fos = FileOutputStream(outputFile)
-//            val `is` = c.inputStream
-//            val buffer = ByteArray(1024)
-//            var len1 = 0
-//            while (`is`.read(buffer).also { len1 = it } != -1) {
-//                fos.write(buffer, 0, len1)
-//            }
-//            fos.close()
-//            `is`.close()
-//
-//
-//            Log.e(TAG,"Download  701  "+outputFile)
-
-
-            ////////
-
-
-//            val extStorageDirectory = Environment.getExternalStorageDirectory().toString()
-//            val folder = File(extStorageDirectory, "PDF DOWNLOAD")
-//            folder.mkdir()
-//
-//            val pdfFile = File(folder, "NBFCC")
-//
-//
-//                pdfFile.createNewFile()
-//                Log.e(TAG,"Download  701  "+pdfFile)
-
-    // working
-  //  val url = "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
-            val url = URL("https://202.164.150.65:14262/NbfcAndroidAPI/Statement/ASD7.pdf").toString() //Create Download URl") //Create Download URl
-
-            val request = DownloadManager.Request(Uri.parse(url))
-//            request.setMimeType(mimeType.toString())
-            request.setDescription("Downloading file...");
-            request.allowScanningByMediaScanner();
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,"Testing"+".pdf")
-            val dm = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
-            request.setMimeType("application/pdf")
-            request.allowScanningByMediaScanner()
-            //request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE | DownloadManager.Request.NETWORK_WIFI)
-            dm.enqueue(request)
-
-
-            /////////////////
-
-//            val downloadManager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-//            val uri = Uri.parse("url")
-//            val request = DownloadManager.Request(uri)
-//            request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
-//            request.setAllowedOverRoaming(false)
-//            request.setTitle("" + "filename" + ".pdf")
-//            request.setVisibleInDownloadsUi(true)
-//            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-//            val reference: Long = downloadManager.enqueue(request)
-//            request.setDestinationInExternalFilesDir(Environment.DIRECTORY_DOWNLOADS, "/" + "filename")
-//            refid = downloadManager.enqueue(request)
-
-
-        }catch (e: Exception){
-            Log.e(TAG,"IOException  701  "+e.toString())
+        //  val downloadManager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+        val manager: com.coolerfall.download.DownloadManager? = com.coolerfall.download.DownloadManager.Builder().context(this)
+            .downloader(OkHttpDownloader.create(client))
+            .threadPoolSize(3)
+            .logger(object : Logger {
+                override fun log(message: String?) {
+                    Log.e("TAG", "  675   "+message!!)
+                }
+            })
+            .build()
+//        val dir =
+//            File(Environment.getExternalStorageDirectory().toString() + "/Download/AldoFiles")
+        val appName = getResources().getString(R.string.app_name)
+        val dir =
+            File(Environment.getExternalStorageDirectory().toString() + "/"+appName)
+        if (!dir.exists()) {
+            dir.mkdir()
         }
+        val destPath = File(dir, filename2)
 
-//        val downloadManager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-//        val uri = Uri.parse(filename2)
-//        val request = DownloadManager.Request(uri)
-//        val nameOfFile = URLUtil.guessFileName(uri.toString(), null, MimeTypeMap.getFileExtensionFromUrl(uri.toString()))
-//        val destinationInExternalPublicDir = request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS).pa
-//        request.setAllowedOverMetered(true)
-//        request.setAllowedOverRoaming(true)
-//        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
-//        request.allowScanningByMediaScanner()
-//        downloadManager.enqueue(request)
+        Log.e(TAG,"destPath  675      "+destPath)
+        Log.e(TAG,"appName  675      "+appName)
+        val request: DownloadRequest = DownloadRequest.Builder()
+            .url("https://202.164.150.65:14262/NbfcAndroidAPI/Statement/ASD7.pdf")
+            .retryTime(5)
+            .retryInterval(2, TimeUnit.SECONDS)
+            .progressInterval(1, TimeUnit.SECONDS)
+            .priority(Priority.HIGH)
+            .allowedNetworkTypes(DownloadRequest.NETWORK_WIFI)
+            .destinationFilePath(destPath.toString())
+            .downloadCallback(object : DownloadCallback {
+                override fun onStart(downloadId: Int, totalBytes: Long) {
+                    Log.e(TAG,"onStart  675      "+totalBytes)
+                }
+                override fun onRetry(downloadId: Int) {
+                    Log.e(TAG,"destPath  675      "+destPath)
+                }
+                override fun onProgress(downloadId: Int, bytesWritten: Long, totalBytes: Long) {
+                    Log.e(TAG,"onProgress  675      "+bytesWritten+"    "+totalBytes)
+                }
+                override fun onSuccess(downloadId: Int, filePath: String) {
+                    Log.e(TAG,"onSuccess  675      "+filePath)
 
-//        try {
-//            val url = URL(filename2)
-//            val c: HttpURLConnection = url.openConnection() as HttpURLConnection
-//            c.setRequestMethod("GET")
-//            c.setDoOutput(true)
-//            c.connect()
-//            val PATH = (Environment.getExternalStorageDirectory().toString()
-//                    + "/load")
-//            Log.v("LOG_TAG", "PATH: $PATH")
-//            val file = File(PATH)
-//            file.mkdirs()
-//            val outputFile = File(file, "NBFC")
-//            val fos = FileOutputStream(outputFile)
-//            val `is`: InputStream = c.getInputStream()
-//            val buffer = ByteArray(4096)
-//            var len1 = 0
-//            while (`is`.read(buffer).also { len1 = it } != -1) {
-//                fos.write(buffer, 0, len1)
-//            }
-//            fos.close()
-//            `is`.close()
-//            Toast.makeText(
-//                this, " A new file is downloaded successfully",
-//                Toast.LENGTH_LONG
-//            ).show()
-//        } catch (e: IOException) {
-//            e.printStackTrace()
-//            Log.e(TAG,"IOException  701  "+e.toString())
-//        }
+                    StatementPopup(filePath,"1")
+                }
+                override fun onFailure(downloadId: Int, statusCode: Int, errMsg: String) {
+                    Log.e(TAG,"onFailure  675      "+statusCode+"    "+errMsg)
+                    StatementPopup(errMsg,"0")
+                }
+            })
+            .build()
+
+        val downloadId = manager!!.add(request)
+
 
     }
 
+    private fun StatementPopup(Msg: String, mode: String) {
 
+        try {
+            val builder = AlertDialog.Builder(mContext)
+            val inflater1 = mContext!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val layout = inflater1.inflate(R.layout.alert_statement, null)
+            val ll_close = layout.findViewById<View>(R.id.ll_close) as LinearLayout
+            val ll_view = layout.findViewById<View>(R.id.ll_view) as LinearLayout
+            val tv_path = layout.findViewById<View>(R.id.tv_path) as TextView
+            val tv_line = layout.findViewById<View>(R.id.tv_line) as TextView
 
-    ////////////////////
+            builder.setView(layout)
+            val alertDialog = builder.create()
+            alertDialog.setCancelable(false)
+            alertDialog.getWindow()!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+            alertDialog.setView(layout, 0, 0, 0, 0);
 
-    class DownloadingTask () : AsyncTask<Void, Void, String>() {
+            if (mode.equals("0")){
+                ll_view!!.visibility = View.GONE
+                tv_line!!.visibility = View.GONE
+                tv_path!!.setText(""+Msg)
 
-        override fun doInBackground(vararg params: Void?): String? {
+            }else{
+                ll_view!!.visibility = View.VISIBLE
+                tv_line!!.visibility = View.VISIBLE
+                tv_path!!.setText("Download Path : "+Msg)
 
-            var result: String ="false"
-            try {
-
-                ////////////
-                val url = URL("https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf") //Create Download URl
-              //  val url = URL("https://202.164.150.65:14262/NbfcAndroidAPI/Statement/ASD7.pdf") //Create Download URl") //Create Download URl
-               // HttpsURLConnection.setDefaultSSLSocketFactory(Config.getSSLSocketFactory(StatementActivity.));
-                val c: HttpURLConnection = url.openConnection() as HttpURLConnection
-                c.setRequestMethod("GET")
-                c.connect()
-                if (c.getResponseCode() != HttpURLConnection.HTTP_OK) {
-                    Log.e("TAG", "Server returned HTTP " + c.getResponseCode() + " " + c.getResponseMessage());
-                }
-                val root = Environment.getExternalStorageDirectory().toString()
-                val myDir = File("$root/NBFCC")
-                if (!myDir.exists()) {
-                    myDir.mkdirs()
-                }
-
-                val fname = "Test1" +".pdf"
-                val outputFile = File(myDir, fname)
-                if (!outputFile.exists()) {
-                    outputFile.createNewFile();
-                    Log.e("TAG", "File Created");
-                }
-
-                val fos = FileOutputStream(outputFile)
-                val `is`: InputStream = c.inputStream //Get InputStream for connection
-
-
-                val buffer = ByteArray(1024) //Set buffer type
-
-                var len1 = 0 //init length
-
-                while (`is`.read(buffer).also { len1 = it } != -1) {
-                    fos.write(buffer, 0, len1) //Write new file
-                }
-
-                //Close all connection after doing task
-
-                //Close all connection after doing task
-                fos.close()
-                `is`.close()
-
-                Log.e("TAG","Successs  825  ")
-
-
-                result = "true"
-            }catch (e: Exception){
-                result = "false"
-                Log.e("TAG","Exception  825  "+e.toString())
             }
-            return ""
+
+
+
+            ll_view!!.setOnClickListener {
+
+                alertDialog.dismiss()
+                var intent = Intent(this@StatementActivity, ViewStatementActivity::class.java)
+                intent.putExtra("path", Msg)
+                startActivity(intent)
+            }
+
+            ll_close!!.setOnClickListener {
+                alertDialog.dismiss()
+            }
+
+            alertDialog.show()
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
 
-        override fun onPreExecute() {
-            super.onPreExecute()
-            Log.e("TAG","onPreExecute  825  ")
-
-        }
-
-        override fun onPostExecute(result: String?) {
-            super.onPostExecute(result)
-            // ...
-        }
     }
 
 
@@ -1066,34 +1053,23 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
         return externalStoragePermissionGranted
     }
 
+    private fun hasWriteStoragePermission(): Boolean {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            return true
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ActivityCompat.checkSelfPermission(applicationContext!!, WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(
+                    arrayOf(READ_EXTERNAL_STORAGE,
+                        WRITE_EXTERNAL_STORAGE),
+                    REQUEST_PERMISSIONS_CODE_WRITE_STORAGE
+                )
 
- /*   private fun downloadPdfFromInternet(url: URL, dirPath: File, fileName: String) {
+                return false
+            }
+        }
 
-        PRDownloader.download(
-            url.toString(),
-            dirPath.toString(),
-            fileName
-        ).build()
-            .start(object : OnDownloadListener {
-                override fun onDownloadComplete() {
-                    Toast.makeText(this@StatementActivity, "downloadComplete", Toast.LENGTH_LONG)
-                        .show()
-                    val downloadedFile = File(dirPath, fileName)
-//                    progressBar.visibility = View.GONE
-//                    showPdfFromFile(downloadedFile)
-                }
-
-                override fun onError(error: Error?) {
-                    Toast.makeText(
-                        this@StatementActivity,
-                        "Error in downloading file : $error",
-                        Toast.LENGTH_LONG
-                    )
-                        .show()
-                }
-            })
-
-    }*/
+        return true
+    }
 
 
 }

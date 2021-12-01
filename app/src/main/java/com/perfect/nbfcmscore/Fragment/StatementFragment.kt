@@ -1,21 +1,30 @@
 package com.perfect.nbfcmscore.Fragment
 
+import android.Manifest
+import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.RadioButton
-import android.widget.TextView
+import android.widget.*
+import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.coolerfall.download.*
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
+import com.perfect.nbfcmscore.Activity.ViewStatementActivity
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
@@ -29,8 +38,10 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 class StatementFragment : Fragment() , View.OnClickListener{
 
@@ -53,6 +64,13 @@ class StatementFragment : Fragment() , View.OnClickListener{
     val sdf = SimpleDateFormat("yyyy-MM-dd")
     var AccountNumber: String? = ""
     var SubModule: String? = ""
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    val PERMISSIONS_EXTERNAL_STORAGE = arrayOf(
+        Manifest.permission.READ_EXTERNAL_STORAGE,
+        Manifest.permission.WRITE_EXTERNAL_STORAGE
+    )
+    val REQUEST_EXTERNAL_PERMISSION_CODE = 666
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -365,7 +383,7 @@ class StatementFragment : Fragment() , View.OnClickListener{
             }
             R.id.tv_download ->{
                 docType = "2"
-                //validation1()
+                validation1()
             }
         }
     }
@@ -413,9 +431,13 @@ class StatementFragment : Fragment() , View.OnClickListener{
                     +"\n"+"FromDate   "+FromDate
                     +"\n"+"ToDate   "+ToDate)
 
-            getStatementOfAccountDocs(FromNo)
+//            getStatementOfAccountDocs(FromNo)
 
             //startActivity(Intent(this@StatementActivity, ViewStatementActivity::class.java))
+
+            if (checkExternalStoragePermission()){
+                downloadFile("filename1","ASD.pdf")
+            }
 
 
         }
@@ -624,5 +646,140 @@ class StatementFragment : Fragment() , View.OnClickListener{
                 alertDialog.show()
             }
         }
+    }
+
+    fun checkExternalStoragePermission(): Boolean {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
+            return true
+        }
+        val readStoragePermissionState =
+            ContextCompat.checkSelfPermission(activity!!, Manifest.permission.READ_EXTERNAL_STORAGE)
+        val writeStoragePermissionState =
+            ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        val externalStoragePermissionGranted =
+            readStoragePermissionState == PackageManager.PERMISSION_GRANTED &&
+                    writeStoragePermissionState == PackageManager.PERMISSION_GRANTED
+        if (!externalStoragePermissionGranted) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(PERMISSIONS_EXTERNAL_STORAGE, REQUEST_EXTERNAL_PERMISSION_CODE)
+            }
+        }
+        return externalStoragePermissionGranted
+    }
+
+
+    private fun downloadFile(filename1: String, filename2: String) {
+
+
+        val client = OkHttpClient.Builder()
+            .sslSocketFactory(Config.getSSLSocketFactory(context!!))
+            .hostnameVerifier(Config.getHostnameVerifier())
+            .build()
+
+        //  val downloadManager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+        val manager: com.coolerfall.download.DownloadManager? = com.coolerfall.download.DownloadManager.Builder().context(context)
+            .downloader(OkHttpDownloader.create(client))
+            .threadPoolSize(3)
+            .logger(object : Logger {
+                override fun log(message: String?) {
+                    Log.e("TAG", "  675   "+message!!)
+                }
+            })
+            .build()
+//        val dir =
+//            File(Environment.getExternalStorageDirectory().toString() + "/Download/AldoFiles")
+        val appName = getResources().getString(R.string.app_name)
+        val dir =
+            File(Environment.getExternalStorageDirectory().toString() + "/"+appName)
+        if (!dir.exists()) {
+            dir.mkdir()
+        }
+        val destPath = File(dir, filename2)
+
+        Log.e(TAG,"destPath  675      "+destPath)
+        Log.e(TAG,"appName  675      "+appName)
+        val request: DownloadRequest = DownloadRequest.Builder()
+            .url("https://202.164.150.65:14262/NbfcAndroidAPI/Statement/ASD7.pdf")
+            .retryTime(5)
+            .retryInterval(2, TimeUnit.SECONDS)
+            .progressInterval(1, TimeUnit.SECONDS)
+            .priority(Priority.HIGH)
+            .allowedNetworkTypes(DownloadRequest.NETWORK_WIFI)
+            .destinationFilePath(destPath.toString())
+            .downloadCallback(object : DownloadCallback {
+                override fun onStart(downloadId: Int, totalBytes: Long) {
+                    Log.e(TAG,"onStart  675      "+totalBytes)
+                }
+                override fun onRetry(downloadId: Int) {
+                    Log.e(TAG,"destPath  675      "+destPath)
+                }
+                override fun onProgress(downloadId: Int, bytesWritten: Long, totalBytes: Long) {
+                    Log.e(TAG,"onProgress  675      "+bytesWritten+"    "+totalBytes)
+                }
+                override fun onSuccess(downloadId: Int, filePath: String) {
+                    Log.e(TAG,"onSuccess  675      "+filePath)
+
+                    StatementPopup(filePath,"1")
+                }
+                override fun onFailure(downloadId: Int, statusCode: Int, errMsg: String) {
+                    Log.e(TAG,"onFailure  675      "+statusCode+"    "+errMsg)
+                    StatementPopup(errMsg,"0")
+                }
+            })
+            .build()
+
+        val downloadId = manager!!.add(request)
+
+
+    }
+
+    private fun StatementPopup(Msg: String, mode: String) {
+
+        try {
+            val builder = AlertDialog.Builder(context)
+            val inflater1 = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val layout = inflater1.inflate(R.layout.alert_statement, null)
+            val ll_close = layout.findViewById<View>(R.id.ll_close) as LinearLayout
+            val ll_view = layout.findViewById<View>(R.id.ll_view) as LinearLayout
+            val tv_path = layout.findViewById<View>(R.id.tv_path) as TextView
+            val tv_line = layout.findViewById<View>(R.id.tv_line) as TextView
+
+            builder.setView(layout)
+            val alertDialog = builder.create()
+            alertDialog.setCancelable(false)
+            alertDialog.getWindow()!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+            alertDialog.setView(layout, 0, 0, 0, 0);
+
+            if (mode.equals("0")){
+                ll_view!!.visibility = View.GONE
+                tv_line!!.visibility = View.GONE
+                tv_path!!.setText(""+Msg)
+
+            }else{
+                ll_view!!.visibility = View.VISIBLE
+                tv_line!!.visibility = View.VISIBLE
+                tv_path!!.setText("Download Path : "+Msg)
+
+            }
+
+
+
+            ll_view!!.setOnClickListener {
+
+                alertDialog.dismiss()
+                var intent = Intent(context, ViewStatementActivity::class.java)
+                intent.putExtra("path", Msg)
+                startActivity(intent)
+            }
+
+            ll_close!!.setOnClickListener {
+                alertDialog.dismiss()
+            }
+
+            alertDialog.show()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
     }
 }

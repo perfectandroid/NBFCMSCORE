@@ -50,7 +50,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
     ItemClickListener {
 
     private var progressDialog: ProgressDialog? = null
-    val TAG: String = "OtherBankActivity"
+ //   val TAG: String? = "OtherBankFundTransferActivity"
     private val PICK_BENEFICIARY = 1
 
     var im_back: ImageView? = null
@@ -369,7 +369,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .client(client)
                         .build()
-                    val apiService = retrofit.create(ApiInterface::class.java!!)
+                    val apiService = retrofit.create(ApiInterface::class.java)
                     val requestObject1 = JSONObject()
                     try {
                         val TokenSP = applicationContext.getSharedPreferences(Config.SHARED_PREF8, 0)
@@ -385,10 +385,10 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
                         requestObject1.put("BankHeader", MscoreApplication.encryptStart(getResources().getString(R.string.BankHeader)))
 
-                        Log.e(TAG,"requestObject1  516   "+requestObject1)
+                        Log.e("TAG","requestObject1  516   "+requestObject1)
 
                     } catch (e: Exception) {
-                        Log.e(TAG,"Some  5161   "+e.toString())
+                        Log.e("TAG","Some  5161   "+e.toString())
                         progressDialog!!.dismiss()
                         e.printStackTrace()
                         val mySnackbar = Snackbar.make(
@@ -411,13 +411,13 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                                 progressDialog!!.dismiss()
 
                                 val jObject = JSONObject(response.body())
-                                Log.e(TAG,"response  5162   "+response.body())
-                                Log.e(TAG,"response  5163   "+jObject.getString("StatusCode"))
+//                                Log.e(TAG,"response  5162   "+response.body())
+//                                Log.e(TAG,"response  5163   "+jObject.getString("StatusCode"))
                                 if (jObject.getString("StatusCode") == "0") {
 
                                     val jobjt = jObject.getJSONObject("OwnAccountdetails")
                                     jArrayAccount = jobjt.getJSONArray("OwnAccountdetailsList")
-                                    Log.e(TAG,"jArrayAccount  5164   "+jArrayAccount)
+//                                    Log.e(TAG,"jArrayAccount  5164   "+jArrayAccount)
 
                                     for (i in 0 until jArrayAccount!!.length()) {
                                         var jsonObject = jArrayAccount!!.getJSONObject(i)
@@ -447,7 +447,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
-                                Log.e(TAG,"Some  2162   "+e.toString())
+//                                Log.e(TAG,"Some  2162   "+e.toString())
                                 val builder = AlertDialog.Builder(
                                     this@OtherBankFundTransferActivity,
                                     R.style.MyDialogTheme
@@ -463,7 +463,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                         }
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
-                            Log.e(TAG,"Some  2163   "+t.message)
+//                            Log.e(TAG,"Some  2163   "+t.message)
                             val builder = AlertDialog.Builder(
                                 this@OtherBankFundTransferActivity,
                                 R.style.MyDialogTheme
@@ -478,7 +478,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    Log.e(TAG,"Some  2165   "+e.toString())
+//                    Log.e(TAG,"Some  2165   "+e.toString())
                     val builder = AlertDialog.Builder(this@OtherBankFundTransferActivity, R.style.MyDialogTheme)
                     builder.setMessage("Some technical issues.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -540,15 +540,15 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Log.e(TAG,"tempContact  698  "+requestCode+"  "+resultCode)
+//        Log.e(TAG,"tempContact  698  "+requestCode+"  "+resultCode)
         if (requestCode == PICK_BENEFICIARY && resultCode == RESULT_OK && applicationContext != null) {
             try {
 
                 ll_chk_bene!!.visibility = View.GONE
                 chk_beneficiary!!.isChecked = false
-                Log.e(TAG,"BeneName  323   "+ data!!.getStringExtra("BeneName"))
-                Log.e(TAG,"BeneIFSC  323   "+ data!!.getStringExtra("BeneIFSC"))
-                Log.e(TAG,"BeneAccNo  323   "+ data!!.getStringExtra("BeneAccNo"))
+//                Log.e(TAG,"BeneName  323   "+ data!!.getStringExtra("BeneName"))
+//                Log.e(TAG,"BeneIFSC  323   "+ data!!.getStringExtra("BeneIFSC"))
+//                Log.e(TAG,"BeneAccNo  323   "+ data!!.getStringExtra("BeneAccNo"))
 
                 tie_beneficiary!!.setText(data!!.getStringExtra("BeneName"))
                 tie_beneficiary_aacno!!.setText(data!!.getStringExtra("BeneAccNo"))
@@ -590,8 +590,8 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
         Amount = tie_amount!!.text.toString().replace(",", "");
 
 
-        Log.e(TAG,"CONFIRMS   446     "+BeneAccountNumber)
-        Log.e(TAG,"CONFIRMS   446     "+BeneAccountNumber_conf)
+//        Log.e(TAG,"CONFIRMS   446     "+BeneAccountNumber)
+//        Log.e(TAG,"CONFIRMS   446     "+BeneAccountNumber_conf)
 
         if (AccountNo!!.length != 12){
            // Toast.makeText(applicationContext,"Select valid  account number",Toast.LENGTH_LONG).show()
@@ -625,7 +625,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
         }else{
 
 
-            Log.e(TAG,"CONFIRMS   446"
+            Log.e("TAG","CONFIRMS   446"
             +"\n"+"AccountNo    "+AccountNo
                     +"\n"+"SubModule    "+SubModule
                     +"\n"+"BeneName    "+BeneName
@@ -676,7 +676,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
         val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
         val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
         val imagepath = IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
-        Log.e(TAG,"imagepath  566   "+imagepath)
+//        Log.e(TAG,"imagepath  566   "+imagepath)
        // img_aapicon!!.setImageResource(R.drawable.applogo)
         PicassoTrustAll.getInstance(this@OtherBankFundTransferActivity)!!.load(imagepath).error(android.R.color.transparent).into(img_aapicon!!)
 
@@ -723,7 +723,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
         val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurl = baseurlSP.getString("baseurl", null)
         OTPRef = ""
-        Log.e(TAG,"RetreiveOtp   666")
+//        Log.e(TAG,"RetreiveOtp   666")
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@OtherBankFundTransferActivity, R.style.Progress)
@@ -746,7 +746,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .client(client)
                         .build()
-                    val apiService = retrofit.create(ApiInterface::class.java!!)
+                    val apiService = retrofit.create(ApiInterface::class.java)
                     val requestObject1 = JSONObject()
                     try {
                         val TokenSP = applicationContext.getSharedPreferences(Config.SHARED_PREF8, 0)
@@ -755,7 +755,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                         val FK_CustomerSP = this.applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
                         val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
 
-                        Log.e(TAG,"amount  6661  "+amount)
+                        Log.e("TAG","amount  6661  "+amount)
 
 //                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("26"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
@@ -773,11 +773,11 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                         requestObject1.put("OTPRef", MscoreApplication.encryptStart(""))
                         requestObject1.put("OTPCode", MscoreApplication.encryptStart(""))
 
-                        Log.e(TAG,"requestObject1  624   "+requestObject1)
-                        Log.e(TAG,"requestObject1  62411   "+requestObject1)
+//                        Log.e(TAG,"requestObject1  624   "+requestObject1)
+//                        Log.e(TAG,"requestObject1  62411   "+requestObject1)
 
                     } catch (e: Exception) {
-                        Log.e(TAG,"Some  6662   "+e.toString())
+//                        Log.e(TAG,"Some  6662   "+e.toString())
                         progressDialog!!.dismiss()
                         e.printStackTrace()
                         val mySnackbar = Snackbar.make(
@@ -800,13 +800,13 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                                 progressDialog!!.dismiss()
 
                                 val jObject = JSONObject(response.body())
-                                Log.e(TAG,"response  6663   "+response.body())
-                                Log.e(TAG,"response  6664   "+jObject.getString("StatusCode"))
+//                                Log.e(TAG,"response  6663   "+response.body())
+//                                Log.e(TAG,"response  6664   "+jObject.getString("StatusCode"))
                                 if (jObject.getString("StatusCode") == "0") {
 
                                     val jobjt = jObject.getJSONObject("FundTransferToOtherBank")
 
-                                    Log.e(TAG,"response  6665   "+jobjt.getString("OtpRefNo"))
+//                                    Log.e(TAG,"response  6665   "+jobjt.getString("OtpRefNo"))
                                     OTPRef = jobjt.getString("OtpRefNo")
                                     otpPopup()
 
@@ -824,7 +824,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
-                                Log.e(TAG,"Some  6666   "+e.toString())
+//                                Log.e(TAG,"Some  6666   "+e.toString())
                                 val builder = AlertDialog.Builder(
                                     this@OtherBankFundTransferActivity,
                                     R.style.MyDialogTheme
@@ -840,7 +840,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                         }
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
-                            Log.e(TAG,"Some  6667   "+t.message)
+//                            Log.e(TAG,"Some  6667   "+t.message)
                             val builder = AlertDialog.Builder(
                                 this@OtherBankFundTransferActivity,
                                 R.style.MyDialogTheme
@@ -855,7 +855,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    Log.e(TAG,"Some  6668   "+e.toString())
+//                    Log.e(TAG,"Some  6668   "+e.toString())
                     val builder = AlertDialog.Builder(this@OtherBankFundTransferActivity, R.style.MyDialogTheme)
                     builder.setMessage("Some technical issues.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -915,7 +915,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
         val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurl = baseurlSP.getString("baseurl", null)
 
-        Log.e(TAG,"RetreiveOtp   856  "+otpRef+ "   "+otpCode)
+//        Log.e(TAG,"RetreiveOtp   856  "+otpRef+ "   "+otpCode)
 
 
         when(ConnectivityUtils.isConnected(this)) {
@@ -968,11 +968,11 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
 //                        requestObject1.put("OTPRef", MscoreApplication.encryptStart(""))
 //                        requestObject1.put("OTPCode", MscoreApplication.encryptStart(""))
 
-                        Log.e(TAG,"requestObject1  856   "+requestObject1)
-                        Log.e(TAG,"requestObject1  856   "+requestObject1)
+//                        Log.e(TAG,"requestObject1  856   "+requestObject1)
+//                        Log.e(TAG,"requestObject1  856   "+requestObject1)
 
                     } catch (e: Exception) {
-                        Log.e(TAG,"Some  8561   "+e.toString())
+//                        Log.e(TAG,"Some  8561   "+e.toString())
                         progressDialog!!.dismiss()
                         e.printStackTrace()
                         val mySnackbar = Snackbar.make(
@@ -995,13 +995,13 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                                 progressDialog!!.dismiss()
 
                                 val jObject = JSONObject(response.body())
-                                Log.e(TAG,"response  8563   "+response.body())
-                                Log.e(TAG,"response  8564   "+jObject.getString("StatusCode"))
+//                                Log.e(TAG,"response  8563   "+response.body())
+//                                Log.e(TAG,"response  8564   "+jObject.getString("StatusCode"))
                                 if (jObject.getString("StatusCode") == "0") {
 
                                     val jobjt = jObject.getJSONObject("FundTransferToOtherBank")
 
-                                    Log.e(TAG,"response  8565   "+jobjt.getString("OtpRefNo"))
+//                                    Log.e(TAG,"response  8565   "+jobjt.getString("OtpRefNo"))
 
                                     var result = jobjt.getString("ResponseMessage")
                                     var refid = jobjt.getString("OtpRefNo")
@@ -1031,7 +1031,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
 
 
                                 } else {
-                                    Log.e(TAG,"response  8566   "+jObject.getString("EXMessage"))
+//                                    Log.e(TAG,"response  8566   "+jObject.getString("EXMessage"))
                                     val builder = AlertDialog.Builder(
                                         this@OtherBankFundTransferActivity,
                                         R.style.MyDialogTheme
@@ -1045,7 +1045,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
-                                Log.e(TAG,"Some  8567   "+e.toString())
+//                                Log.e(TAG,"Some  8567   "+e.toString())
                                 val builder = AlertDialog.Builder(
                                     this@OtherBankFundTransferActivity,
                                     R.style.MyDialogTheme
@@ -1061,7 +1061,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                         }
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
-                            Log.e(TAG,"Some  8568   "+t.message)
+//                            Log.e(TAG,"Some  8568   "+t.message)
                             val builder = AlertDialog.Builder(
                                 this@OtherBankFundTransferActivity,
                                 R.style.MyDialogTheme
@@ -1076,7 +1076,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    Log.e(TAG,"Some  8569   "+e.toString())
+//                    Log.e(TAG,"Some  8569   "+e.toString())
                     val builder = AlertDialog.Builder(this@OtherBankFundTransferActivity, R.style.MyDialogTheme)
                     builder.setMessage("Some technical issues.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->

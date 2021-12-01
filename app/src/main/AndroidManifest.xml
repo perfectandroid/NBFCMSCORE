@@ -17,6 +17,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
@@ -28,17 +29,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NBFCMSCORE">
         <activity
-            android:name=".Activity.GoldLoanActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden|adjustPan"
-            tools:ignore="MissingClass" />
-        <activity
             android:name=".Activity.ViewStatementActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustPan"
-            tools:ignore="MissingClass" />
+            tools:ignore="MissingClass"  />
+        <activity
+            android:name=".Activity.GoldLoanActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            tools:ignore="MissingClass" /> <!-- <activity -->
+        <!-- android:name=".Activity.ViewStatementActivity" -->
+        <!-- android:screenOrientation="portrait" -->
+        <!-- android:theme="@style/AppTheme.NoActionBar" -->
+        <!-- android:windowSoftInputMode="stateHidden|adjustPan" -->
+        <!-- tools:ignore="MissingClass" /> -->
         <activity
             android:name=".Activity.SettingActivity"
             android:screenOrientation="portrait"
@@ -176,7 +182,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustPan"
-            tools:ignore="MissingClass"/>
+            tools:ignore="MissingClass" />
         <activity
             android:name=".Activity.MyaccountsummaryActivity"
             android:screenOrientation="portrait"
