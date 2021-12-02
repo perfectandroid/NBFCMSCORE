@@ -258,6 +258,15 @@ object Config {
     const val SHARED_PREF209="ListasonDate"
     const val SHARED_PREF210="Balance"
 
+    const val SHARED_PREF211="MINISTATEMENT"
+    const val SHARED_PREF212="ACCOUNTSTATEMENT"
+    const val SHARED_PREF213="MOREOPTIONS"
+
+    const val SHARED_PREF214="AccountSummary"
+    const val SHARED_PREF215="StandingInstruction"
+    const val SHARED_PREF216="Notice"
+
+
 
 
 

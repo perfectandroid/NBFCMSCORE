@@ -44,6 +44,7 @@
                     android:src="@drawable/accsummary" />
 
                 <TextView
+                    android:id="@+id/txtv_acntsummry"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -90,6 +91,7 @@
                     android:src="@drawable/accpassbook" />
 
                 <TextView
+                    android:id="@+id/txtvpassbk"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -136,6 +138,7 @@
                     android:src="@drawable/standinginstuction" />
 
                 <TextView
+                    android:id="@+id/txtvstand"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -182,6 +185,7 @@
                     android:src="@drawable/notice" />
 
                 <TextView
+                    android:id="@+id/txtv_notice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"

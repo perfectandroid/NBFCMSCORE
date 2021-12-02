@@ -64,6 +64,8 @@ class ExecutiveActivity : AppCompatActivity() ,View.OnClickListener{
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)
 
+
+
         ll_dob= findViewById<LinearLayout>(R.id.ll_dob)
 
         txtv_Name= findViewById<TextInputEditText>(R.id.txtv_Name)

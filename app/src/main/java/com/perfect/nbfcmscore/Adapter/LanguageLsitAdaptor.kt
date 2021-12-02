@@ -127,17 +127,17 @@ class LanguageLsitAdaptor(internal val mContext: Context, internal val jsInfo: J
         }
     }
 
-    private fun getlabels(id: String) {
+  /*  private fun getlabels(id: String) {
         val baseurlSP = mContext.applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(mContext)) {
             true -> {
-                /*   progressDialog = ProgressDialog(this@LanguageSelectionActivity, R.style.Progress)
+                *//*   progressDialog = ProgressDialog(this@LanguageSelectionActivity, R.style.Progress)
                    progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
                    progressDialog!!.setCancelable(false)
                    progressDialog!!.setIndeterminate(true)
                    progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
-                   progressDialog!!.show()*/
+                   progressDialog!!.show()*//*
                 try {
                     val client = OkHttpClient.Builder()
                             .sslSocketFactory(Config.getSSLSocketFactory(mContext))
@@ -261,10 +261,10 @@ class LanguageLsitAdaptor(internal val mContext: Context, internal val jsInfo: J
                                     ID_EntermobEditer.putString("entermobilenumber", jresult3.get("entermobilenumber") as String)
                                     ID_EntermobEditer.commit()
 
-                                    /*    val ID_last4SP = mContext.getSharedPreferences(Config.SHARED_PREF43, 0)
+                                    *//*    val ID_last4SP = mContext.getSharedPreferences(Config.SHARED_PREF43, 0)
                                     val ID_last4SPEditer = ID_last4SP.edit()
                                     ID_last4SPEditer.putString("enter last4digitofa/cno", jresult3.get("enter last4digitofa/cno") as String)
-                                    ID_last4SPEditer.commit()*/
+                                    ID_last4SPEditer.commit()*//*
 
                                     val ID_ContinueSP = mContext.getSharedPreferences(Config.SHARED_PREF44, 0)
                                     val ID_ContinueSPEditer = ID_ContinueSP.edit()
@@ -276,11 +276,11 @@ class LanguageLsitAdaptor(internal val mContext: Context, internal val jsInfo: J
                                     ID_LoginMobSPEditer.putString("loginwithmobilenumber", jresult3.get("loginwithmobilenumber") as String)
                                     ID_LoginMobSPEditer.commit()
 
-                                    /*  val ID_MobotpeSP = mContext.getSharedPreferences(Config.SHARED_PREF46, 0)
+                                    *//*  val ID_MobotpeSP = mContext.getSharedPreferences(Config.SHARED_PREF46, 0)
                                     val ID_MobotpSPEditer = ID_MobotpeSP.edit()
                                     ID_MobotpSPEditer.putString("enteryourmobilenumberwewillsentyouOTPtoverify", jresult3.get("enteryourmobilenumberwewillsentyouOTPtoverify") as String)
                                     ID_MobotpSPEditer.commit()
-*/
+*//*
                                     val ID_LoginverifySP = mContext.getSharedPreferences(Config.SHARED_PREF47, 0)
                                     val ID_LoginVerifySPEditer = ID_LoginverifySP.edit()
                                     ID_LoginVerifySPEditer.putString("userloginverified", jresult3.get("userloginverified") as String)
@@ -918,7 +918,7 @@ class LanguageLsitAdaptor(internal val mContext: Context, internal val jsInfo: J
             }
         }
 
-    }
+    }*/
 
     inner class MainViewHolder(v: View) : RecyclerView.ViewHolder(v) {
 

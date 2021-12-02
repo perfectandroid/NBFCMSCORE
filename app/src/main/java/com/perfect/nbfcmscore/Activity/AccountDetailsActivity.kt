@@ -50,6 +50,12 @@ class AccountDetailsActivity : AppCompatActivity() , View.OnClickListener {
     var tvaccounttype: TextView? = null
     var tvaccountno: TextView? = null
     var tvbal: TextView? = null
+    var tv_header: TextView? = null
+
+    var txtv_acc: TextView? = null
+    var txtvbal: TextView? = null
+
+
     var data :String?=null
     private var tabLayout: TabLayout? = null
     private var viewPager: ViewPager? = null
@@ -58,6 +64,16 @@ class AccountDetailsActivity : AppCompatActivity() , View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_accountdetails)
         setRegViews()
+
+        val ID_acntdetails = this.getSharedPreferences(Config.SHARED_PREF121,0)
+        tv_header!!.setText(ID_acntdetails.getString("AccountDetails",null))
+
+
+        val ID_accno = this.getSharedPreferences(Config.SHARED_PREF158,0)
+        txtv_acc!!.setText(ID_accno.getString("AccountNumber",null))
+
+        val ID_bal = this.getSharedPreferences(Config.SHARED_PREF210,0)
+        txtvbal!!.setText(ID_bal.getString("Balance",null))
 
         viewPager = findViewById<View>(R.id.viewpager) as ViewPager
         setupViewPager(viewPager)
@@ -136,6 +152,13 @@ class AccountDetailsActivity : AppCompatActivity() , View.OnClickListener {
         imgloanslab!!.setOnClickListener(this)
         imgshare = findViewById<ImageView>(R.id.imgshare)
         imgshare!!.setOnClickListener(this)
+
+        tv_header = findViewById<TextView>(R.id.tv_header)
+
+        txtv_acc = findViewById<TextView>(R.id.txtv_acc)
+        txtvbal = findViewById<TextView>(R.id.txtvbal)
+
+
     }
 
     override fun onClick(v: View) {
@@ -157,9 +180,19 @@ class AccountDetailsActivity : AppCompatActivity() , View.OnClickListener {
 
     private fun setupViewPager(viewPager: ViewPager?) {
         val adapter = ViewPagerAdapter(supportFragmentManager)
-        adapter.addFragment(MiniStatementFragment(), "Mini Statement")
-        adapter.addFragment(StatementFragment(), "Account Statement")
-        adapter.addFragment(MoreOptionFragment(), "More Options")
+
+        val ID_ministat = applicationContext.getSharedPreferences(Config.SHARED_PREF211,0)
+        var ministatmnt = ID_ministat.getString("MINISTATEMENT",null)
+
+        val ID_acntstat = applicationContext.getSharedPreferences(Config.SHARED_PREF212,0)
+        var acntstat = ID_acntstat.getString("ACCOUNTSTATEMENT",null)
+
+        val ID_more = applicationContext.getSharedPreferences(Config.SHARED_PREF213,0)
+        var moreopt = ID_more.getString("MOREOPTIONS",null)
+
+        adapter.addFragment(MiniStatementFragment(), ministatmnt!!)
+        adapter.addFragment(StatementFragment(), acntstat!!)
+        adapter.addFragment(MoreOptionFragment(), moreopt!!)
         viewPager!!.adapter = adapter
     }
 
