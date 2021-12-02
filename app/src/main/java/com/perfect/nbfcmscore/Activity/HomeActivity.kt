@@ -2403,6 +2403,36 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_balEditer.commit()
 //                                     startActivity(Intent(this@HomeActivity, HomeActivity::class.java))
 
+                                    val ID_min= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF211, 0)
+                                    val ID_minEditer = ID_min.edit()
+                                    ID_minEditer.putString("MINISTATEMENT", jresult3.get("MINISTATEMENT") as String)
+                                    ID_minEditer.commit()
+
+                                    val ID_acntstat= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF212, 0)
+                                    val ID_acntstatEditer = ID_acntstat.edit()
+                                    ID_acntstatEditer.putString("ACCOUNTSTATEMENT", jresult3.get("ACCOUNTSTATEMENT") as String)
+                                    ID_acntstatEditer.commit()
+
+                                    val ID_moreopt= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF213, 0)
+                                    val ID_moreoptEditer = ID_moreopt.edit()
+                                    ID_moreoptEditer.putString("MOREOPTIONS", jresult3.get("MOREOPTIONS") as String)
+                                    ID_moreoptEditer.commit()
+
+                                    val ID_acntsummary= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF214, 0)
+                                    val ID_acntsummaryEditer = ID_acntsummary.edit()
+                                    ID_acntsummaryEditer.putString("AccountSummary", jresult3.get("AccountSummary") as String)
+                                    ID_acntsummaryEditer.commit()
+
+                                    val ID_standins= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF215, 0)
+                                    val ID_standinsEditer = ID_standins.edit()
+                                    ID_standinsEditer.putString("StandingInstruction", jresult3.get("StandingInstruction") as String)
+                                    ID_standinsEditer.commit()
+
+                                    val ID_notce= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF216, 0)
+                                    val ID_notceEditer = ID_notce.edit()
+                                    ID_notceEditer.putString("Notice", jresult3.get("Notice") as String)
+                                    ID_notceEditer.commit()
+
 
                                     val myIntent = Intent(this@HomeActivity, HomeActivity::class.java)
                                     overridePendingTransition(0, 0)

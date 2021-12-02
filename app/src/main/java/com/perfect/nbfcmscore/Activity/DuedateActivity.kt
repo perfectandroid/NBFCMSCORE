@@ -235,7 +235,7 @@ class DuedateActivity : AppCompatActivity() , View.OnClickListener{
                         )
 
 
-                        Log.e("TAG", "requestObject1  171   " + requestObject1)
+                        Log.e("TAG", "requestObject1  duedate   " + requestObject1)
                     } catch (e: Exception) {
                         Log.e(TAG, "Exception  198   ")
                         progressDialog!!.dismiss()

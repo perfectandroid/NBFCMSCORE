@@ -1,5 +1,4 @@
 package com.perfect.nbfcmscore.Fragment
-
 import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
@@ -55,6 +54,13 @@ class StatementFragment : Fragment() , View.OnClickListener{
     var tv_reset: Button? = null
     var tv_download: Button? = null
 
+
+
+    var txtv_slctperd: TextView? = null
+    var txtv_slctcustomdte: TextView? = null
+
+
+    var txtv_or: TextView? = null
     var edt_fromDate: EditText? = null
     var edt_toDate: EditText? = null
 
@@ -76,7 +82,6 @@ class StatementFragment : Fragment() , View.OnClickListener{
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_statementdownloadview, container, false)
 
-
         rad_last_month = v.findViewById<RadioButton>(R.id.rad_last_month)
         rad_last_3_month = v.findViewById<RadioButton>(R.id.rad_last_3_month)
         rad_last_6_month = v.findViewById<RadioButton>(R.id.rad_last_6_month)
@@ -84,6 +89,11 @@ class StatementFragment : Fragment() , View.OnClickListener{
 
         edt_fromDate = v.findViewById<EditText>(R.id.edt_fromDate)
         edt_toDate = v.findViewById<EditText>(R.id.edt_toDate)
+
+        txtv_slctperd = v.findViewById<TextView>(R.id.txtv_slctperd)
+        txtv_slctcustomdte = v.findViewById<TextView>(R.id.txtv_slctcustomdte)
+
+        txtv_or = v.findViewById<TextView>(R.id.txtv_or)
 
         tv_reset = v.findViewById<Button>(R.id.tv_reset)
         tv_download = v.findViewById<Button>(R.id.tv_download)
@@ -94,6 +104,40 @@ class StatementFragment : Fragment() , View.OnClickListener{
 
         val StatementSubModule = context!!.getSharedPreferences(Config.SHARED_PREF156, 0)
         SubModule = StatementSubModule.getString("StatementSubModule",null)
+
+        val ID_selectperd = context!!.getSharedPreferences(Config.SHARED_PREF126,0)
+        txtv_slctperd!!.setText(ID_selectperd.getString("Selectaperiodofyourchoice",null))
+
+        val ID_Or = context!!.getSharedPreferences(Config.SHARED_PREF127,0)
+        txtv_or!!.setText(ID_Or.getString("OR",null))
+
+        val ID_customdate = context!!.getSharedPreferences(Config.SHARED_PREF128,0)
+        txtv_slctcustomdte!!.setText(ID_customdate.getString("Selectacustomdateofyourchoice.",null))
+
+        val ID_View = context!!.getSharedPreferences(Config.SHARED_PREF189,0)
+        tv_reset!!.setText(ID_View.getString("RESET",null))
+
+        val ID_downld = context!!.getSharedPreferences(Config.SHARED_PREF130,0)
+        tv_download!!.setText(ID_downld.getString("Download",null))
+
+        val ID_lastmnth = context!!.getSharedPreferences(Config.SHARED_PREF131,0)
+        rad_last_month!!.setText(ID_lastmnth.getString("LastMonth",null))
+
+        val ID_lastthreemnth = context!!.getSharedPreferences(Config.SHARED_PREF132,0)
+        rad_last_3_month!!.setText(ID_lastthreemnth.getString("Last3Months",null))
+
+        val ID_lastsixmnth = context!!.getSharedPreferences(Config.SHARED_PREF133,0)
+        rad_last_6_month!!.setText(ID_lastsixmnth.getString("Last6Months",null))
+
+        val ID_Last1yr = context!!.getSharedPreferences(Config.SHARED_PREF134,0)
+        rad_last_12_month!!.setText(ID_Last1yr.getString("Last1Year",null))
+
+
+        val ID_frmdte = context!!.getSharedPreferences(Config.SHARED_PREF200,0)
+        edt_fromDate!!.setHint(ID_frmdte.getString("FromDate",null))
+
+        val ID_todte = context!!.getSharedPreferences(Config.SHARED_PREF201,0)
+        edt_toDate!!.setHint(ID_todte.getString("EndDate",null))
 
         rad_last_month!!.setOnClickListener(this)
         rad_last_3_month!!.setOnClickListener(this)
