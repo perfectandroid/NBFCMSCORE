@@ -38,6 +38,7 @@ class MyaccountsummaryActivity : AppCompatActivity() , View.OnClickListener {
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
     var AccountStatus: String=""
+    var tv_header: TextView?=null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +46,12 @@ class MyaccountsummaryActivity : AppCompatActivity() , View.OnClickListener {
         setContentView(R.layout.activity_accountsummary)
         rv_accountsummary = findViewById<View>(R.id.rv_accountsummary) as RecyclerView?
         imgBack = findViewById<ImageView>(R.id.imgBack)
+        tv_header= findViewById<TextView>(R.id.tv_header)
+
+        val ID_accsummry = this.getSharedPreferences(Config.SHARED_PREF214,0)
+        tv_header!!.setText(ID_accsummry.getString("AccountSummary",null))
+
+
         imgBack!!.setOnClickListener(this)
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)
