@@ -93,6 +93,9 @@ interface ApiInterface {
     @POST("Recharge/MobileRecharge")
     fun getMobileRecharge(@Body body: RequestBody): Call<String>
 
+    @POST("Recharge/POSTPaidBilling")
+    fun getPOSTPaidBilling(@Body body: RequestBody): Call<String>
+
     @POST("AccountSummary/BalanceSplitUpDetails")
     fun getbalancesplitupdetail(@Body body: RequestBody): Call<String>
 

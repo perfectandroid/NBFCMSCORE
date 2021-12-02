@@ -278,7 +278,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_marginTop="10dp"                        android:padding="5dp"
+                            android:layout_marginTop="10dp"
+                            android:padding="5dp"
                             app:cardBackgroundColor="@color/bg_transfer"
                             app:cardCornerRadius="5dp">
                         <RelativeLayout
@@ -330,11 +331,55 @@
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
+                            android:id="@+id/card_circleAccNo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_marginTop="10dp"                        android:padding="5dp"
+                            android:layout_marginTop="10dp"
+                            android:padding="5dp"
+                            app:cardBackgroundColor="@color/bg_transfer"
+                            app:cardCornerRadius="5dp"
+                            android:visibility="visible">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:background="@drawable/bg_light_grey"
+                                android:orientation="vertical"
+                                android:padding="5dp">
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParentBottom="true"
+                                    android:background="@android:color/transparent"
+                                    android:textColorHint="@color/colorPrimarylight"
+                                    app:hintTextColor="@color/colorPrimarylight">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/tie_circleAccNo"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="@android:color/transparent"
+                                        android:enabled="true"
+                                        android:hint=""
+                                        android:inputType="numberDecimal"
+                                        android:textColorHint="@color/colorPrimarylight" />
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                            </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:padding="5dp"
                             app:cardBackgroundColor="@color/bg_transfer"
                             app:cardCornerRadius="5dp">
                         <RelativeLayout
