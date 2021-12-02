@@ -172,6 +172,7 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
         setRegviews()
 
         val ID_header = applicationContext.getSharedPreferences(Config.SHARED_PREF73,0)
+        Log.e(TAG,"Dashboard  175  "+ID_header.getString("Dashboard",null))
         tv_header!!.setText(ID_header.getString("Dashboard",null))
 
         val ID_assets = applicationContext.getSharedPreferences(Config.SHARED_PREF183,0)
