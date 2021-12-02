@@ -70,6 +70,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
     var rltv_mobile: RelativeLayout? = null
     var rltv_subscriber: RelativeLayout? = null
     var ll_recentrecharge: LinearLayout? = null
+    var ll_contact: LinearLayout? = null
 
 
 
@@ -131,6 +132,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
             tv_header!!.setText(LandlineSP.getString("Landline", null))
             ProvidersMode = "3"
             rltv_subscriber!!.visibility = View.GONE
+            ll_contact!!.visibility = View.GONE
         }
         if(intent.getStringExtra("from")!!.equals("dth")){
             val dthSP = applicationContext.getSharedPreferences(Config.SHARED_PREF69, 0)
@@ -245,6 +247,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
         rltv_mobile = findViewById<RelativeLayout>(R.id.rltv_mobile)
         rltv_subscriber = findViewById<RelativeLayout>(R.id.rltv_subscriber)
         ll_recentrecharge = findViewById<LinearLayout>(R.id.ll_recentrecharge)
+        ll_contact = findViewById<LinearLayout>(R.id.ll_contact)
 
 
     }
@@ -296,7 +299,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 
             R.id.but_recharge ->{
                 Log.e(TAG,"ll_recharge")
-                if (ProvidersMode.equals("1") || ProvidersMode.equals("4")){
+                if (ProvidersMode.equals("1") || ProvidersMode.equals("3") || ProvidersMode.equals("4")){
                     rechargeValidation()
                 }
                 else if(ProvidersMode.equals("2")){
@@ -1172,13 +1175,18 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
             if (ProvidersMode.equals("1")){
                 recharge(mobileNumber, providersCode, CircleMode, mAccountNumber, SubModule, ID_Providers, ID_RechargeCircle, FK_Account,amount)
             }
-            else if (ProvidersMode.equals("4")){
-                rechargepostpaid(mobileNumber, providersCode, CircleMode, mAccountNumber, SubModule, ID_Providers, ID_RechargeCircle, FK_Account,amount)
-            }
             else if (ProvidersMode.equals("2")){
                 Log.e(TAG,"1067   subscriberId  "+mobileNumber)
                 rechargedth(mobileNumber, providersCode, CircleMode, mAccountNumber, SubModule, ID_Providers, ID_RechargeCircle, FK_Account,amount)
             }
+            else if (ProvidersMode.equals("3")){
+                //landLine
+               // rechargepostpaid(mobileNumber, providersCode, CircleMode, mAccountNumber, SubModule, ID_Providers, ID_RechargeCircle, FK_Account,amount)
+            }
+            else if (ProvidersMode.equals("4")){
+                rechargepostpaid(mobileNumber, providersCode, CircleMode, mAccountNumber, SubModule, ID_Providers, ID_RechargeCircle, FK_Account,amount)
+            }
+
 
             dialog.dismiss()
         }
