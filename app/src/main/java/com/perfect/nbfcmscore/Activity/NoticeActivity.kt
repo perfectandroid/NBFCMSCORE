@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
@@ -34,16 +35,27 @@ class NoticeActivity : AppCompatActivity() , View.OnClickListener {
     var ll_noice: LinearLayout? = null
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
+
+    var tv_header: TextView? = null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notice)
 
         rv_notice  = findViewById<View>(R.id.rv_notice) as RecyclerView?
+
+        tv_header= findViewById<View>(R.id.tv_header) as TextView?
+
         ll_noice = findViewById<LinearLayout>(R.id.ll_noice)
         imgBack = findViewById<ImageView>(R.id.imgBack)
         imgBack!!.setOnClickListener(this)
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)
+
+        val NoticeSp = applicationContext.getSharedPreferences(Config.SHARED_PREF216,0)
+        tv_header!!.setText(NoticeSp.getString("Notice",null))
+
         getStandingInstruction()
     }
 
