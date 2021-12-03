@@ -646,7 +646,7 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
 
             getStatementOfAccountDocs(FromNo)
 //            if (checkExternalStoragePermission(this@StatementActivity)){
-//                downloadFile("filename1","ASD.pdf")
+//                downloadFile("ASD.pdf","filename2")
 //            }
 
 
@@ -794,56 +794,26 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
                                     Log.e(TAG,"filename1  51621   "+filename1)
 
                                     val strNew: String? = filename.substringAfterLast("NbfcAndroidAPI\\")
+//                                    val strNew: String? = filename.substringAfterLast("NBFC\\")
                                     Log.e(TAG,"strNew  51622   "+strNew)
 
                                     val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
                                     val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
 //                                    val filename2: String = Config.BASE_URL + "\\" + strNew + "\\" + filename1
-                                    val filename2: String = IMAGE_URL + "\\" + strNew
+                                    val filename2: String = IMAGE_URL + "" + strNew + "\\"+filename1
+//                                    val filename2: String = IMAGE_URL + "" + strNew + "\\"+"SD7.pdf"
                                     Log.e(TAG,"filename2  51623   "+filename2)
-
-                                    if (docType.equals("1")){
-                                        /*val i = Intent(this@StatementActivity, ViewStatementActivity::class.java)
-                                        i.putExtra("docx", filename2)
-                                        startActivity(i)*/
-                                    }
-
+//
+//                                    if (docType.equals("1")){
+//                                        /*val i = Intent(this@StatementActivity, ViewStatementActivity::class.java)
+//                                        i.putExtra("docx", filename2)
+//                                        startActivity(i)*/
+//                                    }
+//
                                     if (docType.equals("2")){
                                         if (checkExternalStoragePermission(this@StatementActivity)){
                                             downloadFile(filename1,filename2)
                                         }
-
-
-
-//                                           if (checkExternalStoragePermission(this@StatementActivity)){
-//                                               DownloadingTask().execute()
-//                                           }
-
-
-
-
-//                                     //   val url = URL("https://202.164.150.65:14262/NbfcAndroidAPI/Statement/ASD7.pdf") //Create Download URl") //Create Download URl
-//                                        val url = URL("https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf") //Create Download URl
-//
-//                                        val root = Environment.getExternalStorageDirectory().toString()
-//                                        val myDir = File("$root/NBFCC")
-//                                        if (!myDir.exists()) {
-//                                            myDir.mkdirs()
-//                                        }
-//                                        val fname = "Test" +".pdf"
-//                                        val outputFile = File(myDir, fname)
-//                                        if (!outputFile.exists()) {
-//                                            outputFile.createNewFile();
-//                                            Log.e("TAG", "File Created");
-//                                        }
-//
-//                                        val fileName = "myFile.pdf"
-//                                        downloadPdfFromInternet(
-//                                            url,
-//                                            outputFile,
-//                                            fileName
-//                                        )
-
                                     }
 
 
@@ -944,13 +914,13 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
         if (!dir.exists()) {
             dir.mkdir()
         }
-        val destPath = File(dir, filename2)
+        val destPath = File(dir, filename1)
 
         Log.e(TAG,"destPath  675      "+destPath)
         Log.e(TAG,"appName  675      "+appName)
         val request: DownloadRequest = DownloadRequest.Builder()
 //            .url("https://202.164.150.65:14262/NbfcAndroidAPI/Statement/ASD7.pdf")
-            .url(filename1)
+            .url(filename2)
             .retryTime(5)
             .retryInterval(2, TimeUnit.SECONDS)
             .progressInterval(1, TimeUnit.SECONDS)

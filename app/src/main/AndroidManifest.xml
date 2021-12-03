@@ -29,11 +29,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NBFCMSCORE">
         <activity
+            android:name=".Activity.KsebSectionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            tools:ignore="MissingClass" />
+        <activity
+            android:name=".Activity.KSEBActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            tools:ignore="MissingClass" />
+        <activity
             android:name=".Activity.ViewStatementActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustPan"
-            tools:ignore="MissingClass"  />
+            tools:ignore="MissingClass" />
         <activity
             android:name=".Activity.GoldLoanActivity"
             android:screenOrientation="portrait"

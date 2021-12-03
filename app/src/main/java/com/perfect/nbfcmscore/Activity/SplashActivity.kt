@@ -39,8 +39,8 @@ class SplashActivity : AppCompatActivity() {
     var imglogo: ImageView? = null
 
     val CERT_NAME = "staticvm.pem"  //QA
-    val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/api/"  //DEVELOPMENT
-    val IMAGE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/"
+    val BASE_URL = "https://202.164.150.65:14261/NbfcAndroidAPI/api/"  //DEVELOPMENT
+    val IMAGE_URL = "https://202.164.150.65:14261/NbfcAndroidAPI/"
 
    /* val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPIQA/api/"  //QA
     val IMAGE_URL = "https://202.164.150.65:14262/NbfcAndroidAPIQA/"
@@ -152,6 +152,7 @@ class SplashActivity : AppCompatActivity() {
                     try {
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("5"))
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
+                       // requestObject1.put("BankHeader", MscoreApplication.encryptStart(getResources().getString(R.string.BankHeader)))
                         Log.e("requestObject1", "requestObject1  113   " + requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
@@ -285,6 +286,7 @@ class SplashActivity : AppCompatActivity() {
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
 
+                                Log.e("TAG","Exception   289  "+e.toString())
                                 val builder = AlertDialog.Builder(
                                         this@SplashActivity,
                                         R.style.MyDialogTheme
@@ -382,18 +384,17 @@ class SplashActivity : AppCompatActivity() {
                         val Token = TokenSP.getString("Token", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("43"))
-                      //  requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-                       /* requestObject1.put(
-                                "FK_Customer",
-                                MscoreApplication.encryptStart("")
-                        )*/
-                        requestObject1.put(
-                                "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                        R.string.BankKey
-                                )
-                        )
-                        )
+                        requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
+//                        requestObject1.put(
+//                            "BankHeader", MscoreApplication.encryptStart(
+//                                getResources().getString(
+//                                    R.string.BankHeader
+//                                )
+//                            )
+//                        )
+
 
 
                         Log.e("TAG", "requestObject1  maintenance   " + requestObject1)

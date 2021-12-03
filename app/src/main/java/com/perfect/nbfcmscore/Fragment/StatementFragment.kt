@@ -117,6 +117,7 @@ class StatementFragment : Fragment() , View.OnClickListener{
         val ID_View = context!!.getSharedPreferences(Config.SHARED_PREF189,0)
         tv_reset!!.setText(ID_View.getString("RESET",null))
 
+
         val ID_downld = context!!.getSharedPreferences(Config.SHARED_PREF130,0)
         tv_download!!.setText(ID_downld.getString("Download",null))
 
@@ -569,13 +570,25 @@ class StatementFragment : Fragment() , View.OnClickListener{
                                     Log.e(TAG,"filename  51621   "+filename)
                                     Log.e(TAG,"filename1  51621   "+filename1)
 
+//                                    val strNew: String? = filename.substringAfterLast("NbfcAndroidAPI\\")
+//                                    Log.e(TAG,"strNew  51622   "+strNew)
+//
+//                                    val ImageURLSP = context!!.applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+//                                    val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
+////                                    val filename2: String = Config.BASE_URL + "\\" + strNew + "\\" + filename1
+//                                    val filename2: String = IMAGE_URL + "\\" + strNew
+//                                    Log.e(TAG,"filename2  51623   "+filename2)
+
+
                                     val strNew: String? = filename.substringAfterLast("NbfcAndroidAPI\\")
+//                                    val strNew: String? = filename.substringAfterLast("NBFC\\")
                                     Log.e(TAG,"strNew  51622   "+strNew)
 
                                     val ImageURLSP = context!!.applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
                                     val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
 //                                    val filename2: String = Config.BASE_URL + "\\" + strNew + "\\" + filename1
-                                    val filename2: String = IMAGE_URL + "\\" + strNew
+                                    val filename2: String = IMAGE_URL + "" + strNew + "\\"+filename1
+//                                    val filename2: String = IMAGE_URL + "" + strNew + "\\"+"SD7.pdf"
                                     Log.e(TAG,"filename2  51623   "+filename2)
 
                                     if (docType.equals("1")){
@@ -589,7 +602,7 @@ class StatementFragment : Fragment() , View.OnClickListener{
                                         //  downloadFile(filename1,filename2)
 
                                         if (checkExternalStoragePermission()){
-                                            downloadFile(filename1,"ASD.pdf")
+                                            downloadFile(filename1,filename2)
                                         }
 
 
@@ -742,13 +755,13 @@ class StatementFragment : Fragment() , View.OnClickListener{
         if (!dir.exists()) {
             dir.mkdir()
         }
-        val destPath = File(dir, filename2)
+        val destPath = File(dir, filename1)
 
         Log.e(TAG,"destPath  675      "+destPath)
         Log.e(TAG,"appName  675      "+appName)
         val request: DownloadRequest = DownloadRequest.Builder()
 //            .url("https://202.164.150.65:14262/NbfcAndroidAPI/Statement/ASD7.pdf")
-            .url(filename1)
+            .url(filename2)
             .retryTime(5)
             .retryInterval(2, TimeUnit.SECONDS)
             .progressInterval(1, TimeUnit.SECONDS)
