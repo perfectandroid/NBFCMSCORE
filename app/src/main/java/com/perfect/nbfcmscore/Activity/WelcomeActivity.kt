@@ -1098,10 +1098,7 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         val ListingDataforpastEditer = ID_ListingDataforpast.edit()
                                         ListingDataforpastEditer.putString("ListingDataforpast", jresult3.get("ListingDataforpast.") as String)
                                         ListingDataforpastEditer.commit()
-                                    val ID_ListingDataforpast= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF217, 0)
-                                    val ListingDataforpastEditer = ID_ListingDataforpast.edit()
-                                    ListingDataforpastEditer.putString("ListingDataforpast", jresult3.get("ListingDataforpast.") as String)
-                                    ListingDataforpastEditer.commit()
+
 
                                         val ID_days= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF218, 0)
                                         val daysEditer = ID_days.edit()
