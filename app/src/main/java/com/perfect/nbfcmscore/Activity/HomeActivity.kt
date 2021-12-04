@@ -2573,8 +2573,16 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ApplyEditer.putString("Apply", jresult3.get("Apply") as String)
                                     ApplyEditer.commit()
 
+                                    val ID_acnttyp= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF241, 0)
+                                    val ID_acnttypEditer = ID_acnttyp.edit()
+                                    ID_acnttypEditer.putString("AccountType", jresult3.get("AccountType") as String)
+                                    ID_acnttypEditer.commit()
 
 
+                                    val ID_unclramt= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF242, 0)
+                                    val ID_unclramtEditer = ID_unclramt.edit()
+                                    ID_unclramtEditer.putString("UnclearAmount", jresult3.get("UnclearAmount") as String)
+                                    ID_unclramtEditer.commit()
 
                                     val myIntent = Intent(this@HomeActivity, HomeActivity::class.java)
                                     overridePendingTransition(0, 0)

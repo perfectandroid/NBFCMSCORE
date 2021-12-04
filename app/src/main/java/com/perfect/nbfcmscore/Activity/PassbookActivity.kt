@@ -49,6 +49,11 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
     private var ll_balance1: CardView? = null
     private var card_list: CardView? = null
 
+    private var txtvAcnttype: TextView? = null
+    private var txtv_Acntno: TextView? = null
+    private var txtv_availbal: TextView? = null
+    private var txtv_unclr: TextView? = null
+
     private var ll_balance: LinearLayout? = null
     var noofdays = 0
     private var progressDialog: ProgressDialog? = null
@@ -62,8 +67,22 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_passbook)
         setRegViews()
+
         val ID_Passbk = applicationContext.getSharedPreferences(Config.SHARED_PREF51, 0)
         tv_mycart!!.setText(ID_Passbk.getString("passbook", null))
+
+        val ID_acntyp = applicationContext.getSharedPreferences(Config.SHARED_PREF241, 0)
+        txtvAcnttype!!.setText(ID_acntyp.getString("AccountType", null))
+
+        val ID_acntno = applicationContext.getSharedPreferences(Config.SHARED_PREF158, 0)
+        txtv_Acntno!!.setText(ID_acntno.getString("AccountNumber", null))
+
+        val ID_unclr = applicationContext.getSharedPreferences(Config.SHARED_PREF242, 0)
+        txtv_unclr!!.setText(ID_unclr.getString("UnclearAmount", null))
+
+        val ID_availbal= applicationContext.getSharedPreferences(Config.SHARED_PREF119, 0)
+        txtv_availbal!!.setText(ID_availbal.getString("AvailableBalance", null))
+
         tv_list_days!!.visibility=View.VISIBLE
 
         getAccList()
@@ -83,6 +102,11 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
         act_account = findViewById(R.id.act_account)
         card_list = findViewById(R.id.card_list)
         spnAccountNum!!.onItemSelectedListener = this
+
+        txtvAcnttype = findViewById(R.id.txtvAcnttype)
+        txtv_Acntno = findViewById(R.id.txtv_Acntno)
+        txtv_availbal = findViewById(R.id.txtv_availbal)
+        txtv_unclr= findViewById(R.id.txtv_unclr)
 
         imgBack = findViewById<ImageView>(R.id.imgBack)
         imgBack!!.setOnClickListener(this)
@@ -187,13 +211,25 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                                                 Account!!.setText(json.getString("AccountType"))
                                                 val noofdays1 = applicationContext.getSharedPreferences(Config.SHARED_PREF21, 0)
                                                 var noofdayss=noofdays1.getString("updateDays", null)
+
+                                                val ID_Listdata = applicationContext.getSharedPreferences(Config.SHARED_PREF217, 0)
+                                                var listdata = ID_Listdata.getString("ListingDataforpast", null)
+
+                                                val ID_Days = applicationContext.getSharedPreferences(Config.SHARED_PREF218, 0)
+                                                var days = ID_Days.getString("days", null)
+
+                                                val ID_chngest = applicationContext.getSharedPreferences(Config.SHARED_PREF219, 0)
+                                                var chngst = ID_chngest.getString("youcanchangeitfromsettings", null)
+
                                                 if (!noofdayss.equals(null))
                                                 {
-                                                    tv_list_days!!.text = "**Listing Data For Past $noofdayss Days.\nYou Can Change It From Settings."
+                                                    tv_list_days!!.text = "**"+listdata+noofdayss+days+","+"\n"+chngst
+                                                  //  tv_list_days!!.text = "**Listing Data For Past $noofdayss Days.\nYou Can Change It From Settings."
                                                 }
                                                 if (noofdayss.equals(null))
                                                 {
-                                                    tv_list_days!!.text = "**Listing Data For Past 30 Days.\nYou Can Change It From Settings."
+                                                    tv_list_days!!.text = "**"+listdata+"30"+days+","+"\n"+chngst
+                                                   // tv_list_days!!.text = "**Listing Data For Past 30 Days.\nYou Can Change It From Settings."
                                                 }
 
 

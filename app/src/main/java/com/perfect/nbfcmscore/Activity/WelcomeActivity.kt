@@ -362,10 +362,10 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_OtherBankEditer.putString("OtherBank", jresult3.get("OtherBank") as String)
                                         ID_OtherBankEditer.commit()
 
-                                        val ID_Quickpay = this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF65, 0)
-                                        val ID_QuickpayEditer = ID_Quickpay.edit()
-                                        ID_QuickpayEditer.putString("QuickPay", jresult3.get("QuickPay") as String)
-                                        ID_QuickpayEditer.commit()
+                                    val ID_Quickpay = this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF65, 0)
+                                    val ID_QuickpayEditer = ID_Quickpay.edit()
+                                    ID_QuickpayEditer.putString("QuickPay", jresult3.get("QuickPay") as String)
+                                    ID_QuickpayEditer.commit()
 
                                         val ID_Prepaid = this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF66, 0)
                                         val ID_PrepaidEditer = ID_Prepaid.edit()
@@ -1098,6 +1098,10 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         val ListingDataforpastEditer = ID_ListingDataforpast.edit()
                                         ListingDataforpastEditer.putString("ListingDataforpast", jresult3.get("ListingDataforpast.") as String)
                                         ListingDataforpastEditer.commit()
+                                    val ID_ListingDataforpast= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF217, 0)
+                                    val ListingDataforpastEditer = ID_ListingDataforpast.edit()
+                                    ListingDataforpastEditer.putString("ListingDataforpast", jresult3.get("ListingDataforpast.") as String)
+                                    ListingDataforpastEditer.commit()
 
                                         val ID_days= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF218, 0)
                                         val daysEditer = ID_days.edit()
@@ -1221,6 +1225,17 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         val ApplyEditer = ID_Apply.edit()
                                         ApplyEditer.putString("Apply", jresult3.get("Apply") as String)
                                         ApplyEditer.commit()
+
+                                    val ID_acnttyp= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF241, 0)
+                                    val ID_acnttypEditer = ID_acnttyp.edit()
+                                    ID_acnttypEditer.putString("AccountType", jresult3.get("AccountType") as String)
+                                    ID_acnttypEditer.commit()
+
+
+                                    val ID_unclramt= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF242, 0)
+                                    val ID_unclramtEditer = ID_unclramt.edit()
+                                    ID_unclramtEditer.putString("UnclearAmount", jresult3.get("UnclearAmount") as String)
+                                    ID_unclramtEditer.commit()
 
 
 

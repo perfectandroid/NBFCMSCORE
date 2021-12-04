@@ -78,6 +78,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
+                        android:id="@+id/txtvAcnttype"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.9"
@@ -129,6 +130,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                 <TextView
+                    android:id="@+id/txtv_Acntno"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/bottom_line1"
@@ -256,6 +258,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
+                        android:id="@+id/txtv_availbal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
@@ -300,6 +303,7 @@
                     android:visibility="visible"
                     android:orientation="horizontal">
                     <TextView
+                        android:id="@+id/txtv_unclr"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/passtext"
@@ -348,7 +352,7 @@
         android:text=""
         android:textColor="@color/red"
         android:textStyle="italic|bold"
-        android:textSize="15sp"
+        android:textSize="10sp"
         android:padding="10dp"
         android:visibility="gone"/>
 
