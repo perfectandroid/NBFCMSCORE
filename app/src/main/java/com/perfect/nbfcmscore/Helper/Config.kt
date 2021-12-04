@@ -267,6 +267,36 @@ object Config {
     const val SHARED_PREF216="Notice"
 
 
+    const val SHARED_PREF217="ListingDataforpast"
+    const val SHARED_PREF218="days"
+    const val SHARED_PREF219="youcanchangeitfromsettings"
+    const val SHARED_PREF220="youcanchangeitfromsettings"
+
+    const val SHARED_PREF221="LoanPeriod"
+    const val SHARED_PREF222="Weight"
+    const val SHARED_PREF223="EnterAmount"
+    const val SHARED_PREF224="SelectBranch"
+    const val SHARED_PREF225="Pleaseselectpayingtoaccountnumber"
+    const val SHARED_PREF226="PayableAmount"
+    const val SHARED_PREF227="Atleast3digitsarerequired"
+    const val SHARED_PREF228="Atleast6digitsarerequired"
+    const val SHARED_PREF229="PleaseEnterBeneficiaryName"
+    const val SHARED_PREF230="PleaseEnterValidBeneficiaryAccountNumber"
+
+    const val SHARED_PREF231="PleaseentervalidConfirmBeneficiaryaccountnumber"
+    const val SHARED_PREF232="SelectavalidAccountNumber"
+    const val SHARED_PREF233="PleaseEnterYourFeedback"
+    const val SHARED_PREF234="Giveusacall"
+    const val SHARED_PREF235="Sendusamessage"
+    const val SHARED_PREF236="Visitourlocation"
+    const val SHARED_PREF237="Aboutustext"
+    const val SHARED_PREF238="Privacypolicytext"
+    const val SHARED_PREF239="TermsandConditionstext"
+    const val SHARED_PREF240="Apply"
+
+    const val SHARED_PREF241="Clear"
+
+
 
 
 
