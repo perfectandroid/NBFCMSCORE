@@ -130,7 +130,7 @@
                                     android:layout_height="wrap_content"
                                     android:background="@android:color/transparent"
                                     android:hint="Consumer name"
-                                    android:inputType="phone"
+                                    android:inputType="text"
                                     android:textColorHint="@color/colorPrimarylight" />
 
                             </com.google.android.material.textfield.TextInputLayout>
@@ -229,7 +229,7 @@
                                     android:layout_height="wrap_content"
                                     android:background="@android:color/transparent"
                                     android:hint="Consumer number"
-                                    android:inputType="phone"
+                                    android:inputType="number"
                                     android:textColorHint="@color/colorPrimarylight" />
 
                             </com.google.android.material.textfield.TextInputLayout>
@@ -268,9 +268,10 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:background="@android:color/transparent"
-                                    android:enabled="true"
+                                    android:clickable="true"
+                                    android:focusable="false"
                                     android:hint="Section name"
-                                    android:inputType="numberDecimal"
+                                    android:inputType="text"
                                     android:textColorHint="@color/colorPrimarylight" />
 
                             </com.google.android.material.textfield.TextInputLayout>
@@ -287,7 +288,7 @@
                                     android:layout_width="30dp"
                                     android:layout_height="30dp"
                                     android:layout_alignParentRight="true"
-                                    android:src="@drawable/ic_offer" />
+                                    android:background="@drawable/ic_offer" />
 
                             </LinearLayout>
 
@@ -326,8 +327,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:background="@android:color/transparent"
-                                    android:hint="Consumer number"
-                                    android:inputType="phone"
+                                    android:hint="Bill number"
+                                    android:inputType="number"
                                     android:textColorHint="@color/colorPrimarylight" />
 
                             </com.google.android.material.textfield.TextInputLayout>

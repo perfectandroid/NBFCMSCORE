@@ -110,7 +110,7 @@
                         android:drawablePadding="3dp"
                         android:drawableTint="@color/colorPrimary"
                         android:gravity="center_vertical"
-                        android:text="ssdsdd"
+                        android:text="date"
                         android:textStyle="bold"></TextView>
 
                     <TextView
@@ -123,7 +123,7 @@
                         android:drawablePadding="3dp"
                         android:drawableTint="@color/colorPrimary"
                         android:gravity="center_vertical"
-                        android:text="tytyt"
+                        android:text="time"
                         android:textStyle="bold"></TextView>
                 </LinearLayout>
 
@@ -168,7 +168,7 @@
                         android:layout_marginLeft="50dp"
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
-                        android:text="dvdvd"
+                        android:text="001001000123"
                         android:textColor="@color/black"
                         android:textStyle="bold"></TextView>
 
@@ -179,7 +179,7 @@
                         android:layout_marginLeft="50dp"
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
-                        android:text="dfddf"
+                        android:text="Calicut"
                         android:textColor="@color/black"></TextView>
                 </LinearLayout>
 
@@ -235,7 +235,7 @@
                             android:layout_marginLeft="50dp"
                             android:layout_marginTop="5dp"
                             android:layout_weight="1"
-                            android:text="dsfsfsf"
+                            android:text="001001000321"
                             android:textColor="@color/black"
                             android:textStyle="bold"></TextView>
 
@@ -246,7 +246,7 @@
                             android:layout_marginLeft="50dp"
                             android:layout_marginTop="5dp"
                             android:layout_weight="1"
-                            android:text="dsdsd"
+                            android:text="Calicut"
                             android:textColor="@color/black"></TextView>
                     </LinearLayout>
 

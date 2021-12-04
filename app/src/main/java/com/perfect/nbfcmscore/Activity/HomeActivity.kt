@@ -62,6 +62,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var ll_prepaid : LinearLayout?=null
     var ll_postpaid : LinearLayout?=null
     var ll_landline : LinearLayout?=null
+    var ll_kseb : LinearLayout?=null
     var ll_rechargehistory : LinearLayout?=null
     var ll_holidaylist : LinearLayout?=null
     var llownbank : LinearLayout?=null
@@ -772,6 +773,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         ll_prepaid = findViewById(R.id.ll_prepaid)
         ll_postpaid = findViewById(R.id.ll_postpaid)
         ll_landline = findViewById(R.id.ll_landline)
+        ll_kseb = findViewById(R.id.ll_kseb)
         ll_rechargehistory = findViewById(R.id.ll_rechargehistory)
         llexecutive = findViewById(R.id.llexecutive)
         txtv_accnt= findViewById(R.id.txtv_accnt)
@@ -854,6 +856,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         ll_prepaid!!.setOnClickListener(this)
         ll_postpaid!!.setOnClickListener(this)
         ll_landline!!.setOnClickListener(this)
+        ll_kseb!!.setOnClickListener(this)
         ll_rechargehistory!!.setOnClickListener(this)
         ll_dth!!.setOnClickListener(this)
         llEmi!!.setOnClickListener(this)
@@ -1252,6 +1255,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
 //                var intent = Intent(this@HomeActivity, KSEBActivity::class.java)
 //                startActivity(intent)
+            }
+            R.id.ll_kseb -> {
+
+                var intent = Intent(this@HomeActivity, KSEBActivity::class.java)
+                startActivity(intent)
             }
             R.id.ll_dth -> {
 
