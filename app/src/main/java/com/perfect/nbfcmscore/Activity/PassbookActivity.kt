@@ -49,6 +49,11 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
     private var ll_balance1: CardView? = null
     private var card_list: CardView? = null
 
+    private var txtvAcnttype: TextView? = null
+    private var txtv_Acntno: TextView? = null
+    private var txtv_availbal: TextView? = null
+    private var txtv_unclr: TextView? = null
+
     private var ll_balance: LinearLayout? = null
     var noofdays = 0
     private var progressDialog: ProgressDialog? = null
@@ -62,8 +67,22 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_passbook)
         setRegViews()
+
         val ID_Passbk = applicationContext.getSharedPreferences(Config.SHARED_PREF51, 0)
         tv_mycart!!.setText(ID_Passbk.getString("passbook", null))
+
+        val ID_acntyp = applicationContext.getSharedPreferences(Config.SHARED_PREF241, 0)
+        txtvAcnttype!!.setText(ID_acntyp.getString("AccountType", null))
+
+        val ID_acntno = applicationContext.getSharedPreferences(Config.SHARED_PREF158, 0)
+        txtv_Acntno!!.setText(ID_acntno.getString("AccountNumber", null))
+
+        val ID_unclr = applicationContext.getSharedPreferences(Config.SHARED_PREF242, 0)
+        txtv_unclr!!.setText(ID_unclr.getString("UnclearAmount", null))
+
+        val ID_availbal= applicationContext.getSharedPreferences(Config.SHARED_PREF119, 0)
+        txtv_availbal!!.setText(ID_availbal.getString("AvailableBalance", null))
+
         tv_list_days!!.visibility=View.VISIBLE
 
         getAccList()
@@ -83,6 +102,11 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
         act_account = findViewById(R.id.act_account)
         card_list = findViewById(R.id.card_list)
         spnAccountNum!!.onItemSelectedListener = this
+
+        txtvAcnttype = findViewById(R.id.txtvAcnttype)
+        txtv_Acntno = findViewById(R.id.txtv_Acntno)
+        txtv_availbal = findViewById(R.id.txtv_availbal)
+        txtv_unclr= findViewById(R.id.txtv_unclr)
 
         imgBack = findViewById<ImageView>(R.id.imgBack)
         imgBack!!.setOnClickListener(this)

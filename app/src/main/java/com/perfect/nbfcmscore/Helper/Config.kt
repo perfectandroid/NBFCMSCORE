@@ -294,6 +294,9 @@ object Config {
     const val SHARED_PREF239="TermsandConditionstext"
     const val SHARED_PREF240="Apply"
 
+    const val SHARED_PREF241="AccountType"
+    const val SHARED_PREF242="UnclearAmount"
+
 
 
 
