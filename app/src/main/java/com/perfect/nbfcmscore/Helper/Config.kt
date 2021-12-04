@@ -270,7 +270,7 @@ object Config {
     const val SHARED_PREF217="ListingDataforpast"
     const val SHARED_PREF218="days"
     const val SHARED_PREF219="youcanchangeitfromsettings"
-    const val SHARED_PREF220="youcanchangeitfromsettings"
+    const val SHARED_PREF220="Clear"
 
     const val SHARED_PREF221="LoanPeriod"
     const val SHARED_PREF222="Weight"
@@ -294,7 +294,7 @@ object Config {
     const val SHARED_PREF239="TermsandConditionstext"
     const val SHARED_PREF240="Apply"
 
-    const val SHARED_PREF241="Clear"
+
 
 
 

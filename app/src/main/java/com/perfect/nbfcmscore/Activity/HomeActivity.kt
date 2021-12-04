@@ -2445,6 +2445,137 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_notceEditer.commit()
 
 
+                                    val ID_ListingDataforpast= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF217, 0)
+                                    val ListingDataforpastEditer = ID_ListingDataforpast.edit()
+                                    ListingDataforpastEditer.putString("ListingDataforpast", jresult3.get("ListingDataforpast .") as String)
+                                    ListingDataforpastEditer.commit()
+
+                                    val ID_days= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF218, 0)
+                                    val daysEditer = ID_days.edit()
+                                    daysEditer.putString("days", jresult3.get("days") as String)
+                                    daysEditer.commit()
+
+
+
+                                    val ID_youcanchangeitfromsettings= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF219, 0)
+                                    val youcanchangeitfromsettingsEditer = ID_youcanchangeitfromsettings.edit()
+                                    youcanchangeitfromsettingsEditer.putString("youcanchangeitfromsettings", jresult3.get("youcanchangeitfromsettings") as String)
+                                    youcanchangeitfromsettingsEditer.commit()
+
+                                    val ID_Clear= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF220, 0)
+                                    val ClearEditer = ID_Clear.edit()
+                                    ClearEditer.putString("Clear", jresult3.get("Clear") as String)
+                                    ClearEditer.commit()
+
+
+
+                                    val ID_LoanPeriod= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF221, 0)
+                                    val LoanPeriodEditer = ID_LoanPeriod.edit()
+                                    LoanPeriodEditer.putString("LoanPeriod", jresult3.get("LoanPeriod") as String)
+                                    LoanPeriodEditer.commit()
+
+                                    val ID_Weight= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF222, 0)
+                                    val WeightEditer = ID_Weight.edit()
+                                    WeightEditer.putString("Weight", jresult3.get("Weight") as String)
+                                    WeightEditer.commit()
+
+                                    val ID_EnterAmount= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF223, 0)
+                                    val EnterAmountEditer = ID_EnterAmount.edit()
+                                    EnterAmountEditer.putString("EnterAmount", jresult3.get("EnterAmount") as String)
+                                    EnterAmountEditer.commit()
+
+                                    val ID_SelectBranch= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF224, 0)
+                                    val SelectBranchEditer = ID_SelectBranch.edit()
+                                    SelectBranchEditer.putString("SelectBranch", jresult3.get("SelectBranch") as String)
+                                    SelectBranchEditer.commit()
+
+                                    val ID_Pleaseselectpayingtoaccountnumber= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF225, 0)
+                                    val PleaseselectpayingtoaccountnumberEditer = ID_Pleaseselectpayingtoaccountnumber.edit()
+                                    PleaseselectpayingtoaccountnumberEditer.putString("Pleaseselectpayingtoaccountnumber", jresult3.get("Pleaseselectpayingtoaccountnumber") as String)
+                                    PleaseselectpayingtoaccountnumberEditer.commit()
+
+                                    val ID_PayableAmount= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF226, 0)
+                                    val PayableAmountEditer = ID_PayableAmount.edit()
+                                    PayableAmountEditer.putString("PayableAmount", jresult3.get("PayableAmount") as String)
+                                    PayableAmountEditer.commit()
+
+
+                                    val ID_Atleast3digitsarerequired= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF227, 0)
+                                    val Atleast3digitsarerequiredEditer = ID_Atleast3digitsarerequired.edit()
+                                    Atleast3digitsarerequiredEditer.putString("Atleast3digitsarerequired", jresult3.get("Atleast3digitsarerequired.") as String)
+                                    Atleast3digitsarerequiredEditer.commit()
+
+                                    val ID_Atleast6digitsarerequired= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF228, 0)
+                                    val Atleast6digitsarerequiredEditer = ID_Atleast6digitsarerequired.edit()
+                                    Atleast6digitsarerequiredEditer.putString("Atleast6digitsarerequired", jresult3.get("Atleast6digitsarerequired.") as String)
+                                    Atleast6digitsarerequiredEditer.commit()
+
+                                    val ID_PleaseEnterBeneficiaryName= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF229, 0)
+                                    val PleaseEnterBeneficiaryNameEditer = ID_PleaseEnterBeneficiaryName.edit()
+                                    PleaseEnterBeneficiaryNameEditer.putString("PleaseEnterBeneficiaryName", jresult3.get("PleaseEnterBeneficiaryName") as String)
+                                    PleaseEnterBeneficiaryNameEditer.commit()
+
+                                    val ID_PleaseEnterValidBeneficiaryAccountNumber= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF230, 0)
+                                    val PleaseEnterValidBeneficiaryAccountNumberEditer = ID_PleaseEnterValidBeneficiaryAccountNumber.edit()
+                                    PleaseEnterValidBeneficiaryAccountNumberEditer.putString("PleaseEnterValidBeneficiaryAccountNumber", jresult3.get("PleaseEnterValidBeneficiaryAccountNumber") as String)
+                                    PleaseEnterValidBeneficiaryAccountNumberEditer.commit()
+
+
+
+
+                                    val ID_PleaseentervalidConfirmBeneficiaryaccountnumber= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF231, 0)
+                                    val PleaseentervalidConfirmBeneficiaryaccountnumberEditer = ID_PleaseentervalidConfirmBeneficiaryaccountnumber.edit()
+                                    PleaseentervalidConfirmBeneficiaryaccountnumberEditer.putString("PleaseentervalidConfirmBeneficiaryaccountnumber", jresult3.get("PleaseentervalidConfirmBeneficiaryaccountnumber") as String)
+                                    PleaseentervalidConfirmBeneficiaryaccountnumberEditer.commit()
+
+                                    val ID_SelectavalidAccountNumber= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF232, 0)
+                                    val SelectavalidAccountNumberEditer = ID_SelectavalidAccountNumber.edit()
+                                    SelectavalidAccountNumberEditer.putString("SelectavalidAccountNumber", jresult3.get("SelectavalidAccountNumber") as String)
+                                    SelectavalidAccountNumberEditer.commit()
+
+                                    val ID_PleaseEnterYourFeedback= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF233, 0)
+                                    val PleaseEnterYourFeedbackEditer = ID_PleaseEnterYourFeedback.edit()
+                                    PleaseEnterYourFeedbackEditer.putString("PleaseEnterYourFeedback", jresult3.get("PleaseEnterYourFeedback") as String)
+                                    PleaseEnterYourFeedbackEditer.commit()
+
+                                    val ID_Giveusacall= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF234, 0)
+                                    val GiveusacallEditer = ID_Giveusacall.edit()
+                                    GiveusacallEditer.putString("Giveusacall", jresult3.get("Giveusacall") as String)
+                                    GiveusacallEditer.commit()
+
+                                    val ID_Sendusamessage= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF235, 0)
+                                    val SendusamessageEditer = ID_Sendusamessage.edit()
+                                    SendusamessageEditer.putString("Sendusamessage", jresult3.get("Sendusamessage") as String)
+                                    SendusamessageEditer.commit()
+
+                                    val ID_Visitourlocation= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF236, 0)
+                                    val VisitourlocationEditer = ID_Visitourlocation.edit()
+                                    VisitourlocationEditer.putString("Visitourlocation", jresult3.get("Visitourlocation") as String)
+                                    VisitourlocationEditer.commit()
+
+                                    val ID_Aboutustext= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF237, 0)
+                                    val AboutustextEditer = ID_Aboutustext.edit()
+                                    AboutustextEditer.putString("Aboutustext", jresult3.get("Aboutustext") as String)
+                                    AboutustextEditer.commit()
+
+                                    val ID_Privacypolicytext= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF238, 0)
+                                    val PrivacypolicytextEditer = ID_Privacypolicytext.edit()
+                                    PrivacypolicytextEditer.putString("Privacypolicytext", jresult3.get("Privacypolicytext") as String)
+                                    PrivacypolicytextEditer.commit()
+
+                                    val ID_TermsandConditionstext= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF239, 0)
+                                    val TermsandConditionstextEditer = ID_TermsandConditionstext.edit()
+                                    TermsandConditionstextEditer.putString("TermsandConditionstext", jresult3.get("TermsandConditionstext") as String)
+                                    TermsandConditionstextEditer.commit()
+
+                                    val ID_Apply= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF240, 0)
+                                    val ApplyEditer = ID_Apply.edit()
+                                    ApplyEditer.putString("Apply", jresult3.get("Apply") as String)
+                                    ApplyEditer.commit()
+
+
+
+
                                     val myIntent = Intent(this@HomeActivity, HomeActivity::class.java)
                                     overridePendingTransition(0, 0)
                                     startActivity(myIntent)
@@ -2466,10 +2597,12 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
 
+                                Log.e(TAG,"Exception   26000   "+e.toString())
                                 val builder = android.app.AlertDialog.Builder(
                                         this@HomeActivity,
                                         R.style.MyDialogTheme
                                 )
+
                                 builder.setMessage("Some technical issues.")
                                 builder.setPositiveButton("Ok") { dialogInterface, which ->
                                 }
@@ -2482,7 +2615,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
-
+                            Log.e(TAG,"Exception   260001   "+t.message)
                             val builder = android.app.AlertDialog.Builder(
                                     this@HomeActivity,
                                     R.style.MyDialogTheme
@@ -2497,6 +2630,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
+                    Log.e(TAG,"Exception   260002   "+e.toString())
                     val builder = android.app.AlertDialog.Builder(this@HomeActivity, R.style.MyDialogTheme)
                     builder.setMessage("Some technical issues.")
                     builder.setPositiveButton("Ok") { dialogInterface, which ->
