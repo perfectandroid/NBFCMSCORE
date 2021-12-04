@@ -352,7 +352,7 @@
         android:text=""
         android:textColor="@color/red"
         android:textStyle="italic|bold"
-        android:textSize="15sp"
+        android:textSize="10sp"
         android:padding="10dp"
         android:visibility="gone"/>
 

@@ -69,11 +69,24 @@ class PassbookActivityMoreoption : AppCompatActivity(), OnItemSelectedListener,V
         tv_mycart!!.setText(ID_Passbk.getString("passbook",null))
 
         val updateDaysSP = applicationContext.getSharedPreferences(Config.SHARED_PREF21,0)
+
+        val ID_Listdata = applicationContext.getSharedPreferences(Config.SHARED_PREF217, 0)
+        var listdata = ID_Listdata.getString("ListingDataforpast", null)
+
+        val ID_Days = applicationContext.getSharedPreferences(Config.SHARED_PREF218, 0)
+        var days = ID_Days.getString("days", null)
+
+        val ID_chngest = applicationContext.getSharedPreferences(Config.SHARED_PREF219, 0)
+        var chngst = ID_chngest.getString("youcanchangeitfromsettings", null)
+
+
         if (updateDaysSP.getString("updateDays",null) == null){
-            tv_list_days!!.text = "**Listing Data For Past 30 Days.\nYou Can Change It From Settings."
+            tv_list_days!!.text = "**"+listdata+"30"+days+","+"\n"+chngst
+          //  tv_list_days!!.text = "**Listing Data For Past 30 Days.\nYou Can Change It From Settings."
         }else{
             noofdays = (updateDaysSP.getString("updateDays",null))!!.toInt()
-            tv_list_days!!.text = "**Listing Data For Past $noofdays Days.\nYou Can Change It From Settings."
+            tv_list_days!!.text = "**"+listdata+noofdays+days+","+"\n"+chngst
+         //   tv_list_days!!.text = "**Listing Data For Past $noofdays Days.\nYou Can Change It From Settings."
         }
 
 
