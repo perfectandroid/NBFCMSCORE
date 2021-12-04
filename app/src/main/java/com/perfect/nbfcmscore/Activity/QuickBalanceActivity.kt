@@ -48,6 +48,10 @@ class QuickBalanceActivity : AppCompatActivity(), OnItemSelectedListener,View.On
     private var txtvaccno: TextView? = null
     private var ll_balance: LinearLayout? = null
     private var txtv_availbal: TextView? = null
+    private var txtv_unclr: TextView? = null
+
+
+
     var noofdays = 0
     private var progressDialog: ProgressDialog? = null
     var imgBack: ImageView? = null
@@ -56,6 +60,12 @@ class QuickBalanceActivity : AppCompatActivity(), OnItemSelectedListener,View.On
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quickbalance)
         setRegViews()
+
+        val ID_unclr = applicationContext.getSharedPreferences(Config.SHARED_PREF242, 0)
+        txtv_unclr!!.setText(ID_unclr.getString("UnclearAmount", null))
+
+        val ID_acntyp = applicationContext.getSharedPreferences(Config.SHARED_PREF241, 0)
+        txtv_acnttype!!.setText(ID_acntyp.getString("AccountType", null)+" :")
 
         val ID_Quick = applicationContext.getSharedPreferences(Config.SHARED_PREF52,0)
         tv_mycart!!.setText(ID_Quick.getString("quickbalance",null))
@@ -77,6 +87,7 @@ class QuickBalanceActivity : AppCompatActivity(), OnItemSelectedListener,View.On
         tv_mycart = findViewById(R.id.tv_mycart)
         txtv_acnttype= findViewById(R.id.txtv_acnttype)
         txtv_availbal= findViewById(R.id.txtv_availbal)
+        txtv_unclr= findViewById(R.id.txtv_unclr)
 
         txtvaccno= findViewById(R.id.txtvaccno)
         tv_list_days = findViewById(R.id.tv_list_days)
