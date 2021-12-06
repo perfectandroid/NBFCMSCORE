@@ -142,6 +142,7 @@
                                         android:layout_height="wrap_content"
                                         android:backgroundTint="@color/input_border"
                                         android:drawableTint="@color/input_border"
+                                        android:enabled="true"
                                         android:hint=""
                                         android:inputType="text"
                                         android:textColorHint="@color/colorPrimarylight" />
@@ -188,6 +189,7 @@
                                     android:layout_height="wrap_content"
                                     android:backgroundTint="@color/input_border"
                                     android:drawableTint="@color/input_border"
+                                    android:enabled="true"
                                     android:hint=""
                                     android:inputType="number"
                                     android:textColorHint="@color/colorPrimarylight" />
@@ -257,6 +259,7 @@
                                     android:layout_height="wrap_content"
                                     android:backgroundTint="@color/input_border"
                                     android:drawableTint="@color/input_border"
+                                    android:enabled="true"
                                     android:hint=""
                                     android:inputType="number"
                                     android:textColorHint="@color/colorPrimarylight" />
@@ -313,8 +316,8 @@
                                         android:layout_height="wrap_content"
                                         android:layout_toLeftOf="@+id/ll_sectionname"
                                         android:backgroundTint="@color/input_border"
-                                        android:drawableTint="@color/input_border"
                                         android:clickable="true"
+                                        android:drawableTint="@color/input_border"
                                         android:focusable="false"
                                         android:hint=""
                                         android:inputType="text"
@@ -403,6 +406,7 @@
                                     android:layout_height="wrap_content"
                                     android:backgroundTint="@color/input_border"
                                     android:drawableTint="@color/input_border"
+                                    android:enabled="true"
                                     android:hint=""
                                     android:inputType="number"
                                     android:textColorHint="@color/colorPrimarylight" />
@@ -453,6 +457,7 @@
                                     android:layout_height="wrap_content"
                                     android:backgroundTint="@color/input_border"
                                     android:drawableTint="@color/input_border"
+                                    android:enabled="true"
                                     android:hint=""
                                     android:inputType="number"
                                     android:textColorHint="@color/colorPrimarylight" />

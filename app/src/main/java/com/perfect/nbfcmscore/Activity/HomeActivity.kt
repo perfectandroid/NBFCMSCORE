@@ -68,6 +68,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var llownbank : LinearLayout?=null
     var llDeposit:LinearLayout?=null
     var ll_dth : LinearLayout?=null
+    var ll_datacard : LinearLayout?=null
     var llEmi : LinearLayout?=null
     var llnotif : LinearLayout?=null
     var llpassbook: LinearLayout? = null
@@ -788,6 +789,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         llnotif= findViewById(R.id.llnotif)
 
         ll_dth = findViewById(R.id.ll_dth)
+        ll_datacard = findViewById(R.id.ll_datacard)
         llEmi = findViewById(R.id.llEmi)
         llpassbook = findViewById<LinearLayout>(R.id.llpassbook)
         llduereminder = findViewById<LinearLayout>(R.id.lldueremindrer)
@@ -859,6 +861,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         ll_kseb!!.setOnClickListener(this)
         ll_rechargehistory!!.setOnClickListener(this)
         ll_dth!!.setOnClickListener(this)
+        ll_datacard!!.setOnClickListener(this)
         llEmi!!.setOnClickListener(this)
         ll_virtualcard!!.setOnClickListener(this)
         ll_otherbank!!.setOnClickListener(this)
@@ -1265,6 +1268,12 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
                 var intent = Intent(this@HomeActivity, RechargeActivity::class.java)
                 intent.putExtra("from", "dth")
+                startActivity(intent)
+            }
+            R.id.ll_datacard -> {
+
+                var intent = Intent(this@HomeActivity, RechargeActivity::class.java)
+                intent.putExtra("from", "datacard")
                 startActivity(intent)
             }
 
