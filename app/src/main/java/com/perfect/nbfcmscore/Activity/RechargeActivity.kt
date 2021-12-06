@@ -1187,11 +1187,11 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                 Log.e(TAG,"1067   subscriberId  "+mobileNumber)
                 rechargedth(mobileNumber, providersCode, CircleMode, mAccountNumber, SubModule, ID_Providers, ID_RechargeCircle, FK_Account,amount)
             }
+//            else if (ProvidersMode.equals("3") || ProvidersMode.equals("4")){
+//                //landLine
+//               // rechargepostpaid(mobileNumber, providersCode, CircleMode, mAccountNumber, SubModule, ID_Providers, ID_RechargeCircle, FK_Account,amount)
+//            }
             else if (ProvidersMode.equals("3") || ProvidersMode.equals("4")){
-                //landLine
-               // rechargepostpaid(mobileNumber, providersCode, CircleMode, mAccountNumber, SubModule, ID_Providers, ID_RechargeCircle, FK_Account,amount)
-            }
-            else if (ProvidersMode.equals("4")){
                 rechargepostpaid(mobileNumber, providersCode, CircleMode, mAccountNumber, SubModule, ID_Providers, ID_RechargeCircle, FK_Account,amount)
             }
 
