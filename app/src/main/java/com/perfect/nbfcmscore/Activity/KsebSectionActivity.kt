@@ -40,6 +40,7 @@ class KsebSectionActivity : AppCompatActivity(), View.OnClickListener, ItemClick
     var im_back: ImageView? = null
     var im_home: ImageView? = null
     var tv_header: TextView? = null
+    var img_clear: ImageView? = null
 
     var act_section: AutoCompleteTextView? = null
     var rvSectionList: RecyclerView? = null
@@ -119,6 +120,7 @@ class KsebSectionActivity : AppCompatActivity(), View.OnClickListener, ItemClick
         tv_header = findViewById<TextView>(R.id.tv_header)
         im_back = findViewById<ImageView>(R.id.im_back)
         im_home = findViewById<ImageView>(R.id.im_home)
+        img_clear = findViewById<ImageView>(R.id.img_clear)
 
         act_section = findViewById<AutoCompleteTextView>(R.id.act_section)
         rvSectionList = findViewById<RecyclerView>(R.id.rvSectionList)
@@ -129,6 +131,7 @@ class KsebSectionActivity : AppCompatActivity(), View.OnClickListener, ItemClick
     private fun setRegister() {
         im_back!!.setOnClickListener(this)
         im_home!!.setOnClickListener(this)
+        img_clear!!.setOnClickListener(this)
 
     }
 
@@ -142,6 +145,10 @@ class KsebSectionActivity : AppCompatActivity(), View.OnClickListener, ItemClick
             R.id.im_home ->{
                 startActivity(Intent(this@KsebSectionActivity, HomeActivity::class.java))
                 finish()
+            }
+
+            R.id.img_clear ->{
+               act_section!!.setText("")
             }
 
         }

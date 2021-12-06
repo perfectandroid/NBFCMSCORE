@@ -261,7 +261,7 @@ class KSEBActivity : AppCompatActivity(), View.OnClickListener, ItemClickListene
             CustomBottomSheeet.Show(this,"Please Select Account","0")
         }else{
 
-
+          //  mAccountNumber = AccountNo!!.replace(" ", "")
             Log.e(TAG,"MobileNumer      785   "+mobilenumber)
             Log.e(TAG,"ConsumerName    785   "+consumername)
             Log.e(TAG,"ConsumerNo       785   "+consumernumber)
