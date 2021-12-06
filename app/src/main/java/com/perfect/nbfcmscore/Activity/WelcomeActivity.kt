@@ -1250,6 +1250,27 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                     ID_defltaccEditer.putString("DefaultAccount", jresult3.get("DefaultAccount") as String)
                                     ID_defltaccEditer.commit()
 
+                                        val ID_giveuscall= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF247, 0)
+                                        val ID_giveuscallEditer = ID_giveuscall.edit()
+                                        ID_giveuscallEditer.putString("Giveusacall", jresult3.get("Giveusacall") as String)
+                                        ID_giveuscallEditer.commit()
+
+                                        val ID_sendus= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF248, 0)
+                                        val ID_sendusEditer = ID_sendus.edit()
+                                        ID_sendusEditer.putString("Sendusamessage", jresult3.get("Sendusamessage") as String)
+                                        ID_sendusEditer.commit()
+
+                                        val ID_visitloc= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF249, 0)
+                                        val ID_visitlocEditer = ID_visitloc.edit()
+                                        ID_visitlocEditer.putString("Visitourlocation", jresult3.get("Visitourlocation") as String)
+                                        ID_visitlocEditer.commit()
+
+                                        val ID_submt= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF250, 0)
+                                        val ID_submtEditer = ID_submt.edit()
+                                        ID_submtEditer.putString("Submit", jresult3.get("Submit") as String)
+                                        ID_submtEditer.commit()
+
+
 
                                         val WelcomeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF34, 0)
                                         val FasterSP = applicationContext.getSharedPreferences(Config.SHARED_PREF35, 0)

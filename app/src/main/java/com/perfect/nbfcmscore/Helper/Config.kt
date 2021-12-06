@@ -301,13 +301,10 @@ object Config {
     const val SHARED_PREF244="TransactionUpdate(Days)"
     const val SHARED_PREF245="UpdateInterval"
     const val SHARED_PREF246="DefaultAccount"
-
-
-
-
-
-
-
+    const val SHARED_PREF247="Giveusacall"
+    const val SHARED_PREF248="Sendusamessage"
+    const val SHARED_PREF249="Visitourlocation"
+    const val SHARED_PREF250="Submit"
 
 
     fun getHostnameVerifier(): HostnameVerifier {

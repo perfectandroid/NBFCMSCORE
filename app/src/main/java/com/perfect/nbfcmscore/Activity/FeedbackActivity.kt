@@ -34,6 +34,10 @@ class FeedbackActivity : AppCompatActivity() , View.OnClickListener, AdapterView
         val ID_feedbk = applicationContext.getSharedPreferences(Config.SHARED_PREF56,0)
         tv_mycart!!.setText(ID_feedbk.getString("feedback",null))
 
+       val ID_submt = applicationContext.getSharedPreferences(Config.SHARED_PREF250,0)
+        btn_submit!!.setText(ID_submt.getString("Submit",null))
+
+
         feedbackText!!.setHint(ID_feedbk.getString("feedback",null))
     }
 
