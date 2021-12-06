@@ -141,6 +141,14 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
             ProvidersMode = "2"
             rltv_mobile!!.visibility = View.GONE
         }
+        if(intent.getStringExtra("from")!!.equals("datacard")){
+           // val dthSP = applicationContext.getSharedPreferences(Config.SHARED_PREF69, 0)
+          //  tv_header!!.setText(dthSP.getString("DTH", null))
+            tv_header!!.setText("Data Card")
+            //  tv_header!!.text = "DTH"
+            ProvidersMode = "5"
+            rltv_mobile!!.visibility = View.GONE
+        }
 
         getRecentRecharges()
 
@@ -302,7 +310,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                 if (ProvidersMode.equals("1") || ProvidersMode.equals("3") || ProvidersMode.equals("4")){
                     rechargeValidation()
                 }
-                else if(ProvidersMode.equals("2")){
+                else if(ProvidersMode.equals("2") || ProvidersMode.equals("5")){
                     dthValidation()
                 }
 
@@ -1175,15 +1183,15 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
             if (ProvidersMode.equals("1")){
                 recharge(mobileNumber, providersCode, CircleMode, mAccountNumber, SubModule, ID_Providers, ID_RechargeCircle, FK_Account,amount)
             }
-            else if (ProvidersMode.equals("2")){
+            else if (ProvidersMode.equals("2") || ProvidersMode.equals("5")){
                 Log.e(TAG,"1067   subscriberId  "+mobileNumber)
                 rechargedth(mobileNumber, providersCode, CircleMode, mAccountNumber, SubModule, ID_Providers, ID_RechargeCircle, FK_Account,amount)
             }
-            else if (ProvidersMode.equals("3")){
-                //landLine
-               // rechargepostpaid(mobileNumber, providersCode, CircleMode, mAccountNumber, SubModule, ID_Providers, ID_RechargeCircle, FK_Account,amount)
-            }
-            else if (ProvidersMode.equals("4")){
+//            else if (ProvidersMode.equals("3") || ProvidersMode.equals("4")){
+//                //landLine
+//               // rechargepostpaid(mobileNumber, providersCode, CircleMode, mAccountNumber, SubModule, ID_Providers, ID_RechargeCircle, FK_Account,amount)
+//            }
+            else if (ProvidersMode.equals("3") || ProvidersMode.equals("4")){
                 rechargepostpaid(mobileNumber, providersCode, CircleMode, mAccountNumber, SubModule, ID_Providers, ID_RechargeCircle, FK_Account,amount)
             }
 

@@ -216,6 +216,12 @@ interface ApiInterface {
     @POST("Customer/MessagesDetails")
     fun getMessages(@Body body: RequestBody): Call<String>
 
+    @POST("Recharge/KSEBSectionDetails")
+    fun getKSEBSectionDetails(@Body body: RequestBody): Call<String>
+
+    @POST("Recharge/KSEBBilling")
+    fun getKSEBBilling(@Body body: RequestBody): Call<String>
+
         @GET
          fun downloadFile(@Url fileUrl:String): Call<File>
 

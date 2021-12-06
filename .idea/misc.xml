@@ -66,6 +66,7 @@
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_quickbalance.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_quickpay.xml" value="0.23697916666666666" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_recharge.xml" value="0.2984375" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_setting.xml" value="0.2760416666666667" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_statement.xml" value="0.22" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_success_popup.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/activity_view_statement2.xml" value="0.14270833333333333" />
@@ -77,6 +78,7 @@
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/adapter_dash_payments.xml" value="0.30052083333333335" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/adapter_duedate.xml" value="0.2296875" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/adapter_holiday_list.xml" value="0.26510416666666664" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/adapter_kseb_section.xml" value="0.2760416666666667" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/adapter_language.xml" value="0.16" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/adapter_recent_recharge.xml" value="0.24739583333333334" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/adapter_source_acclist.xml" value="0.24739583333333334" />
@@ -87,6 +89,7 @@
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/fragment_statementdownloadview.xml" value="0.31927083333333334" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/goldlist.xml" value="0.35104166666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/goldslablist.xml" value="0.2526041666666667" />
+        <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/kseb_confirmation.xml" value="0.325" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/logout_popup.xml" value="0.35104166666666664" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/passbook_listrow.xml" value="0.29739583333333336" />
         <entry key="..\:/Project/NBFCMSCORE/app/src/main/res/layout/popup_language.xml" value="0.18229166666666666" />
