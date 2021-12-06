@@ -506,15 +506,15 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         val LastLogin = applicationContext.getSharedPreferences(Config.SHARED_PREF120, 0)
 
         tv_lastlogin!!.setText(LastLogin.getString("LastLogin", null)+" : " + LastLoginTimeSP.getString("LastLoginTime", null))
-        val default = DefaultAccountSP.getString("DefaultAccount", null)
+        val default = DefaultAccountSP.getString("DefaultAccount1", null)
 
-        if (DefaultAccountSP.getString("DefaultAccount", null) == null){
+        if (DefaultAccountSP.getString("DefaultAccount1", null) == null){
             tv_def_account!!.setText("")
             tv_def_availablebal!!.setText("")
             getOwnAccount()
 
         }else{
-            tv_def_account!!.setText(DefaultAccountSP.getString("DefaultAccount", null))
+            tv_def_account!!.setText(DefaultAccountSP.getString("DefaultAccount1", null))
           //  val balance = DefaultBalanceSP.getString("DefaultBalance", null)!!.toDouble()
          //   tv_def_availablebal!!.setText("Rs. " + Config.getDecimelFormate(balance))
             getOwnAccount()
@@ -1407,7 +1407,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                                         Config.SHARED_PREF24,
                                                         0
                                                 )
-                                        if (DefaultAccountSP.getString("DefaultAccount", null) == null) {
+                                        if (DefaultAccountSP.getString("DefaultAccount1", null) == null) {
                                             if (i == 0) {
 
                                                 val balance = obj.getString("Balance").toDouble()
@@ -1421,7 +1421,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                             }
 
                                         }
-                                        else if(DefaultAccountSP.getString("DefaultAccount", null).equals(obj.getString("AccountNumber")) )
+                                        else if(DefaultAccountSP.getString("DefaultAccount1", null).equals(obj.getString("AccountNumber")) )
                                         {
 
 

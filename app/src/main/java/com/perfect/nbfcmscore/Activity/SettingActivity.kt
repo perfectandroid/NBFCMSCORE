@@ -48,7 +48,9 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
     val minutesItems : Array<String> = arrayOf("00", "15", "30", "45")
 
     var jArrayAccount: JSONArray? = null
-
+    var txtv_transactionupdte: TextView? = null
+    var txtvupdteintrvl: TextView? = null
+    var txtvdefltacc: TextView? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +64,21 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
 
         val ID_Passbk = applicationContext.getSharedPreferences(Config.SHARED_PREF60,0)
         tv_header!!.setText(ID_Passbk.getString("settings",null))
+
+         val ID_trnsupdte = applicationContext.getSharedPreferences(Config.SHARED_PREF244,0)
+         txtv_transactionupdte!!.setText(ID_trnsupdte.getString("TransactionUpdate(Days)",null))
+
+        val ID_updteintrvl = applicationContext.getSharedPreferences(Config.SHARED_PREF245,0)
+     txtvupdteintrvl!!.setText(ID_updteintrvl.getString("UpdateInterval",null))
+
+        val ID_defltacc = applicationContext.getSharedPreferences(Config.SHARED_PREF246,0)
+        txtvdefltacc!!.setText(ID_defltacc.getString("DefaultAccount",null))
+
+        val ID_apply = applicationContext.getSharedPreferences(Config.SHARED_PREF240,0)
+        btn_apply!!.setText(ID_apply.getString("Apply",null))
+
+        val ID_rest = applicationContext.getSharedPreferences(Config.SHARED_PREF189,0)
+        btn_clear!!.setText(ID_rest.getString("RESET",null))
 
 
 
@@ -87,9 +104,12 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
 
 
         Log.e(TAG,"updateDays  69   "+updateDaysSP.getString("updateDays",null))
+        Log.e(TAG,"updateDays  70   "+updateHourSP.getString("updateHour",null)+"\n"+ updateMinuteSP.getString("updateMinute",null)
+        +"\n"+DefaultAccountSP.getString("DefaultAccount1",null))
+
 
         if (updateDaysSP.getString("updateDays",null) == null && updateHourSP.getString("updateHour",null) == null &&
-            updateMinuteSP.getString("updateMinute",null)== null && DefaultAccountSP.getString("DefaultAccount",null)==null){
+            updateMinuteSP.getString("updateMinute",null)== null && DefaultAccountSP.getString("DefaultAccount1",null)==null){
             Log.e(TAG,"updateDays  691   "+updateDaysSP.getString("updateDays",null))
 
             act_UpdateDays!!.setText("7")
@@ -101,7 +121,7 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
             act_UpdateDays!!.setText(updateDaysSP.getString("updateDays",null))
             act_hours!!.setText(updateHourSP.getString("updateHour",null))
             act_minutes!!.setText(updateMinuteSP.getString("updateMinute",null))
-            act_DefAcc!!.setText(DefaultAccountSP.getString("DefaultAccount",null))
+            act_DefAcc!!.setText(DefaultAccountSP.getString("DefaultAccount1",null))
 
         }
 
@@ -134,6 +154,10 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
         act_hours = findViewById<AutoCompleteTextView>(R.id.act_hours)
         act_minutes = findViewById<AutoCompleteTextView>(R.id.act_minutes)
         act_DefAcc = findViewById<AutoCompleteTextView>(R.id.act_DefAcc)
+
+        txtv_transactionupdte= findViewById<TextView>(R.id.txtv_transactionupdte)
+        txtvupdteintrvl= findViewById<TextView>(R.id.txtvupdteintrvl)
+        txtvdefltacc= findViewById<TextView>(R.id.txtvdefltacc)
 
         btn_apply = findViewById<Button>(R.id.btn_apply)
 
@@ -232,7 +256,7 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
 
                 val DefaultAccountSP = applicationContext.getSharedPreferences(Config.SHARED_PREF24,0)
                 val DefaultAccountEditer = DefaultAccountSP.edit()
-                DefaultAccountEditer.putString("DefaultAccount", upacc)
+                DefaultAccountEditer.putString("DefaultAccount1", upacc)
                 DefaultAccountEditer.commit()
 
                 var nofdays = (updateDaysSP.getString("updateDays", null))
@@ -383,7 +407,7 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
                                         val obj: JSONObject = jArrayAccount!!.getJSONObject(i)
                                         accountItems.add(obj.getString("AccountNumber"));
                                         val DefaultAccountSP = applicationContext.getSharedPreferences(Config.SHARED_PREF24,0)
-                                        if (DefaultAccountSP.getString("DefaultAccount",null) == null){
+                                        if (DefaultAccountSP.getString("DefaultAccount1",null) == null){
                                             if (i == 0){
                                                 act_DefAcc!!.setText(obj.getString("AccountNumber"))
                                             }
