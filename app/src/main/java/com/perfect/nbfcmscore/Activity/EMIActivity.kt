@@ -76,6 +76,13 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
     var tv_interest_principal: TextView? = null
     var llOutput: LinearLayout? = null
     var tv_header: TextView? = null
+    var txtv_emi: TextView? = null
+    var txtv_intrstrate: TextView? = null
+    var txtv_month: TextView? = null
+    var txtv_type: TextView? = null
+
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -109,6 +116,18 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
 
         val ID_calc = applicationContext.getSharedPreferences(Config.SHARED_PREF190,0)
         btn_calculate!!.setText(ID_calc.getString("CALCULATE",null))
+
+        val ID_princamt = applicationContext.getSharedPreferences(Config.SHARED_PREF191,0)
+        txtv_emi!!.setText(ID_princamt.getString("PRINCIPALAMOUNT",null))
+
+        val ID_intrstrate = applicationContext.getSharedPreferences(Config.SHARED_PREF192,0)
+        txtv_intrstrate!!.setText(ID_intrstrate.getString("INTERESTRATE",null))
+
+        val ID_mnth = applicationContext.getSharedPreferences(Config.SHARED_PREF193,0)
+        txtv_month!!.setText(ID_mnth.getString("MONTH",null))
+
+        val ID_type = applicationContext.getSharedPreferences(Config.SHARED_PREF256,0)
+        txtv_type!!.setText(ID_type.getString("EMITYPE",null))
 
 
 
@@ -181,6 +200,12 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
         tie_emi  = findViewById<View>(R.id.tie_emi) as TextInputEditText?
 
         tv_header= findViewById<View>(R.id.tv_header) as TextView?
+
+        txtv_emi= findViewById<View>(R.id.txtv_emi) as TextView?
+        txtv_intrstrate= findViewById<View>(R.id.txtv_intrstrate) as TextView?
+        txtv_month= findViewById<View>(R.id.txtv_month) as TextView?
+        txtv_type= findViewById<View>(R.id.txtv_type) as TextView?
+
 
         rv_loanslab  = findViewById<View>(R.id.rv_loanslab) as RecyclerView?
         imgBack = findViewById<ImageView>(R.id.imgBack)

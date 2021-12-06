@@ -1295,6 +1295,27 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_weightEditer.putString("Weight", jresult3.get("Weight") as String)
                                         ID_weightEditer.commit()
 
+                                        val ID_emitype= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF256, 0)
+                                        val ID_emitypeEditer = ID_emitype.edit()
+                                        ID_emitypeEditer.putString("EMITYPE", jresult3.get("EMITYPE") as String)
+                                        ID_emitypeEditer.commit()
+
+                                        val ID_ENTRWEIGHT= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF257, 0)
+                                        val ID_ENTRWEIGHTEditer = ID_ENTRWEIGHT.edit()
+                                        ID_ENTRWEIGHTEditer.putString("Enter Weight", jresult3.get("Enter Weight") as String)
+                                        ID_ENTRWEIGHTEditer.commit()
+
+                                        val ID_Plsentrweght= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF258, 0)
+                                        val ID_PlsentrweghtEditer = ID_Plsentrweght.edit()
+                                        ID_PlsentrweghtEditer.putString("PleaseEnterWeight", jresult3.get("PleaseEnterWeight") as String)
+                                        ID_PlsentrweghtEditer.commit()
+
+                                        val ID_entramt= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF259, 0)
+                                        val ID_entramtEditer = ID_entramt.edit()
+                                        ID_entramtEditer.putString("Pleaseenteramount", jresult3.get("Pleaseenteramount") as String)
+                                        ID_entramtEditer.commit()
+
+
                                         val WelcomeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF34, 0)
                                         val FasterSP = applicationContext.getSharedPreferences(Config.SHARED_PREF35, 0)
                                         val SigninSP = applicationContext.getSharedPreferences(Config.SHARED_PREF36, 0)

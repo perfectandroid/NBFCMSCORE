@@ -312,6 +312,10 @@ object Config {
     const val SHARED_PREF253="Transfer upto"
     const val SHARED_PREF254="Instantly"
     const val SHARED_PREF255="Weight"
+    const val SHARED_PREF256="EMITYPE"
+    const val SHARED_PREF257="Enter Weight"
+    const val SHARED_PREF258="PleaseEnterWeight"
+    const val SHARED_PREF259="Pleaseenteramount"
 
 
 

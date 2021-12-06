@@ -213,13 +213,15 @@ class GoldLoanActivity : AppCompatActivity() , View.OnClickListener{
             }
 
             R.id.chk_weight ->{
+                val EntrwghtSP = applicationContext.getSharedPreferences(Config.SHARED_PREF257,0)
                 chk_weight!!.isChecked = true
                 chk_amount!!.isChecked = false
                 CalcMethod = "1"
                 img_top!!.setImageResource(R.drawable.imagegold)
                 tie_amountweight!!.setText("")
                 //tie_amountweight!!.setHint("Enter Weight")
-                til_amountweight!!.setHint("Enter Weight")
+               // til_amountweight!!.setHint("Enter Weight")
+                til_amountweight!!.setHint(EntrwghtSP.getString("Enter Weight",null))
                 ll_estimatelist!!.visibility = View.GONE
             }
 
@@ -229,10 +231,18 @@ class GoldLoanActivity : AppCompatActivity() , View.OnClickListener{
                 Amount = tie_amountweight!!.text.toString().replace(",", "");
                 if (Amount.equals("")){
 
+                    val EntrplsamtSP = applicationContext.getSharedPreferences(Config.SHARED_PREF259,0)
+                    val EntrplswghtSP = applicationContext.getSharedPreferences(Config.SHARED_PREF258,0)
+
                     if (CalcMethod.equals("1")){
-                        CustomBottomSheeet.Show(this,"Please enter weight","0")
+                        var wght=EntrplswghtSP.getString("PleaseEnterWeight",null)
+                        CustomBottomSheeet.Show(this, wght!!,"0")
+
+                      // CustomBottomSheeet.Show(this,"Please enter weight","0")
                     }else if (CalcMethod.equals("2")){
-                        CustomBottomSheeet.Show(this,"Please enter amount","0")
+                        var amt=EntrplsamtSP.getString("Pleaseenteramount",null)
+                        CustomBottomSheeet.Show(this, amt!!,"0")
+                       // CustomBottomSheeet.Show(this,"Please enter amount","0")
                     }
                 }else{
 

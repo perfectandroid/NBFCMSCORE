@@ -84,6 +84,7 @@
                                         android:orientation="vertical">
 
                                         <TextView
+                                            android:id="@+id/txtv_emi"
                                             android:layout_width="fill_parent"
                                             android:layout_height="wrap_content"
                                             android:gravity="start"
@@ -139,6 +140,7 @@
                                         android:orientation="vertical">
 
                                         <TextView
+                                            android:id="@+id/txtv_intrstrate"
                                             android:layout_width="fill_parent"
                                             android:layout_height="wrap_content"
                                             android:gravity="start"
@@ -193,6 +195,7 @@
                                         android:orientation="vertical">
 
                                         <TextView
+                                            android:id="@+id/txtv_month"
                                             android:layout_width="fill_parent"
                                             android:layout_height="wrap_content"
                                             android:gravity="start"
