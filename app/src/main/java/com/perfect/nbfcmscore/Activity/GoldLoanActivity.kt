@@ -77,12 +77,19 @@ class GoldLoanActivity : AppCompatActivity() , View.OnClickListener{
         val goldSP = applicationContext.getSharedPreferences(Config.SHARED_PREF81,0)
         tv_header!!.setText(goldSP.getString("GoldLoanEligibileCalculator",null))
 
+        val weightSP = applicationContext.getSharedPreferences(Config.SHARED_PREF255,0)
+        chk_weight!!.setText(weightSP.getString("Weight",null))
+
+       val EntramtSP = applicationContext.getSharedPreferences(Config.SHARED_PREF223,0)
+        /*  chk_weight!!.setHint(EntramtSP.getString("EnterAmount",null))*/
+
 
 
 
         CalcMethod = "2"
        // tie_amountweight!!.setHint("Enter Amount")
-        til_amountweight!!.setHint("Enter Amount")
+      //  til_amountweight!!.setHint("Enter Amount")
+        til_amountweight!!.setHint(EntramtSP.getString("EnterAmount",null))
         img_top!!.setImageResource(R.drawable.imagemoney)
 
 
@@ -180,6 +187,7 @@ class GoldLoanActivity : AppCompatActivity() , View.OnClickListener{
 
     override fun onClick(v: View) {
         when (v.id) {
+
             R.id.im_back ->{
                 onBackPressed()
             }
@@ -190,13 +198,17 @@ class GoldLoanActivity : AppCompatActivity() , View.OnClickListener{
             }
 
             R.id.chk_amount ->{
+                val EntramtSP = applicationContext.getSharedPreferences(Config.SHARED_PREF223,0)
+
+
                 chk_amount!!.isChecked = true
                 chk_weight!!.isChecked = false
                 CalcMethod = "2"
                 img_top!!.setImageResource(R.drawable.imagemoney)
                 tie_amountweight!!.setText("")
               //  tie_amountweight!!.setHint("Enter Amount")
-                til_amountweight!!.setHint("Enter Amount")
+              //  til_amountweight!!.setHint("Enter Amount")
+                til_amountweight!!.setHint(EntramtSP.getString("EnterAmount",null))
                 ll_estimatelist!!.visibility = View.GONE
             }
 
@@ -243,7 +255,9 @@ class GoldLoanActivity : AppCompatActivity() , View.OnClickListener{
                 chk_weight!!.isChecked = false
                 CalcMethod = "2"
                 // tie_amountweight!!.setHint("Enter Amount")
-                til_amountweight!!.setHint("Enter Amount")
+                val EntramtSP = applicationContext.getSharedPreferences(Config.SHARED_PREF223,0)
+                til_amountweight!!.setHint(EntramtSP.getString("EnterAmount",null))
+              //  til_amountweight!!.setHint("Enter Amount")
                 img_top!!.setImageResource(R.drawable.imagemoney)
                 tie_amountweight!!.setText("")
                 ll_estimatelist!!.visibility = View.GONE
