@@ -507,15 +507,15 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         val LastLogin = applicationContext.getSharedPreferences(Config.SHARED_PREF120, 0)
 
         tv_lastlogin!!.setText(LastLogin.getString("LastLogin", null)+" : " + LastLoginTimeSP.getString("LastLoginTime", null))
-        val default = DefaultAccountSP.getString("DefaultAccount", null)
+        val default = DefaultAccountSP.getString("DefaultAccount1", null)
 
-        if (DefaultAccountSP.getString("DefaultAccount", null) == null){
+        if (DefaultAccountSP.getString("DefaultAccount1", null) == null){
             tv_def_account!!.setText("")
             tv_def_availablebal!!.setText("")
             getOwnAccount()
 
         }else{
-            tv_def_account!!.setText(DefaultAccountSP.getString("DefaultAccount", null))
+            tv_def_account!!.setText(DefaultAccountSP.getString("DefaultAccount1", null))
           //  val balance = DefaultBalanceSP.getString("DefaultBalance", null)!!.toDouble()
          //   tv_def_availablebal!!.setText("Rs. " + Config.getDecimelFormate(balance))
             getOwnAccount()
@@ -1416,7 +1416,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                                         Config.SHARED_PREF24,
                                                         0
                                                 )
-                                        if (DefaultAccountSP.getString("DefaultAccount", null) == null) {
+                                        if (DefaultAccountSP.getString("DefaultAccount1", null) == null) {
                                             if (i == 0) {
 
                                                 val balance = obj.getString("Balance").toDouble()
@@ -1430,7 +1430,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                             }
 
                                         }
-                                        else if(DefaultAccountSP.getString("DefaultAccount", null).equals(obj.getString("AccountNumber")) )
+                                        else if(DefaultAccountSP.getString("DefaultAccount1", null).equals(obj.getString("AccountNumber")) )
                                         {
 
 
@@ -2592,6 +2592,73 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     val ID_unclramtEditer = ID_unclramt.edit()
                                     ID_unclramtEditer.putString("UnclearAmount", jresult3.get("UnclearAmount") as String)
                                     ID_unclramtEditer.commit()
+
+
+
+                                    val ID_reset= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF189, 0)
+                                    val ID_resetEditer = ID_reset.edit()
+                                    ID_resetEditer.putString("RESET", jresult3.get("RESET") as String)
+                                    ID_resetEditer.commit()
+
+                                    val ID_transupdte= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF244, 0)
+                                    val ID_transupdteEditer = ID_transupdte.edit()
+                                    ID_transupdteEditer.putString("TransactionUpdate(Days)", jresult3.get("TransactionUpdate(Days)") as String)
+                                    ID_transupdteEditer.commit()
+
+                                    val ID_updteintrvl= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF245, 0)
+                                    val ID_updteintrvlEditer = ID_updteintrvl.edit()
+                                    ID_updteintrvlEditer.putString("UpdateInterval", jresult3.get("UpdateInterval") as String)
+                                    ID_updteintrvlEditer.commit()
+
+                                    val ID_defltacc= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF246, 0)
+                                    val ID_defltaccEditer = ID_defltacc.edit()
+                                    ID_defltaccEditer.putString("DefaultAccount", jresult3.get("DefaultAccount") as String)
+                                    ID_defltaccEditer.commit()
+
+                                    val ID_giveuscall= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF247, 0)
+                                    val ID_giveuscallEditer = ID_giveuscall.edit()
+                                    ID_giveuscallEditer.putString("Giveusacall", jresult3.get("Giveusacall") as String)
+                                    ID_giveuscallEditer.commit()
+
+                                    val ID_sendus= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF248, 0)
+                                    val ID_sendusEditer = ID_sendus.edit()
+                                    ID_sendusEditer.putString("Sendusamessage", jresult3.get("Sendusamessage") as String)
+                                    ID_sendusEditer.commit()
+
+                                    val ID_visitloc= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF249, 0)
+                                    val ID_visitlocEditer = ID_visitloc.edit()
+                                    ID_visitlocEditer.putString("Visitourlocation", jresult3.get("Visitourlocation") as String)
+                                    ID_visitlocEditer.commit()
+
+                                    val ID_submt= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF250, 0)
+                                    val ID_submtEditer = ID_submt.edit()
+                                    ID_submtEditer.putString("Submit", jresult3.get("Submit") as String)
+                                    ID_submtEditer.commit()
+
+                                    val ID_ownaccfndtransfr= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF251, 0)
+                                    val ID_ownaccfndtransfrEditer = ID_ownaccfndtransfr.edit()
+                                    ID_ownaccfndtransfrEditer.putString("OwnAccountFundTransfer", jresult3.get("OwnAccountFundTransfer") as String)
+                                    ID_ownaccfndtransfrEditer.commit()
+
+                                    val ID_othraccfndtransfr= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF252, 0)
+                                    val ID_othraccfndtransfrEditer = ID_othraccfndtransfr.edit()
+                                    ID_othraccfndtransfrEditer.putString("OtherAccountFundTransfer", jresult3.get("OtherAccountFundTransfer") as String)
+                                    ID_othraccfndtransfrEditer.commit()
+
+                                    val ID_transferupto= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF253, 0)
+                                    val ID_transferuptoEditer = ID_transferupto.edit()
+                                    ID_transferuptoEditer.putString("Transfer upto", jresult3.get("Transfer upto") as String)
+                                    ID_transferuptoEditer.commit()
+
+                                    val ID_instantly= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF254, 0)
+                                    val ID_instantlyEditer = ID_instantly.edit()
+                                    ID_instantlyEditer.putString("Instantly", jresult3.get("Instantly") as String)
+                                    ID_instantlyEditer.commit()
+
+
+
+
+
 
                                     val myIntent = Intent(this@HomeActivity, HomeActivity::class.java)
                                     overridePendingTransition(0, 0)

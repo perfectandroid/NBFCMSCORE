@@ -49,7 +49,7 @@ object Config {
     const val SHARED_PREF21 = "updateDays"
     const val SHARED_PREF22 = "updateHour"
     const val SHARED_PREF23 = "updateMinute"
-    const val SHARED_PREF24 = "DefaultAccount"
+    const val SHARED_PREF24 = "DefaultAccount1"
     const val SHARED_PREF25 = "DefaultFK_Account"
     const val SHARED_PREF26 = "DefaultSubModule"
     const val SHARED_PREF27 = "DefaultBalance"
@@ -297,11 +297,20 @@ object Config {
     const val SHARED_PREF241="AccountType"
     const val SHARED_PREF242="UnclearAmount"
 
+    const val SHARED_PREF243="Pleaseselectpayingtoaccountnumber"
+    const val SHARED_PREF244="TransactionUpdate(Days)"
+    const val SHARED_PREF245="UpdateInterval"
+    const val SHARED_PREF246="DefaultAccount"
+    const val SHARED_PREF247="Giveusacall"
+    const val SHARED_PREF248="Sendusamessage"
+    const val SHARED_PREF249="Visitourlocation"
+    const val SHARED_PREF250="Submit"
 
+    const val SHARED_PREF251="OwnAccountFundTransfer"
+    const val SHARED_PREF252="OtherAccountFundTransfer"
 
-
-
-
+    const val SHARED_PREF253="Transfer upto"
+    const val SHARED_PREF254="Instantly"
 
 
 

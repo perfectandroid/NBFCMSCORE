@@ -179,6 +179,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/txtvupdteintrvl"
                                     android:layout_width="fill_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="start"
@@ -271,6 +272,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/txtvdefltacc"
                                     android:layout_width="fill_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="start"

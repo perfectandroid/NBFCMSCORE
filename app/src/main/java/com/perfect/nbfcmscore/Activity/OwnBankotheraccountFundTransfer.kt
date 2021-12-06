@@ -87,7 +87,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
     private  var btn_clear:android.widget.Button? = null
     private var edtTxtAmount: EditText? = null
     private var edt_txt_remark: EditText? = null
-
+    private var txtv_availbl: TextView? = null
     private var txtvPayingfrom: TextView? = null
     private var txtvac_no: TextView? = null
     private var txtv_recivactype: TextView? = null
@@ -119,7 +119,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
 
     private fun setRegViews() {
 
-
+        txtv_availbl= findViewById(R.id.txtv_availbl)
         txtv_header= findViewById(R.id.tv_header)
         mAccountNumberEt = findViewById(R.id.account_number)
         mConfirmAccountNumberEt = findViewById(R.id.confirm_account_number)
@@ -212,9 +212,12 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
         val RemarkeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF96, 0)
         val PAYSP = applicationContext.getSharedPreferences(Config.SHARED_PREF97, 0)
         val ScanSP = applicationContext.getSharedPreferences(Config.SHARED_PREF100, 0)
+        val HeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF252, 0)
+        val AvailbalSP = applicationContext.getSharedPreferences(Config.SHARED_PREF119, 0)
+        val ResetSp = applicationContext.getSharedPreferences(Config.SHARED_PREF189, 0)
 
 
-
+        txtv_availbl!!.setText(AvailbalSP.getString("AvailableBalance", null))
         txtvPayingfrom!!.setText(PayingFromSP.getString("PayingFrom", null))
         txtvac_no!!.setText(AccnoSP.getString("AccountNo", null))
         txtv_recivactype!!.setText(PayingToSP.getString("ReceiverAccountType", null))
@@ -223,6 +226,11 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
         txtv_amtpayable!!.setText(AMtpaybleSP.getString("AmountPayable", null))
         txtv_remark!!.setText(RemarkeSP.getString("Remark", null))
         btnScanAccounttNo!!.setText(ScanSP.getString("Scan", null))
+        txtv_header!!.setText(HeaderSP.getString("OtherAccountFundTransfer", null))
+
+
+        btn_submit!!.setText(PAYSP.getString("PAY", null))
+        btn_clear!!.setText(ResetSp.getString("RESET", null))
 
         btn_submit!!.setOnClickListener(this)
         btn_clear!!.setOnClickListener(this)
@@ -621,10 +629,15 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                                     val num = MaximumAmount.toDouble()
                                     if (num > 0) {
                                         tv_maxamount!!.visibility = View.VISIBLE
-                                        tv_maxamount!!.text =
-                                                "Transfer upto ₹ " + Config.getDecimelFormate(
-                                                        num
-                                                ).toString() + " instantly."
+
+                                        val transfrupsp = applicationContext.getSharedPreferences(Config.SHARED_PREF253, 0)
+                                        val instantsp = applicationContext.getSharedPreferences(Config.SHARED_PREF254, 0)
+
+                                    //    tv_maxamount!!.text = "Transfer upto ₹ " + Config.getDecimelFormate(num).toString() + " instantly."
+
+                                        tv_maxamount!!.text =transfrupsp.getString("Transfer upto", null)+"₹"+Config.getDecimelFormate(
+                                                num
+                                            ).toString() + instantsp.getString("Instantly", null)
                                     } else {
                                         tv_maxamount!!.visibility = View.GONE
                                     }

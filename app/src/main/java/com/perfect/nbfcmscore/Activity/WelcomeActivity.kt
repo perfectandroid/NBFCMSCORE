@@ -1235,8 +1235,60 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                     ID_unclramtEditer.commit()
 
 
+                                    val ID_transupdte= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF244, 0)
+                                    val ID_transupdteEditer = ID_transupdte.edit()
+                                    ID_transupdteEditer.putString("TransactionUpdate(Days)", jresult3.get("TransactionUpdate(Days)") as String)
+                                    ID_transupdteEditer.commit()
 
+                                    val ID_updteintrvl= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF245, 0)
+                                    val ID_updteintrvlEditer = ID_updteintrvl.edit()
+                                    ID_updteintrvlEditer.putString("UpdateInterval", jresult3.get("UpdateInterval") as String)
+                                    ID_updteintrvlEditer.commit()
 
+                                    val ID_defltacc= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF246, 0)
+                                    val ID_defltaccEditer = ID_defltacc.edit()
+                                    ID_defltaccEditer.putString("DefaultAccount", jresult3.get("DefaultAccount") as String)
+                                    ID_defltaccEditer.commit()
+
+                                        val ID_giveuscall= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF247, 0)
+                                        val ID_giveuscallEditer = ID_giveuscall.edit()
+                                        ID_giveuscallEditer.putString("Giveusacall", jresult3.get("Giveusacall") as String)
+                                        ID_giveuscallEditer.commit()
+
+                                        val ID_sendus= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF248, 0)
+                                        val ID_sendusEditer = ID_sendus.edit()
+                                        ID_sendusEditer.putString("Sendusamessage", jresult3.get("Sendusamessage") as String)
+                                        ID_sendusEditer.commit()
+
+                                        val ID_visitloc= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF249, 0)
+                                        val ID_visitlocEditer = ID_visitloc.edit()
+                                        ID_visitlocEditer.putString("Visitourlocation", jresult3.get("Visitourlocation") as String)
+                                        ID_visitlocEditer.commit()
+
+                                        val ID_submt= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF250, 0)
+                                        val ID_submtEditer = ID_submt.edit()
+                                        ID_submtEditer.putString("Submit", jresult3.get("Submit") as String)
+                                        ID_submtEditer.commit()
+
+                                        val ID_ownaccfndtransfr= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF251, 0)
+                                        val ID_ownaccfndtransfrEditer = ID_ownaccfndtransfr.edit()
+                                        ID_ownaccfndtransfrEditer.putString("OwnAccountFundTransfer", jresult3.get("OwnAccountFundTransfer") as String)
+                                        ID_ownaccfndtransfrEditer.commit()
+
+                                        val ID_othraccfndtransfr= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF252, 0)
+                                        val ID_othraccfndtransfrEditer = ID_othraccfndtransfr.edit()
+                                        ID_othraccfndtransfrEditer.putString("OtherAccountFundTransfer", jresult3.get("OtherAccountFundTransfer") as String)
+                                        ID_othraccfndtransfrEditer.commit()
+
+                                        val ID_transferupto= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF253, 0)
+                                        val ID_transferuptoEditer = ID_transferupto.edit()
+                                        ID_transferuptoEditer.putString("Transfer upto", jresult3.get("Transfer upto") as String)
+                                        ID_transferuptoEditer.commit()
+
+                                        val ID_instantly= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF254, 0)
+                                        val ID_instantlyEditer = ID_instantly.edit()
+                                        ID_instantlyEditer.putString("Instantly", jresult3.get("Instantly") as String)
+                                        ID_instantlyEditer.commit()
 
                                         val WelcomeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF34, 0)
                                         val FasterSP = applicationContext.getSharedPreferences(Config.SHARED_PREF35, 0)

@@ -66,10 +66,12 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
     private var txtamtpayable: TextView? = null
     private var txtvremark: TextView? = null
     private var tv_availbal: TextView? = null
+    private var tv_header: TextView? = null
     var status_spinner: Spinner? = null
     private var edt_txt_amount: EditText? = null
     private var edt_txt_remark: EditText? = null
     public var tv_balance: TextView? = null
+    public var txtv_availbal: TextView? = null
     public var spn_account_num: Spinner? = null
     private var progressDialog: ProgressDialog? = null
     private var btn_submit: Button? = null
@@ -122,6 +124,9 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
         edt_txt_amount = findViewById(R.id.edt_txt_amount)
         tvInstallment = findViewById(R.id.edt_txt_amount)
 
+        txtv_availbal= findViewById(R.id.txtv_availbal)
+        tv_header= findViewById(R.id.tv_header)
+
         tvInstallment!!.setOnClickListener(this)
         ll_needTochange!!.setOnClickListener(this)
         ll_remittance!!.setOnClickListener(this)
@@ -140,6 +145,13 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
         val AMtpaybleSP = applicationContext.getSharedPreferences(Config.SHARED_PREF95, 0)
         val RemarkeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF96, 0)
         val PAYSP = applicationContext.getSharedPreferences(Config.SHARED_PREF97, 0)
+        val RESETsp = applicationContext.getSharedPreferences(Config.SHARED_PREF189, 0)
+
+        val ID_availbal = applicationContext.getSharedPreferences(Config.SHARED_PREF119,0)
+        txtv_availbal!!.setText(ID_availbal.getString("AvailableBalance",null))
+
+        val ID_header = applicationContext.getSharedPreferences(Config.SHARED_PREF251,0)
+        tv_header!!.setText(ID_header.getString("OwnAccountFundTransfer",null))
 
 
         textView!!.setText(PayingFromSP.getString("PayingFrom", null))
@@ -148,7 +160,8 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
         txtv_payingto!!.setText(PayingToSP.getString("PayingTo", null))
         txtamtpayable!!.setText(AMtpaybleSP.getString("AmountPayable", null))
         txtvremark!!.setText(RemarkeSP.getString("Remark", null))
-
+        btn_submit!!.setText(PAYSP.getString("PAY", null))
+        btn_clear!!.setText(RESETsp.getString("RESET", null))
 
 
 
@@ -642,7 +655,11 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                             }
                         }
                     } else {
-                        CustomBottomSheeet.Show(this,"Please Select Paying To Account Number.","0")
+                        val payingtovalid = applicationContext.getSharedPreferences(Config.SHARED_PREF243, 0)
+                        var payto =payingtovalid.getString("Pleaseselectpayingtoaccountnumber", null)
+
+                        CustomBottomSheeet.Show(this, payto!!,"0")
+                      //  CustomBottomSheeet.Show(this,"Please Select Paying To Account Number.","0")
                         /*Toast.makeText(
                             this,
                             "Please Select Paying To Account Number.",

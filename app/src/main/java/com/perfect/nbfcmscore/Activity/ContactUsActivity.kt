@@ -19,6 +19,11 @@ class ContactUsActivity : AppCompatActivity() , View.OnClickListener{
     var tv_email: TextView? = null
     var tv_address: TextView? = null
     var tv_header: TextView? = null
+    var tv_customername: TextView? = null
+    var txtv_msg: TextView? = null
+    var txtv_loctn: TextView? = null
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,8 +43,18 @@ class ContactUsActivity : AppCompatActivity() , View.OnClickListener{
         tv_email!!.setText(CustomerNameSP.getString("ContactEmail",null))
         val CusMobileSP = applicationContext.getSharedPreferences(Config.SHARED_PREF30,0)
         tv_mobile!!.setText(CusMobileSP.getString("ContactNumber",null))
+
         val AddressSP = applicationContext.getSharedPreferences(Config.SHARED_PREF32,0)
         tv_address!!.setText(AddressSP.getString("ContactAddress",null))
+
+        val giveusSP = applicationContext.getSharedPreferences(Config.SHARED_PREF247,0)
+        tv_customername!!.setText(giveusSP.getString("Giveusacall",null))
+
+        val sendusSP = applicationContext.getSharedPreferences(Config.SHARED_PREF248,0)
+        txtv_msg!!.setText(sendusSP.getString("Sendusamessage",null))
+
+        val visitSP = applicationContext.getSharedPreferences(Config.SHARED_PREF249,0)
+        txtv_loctn!!.setText(visitSP.getString("Visitourlocation",null))
     }
 
     private fun setRegViews() {
@@ -50,6 +65,11 @@ class ContactUsActivity : AppCompatActivity() , View.OnClickListener{
         imgBack!!.setOnClickListener(this)
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)
+
+        tv_customername = findViewById<TextView>(R.id.tv_customername)
+        txtv_msg = findViewById<TextView>(R.id.txtv_msg)
+        txtv_loctn = findViewById<TextView>(R.id.txtv_loctn)
+
 
         tv_header= findViewById<TextView>(R.id.tv_header)
     }
