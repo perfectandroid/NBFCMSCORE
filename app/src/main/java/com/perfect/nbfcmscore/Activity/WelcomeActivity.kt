@@ -1290,6 +1290,11 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_instantlyEditer.putString("Instantly", jresult3.get("Instantly") as String)
                                         ID_instantlyEditer.commit()
 
+                                        val ID_weight= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF255, 0)
+                                        val ID_weightEditer = ID_weight.edit()
+                                        ID_weightEditer.putString("Weight", jresult3.get("Weight") as String)
+                                        ID_weightEditer.commit()
+
                                         val WelcomeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF34, 0)
                                         val FasterSP = applicationContext.getSharedPreferences(Config.SHARED_PREF35, 0)
                                         val SigninSP = applicationContext.getSharedPreferences(Config.SHARED_PREF36, 0)

@@ -2655,6 +2655,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_instantlyEditer.putString("Instantly", jresult3.get("Instantly") as String)
                                     ID_instantlyEditer.commit()
 
+                                    val ID_weight= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF255, 0)
+                                    val ID_weightEditer = ID_weight.edit()
+                                    ID_weightEditer.putString("Weight", jresult3.get("Weight") as String)
+                                    ID_weightEditer.commit()
+
 
 
 
