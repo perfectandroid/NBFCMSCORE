@@ -140,6 +140,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
         val AMtpaybleSP = applicationContext.getSharedPreferences(Config.SHARED_PREF95, 0)
         val RemarkeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF96, 0)
         val PAYSP = applicationContext.getSharedPreferences(Config.SHARED_PREF97, 0)
+        val RESETsp = applicationContext.getSharedPreferences(Config.SHARED_PREF189, 0)
 
 
         textView!!.setText(PayingFromSP.getString("PayingFrom", null))
@@ -148,7 +149,8 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
         txtv_payingto!!.setText(PayingToSP.getString("PayingTo", null))
         txtamtpayable!!.setText(AMtpaybleSP.getString("AmountPayable", null))
         txtvremark!!.setText(RemarkeSP.getString("Remark", null))
-
+        btn_submit!!.setText(PAYSP.getString("PAY", null))
+        btn_clear!!.setText(RESETsp.getString("RESET", null))
 
 
 
@@ -642,7 +644,11 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                             }
                         }
                     } else {
-                        CustomBottomSheeet.Show(this,"Please Select Paying To Account Number.","0")
+                        val payingtovalid = applicationContext.getSharedPreferences(Config.SHARED_PREF243, 0)
+                        var payto =payingtovalid.getString("Pleaseselectpayingtoaccountnumber", null)
+
+                        CustomBottomSheeet.Show(this, payto!!,"0")
+                      //  CustomBottomSheeet.Show(this,"Please Select Paying To Account Number.","0")
                         /*Toast.makeText(
                             this,
                             "Please Select Paying To Account Number.",

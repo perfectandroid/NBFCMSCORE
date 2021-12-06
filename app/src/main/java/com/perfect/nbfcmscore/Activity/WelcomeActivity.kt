@@ -1232,7 +1232,20 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                     ID_unclramtEditer.commit()
 
 
+                                    val ID_transupdte= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF244, 0)
+                                    val ID_transupdteEditer = ID_transupdte.edit()
+                                    ID_transupdteEditer.putString("TransactionUpdate(Days)", jresult3.get("TransactionUpdate(Days)") as String)
+                                    ID_transupdteEditer.commit()
 
+                                    val ID_updteintrvl= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF245, 0)
+                                    val ID_updteintrvlEditer = ID_updteintrvl.edit()
+                                    ID_updteintrvlEditer.putString("UpdateInterval", jresult3.get("UpdateInterval") as String)
+                                    ID_updteintrvlEditer.commit()
+
+                                    val ID_defltacc= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF246, 0)
+                                    val ID_defltaccEditer = ID_defltacc.edit()
+                                    ID_defltaccEditer.putString("DefaultAccount", jresult3.get("DefaultAccount") as String)
+                                    ID_defltaccEditer.commit()
 
 
                                     val WelcomeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF34, 0)

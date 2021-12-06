@@ -297,6 +297,11 @@ object Config {
     const val SHARED_PREF241="AccountType"
     const val SHARED_PREF242="UnclearAmount"
 
+    const val SHARED_PREF243="Pleaseselectpayingtoaccountnumber"
+    const val SHARED_PREF244="TransactionUpdate(Days)"
+    const val SHARED_PREF245="UpdateInterval"
+    const val SHARED_PREF246="DefaultAccount"
+
 
 
 

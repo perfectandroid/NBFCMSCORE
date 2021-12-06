@@ -2584,6 +2584,31 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_unclramtEditer.putString("UnclearAmount", jresult3.get("UnclearAmount") as String)
                                     ID_unclramtEditer.commit()
 
+
+
+                                    val ID_reset= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF189, 0)
+                                    val ID_resetEditer = ID_reset.edit()
+                                    ID_resetEditer.putString("RESET", jresult3.get("RESET") as String)
+                                    ID_resetEditer.commit()
+
+                                    val ID_transupdte= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF244, 0)
+                                    val ID_transupdteEditer = ID_transupdte.edit()
+                                    ID_transupdteEditer.putString("TransactionUpdate(Days)", jresult3.get("TransactionUpdate(Days)") as String)
+                                    ID_transupdteEditer.commit()
+
+                                    val ID_updteintrvl= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF245, 0)
+                                    val ID_updteintrvlEditer = ID_updteintrvl.edit()
+                                    ID_updteintrvlEditer.putString("UpdateInterval", jresult3.get("UpdateInterval") as String)
+                                    ID_updteintrvlEditer.commit()
+
+                                    val ID_defltacc= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF246, 0)
+                                    val ID_defltaccEditer = ID_defltacc.edit()
+                                    ID_defltaccEditer.putString("DefaultAccount", jresult3.get("DefaultAccount") as String)
+                                    ID_defltaccEditer.commit()
+
+
+
+
                                     val myIntent = Intent(this@HomeActivity, HomeActivity::class.java)
                                     overridePendingTransition(0, 0)
                                     startActivity(myIntent)
