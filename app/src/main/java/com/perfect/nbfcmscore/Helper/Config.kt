@@ -306,6 +306,13 @@ object Config {
     const val SHARED_PREF249="Visitourlocation"
     const val SHARED_PREF250="Submit"
 
+    const val SHARED_PREF251="OwnAccountFundTransfer"
+    const val SHARED_PREF252="OtherAccountFundTransfer"
+
+    const val SHARED_PREF253="Transfer upto"
+    const val SHARED_PREF254="Instantly"
+
+
 
     fun getHostnameVerifier(): HostnameVerifier {
         return HostnameVerifier { hostname, session -> true }
