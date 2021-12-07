@@ -67,8 +67,8 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
     var jArrayAccount: JSONArray? = null
 
 
-    var rltv_mobile: RelativeLayout? = null
-    var rltv_subscriber: RelativeLayout? = null
+    var rltv_mobile: LinearLayout? = null
+    var rltv_subscriber: LinearLayout? = null
     var ll_recentrecharge: LinearLayout? = null
     var ll_contact: LinearLayout? = null
 
@@ -252,8 +252,8 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 
         rvrecentRecharge = findViewById<FullLenghRecyclertview>(R.id.rvrecentRecharge)
 
-        rltv_mobile = findViewById<RelativeLayout>(R.id.rltv_mobile)
-        rltv_subscriber = findViewById<RelativeLayout>(R.id.rltv_subscriber)
+        rltv_mobile = findViewById<LinearLayout>(R.id.rltv_mobile)
+        rltv_subscriber = findViewById<LinearLayout>(R.id.rltv_subscriber)
         ll_recentrecharge = findViewById<LinearLayout>(R.id.ll_recentrecharge)
         ll_contact = findViewById<LinearLayout>(R.id.ll_contact)
 
