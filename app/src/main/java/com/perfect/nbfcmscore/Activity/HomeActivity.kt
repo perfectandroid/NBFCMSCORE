@@ -3842,6 +3842,45 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_applctnnoEditer.putString("ApplicationNumber", jresult3.get("ApplicationNumber") as String)
                                     ID_applctnnoEditer.commit()
 
+                                    val ID_cusname= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF268, 0)
+                                    val ID_cusnameEditer = ID_cusname.edit()
+                                    ID_cusnameEditer.putString("Customer Name", jresult3.get("Customer Name") as String)
+                                    ID_cusnameEditer.commit()
+
+                                    val ID_cusid= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF269, 0)
+                                    val ID_cusidEditer = ID_cusid.edit()
+                                    ID_cusidEditer.putString("Customer Id", jresult3.get("Customer Id") as String)
+                                    ID_cusidEditer.commit()
+
+                                    val ID_elctrnc= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF270, 0)
+                                    val ID_elctrncEditer = ID_elctrnc.edit()
+                                    ID_elctrncEditer.putString("Electronicuseonly", jresult3.get("Electronicuseonly") as String)
+                                    ID_elctrncEditer.commit()
+
+                                    val ID_point1= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF271, 0)
+                                    val ID_point1Editer = ID_point1.edit()
+                                    ID_point1Editer.putString("Streamlinetransactions", jresult3.get("Streamlinetransactions") as String)
+                                    ID_point1Editer.commit()
+
+
+                                    val ID_point2= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF272, 0)
+                                    val ID_point2Editer = ID_point2.edit()
+                                    ID_point2Editer.putString("Enableasinglepointofcontactforcreditanddebit", jresult3.get("Enableasinglepointofcontactforcreditanddebit") as String)
+                                    ID_point2Editer.commit()
+
+
+                                    val ID_pont3= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF273, 0)
+                                    val ID_pont3Editer = ID_pont3.edit()
+                                    ID_pont3Editer.putString("Strengthenyourloanportfolio", jresult3.get("Strengthenyourloanportfolio") as String)
+                                    ID_pont3Editer.commit()
+
+
+                                    val ID_point4= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF274, 0)
+                                    val ID_point4Editer = ID_point4.edit()
+                                    ID_point4Editer.putString("Eliminatethelongqueues", jresult3.get("Eliminatethelongqueues") as String)
+                                    ID_point4Editer.commit()
+
+
 
 
 

@@ -90,7 +90,7 @@ class BackViewFragment : Fragment() , OnClickListener{
         txtv_points4 = v.findViewById<View>(R.id.txtv_points4) as TextView?
         txtv_header= v.findViewById<View>(R.id.txtv_header) as TextView?
 
-        txtv_purpose!!.setText(R.string.purpose)
+        //txtv_purpose!!.setText(R.string.purpose)
         txtv_purpose!!.visibility = View.VISIBLE
         txtv_points1!!.visibility = View.VISIBLE
         txtv_points2!!.visibility = View.VISIBLE
@@ -114,6 +114,19 @@ class BackViewFragment : Fragment() , OnClickListener{
         val ID_Purpose = activity!!.getSharedPreferences(Config.SHARED_PREF105,0)
         txtv_header!!.setText(ID_Virtual.getString("VirtualCard",null))
         txtv_purpose!!.setText(ID_Purpose.getString("PurposeofVirtualCard",null))
+
+        val FK_p1SP = activity!!.getSharedPreferences(Config.SHARED_PREF271, 0)
+        txtv_points1!!.setText(FK_p1SP.getString("Streamlinetransactions",null))
+
+        val FK_p2SP = activity!!.getSharedPreferences(Config.SHARED_PREF272, 0)
+        txtv_points2!!.setText(FK_p2SP.getString("Enableasinglepointofcontactforcreditanddebit",null))
+
+        val FK_p3SP = activity!!.getSharedPreferences(Config.SHARED_PREF273, 0)
+        txtv_points3!!.setText(FK_p3SP.getString("Strengthenyourloanportfolio",null))
+
+        val FK_p4SP = activity!!.getSharedPreferences(Config.SHARED_PREF274, 0)
+        txtv_points4!!.setText(FK_p4SP.getString("Eliminatethelongqueues",null))
+
 
 
         getVritualcardCombination()

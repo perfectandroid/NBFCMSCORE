@@ -45,8 +45,12 @@ class FrontViewFragment : Fragment() {
     var txtv_points3: TextView? = null
     var txtv_points4: TextView? = null
     var txtv_header: TextView? = null
+    var txtv_cusid: TextView? = null
+    var txtv_cusname: TextView? = null
+    var txtv_elctrnc: TextView? = null
 
     var img_applogo: ImageView? = null
+
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -61,7 +65,24 @@ class FrontViewFragment : Fragment() {
         tv_vritualcard = v.findViewById<View>(R.id.tv_vritualcard) as TextView?
         txtv_header = v.findViewById<View>(R.id.txtv_header) as TextView?
 
+        txtv_cusid = v.findViewById<View>(R.id.txtv_cusid) as TextView?
+        txtv_cusname = v.findViewById<View>(R.id.txtv_cusname) as TextView?
+        txtv_elctrnc = v.findViewById<View>(R.id.txtv_elctrnc) as TextView?
+
+
+        val FK_CustomernameSP = activity!!.getSharedPreferences(Config.SHARED_PREF268, 0)
+        txtv_cusname!!.setText(FK_CustomernameSP.getString("Customer Name",null))
+
+        val FK_CusidSP = activity!!.getSharedPreferences(Config.SHARED_PREF269, 0)
+        txtv_cusid!!.setText(FK_CusidSP.getString("Customer Id",null))
+
+        val FK_electrncSP = activity!!.getSharedPreferences(Config.SHARED_PREF270, 0)
+        txtv_elctrnc!!.setText(FK_electrncSP.getString("Electronicuseonly",null))
+
+
+
         txtv_purpose = v.findViewById<View>(R.id.txtv_purpose) as TextView?
+
         txtv_points1 = v.findViewById<View>(R.id.txtv_points1) as TextView?
         txtv_points2 = v.findViewById<View>(R.id.txtv_points2) as TextView?
         txtv_points3 = v.findViewById<View>(R.id.txtv_points3) as TextView?
@@ -69,7 +90,7 @@ class FrontViewFragment : Fragment() {
 
         img_applogo = v.findViewById<View>(R.id.img_applogo) as ImageView?
 
-        txtv_purpose!!.setText(R.string.purpose)
+      //  txtv_purpose!!.setText(R.string.purpose)
         txtv_purpose!!.visibility = View.VISIBLE
         txtv_points1!!.visibility = View.VISIBLE
         txtv_points2!!.visibility = View.VISIBLE
@@ -81,6 +102,19 @@ class FrontViewFragment : Fragment() {
         val ID_Purpose = activity!!.getSharedPreferences(Config.SHARED_PREF105,0)
         txtv_header!!.setText(ID_Virtual.getString("VirtualCard",null))
         txtv_purpose!!.setText(ID_Purpose.getString("PurposeofVirtualCard",null))
+
+
+        val FK_p1SP = activity!!.getSharedPreferences(Config.SHARED_PREF271, 0)
+        txtv_points1!!.setText(FK_p1SP.getString("Streamlinetransactions",null))
+
+        val FK_p2SP = activity!!.getSharedPreferences(Config.SHARED_PREF272, 0)
+        txtv_points2!!.setText(FK_p2SP.getString("Enableasinglepointofcontactforcreditanddebit",null))
+
+        val FK_p3SP = activity!!.getSharedPreferences(Config.SHARED_PREF273, 0)
+        txtv_points3!!.setText(FK_p3SP.getString("Strengthenyourloanportfolio",null))
+
+        val FK_p4SP = activity!!.getSharedPreferences(Config.SHARED_PREF274, 0)
+        txtv_points4!!.setText(FK_p4SP.getString("Eliminatethelongqueues",null))
 
         val FK_CustomerSP = activity!!.getSharedPreferences(Config.SHARED_PREF1, 0)
         cusid = FK_CustomerSP.getString("FK_Customer", null)
