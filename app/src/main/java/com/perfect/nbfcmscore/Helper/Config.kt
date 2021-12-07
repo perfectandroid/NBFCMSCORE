@@ -335,6 +335,9 @@ object Config {
     const val SHARED_PREF273="Strengthenyourloanportfolio"
     const val SHARED_PREF274="Eliminatethelongqueues"
 
+    const val SHARED_PREF275="PleaseEnterValidIFSC"
+    const val SHARED_PREF276="BeneficiaryAccountNumberdidntmatch"
+
 
 
 
