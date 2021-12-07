@@ -69,6 +69,7 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
     private var progressDialog: ProgressDialog? = null
     var mapFragment: SupportMapFragment? = null
     var tv_branch: TextView? = null
+    var txtv_entrdistrct: TextView? = null
     var tv_bankdetails: TextView? = null
     var tv_header: TextView? = null
     var strBranches ="";
@@ -359,6 +360,7 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
         tv_branch = findViewById<TextView>(R.id.tv_branch)
         tv_bankdetails = findViewById<TextView>(R.id.tv_bankdetails)
         rvBranchList = findViewById<RecyclerView>(R.id.rvBranchList)
+        txtv_entrdistrct= findViewById<TextView>(R.id.txtv_entrdistrct)
 
         im_back = findViewById<ImageView>(R.id.im_back)
         im_home = findViewById<ImageView>(R.id.im_home)
@@ -373,6 +375,8 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
 
      //   act_district!!.setText(EnterDistSP.getString("EnterDistrict", null))
         tv_header!!.setText(BranchdetailSP.getString("BranchDetails", null))
+
+        txtv_entrdistrct!!.setText(EnterDistSP.getString("EnterDistrict",null))
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
