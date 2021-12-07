@@ -925,7 +925,7 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
             .retryInterval(2, TimeUnit.SECONDS)
             .progressInterval(1, TimeUnit.SECONDS)
             .priority(Priority.HIGH)
-            .allowedNetworkTypes(DownloadRequest.NETWORK_WIFI)
+            .allowedNetworkTypes(DownloadRequest.NETWORK_ALL)
             .destinationFilePath(destPath.toString())
             .downloadCallback(object : DownloadCallback {
                 override fun onStart(downloadId: Int, totalBytes: Long) {
