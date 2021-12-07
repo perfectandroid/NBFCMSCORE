@@ -72,6 +72,11 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
     var etxt_amount: EditText? = null
     var etxt_mpin: EditText? = null
     var tv_header: TextView? = null
+
+    var txtamt: TextView? = null
+    var txtvremark: TextView? = null
+    var txtvMPIN: TextView? = null
+
     var txtv_slctacnt: TextView? = null
     var txtv_slctsndr: TextView? = null
     var txtv_slctrecvr: TextView? = null
@@ -118,7 +123,17 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
         val Fundtransfrsp = applicationContext.getSharedPreferences(Config.SHARED_PREF65, 0)
         tv_header!!.setText(Fundtransfrsp.getString("QuickPay", null))
 
+        val ResetSP = applicationContext.getSharedPreferences(Config.SHARED_PREF189, 0)
+        btn_clear!!.setText(ResetSP.getString("RESET", null))
 
+        val AmtpaybleSP = applicationContext.getSharedPreferences(Config.SHARED_PREF95, 0)
+        txtamt!!.setText(AmtpaybleSP.getString("AmountPayable", null))
+
+        val RemarkSP = applicationContext.getSharedPreferences(Config.SHARED_PREF96, 0)
+        txtvremark!!.setText(RemarkSP.getString("Remark", null))
+
+        val MPINSP = applicationContext.getSharedPreferences(Config.SHARED_PREF140, 0)
+        txtvMPIN!!.setText(MPINSP.getString("MPIN", null))
 
 
     }
@@ -360,6 +375,11 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
         txtv_slctrecvr= findViewById<TextView>(R.id.txtv_slctrecvr)
         tv_header= findViewById<TextView>(R.id.tv_header)
 
+        txtamt= findViewById<TextView>(R.id.txtamt)
+        txtvremark= findViewById<TextView>(R.id.txtvremark)
+        txtvMPIN= findViewById<TextView>(R.id.txtvMPIN)
+
+
 
         add_new_sender = findViewById<TextView>(R.id.add_new_sender)
         add_new_receiver = findViewById<TextView>(R.id.add_new_receiver)
@@ -434,15 +454,21 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 try {
+                    val Makepaymntsp = applicationContext.getSharedPreferences(Config.SHARED_PREF142, 0)
+
                     if (s.length != 0) {
                         var originalString = s.toString()
                         if (originalString.contains(",")) {
                             originalString = originalString.replace(",".toRegex(), "")
                         }
                         val num = ("" + originalString).toDouble()
-                        mBtnSubmit!!.text = "MAKE PAYMENT OF  " + "\u20B9 " + Config.getDecimelFormate(num)
+
+
+                        mBtnSubmit!!.setText(Makepaymntsp.getString("MAKEPAYMENT", null)+" "+"\u20B9"+Config.getDecimelFormate(num))
+                      //  mBtnSubmit!!.text = "MAKE PAYMENT OF  " + "\u20B9 " + Config.getDecimelFormate(num)
                     } else {
-                        mBtnSubmit!!.text = "MAKE PAYMENT"
+                        mBtnSubmit!!.setText(Makepaymntsp.getString("MAKEPAYMENT", null))
+                      // mBtnSubmit!!.text = "MAKE PAYMENT"
                     }
                 } catch (e: NumberFormatException) {
                 }
@@ -783,9 +809,14 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
 
         val amount = etxt_amount!!.text.toString()
 
-
+        val ID_entrcamt = applicationContext.getSharedPreferences(Config.SHARED_PREF259,0)
+        var entramt = ID_entrcamt.getString("Pleaseenteramount",null)
         if (TextUtils.isEmpty(amount)) {
-            CustomBottomSheeet.Show(this,"Please enter the amount","0")
+
+
+            CustomBottomSheeet.Show(this,entramt!!,"0")
+
+           // CustomBottomSheeet.Show(this,"Please enter the amount","0")
            // etxt_amount!!.error = "Please enter the amount"
             return false
         }
@@ -799,7 +830,9 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
         }
 
         if (amt < 1) {
-            CustomBottomSheeet.Show(this,"Please enter the amount","0")
+
+            CustomBottomSheeet.Show(this,entramt!!,"0")
+            //CustomBottomSheeet.Show(this,"Please enter the amount","0")
            // etxt_amount!!.error = "Please enter the amount"
             return false
         }
