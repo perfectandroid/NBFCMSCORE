@@ -102,8 +102,12 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
     var OTPRef: String? = ""
     var OTPCode: String? = ""
 
-
-
+    var txtv_accntno: TextView? = null
+    var txtvbenf: TextView? = null
+    var txtv_benfacno: TextView? = null
+    var txtv_confrmbenfacno: TextView? = null
+    var txtv_ifs: TextView? = null
+    var txtv_amtpay: TextView? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -137,30 +141,37 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
         tv_beneficiarylist!!.setText(ID_Benflist.getString("BeneficiaryList",null))
 
         val ID_Accno = applicationContext.getSharedPreferences(Config.SHARED_PREF158,0)
-        tie_accountnumber!!.setHint(ID_Accno.getString("AccountNumber",null))
+       // tie_accountnumber!!.setHint(ID_Accno.getString("AccountNumber",null))
+        txtv_accntno!!.setText(ID_Accno.getString("AccountNumber",null))
 
         val ID_Benfname = applicationContext.getSharedPreferences(Config.SHARED_PREF159,0)
-        tie_beneficiary!!.setHint(ID_Benfname.getString("BeneficiaryName",null))
+       // tie_beneficiary!!.setHint(ID_Benfname.getString("BeneficiaryName",null))
+        txtvbenf!!.setText(ID_Benfname.getString("BeneficiaryName",null))
 
         val ID_Benfaccno = applicationContext.getSharedPreferences(Config.SHARED_PREF160,0)
-        tie_beneficiary_aacno!!.setHint(ID_Benfaccno.getString("BeneficiaryCNo",null))
-
+        //tie_beneficiary_aacno!!.setHint(ID_Benfaccno.getString("BeneficiaryCNo",null))
+        txtv_benfacno!!.setText(ID_Benfaccno.getString("BeneficiaryCNo",null))
 
         val ID_confBenfacc = applicationContext.getSharedPreferences(Config.SHARED_PREF161,0)
-        tie_Conf_beneficiary_aacno!!.setHint(ID_confBenfacc.getString("ConfirmBeneficiaryACNo",null))
-
+       // tie_Conf_beneficiary_aacno!!.setHint(ID_confBenfacc.getString("ConfirmBeneficiaryACNo",null))
+        txtv_confrmbenfacno!!.setText(ID_confBenfacc.getString("ConfirmBeneficiaryACNo",null))
 
         val ID_ifsc = applicationContext.getSharedPreferences(Config.SHARED_PREF150,0)
-        tie_ifsc_code!!.setHint(ID_ifsc.getString("IFSCCode",null))
+       // tie_ifsc_code!!.setHint(ID_ifsc.getString("IFSCCode",null))
+        txtv_ifs!!.setText(ID_ifsc.getString("IFSCCode",null))
 
         val ID_amtpyble = applicationContext.getSharedPreferences(Config.SHARED_PREF95,0)
-        tie_amount!!.setHint(ID_amtpyble.getString("AmountPayable",null))
+      //  tie_amount!!.setHint(ID_amtpyble.getString("AmountPayable",null))
+        txtv_amtpay!!.setText(ID_amtpyble.getString("AmountPayable",null))
 
         val ID_chkbenf = applicationContext.getSharedPreferences(Config.SHARED_PREF162,0)
         chk_beneficiary!!.setText(ID_chkbenf.getString("SaveBeneficiaryForFuture",null))
 
         val ID_Pay = applicationContext.getSharedPreferences(Config.SHARED_PREF97,0)
         but_pay!!.setText(ID_Pay.getString("PAY",null))
+
+        val ID_clr = applicationContext.getSharedPreferences(Config.SHARED_PREF189,0)
+        btn_clear!!.setText(ID_clr.getString("RESET",null))
 
 
 
@@ -228,6 +239,14 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
        // tv_header = findViewById<TextView>(R.id.tv_header)
         tv_beneficiaryname = findViewById<TextView>(R.id.tv_beneficiaryname)
         txtTrans = findViewById<TextView>(R.id.txtTrans)
+
+        txtv_accntno = findViewById<TextView>(R.id.txtv_accntno)
+        txtvbenf = findViewById<TextView>(R.id.txtvbenf)
+        txtv_benfacno = findViewById<TextView>(R.id.txtv_benfacno)
+        txtv_confrmbenfacno = findViewById<TextView>(R.id.txtv_confrmbenfacno)
+        txtv_ifs = findViewById<TextView>(R.id.txtv_ifs)
+        txtv_amtpay = findViewById<TextView>(R.id.txtv_amtpay)
+
 
         im_beneficiarylist = findViewById<ImageView>(R.id.im_beneficiarylist)
         tv_beneficiarylist = findViewById<TextView>(R.id.tv_beneficiarylist)
@@ -594,34 +613,59 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
 //        Log.e(TAG,"CONFIRMS   446     "+BeneAccountNumber_conf)
 
         if (AccountNo!!.length != 12){
+
+            val ID_validacc = applicationContext.getSharedPreferences(Config.SHARED_PREF232,0)
+            var validacc = ID_validacc.getString("SelectavalidAccountNumber",null)
+            CustomBottomSheeet.Show(this,validacc!!,"0")
            // Toast.makeText(applicationContext,"Select valid  account number",Toast.LENGTH_LONG).show()
-            CustomBottomSheeet.Show(this,"Select valid  account number","0")
+          //  CustomBottomSheeet.Show(this,"Select valid  account number","0")
         }
         else if(BeneName!!.equals("")){
+            val ID_benfname = applicationContext.getSharedPreferences(Config.SHARED_PREF229,0)
+            var benfname = ID_benfname.getString("PleaseEnterBeneficiaryName",null)
+            CustomBottomSheeet.Show(this,benfname!!,"0")
             //Toast.makeText(applicationContext,"Please enter Beneficiary name",Toast.LENGTH_LONG).show()
-            CustomBottomSheeet.Show(this,"Please enter Beneficiary name","0")
+          //  CustomBottomSheeet.Show(this,"Please enter Beneficiary name","0")
         }
         else if(BeneAccountNumber!!.equals("") || BeneAccountNumber!!.length != 12){
+            val ID_validbenfacc = applicationContext.getSharedPreferences(Config.SHARED_PREF230,0)
+            var valdbenfacc = ID_validbenfacc.getString("PleaseEnterValidBeneficiaryAccountNumber",null)
+            CustomBottomSheeet.Show(this,valdbenfacc!!,"0")
             //Toast.makeText(applicationContext,"Beneficiary account number is required",Toast.LENGTH_LONG).show()
-            CustomBottomSheeet.Show(this,"Please enter valid Beneficiary account number ","0")
+           // CustomBottomSheeet.Show(this,"Please enter valid Beneficiary account number ","0")
         }
         else if(BeneAccountNumber_conf!!.equals("")){
+            val ID_confrmvalidbenfacc = applicationContext.getSharedPreferences(Config.SHARED_PREF231,0)
+            var confrmvaldbenfacc = ID_confrmvalidbenfacc.getString("PleaseentervalidConfirmBeneficiaryaccountnumber",null)
+            CustomBottomSheeet.Show(this,confrmvaldbenfacc!!,"0")
            // Toast.makeText(applicationContext,"Confirm Beneficiary account number is required",Toast.LENGTH_LONG).show()
-            CustomBottomSheeet.Show(this,"Please enter valid Confirm Beneficiary account number","0")
+           // CustomBottomSheeet.Show(this,"Please enter valid Confirm Beneficiary account number","0")
         }
         else if(!BeneAccountNumber!!.equals(BeneAccountNumber_conf!!)){
+            val ID_benfaccmtch = applicationContext.getSharedPreferences(Config.SHARED_PREF276,0)
+            var benfaccmtch = ID_benfaccmtch.getString("BeneficiaryAccountNumberdidntmatch",null)
+            CustomBottomSheeet.Show(this,benfaccmtch!!,"0")
            // Toast.makeText(applicationContext,"Beneficiary account numbers don't match",Toast.LENGTH_LONG).show()
-            CustomBottomSheeet.Show(this,"Beneficiary account numbers don't match","0")
+           // CustomBottomSheeet.Show(this,"Beneficiary account numbers don't match","0")
         }else if(BeneIFSC!!.equals("") || BeneIFSC!!.length != 11){
+            val ID_validifs = applicationContext.getSharedPreferences(Config.SHARED_PREF275,0)
+            var validifs = ID_validifs.getString("PleaseEnterValidIFSC",null)
+            CustomBottomSheeet.Show(this,validifs!!,"0")
            // Toast.makeText(applicationContext,"Please enter valid IFSC",Toast.LENGTH_LONG).show()
-            CustomBottomSheeet.Show(this,"Please enter valid IFSC","0")
+          //  CustomBottomSheeet.Show(this,"Please enter valid IFSC","0")
         }else if(BeneIFSC!!.equals("") || BeneIFSC!!.length != 11){
+            val ID_validifs = applicationContext.getSharedPreferences(Config.SHARED_PREF275,0)
+            var validifs = ID_validifs.getString("PleaseEnterValidIFSC",null)
+            CustomBottomSheeet.Show(this,validifs!!,"0")
             //Toast.makeText(applicationContext,"Please enter valid IFSC",Toast.LENGTH_LONG).show()
-            CustomBottomSheeet.Show(this,"Please enter valid IFSC","0")
+           // CustomBottomSheeet.Show(this,"Please enter valid IFSC","0")
         }
         else if(Amount!!.length == 0 ||Amount!!.toDouble() <= 0){
+            val ID_entramt = applicationContext.getSharedPreferences(Config.SHARED_PREF223,0)
+            var entram = ID_entramt.getString("EnterAmount",null)
+            CustomBottomSheeet.Show(this,entram!!,"0")
           //  Toast.makeText(applicationContext,"Enter Amount",Toast.LENGTH_LONG).show()
-            CustomBottomSheeet.Show(this,"Enter Amount","0")
+           // CustomBottomSheeet.Show(this,"Enter Amount","0")
         }else{
 
 

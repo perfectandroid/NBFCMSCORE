@@ -3881,7 +3881,15 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_point4Editer.commit()
 
 
+                                    val ID_validifsc= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF275, 0)
+                                    val ID_validifscEditer = ID_validifsc.edit()
+                                    ID_validifscEditer.putString("PleaseEnterValidIFSC", jresult3.get("PleaseEnterValidIFSC") as String)
+                                    ID_validifscEditer.commit()
 
+                                    val ID_benfmatch= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF276, 0)
+                                    val ID_benfmatchEditer = ID_benfmatch.edit()
+                                    ID_benfmatchEditer.putString("BeneficiaryAccountNumberdidntmatch", jresult3.get("BeneficiaryAccountNumberdidntmatch") as String)
+                                    ID_benfmatchEditer.commit()
 
 
 
