@@ -208,6 +208,9 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
 
 
                                 }
+                                else if ( jObject.getString("StatusCode").equals("-1") ){
+                                    alertMessage1("", jObject.getString("EXMessage"))
+                                }
                                 else if ( ! jObject.getString("otpRefNo").equals("0") &&  jObject.getString("Status").equals("200") ){
                                     startActivity(Intent(this@AddSender, TransactionOTPActivity::class.java))
                                 }

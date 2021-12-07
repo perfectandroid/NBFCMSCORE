@@ -1330,6 +1330,32 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_entrintrstrateEditer.putString("EnterInterestRate", jresult3.get("EnterInterestRate") as String)
                                         ID_entrintrstrateEditer.commit()
 
+                                        val ID_loanpurpse1= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF263, 0)
+                                        val ID_loanpurpse1Editer = ID_loanpurpse1.edit()
+                                        ID_loanpurpse1Editer.putString("LoanPurpose", jresult3.get("LoanPurpose") as String)
+                                        ID_loanpurpse1Editer.commit()
+
+                                        val ID_loantyp= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF264, 0)
+                                        val ID_loantypEditer = ID_loantyp.edit()
+                                        ID_loantypEditer.putString("LoanType", jresult3.get("LoanType") as String)
+                                        ID_loantypEditer.commit()
+
+                                        val ID_applctndt= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF265, 0)
+                                        val ID_applctndtEditer = ID_applctndt.edit()
+                                        ID_applctndtEditer.putString("ApplicationDate", jresult3.get("ApplicationDate") as String)
+                                        ID_applctndtEditer.commit()
+
+                                        val ID_applctnamt= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF266, 0)
+                                        val ID_applctnamtEditer = ID_applctnamt.edit()
+                                        ID_applctnamtEditer.putString("ApplicationAmount", jresult3.get("ApplicationAmount") as String)
+                                        ID_applctnamtEditer.commit()
+
+                                        val ID_applctnno= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF267, 0)
+                                        val ID_applctnnoEditer = ID_applctnno.edit()
+                                        ID_applctnnoEditer.putString("ApplicationNumber", jresult3.get("ApplicationNumber") as String)
+                                        ID_applctnnoEditer.commit()
+
+
 
                                         val WelcomeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF34, 0)
                                         val FasterSP = applicationContext.getSharedPreferences(Config.SHARED_PREF35, 0)

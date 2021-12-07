@@ -320,6 +320,13 @@ object Config {
     const val SHARED_PREF261="EnterMonth"
     const val SHARED_PREF262="EnterInterestRate"
 
+    const val SHARED_PREF263="LoanPurpose"
+    const val SHARED_PREF264="LoanType"
+    const val SHARED_PREF265="ApplicationDate"
+    const val SHARED_PREF266="ApplicationAmount"
+    const val SHARED_PREF267="ApplicationNumber"
+
+
 
 
 

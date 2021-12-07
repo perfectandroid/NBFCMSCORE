@@ -419,7 +419,11 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
                                     alertMessage1(status, message)
 
 
-                                }  else if (jObject.getString("StatusCode").equals("200") && !jObject.getString("otpRefNo").equals("0")) {
+                                }
+                                else if ( jObject.getString("StatusCode").equals("-1") ){
+                                    alertMessage1("", jObject.getString("EXMessage"))
+                                }
+                                else if (jObject.getString("StatusCode").equals("200") && !jObject.getString("otpRefNo").equals("0")) {
 
                                 }
 
