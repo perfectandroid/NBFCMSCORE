@@ -491,15 +491,7 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
 
         if (LoanAmount.equals("")){
             val ID_princamt = applicationContext.getSharedPreferences(Config.SHARED_PREF260,0)
-
-
-
-
-          //  tv_header!!.setText(ID_header.getString("EMICalculator",null))
             var princamt = ID_princamt.getString("EnterPrincipalAmount",null)
-
-
-
 
 
             CustomBottomSheeet.Show(this,princamt!!,"0")

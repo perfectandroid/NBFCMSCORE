@@ -83,6 +83,7 @@
                                         android:orientation="vertical">
 
                                         <TextView
+                                            android:id="@+id/txtv_princamt"
                                             android:layout_width="fill_parent"
                                             android:layout_height="wrap_content"
                                             android:gravity="start"
@@ -138,6 +139,7 @@
                                         android:orientation="vertical">
 
                                         <TextView
+                                            android:id="@+id/txtv_mnth"
                                             android:layout_width="fill_parent"
                                             android:layout_height="wrap_content"
                                             android:gravity="start"
@@ -255,6 +257,7 @@
                                         android:orientation="vertical">
 
                                         <TextView
+                                            android:id="@+id/txtv_loanpur"
                                             android:layout_width="fill_parent"
                                             android:layout_height="wrap_content"
                                             android:gravity="start"
