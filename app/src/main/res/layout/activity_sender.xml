@@ -129,6 +129,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/txtv_lastname"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:gravity="start"
@@ -182,6 +183,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/txtvmob"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:gravity="start"
@@ -236,6 +238,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/txtvdate"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:gravity="start"

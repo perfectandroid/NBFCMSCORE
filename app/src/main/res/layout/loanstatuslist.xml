@@ -71,6 +71,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/txtvloanappno"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
@@ -99,6 +100,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/txtv_loanperd"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
@@ -142,6 +144,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/txtv_loanpurpse"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
@@ -170,6 +173,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/txv_loantyp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
@@ -215,6 +219,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/txtv_applctdt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -246,6 +251,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/txtv_applamt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"

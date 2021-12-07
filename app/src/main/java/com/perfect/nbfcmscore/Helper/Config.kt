@@ -320,6 +320,22 @@ object Config {
     const val SHARED_PREF261="EnterMonth"
     const val SHARED_PREF262="EnterInterestRate"
 
+    const val SHARED_PREF263="LoanPurpose"
+    const val SHARED_PREF264="LoanType"
+    const val SHARED_PREF265="ApplicationDate"
+    const val SHARED_PREF266="ApplicationAmount"
+    const val SHARED_PREF267="ApplicationNumber"
+
+    const val SHARED_PREF268="Customer Name"
+    const val SHARED_PREF269="Customer Id"
+    const val SHARED_PREF270="Electronicuseonly"
+
+    const val SHARED_PREF271="Streamlinetransactions"
+    const val SHARED_PREF272="Enableasinglepointofcontactforcreditanddebit"
+    const val SHARED_PREF273="Strengthenyourloanportfolio"
+    const val SHARED_PREF274="Eliminatethelongqueues"
+
+
 
 
 

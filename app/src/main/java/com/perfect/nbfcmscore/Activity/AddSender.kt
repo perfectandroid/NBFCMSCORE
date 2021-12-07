@@ -44,7 +44,14 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
     var txtv_mobile_number: EditText? = null
     var txtv_dob: EditText? = null
     var btn_register: Button? = null
+    var btn_clear: Button? = null
     var tv_title: TextView? = null
+
+    var receiver_name_inputlayout: TextView? = null
+    var txtv_lastname: TextView? = null
+    var txtvmob: TextView? = null
+    var txtvdate: TextView? = null
+
 
     public var arrayList2: ArrayList<SenderReceiver>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,14 +63,25 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
         val Fundtransfrsp = applicationContext.getSharedPreferences(Config.SHARED_PREF138, 0)
         tv_title!!.setText(Fundtransfrsp.getString("AddNewSender", null))
 
-     /*   val Firsttimesp = applicationContext.getSharedPreferences(Config.SHARED_PREF143, 0)
-        txtv_first_name!!.setHint(Firsttimesp.getString("FirstName", null))
 
-        val Lastnamesp = applicationContext.getSharedPreferences(Config.SHARED_PREF144, 0)
-        txtv_last_name!!.setHint(Lastnamesp.getString("LastName", null))
-*/
         val Registerp = applicationContext.getSharedPreferences(Config.SHARED_PREF146, 0)
         btn_register!!.setText(Registerp.getString("REGISTER", null))
+
+        val Resetsp = applicationContext.getSharedPreferences(Config.SHARED_PREF189, 0)
+        btn_clear!!.setText(Resetsp.getString("RESET", null))
+
+        val firstnamesp = applicationContext.getSharedPreferences(Config.SHARED_PREF143, 0)
+        receiver_name_inputlayout!!.setText(firstnamesp.getString("FirstName", null))
+
+        val lastnamesp = applicationContext.getSharedPreferences(Config.SHARED_PREF144, 0)
+        txtv_lastname!!.setText(lastnamesp.getString("LastName", null))
+
+        val mobsp = applicationContext.getSharedPreferences(Config.SHARED_PREF110, 0)
+        txtvmob!!.setText(mobsp.getString("MobileNumber", null))
+
+        val datesp = applicationContext.getSharedPreferences(Config.SHARED_PREF173, 0)
+        txtvdate!!.setText(datesp.getString("Date", null))
+
 
         val defaultDate = "01-01-1990"
         txtv_dob!!.setText(defaultDate)
@@ -83,12 +101,21 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
         txtv_mobile_number = findViewById<EditText>(R.id.txtv_mobile_number)
         txtv_dob = findViewById<EditText>(R.id.txtv_dob)
         btn_register = findViewById<Button>(R.id.btn_register)
+        btn_clear= findViewById<Button>(R.id.btn_clear)
+
+        receiver_name_inputlayout = findViewById<TextView>(R.id.receiver_name_inputlayout)
+        txtv_lastname = findViewById<TextView>(R.id.txtv_lastname)
+        txtvmob = findViewById<TextView>(R.id.txtvmob)
+        txtvdate = findViewById<TextView>(R.id.txtvdate)
+
+
 
        // imgv_datepick!!.setOnClickListener(this)
         btn_register!!.setOnClickListener(this)
         imgBack!!.setOnClickListener(this)
         imgHome!!.setOnClickListener(this)
         txtv_dob!!.setOnClickListener(this)
+        btn_clear!!.setOnClickListener(this)
     }
 
     private fun getSender(firstName: String, lastName: String, mobileNumber: String, dob: String) {
@@ -208,6 +235,9 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
 
 
                                 }
+                                else if ( jObject.getString("StatusCode").equals("-1") ){
+                                    alertMessage1("", jObject.getString("EXMessage"))
+                                }
                                 else if ( ! jObject.getString("otpRefNo").equals("0") &&  jObject.getString("Status").equals("200") ){
                                     startActivity(Intent(this@AddSender, TransactionOTPActivity::class.java))
                                 }
@@ -285,6 +315,14 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
         when (v.id) {
             R.id.txtv_dob -> {
                 getDatepicker()
+
+            }
+            R.id.btn_clear -> {
+                val defaultDate = "01-01-1990"
+                txtv_dob!!.setText(defaultDate)
+                txtv_first_name!!.setText("")
+                txtv_last_name!!.setText("")
+                txtv_mobile_number!!.setText("")
 
             }
             R.id.imgBack -> {

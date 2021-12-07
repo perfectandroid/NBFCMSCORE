@@ -48,8 +48,32 @@ class LoanStatusAdaptor(internal val mContext: Context, internal val jsInfo: JSO
     @SuppressLint("NewApi")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         try {
+
+
+
             jsonObject = jsInfo.getJSONObject(position)
             if (holder is MainViewHolder) {
+
+
+                val ID_loanappnosp = mContext.getSharedPreferences(Config.SHARED_PREF267,0)
+                holder.txtvloanappno!!.setText(ID_loanappnosp.getString("ApplicationNumber",null) )
+
+                val ID_loanaperd = mContext.getSharedPreferences(Config.SHARED_PREF221,0)
+                holder.txtv_loanperd!!.setText(ID_loanaperd.getString("LoanPeriod",null) )
+
+                val ID_loanapurpse = mContext.getSharedPreferences(Config.SHARED_PREF263,0)
+                holder.txtv_loanpurpse!!.setText(ID_loanapurpse.getString("LoanPurpose",null) )
+
+                val ID_loanatyp = mContext.getSharedPreferences(Config.SHARED_PREF264,0)
+                holder.txv_loantyp!!.setText(ID_loanatyp.getString("LoanType",null) )
+
+                val ID_loanapplamt = mContext.getSharedPreferences(Config.SHARED_PREF266,0)
+                holder.txtv_applamt!!.setText(ID_loanapplamt.getString("ApplicationAmount",null) )
+
+                val ID_loanappdte= mContext.getSharedPreferences(Config.SHARED_PREF265,0)
+                holder.txtv_applctdt!!.setText(ID_loanappdte.getString("ApplicationDate",null) )
+
+
                 holder.tvType!!.setText(jsonObject!!.getString("LoanType") )
                 holder.tvPurpose!!.setText(jsonObject!!.getString("LoanPurpose"))
                 holder.tvStatus!!.setText(jsonObject!!.getString("LoanStatus") )
@@ -76,6 +100,13 @@ var tvdate: TextView? = null
 var tvStatus: TextView? = null
 var tvPeriod: TextView? = null
 var tvApplicationNo: TextView? = null
+    var txtvloanappno: TextView? = null
+    var txtv_loanperd: TextView? = null
+    var txtv_loanpurpse: TextView? = null
+    var txv_loantyp: TextView? = null
+    var txtv_applctdt: TextView? = null
+    var txtv_applamt: TextView? = null
+
 
 
 
@@ -89,6 +120,13 @@ var tvApplicationNo: TextView? = null
         tvStatus = v.findViewById<View>(R.id.tvStatus) as TextView
         tvApplicationNo = v.findViewById<View>(R.id.tvApplicationNo) as TextView
         tvPeriod = v.findViewById<View>(R.id.tvPeriod) as TextView
+
+        txtvloanappno = v.findViewById<View>(R.id.txtvloanappno) as TextView
+        txtv_loanperd = v.findViewById<View>(R.id.txtv_loanperd) as TextView
+        txtv_loanpurpse = v.findViewById<View>(R.id.txtv_loanpurpse) as TextView
+        txv_loantyp = v.findViewById<View>(R.id.txv_loantyp) as TextView
+        txtv_applctdt = v.findViewById<View>(R.id.txtv_applctdt) as TextView
+        txtv_applamt = v.findViewById<View>(R.id.txtv_applamt) as TextView
 
 
     }

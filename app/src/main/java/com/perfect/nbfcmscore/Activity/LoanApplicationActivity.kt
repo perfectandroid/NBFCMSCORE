@@ -76,6 +76,10 @@ class LoanApplicationActivity : AppCompatActivity()   , View.OnClickListener, It
     var llOutput: LinearLayout? = null
     var tv_header: TextView? = null
 
+    var txtv_princamt: TextView? = null
+    var txtv_mnth: TextView? = null
+    var txtv_type: TextView? = null
+    var txtv_loanpur: TextView? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -106,6 +110,19 @@ class LoanApplicationActivity : AppCompatActivity()   , View.OnClickListener, It
 
         val ID_calc = applicationContext.getSharedPreferences(Config.SHARED_PREF190,0)
         btn_calculate!!.setText(ID_calc.getString("CALCULATE",null))
+
+
+        val ID_princplamt = applicationContext.getSharedPreferences(Config.SHARED_PREF191,0)
+        txtv_princamt!!.setText(ID_princplamt.getString("PRINCIPALAMOUNT",null))
+
+        val ID_mnth = applicationContext.getSharedPreferences(Config.SHARED_PREF193,0)
+        txtv_mnth!!.setText(ID_mnth.getString("MONTH",null))
+
+        val ID_loantyp = applicationContext.getSharedPreferences(Config.SHARED_PREF264,0)
+        txtv_type!!.setText(ID_loantyp.getString("LoanType",null))
+
+        val ID_loanpurps = applicationContext.getSharedPreferences(Config.SHARED_PREF263,0)
+        txtv_loanpur!!.setText(ID_loanpurps.getString("LoanPurpose",null))
 
 
 
@@ -182,6 +199,11 @@ class LoanApplicationActivity : AppCompatActivity()   , View.OnClickListener, It
         rv_loanslab  = findViewById<View>(R.id.rv_loanslab) as RecyclerView?
         imgBack = findViewById<ImageView>(R.id.imgBack)
         imgHome = findViewById<ImageView>(R.id.imgHome)
+
+        txtv_princamt = findViewById<TextView>(R.id.txtv_princamt)
+        txtv_mnth = findViewById<TextView>(R.id.txtv_mnth)
+        txtv_type = findViewById<TextView>(R.id.txtv_type)
+        txtv_loanpur = findViewById<TextView>(R.id.txtv_loanpur)
 
         btn_calculate = findViewById<Button>(R.id.btn_calculate)
         btn_clear = findViewById<Button>(R.id.btn_clear)
@@ -680,19 +702,34 @@ class LoanApplicationActivity : AppCompatActivity()   , View.OnClickListener, It
         TenureValue = years!!.text.toString()
 
         if (LoanAmount.equals("")){
-            CustomBottomSheeet.Show(this,"Enter Principal Amount ","0")
+            val ID_princamt = applicationContext.getSharedPreferences(Config.SHARED_PREF260,0)
+            var princamt = ID_princamt.getString("EnterPrincipalAmount",null)
+
+            CustomBottomSheeet.Show(this,princamt!!,"0")
+
+            //CustomBottomSheeet.Show(this,"Enter Principal Amount ","0")
         }
 //        else if (RateOfInterset.equals("")){
 //            CustomBottomSheeet.Show(this,"Enter Interest Rate ","0")
 //        }
         else if (TenureValue.equals("")){
-            CustomBottomSheeet.Show(this,"Enter Month ","0")
+            val ID_mnth = applicationContext.getSharedPreferences(Config.SHARED_PREF261,0)
+            var mnth = ID_mnth.getString("EnterMonth",null)
+            CustomBottomSheeet.Show(this,mnth!!,"0")
+           // CustomBottomSheeet.Show(this,"Enter Month ","0")
         }
         else if (ID_EmiMethod.equals("")){
-            CustomBottomSheeet.Show(this,"Select Loan type ","0")
+            val ID_loant = applicationContext.getSharedPreferences(Config.SHARED_PREF197,0)
+            var loanty = ID_loant.getString("SelectLoantype",null)
+            CustomBottomSheeet.Show(this,loanty!!,"0")
+
+           // CustomBottomSheeet.Show(this,"Select Loan type ","0")
         }
         else if (ID_PurposeMethod.equals("")){
-            CustomBottomSheeet.Show(this,"Select Loan Purpose ","0")
+            val ID_loanpur = applicationContext.getSharedPreferences(Config.SHARED_PREF198,0)
+            var loanpur = ID_loanpur.getString("Selectloanpurpose",null)
+            CustomBottomSheeet.Show(this,loanpur!!,"0")
+            //CustomBottomSheeet.Show(this,"Select Loan Purpose ","0")
         }
         else{
 

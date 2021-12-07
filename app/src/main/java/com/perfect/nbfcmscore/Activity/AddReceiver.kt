@@ -43,10 +43,21 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
     var account_number: EditText? = null
     var confirm_account_number: EditText? = null
     var btn_registr: Button? = null
+    var btn_clear: Button? = null
+
     public var arrayList2: ArrayList<SenderReceiverlist>? = null
     var imgHome: ImageView? = null
     var tv_title: TextView? = null
     var txtv_sndrname: TextView? = null
+
+    var receiver_name_inputlayout: TextView? = null
+    var txv_mob: TextView? = null
+    var txtv_ifsc: TextView? = null
+    var txtv_accnum: TextView? = null
+    var txtv_confrmacc: TextView? = null
+
+
+
     public var arrayList1: ArrayList<SenderReceiver>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,8 +84,28 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
         val Registerp = applicationContext.getSharedPreferences(Config.SHARED_PREF146, 0)
         btn_registr!!.setText(Registerp.getString("REGISTER", null))
 
-       /* val Receiversp = applicationContext.getSharedPreferences(Config.SHARED_PREF148, 0)
-        receiver_name!!.setHint(Receiversp.getString("ReceiverName", null))*/
+        val Receiversp = applicationContext.getSharedPreferences(Config.SHARED_PREF148, 0)
+        receiver_name_inputlayout!!.setText(Receiversp.getString("ReceiverName", null))
+
+        val Mobsp = applicationContext.getSharedPreferences(Config.SHARED_PREF110, 0)
+        txv_mob!!.setText(Mobsp.getString("MobileNumber", null))
+
+        val Ifscsp = applicationContext.getSharedPreferences(Config.SHARED_PREF150, 0)
+        txtv_ifsc!!.setText(Ifscsp.getString("IFSCCode", null))
+
+        val Accnosp = applicationContext.getSharedPreferences(Config.SHARED_PREF158, 0)
+        txtv_accnum!!.setText(Accnosp.getString("AccountNumber", null))
+
+        val confirmaccnosp = applicationContext.getSharedPreferences(Config.SHARED_PREF149, 0)
+        txtv_confrmacc!!.setText(confirmaccnosp.getString("ConfirmAccountNumber", null))
+
+        val Resetsp = applicationContext.getSharedPreferences(Config.SHARED_PREF189, 0)
+        btn_clear!!.setText(Resetsp.getString("RESET", null))
+
+
+
+        /* val Receiversp = applicationContext.getSharedPreferences(Config.SHARED_PREF148, 0)
+         receiver_name!!.setHint(Receiversp.getString("ReceiverName", null))*/
 
 
 
@@ -288,11 +319,21 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
         account_number = findViewById<EditText>(R.id.account_number)
         confirm_account_number = findViewById<EditText>(R.id.confirm_account_number)
         btn_registr = findViewById<Button>(R.id.btn_registr)
+        btn_clear = findViewById<Button>(R.id.btn_clear)
 
         tv_title= findViewById<TextView>(R.id.tv_title)
+
+        receiver_name_inputlayout= findViewById<TextView>(R.id.receiver_name_inputlayout)
+        txv_mob= findViewById<TextView>(R.id.txv_mob)
+        txtv_ifsc= findViewById<TextView>(R.id.txtv_ifsc)
+        txtv_accnum= findViewById<TextView>(R.id.txtv_accnum)
+        txtv_confrmacc= findViewById<TextView>(R.id.txtv_confrmacc)
+
+
         txtv_sndrname= findViewById<TextView>(R.id.txtv_sndrname)
 
         sender_name_spinner!!.setOnItemSelectedListener(this)
+        btn_clear!!.setOnClickListener(this)
         btn_registr!!.setOnClickListener(this)
         imgBack!!.setOnClickListener(this)
         imgHome!!.setOnClickListener(this)
@@ -419,7 +460,11 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
                                     alertMessage1(status, message)
 
 
-                                }  else if (jObject.getString("StatusCode").equals("200") && !jObject.getString("otpRefNo").equals("0")) {
+                                }
+                                else if ( jObject.getString("StatusCode").equals("-1") ){
+                                    alertMessage1("", jObject.getString("EXMessage"))
+                                }
+                                else if (jObject.getString("StatusCode").equals("200") && !jObject.getString("otpRefNo").equals("0")) {
 
                                 }
 
@@ -504,6 +549,14 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
                     val confirmAccNumber: String = confirm_account_number!!.getText().toString()
                     getReceiver(receiverName, mobileNumber, ifscCode, accNumber, confirmAccNumber)
                 }
+            }
+            R.id.btn_clear -> {
+                getSenderReceiver()
+                receiver_name!!.setText("")
+                mobile_number!!.setText("")
+                ifsc_code!!.setText("")
+                account_number!!.setText("")
+                confirm_account_number!!.setText("")
             }
             R.id.imgBack -> {
                 finish()
