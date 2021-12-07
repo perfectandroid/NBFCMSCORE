@@ -490,16 +490,38 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
         TenureValue = years!!.text.toString()
 
         if (LoanAmount.equals("")){
-            CustomBottomSheeet.Show(this,"Enter Principal Amount ","0")
+            val ID_princamt = applicationContext.getSharedPreferences(Config.SHARED_PREF260,0)
+
+
+
+
+          //  tv_header!!.setText(ID_header.getString("EMICalculator",null))
+            var princamt = ID_princamt.getString("EnterPrincipalAmount",null)
+
+
+
+
+
+            CustomBottomSheeet.Show(this,princamt!!,"0")
+          //  CustomBottomSheeet.Show(this,"Enter Principal Amount ","0")
         }
         else if (RateOfInterset.equals("")){
-            CustomBottomSheeet.Show(this,"Enter Interest Rate ","0")
+            val ID_intrstrate = applicationContext.getSharedPreferences(Config.SHARED_PREF262,0)
+            var intrst = ID_intrstrate.getString("EnterInterestRate",null)
+            CustomBottomSheeet.Show(this,intrst!!,"0")
+           // CustomBottomSheeet.Show(this,"Enter Interest Rate ","0")
         }
         else if (TenureValue.equals("")){
-            CustomBottomSheeet.Show(this,"Enter Month ","0")
+            val ID_mnth = applicationContext.getSharedPreferences(Config.SHARED_PREF261,0)
+            var mnth = ID_mnth.getString("EnterMonth",null)
+            CustomBottomSheeet.Show(this,mnth!!,"0")
+            //CustomBottomSheeet.Show(this,"Enter Month ","0")
         }
         else if (ID_EmiMethod.equals("")){
-            CustomBottomSheeet.Show(this,"Select emi type ","0")
+            val ID_emityp = applicationContext.getSharedPreferences(Config.SHARED_PREF194,0)
+            var emity = ID_emityp.getString("Selectemitype",null)
+            CustomBottomSheeet.Show(this,emity!!,"0")
+          //  CustomBottomSheeet.Show(this,"Select emi type ","0")
         }
         else{
 

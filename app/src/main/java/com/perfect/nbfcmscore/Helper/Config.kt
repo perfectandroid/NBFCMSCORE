@@ -316,6 +316,10 @@ object Config {
     const val SHARED_PREF257="Enter Weight"
     const val SHARED_PREF258="PleaseEnterWeight"
     const val SHARED_PREF259="Pleaseenteramount"
+    const val SHARED_PREF260="EnterPrincipalAmount"
+    const val SHARED_PREF261="EnterMonth"
+    const val SHARED_PREF262="EnterInterestRate"
+
 
 
 

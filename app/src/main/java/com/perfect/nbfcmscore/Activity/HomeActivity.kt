@@ -2680,6 +2680,21 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_entramtEditer.putString("Pleaseenteramount", jresult3.get("Pleaseenteramount") as String)
                                     ID_entramtEditer.commit()
 
+                                    val ID_entrprincamt= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF260, 0)
+                                    val ID_entrprincamtEditer = ID_entrprincamt.edit()
+                                    ID_entrprincamtEditer.putString("EnterPrincipalAmount", jresult3.get("EnterPrincipalAmount") as String)
+                                    ID_entrprincamtEditer.commit()
+
+                                    val ID_entrmnth= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF261, 0)
+                                    val ID_entrmnthEditer = ID_entrmnth.edit()
+                                    ID_entrmnthEditer.putString("EnterMonth", jresult3.get("EnterMonth") as String)
+                                    ID_entrmnthEditer.commit()
+
+                                    val ID_entrintrstrate= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF262, 0)
+                                    val ID_entrintrstrateEditer = ID_entrintrstrate.edit()
+                                    ID_entrintrstrateEditer.putString("EnterInterestRate", jresult3.get("EnterInterestRate") as String)
+                                    ID_entrintrstrateEditer.commit()
+
 
 
 
