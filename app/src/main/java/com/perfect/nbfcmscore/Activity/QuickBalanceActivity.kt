@@ -31,6 +31,8 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.*
 
 class QuickBalanceActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClickListener {
+
+    val TAG: String = "QuickBalanceActivity"
     var arrayList1 = ArrayList<String>()
     var spnAccountNum: Spinner? = null
     private var jresult: JSONArray? = null
@@ -187,7 +189,7 @@ class QuickBalanceActivity : AppCompatActivity(), OnItemSelectedListener,View.On
                             try {
                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
-                                Log.i("Response", response.body())
+                                Log.i("Response","190   "+ response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
                                             jObject.getJSONObject("PassBookAccountDetails")
@@ -286,6 +288,9 @@ class QuickBalanceActivity : AppCompatActivity(), OnItemSelectedListener,View.On
     override fun onItemSelected(p0: AdapterView<*>?, view: View?, position: Int, id: Long) {
         try {
             val json = jresult!!.getJSONObject(position)
+            Log.e("TAG","json    289   "+json)
+            Log.e(TAG,"AccountType    2891   "+json.getString("AccountType"))
+            Account!!.text = json.getString("AccountType")
             if (json.getString("IsShowBalance").equals("1")) {
 
             //if (isshowbal.equals("1") ) {
@@ -311,14 +316,15 @@ class QuickBalanceActivity : AppCompatActivity(), OnItemSelectedListener,View.On
                 tv_list_days!!.visibility = View.GONE
                 rv_passbook!!.visibility = View.GONE
             }
-
-            Account!!.text = json.getString("AccountType")
+            //Log.e(TAG,"AccountType    289   "+json.getString("AccountType"))
+         //
          /*   getPassBookAccountStatement(
                     json.getString("FK_Account"),
                     json.getString("SubModule"),
                     noofdays
             )*/
         } catch (e: Exception) {
+            Log.e(TAG,"Exception    289   "+e.toString())
             e.printStackTrace()
         }
     }
