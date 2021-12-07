@@ -271,8 +271,9 @@ class StatementFragment : Fragment() , View.OnClickListener{
 
         val dpd = DatePickerDialog(context!!, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
             // Display Selected date in TextView
-            edt_fromDate!!.setText("" + dayOfMonth + "-" + month + "-" + year)
-            FromDate = year.toString()+"-"+month.toString()+"-"+dayOfMonth.toString()
+            val mnt = monthOfYear+1
+            edt_fromDate!!.setText("" + dayOfMonth + "-" + mnt + "-" + year)
+            FromDate = year.toString()+"-"+mnt.toString()+"-"+dayOfMonth.toString()
         }, year, month, day)
         dpd.show()
     }
@@ -284,8 +285,9 @@ class StatementFragment : Fragment() , View.OnClickListener{
 
         val dpd = DatePickerDialog(context!!, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
             // Display Selected date in TextView
-            edt_toDate!!.setText("" + dayOfMonth + "-" + month + "-" + year)
-            ToDate = year.toString()+"-"+month.toString()+"-"+dayOfMonth.toString()
+            val mnt = monthOfYear+1
+            edt_toDate!!.setText("" + dayOfMonth + "-" + mnt + "-" + year)
+            ToDate = year.toString()+"-"+mnt.toString()+"-"+dayOfMonth.toString()
         }, year, month, day)
         dpd.show()
     }
