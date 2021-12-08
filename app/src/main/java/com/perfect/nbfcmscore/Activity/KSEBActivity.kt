@@ -75,6 +75,15 @@ class KSEBActivity : AppCompatActivity(), View.OnClickListener, ItemClickListene
     var amount: String? = ""
     var SectionList: String? = ""
 
+    var txtconsumername: TextView? = null
+    var txtmobilenumber: TextView? = null
+    var txtconsumerno: TextView? = null
+    var txtsectionname: TextView? = null
+    var txtbillno: TextView? = null
+    var txtamount: TextView? = null
+    var txtaccount: TextView? = null
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,6 +91,38 @@ class KSEBActivity : AppCompatActivity(), View.OnClickListener, ItemClickListene
 
         setInitialise()
         setRegister()
+
+        val ID_pay = applicationContext.getSharedPreferences(Config.SHARED_PREF97,0)
+        but_recharge!!.setText(ID_pay.getString("PAY",null))
+
+        val ID_clr = applicationContext.getSharedPreferences(Config.SHARED_PREF189,0)
+        but_clear!!.setText(ID_clr.getString("RESET",null))
+
+        val ID_cnsmrnme = applicationContext.getSharedPreferences(Config.SHARED_PREF277,0)
+        txtconsumername!!.setText(ID_cnsmrnme.getString("ConsumerName",null))
+
+        val ID_mob = applicationContext.getSharedPreferences(Config.SHARED_PREF110,0)
+        txtmobilenumber!!.setText(ID_mob.getString("MobileNumber",null))
+
+
+        val ID_consumrno = applicationContext.getSharedPreferences(Config.SHARED_PREF278,0)
+        txtconsumerno!!.setText(ID_consumrno.getString("ConsumerNumber",null))
+
+        val ID_sectnname = applicationContext.getSharedPreferences(Config.SHARED_PREF279,0)
+        txtsectionname!!.setText(ID_sectnname.getString("SectionName",null))
+
+        val ID_billno= applicationContext.getSharedPreferences(Config.SHARED_PREF280,0)
+        txtbillno!!.setText(ID_billno.getString("BillNumber",null))
+
+        val ID_amt= applicationContext.getSharedPreferences(Config.SHARED_PREF113,0)
+        txtamount!!.setText(ID_amt.getString("Amount",null))
+
+        val ID_accno= applicationContext.getSharedPreferences(Config.SHARED_PREF158,0)
+        txtaccount!!.setText(ID_accno.getString("AccountNumber",null))
+
+        val ID_header= applicationContext.getSharedPreferences(Config.SHARED_PREF71,0)
+        tv_header!!.setText(ID_header.getString("KSEB",null))
+
 
        // tv_header!!.setText(Html.fromHtml(billnumber))
 
@@ -137,6 +178,16 @@ class KSEBActivity : AppCompatActivity(), View.OnClickListener, ItemClickListene
     }
 
     private fun setInitialise() {
+
+
+        txtconsumername = findViewById<TextView>(R.id.txtconsumername)
+        txtmobilenumber = findViewById<TextView>(R.id.txtmobilenumber)
+        txtconsumerno = findViewById<TextView>(R.id.txtconsumerno)
+        txtsectionname = findViewById<TextView>(R.id.txtsectionname)
+        txtbillno = findViewById<TextView>(R.id.txtbillno)
+        txtamount = findViewById<TextView>(R.id.txtamount)
+        txtaccount = findViewById<TextView>(R.id.txtaccount)
+
         tv_header = findViewById<TextView>(R.id.tv_header)
         im_back = findViewById<ImageView>(R.id.im_back)
         im_home = findViewById<ImageView>(R.id.im_home)
@@ -235,30 +286,58 @@ class KSEBActivity : AppCompatActivity(), View.OnClickListener, ItemClickListene
         mAccountNumber = mAccountNumber.replace(" ", "")
 
         if (consumername!!.equals("")){
-            CustomBottomSheeet.Show(this,"Please Enter Consumer name ","0")
+            val ID_plsentconsnme = applicationContext.getSharedPreferences(Config.SHARED_PREF285,0)
+            var plsentconsnme = ID_plsentconsnme.getString("PleaseEnterConsumerName",null)
+            CustomBottomSheeet.Show(this,plsentconsnme!!,"0")
+
+          //  CustomBottomSheeet.Show(this,"Please Enter Consumer name ","0")
         }
         else if (mobilenumber!!.length!=10){
-            CustomBottomSheeet.Show(this,"Please enter valid  mobile number","0")
+            val ID_validmob = applicationContext.getSharedPreferences(Config.SHARED_PREF287,0)
+            var validmob = ID_validmob.getString("PleaseEnterValidMobileNumber",null)
+            CustomBottomSheeet.Show(this,validmob!!,"0")
+          //  CustomBottomSheeet.Show(this,"Please enter valid  mobile number","0")
         }
         else if (consumernumber!!.equals("")){
-            CustomBottomSheeet.Show(this,"Please Enter Consumer number ","0")
+            val ID_plstentconsno = applicationContext.getSharedPreferences(Config.SHARED_PREF286,0)
+            var consno = ID_plstentconsno.getString("PleaseEnterConsumerNumber",null)
+            CustomBottomSheeet.Show(this,consno!!,"0")
+
+            //CustomBottomSheeet.Show(this,"Please Enter Consumer number ","0")
         }
         else if (sectionname!!.equals("")){
-            CustomBottomSheeet.Show(this,"Please Enter Section name ","0")
+            val ID_plsentsectname = applicationContext.getSharedPreferences(Config.SHARED_PREF282,0)
+            var plsentsctname= ID_plsentsectname.getString("PleaseEnterSectionName",null)
+            CustomBottomSheeet.Show(this,plsentsctname!!,"0")
+
+          //  CustomBottomSheeet.Show(this,"Please Enter Section name ","0")
         }
         else if (billnumber!!.equals("")){
-            CustomBottomSheeet.Show(this,"Please Enter Bill number ","0")
+            val ID_plsentbill= applicationContext.getSharedPreferences(Config.SHARED_PREF283,0)
+            var plsentbill= ID_plsentbill.getString("PleaseEnterBillnumber",null)
+            CustomBottomSheeet.Show(this,plsentbill!!,"0")
+          //  CustomBottomSheeet.Show(this,"Please Enter Bill number ","0")
         }
         else if (amount!!.equals("")){
-            CustomBottomSheeet.Show(this,"Please Enter Amount","0")
+            val ID_plsentamt= applicationContext.getSharedPreferences(Config.SHARED_PREF259,0)
+            var plsentamt= ID_plsentamt.getString("Pleaseenteramount",null)
+            CustomBottomSheeet.Show(this,plsentamt!!,"0")
+
+          //  CustomBottomSheeet.Show(this,"Please Enter Amount","0")
         }
         else if(mAccountNumber!!.length != 12){
+            val ID_plselctacc= applicationContext.getSharedPreferences(Config.SHARED_PREF284,0)
+            var plslctacc= ID_plselctacc.getString("PleaseSelectAccount",null)
+            CustomBottomSheeet.Show(this,plslctacc!!,"0")
             // Toast.makeText(applicationContext,"Please Select Account",Toast.LENGTH_LONG).show()
-            CustomBottomSheeet.Show(this,"Please Select Account","0")
+           // CustomBottomSheeet.Show(this,"Please Select Account","0")
         }
         else if(SubModule!!.equals("")){
+            val ID_plselctacc= applicationContext.getSharedPreferences(Config.SHARED_PREF284,0)
+            var plslctacc= ID_plselctacc.getString("PleaseSelectAccount",null)
+            CustomBottomSheeet.Show(this,plslctacc!!,"0")
             //  Toast.makeText(applicationContext,"Please Select Account",Toast.LENGTH_LONG).show()
-            CustomBottomSheeet.Show(this,"Please Select Account","0")
+          //  CustomBottomSheeet.Show(this,"Please Select Account","0")
         }else{
 
           //  mAccountNumber = AccountNo!!.replace(" ", "")

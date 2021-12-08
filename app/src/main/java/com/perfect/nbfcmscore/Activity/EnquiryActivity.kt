@@ -7,12 +7,12 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Patterns
 import android.view.MotionEvent
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.creativityapps.gmailbackgroundlibrary.BackgroundMail
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.R
 import java.util.*
@@ -36,17 +36,25 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
     var lltimeinterval: LinearLayout? = null
     var llemail: LinearLayout? = null
     var lldate: LinearLayout? = null
+
+    var spn_ampm: Spinner? = null
+    var spn_bfreafter: Spinner? = null
     var spn_time: Spinner? = null
+
     var etxt_tmfrm: TextView? = null
     var etxt_tmto: TextView? = null
     var etxtDate: EditText? = null
     var btn_clear: Button? = null
     var matter:String?=null
+
     var feedback = arrayOfNulls<String>(0)
+    var bfraftr = arrayOfNulls<String>(0)
+    var ampm = arrayOfNulls<String>(0)
     var time = arrayOfNulls<String>(0)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_enquiry)
+        setContentView(R.layout.activity_enquiry1)
 
         setRegViews()
         val imfeedbacklogo: ImageView = findViewById(R.id.imfeedbacklogo)
@@ -82,6 +90,9 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
         btn_submit = findViewById<Button>(R.id.btn_submit) as Button
 
         spn_time= findViewById<Spinner>(R.id.spn_time) as Spinner
+        spn_ampm= findViewById<Spinner>(R.id.spn_ampm) as Spinner
+        spn_bfreafter= findViewById<Spinner>(R.id.spn_bfreafter) as Spinner
+
 
         btn_submit!!.setOnClickListener(this)
         imgBack!!.setOnClickListener(this)
@@ -111,8 +122,13 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
         feedback = arrayOf<String?>("Reportanerror", "Giveasuggestion", "Anythingelse")
         getFeedback()
 
-        time = arrayOf<String?>("Before 1pm", "2pm", "After 2pm")
+        time = arrayOf<String?>("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12")
         getTime()
+
+        bfraftr = arrayOf<String?>("Before", "After")
+        getbfre()
+        ampm= arrayOf<String?>("AM", "PM")
+        getampm()
 
         etxtDate!!.setOnTouchListener(object : View.OnTouchListener {
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
@@ -125,6 +141,18 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
             }
         })
 
+    }
+
+    private fun getampm() {
+        val aa: ArrayAdapter<*> = ArrayAdapter<Any?>(this!!, android.R.layout.simple_spinner_item, ampm)
+        aa.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
+        spn_ampm!!.adapter = aa
+    }
+
+    private fun getbfre() {
+        val aa: ArrayAdapter<*> = ArrayAdapter<Any?>(this!!, android.R.layout.simple_spinner_item, bfraftr)
+        aa.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
+        spn_bfreafter!!.adapter = aa
     }
 
     private fun getFeedback() {
@@ -202,19 +230,45 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
             R.id.btn_submit -> {
                 if (isValid()) {
                     if (rad_callbk!!.isChecked) {
+
                         matter = "Reason: " + feedbackText!!.text.toString() + "\n" + "\n" + spn_feedbk!!.selectedItem.toString() + "\n" + "\n" + "Contact: " + etxtmob!!.text.toString() + "\n" + "Email: " + etxtemail!!.text.toString() + "\n" + "Date: " + etxtDate!!.text.toString() + "\n" + "Selected time: " +
-                                spn_time!!.selectedItem.toString() + "\n" + "\n" + "\n" + "Thank you"
+                               spn_bfreafter!!.selectedItem.toString()+" "+spn_time!!.selectedItem.toString()+" "+spn_ampm!!.selectedItem.toString() + "\n" + "\n" + "\n" + "Thank you"
                     } else {
+
                         matter = "Reason: " + feedbackText!!.text.toString() + "\n" + "\n" + spn_feedbk!!.selectedItem.toString() + "\n" + "\n" + "\n" + "Thank you"
                     }
 
-                    sendEmail(matter!!)
+                     sendEmail(matter!!)
+                 //   sendEmail1(matter!!)
                 }
             }
             R.id.etxtDate -> {
                 // getDatepicker()
             }
         }
+    }
+
+    private fun sendEmail1(matter: String) {
+
+        BackgroundMail.newBuilder(this)
+                .withUsername("psstechteam@gmail.com")
+                .withPassword("pssandroid2020")
+                .withMailto("psstechteam@gmail.com")
+                .withType(BackgroundMail.TYPE_PLAIN)
+                .withSubject("Enquiry/ExecutiveCallBack Mail")
+                .withBody(matter)
+                .withOnSuccessCallback(object : BackgroundMail.OnSuccessCallback {
+                    override fun onSuccess() {
+                        //do some magic
+                    }
+                })
+                .withOnFailCallback(object : BackgroundMail.OnFailCallback {
+                    override fun onFail() {
+                        //do some magic
+                    }
+                })
+                .send()
+
     }
 
     private fun getDatepicker() {
