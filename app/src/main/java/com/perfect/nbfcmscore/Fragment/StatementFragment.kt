@@ -732,7 +732,7 @@ class StatementFragment : Fragment() , View.OnClickListener{
 
 
     private fun downloadFile(filename1: String, filename2: String) {
-
+        val pDialog = ProgressDialog(context!!)
 
         val client = OkHttpClient.Builder()
             .sslSocketFactory(Config.getSSLSocketFactory(context!!))
@@ -772,22 +772,29 @@ class StatementFragment : Fragment() , View.OnClickListener{
             .destinationFilePath(destPath.toString())
             .downloadCallback(object : DownloadCallback {
                 override fun onStart(downloadId: Int, totalBytes: Long) {
-                    Log.e(TAG,"onStart  675      "+totalBytes)
+                    Log.e(TAG,"onStart  6751      "+totalBytes)
+                    pDialog.setMessage("Downloading...!");
+                    pDialog.setCancelable(false);
+                    pDialog.show();
                 }
                 override fun onRetry(downloadId: Int) {
-                    Log.e(TAG,"destPath  675      "+destPath)
+                    Log.e(TAG,"destPath  6752      "+destPath)
+                    pDialog.setMessage("Downloading...!");
+                    pDialog.setCancelable(false);
+                    pDialog.show();
                 }
                 override fun onProgress(downloadId: Int, bytesWritten: Long, totalBytes: Long) {
                     Log.e(TAG,"onProgress  675      "+bytesWritten+"    "+totalBytes)
                 }
                 override fun onSuccess(downloadId: Int, filePath: String) {
-                    Log.e(TAG,"onSuccess  675      "+filePath)
-
+                    Log.e(TAG,"onSuccess  6753      "+filePath)
+                    pDialog.dismiss()
                     StatementPopup(filePath,"1")
                 }
                 override fun onFailure(downloadId: Int, statusCode: Int, errMsg: String) {
-                    Log.e(TAG,"onFailure  675      "+statusCode+"    "+errMsg)
+                    Log.e(TAG,"onFailure  6754      "+statusCode+"    "+errMsg)
                     StatementPopup(errMsg,"0")
+                    pDialog.dismiss()
                 }
             })
             .build()
