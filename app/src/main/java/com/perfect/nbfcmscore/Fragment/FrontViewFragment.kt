@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.gson.GsonBuilder
@@ -49,6 +50,11 @@ class FrontViewFragment : Fragment() {
     var txtv_cusname: TextView? = null
     var txtv_elctrnc: TextView? = null
 
+    var ll_points1: LinearLayout? = null
+    var ll_points2: LinearLayout? = null
+    var ll_points3: LinearLayout? = null
+    var ll_points4: LinearLayout? = null
+
     var img_applogo: ImageView? = null
 
 
@@ -68,6 +74,11 @@ class FrontViewFragment : Fragment() {
         txtv_cusid = v.findViewById<View>(R.id.txtv_cusid) as TextView?
         txtv_cusname = v.findViewById<View>(R.id.txtv_cusname) as TextView?
         txtv_elctrnc = v.findViewById<View>(R.id.txtv_elctrnc) as TextView?
+
+        ll_points1 = v.findViewById<View>(R.id.ll_points1) as LinearLayout?
+        ll_points2 = v.findViewById<View>(R.id.ll_points2) as LinearLayout?
+        ll_points3 = v.findViewById<View>(R.id.ll_points3) as LinearLayout?
+        ll_points4 = v.findViewById<View>(R.id.ll_points4) as LinearLayout?
 
 
         val FK_CustomernameSP = activity!!.getSharedPreferences(Config.SHARED_PREF268, 0)
@@ -96,6 +107,11 @@ class FrontViewFragment : Fragment() {
         txtv_points2!!.visibility = View.VISIBLE
         txtv_points3!!.visibility = View.VISIBLE
         txtv_points4!!.visibility = View.VISIBLE
+
+        ll_points1!!.visibility = View.VISIBLE
+        ll_points2!!.visibility = View.VISIBLE
+        ll_points3!!.visibility = View.VISIBLE
+        ll_points4!!.visibility = View.VISIBLE
 
 
         val ID_Virtual = activity!!.getSharedPreferences(Config.SHARED_PREF74,0)
