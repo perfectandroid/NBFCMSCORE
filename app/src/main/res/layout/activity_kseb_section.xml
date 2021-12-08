@@ -109,7 +109,7 @@
                         android:layout_toLeftOf="@+id/img_clear"
                         android:background="@android:color/transparent"
                         android:dropDownHeight="wrap_content"
-                        android:hint="Section"
+                        android:hint=""
                         android:paddingLeft="10dp"
                         android:layout_marginRight="5dp"
                         android:text=""

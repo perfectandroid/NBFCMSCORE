@@ -1456,10 +1456,15 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_plsentrconsnoEditer.commit()
 
 
-                                        val ID_plssvalidmob= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF287, 0)
-                                        val ID_plssvalidmobEditer = ID_plssvalidmob.edit()
-                                        ID_plssvalidmobEditer.putString("PleaseEnterValidMobileNumber", jresult3.get("PleaseEnterValidMobileNumber") as String)
-                                        ID_plssvalidmobEditer.commit()
+                                        val ID_slctn= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF288, 0)
+                                        val ID_slctnEditer = ID_slctn.edit()
+                                        ID_slctnEditer.putString("Selection", jresult3.get("Selection") as String)
+                                        ID_slctnEditer.commit()
+
+                                        val ID_sctn= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF289, 0)
+                                        val ID_sctnEditer = ID_sctn.edit()
+                                        ID_sctnEditer.putString("Section", jresult3.get("Section") as String)
+                                        ID_sctnEditer.commit()
 
 
 
