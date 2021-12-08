@@ -33,9 +33,7 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 import android.provider.CalendarContract.Reminders
-
-import android.widget.Toast
-import java.text.DateFormat
+import java.lang.StringBuilder
 
 
 class DuedateAdapter(internal val mContext: Context, internal val jsInfo: JSONArray, strHeader: String) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -141,7 +139,8 @@ class DuedateAdapter(internal val mContext: Context, internal val jsInfo: JSONAr
             }
 
             //Date datecurrent = c.getTime();
-            val datedue = sdf.parse(dueDate)
+//            val datedue = sdf.parse(dueDate)
+            val datedue = sdf.parse(currentdate)
             val calendar = Calendar.getInstance()
             calendar.time = datedue
             calendar.add(Calendar.DAY_OF_YEAR, -3)
@@ -153,7 +152,10 @@ class DuedateAdapter(internal val mContext: Context, internal val jsInfo: JSONAr
             day = calendar.get(Calendar.DAY_OF_MONTH);
 
             //etdate.setText(sdf.format(c.getTime()));
-            etdate.setText(date);*/if (newDate!!.after(datecurrent)) {
+            etdate.setText(date);*/
+
+            Log.e("TAG","newDate  156   "+newDate+"   "+datecurrent)
+            if (newDate!!.after(datecurrent)) {
                 val date = sdf.format(newDate)
                 yr = calendar[Calendar.YEAR]
                 month = calendar[Calendar.MONTH]
@@ -219,6 +221,7 @@ class DuedateAdapter(internal val mContext: Context, internal val jsInfo: JSONAr
                     dateFormat.format(date)
                     println(dateFormat.format(date))
                     try {
+                        Log.e("TAG","220   "+date+"    "+hr.toString() + ":" + min)
                         if (dateFormat.parse(dateFormat.format(date)).after(dateFormat.parse(hr.toString() + ":" + min))) {
                             val builder = AlertDialog.Builder(mContext)
                             builder.setMessage("Set time greater than current time.")
@@ -267,9 +270,33 @@ class DuedateAdapter(internal val mContext: Context, internal val jsInfo: JSONAr
         // Launch Time Picker Dialog
         val timePickerDialog = TimePickerDialog(mContext,
                 { view, hourOfDay, minute ->
-                    val strDate = String.format("%02d:%02d %s", if (hourOfDay == 0) 12 else hourOfDay,
-                            minute, if (hourOfDay < 12) "am" else "pm")
+
+                    var hrs = hourOfDay
+                    var mins = minute
+                    var timeSet = ""
+                    if (hrs > 12) {
+                        hrs -= 12
+                        timeSet = "PM"
+                    } else if (hrs === 0) {
+                        hrs += 12
+                        timeSet = "AM"
+                    } else if (hrs === 12) {
+                        timeSet = "PM"
+                    } else {
+                        timeSet = "AM"
+                    }
+
+                    var minutes: String? = ""
+                    if (mins < 10) minutes = "0$mins" else minutes = minutes.toString()
+
+//                    val strDate: String = StringBuilder().append(hrs).append(':')
+//                        .append(minutes).append(" ").append(timeSet).toString()
+                    val strDate = String.format("%02d:%02d  %s", hrs, minute , if (hourOfDay < 12) "AM" else "PM")
                     ettime!!.setText(strDate)
+//
+//                    val strDate = String.format("%02d:%02d %s", if (hourOfDay == 0) 12 else hourOfDay,
+//                            minute, if (hourOfDay < 12) "am" else "pm")
+//                    ettime!!.setText(strDate)
                     hr = hourOfDay
                     min = minute
                 }, mHour, mMinute, false)
