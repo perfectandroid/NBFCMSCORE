@@ -54,6 +54,12 @@ class KsebSectionActivity : AppCompatActivity(), View.OnClickListener, ItemClick
         setInitialise()
         setRegister()
 
+        val ID_slctn= applicationContext.getSharedPreferences(Config.SHARED_PREF288, 0)
+        tv_header!!.setText(ID_slctn.getString("Selection", null))
+
+        val Sectionsp = applicationContext.getSharedPreferences(Config.SHARED_PREF289, 0)
+        act_section!!.setHint(Sectionsp.getString("Section", null))
+
         act_section!!.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
 

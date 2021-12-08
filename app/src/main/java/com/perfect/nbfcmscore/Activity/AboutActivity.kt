@@ -18,7 +18,9 @@ class AboutActivity : AppCompatActivity() , View.OnClickListener{
     var imCompanylogo: ImageView? = null
     var imgHome: ImageView? = null
     var tv_header: TextView? = null
-
+    var txtv_abt: TextView? = null
+    var txtv_licnse: TextView? = null
+    var tv_technlgy: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +30,9 @@ class AboutActivity : AppCompatActivity() , View.OnClickListener{
 
         val ID_abtus = applicationContext.getSharedPreferences(Config.SHARED_PREF54,0)
         tv_header!!.setText(ID_abtus.getString("aboutus",null))
+
+        val ID_abtus1 = applicationContext.getSharedPreferences(Config.SHARED_PREF237,0)
+        txtv_abt!!.setText(ID_abtus1.getString("Aboutustext",null))
 
 
 
@@ -54,6 +59,12 @@ class AboutActivity : AppCompatActivity() , View.OnClickListener{
 
     private fun setRegViews() {
         imCompanylogo = findViewById<ImageView>(R.id.imCompanylogo)
+
+        txtv_abt= findViewById<TextView>(R.id.txtv_abt)
+        txtv_licnse= findViewById<TextView>(R.id.txtv_licnse)
+        tv_technlgy= findViewById<TextView>(R.id.tv_technlgy)
+
+
         applogo = findViewById<ImageView>(R.id.applogo)
         imgBack = findViewById<ImageView>(R.id.imgBack)
         tv_header= findViewById<TextView>(R.id.tv_header)

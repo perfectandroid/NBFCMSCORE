@@ -16,6 +16,7 @@ class PrivacyPolicyActivity : AppCompatActivity() , View.OnClickListener{
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
     var tv_header: TextView? = null
+    var txtv_privcy: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +26,10 @@ class PrivacyPolicyActivity : AppCompatActivity() , View.OnClickListener{
 
         val PrivcySP = applicationContext.getSharedPreferences(Config.SHARED_PREF57, 0)
         tv_header!!.setText(PrivcySP.getString("privacypolicy", null))
+
+        val PrivcypolicySP = applicationContext.getSharedPreferences(Config.SHARED_PREF238, 0)
+        txtv_privcy!!.setText(PrivcypolicySP.getString("Privacypolicytext", null))
+
 
 
 
@@ -39,6 +44,7 @@ class PrivacyPolicyActivity : AppCompatActivity() , View.OnClickListener{
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)
         tv_header = findViewById<TextView>(R.id.tv_header)
+        txtv_privcy = findViewById<TextView>(R.id.txtv_privcy)
     }
 
     override fun onClick(v: View) {

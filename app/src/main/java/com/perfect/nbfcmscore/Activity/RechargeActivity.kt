@@ -72,8 +72,13 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
     var ll_recentrecharge: LinearLayout? = null
     var ll_contact: LinearLayout? = null
 
-
-
+    var txtmobilenumber: TextView? = null
+    var txtsubscriber: TextView? = null
+    var txtoperator: TextView? = null
+    var txtcircle: TextView? = null
+    var txtamount: TextView? = null
+    var txtcircleAccNo: TextView? = null
+    var txtaccount: TextView? = null
 
     var  dialogOperator: BottomSheetDialog? = null
     var  dialogCircle: BottomSheetDialog? = null
@@ -214,6 +219,15 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 
         tv_header = findViewById<TextView>(R.id.tv_header)
 
+        txtmobilenumber = findViewById<TextView>(R.id.txtmobilenumber)
+        txtsubscriber = findViewById<TextView>(R.id.txtsubscriber)
+        txtoperator = findViewById<TextView>(R.id.txtoperator)
+        txtcircle = findViewById<TextView>(R.id.txtcircle)
+        txtamount = findViewById<TextView>(R.id.txtamount)
+        txtcircleAccNo = findViewById<TextView>(R.id.txtcircleAccNo)
+        txtaccount = findViewById<TextView>(R.id.txtaccount)
+
+
         tie_mobilenumber = findViewById<TextInputEditText>(R.id.tie_mobilenumber)
         tie_subscriber = findViewById<TextInputEditText>(R.id.tie_subscriber)
         tie_operator = findViewById<TextInputEditText>(R.id.tie_operator)
@@ -235,20 +249,34 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
         val AmountSP = applicationContext.getSharedPreferences(Config.SHARED_PREF113, 0)
         val RechrgSP = applicationContext.getSharedPreferences(Config.SHARED_PREF114, 0)
         val SelctaccSP = applicationContext.getSharedPreferences(Config.SHARED_PREF135, 0)
+        val AccnoSP = applicationContext.getSharedPreferences(Config.SHARED_PREF107, 0)
 
 
-        tie_mobilenumber!!.setHint(MobileSP.getString("MobileNumber", null))
+       /* tie_mobilenumber!!.setHint(MobileSP.getString("MobileNumber", null))
         tie_subscriber!!.setHint(SubscriberSP.getString("SubscriberID", null))
         tie_operator!!.setHint(OperatorSP.getString("Operator", null))
         tie_circle!!.setHint(CircleSP.getString("Circle", null))
         tie_amount!!.setHint(AmountSP.getString("Amount", null))
         tie_account!!.setHint(SelctaccSP.getString("SelectAccount", null))
-        tie_circleAccNo!!.setHint("Acoount no ")
+        tie_circleAccNo!!.setHint("Acoount no ")*/
+
+        txtmobilenumber!!.setText(MobileSP.getString("MobileNumber", null))
+        txtsubscriber!!.setText(SubscriberSP.getString("SubscriberID", null))
+        txtoperator!!.setText(OperatorSP.getString("Operator", null))
+        txtcircle!!.setText(CircleSP.getString("Circle", null))
+        txtamount!!.setText(AmountSP.getString("Amount", null))
+        txtcircleAccNo!!.setText(SelctaccSP.getString("SelectAccount", null))
+        txtaccount!!.setText(AccnoSP.getString("AccountNo", null))
+
 
 
         but_recharge = findViewById<Button>(R.id.but_recharge)
         but_clear = findViewById<Button>(R.id.but_clear)
         but_recharge!!.setText(RechrgSP.getString("RECHARGE", null))
+
+        val ID_clr = applicationContext.getSharedPreferences(Config.SHARED_PREF189,0)
+        but_clear!!.setText(ID_clr.getString("RESET",null))
+
 
         rvrecentRecharge = findViewById<FullLenghRecyclertview>(R.id.rvrecentRecharge)
 
@@ -364,6 +392,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                     ) // Activity is started with requestCode 2
 
                 } else {
+
                    // Toast.makeText(applicationContext, "Select Operator", Toast.LENGTH_LONG).show()
                     CustomBottomSheeet.Show(this,"Select Operator","0")
                 }
