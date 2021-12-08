@@ -3891,7 +3891,25 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_benfmatchEditer.putString("BeneficiaryAccountNumberdidntmatch", jresult3.get("BeneficiaryAccountNumberdidntmatch") as String)
                                     ID_benfmatchEditer.commit()
 
+                                    val ID_consname= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF277, 0)
+                                    val ID_consnameEditer = ID_consname.edit()
+                                    ID_consnameEditer.putString("ConsumerName", jresult3.get("ConsumerName") as String)
+                                    ID_consnameEditer.commit()
 
+                                    val ID_consnum= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF278, 0)
+                                    val ID_consnumEditer = ID_consnum.edit()
+                                    ID_consnumEditer.putString("ConsumerNumber", jresult3.get("ConsumerNumber") as String)
+                                    ID_consnumEditer.commit()
+
+                                    val ID_sectnme= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF279, 0)
+                                    val ID_sectnmeEditer = ID_sectnme.edit()
+                                    ID_sectnmeEditer.putString("SectionName", jresult3.get("SectionName") as String)
+                                    ID_sectnmeEditer.commit()
+
+                                    val ID_bill= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF280, 0)
+                                    val ID_billEditer = ID_bill.edit()
+                                    ID_billEditer.putString("BillNumber", jresult3.get("BillNumber") as String)
+                                    ID_billEditer.commit()
 
                                     val myIntent = Intent(this@HomeActivity, HomeActivity::class.java)
                                     overridePendingTransition(0, 0)

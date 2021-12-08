@@ -75,6 +75,15 @@ class KSEBActivity : AppCompatActivity(), View.OnClickListener, ItemClickListene
     var amount: String? = ""
     var SectionList: String? = ""
 
+    var txtconsumername: TextView? = null
+    var txtmobilenumber: TextView? = null
+    var txtconsumerno: TextView? = null
+    var txtsectionname: TextView? = null
+    var txtbillno: TextView? = null
+    var txtamount: TextView? = null
+    var txtaccount: TextView? = null
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,6 +91,35 @@ class KSEBActivity : AppCompatActivity(), View.OnClickListener, ItemClickListene
 
         setInitialise()
         setRegister()
+
+        val ID_pay = applicationContext.getSharedPreferences(Config.SHARED_PREF97,0)
+        but_recharge!!.setText(ID_pay.getString("PAY",null))
+
+        val ID_clr = applicationContext.getSharedPreferences(Config.SHARED_PREF189,0)
+        but_clear!!.setText(ID_clr.getString("RESET",null))
+
+        val ID_cnsmrnme = applicationContext.getSharedPreferences(Config.SHARED_PREF277,0)
+        txtconsumername!!.setText(ID_cnsmrnme.getString("ConsumerName",null))
+
+        val ID_mob = applicationContext.getSharedPreferences(Config.SHARED_PREF110,0)
+        txtmobilenumber!!.setText(ID_mob.getString("MobileNumber",null))
+
+
+        val ID_consumrno = applicationContext.getSharedPreferences(Config.SHARED_PREF278,0)
+        txtconsumerno!!.setText(ID_consumrno.getString("ConsumerNumber",null))
+
+        val ID_sectnname = applicationContext.getSharedPreferences(Config.SHARED_PREF279,0)
+        txtsectionname!!.setText(ID_sectnname.getString("SectionName",null))
+
+        val ID_billno= applicationContext.getSharedPreferences(Config.SHARED_PREF280,0)
+        txtbillno!!.setText(ID_billno.getString("BillNumber",null))
+
+        val ID_amt= applicationContext.getSharedPreferences(Config.SHARED_PREF113,0)
+        txtamount!!.setText(ID_amt.getString("Amount",null))
+
+        val ID_accno= applicationContext.getSharedPreferences(Config.SHARED_PREF158,0)
+        txtaccount!!.setText(ID_accno.getString("AccountNumber",null))
+
 
        // tv_header!!.setText(Html.fromHtml(billnumber))
 
@@ -137,6 +175,16 @@ class KSEBActivity : AppCompatActivity(), View.OnClickListener, ItemClickListene
     }
 
     private fun setInitialise() {
+
+
+        txtconsumername = findViewById<TextView>(R.id.txtconsumername)
+        txtmobilenumber = findViewById<TextView>(R.id.txtmobilenumber)
+        txtconsumerno = findViewById<TextView>(R.id.txtconsumerno)
+        txtsectionname = findViewById<TextView>(R.id.txtsectionname)
+        txtbillno = findViewById<TextView>(R.id.txtbillno)
+        txtamount = findViewById<TextView>(R.id.txtamount)
+        txtaccount = findViewById<TextView>(R.id.txtaccount)
+
         tv_header = findViewById<TextView>(R.id.tv_header)
         im_back = findViewById<ImageView>(R.id.im_back)
         im_home = findViewById<ImageView>(R.id.im_home)

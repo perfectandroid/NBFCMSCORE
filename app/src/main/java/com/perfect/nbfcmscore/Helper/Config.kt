@@ -338,6 +338,11 @@ object Config {
     const val SHARED_PREF275="PleaseEnterValidIFSC"
     const val SHARED_PREF276="BeneficiaryAccountNumberdidntmatch"
 
+    const val SHARED_PREF277="ConsumerName"
+    const val SHARED_PREF278="ConsumerNumber"
+    const val SHARED_PREF279="SectionName"
+    const val SHARED_PREF280="BillNumber"
+
 
 
 
