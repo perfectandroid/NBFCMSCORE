@@ -343,6 +343,13 @@ object Config {
     const val SHARED_PREF279="SectionName"
     const val SHARED_PREF280="BillNumber"
 
+    const val SHARED_PREF281="PleaseEnterMobileNumber"
+    const val SHARED_PREF282="PleaseEnterSectionName"
+    const val SHARED_PREF283="PleaseEnterBillnumber"
+    const val SHARED_PREF284="PleaseSelectAccount"
+    const val SHARED_PREF285="PleaseEnterConsumerName"
+    const val SHARED_PREF286="PleaseEnterConsumerNumber"
+    const val SHARED_PREF287="PleaseEnterValidMobileNumber"
 
 
 

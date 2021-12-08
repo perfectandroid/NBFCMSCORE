@@ -120,6 +120,9 @@ class KSEBActivity : AppCompatActivity(), View.OnClickListener, ItemClickListene
         val ID_accno= applicationContext.getSharedPreferences(Config.SHARED_PREF158,0)
         txtaccount!!.setText(ID_accno.getString("AccountNumber",null))
 
+        val ID_header= applicationContext.getSharedPreferences(Config.SHARED_PREF71,0)
+        tv_header!!.setText(ID_header.getString("KSEB",null))
+
 
        // tv_header!!.setText(Html.fromHtml(billnumber))
 
@@ -283,30 +286,58 @@ class KSEBActivity : AppCompatActivity(), View.OnClickListener, ItemClickListene
         mAccountNumber = mAccountNumber.replace(" ", "")
 
         if (consumername!!.equals("")){
-            CustomBottomSheeet.Show(this,"Please Enter Consumer name ","0")
+            val ID_plsentconsnme = applicationContext.getSharedPreferences(Config.SHARED_PREF285,0)
+            var plsentconsnme = ID_plsentconsnme.getString("PleaseEnterConsumerName",null)
+            CustomBottomSheeet.Show(this,plsentconsnme!!,"0")
+
+          //  CustomBottomSheeet.Show(this,"Please Enter Consumer name ","0")
         }
         else if (mobilenumber!!.length!=10){
-            CustomBottomSheeet.Show(this,"Please enter valid  mobile number","0")
+            val ID_validmob = applicationContext.getSharedPreferences(Config.SHARED_PREF287,0)
+            var validmob = ID_validmob.getString("PleaseEnterValidMobileNumber",null)
+            CustomBottomSheeet.Show(this,validmob!!,"0")
+          //  CustomBottomSheeet.Show(this,"Please enter valid  mobile number","0")
         }
         else if (consumernumber!!.equals("")){
-            CustomBottomSheeet.Show(this,"Please Enter Consumer number ","0")
+            val ID_plstentconsno = applicationContext.getSharedPreferences(Config.SHARED_PREF286,0)
+            var consno = ID_plstentconsno.getString("PleaseEnterConsumerNumber",null)
+            CustomBottomSheeet.Show(this,consno!!,"0")
+
+            //CustomBottomSheeet.Show(this,"Please Enter Consumer number ","0")
         }
         else if (sectionname!!.equals("")){
-            CustomBottomSheeet.Show(this,"Please Enter Section name ","0")
+            val ID_plsentsectname = applicationContext.getSharedPreferences(Config.SHARED_PREF282,0)
+            var plsentsctname= ID_plsentsectname.getString("PleaseEnterSectionName",null)
+            CustomBottomSheeet.Show(this,plsentsctname!!,"0")
+
+          //  CustomBottomSheeet.Show(this,"Please Enter Section name ","0")
         }
         else if (billnumber!!.equals("")){
-            CustomBottomSheeet.Show(this,"Please Enter Bill number ","0")
+            val ID_plsentbill= applicationContext.getSharedPreferences(Config.SHARED_PREF283,0)
+            var plsentbill= ID_plsentbill.getString("PleaseEnterBillnumber",null)
+            CustomBottomSheeet.Show(this,plsentbill!!,"0")
+          //  CustomBottomSheeet.Show(this,"Please Enter Bill number ","0")
         }
         else if (amount!!.equals("")){
-            CustomBottomSheeet.Show(this,"Please Enter Amount","0")
+            val ID_plsentamt= applicationContext.getSharedPreferences(Config.SHARED_PREF259,0)
+            var plsentamt= ID_plsentamt.getString("Pleaseenteramount",null)
+            CustomBottomSheeet.Show(this,plsentamt!!,"0")
+
+          //  CustomBottomSheeet.Show(this,"Please Enter Amount","0")
         }
         else if(mAccountNumber!!.length != 12){
+            val ID_plselctacc= applicationContext.getSharedPreferences(Config.SHARED_PREF284,0)
+            var plslctacc= ID_plselctacc.getString("PleaseSelectAccount",null)
+            CustomBottomSheeet.Show(this,plslctacc!!,"0")
             // Toast.makeText(applicationContext,"Please Select Account",Toast.LENGTH_LONG).show()
-            CustomBottomSheeet.Show(this,"Please Select Account","0")
+           // CustomBottomSheeet.Show(this,"Please Select Account","0")
         }
         else if(SubModule!!.equals("")){
+            val ID_plselctacc= applicationContext.getSharedPreferences(Config.SHARED_PREF284,0)
+            var plslctacc= ID_plselctacc.getString("PleaseSelectAccount",null)
+            CustomBottomSheeet.Show(this,plslctacc!!,"0")
             //  Toast.makeText(applicationContext,"Please Select Account",Toast.LENGTH_LONG).show()
-            CustomBottomSheeet.Show(this,"Please Select Account","0")
+          //  CustomBottomSheeet.Show(this,"Please Select Account","0")
         }else{
 
           //  mAccountNumber = AccountNo!!.replace(" ", "")
