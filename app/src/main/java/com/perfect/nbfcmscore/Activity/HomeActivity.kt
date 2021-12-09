@@ -43,6 +43,8 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.net.MalformedURLException
 import java.net.URL
 import java.util.*
+import android.R.id
+import androidx.recyclerview.widget.GridLayoutManager
 
 
 class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener, View.OnClickListener,
@@ -147,6 +149,12 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var rv_Languagelist: RecyclerView? = null
     var alertDialogLang: AlertDialog? = null
 
+    var rvfundTransfer: RecyclerView? = null
+    var jArrayMenuFund: JSONArray? = null
+
+    var rvRecharge: RecyclerView? = null
+    var jArrayMenuRech: JSONArray? = null
+
     private var jresult: JSONArray? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -159,6 +167,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         versioncheck()
 
         setdefaultAccountDetails()
+        createHomeMenuFund()
+        createHomeMenuRecharge()
 
         val ID_MyaccSP = applicationContext.getSharedPreferences(Config.SHARED_PREF50, 0)
         val ID_PassbkSP = applicationContext.getSharedPreferences(Config.SHARED_PREF51, 0)
@@ -273,6 +283,182 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         tvuser!!.setText(CustomerNameSP.getString("CustomerName", null))
         val CusMobileSP = applicationContext.getSharedPreferences(Config.SHARED_PREF2, 0)
         tv_mobile!!.setText(CusMobileSP.getString("CusMobile", null))
+
+
+
+
+    }
+
+
+
+    private fun createHomeMenuFund() {
+
+        val ID_OwnBankSP = applicationContext.getSharedPreferences(Config.SHARED_PREF63, 0)
+        val ID_OtherBankSP = applicationContext.getSharedPreferences(Config.SHARED_PREF64, 0)
+        val ID_QuickpaySP = applicationContext.getSharedPreferences(Config.SHARED_PREF65, 0)
+
+        txtv_ownbnk!!.setText(ID_OwnBankSP.getString("OwnBank", null))
+        txtv_othrbnk!!.setText(ID_OtherBankSP.getString("OtherBank", null))
+        txtv_quickpay!!.setText(ID_QuickpaySP.getString("QuickPay", null))
+
+        jArrayMenuFund = JSONArray()
+        var dlObjectFund = JSONObject()
+        dlObjectFund.put("FundId",0)
+        dlObjectFund.put("Fundlabel",ID_OwnBankSP.getString("OwnBank", null))
+        dlObjectFund.put("FundImage",R.drawable.myonwbank)
+        jArrayMenuFund!!.put(dlObjectFund)
+      //  if ("neft"== "1" ||"rtgs"== "1"||"imps"== "1"){
+            dlObjectFund = JSONObject()
+            dlObjectFund.put("FundId",1)
+            dlObjectFund.put("Fundlabel",ID_OtherBankSP.getString("OtherBank", null))
+            dlObjectFund.put("FundImage",R.drawable.myotherbank)
+            jArrayMenuFund!!.put(dlObjectFund)
+      //  }
+      //  else if ("quickPay"== "1"){
+            dlObjectFund = JSONObject()
+            dlObjectFund.put("FundId",2)
+            dlObjectFund.put("Fundlabel",ID_QuickpaySP.getString("QuickPay", null))
+            dlObjectFund.put("FundImage",R.drawable.myquickpay)
+            jArrayMenuFund!!.put(dlObjectFund)
+    //    }
+
+
+
+//        val menuFund = arrayOf<String>(""+ID_OwnBankSP.getString("OwnBank", null),
+//            ""+ID_OtherBankSP.getString("OtherBank", null),""+ID_QuickpaySP.getString("QuickPay", null))
+//        val imageIdFund = arrayOf<Int>(R.drawable.myonwbank, R.drawable.myotherbank, R.drawable.myquickpay)
+//
+//
+//
+//        jArrayMenuFund = JSONArray()
+//        try {
+//            for (x in 0 until menuFund!!.size){
+//                val dlObjectFund = JSONObject()
+//                if(x == 0){
+//                    dlObjectFund.put("FundId",x)
+//                    dlObjectFund.put("Fundlabel",menuFund[x])
+//                    dlObjectFund.put("FundImage",imageIdFund[x])
+//                    jArrayMenuFund!!.put(dlObjectFund)
+//                }
+//
+////                if(x == 1){
+////                    dlObjectFund.put("FundId",x)
+////                    dlObjectFund.put("Fundlabel",menuFund[x])
+////                    dlObjectFund.put("FundImage",imageIdFund[x])
+////                    jArrayMenuFund!!.put(dlObjectFund)
+////                }
+////
+////                if(x == 2){
+////                    dlObjectFund.put("FundId",x)
+////                    dlObjectFund.put("Fundlabel",menuFund[x])
+////                    dlObjectFund.put("FundImage",imageIdFund[x])
+////                    jArrayMenuFund!!.put(dlObjectFund)
+////                }
+//
+//            }
+//
+//        } catch (e: Exception) {
+//            Log.e(TAG, "Exception  186   "+e.toString())
+//            e.printStackTrace()
+//        }
+
+        Log.e(TAG,"jArrayMenuFund  186   "+jArrayMenuFund)
+
+
+        rvfundTransfer = findViewById<View>(R.id.rvfundTransfer) as RecyclerView
+        val lLayoutFund = GridLayoutManager(this@HomeActivity, 3)
+        rvfundTransfer!!.setLayoutManager(lLayoutFund)
+        val fund_adapter = HomeFundTransferAdapter(applicationContext!!,jArrayMenuFund!!)
+        rvfundTransfer!!.adapter = fund_adapter
+        fund_adapter!!.setClickListener(this@HomeActivity)
+
+
+    }
+
+    private fun createHomeMenuRecharge() {
+
+        val ID_Prepaid = applicationContext.getSharedPreferences(Config.SHARED_PREF66, 0)
+        val ID_Postpaid = applicationContext.getSharedPreferences(Config.SHARED_PREF67, 0)
+        val ID_Landline = applicationContext.getSharedPreferences(Config.SHARED_PREF68, 0)
+        val ID_DTH = applicationContext.getSharedPreferences(Config.SHARED_PREF69, 0)
+        val ID_Datacrdpay = applicationContext.getSharedPreferences(Config.SHARED_PREF70, 0)
+        val ID_KSEB = applicationContext.getSharedPreferences(Config.SHARED_PREF71, 0)
+        val ID_Histry = applicationContext.getSharedPreferences(Config.SHARED_PREF72, 0)
+
+
+
+        val menuRech = arrayOf<String>(""+ID_Prepaid.getString("PrepaidMobile", null),
+            ""+ID_Postpaid.getString("PostpaidMobile", null),""+ID_Landline.getString("Landline", null),
+            ""+ID_DTH.getString("DTH", null),""+ID_Datacrdpay.getString("DataCard", null),
+            ""+ID_KSEB.getString("KSEB", null),""+ID_Histry.getString("History", null))
+        val imageIdRech = arrayOf<Int>(R.drawable.myprepaidmobile, R.drawable.mypostpaidmobile, R.drawable.mylandline,
+            R.drawable.mydth, R.drawable.mydatacard, R.drawable.mykseb, R.drawable.myhistory)
+
+
+        jArrayMenuRech = JSONArray()
+        try {
+            for (x in 0 until menuRech!!.size){
+                val dlObjectRech = JSONObject()
+                if(x == 0){
+                    dlObjectRech.put("RechId",x)
+                    dlObjectRech.put("Rechlabel",menuRech[x])
+                    dlObjectRech.put("RechImage",imageIdRech[x])
+                    jArrayMenuRech!!.put(dlObjectRech)
+                }
+                if(x == 1){
+                    dlObjectRech.put("RechId",x)
+                    dlObjectRech.put("Rechlabel",menuRech[x])
+                    dlObjectRech.put("RechImage",imageIdRech[x])
+                    jArrayMenuRech!!.put(dlObjectRech)
+                }
+                if(x == 2){
+                    dlObjectRech.put("RechId",x)
+                    dlObjectRech.put("Rechlabel",menuRech[x])
+                    dlObjectRech.put("RechImage",imageIdRech[x])
+                    jArrayMenuRech!!.put(dlObjectRech)
+                }
+                if(x == 3){
+                    dlObjectRech.put("RechId",x)
+                    dlObjectRech.put("Rechlabel",menuRech[x])
+                    dlObjectRech.put("RechImage",imageIdRech[x])
+                    jArrayMenuRech!!.put(dlObjectRech)
+                }
+                if(x == 4){
+                    dlObjectRech.put("RechId",x)
+                    dlObjectRech.put("Rechlabel",menuRech[x])
+                    dlObjectRech.put("RechImage",imageIdRech[x])
+                    jArrayMenuRech!!.put(dlObjectRech)
+                }
+                if(x == 5){
+                    dlObjectRech.put("RechId",x)
+                    dlObjectRech.put("Rechlabel",menuRech[x])
+                    dlObjectRech.put("RechImage",imageIdRech[x])
+                    jArrayMenuRech!!.put(dlObjectRech)
+                }
+                if(x == 6){
+                    dlObjectRech.put("RechId",x)
+                    dlObjectRech.put("Rechlabel",menuRech[x])
+                    dlObjectRech.put("RechImage",imageIdRech[x])
+                    jArrayMenuRech!!.put(dlObjectRech)
+                }
+
+
+            }
+
+        } catch (e: Exception) {
+            Log.e(TAG, "Exception  1861   "+e.toString())
+            e.printStackTrace()
+        }
+
+        Log.e(TAG,"jArrayMenuRech  1861   "+jArrayMenuRech)
+
+
+        rvRecharge = findViewById<View>(R.id.rvRecharge) as RecyclerView
+        val lLayoutRech = GridLayoutManager(this@HomeActivity, 3)
+        rvRecharge!!.setLayoutManager(lLayoutRech)
+        val rech_adapter = HomeRechargeAdapter(applicationContext!!,jArrayMenuRech!!)
+        rvRecharge!!.adapter = rech_adapter
+        rech_adapter!!.setClickListener(this@HomeActivity)
 
     }
 
@@ -1656,11 +1842,90 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     }
 
     override fun onClick(position: Int, data: String) {
-        Log.e(TAG, "onClick  2155   " + position)
-        var jsonObject1 = jArrayLang!!.getJSONObject(position)
-        alertDialogLang!!.dismiss()
-        Log.e(TAG, "LanguagesName  2155   " + jsonObject1.getString("LanguagesName"))
-        getlabels(jsonObject1.getString("ID_Languages"))
+
+       if (data.equals("lang")){
+           Log.e(TAG, "onClick  2155   " + position)
+           var jsonObject1 = jArrayLang!!.getJSONObject(position)
+           alertDialogLang!!.dismiss()
+           Log.e(TAG, "LanguagesName  2155   " + jsonObject1.getString("LanguagesName"))
+           getlabels(jsonObject1.getString("ID_Languages"))
+       }
+        if (data.equals("fund")){
+            Log.e(TAG, "onClick  2155   " + position)
+            var jsonObject1 = jArrayMenuFund!!.getJSONObject(position)
+            Log.e(TAG,"IDS 2155 "+jsonObject1.getInt("FundId"))
+
+            if (jsonObject1.getInt("FundId") == 0){
+                startActivity(
+                    Intent(
+                        this@HomeActivity,
+                        OwnBankFundTransferServiceActivity::class.java
+                    )
+                )
+            }
+            if (jsonObject1.getInt("FundId") == 1){
+                var intent = Intent(this@HomeActivity, OtherBankActivity::class.java)
+                startActivity(intent)
+            }
+            if (jsonObject1.getInt("FundId") == 2){
+                var intent = Intent(this@HomeActivity, QuickPayActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
+        if (data.equals("rech")){
+
+            Log.e(TAG, "onClick RECH  2155   " + position)
+            var jsonObject1 = jArrayMenuRech!!.getJSONObject(position)
+
+            if (jsonObject1.getInt("RechId") == 0){
+
+                var intent = Intent(this@HomeActivity, RechargeActivity::class.java)
+                intent.putExtra("from", "prepaid")
+                startActivity(intent)
+
+
+            }
+
+            if (jsonObject1.getInt("RechId") == 1){
+                var intent = Intent(this@HomeActivity, RechargeActivity::class.java)
+                intent.putExtra("from", "postpaid")
+                startActivity(intent)
+
+            }
+            if (jsonObject1.getInt("RechId") == 2){
+                var intent = Intent(this@HomeActivity, RechargeActivity::class.java)
+                intent.putExtra("from", "landline")
+                startActivity(intent)
+
+            }
+
+            if (jsonObject1.getInt("RechId") == 3){
+                var intent = Intent(this@HomeActivity, RechargeActivity::class.java)
+                intent.putExtra("from", "dth")
+                startActivity(intent)
+            }
+            if (jsonObject1.getInt("RechId") == 4){
+                var intent = Intent(this@HomeActivity, RechargeActivity::class.java)
+                intent.putExtra("from", "datacard")
+                startActivity(intent)
+            }
+
+            if (jsonObject1.getInt("RechId") == 5){
+
+                var intent = Intent(this@HomeActivity, KSEBActivity::class.java)
+                startActivity(intent)
+            }
+            if (jsonObject1.getInt("RechId") == 6){
+                var intent = Intent(this@HomeActivity, RechargeHistoryActivity::class.java)
+                startActivity(intent)
+
+            }
+
+
+
+        }
+
 
     }
 

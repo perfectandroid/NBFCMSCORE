@@ -29,6 +29,11 @@ class OtherBankActivity : AppCompatActivity()  , View.OnClickListener{
     var tv_rtgs: TextView? = null
     var tv_fndtransfer: TextView? = null
 
+    var ll_imps_main: LinearLayout? = null
+    var ll_neft_main: LinearLayout? = null
+    var ll_rtgs_main: LinearLayout? = null
+    var ll_fundtransfer_main: LinearLayout? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_other_bank)
@@ -68,6 +73,11 @@ class OtherBankActivity : AppCompatActivity()  , View.OnClickListener{
         ll_neft = findViewById<LinearLayout>(R.id.ll_neft)
         ll_rtgs = findViewById<LinearLayout>(R.id.ll_rtgs)
         ll_fundtransfer = findViewById<LinearLayout>(R.id.ll_fundtransfer)
+
+        ll_neft_main = findViewById<LinearLayout>(R.id.ll_neft_main)
+        ll_imps_main = findViewById<LinearLayout>(R.id.ll_imps_main)
+        ll_rtgs_main = findViewById<LinearLayout>(R.id.ll_rtgs_main)
+        ll_fundtransfer_main = findViewById<LinearLayout>(R.id.ll_fundtransfer_main)
 
 
     }
