@@ -1466,6 +1466,22 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_sctnEditer.putString("Section", jresult3.get("Section") as String)
                                         ID_sctnEditer.commit()
 
+                                        val ID_nottransf= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF290, 0)
+                                        val ID_nottransfEditer = ID_nottransf.edit()
+                                        ID_nottransfEditer.putString("NotTransferable", jresult3.get("NotTransferable") as String)
+                                        ID_nottransfEditer.commit()
+
+                                        val ID_keepcrd= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF291, 0)
+                                        val ID_keepcrdEditer = ID_keepcrd.edit()
+                                        ID_keepcrdEditer.putString("PleaseKeepYourCardConfidential", jresult3.get("PleaseKeepYourCardConfidential") as String)
+                                        ID_keepcrdEditer.commit()
+
+                                        val ID_ph= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF292, 0)
+                                        val ID_phEditer = ID_ph.edit()
+                                        ID_phEditer.putString("Phone", jresult3.get("Phone") as String)
+                                        ID_phEditer.commit()
+
+
 
 
 

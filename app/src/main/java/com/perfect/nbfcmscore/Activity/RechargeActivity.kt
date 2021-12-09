@@ -393,8 +393,11 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 
                 } else {
 
+                    val slctopSP = applicationContext.getSharedPreferences(Config.SHARED_PREF115, 0)
+                   var slctop = slctopSP.getString("SelectOperator", null)
+                    CustomBottomSheeet.Show(this,slctop!!,"0")
                    // Toast.makeText(applicationContext, "Select Operator", Toast.LENGTH_LONG).show()
-                    CustomBottomSheeet.Show(this,"Select Operator","0")
+                  //  CustomBottomSheeet.Show(this,"Select Operator","0")
                 }
 
             }
@@ -1057,10 +1060,14 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 
         if (mobileNumber!!.length!= 10){
            // Toast.makeText(applicationContext,"Please enter valid  mobile number",Toast.LENGTH_LONG).show()
+            val ID_validmob = applicationContext.getSharedPreferences(Config.SHARED_PREF287,0)
+            var validmob = ID_validmob.getString("PleaseEnterValidMobileNumber",null)
+            CustomBottomSheeet.Show(this,validmob!!,"0")
 
-            CustomBottomSheeet.Show(this,"Please enter valid  mobile number","0")
+          //  CustomBottomSheeet.Show(this,"Please enter valid  mobile number","0")
 //            showToast("Please enter valid  mobile number")
         }else if(ProvidersCode!!.equals("")){
+
            // Toast.makeText(applicationContext,"Please Select Operator",Toast.LENGTH_LONG).show()
             CustomBottomSheeet.Show(this,"Please Select Operator","0")
         }
@@ -1069,16 +1076,25 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
             CustomBottomSheeet.Show(this,"Please Select Circle","0")
         }
         else if(Amount!!.equals("")){
+            val ID_plstslctamt = applicationContext.getSharedPreferences(Config.SHARED_PREF259,0)
+            var entramt = ID_plstslctamt.getString("Pleaseenteramount",null)
+            CustomBottomSheeet.Show(this,entramt!!,"0")
            // Toast.makeText(applicationContext,"Please Enter Amount",Toast.LENGTH_LONG).show()
-            CustomBottomSheeet.Show(this,"Please Enter Amount","0")
+           // CustomBottomSheeet.Show(this,"Please Enter Amount","0")
         }
         else if(mAccountNumber!!.length != 12){
+            val ID_plstslctacc = applicationContext.getSharedPreferences(Config.SHARED_PREF284,0)
+            var plsslctacc = ID_plstslctacc.getString("PleaseSelectAccount",null)
+            CustomBottomSheeet.Show(this,plsslctacc!!,"0")
            // Toast.makeText(applicationContext,"Please Select Account",Toast.LENGTH_LONG).show()
-            CustomBottomSheeet.Show(this,"Please Select Account","0")
+          //  CustomBottomSheeet.Show(this,"Please Select Account","0")
         }
         else if(SubModule!!.equals("")){
+            val ID_plstslctacc = applicationContext.getSharedPreferences(Config.SHARED_PREF284,0)
+            var plsslctacc = ID_plstslctacc.getString("PleaseSelectAccount",null)
+            CustomBottomSheeet.Show(this,plsslctacc!!,"0")
           //  Toast.makeText(applicationContext,"Please Select Account",Toast.LENGTH_LONG).show()
-            CustomBottomSheeet.Show(this,"Please Select Account","0")
+        //    CustomBottomSheeet.Show(this,"Please Select Account","0")
         }else{
 
             Log.e(TAG,"MobileNumer      785   "+mobileNumber)

@@ -70,6 +70,11 @@ class BackViewFragment : Fragment() , OnClickListener{
     var ll_points3: LinearLayout? = null
     var ll_points4: LinearLayout? = null
 
+    var txtv_nontransf: TextView? = null
+    var txtv_plskpcard: TextView? = null
+    var txtv_add: TextView? = null
+    var txtv_ph: TextView? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -88,6 +93,24 @@ class BackViewFragment : Fragment() , OnClickListener{
 
         txtv_addrs = v.findViewById<View>(R.id.txtv_addrs) as TextView?
         txtv_phone = v.findViewById<View>(R.id.txtv_phone) as TextView?
+
+        txtv_nontransf = v.findViewById<View>(R.id.txtv_nontransf) as TextView?
+        txtv_plskpcard = v.findViewById<View>(R.id.txtv_plskpcard) as TextView?
+        txtv_add = v.findViewById<View>(R.id.txtv_add) as TextView?
+        txtv_ph = v.findViewById<View>(R.id.txtv_ph) as TextView?
+
+        val NontransfSP = context!!.getSharedPreferences(Config.SHARED_PREF290, 0)
+        txtv_nontransf!!.setText(NontransfSP.getString("NotTransferable", null))
+
+        val KpcardSP = context!!.getSharedPreferences(Config.SHARED_PREF291, 0)
+        txtv_plskpcard!!.setText(KpcardSP.getString("PleaseKeepYourCardConfidential", null))
+
+        val PhSP = context!!.getSharedPreferences(Config.SHARED_PREF292, 0)
+        txtv_ph!!.setText(PhSP.getString("Phone", null))
+
+        val AddrsSP = context!!.getSharedPreferences(Config.SHARED_PREF4, 0)
+        txtv_add!!.setText(AddrsSP.getString("Address", null))
+
 
         txtv_purpose = v.findViewById<View>(R.id.txtv_purpose) as TextView?
         txtv_points1 = v.findViewById<View>(R.id.txtv_points1) as TextView?

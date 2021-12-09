@@ -74,6 +74,7 @@
                             android:padding="5dp">
 
                             <TextView
+                                android:id="@+id/txtv_nontransf"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="start"
@@ -84,6 +85,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/txtv_plskpcard"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="end"
@@ -111,6 +113,7 @@
 
 
                                 <TextView
+                                    android:id="@+id/txtv_add"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="start"
@@ -140,6 +143,7 @@
                                 android:layout_marginTop="2dp">
 
                                 <TextView
+                                    android:id="@+id/txtv_ph"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="start"
