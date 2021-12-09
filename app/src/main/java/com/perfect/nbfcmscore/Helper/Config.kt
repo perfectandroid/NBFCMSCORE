@@ -354,6 +354,10 @@ object Config {
     const val SHARED_PREF288="Selection"
     const val SHARED_PREF289="Section"
 
+    const val SHARED_PREF290="NotTransferable"
+    const val SHARED_PREF291="PleaseKeepYourCardConfidential"
+    const val SHARED_PREF292="Phone"
+
 
 
 
