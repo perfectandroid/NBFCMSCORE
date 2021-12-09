@@ -14,6 +14,7 @@ import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidmads.library.qrgenearator.QRGContents
@@ -64,6 +65,11 @@ class BackViewFragment : Fragment() , OnClickListener{
     var txtv_points4: TextView? = null
     var txtv_header: TextView? = null
 
+    var ll_points1: LinearLayout? = null
+    var ll_points2: LinearLayout? = null
+    var ll_points3: LinearLayout? = null
+    var ll_points4: LinearLayout? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -90,12 +96,24 @@ class BackViewFragment : Fragment() , OnClickListener{
         txtv_points4 = v.findViewById<View>(R.id.txtv_points4) as TextView?
         txtv_header= v.findViewById<View>(R.id.txtv_header) as TextView?
 
+        ll_points1 = v.findViewById<View>(R.id.ll_points1) as LinearLayout?
+        ll_points2 = v.findViewById<View>(R.id.ll_points2) as LinearLayout?
+        ll_points3 = v.findViewById<View>(R.id.ll_points3) as LinearLayout?
+        ll_points4 = v.findViewById<View>(R.id.ll_points4) as LinearLayout?
+
+
         //txtv_purpose!!.setText(R.string.purpose)
         txtv_purpose!!.visibility = View.VISIBLE
         txtv_points1!!.visibility = View.VISIBLE
         txtv_points2!!.visibility = View.VISIBLE
         txtv_points3!!.visibility = View.VISIBLE
         txtv_points4!!.visibility = View.VISIBLE
+
+        ll_points1!!.visibility = View.VISIBLE
+        ll_points2!!.visibility = View.VISIBLE
+        ll_points3!!.visibility = View.VISIBLE
+        ll_points4!!.visibility = View.VISIBLE
+
 
 
         imgv_barcode = v.findViewById<View>(R.id.imgv_barcode) as ImageView?
