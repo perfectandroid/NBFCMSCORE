@@ -358,6 +358,13 @@ object Config {
     const val SHARED_PREF291="PleaseKeepYourCardConfidential"
     const val SHARED_PREF292="Phone"
 
+    const val SHARED_PREF293="LicenceImps"
+    const val SHARED_PREF294="LicenceKseb"
+    const val SHARED_PREF295="LicenceNeft"
+    const val SHARED_PREF296="LicenceQuickPay"
+    const val SHARED_PREF297="LicenceRecharge"
+    const val SHARED_PREF298="LicenceRtgs"
+
 
 
 

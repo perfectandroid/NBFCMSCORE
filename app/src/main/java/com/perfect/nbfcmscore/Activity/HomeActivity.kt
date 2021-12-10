@@ -84,6 +84,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var llprofile: LinearLayout? = null
     var llexecutive: LinearLayout? = null
     var llenquiry: LinearLayout? = null
+    var ll_fundtransfer: LinearLayout? = null
+    var ll_recharge: LinearLayout? = null
 
     var tv_def_account: TextView? = null
     var tv_def_availablebal: TextView? = null
@@ -297,6 +299,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         val ID_OtherBankSP = applicationContext.getSharedPreferences(Config.SHARED_PREF64, 0)
         val ID_QuickpaySP = applicationContext.getSharedPreferences(Config.SHARED_PREF65, 0)
 
+        val LicenceImpsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF293,0)
+        val LicenceNeftSP = applicationContext.getSharedPreferences(Config.SHARED_PREF295,0)
+        val LicenceRtgsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF298,0)
+        val LicenceQuickPaySP = applicationContext.getSharedPreferences(Config.SHARED_PREF296,0)
+
         txtv_ownbnk!!.setText(ID_OwnBankSP.getString("OwnBank", null))
         txtv_othrbnk!!.setText(ID_OtherBankSP.getString("OtherBank", null))
         txtv_quickpay!!.setText(ID_QuickpaySP.getString("QuickPay", null))
@@ -307,20 +314,26 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         dlObjectFund.put("Fundlabel",ID_OwnBankSP.getString("OwnBank", null))
         dlObjectFund.put("FundImage",R.drawable.myonwbank)
         jArrayMenuFund!!.put(dlObjectFund)
-      //  if ("neft"== "1" ||"rtgs"== "1"||"imps"== "1"){
+        if (LicenceImpsSP.getString("LicenceImps",null).equals("true") || LicenceNeftSP.getString("LicenceNeft",null).equals("true") || LicenceRtgsSP.getString("LicenceRtgs",null).equals("true")){
             dlObjectFund = JSONObject()
             dlObjectFund.put("FundId",1)
             dlObjectFund.put("Fundlabel",ID_OtherBankSP.getString("OtherBank", null))
             dlObjectFund.put("FundImage",R.drawable.myotherbank)
             jArrayMenuFund!!.put(dlObjectFund)
-      //  }
-      //  else if ("quickPay"== "1"){
+        }
+        if (LicenceQuickPaySP.getString("LicenceQuickPay",null).equals("true")){
             dlObjectFund = JSONObject()
             dlObjectFund.put("FundId",2)
             dlObjectFund.put("Fundlabel",ID_QuickpaySP.getString("QuickPay", null))
             dlObjectFund.put("FundImage",R.drawable.myquickpay)
             jArrayMenuFund!!.put(dlObjectFund)
-    //    }
+
+        }
+
+//        if (!LicenceImpsSP.getString("LicenceImps",null).equals("true") && !LicenceNeftSP.getString("LicenceNeft",null).equals("true") &&
+//            !LicenceRtgsSP.getString("LicenceRtgs",null).equals("true") && !LicenceQuickPaySP.getString("LicenceQuickPay",null).equals("true")){
+//            ll_fundtransfer!!.visibility = View.GONE
+//        }
 
 
 
@@ -385,70 +398,133 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         val ID_KSEB = applicationContext.getSharedPreferences(Config.SHARED_PREF71, 0)
         val ID_Histry = applicationContext.getSharedPreferences(Config.SHARED_PREF72, 0)
 
-
-
-        val menuRech = arrayOf<String>(""+ID_Prepaid.getString("PrepaidMobile", null),
-            ""+ID_Postpaid.getString("PostpaidMobile", null),""+ID_Landline.getString("Landline", null),
-            ""+ID_DTH.getString("DTH", null),""+ID_Datacrdpay.getString("DataCard", null),
-            ""+ID_KSEB.getString("KSEB", null),""+ID_Histry.getString("History", null))
-        val imageIdRech = arrayOf<Int>(R.drawable.myprepaidmobile, R.drawable.mypostpaidmobile, R.drawable.mylandline,
-            R.drawable.mydth, R.drawable.mydatacard, R.drawable.mykseb, R.drawable.myhistory)
+        val LicenceKsebSP = applicationContext.getSharedPreferences(Config.SHARED_PREF294,0)
+        val LicenceRechargeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF297,0)
 
 
         jArrayMenuRech = JSONArray()
-        try {
-            for (x in 0 until menuRech!!.size){
-                val dlObjectRech = JSONObject()
-                if(x == 0){
-                    dlObjectRech.put("RechId",x)
-                    dlObjectRech.put("Rechlabel",menuRech[x])
-                    dlObjectRech.put("RechImage",imageIdRech[x])
-                    jArrayMenuRech!!.put(dlObjectRech)
-                }
-                if(x == 1){
-                    dlObjectRech.put("RechId",x)
-                    dlObjectRech.put("Rechlabel",menuRech[x])
-                    dlObjectRech.put("RechImage",imageIdRech[x])
-                    jArrayMenuRech!!.put(dlObjectRech)
-                }
-                if(x == 2){
-                    dlObjectRech.put("RechId",x)
-                    dlObjectRech.put("Rechlabel",menuRech[x])
-                    dlObjectRech.put("RechImage",imageIdRech[x])
-                    jArrayMenuRech!!.put(dlObjectRech)
-                }
-                if(x == 3){
-                    dlObjectRech.put("RechId",x)
-                    dlObjectRech.put("Rechlabel",menuRech[x])
-                    dlObjectRech.put("RechImage",imageIdRech[x])
-                    jArrayMenuRech!!.put(dlObjectRech)
-                }
-                if(x == 4){
-                    dlObjectRech.put("RechId",x)
-                    dlObjectRech.put("Rechlabel",menuRech[x])
-                    dlObjectRech.put("RechImage",imageIdRech[x])
-                    jArrayMenuRech!!.put(dlObjectRech)
-                }
-                if(x == 5){
-                    dlObjectRech.put("RechId",x)
-                    dlObjectRech.put("Rechlabel",menuRech[x])
-                    dlObjectRech.put("RechImage",imageIdRech[x])
-                    jArrayMenuRech!!.put(dlObjectRech)
-                }
-                if(x == 6){
-                    dlObjectRech.put("RechId",x)
-                    dlObjectRech.put("Rechlabel",menuRech[x])
-                    dlObjectRech.put("RechImage",imageIdRech[x])
-                    jArrayMenuRech!!.put(dlObjectRech)
-                }
+        var dlObjectRech = JSONObject()
+        if (LicenceRechargeSP.getString("LicenceRecharge",null).equals("true")){
+
+            dlObjectRech.put("RechId",0)
+            dlObjectRech.put("Rechlabel",ID_Prepaid.getString("PrepaidMobile", null))
+            dlObjectRech.put("RechImage",R.drawable.myprepaidmobile)
+            jArrayMenuRech!!.put(dlObjectRech)
+
+            dlObjectRech = JSONObject()
+            dlObjectRech.put("RechId",1)
+            dlObjectRech.put("Rechlabel",ID_Postpaid.getString("PostpaidMobile", null))
+            dlObjectRech.put("RechImage",R.drawable.mypostpaidmobile)
+            jArrayMenuRech!!.put(dlObjectRech)
+
+            dlObjectRech = JSONObject()
+            dlObjectRech.put("RechId",2)
+            dlObjectRech.put("Rechlabel",ID_Landline.getString("Landline", null))
+            dlObjectRech.put("RechImage",R.drawable.mylandline)
+            jArrayMenuRech!!.put(dlObjectRech)
+
+            dlObjectRech = JSONObject()
+            dlObjectRech.put("RechId",3)
+            dlObjectRech.put("Rechlabel",ID_DTH.getString("DTH", null))
+            dlObjectRech.put("RechImage",R.drawable.mydth)
+            jArrayMenuRech!!.put(dlObjectRech)
 
 
-            }
 
-        } catch (e: Exception) {
-            Log.e(TAG, "Exception  1861   "+e.toString())
-            e.printStackTrace()
+            dlObjectRech = JSONObject()
+            dlObjectRech.put("RechId",4)
+            dlObjectRech.put("Rechlabel",ID_Datacrdpay.getString("DataCard", null))
+            dlObjectRech.put("RechImage",R.drawable.mydatacard)
+            jArrayMenuRech!!.put(dlObjectRech)
+
+
         }
+        if (LicenceKsebSP.getString("LicenceKseb",null).equals("true")){
+            dlObjectRech = JSONObject()
+            dlObjectRech.put("RechId",5)
+            dlObjectRech.put("Rechlabel",ID_KSEB.getString("KSEB", null))
+            dlObjectRech.put("RechImage",R.drawable.mykseb)
+            jArrayMenuRech!!.put(dlObjectRech)
+        }
+
+        if (LicenceRechargeSP.getString("LicenceRecharge",null).equals("true") || LicenceKsebSP.getString("LicenceKseb",null).equals("true")){
+
+            dlObjectRech = JSONObject()
+            dlObjectRech.put("RechId",6)
+            dlObjectRech.put("Rechlabel",ID_Histry.getString("History", null))
+            dlObjectRech.put("RechImage",R.drawable.myhistory)
+            jArrayMenuRech!!.put(dlObjectRech)
+        }
+
+        if (!LicenceRechargeSP.getString("LicenceRecharge",null).equals("true") && !LicenceKsebSP.getString("LicenceKseb",null).equals("true")){
+
+            ll_recharge!!.visibility = View.GONE
+
+        }
+
+
+//        val menuRech = arrayOf<String>(""+ID_Prepaid.getString("PrepaidMobile", null),
+//            ""+ID_Postpaid.getString("PostpaidMobile", null),""+ID_Landline.getString("Landline", null),
+//            ""+ID_DTH.getString("DTH", null),""+ID_Datacrdpay.getString("DataCard", null),
+//            ""+ID_KSEB.getString("KSEB", null),""+ID_Histry.getString("History", null))
+//        val imageIdRech = arrayOf<Int>(R.drawable.myprepaidmobile, R.drawable.mypostpaidmobile, R.drawable.mylandline,
+//            R.drawable.mydth, R.drawable.mydatacard, R.drawable.mykseb, R.drawable.myhistory)
+//
+//
+//        jArrayMenuRech = JSONArray()
+//        try {
+//            for (x in 0 until menuRech!!.size){
+//                val dlObjectRech = JSONObject()
+//                if(x == 0){
+//                    dlObjectRech.put("RechId",x)
+//                    dlObjectRech.put("Rechlabel",menuRech[x])
+//                    dlObjectRech.put("RechImage",imageIdRech[x])
+//                    jArrayMenuRech!!.put(dlObjectRech)
+//                }
+//                if(x == 1){
+//                    dlObjectRech.put("RechId",x)
+//                    dlObjectRech.put("Rechlabel",menuRech[x])
+//                    dlObjectRech.put("RechImage",imageIdRech[x])
+//                    jArrayMenuRech!!.put(dlObjectRech)
+//                }
+//                if(x == 2){
+//                    dlObjectRech.put("RechId",x)
+//                    dlObjectRech.put("Rechlabel",menuRech[x])
+//                    dlObjectRech.put("RechImage",imageIdRech[x])
+//                    jArrayMenuRech!!.put(dlObjectRech)
+//                }
+//                if(x == 3){
+//                    dlObjectRech.put("RechId",x)
+//                    dlObjectRech.put("Rechlabel",menuRech[x])
+//                    dlObjectRech.put("RechImage",imageIdRech[x])
+//                    jArrayMenuRech!!.put(dlObjectRech)
+//                }
+//                if(x == 4){
+//                    dlObjectRech.put("RechId",x)
+//                    dlObjectRech.put("Rechlabel",menuRech[x])
+//                    dlObjectRech.put("RechImage",imageIdRech[x])
+//                    jArrayMenuRech!!.put(dlObjectRech)
+//                }
+//                if(x == 5){
+//                    dlObjectRech.put("RechId",x)
+//                    dlObjectRech.put("Rechlabel",menuRech[x])
+//                    dlObjectRech.put("RechImage",imageIdRech[x])
+//                    jArrayMenuRech!!.put(dlObjectRech)
+//                }
+//                if(x == 6){
+//                    dlObjectRech.put("RechId",x)
+//                    dlObjectRech.put("Rechlabel",menuRech[x])
+//                    dlObjectRech.put("RechImage",imageIdRech[x])
+//                    jArrayMenuRech!!.put(dlObjectRech)
+//                }
+//
+//
+//            }
+//
+//        } catch (e: Exception) {
+//            Log.e(TAG, "Exception  1861   "+e.toString())
+//            e.printStackTrace()
+//        }
 
         Log.e(TAG,"jArrayMenuRech  1861   "+jArrayMenuRech)
 
@@ -952,6 +1028,9 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         llDeposit = findViewById(R.id.llDeposit)
         llprdctdetail = findViewById(R.id.llprdctdetail)
         llmyaccounts = findViewById(R.id.llmyaccounts)
+        ll_fundtransfer = findViewById(R.id.ll_fundtransfer)
+        ll_recharge = findViewById(R.id.ll_recharge)
+
         imgMenu = findViewById(R.id.imgMenu)
         drawer = findViewById(R.id.drawer_layout)
         lvNavMenu = findViewById(R.id.lvNavMenu)

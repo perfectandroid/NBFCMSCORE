@@ -273,6 +273,37 @@ class SplashActivity : AppCompatActivity() {
                                     }catch (e: Exception) {
                                         e.printStackTrace()}
 
+                                    val LicenceImpsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF293,0)
+                                    val LicenceImpsEditer = LicenceImpsSP.edit()
+                                    LicenceImpsEditer.putString("LicenceImps", "true")
+                                    LicenceImpsEditer.commit()
+
+                                    val LicenceNeftSP = applicationContext.getSharedPreferences(Config.SHARED_PREF295,0)
+                                    val LicenceNeftEditer = LicenceNeftSP.edit()
+                                    LicenceNeftEditer.putString("LicenceNeft", "true")
+                                    LicenceNeftEditer.commit()
+
+                                    val LicenceRtgsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF298,0)
+                                    val LicenceRtgsEditer = LicenceRtgsSP.edit()
+                                    LicenceRtgsEditer.putString("LicenceRtgs", "true")
+                                    LicenceRtgsEditer.commit()
+
+
+                                    val LicenceQuickPaySP = applicationContext.getSharedPreferences(Config.SHARED_PREF296,0)
+                                    val LicenceQuickPayEditer = LicenceQuickPaySP.edit()
+                                    LicenceQuickPayEditer.putString("LicenceQuickPay", "true")
+                                    LicenceQuickPayEditer.commit()
+
+                                    val LicenceKsebSP = applicationContext.getSharedPreferences(Config.SHARED_PREF294,0)
+                                    val LicenceKsebEditer = LicenceKsebSP.edit()
+                                    LicenceKsebEditer.putString("LicenceKseb", "true")
+                                    LicenceKsebEditer.commit()
+
+                                    val LicenceRechargeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF297,0)
+                                    val LicenceRechargeEditer = LicenceRechargeSP.edit()
+                                    LicenceRechargeEditer.putString("LicenceRecharge", "true")
+                                    LicenceRechargeEditer.commit()
+
                                     doSplash()
                                     getMaintenanceMessage()
                                   //  getlabels()

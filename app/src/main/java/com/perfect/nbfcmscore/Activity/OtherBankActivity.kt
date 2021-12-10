@@ -56,6 +56,28 @@ class OtherBankActivity : AppCompatActivity()  , View.OnClickListener{
         val OthrbnkSP = applicationContext.getSharedPreferences(Config.SHARED_PREF64, 0)
         tv_header!!.setText(OthrbnkSP.getString("OtherBank", null))
 
+        ApplayLicence()
+
+    }
+
+    private fun ApplayLicence() {
+        val LicenceImpsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF293,0)
+        val LicenceNeftSP = applicationContext.getSharedPreferences(Config.SHARED_PREF295,0)
+        val LicenceRtgsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF298,0)
+
+        if(!LicenceImpsSP.getString("LicenceImps",null).equals("true")){
+            ll_imps_main!!.visibility = View.GONE
+        }
+        if(!LicenceNeftSP.getString("LicenceNeft",null).equals("true")){
+            ll_neft!!.visibility = View.GONE
+        }
+
+        if(!LicenceRtgsSP.getString("LicenceRtgs",null).equals("true")){
+            ll_rtgs_main!!.visibility = View.GONE
+        }
+
+
+
     }
 
     private fun setInitialise() {
