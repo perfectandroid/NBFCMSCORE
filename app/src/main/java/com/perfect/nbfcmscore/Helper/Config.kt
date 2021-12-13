@@ -365,6 +365,9 @@ object Config {
     const val SHARED_PREF297="LicenceRecharge"
     const val SHARED_PREF298="LicenceRtgs"
 
+    const val SHARED_PREF299="Address1"
+    const val SHARED_PREF300="Email1"
+
 
 
 

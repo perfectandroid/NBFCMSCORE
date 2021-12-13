@@ -1492,6 +1492,16 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_phEditer.putString("Phone", jresult3.get("Phone") as String)
                                         ID_phEditer.commit()
 
+                                        val ID_add= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF299, 0)
+                                        val ID_addEditer = ID_add.edit()
+                                        ID_addEditer.putString("Address1", jresult3.get("Address") as String)
+                                        ID_addEditer.commit()
+
+                                        val ID_mail= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF300, 0)
+                                        val ID_mailEditer = ID_mail.edit()
+                                        ID_mailEditer.putString("Email1", jresult3.get("Email") as String)
+                                        ID_mailEditer.commit()
+
 
 
 

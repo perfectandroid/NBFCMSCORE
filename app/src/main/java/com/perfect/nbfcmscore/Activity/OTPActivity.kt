@@ -613,6 +613,7 @@ class OTPActivity : AppCompatActivity() , View.OnClickListener {
                                 progressDialog!!.dismiss()
 
                                 val jObject = JSONObject(response.body())
+                                Log.i("VerifictnResponse",response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jobjt = jObject.getJSONObject("VarificationMaintenance")
 
