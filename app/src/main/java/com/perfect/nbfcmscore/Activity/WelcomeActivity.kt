@@ -322,6 +322,17 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_FeedbkEditer.putString("feedback", jresult3.get("feedback") as String)
                                         ID_FeedbkEditer.commit()
 
+                                        val WelcomeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF34, 0)
+                                        val FasterSP = applicationContext.getSharedPreferences(Config.SHARED_PREF35, 0)
+                                        val SigninSP = applicationContext.getSharedPreferences(Config.SHARED_PREF36, 0)
+                                        val RegisterSP = applicationContext.getSharedPreferences(Config.SHARED_PREF37, 0)
+
+
+                                        tvWelcome!!.setText(WelcomeSP.getString("welcome", null))
+                                        tvfasterway!!.setText(FasterSP.getString("fasterwaytohelpyou", null))
+                                        btlogin!!.setText(SigninSP.getString("sigin", null))
+                                        btregistration!!.setText(RegisterSP.getString("registernow", null))
+
                                         val ID_PrivacySP = this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF57, 0)
                                         val ID_PrivacyEditer = ID_PrivacySP.edit()
                                         ID_PrivacyEditer.putString("privacypolicy", jresult3.get("privacypolicy") as String)
@@ -1486,10 +1497,7 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
 
 
 
-                                        val WelcomeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF34, 0)
-                                        val FasterSP = applicationContext.getSharedPreferences(Config.SHARED_PREF35, 0)
-                                        val SigninSP = applicationContext.getSharedPreferences(Config.SHARED_PREF36, 0)
-                                        val RegisterSP = applicationContext.getSharedPreferences(Config.SHARED_PREF37, 0)
+
 
                                         /*  if(WelcomeSP.equals("")||FasterSP.equals("")||SigninSP.equals("")||RegisterSP.equals(""))
                                           {
@@ -1497,10 +1505,7 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                           }
                                           else
                                           {*/
-                                        tvWelcome!!.setText(WelcomeSP.getString("welcome", null))
-                                        tvfasterway!!.setText(FasterSP.getString("fasterwaytohelpyou", null))
-                                        btlogin!!.setText(SigninSP.getString("sigin", null))
-                                        btregistration!!.setText(RegisterSP.getString("registernow", null))
+
 
                                     }catch (e: Exception){
                                         Log.e("TAG","Exception   2101   "+e.toString())
