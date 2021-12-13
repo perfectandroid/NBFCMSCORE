@@ -17,18 +17,17 @@ import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Api.ApiInterface
-import com.perfect.nbfcmscore.Helper.Config
-import com.perfect.nbfcmscore.Helper.ConnectivityUtils
-import com.perfect.nbfcmscore.Helper.MscoreApplication
-import com.perfect.nbfcmscore.Helper.PicassoTrustAll
+import com.perfect.nbfcmscore.Helper.*
 import com.perfect.nbfcmscore.R
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
+import org.json.JSONArray
 import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import java.util.*
 
 
 class SplashActivity : AppCompatActivity() {
@@ -60,7 +59,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
       //  doSplash()
 
-        Log.e("BASE_URL","BASE_URL  49    "+BASE_URL)
+        Log.e("BASE_URL", "BASE_URL  49    " + BASE_URL)
 
         tv_error_message = findViewById<TextView>(R.id.tv_error_message)
         btn_proceed = findViewById<Button>(R.id.btn_proceed)
@@ -120,11 +119,11 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun getResellerDetails() {
-        val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164,0)
+        val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
         val certificateSPEditer = certificateSP.edit()
         certificateSPEditer.putString("sslcertificate", CERT_NAME)
         certificateSPEditer.commit()
-        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163,0)
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurlSPEditer = baseurlSP.edit()
         baseurlSPEditer.putString("baseurl", BASE_URL)
         baseurlSPEditer.commit()
@@ -157,7 +156,7 @@ class SplashActivity : AppCompatActivity() {
                     try {
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("5"))
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
-                       // requestObject1.put("BankHeader", MscoreApplication.encryptStart(getResources().getString(R.string.BankHeader)))
+                        // requestObject1.put("BankHeader", MscoreApplication.encryptStart(getResources().getString(R.string.BankHeader)))
                         Log.e("requestObject1", "requestObject1  113   " + requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
@@ -184,6 +183,54 @@ class SplashActivity : AppCompatActivity() {
                                 val jObject = JSONObject(response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jobjt = jObject.getJSONObject("ResellerDetails")
+                                    val jArray: JSONArray = jobjt.getJSONArray("MenuList")
+
+                                    for (i in 0 until jArray!!.length()) {
+
+                                        val json_data = jArray.getJSONObject(i)
+                                        var rchrg = json_data.getString("Recharge")
+                                        var imp = json_data.getString("Imps")
+                                        var rtg = json_data.getString("Rtgs")
+                                        var ksb = json_data.getString("Kseb")
+                                        var nft = json_data.getString("Neft")
+                                        var qpy = json_data.getString("QuickPay")
+
+
+                                        val LicenceImpsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF293, 0)
+                                        val LicenceImpsEditer = LicenceImpsSP.edit()
+                                        LicenceImpsEditer.putString("LicenceImps",imp)
+                                        LicenceImpsEditer.commit()
+
+                                        val LicenceNeftSP = applicationContext.getSharedPreferences(Config.SHARED_PREF295, 0)
+                                        val LicenceNeftEditer = LicenceNeftSP.edit()
+                                        LicenceNeftEditer.putString("LicenceNeft", nft)
+                                        LicenceNeftEditer.commit()
+
+                                        val LicenceRtgsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF298, 0)
+                                        val LicenceRtgsEditer = LicenceRtgsSP.edit()
+                                        LicenceRtgsEditer.putString("LicenceRtgs", rtg)
+                                        LicenceRtgsEditer.commit()
+
+
+                                        val LicenceQuickPaySP = applicationContext.getSharedPreferences(Config.SHARED_PREF296, 0)
+                                        val LicenceQuickPayEditer = LicenceQuickPaySP.edit()
+                                        LicenceQuickPayEditer.putString("LicenceQuickPay", qpy)
+                                        LicenceQuickPayEditer.commit()
+
+                                        val LicenceKsebSP = applicationContext.getSharedPreferences(Config.SHARED_PREF294, 0)
+                                        val LicenceKsebEditer = LicenceKsebSP.edit()
+                                        LicenceKsebEditer.putString("LicenceKseb", ksb)
+                                        LicenceKsebEditer.commit()
+
+                                        val LicenceRechargeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF297, 0)
+                                        val LicenceRechargeEditer = LicenceRechargeSP.edit()
+                                        LicenceRechargeEditer.putString("LicenceRecharge", rchrg)
+                                        LicenceRechargeEditer.commit()
+
+
+                                        Log.i("Rchrgs",rchrg+"\n"+imp+"\n"+rtg+"\n"+ksb+"\n"+nft+"\n"+qpy)
+                                    }
+
 
                                     val AppStoreLinkSP = applicationContext.getSharedPreferences(Config.SHARED_PREF10, 0)
                                     val AppStoreLinkEditer = AppStoreLinkSP.edit()
@@ -215,98 +262,102 @@ class SplashActivity : AppCompatActivity() {
                                     ResellerNameEditer.putString("ResellerName", jobjt.getString("ResellerName"))
                                     ResellerNameEditer.commit()
 
-                                    val ContactNumberSP = applicationContext.getSharedPreferences(Config.SHARED_PREF30,0)
+                                    val ContactNumberSP = applicationContext.getSharedPreferences(Config.SHARED_PREF30, 0)
                                     val ContactNumberEditer = ContactNumberSP.edit()
                                     ContactNumberEditer.putString("ContactNumber", jobjt.getString("ContactNumber"))
                                     ContactNumberEditer.commit()
 
-                                    val ContactEmailSP = applicationContext.getSharedPreferences(Config.SHARED_PREF31,0)
+                                    val ContactEmailSP = applicationContext.getSharedPreferences(Config.SHARED_PREF31, 0)
                                     val ContactEmailEditer = ContactEmailSP.edit()
                                     ContactEmailEditer.putString("ContactEmail", jobjt.getString("ContactEmail"))
                                     ContactEmailEditer.commit()
 
-                                    val ContactAddressSP = applicationContext.getSharedPreferences(Config.SHARED_PREF32,0)
+                                    val ContactAddressSP = applicationContext.getSharedPreferences(Config.SHARED_PREF32, 0)
                                     val ContactAddressEditer = ContactAddressSP.edit()
                                     ContactAddressEditer.putString("ContactAddress", jobjt.getString("ContactAddress"))
                                     ContactAddressEditer.commit()
 
-                                    val IsNBFCSP = applicationContext.getSharedPreferences(Config.SHARED_PREF33,0)
+                                    val IsNBFCSP = applicationContext.getSharedPreferences(Config.SHARED_PREF33, 0)
                                     val IsNBFCEditer = IsNBFCSP.edit()
                                     IsNBFCEditer.putString("IsNBFC", jobjt.getString("IsNBFC"))
                                     IsNBFCEditer.commit()
 
                                     val m_androidId = Secure.getString(contentResolver, Secure.ANDROID_ID)
-                                    if(m_androidId.equals(jobjt.getString("TestingMachineId"))){
-                                        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163,0)
+                                    if (m_androidId.equals(jobjt.getString("TestingMachineId"))) {
+                                        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
                                         val baseurlSPEditer = baseurlSP.edit()
                                         baseurlSPEditer.putString("baseurl", jobjt.getString("TestingURL"))
                                         baseurlSPEditer.commit()
-                                        val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165,0)
+                                        val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
                                         val ImageURLSPEditer = ImageURLSP.edit()
                                         ImageURLSPEditer.putString("ImageURL", jobjt.getString("TestingImageURL"))
                                         ImageURLSPEditer.commit()
-                                    }else{
-                                        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163,0)
+                                    } else {
+                                        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
                                         val baseurlSPEditer = baseurlSP.edit()
                                         baseurlSPEditer.putString("baseurl", BASE_URL)
                                         baseurlSPEditer.commit()
-                                        val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165,0)
+                                        val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
                                         val ImageURLSPEditer = ImageURLSP.edit()
                                         ImageURLSPEditer.putString("ImageURL", IMAGE_URL)
-                                        ImageURLSPEditer.commit()}
+                                        ImageURLSPEditer.commit()
+                                    }
 
-                                    if(jobjt.getString("CertificateStatus").equals("Live")) {
+                                    if (jobjt.getString("CertificateStatus").equals("Live")) {
                                         val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
                                         val certificateSPEditer = certificateSP.edit()
                                         certificateSPEditer.putString("sslcertificate", Config.CERT_NAME)
                                         certificateSPEditer.commit()
-                                    }else{
+                                    } else {
                                         val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
                                         val certificateSPEditer = certificateSP.edit()
                                         certificateSPEditer.putString("sslcertificate", Config.CERT_NAME)
-                                        certificateSPEditer.commit()}
+                                        certificateSPEditer.commit()
+                                    }
 
                                     try {
-                                        val imagepath = IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+                                        val imagepath = IMAGE_URL + AppIconImageCodeSP!!.getString("AppIconImageCode", null)
                                         PicassoTrustAll.getInstance(this@SplashActivity)!!.load(imagepath).error(android.R.color.transparent).into(imglogo!!)
 
-                                    }catch (e: Exception) {
-                                        e.printStackTrace()}
+                                    } catch (e: Exception) {
+                                        e.printStackTrace()
+                                    }
 
-                                    val LicenceImpsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF293,0)
+
+                                 /*   val LicenceImpsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF293, 0)
                                     val LicenceImpsEditer = LicenceImpsSP.edit()
                                     LicenceImpsEditer.putString("LicenceImps", "true")
                                     LicenceImpsEditer.commit()
 
-                                    val LicenceNeftSP = applicationContext.getSharedPreferences(Config.SHARED_PREF295,0)
+                                    val LicenceNeftSP = applicationContext.getSharedPreferences(Config.SHARED_PREF295, 0)
                                     val LicenceNeftEditer = LicenceNeftSP.edit()
                                     LicenceNeftEditer.putString("LicenceNeft", "true")
                                     LicenceNeftEditer.commit()
 
-                                    val LicenceRtgsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF298,0)
+                                    val LicenceRtgsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF298, 0)
                                     val LicenceRtgsEditer = LicenceRtgsSP.edit()
                                     LicenceRtgsEditer.putString("LicenceRtgs", "true")
                                     LicenceRtgsEditer.commit()
 
 
-                                    val LicenceQuickPaySP = applicationContext.getSharedPreferences(Config.SHARED_PREF296,0)
+                                    val LicenceQuickPaySP = applicationContext.getSharedPreferences(Config.SHARED_PREF296, 0)
                                     val LicenceQuickPayEditer = LicenceQuickPaySP.edit()
                                     LicenceQuickPayEditer.putString("LicenceQuickPay", "true")
                                     LicenceQuickPayEditer.commit()
 
-                                    val LicenceKsebSP = applicationContext.getSharedPreferences(Config.SHARED_PREF294,0)
+                                    val LicenceKsebSP = applicationContext.getSharedPreferences(Config.SHARED_PREF294, 0)
                                     val LicenceKsebEditer = LicenceKsebSP.edit()
                                     LicenceKsebEditer.putString("LicenceKseb", "true")
                                     LicenceKsebEditer.commit()
 
-                                    val LicenceRechargeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF297,0)
+                                    val LicenceRechargeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF297, 0)
                                     val LicenceRechargeEditer = LicenceRechargeSP.edit()
                                     LicenceRechargeEditer.putString("LicenceRecharge", "true")
                                     LicenceRechargeEditer.commit()
-
+*/
                                     doSplash()
                                     getMaintenanceMessage()
-                                  //  getlabels()
+                                    //  getlabels()
                                 } else {
                                     val builder = AlertDialog.Builder(
                                             this@SplashActivity,
@@ -322,7 +373,7 @@ class SplashActivity : AppCompatActivity() {
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
 
-                                Log.e("TAG","Exception   289  "+e.toString())
+                                Log.e("TAG", "Exception   289  " + e.toString())
                                 val builder = AlertDialog.Builder(
                                         this@SplashActivity,
                                         R.style.MyDialogTheme
@@ -430,7 +481,6 @@ class SplashActivity : AppCompatActivity() {
 //                                )
 //                            )
 //                        )
-
 
 
                         Log.e("TAG", "requestObject1  maintenance   " + requestObject1)
