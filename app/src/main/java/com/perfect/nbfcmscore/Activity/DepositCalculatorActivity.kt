@@ -526,6 +526,10 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                                 MscoreApplication.encryptStart(edt_txt_tenure!!.text.toString())
                         )
                         requestObject1.put(
+                                "Amount",
+                                MscoreApplication.encryptStart(etxt_amount!!.text.toString())
+                        )
+                        requestObject1.put(
                                 "BenefitType",
                                 MscoreApplication.encryptStart(benefid)
                         )

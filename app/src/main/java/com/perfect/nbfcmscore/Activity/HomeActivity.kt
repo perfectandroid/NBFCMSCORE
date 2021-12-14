@@ -4322,10 +4322,15 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_mailEditer.putString("Email1", jresult3.get("Email") as String)
                                     ID_mailEditer.commit()
 
-                                    val ID_applctndt= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF265, 0)
+                                    val ID_plsslctoprtr= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF301, 0)
+                                    val ID_plsslctoprtrEditer = ID_plsslctoprtr.edit()
+                                    ID_plsslctoprtrEditer.putString("PleaseSelectOperator", jresult3.get("PleaseSelectOperator") as String)
+                                    ID_plsslctoprtrEditer.commit()
+
+                                    /*val ID_applctndt= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF265, 0)
                                     val ID_applctndtEditer = ID_applctndt.edit()
                                     ID_applctndtEditer.putString("ApplicationDate", jresult3.get("ApplicationDate") as String)
-                                    ID_applctndtEditer.commit()
+                                    ID_applctndtEditer.commit()*/
 
 
 
