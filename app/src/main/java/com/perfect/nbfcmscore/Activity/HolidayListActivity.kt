@@ -40,6 +40,7 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
     var tv_header: TextView? = null
+    var textView5: TextView? = null
 
     var branchid:String?=null
     var arrayList1 = ArrayList<String>()
@@ -65,12 +66,17 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         imgBack!!.setOnClickListener(this)
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)
-
+        textView5= findViewById<TextView>(R.id.textView5)
 
         tv_header= findViewById<TextView>(R.id.tv_header)
 
         val HeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF83, 0)
         tv_header!!.setText(HeaderSP.getString("HolidayList", null))
+
+
+        val SlctbrnchSP = applicationContext.getSharedPreferences(Config.SHARED_PREF224, 0)
+        textView5!!.setText(SlctbrnchSP.getString("SelectBranch", null))
+
 
         rv_holiday = findViewById(R.id.rv_holiday)
         spnBranch = findViewById( R.id.spnBranch)

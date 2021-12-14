@@ -4332,6 +4332,26 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_plsslctcircleEditer.putString("PleaseSelectCircle", jresult3.get("PleaseSelectCircle") as String)
                                     ID_plsslctcircleEditer.commit()
 
+                                    val ID_plsentrfnme= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF303, 0)
+                                    val ID_plsentrfnmeEditer = ID_plsentrfnme.edit()
+                                    ID_plsentrfnmeEditer.putString("PleaseEnterFirstName", jresult3.get("PleaseEnterFirstName") as String)
+                                    ID_plsentrfnmeEditer.commit()
+
+                                    val ID_plsentrlnme= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF304, 0)
+                                    val ID_plsentrlnmeEditer = ID_plsentrlnme.edit()
+                                    ID_plsentrlnmeEditer.putString("PleaseEnterLastName", jresult3.get("PleaseEnterLastName") as String)
+                                    ID_plsentrlnmeEditer.commit()
+
+                                   /* val ID_plsentrfrst= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF303, 0)
+                                    val ID_plsentrfrstEditer = ID_plsentrfrst.edit()
+                                    ID_plsentrfrstEditer.putString("PleaseEnterFirstName", jresult3.get("PleaseEnterFirstName") as String)
+                                    ID_plsentrfrstEditer.commit()
+
+                                    val ID_plsslctcircle= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF304, 0)
+                                    val ID_plsslctcircleEditer = ID_plsslctcircle.edit()
+                                    ID_plsslctcircleEditer.putString("PleaseSelectCircle", jresult3.get("PleaseEnterLastName") as String)
+                                    ID_plsslctcircleEditer.commit()*/
+
                                     /*val ID_applctndt= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF265, 0)
                                     val ID_applctndtEditer = ID_applctndt.edit()
                                     ID_applctndtEditer.putString("ApplicationDate", jresult3.get("ApplicationDate") as String)
