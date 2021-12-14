@@ -3,6 +3,7 @@ package com.perfect.nbfcmscore.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -53,7 +54,8 @@ class ProfileActivity : AppCompatActivity() , View.OnClickListener{
         val AddressSP1 = applicationContext.getSharedPreferences(Config.SHARED_PREF299,0)
 
 
-        tv_address!!.setText(AddressSP1.getString("Address1",null)+" :"+AddressSP.getString("Address",null))
+      //  Log.i("Addrstest",add!!)
+        tv_address!!.setText(AddressSP.getString("Address",null))
 
 
         val EmailSP = applicationContext.getSharedPreferences(Config.SHARED_PREF5,0)

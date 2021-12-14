@@ -3887,7 +3887,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
                                     val ID_listasondate= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF209, 0)
                                     val ID_listasondateEditer = ID_listasondate.edit()
-                                    ID_listasondateEditer.putString("ListasonDate", jresult3.get("ListasonDate") as String)
+                                    ID_listasondateEditer.putString("ListasonDate", jresult3.get("ListasonDate-Listason(now)") as String)
                                     ID_listasondateEditer.commit()
 
                                     val ID_bal= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF210, 0)
@@ -3927,7 +3927,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
                                     val ID_ListingDataforpast= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF217, 0)
                                     val ListingDataforpastEditer = ID_ListingDataforpast.edit()
-                                    ListingDataforpastEditer.putString("ListingDataforpast", jresult3.get("ListingDataforpast.") as String)
+                                    ListingDataforpastEditer.putString("ListingDataforpast", jresult3.get("ListingDataforpast .") as String)
                                     ListingDataforpastEditer.commit()
 
 
@@ -4133,7 +4133,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
                                     val ID_ENTRWEIGHT= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF257, 0)
                                     val ID_ENTRWEIGHTEditer = ID_ENTRWEIGHT.edit()
-                                    ID_ENTRWEIGHTEditer.putString("Enter Weight", jresult3.get("Enter Weight") as String)
+                                    ID_ENTRWEIGHTEditer.putString("Enter Weight", jresult3.get("EnterWeight") as String)
                                     ID_ENTRWEIGHTEditer.commit()
 
                                     val ID_Plsentrweght= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF258, 0)
@@ -4171,10 +4171,6 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_loantypEditer.putString("LoanType", jresult3.get("LoanType") as String)
                                     ID_loantypEditer.commit()
 
-                                    val ID_applctndt= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF265, 0)
-                                    val ID_applctndtEditer = ID_applctndt.edit()
-                                    ID_applctndtEditer.putString("ApplicationDate", jresult3.get("ApplicationDate") as String)
-                                    ID_applctndtEditer.commit()
 
                                     val ID_applctnamt= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF266, 0)
                                     val ID_applctnamtEditer = ID_applctnamt.edit()
@@ -4325,6 +4321,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     val ID_mailEditer = ID_mail.edit()
                                     ID_mailEditer.putString("Email1", jresult3.get("Email") as String)
                                     ID_mailEditer.commit()
+
+                                    val ID_applctndt= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF265, 0)
+                                    val ID_applctndtEditer = ID_applctndt.edit()
+                                    ID_applctndtEditer.putString("ApplicationDate", jresult3.get("ApplicationDate") as String)
+                                    ID_applctndtEditer.commit()
 
 
 
