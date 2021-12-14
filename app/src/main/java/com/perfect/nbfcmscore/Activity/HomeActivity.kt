@@ -4327,6 +4327,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_plsslctoprtrEditer.putString("PleaseSelectOperator", jresult3.get("PleaseSelectOperator") as String)
                                     ID_plsslctoprtrEditer.commit()
 
+                                    val ID_plsslctcircle= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF302, 0)
+                                    val ID_plsslctcircleEditer = ID_plsslctcircle.edit()
+                                    ID_plsslctcircleEditer.putString("PleaseSelectCircle", jresult3.get("PleaseSelectCircle") as String)
+                                    ID_plsslctcircleEditer.commit()
+
                                     /*val ID_applctndt= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF265, 0)
                                     val ID_applctndtEditer = ID_applctndt.edit()
                                     ID_applctndtEditer.putString("ApplicationDate", jresult3.get("ApplicationDate") as String)

@@ -63,6 +63,7 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
     var im_home: ImageView? = null
 
     var act_account: AutoCompleteTextView? = null
+    var tvaccount: TextView? = null
 
 
     var rad_last_month: RadioButton? = null
@@ -144,6 +145,9 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
 
         val ID_todte = applicationContext.getSharedPreferences(Config.SHARED_PREF201,0)
         edt_toDate!!.setHint(ID_todte.getString("EndDate",null))
+
+        val ID_slctacc = applicationContext.getSharedPreferences(Config.SHARED_PREF101,0)
+        tvaccount!!.setText(ID_slctacc.getString("SelectYourAccount",null))
         // val ID_Passbk = applicationContext.getSharedPreferences(Config.SHARED_PREF51,0)
 
 
@@ -158,6 +162,7 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
         im_back = findViewById<ImageView>(R.id.im_back)
         im_home = findViewById<ImageView>(R.id.im_home)
         txtv_or= findViewById(R.id.txtv_or)
+        tvaccount= findViewById(R.id.tvaccount)
 
         txtv_slctperd = findViewById<TextView>(R.id.txtv_slctperd)
         txtv_slctcustomdte = findViewById<TextView>(R.id.txtv_slctcustomdte)

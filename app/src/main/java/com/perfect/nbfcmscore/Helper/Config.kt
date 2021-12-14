@@ -369,6 +369,7 @@ object Config {
     const val SHARED_PREF300="Email1"
 
     const val SHARED_PREF301="PleaseSelectOperator"
+    const val SHARED_PREF302="PleaseSelectCircle"
 
 
 
