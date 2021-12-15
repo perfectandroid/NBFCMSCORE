@@ -430,7 +430,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                                 progressDialog!!.dismiss()
 
                                 val jObject = JSONObject(response.body())
-//                                Log.e(TAG,"response  5162   "+response.body())
+                                Log.e("TAG","response  5162   "+response.body())
 //                                Log.e(TAG,"response  5163   "+jObject.getString("StatusCode"))
                                 if (jObject.getString("StatusCode") == "0") {
 
@@ -817,7 +817,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                         requestObject1.put("OTPRef", MscoreApplication.encryptStart(""))
                         requestObject1.put("OTPCode", MscoreApplication.encryptStart(""))
 
-//                        Log.e(TAG,"requestObject1  624   "+requestObject1)
+                        Log.e("TAG","requestObject1  624   "+requestObject1)
 //                        Log.e(TAG,"requestObject1  62411   "+requestObject1)
 
                     } catch (e: Exception) {
@@ -844,7 +844,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                                 progressDialog!!.dismiss()
 
                                 val jObject = JSONObject(response.body())
-//                                Log.e(TAG,"response  6663   "+response.body())
+                                Log.e("TAG","response  6243   "+response.body())
 //                                Log.e(TAG,"response  6664   "+jObject.getString("StatusCode"))
                                 if (jObject.getString("StatusCode") == "0") {
 
@@ -941,6 +941,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
             if(edt_txt_otp!!.text.toString(). length == 6){
                 OTPCode = edt_txt_otp!!.text.toString()
                 dialog.dismiss()
+
                 FundTransfer(AccountNo!!, SubModule!!, BeneName!!, BeneIFSC!!, BeneAccountNumber!!, Amount!!, EftType!!, BeneAdd!!, OTPRef!!, OTPCode!!)
             }else{
                 Toast.makeText(applicationContext,"Enter Valid OTP",Toast.LENGTH_LONG).show()
@@ -955,6 +956,19 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
 
     private fun FundTransfer(accountNo: String, subModule: String?, beneName: String, beneIFSC: String, beneAccountNumber: String,
                             amount: String, eftType: String?, beneAdd: String, otpRef: String, otpCode: String) {
+
+
+        Log.e("TAG","FundTransfer  961   "
+        +"\n"+"accountNo     "+accountNo
+                +"\n"+"subModule     "+subModule
+                +"\n"+"beneName     "+beneName
+                +"\n"+"beneIFSC     "+beneIFSC
+                +"\n"+"beneAccountNumber     "+beneAccountNumber
+                +"\n"+"amount     "+amount
+                +"\n"+"eftType     "+eftType
+                +"\n"+"beneAdd     "+beneAdd
+                +"\n"+"otpRef     "+otpRef
+                +"\n"+"otpCode     "+otpCode)
 
         val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurl = baseurlSP.getString("baseurl", null)
@@ -1012,7 +1026,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
 //                        requestObject1.put("OTPRef", MscoreApplication.encryptStart(""))
 //                        requestObject1.put("OTPCode", MscoreApplication.encryptStart(""))
 
-//                        Log.e(TAG,"requestObject1  856   "+requestObject1)
+                        Log.e("TAG","requestObject1  9611   "+requestObject1)
 //                        Log.e(TAG,"requestObject1  856   "+requestObject1)
 
                     } catch (e: Exception) {
@@ -1039,7 +1053,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                                 progressDialog!!.dismiss()
 
                                 val jObject = JSONObject(response.body())
-//                                Log.e(TAG,"response  8563   "+response.body())
+                                Log.e("TAG","response  9612   "+response.body())
 //                                Log.e(TAG,"response  8564   "+jObject.getString("StatusCode"))
                                 if (jObject.getString("StatusCode") == "0") {
 
