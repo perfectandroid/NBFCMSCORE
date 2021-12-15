@@ -37,7 +37,7 @@ class SplashActivity : AppCompatActivity() {
     var btn_proceed: Button? = null
     var imglogo: ImageView? = null
 
-    val CERT_NAME = "staticvm.pem"  //QA
+
 //    val BASE_URL = "https://202.164.150.65:14261/NbfcAndroidAPI/api/"  //DEVELOPMENT
 //    val IMAGE_URL = "https://202.164.150.65:14261/NbfcAndroidAPI/"
 //    val BASE_URL = "https://202.164.150.65:15006/NbfcAndroidAPI/api/"  //DEVELOPMENT
@@ -45,6 +45,10 @@ class SplashActivity : AppCompatActivity() {
 
     val BASE_URL = "https://202.164.150.65:15006/NbfcAndroidAPI/api/"  //DEVELOPMENT
     val IMAGE_URL = "https://202.164.150.65:15006/NbfcAndroidAPI/"
+    val BankKey = "-500"
+    val BankHeader = "PERFECT NBFC BANK HEAD OFFICE"
+    val CERT_NAME = "staticvm.pem"  //QA
+
 
 //    val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPIQA/api/"  //QA
 //    val IMAGE_URL = "https://202.164.150.65:14262/NbfcAndroidAPIQA/"
