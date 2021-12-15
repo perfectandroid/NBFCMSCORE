@@ -20,6 +20,7 @@ import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
+import com.perfect.nbfcmscore.Helper.CustomBottomSheeet
 import com.perfect.nbfcmscore.Helper.MscoreApplication
 import com.perfect.nbfcmscore.Model.SenderReceiver
 import com.perfect.nbfcmscore.Model.SenderReceiverlist
@@ -81,6 +82,8 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
 
         val datesp = applicationContext.getSharedPreferences(Config.SHARED_PREF173, 0)
         txtvdate!!.setText(datesp.getString("Date", null))
+
+
 
 
         val defaultDate = "01-01-1990"
@@ -350,6 +353,10 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
         val mobileNumber: String = txtv_mobile_number!!.getText().toString()
 
         if (TextUtils.isEmpty(firstName)) {
+          /*  val plsentfrstSP = applicationContext.getSharedPreferences(Config.SHARED_PREF303, 0)
+            var plsentfst =plsentfrstSP.getString("PleaseEnterFirstName", null)*/
+
+        //    CustomBottomSheeet.Show(this, plsentfst!!,"0")
             txtv_first_name!!.setError("Please enter first name")
             return false
         }

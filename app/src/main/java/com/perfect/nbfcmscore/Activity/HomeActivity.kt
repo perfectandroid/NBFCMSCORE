@@ -3078,6 +3078,12 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_LetsSPEditer.putString("Let'sgetstarted", jresult3.get("Let'sgetstarted") as String)
                                     ID_LetsSPEditer.commit()
 
+
+                                    val ID_add= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF299, 0)
+                                    val ID_addEditer = ID_add.edit()
+                                    ID_addEditer.putString("Address1", jresult3.get("Address") as String)
+                                    ID_addEditer.commit()
+
                                     val ID_PersnlinfSP = this@HomeActivity.getSharedPreferences(Config.SHARED_PREF41, 0)
                                     val ID_PersnlinfEditer = ID_PersnlinfSP.edit()
                                     ID_PersnlinfEditer.putString("pleaseenteryourpersonalinformation", jresult3.get("pleaseenteryourpersonalinformation") as String)
@@ -3117,6 +3123,17 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     val ID_OtpVerifySPEditer = ID_OtpverifySP.edit()
                                     ID_OtpVerifySPEditer.putString("Otpverification", jresult3.get("Otpverification") as String)
                                     ID_OtpVerifySPEditer.commit()
+
+
+                                    val ID_licnse= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF305, 0)
+                                    val ID_licnseEditer = ID_licnse.edit()
+                                    ID_licnseEditer.putString("LICENSEDTO", jresult3.get("LICENSEDTO") as String)
+                                    ID_licnseEditer.commit()
+
+                                    val ID_tchpart= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF306, 0)
+                                    val ID_tchpartEditer = ID_tchpart.edit()
+                                    ID_tchpartEditer.putString("TECHNOLOGYPARTNER", jresult3.get("TECHNOLOGYPARTNER") as String)
+                                    ID_tchpartEditer.commit()
 
                                     val ID_MyaccSP = this@HomeActivity.getSharedPreferences(Config.SHARED_PREF50, 0)
                                     val ID_MyaccSPEditer = ID_MyaccSP.edit()
@@ -3287,6 +3304,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     val ID_HolidyEditer = ID_Holidy.edit()
                                     ID_HolidyEditer.putString("HolidayList", jresult3.get("HolidayList") as String)
                                     ID_HolidyEditer.commit()
+
+                                    val ID_termstxt= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF307, 0)
+                                    val ID_termstxtEditer = ID_termstxt.edit()
+                                    ID_termstxtEditer.putString("TermsandConditionstext", jresult3.get("TermsandConditionstext") as String)
+                                    ID_termstxtEditer.commit()
 
                                     val ID_Executve = this@HomeActivity.getSharedPreferences(Config.SHARED_PREF84, 0)
                                     val ID_ExecutveEditer = ID_Executve.edit()
@@ -4312,15 +4334,47 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_phEditer.putString("Phone", jresult3.get("Phone") as String)
                                     ID_phEditer.commit()
 
-                                    val ID_add= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF299, 0)
-                                    val ID_addEditer = ID_add.edit()
-                                    ID_addEditer.putString("Address1", jresult3.get("Address") as String)
-                                    ID_addEditer.commit()
+
 
                                     val ID_mail= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF300, 0)
                                     val ID_mailEditer = ID_mail.edit()
-                                    ID_mailEditer.putString("Email1", jresult3.get("Email") as String)
+                                    ID_mailEditer.putString("Email1", jresult3.get("Email1") as String)
                                     ID_mailEditer.commit()
+
+                                    val ID_plsslctoprtr= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF301, 0)
+                                    val ID_plsslctoprtrEditer = ID_plsslctoprtr.edit()
+                                    ID_plsslctoprtrEditer.putString("PleaseSelectOperator", jresult3.get("PleaseSelectOperator") as String)
+                                    ID_plsslctoprtrEditer.commit()
+
+                                    val ID_plsslctcircle= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF302, 0)
+                                    val ID_plsslctcircleEditer = ID_plsslctcircle.edit()
+                                    ID_plsslctcircleEditer.putString("PleaseSelectCircle", jresult3.get("PleaseSelectCircle") as String)
+                                    ID_plsslctcircleEditer.commit()
+
+                                    val ID_plsentrfnme= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF303, 0)
+                                    val ID_plsentrfnmeEditer = ID_plsentrfnme.edit()
+                                    ID_plsentrfnmeEditer.putString("PleaseEnterFirstName", jresult3.get("PleaseEnterFirstName") as String)
+                                    ID_plsentrfnmeEditer.commit()
+
+                                    val ID_plsentrlnme= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF304, 0)
+                                    val ID_plsentrlnmeEditer = ID_plsentrlnme.edit()
+                                    ID_plsentrlnmeEditer.putString("PleaseEnterLastName", jresult3.get("PleaseEnterLastName") as String)
+                                    ID_plsentrlnmeEditer.commit()
+
+
+
+
+
+
+                                   /* val ID_plsentrfrst= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF303, 0)
+                                    val ID_plsentrfrstEditer = ID_plsentrfrst.edit()
+                                    ID_plsentrfrstEditer.putString("PleaseEnterFirstName", jresult3.get("PleaseEnterFirstName") as String)
+                                    ID_plsentrfrstEditer.commit()
+
+                                    val ID_plsslctcircle= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF304, 0)
+                                    val ID_plsslctcircleEditer = ID_plsslctcircle.edit()
+                                    ID_plsslctcircleEditer.putString("PleaseSelectCircle", jresult3.get("PleaseEnterLastName") as String)
+                                    ID_plsslctcircleEditer.commit()*/
 
                                     val ID_applctndt= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF265, 0)
                                     val ID_applctndtEditer = ID_applctndt.edit()

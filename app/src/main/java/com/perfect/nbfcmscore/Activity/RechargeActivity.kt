@@ -1058,40 +1058,44 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
         mAccountNumber = mAccountNumber.replace(" ", "")
         Circleaccount = tie_circleAccNo!!.text.toString()
 
-        if (mobileNumber!!.length!= 10){
+        if (mobileNumber!!.length!= 10||mobileNumber.equals("")){
            // Toast.makeText(applicationContext,"Please enter valid  mobile number",Toast.LENGTH_LONG).show()
-            val ID_validmob = applicationContext.getSharedPreferences(Config.SHARED_PREF287,0)
-            var validmob = ID_validmob.getString("PleaseEnterValidMobileNumber",null)
+            val ID_validmob = applicationContext.getSharedPreferences(Config.SHARED_PREF286,0)
+            var validmob = ID_validmob.getString("PleaseEnterConsumerNumber", null)
+
             CustomBottomSheeet.Show(this,validmob!!,"0")
 
           //  CustomBottomSheeet.Show(this,"Please enter valid  mobile number","0")
 //            showToast("Please enter valid  mobile number")
         }else if(ProvidersCode!!.equals("")){
-
+            val ID_slctop = applicationContext.getSharedPreferences(Config.SHARED_PREF301,0)
+            var slctop = ID_slctop.getString("PleaseSelectOperator", null)
            // Toast.makeText(applicationContext,"Please Select Operator",Toast.LENGTH_LONG).show()
-            CustomBottomSheeet.Show(this,"Please Select Operator","0")
+            CustomBottomSheeet.Show(this,slctop!!,"0")
         }
         else if(CircleMode!!.equals("")){
+            val ID_slctcrcle = applicationContext.getSharedPreferences(Config.SHARED_PREF302,0)
+            var slctcircle = ID_slctcrcle.getString("PleaseSelectCircle", null)
           //  Toast.makeText(applicationContext,"Please Select Circle",Toast.LENGTH_LONG).show()
-            CustomBottomSheeet.Show(this,"Please Select Circle","0")
+            CustomBottomSheeet.Show(this,slctcircle!!,"0")
         }
         else if(Amount!!.equals("")){
             val ID_plstslctamt = applicationContext.getSharedPreferences(Config.SHARED_PREF259,0)
-            var entramt = ID_plstslctamt.getString("Pleaseenteramount",null)
+            var entramt = ID_plstslctamt.getString("Pleaseenteramount", null)
             CustomBottomSheeet.Show(this,entramt!!,"0")
            // Toast.makeText(applicationContext,"Please Enter Amount",Toast.LENGTH_LONG).show()
            // CustomBottomSheeet.Show(this,"Please Enter Amount","0")
         }
         else if(mAccountNumber!!.length != 12){
             val ID_plstslctacc = applicationContext.getSharedPreferences(Config.SHARED_PREF284,0)
-            var plsslctacc = ID_plstslctacc.getString("PleaseSelectAccount",null)
+            var plsslctacc = ID_plstslctacc.getString("PleaseSelectAccount", null)
             CustomBottomSheeet.Show(this,plsslctacc!!,"0")
            // Toast.makeText(applicationContext,"Please Select Account",Toast.LENGTH_LONG).show()
           //  CustomBottomSheeet.Show(this,"Please Select Account","0")
         }
         else if(SubModule!!.equals("")){
             val ID_plstslctacc = applicationContext.getSharedPreferences(Config.SHARED_PREF284,0)
-            var plsslctacc = ID_plstslctacc.getString("PleaseSelectAccount",null)
+            var plsslctacc = ID_plstslctacc.getString("PleaseSelectAccount", null)
             CustomBottomSheeet.Show(this,plsslctacc!!,"0")
           //  Toast.makeText(applicationContext,"Please Select Account",Toast.LENGTH_LONG).show()
         //    CustomBottomSheeet.Show(this,"Please Select Account","0")

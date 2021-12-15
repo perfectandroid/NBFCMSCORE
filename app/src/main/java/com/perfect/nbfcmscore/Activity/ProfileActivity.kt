@@ -50,18 +50,20 @@ class ProfileActivity : AppCompatActivity() , View.OnClickListener{
         tv_customername!!.setText(CustomerNameSP.getString("CustomerName",null))
         val CusMobileSP = applicationContext.getSharedPreferences(Config.SHARED_PREF2,0)
         tv_mobile!!.setText(CusMobileSP.getString("CusMobile",null))
+
+
         val AddressSP = applicationContext.getSharedPreferences(Config.SHARED_PREF4,0)
         val AddressSP1 = applicationContext.getSharedPreferences(Config.SHARED_PREF299,0)
 
 
       //  Log.i("Addrstest",add!!)
-        tv_address!!.setText(AddressSP.getString("Address",null))
+        tv_address!!.setText(AddressSP1.getString("Address1",null)+" :"+AddressSP.getString("Address",null))
 
 
         val EmailSP = applicationContext.getSharedPreferences(Config.SHARED_PREF5,0)
         val EmailSP1 = applicationContext.getSharedPreferences(Config.SHARED_PREF300,0)
 
-        tv_email!!.setText(EmailSP1.getString("Email1",null)+" :"+EmailSP.getString("Email",null))
+        tv_email!!.setText("Email"+" :"+EmailSP.getString("Email",null))
 
 
         val GenderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF6,0)
