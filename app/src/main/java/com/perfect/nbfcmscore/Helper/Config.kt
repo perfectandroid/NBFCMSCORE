@@ -373,6 +373,10 @@ object Config {
     const val SHARED_PREF303="PleaseEnterFirstName"
     const val SHARED_PREF304="PleaseEnterLastName"
 
+    const val SHARED_PREF305="LICENSEDTO"
+    const val SHARED_PREF306="TECHNOLOGYPARTNER"
+    const val SHARED_PREF307 ="TermsandConditionstext"
+
 
 
     fun getHostnameVerifier(): HostnameVerifier {

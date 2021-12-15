@@ -34,6 +34,12 @@ class AboutActivity : AppCompatActivity() , View.OnClickListener{
         val ID_abtus1 = applicationContext.getSharedPreferences(Config.SHARED_PREF237,0)
         txtv_abt!!.setText(ID_abtus1.getString("Aboutustext",null))
 
+        val ID_lcnse = applicationContext.getSharedPreferences(Config.SHARED_PREF305,0)
+        txtv_licnse!!.setText(ID_lcnse.getString("LICENSEDTO",null))
+
+        val ID_technl = applicationContext.getSharedPreferences(Config.SHARED_PREF306,0)
+        tv_technlgy!!.setText(ID_technl.getString("TECHNOLOGYPARTNER",null))
+
 
 
         val imlogo: ImageView = findViewById(R.id.imlogo)

@@ -16,6 +16,7 @@ class TermsnconditionsActivity : AppCompatActivity() , View.OnClickListener{
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
     var tv_header: TextView? = null
+    var txtv_termstxt: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +25,10 @@ class TermsnconditionsActivity : AppCompatActivity() , View.OnClickListener{
         setRegviews()
         val ID_terms = applicationContext.getSharedPreferences(Config.SHARED_PREF58,0)
         tv_header!!.setText(ID_terms.getString("termsandconditions",null))
+
+
+        val ID_termstxt = applicationContext.getSharedPreferences(Config.SHARED_PREF307,0)
+        txtv_termstxt!!.setText(ID_termstxt.getString("TermsandConditionstext",null))
 
 
         val imlogo: ImageView = findViewById(R.id.imlogo)
@@ -37,6 +42,7 @@ class TermsnconditionsActivity : AppCompatActivity() , View.OnClickListener{
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)
         tv_header = findViewById<TextView>(R.id.tv_header)
+        txtv_termstxt = findViewById<TextView>(R.id.txtv_termstxt)
 
     }
 

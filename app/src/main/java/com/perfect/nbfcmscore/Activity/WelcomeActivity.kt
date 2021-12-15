@@ -242,6 +242,29 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_SkipSPEditer.commit()
 
 
+                                        val ID_add= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF299, 0)
+                                        val ID_addEditer = ID_add.edit()
+                                        ID_addEditer.putString("Address1", jresult3.get("Address") as String)
+                                        ID_addEditer.commit()
+
+
+                                        val ID_termstxt= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF307, 0)
+                                        val ID_termstxtEditer = ID_termstxt.edit()
+                                        ID_termstxtEditer.putString("TermsandConditionstext", jresult3.get("TermsandConditionstext") as String)
+                                        ID_termstxtEditer.commit()
+
+                                        val ID_licnse= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF305, 0)
+                                        val ID_licnseEditer = ID_licnse.edit()
+                                        ID_licnseEditer.putString("LICENSEDTO", jresult3.get("LICENSEDTO") as String)
+                                        ID_licnseEditer.commit()
+
+                                        val ID_tchpart= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF306, 0)
+                                        val ID_tchpartEditer = ID_tchpart.edit()
+                                        ID_tchpartEditer.putString("TECHNOLOGYPARTNER", jresult3.get("TECHNOLOGYPARTNER") as String)
+                                        ID_tchpartEditer.commit()
+
+
+
                                         val ID_LetsSP = this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF40, 0)
                                         val ID_LetsSPEditer = ID_LetsSP.edit()
                                         ID_LetsSPEditer.putString("Let'sgetstarted", jresult3.get("Let'sgetstarted") as String)
@@ -677,6 +700,8 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         val ID_reportsEditer = ID_reprts.edit()
                                         ID_reportsEditer.putString("ReportsOtherServices", jresult3.get("ReportsOtherServices") as String)
                                         ID_reportsEditer.commit()
+
+
 
                                         val ID_tools = this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF125, 0)
                                         val ID_toolsEditer = ID_tools.edit()
@@ -1488,14 +1513,10 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_phEditer.putString("Phone", jresult3.get("Phone") as String)
                                         ID_phEditer.commit()
 
-                                        val ID_add= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF299, 0)
-                                        val ID_addEditer = ID_add.edit()
-                                        ID_addEditer.putString("Address1", jresult3.get("Address") as String)
-                                        ID_addEditer.commit()
 
                                         val ID_mail= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF300, 0)
                                         val ID_mailEditer = ID_mail.edit()
-                                        ID_mailEditer.putString("Email1", jresult3.get("Email") as String)
+                                        ID_mailEditer.putString("Email1", jresult3.get("Email1") as String)
                                         ID_mailEditer.commit()
 
                                         val ID_plssvalidmob= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF287, 0)
@@ -1523,10 +1544,14 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_plsentrlnmeEditer.putString("PleaseEnterLastName", jresult3.get("PleaseEnterLastName") as String)
                                         ID_plsentrlnmeEditer.commit()
 
-                                       /* val ID_applctndt= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF265, 0)
+
+
+
+
+                                        val ID_applctndt= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF265, 0)
                                         val ID_applctndtEditer = ID_applctndt.edit()
                                         ID_applctndtEditer.putString("ApplicationDate", jresult3.get("ApplicationDate") as String)
-                                        ID_applctndtEditer.commit()*/
+                                        ID_applctndtEditer.commit()
 
 
 
