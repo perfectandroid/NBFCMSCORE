@@ -215,6 +215,10 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_WelcomeSPEditer.putString("welcome", jresult3.get("welcome") as String)
                                         ID_WelcomeSPEditer.commit()
 
+                                        val ID_cnmbr= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF310, 0)
+                                        val ID_cnmbrEditer = ID_cnmbr.edit()
+                                        ID_cnmbrEditer.putString("CustomerNumber1", jresult3.get("CustomerNumber") as String)
+                                        ID_cnmbrEditer.commit()
 
                                         val ID_FasterSP = this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF35, 0)
                                         val ID_FasterSPEditer = ID_FasterSP.edit()
@@ -248,6 +252,8 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_addEditer.commit()
 
 
+
+
                                         val ID_termstxt= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF307, 0)
                                         val ID_termstxtEditer = ID_termstxt.edit()
                                         ID_termstxtEditer.putString("TermsandConditionstext", jresult3.get("TermsandConditionstext") as String)
@@ -262,6 +268,28 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         val ID_tchpartEditer = ID_tchpart.edit()
                                         ID_tchpartEditer.putString("TECHNOLOGYPARTNER", jresult3.get("TECHNOLOGYPARTNER") as String)
                                         ID_tchpartEditer.commit()
+
+                                        val ID_mail= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF300, 0)
+                                        val ID_mailEditer = ID_mail.edit()
+                                        ID_mailEditer.putString("Email1", jresult3.get("Email1") as String)
+                                        ID_mailEditer.commit()
+
+
+                                        val ID_gndr= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF308, 0)
+                                        val ID_gndrEditer = ID_gndr.edit()
+                                        ID_gndrEditer.putString("Gender1", jresult3.get("Gender1") as String)
+                                        ID_gndrEditer.commit()
+
+
+                                        val ID_dob1= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF309, 0)
+                                        val ID_dob1Editer = ID_dob1.edit()
+                                        ID_dob1Editer.putString("DateofBirth1", jresult3.get("DateofBirth1") as String)
+                                        ID_dob1Editer.commit()
+
+
+
+
+
 
 
 
@@ -1514,10 +1542,7 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_phEditer.commit()
 
 
-                                        val ID_mail= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF300, 0)
-                                        val ID_mailEditer = ID_mail.edit()
-                                        ID_mailEditer.putString("Email1", jresult3.get("Email1") as String)
-                                        ID_mailEditer.commit()
+
 
                                         val ID_plssvalidmob= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF287, 0)
                                         val ID_plssvalidmobEditer = ID_plssvalidmob.edit()

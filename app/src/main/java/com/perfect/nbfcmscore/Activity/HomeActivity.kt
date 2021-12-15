@@ -3046,6 +3046,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_WelcomeSPEditer.putString("welcome", jresult3.get("welcome") as String)
                                     ID_WelcomeSPEditer.commit()
 
+                                    val ID_cnmbr= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF310, 0)
+                                    val ID_cnmbrEditer = ID_cnmbr.edit()
+                                    ID_cnmbrEditer.putString("CustomerNumber1", jresult3.get("CustomerNumber") as String)
+                                    ID_cnmbrEditer.commit()
+
 
                                     val ID_FasterSP = this@HomeActivity.getSharedPreferences(Config.SHARED_PREF35, 0)
                                     val ID_FasterSPEditer = ID_FasterSP.edit()
@@ -3083,6 +3088,26 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     val ID_addEditer = ID_add.edit()
                                     ID_addEditer.putString("Address1", jresult3.get("Address") as String)
                                     ID_addEditer.commit()
+
+                                    val ID_mail= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF300, 0)
+                                    val ID_mailEditer = ID_mail.edit()
+                                    ID_mailEditer.putString("Email1", jresult3.get("Email1") as String)
+                                    ID_mailEditer.commit()
+
+
+                                    val ID_gndr= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF308, 0)
+                                    val ID_gndrEditer = ID_gndr.edit()
+                                    ID_gndrEditer.putString("Gender1", jresult3.get("Gender1") as String)
+                                    ID_gndrEditer.commit()
+
+
+                                    val ID_dob1= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF309, 0)
+                                    val ID_dob1Editer = ID_dob1.edit()
+                                    ID_dob1Editer.putString("DateofBirth1", jresult3.get("DateofBirth1") as String)
+                                    ID_dob1Editer.commit()
+
+
+
 
                                     val ID_PersnlinfSP = this@HomeActivity.getSharedPreferences(Config.SHARED_PREF41, 0)
                                     val ID_PersnlinfEditer = ID_PersnlinfSP.edit()
@@ -4336,10 +4361,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
 
 
-                                    val ID_mail= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF300, 0)
-                                    val ID_mailEditer = ID_mail.edit()
-                                    ID_mailEditer.putString("Email1", jresult3.get("Email1") as String)
-                                    ID_mailEditer.commit()
+
 
                                     val ID_plsslctoprtr= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF301, 0)
                                     val ID_plsslctoprtrEditer = ID_plsslctoprtr.edit()

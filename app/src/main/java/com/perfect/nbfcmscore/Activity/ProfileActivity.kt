@@ -63,15 +63,24 @@ class ProfileActivity : AppCompatActivity() , View.OnClickListener{
         val EmailSP = applicationContext.getSharedPreferences(Config.SHARED_PREF5,0)
         val EmailSP1 = applicationContext.getSharedPreferences(Config.SHARED_PREF300,0)
 
-        tv_email!!.setText("Email"+" :"+EmailSP.getString("Email",null))
+        tv_email!!.setText(EmailSP1.getString("Email1",null)+" :"+EmailSP.getString("Email",null))
 
 
         val GenderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF6,0)
-        tv_gender!!.setText("Gender : "+GenderSP.getString("Gender",null))
+        val GenderSP1 = applicationContext.getSharedPreferences(Config.SHARED_PREF308,0)
+
+
+        tv_gender!!.setText(GenderSP1.getString("Gender1",null)+" :"+GenderSP.getString("Gender",null))
+
         val DateOfBirthSP = applicationContext.getSharedPreferences(Config.SHARED_PREF7,0)
-        tv_dob!!.setText("Date Of Birth : "+DateOfBirthSP.getString("DateOfBirth",null))
+        val DateOfBirthSP1 = applicationContext.getSharedPreferences(Config.SHARED_PREF309,0)
+
+        tv_dob!!.setText(DateOfBirthSP1.getString("DateofBirth1",null)+" :"+DateOfBirthSP.getString("DateOfBirth",null))
+
         val CustomerNumberSP = applicationContext.getSharedPreferences(Config.SHARED_PREF20,0)
-        tv_cusnumber!!.setText("Customer Number : "+CustomerNumberSP.getString("CustomerNumber",null))
+        val CustomerNumberSP1 = applicationContext.getSharedPreferences(Config.SHARED_PREF310,0)
+
+        tv_cusnumber!!.setText(CustomerNumberSP1.getString("CustomerNumber1",null)+" :"+CustomerNumberSP.getString("CustomerNumber",null))
 
 
 
