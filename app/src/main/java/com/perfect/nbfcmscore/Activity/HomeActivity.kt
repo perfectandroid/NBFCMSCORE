@@ -3106,6 +3106,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_dob1Editer.putString("DateofBirth1", jresult3.get("DateofBirth1") as String)
                                     ID_dob1Editer.commit()
 
+                                    val ID_entramt= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF259, 0)
+                                    val ID_entramtEditer = ID_entramt.edit()
+                                    ID_entramtEditer.putString("Pleaseenteramount", jresult3.get("Pleaseenteramount") as String)
+                                    ID_entramtEditer.commit()
+
 
 
 
@@ -4188,10 +4193,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_PlsentrweghtEditer.putString("PleaseEnterWeight", jresult3.get("PleaseEnterWeight") as String)
                                     ID_PlsentrweghtEditer.commit()
 
-                                    val ID_entramt= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF259, 0)
-                                    val ID_entramtEditer = ID_entramt.edit()
-                                    ID_entramtEditer.putString("Pleaseenteramount", jresult3.get("Pleaseenteramount") as String)
-                                    ID_entramtEditer.commit()
+
 
                                     val ID_entrprincamt= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF260, 0)
                                     val ID_entrprincamtEditer = ID_entrprincamt.edit()

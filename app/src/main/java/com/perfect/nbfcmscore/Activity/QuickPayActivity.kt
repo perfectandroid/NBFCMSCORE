@@ -37,7 +37,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
     private val mAmountEt: AppCompatEditText? = null
     private var mMessageEt: EditText? = null
     private var add_new_sender: TextView?=null
-    private var receiver: String?=null
+    private var receivers: String?=null
     val newSenders: ArrayList<SenderReceiverlist> = ArrayList<SenderReceiverlist>()
     private var add_new_receiver: TextView?=null
     public var arrayList1: ArrayList<Splitupdetail>? = null
@@ -729,14 +729,14 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                          val first = tokens.nextToken()
                          val message = mMessageEt!!.text.toString()
                          val senderObj = mSenderSpinner!!.selectedItem.toString()
-                         val sender: String = senderid!!
+                         val sender: String = fkSenderId!!
                          val senderName: String = sendername!!
                          val senderAccountno: String = receiverAccountno!!
                          val senderMobile: String = senderMobile!!
                          val recievererName: String = senderName
                          val receiverAccountno: String = receiverAccountno!!
                          val recieverMobile: String = senderMobile
-                         val receiver: String = receiverid!!
+                         val receiver: String = receivers!!
                          val mPinString = etxt_mpin!!.text.toString()
                          var branch = branchname
                          var submodle =submodule
@@ -1309,7 +1309,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
 
                 val senderReceiver: SenderReceiverlist = arrayList3!!.get(i) ?: continue
                 var mod =senderReceiver.getMode()
-                var user =senderreceiver.getUserId()
+                receivers =senderReceiver.getUserId()
                 var fkuser =senderReceiver.getFkSenderId()
                 if (senderreceiver.getUserId().equals(senderReceiver.getFkSenderId())) {
                  //  arrayList4!!.add(senderReceiver)

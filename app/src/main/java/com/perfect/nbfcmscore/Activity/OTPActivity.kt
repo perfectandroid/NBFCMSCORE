@@ -589,7 +589,7 @@ class OTPActivity : AppCompatActivity() , View.OnClickListener {
                             )
                         )
 
-
+                        Log.e("TAG", "requestObject1  varifctn   " + requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()

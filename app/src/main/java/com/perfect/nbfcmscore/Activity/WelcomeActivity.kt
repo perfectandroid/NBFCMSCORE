@@ -287,7 +287,10 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_dob1Editer.commit()
 
 
-
+                                        val ID_entramt= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF259, 0)
+                                        val ID_entramtEditer = ID_entramt.edit()
+                                        ID_entramtEditer.putString("Pleaseenteramount", jresult3.get("Pleaseenteramount") as String)
+                                        ID_entramtEditer.commit()
 
 
 
@@ -1374,10 +1377,7 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_PlsentrweghtEditer.putString("PleaseEnterWeight", jresult3.get("PleaseEnterWeight") as String)
                                         ID_PlsentrweghtEditer.commit()
 
-                                        val ID_entramt= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF259, 0)
-                                        val ID_entramtEditer = ID_entramt.edit()
-                                        ID_entramtEditer.putString("Pleaseenteramount", jresult3.get("Pleaseenteramount") as String)
-                                        ID_entramtEditer.commit()
+
 
                                         val ID_entrprincamt= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF260, 0)
                                         val ID_entrprincamtEditer = ID_entrprincamt.edit()

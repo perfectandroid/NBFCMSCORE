@@ -142,6 +142,8 @@ class ChangeMpinActivity : AppCompatActivity(), View.OnClickListener {
                                 )
                             )
                         )
+
+                        Log.e("TAG", "requestObject1  varifctn   " + requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -164,6 +166,7 @@ class ChangeMpinActivity : AppCompatActivity(), View.OnClickListener {
                             try {
                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
+                                Log.i("Response",response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jobjt = jObject.getJSONObject("VarificationMaintenance")
                                     val builder = AlertDialog.Builder(

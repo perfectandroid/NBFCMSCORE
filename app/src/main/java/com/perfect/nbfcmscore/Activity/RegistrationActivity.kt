@@ -152,8 +152,10 @@ class RegistrationActivity : AppCompatActivity()  , View.OnClickListener {
                         requestObject1.put("AccountNumber", MscoreApplication.encryptStart(etxt_accno!!.text.toString()))
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
 
+                        Log.e("TAG","Customerreg"+requestObject1)
+                    }
 
-                    } catch (e: Exception) {
+                    catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
                         val mySnackbar = Snackbar.make(
