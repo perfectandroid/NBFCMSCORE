@@ -353,32 +353,46 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
         val mobileNumber: String = txtv_mobile_number!!.getText().toString()
 
         if (TextUtils.isEmpty(firstName)) {
-          /*  val plsentfrstSP = applicationContext.getSharedPreferences(Config.SHARED_PREF303, 0)
-            var plsentfst =plsentfrstSP.getString("PleaseEnterFirstName", null)*/
+           val plsentfrstSP = applicationContext.getSharedPreferences(Config.SHARED_PREF303, 0)
+            var plsentfst =plsentfrstSP.getString("PleaseEnterFirstName", null)
 
-        //    CustomBottomSheeet.Show(this, plsentfst!!,"0")
-            txtv_first_name!!.setError("Please enter first name")
+            CustomBottomSheeet.Show(this, plsentfst!!,"0")
+         //   txtv_first_name!!.setError("Please enter first name")
             return false
         }
-        txtv_first_name!!.setError(null)
+       // txtv_first_name!!.setError(null)
 
         if (TextUtils.isEmpty(lastName)) {
-            txtv_last_name!!.setError("Please enter last name")
+            val plsentlstSP = applicationContext.getSharedPreferences(Config.SHARED_PREF304, 0)
+            var plsentlst =plsentlstSP.getString("PleaseEnterLastName", null)
+
+            CustomBottomSheeet.Show(this, plsentlst!!,"0")
+
+         //   txtv_last_name!!.setError("Please enter last name")
             return false
         }
-        txtv_last_name!!.setError(null)
+       // txtv_last_name!!.setError(null)
 
         if (TextUtils.isEmpty(mobileNumber)) {
-            txtv_mobile_number!!.setError("Please enter mobile number")
+            val plsentmobSP = applicationContext.getSharedPreferences(Config.SHARED_PREF281, 0)
+            var plsentmoble =plsentmobSP.getString("PleaseEnterMobileNumber", null)
+
+            CustomBottomSheeet.Show(this, plsentmoble!!,"0")
+           // txtv_mobile_number!!.setError("Please enter mobile number")
             return false
         }
 
         if (mobileNumber.length > 10 || mobileNumber.length < 10) {
-            txtv_mobile_number!!.setError("Please enter valid 10 digit mobile number")
+            val plsentvalicmobSP = applicationContext.getSharedPreferences(Config.SHARED_PREF287, 0)
+            var plsentvaldmoble =plsentvalicmobSP.getString("PleaseEnterValidMobileNumber", null)
+
+            CustomBottomSheeet.Show(this, plsentvaldmoble!!,"0")
+
+           // txtv_mobile_number!!.setError("Please enter valid 10 digit mobile number")
             return false
         }
 
-        txtv_mobile_number!!.setError(null)
+      //  txtv_mobile_number!!.setError(null)
 
         return true
 

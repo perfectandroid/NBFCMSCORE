@@ -840,14 +840,20 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
        // etxt_amount!!.error = null
 
         val mPinString = etxt_mpin!!.text.toString()
+        val ID_entrmpin = applicationContext.getSharedPreferences(Config.SHARED_PREF323,0)
+        var entrmpin = ID_entrmpin.getString("pleaseentermpin",null)
         if (mPinString.equals("0")) {
-            CustomBottomSheeet.Show(this,"Please enter the M-PIN","0")
+
+            CustomBottomSheeet.Show(this,entrmpin!!,"0")
+
+           // CustomBottomSheeet.Show(this,"Please enter the M-PIN","0")
             //etxt_mpin!!.error = "Please enter the M-PIN"
             return false
         }
         else if (mPinString.equals("")) {
            // etxt_mpin!!.error = "Please enter the M-PIN"
-            CustomBottomSheeet.Show(this,"Please enter the M-PIN","0")
+            CustomBottomSheeet.Show(this,entrmpin!!,"0")
+           // CustomBottomSheeet.Show(this,"Please enter the M-PIN","0")
             return false
         }
        // etxt_mpin!!.error = null
