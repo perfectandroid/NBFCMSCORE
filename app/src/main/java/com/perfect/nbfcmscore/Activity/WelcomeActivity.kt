@@ -292,6 +292,11 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_entramtEditer.putString("Pleaseenteramount", jresult3.get("Pleaseenteramount") as String)
                                         ID_entramtEditer.commit()
 
+                                        val ID_plsentrambw= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF322, 0)
+                                        val ID_ovrdueloansEditer = ID_plsentrambw.edit()
+                                        ID_ovrdueloansEditer.putString("PleaseEnterAmountbetween1and25000.0.", jresult3.get("PleaseEnterAmountbetween1and25000.0.") as String)
+                                        ID_ovrdueloansEditer.commit()
+
 
 
 

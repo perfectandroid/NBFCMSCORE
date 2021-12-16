@@ -473,17 +473,26 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
             val MaximumAmountD = MaximumAmount.toDouble()
             amount = amount.replace(",", "")
             if (amount.length < 1 && MaximumAmountD > 0) {
+                val amtrngsp = applicationContext.getSharedPreferences(Config.SHARED_PREF322,0)
+              //  CustomBottomSheeet.Show(this,
+                  //  amtrngsp.getString("PleaseEnterAmountbetween1and25000.0.",null)!!,"0")
                 CustomBottomSheeet.Show(this,"Please enter amount between 1 and $MaximumAmount.","0")
                // edtTxtAmount!!.error = "Please enter amount between 1 and $MaximumAmount."
                 return false
             } else if (amount.length < 1 && MaximumAmountD == 0.0) {
-                CustomBottomSheeet.Show(this,"Please enter valid amount.","0")
+                val entramtsp = applicationContext.getSharedPreferences(Config.SHARED_PREF259,0)
+                CustomBottomSheeet.Show(this,
+                    entramtsp.getString("Pleaseenteramount",null)!!,"0")
+              //  CustomBottomSheeet.Show(this,"Please enter valid amount.","0")
               //  edtTxtAmount!!.error = "Please enter valid amount."
                 return false
             }
             val amt = amount.toDouble()
             if (MaximumAmountD > 0) {
                 if (amt < 1 || amt > MaximumAmountD) {
+                  //  val amtrngsp = applicationContext.getSharedPreferences(Config.SHARED_PREF322,0)
+                  //  CustomBottomSheeet.Show(this,
+                       // amtrngsp.getString("PleaseEnterAmountbetween1and25000.0.",null)!!,"0")
                     CustomBottomSheeet.Show(this,"Please enter amount between 1 and $MaximumAmountD.","0")
                    // edtTxtAmount!!.error = "Please enter amount between 1 and $MaximumAmountD."
                     return false

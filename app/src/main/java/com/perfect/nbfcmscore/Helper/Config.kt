@@ -381,6 +381,8 @@ object Config {
     const val SHARED_PREF309 ="DateofBirth1"
     const val SHARED_PREF310 ="CustomerNumber1"
 
+    const val SHARED_PREF322 ="PleaseEnterAmountbetween1and25000.0."
+
 
 
 

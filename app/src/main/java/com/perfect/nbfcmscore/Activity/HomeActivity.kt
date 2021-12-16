@@ -4405,6 +4405,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_applctndtEditer.putString("ApplicationDate", jresult3.get("ApplicationDate") as String)
                                     ID_applctndtEditer.commit()
 
+                                    val ID_plsentrambw= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF322, 0)
+                                    val ID_ovrdueloansEditer = ID_plsentrambw.edit()
+                                    ID_ovrdueloansEditer.putString("PleaseEnterAmountbetween1and25000.0.", jresult3.get("PleaseEnterAmountbetween1and25000.0.") as String)
+                                    ID_ovrdueloansEditer.commit()
+
 
 
 
