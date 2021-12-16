@@ -1145,18 +1145,27 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("41"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+
                         requestObject1.put(
+                            "ID_Sender",
+                            MscoreApplication.encryptStart(sender)
+                        )
+                        /*requestObject1.put(
                                 "FK_Sender",
                                 MscoreApplication.encryptStart(sender)
-                        )
+                        )*/
                         requestObject1.put(
                                 "FK_Customer",
                                 MscoreApplication.encryptStart(FK_Customer)
                         )
                         requestObject1.put(
+                            "ID_Receiver",
+                            MscoreApplication.encryptStart(receiver)
+                        )
+                        /*requestObject1.put(
                                 "FK_Receiver",
                                 MscoreApplication.encryptStart(receiver)
-                        )
+                        )*/
                         requestObject1.put(
                                 "Amount",
                                 MscoreApplication.encryptStart(amount)
