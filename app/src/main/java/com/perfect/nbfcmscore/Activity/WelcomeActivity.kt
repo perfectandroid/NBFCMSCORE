@@ -399,6 +399,12 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_plsslctcircleEditer.putString("PleaseSelectCircle", jresult3.get("PleaseSelectCircle") as String)
                                         ID_plsslctcircleEditer.commit()
 
+                                        val ID_plentrvalidsubscrbrid= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF332, 0)
+                                        val ID_plentrvalidsubscrbridEditer = ID_plentrvalidsubscrbrid.edit()
+                                        ID_plentrvalidsubscrbridEditer.putString("Pleaseentervalidsubscriberid", jresult3.get("Pleaseentervalidsubscriberid") as String)
+                                        ID_plentrvalidsubscrbridEditer.commit()
+
+
 
 
                                         val ID_LetsSP = this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF40, 0)

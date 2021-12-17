@@ -3203,6 +3203,12 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_plsentrconsnoEditer.putString("PleaseEnterConsumerNumber", jresult3.get("PleaseEnterConsumerNumber") as String)
                                     ID_plsentrconsnoEditer.commit()
 
+
+                                    val ID_plentrvalidsubscrbrid= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF332, 0)
+                                    val ID_plentrvalidsubscrbridEditer = ID_plentrvalidsubscrbrid.edit()
+                                    ID_plentrvalidsubscrbridEditer.putString("Pleaseentervalidsubscriberid", jresult3.get("Pleaseentervalidsubscriberid") as String)
+                                    ID_plentrvalidsubscrbridEditer.commit()
+
                                     val ID_PersnlinfSP = this@HomeActivity.getSharedPreferences(Config.SHARED_PREF41, 0)
                                     val ID_PersnlinfEditer = ID_PersnlinfSP.edit()
                                     ID_PersnlinfEditer.putString("pleaseenteryourpersonalinformation", jresult3.get("pleaseenteryourpersonalinformation") as String)

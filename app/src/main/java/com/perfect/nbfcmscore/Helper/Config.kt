@@ -392,6 +392,7 @@ object Config {
 
     const val SHARED_PREF330="Atleast3digitsarerequired."
     const val SHARED_PREF331="Atleast6digitsarerequired."
+    const val SHARED_PREF332="Pleaseentervalidsubscriberid"
 
 
 
