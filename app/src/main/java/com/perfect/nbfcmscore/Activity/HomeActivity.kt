@@ -3241,6 +3241,19 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_brnchEditer.commit()
 
 
+                                    val ID_entrmnth = this@HomeActivity.getSharedPreferences(Config.SHARED_PREF181, 0)
+                                    val ID_entrmnthEditer = ID_entrmnth.edit()
+                                    ID_entrmnthEditer.putString("PleaseEnterMonth", jresult3.get("PleaseEnterMonth") as String)
+                                    ID_entrmnthEditer.commit()
+
+
+                                    val ID_entrdy= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF182, 0)
+                                    val ID_entrdyEditer = ID_entrdy.edit()
+                                    ID_entrdyEditer.putString("PleaseEnterDay", jresult3.get("PleaseEnterDay") as String)
+                                    ID_entrdyEditer.commit()
+
+
+
                                     val ID_PersnlinfSP = this@HomeActivity.getSharedPreferences(Config.SHARED_PREF41, 0)
                                     val ID_PersnlinfEditer = ID_PersnlinfSP.edit()
                                     ID_PersnlinfEditer.putString("pleaseenteryourpersonalinformation", jresult3.get("pleaseenteryourpersonalinformation") as String)
@@ -3936,16 +3949,6 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_tenureEditer.commit()
 
 
-                                    val ID_entrmnth = this@HomeActivity.getSharedPreferences(Config.SHARED_PREF181, 0)
-                                    val ID_entrmnthEditer = ID_entrmnth.edit()
-                                    ID_entrmnthEditer.putString("PleaseEnterMonth", jresult3.get("PleaseEnterMonth") as String)
-                                    ID_entrmnthEditer.commit()
-
-
-                                    val ID_entrdy= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF182, 0)
-                                    val ID_entrdyEditer = ID_entrdy.edit()
-                                    ID_entrdyEditer.putString("PleaseEnterDay", jresult3.get("PleaseEnterDay") as String)
-                                    ID_entrdyEditer.commit()
 
                                     val ID_ASSETS= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF183, 0)
                                     val ID_ASSETSEditer = ID_ASSETS.edit()

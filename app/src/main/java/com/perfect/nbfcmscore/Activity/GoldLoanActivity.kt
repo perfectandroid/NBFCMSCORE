@@ -326,7 +326,7 @@ class GoldLoanActivity : AppCompatActivity() , View.OnClickListener{
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
                         requestObject1.put("BankHeader", MscoreApplication.encryptStart(getResources().getString(R.string.BankHeader)))
                         requestObject1.put("CalcMethod", MscoreApplication.encryptStart(CalcMethod))
-                        requestObject1.put("Weight", MscoreApplication.encryptStart(Weight))
+                        requestObject1.put("Goldweight", MscoreApplication.encryptStart(Weight))
                         requestObject1.put("Amount", MscoreApplication.encryptStart(Amount))
 
 //                        "Token":"kdydnsf","BankKey":"-500","FK_Customer":1772,

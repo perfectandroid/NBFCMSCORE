@@ -399,6 +399,18 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_plsslctcircleEditer.putString("PleaseSelectCircle", jresult3.get("PleaseSelectCircle") as String)
                                         ID_plsslctcircleEditer.commit()
 
+
+                                        val ID_entrmnth = this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF181, 0)
+                                        val ID_entrmnthEditer = ID_entrmnth.edit()
+                                        ID_entrmnthEditer.putString("PleaseEnterMonth", jresult3.get("PleaseEnterMonth") as String)
+                                        ID_entrmnthEditer.commit()
+
+
+                                        val ID_entrdy= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF182, 0)
+                                        val ID_entrdyEditer = ID_entrdy.edit()
+                                        ID_entrdyEditer.putString("PleaseEnterDay", jresult3.get("PleaseEnterDay") as String)
+                                        ID_entrdyEditer.commit()
+
                                         val ID_plentrvalidsubscrbrid= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF332, 0)
                                         val ID_plentrvalidsubscrbridEditer = ID_plentrvalidsubscrbrid.edit()
                                         ID_plentrvalidsubscrbridEditer.putString("Pleaseentervalidsubscriberid", jresult3.get("Pleaseentervalidsubscriberid") as String)
@@ -1135,16 +1147,7 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_tenureEditer.commit()
 
 
-                                        val ID_entrmnth = this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF181, 0)
-                                        val ID_entrmnthEditer = ID_entrmnth.edit()
-                                        ID_entrmnthEditer.putString("PleaseEnterMonth", jresult3.get("PleaseEnterMonth") as String)
-                                        ID_entrmnthEditer.commit()
 
-
-                                        val ID_entrdy= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF182, 0)
-                                        val ID_entrdyEditer = ID_entrdy.edit()
-                                        ID_entrdyEditer.putString("PleaseEnterDay", jresult3.get("PleaseEnterDay") as String)
-                                        ID_entrdyEditer.commit()
 
                                         val ID_ASSETS= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF183, 0)
                                         val ID_ASSETSEditer = ID_ASSETS.edit()
