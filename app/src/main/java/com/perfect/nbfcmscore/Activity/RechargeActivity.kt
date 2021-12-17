@@ -1060,8 +1060,8 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 
         if (mobileNumber!!.length!= 10||mobileNumber.equals("")){
            // Toast.makeText(applicationContext,"Please enter valid  mobile number",Toast.LENGTH_LONG).show()
-            val ID_validmob = applicationContext.getSharedPreferences(Config.SHARED_PREF286,0)
-            var validmob = ID_validmob.getString("PleaseEnterConsumerNumber", null)
+            val ID_validmob = applicationContext.getSharedPreferences(Config.SHARED_PREF281,0)
+            var validmob = ID_validmob.getString("PleaseEnterMobileNumber", null)
 
             CustomBottomSheeet.Show(this,validmob!!,"0")
 

@@ -3150,6 +3150,23 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_atleast6Editer.commit()
 
 
+                                    val ID_plsslctcircle= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF302, 0)
+                                    val ID_plsslctcircleEditer = ID_plsslctcircle.edit()
+                                    ID_plsslctcircleEditer.putString("PleaseSelectCircle", jresult3.get("PleaseSelectCircle") as String)
+                                    ID_plsslctcircleEditer.commit()
+
+                                    val ID_plsslctoprtr= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF301, 0)
+                                    val ID_plsslctoprtrEditer = ID_plsslctoprtr.edit()
+                                    ID_plsslctoprtrEditer.putString("PleaseSelectOperator", jresult3.get("PleaseSelectOperator") as String)
+                                    ID_plsslctoprtrEditer.commit()
+
+                                    val ID_plsslctacc= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF284, 0)
+                                    val ID_plsslctaccEditer = ID_plsslctacc.edit()
+                                    ID_plsslctaccEditer.putString("PleaseSelectAccount", jresult3.get("PleaseSelectAccount") as String)
+                                    ID_plsslctaccEditer.commit()
+
+
+
                                     val ID_entrcvrnme = this@HomeActivity.getSharedPreferences(Config.SHARED_PREF324, 0)
                                     val ID_entrcvrnmeEditer = ID_entrcvrnme.edit()
                                     ID_entrcvrnmeEditer.putString("PleaseEnterReceiverName", jresult3.get("PleaseEnterReceiverName") as String)
@@ -3181,7 +3198,10 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_accndcnfrmEditer.putString("AccountnumberandConfirmAccountnumbernotmatching", jresult3.get("AccountnumberandConfirmAccountnumbernotmatching") as String)
                                     ID_accndcnfrmEditer.commit()
 
-
+                                    val ID_plsentrconsno= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF286, 0)
+                                    val ID_plsentrconsnoEditer = ID_plsentrconsno.edit()
+                                    ID_plsentrconsnoEditer.putString("PleaseEnterConsumerNumber", jresult3.get("PleaseEnterConsumerNumber") as String)
+                                    ID_plsentrconsnoEditer.commit()
 
                                     val ID_PersnlinfSP = this@HomeActivity.getSharedPreferences(Config.SHARED_PREF41, 0)
                                     val ID_PersnlinfEditer = ID_PersnlinfSP.edit()
@@ -4380,20 +4400,13 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_plsentbillEditer.putString("PleaseEnterBillnumber", jresult3.get("PleaseEnterBillnumber") as String)
                                     ID_plsentbillEditer.commit()
 
-                                    val ID_plsslctacc= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF284, 0)
-                                    val ID_plsslctaccEditer = ID_plsslctacc.edit()
-                                    ID_plsslctaccEditer.putString("PleaseSelectAccount", jresult3.get("PleaseSelectAccount") as String)
-                                    ID_plsslctaccEditer.commit()
 
                                     val ID_plsentconsnme= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF285, 0)
                                     val ID_plsentconsnmeEditer = ID_plsentconsnme.edit()
                                     ID_plsentconsnmeEditer.putString("PleaseEnterConsumerName", jresult3.get("PleaseEnterConsumerName") as String)
                                     ID_plsentconsnmeEditer.commit()
 
-                                    val ID_plsentrconsno= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF286, 0)
-                                    val ID_plsentrconsnoEditer = ID_plsentrconsno.edit()
-                                    ID_plsentrconsnoEditer.putString("PleaseEnterConsumerNumber", jresult3.get("PleaseEnterConsumerNumber") as String)
-                                    ID_plsentrconsnoEditer.commit()
+
 
 
 
@@ -4421,23 +4434,6 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     val ID_phEditer = ID_ph.edit()
                                     ID_phEditer.putString("Phone", jresult3.get("Phone") as String)
                                     ID_phEditer.commit()
-
-
-
-
-
-                                    val ID_plsslctoprtr= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF301, 0)
-                                    val ID_plsslctoprtrEditer = ID_plsslctoprtr.edit()
-                                    ID_plsslctoprtrEditer.putString("PleaseSelectOperator", jresult3.get("PleaseSelectOperator") as String)
-                                    ID_plsslctoprtrEditer.commit()
-
-                                    val ID_plsslctcircle= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF302, 0)
-                                    val ID_plsslctcircleEditer = ID_plsslctcircle.edit()
-                                    ID_plsslctcircleEditer.putString("PleaseSelectCircle", jresult3.get("PleaseSelectCircle") as String)
-                                    ID_plsslctcircleEditer.commit()
-
-
-
 
 
 
