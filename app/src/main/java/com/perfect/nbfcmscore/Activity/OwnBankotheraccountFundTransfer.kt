@@ -72,6 +72,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
     public var Submod: String? = null
     private var jresult1: JSONArray? = null
     var MaximumAmount = "0"
+    var types: String? = null
     var list_view: ListView? = null
     private var jresult: JSONArray? = null
     private var mScannedValue: String? = null
@@ -394,7 +395,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                         alertDialog.show()
                         butOk.setOnClickListener { v: View? ->
                             alertDialog.dismiss()
-                            var type: String? = null
+
                           /*  if(!spn_account_type!!.getSelectedItem().toString().equals("Select Account"))
                             {
 
@@ -402,13 +403,13 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                             else
                             {*/
                                 val accountType: String = spn_account_type!!.getSelectedItem().toString()
-                                if (accountType.equals("Savings bank")) {
-                                    type = "DDSB"
+                                if (accountType.equals("Savings Bank")) {
+                                    types = "DDSB"
                                 }
                            // }
 
                             val Finalamount = amount.replace(",", "")
-                            getOwnAccountFundTransfer(accountNumber, type, recieverAccountNo, Finalamount, remark)
+                            getOwnAccountFundTransfer(accountNumber, types, recieverAccountNo, Finalamount, remark)
                         }
                         butCan.setOnClickListener { alertDialog.dismiss() }
                     } else {
@@ -756,6 +757,11 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spn_account_type!!.setAdapter(spinnerAdapter)
         spn_account_type!!.setOnItemSelectedListener(this)
+
+        val accountType: String = spn_account_type!!.getSelectedItem().toString()
+        if (accountType.equals("Savings Bank")) {
+            types = "DDSB"
+        }
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
@@ -1041,7 +1047,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                         )
 
 
-                        Log.e("TAG", "requestObject1  ownfund   " + requestObject1)
+                        Log.e("TAG", "requestObject1  ownfund   " +type+"\n"+ requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
