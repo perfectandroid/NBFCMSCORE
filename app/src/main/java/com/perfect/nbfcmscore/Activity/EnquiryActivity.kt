@@ -230,12 +230,12 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
             R.id.btn_submit -> {
                 if (isValid()) {
                     if (rad_callbk!!.isChecked) {
-
-                        matter = "Reason: " + feedbackText!!.text.toString() + "\n" + "\n" + spn_feedbk!!.selectedItem.toString() + "\n" + "\n" + "Contact: " + etxtmob!!.text.toString() + "\n" + "Email: " + etxtemail!!.text.toString() + "\n" + "Date: " + etxtDate!!.text.toString() + "\n" + "Selected time: " +
-                               spn_bfreafter!!.selectedItem.toString()+" "+spn_time!!.selectedItem.toString()+" "+spn_ampm!!.selectedItem.toString() + "\n" + "\n" + "\n" + "Thank you"
+                        var time =   spn_bfreafter!!.selectedItem.toString()+" "+spn_time!!.selectedItem.toString()+" "+spn_ampm!!.selectedItem.toString()
+                        matter = "The customer is ready to contact on "+etxtDate!!.text.toString() +" within the time limit "+time+" and the given Contact details are :"+"\n"+"\n"+"Mobile: " + etxtmob!!.text.toString() + "\n" + "Email: " + etxtemail!!.text.toString() +"\n"+"\n"+"their valuable feedback is : " +"\n"+"Subject :"+spn_feedbk!!.selectedItem.toString()+"\n"+"\n"+ feedbackText!!.text.toString() + "\n" + "\n" +
+                              "\n" + "\n" + "\n" + "Thank you"
                     } else {
 
-                        matter = "Reason: " + feedbackText!!.text.toString() + "\n" + "\n" + spn_feedbk!!.selectedItem.toString() + "\n" + "\n" + "\n" + "Thank you"
+                        matter = "The valuable feedback from the customer is  " + "\n"+"\n"+"Subject :"+spn_feedbk!!.selectedItem.toString() + "\n"+"\n"+feedbackText!!.text.toString() +"\n"+"\n"+"\n"+"Thank you"
                     }
 
                      sendEmail(matter!!)
