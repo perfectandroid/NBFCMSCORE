@@ -390,7 +390,8 @@ object Config {
     const val SHARED_PREF328="PleaseEnterConfirmAccountNumber"
     const val SHARED_PREF329="AccountnumberandConfirmAccountnumbernotmatching"
 
-
+    const val SHARED_PREF330="Atleast3digitsarerequired."
+    const val SHARED_PREF331="Atleast6digitsarerequired."
 
 
 

@@ -527,18 +527,25 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
         } else if (recieverAccountNo != confirmRecieverAccountNo && recieverAccountNo.length == 12 && confirmRecieverAccountNo.length == 12) {
             showAlert()
         } else {
+            val atleast3Sp = applicationContext.getSharedPreferences(Config.SHARED_PREF330, 0)
+            var atl3 = atleast3Sp.getString("Atleast3digitsarerequired.", null)
+
+            val atleast6Sp = applicationContext.getSharedPreferences(Config.SHARED_PREF331, 0)
+            var atl6 = atleast6Sp.getString("Atleast6digitsarerequired.", null)
+
             if (edtTxtAccountNoFirstBlock!!.text.toString().length < 3)
-                edtTxtAccountNoFirstBlock!!.error = "Atleast 3 digit are required"
+
+                edtTxtAccountNoFirstBlock!!.error = atl3
             if (edtTxtAccountNoSecondBlock!!.text.toString().length < 3)
-                edtTxtAccountNoSecondBlock!!.error = "Atleast 3 digit are required"
+                edtTxtAccountNoSecondBlock!!.error = atl3
             if (edtTxtAccountNoThirdBlock!!.text.toString().length < 6)
-                edtTxtAccountNoThirdBlock!!.error = "Atleast 6 digits are required"
+                edtTxtAccountNoThirdBlock!!.error = atl6
             if (edtTxtConfirmAccountNoFirstBlock!!.text.toString().length < 3)
-                edtTxtConfirmAccountNoFirstBlock!!.error = "Atleast 3 digits are required"
+                edtTxtConfirmAccountNoFirstBlock!!.error = atl3
             if (edtTxtConfirmAccountNoSecondBlock!!.text.toString().length < 3)
-                edtTxtConfirmAccountNoSecondBlock!!.error = "Atleast 3 digits are required"
+                edtTxtConfirmAccountNoSecondBlock!!.error = atl3
             if (edtTxtConfirmAccountNoThirdBlock!!.text.toString().length < 6)
-                edtTxtConfirmAccountNoThirdBlock!!.error = "Atleast 6 digits are required"
+                edtTxtConfirmAccountNoThirdBlock!!.error = atl6
         }
         return ""
 

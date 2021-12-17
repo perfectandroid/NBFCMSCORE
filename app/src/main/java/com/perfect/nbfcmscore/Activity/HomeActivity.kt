@@ -3139,6 +3139,17 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_selctsndrEditer.commit()
 
 
+                                    val ID_atleast3 = this@HomeActivity.getSharedPreferences(Config.SHARED_PREF330, 0)
+                                    val ID_atleast3Editer = ID_atleast3.edit()
+                                    ID_atleast3Editer.putString("Atleast3digitsarerequired.", jresult3.get("Atleast3digitsarerequired.") as String)
+                                    ID_atleast3Editer.commit()
+
+                                    val ID_atleast6 = this@HomeActivity.getSharedPreferences(Config.SHARED_PREF331, 0)
+                                    val ID_atleast6Editer = ID_atleast6.edit()
+                                    ID_atleast6Editer.putString("Atleast6digitsarerequired.", jresult3.get("Atleast6digitsarerequired.") as String)
+                                    ID_atleast6Editer.commit()
+
+
                                     val ID_entrcvrnme = this@HomeActivity.getSharedPreferences(Config.SHARED_PREF324, 0)
                                     val ID_entrcvrnmeEditer = ID_entrcvrnme.edit()
                                     ID_entrcvrnmeEditer.putString("PleaseEnterReceiverName", jresult3.get("PleaseEnterReceiverName") as String)
