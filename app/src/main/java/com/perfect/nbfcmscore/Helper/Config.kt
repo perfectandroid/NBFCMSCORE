@@ -394,6 +394,12 @@ object Config {
     const val SHARED_PREF331="Atleast6digitsarerequired."
     const val SHARED_PREF332="Pleaseentervalidsubscriberid"
 
+    const val SHARED_PREF333="Bank"
+    const val SHARED_PREF334="Place"
+    const val SHARED_PREF335="Post"
+    const val SHARED_PREF336="District"
+    const val SHARED_PREF337="Branch"
+
 
 
     fun getHostnameVerifier(): HostnameVerifier {

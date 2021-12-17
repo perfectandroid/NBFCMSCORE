@@ -404,6 +404,39 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_plentrvalidsubscrbridEditer.putString("Pleaseentervalidsubscriberid", jresult3.get("Pleaseentervalidsubscriberid") as String)
                                         ID_plentrvalidsubscrbridEditer.commit()
 
+                                        val ID_bank= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF333, 0)
+                                        val ID_bankEditer = ID_bank.edit()
+                                        ID_bankEditer.putString("Bank", jresult3.get("Bank") as String)
+                                        ID_bankEditer.commit()
+
+                                        val ID_plce= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF334, 0)
+                                        val ID_plceEditer = ID_plce.edit()
+                                        ID_plceEditer.putString("Place", jresult3.get("Place") as String)
+                                        ID_plceEditer.commit()
+
+                                        val ID_post= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF335, 0)
+                                        val ID_postEditer = ID_post.edit()
+                                        ID_postEditer.putString("Post", jresult3.get("Post") as String)
+                                        ID_postEditer.commit()
+
+                                        val ID_district= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF336, 0)
+                                        val ID_districtEditer = ID_district.edit()
+                                        ID_districtEditer.putString("District", jresult3.get("District") as String)
+                                        ID_districtEditer.commit()
+
+
+                                        val ID_bnkdetl= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF109, 0)
+                                        val ID_bnkdetlEditer = ID_bnkdetl.edit()
+                                        ID_bnkdetlEditer.putString("BankDetails", jresult3.get("BankDetails") as String)
+                                        ID_bnkdetlEditer.commit()
+
+
+                                        val ID_brnch= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF337, 0)
+                                        val ID_brnchEditer = ID_brnch.edit()
+                                        ID_brnchEditer.putString("Branch", jresult3.get("Branch") as String)
+                                        ID_brnchEditer.commit()
+
+
 
 
 
