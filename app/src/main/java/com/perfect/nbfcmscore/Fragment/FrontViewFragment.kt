@@ -143,7 +143,7 @@ class FrontViewFragment : Fragment() {
         txt_custname!!.text = CustomerNameSP.getString("CustomerName", null)
 
         val CustomerNumberSP = activity!!.getSharedPreferences(Config.SHARED_PREF19,0)
-        txt_custid!!.text = CustomerNumberSP.getString("CustomerNumber",null)
+        txt_custid!!.text = CustomerNumberSP.getString("CustomerNumber1",null)
 
         try {
             val ImageURLSP = context!!.applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)

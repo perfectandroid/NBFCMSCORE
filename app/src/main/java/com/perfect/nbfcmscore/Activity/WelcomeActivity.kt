@@ -449,6 +449,60 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_brnchEditer.commit()
 
 
+                                        val ID_Purpose = this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF105, 0)
+                                        val ID_PurposeEditer = ID_Purpose.edit()
+                                        ID_PurposeEditer.putString("PurposeofVirtualCard", jresult3.get("PurposeofVirtualCard") as String)
+                                        ID_PurposeEditer.commit()
+
+
+                                        val ID_applctnamt= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF266, 0)
+                                        val ID_applctnamtEditer = ID_applctnamt.edit()
+                                        ID_applctnamtEditer.putString("ApplicationAmount", jresult3.get("ApplicationAmount") as String)
+                                        ID_applctnamtEditer.commit()
+
+                                        val ID_applctnno= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF267, 0)
+                                        val ID_applctnnoEditer = ID_applctnno.edit()
+                                        ID_applctnnoEditer.putString("ApplicationNumber", jresult3.get("ApplicationNumber") as String)
+                                        ID_applctnnoEditer.commit()
+
+                                        val ID_cusname= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF268, 0)
+                                        val ID_cusnameEditer = ID_cusname.edit()
+                                        ID_cusnameEditer.putString("Customer Name", jresult3.get("Customer Name") as String)
+                                        ID_cusnameEditer.commit()
+
+                                        val ID_cusid= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF269, 0)
+                                        val ID_cusidEditer = ID_cusid.edit()
+                                        ID_cusidEditer.putString("Customer Id", jresult3.get("Customer Id") as String)
+                                        ID_cusidEditer.commit()
+
+                                        val ID_elctrnc= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF270, 0)
+                                        val ID_elctrncEditer = ID_elctrnc.edit()
+                                        ID_elctrncEditer.putString("Electronicuseonly", jresult3.get("Electronicuseonly") as String)
+                                        ID_elctrncEditer.commit()
+
+
+                                        val ID_point1= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF271, 0)
+                                        val ID_point1Editer = ID_point1.edit()
+                                        ID_point1Editer.putString("Streamlinetransactions", jresult3.get("Streamlinetransactions") as String)
+                                        ID_point1Editer.commit()
+
+
+                                        val ID_point2= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF272, 0)
+                                        val ID_point2Editer = ID_point2.edit()
+                                        ID_point2Editer.putString("Enableasinglepointofcontactforcreditanddebit", jresult3.get("Enableasinglepointofcontactforcreditanddebit") as String)
+                                        ID_point2Editer.commit()
+
+
+                                        val ID_pont3= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF273, 0)
+                                        val ID_pont3Editer = ID_pont3.edit()
+                                        ID_pont3Editer.putString("Strengthenyourloanportfolio", jresult3.get("Strengthenyourloanportfolio") as String)
+                                        ID_pont3Editer.commit()
+
+
+                                        val ID_point4= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF274, 0)
+                                        val ID_point4Editer = ID_point4.edit()
+                                        ID_point4Editer.putString("Eliminatethelongqueues", jresult3.get("Eliminatethelongqueues") as String)
+                                        ID_point4Editer.commit()
 
 
 
@@ -784,10 +838,7 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_BackviewEditer.putString("BACKVIEW", jresult3.get("BACKVIEW") as String)
                                         ID_BackviewEditer.commit()
 
-                                        val ID_Purpose = this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF105, 0)
-                                        val ID_PurposeEditer = ID_Purpose.edit()
-                                        ID_PurposeEditer.putString("PurposeofVirtualCard", jresult3.get("PurposeofVirtualCard") as String)
-                                        ID_PurposeEditer.commit()
+
 
 
                                         val ID_Quit = this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF106, 0)
@@ -1549,54 +1600,6 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_loantypEditer.commit()
 
 
-                                        val ID_applctnamt= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF266, 0)
-                                        val ID_applctnamtEditer = ID_applctnamt.edit()
-                                        ID_applctnamtEditer.putString("ApplicationAmount", jresult3.get("ApplicationAmount") as String)
-                                        ID_applctnamtEditer.commit()
-
-                                        val ID_applctnno= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF267, 0)
-                                        val ID_applctnnoEditer = ID_applctnno.edit()
-                                        ID_applctnnoEditer.putString("ApplicationNumber", jresult3.get("ApplicationNumber") as String)
-                                        ID_applctnnoEditer.commit()
-
-                                        val ID_cusname= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF268, 0)
-                                        val ID_cusnameEditer = ID_cusname.edit()
-                                        ID_cusnameEditer.putString("Customer Name", jresult3.get("Customer Name") as String)
-                                        ID_cusnameEditer.commit()
-
-                                        val ID_cusid= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF269, 0)
-                                        val ID_cusidEditer = ID_cusid.edit()
-                                        ID_cusidEditer.putString("Customer Id", jresult3.get("Customer Id") as String)
-                                        ID_cusidEditer.commit()
-
-                                        val ID_elctrnc= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF270, 0)
-                                        val ID_elctrncEditer = ID_elctrnc.edit()
-                                        ID_elctrncEditer.putString("Electronicuseonly", jresult3.get("Electronicuseonly") as String)
-                                        ID_elctrncEditer.commit()
-
-
-                                        val ID_point1= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF271, 0)
-                                        val ID_point1Editer = ID_point1.edit()
-                                        ID_point1Editer.putString("Streamlinetransactions", jresult3.get("Streamlinetransactions") as String)
-                                        ID_point1Editer.commit()
-
-
-                                        val ID_point2= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF272, 0)
-                                        val ID_point2Editer = ID_point2.edit()
-                                        ID_point2Editer.putString("Enableasinglepointofcontactforcreditanddebit", jresult3.get("Enableasinglepointofcontactforcreditanddebit") as String)
-                                        ID_point2Editer.commit()
-
-
-                                        val ID_pont3= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF273, 0)
-                                        val ID_pont3Editer = ID_pont3.edit()
-                                        ID_pont3Editer.putString("Strengthenyourloanportfolio", jresult3.get("Strengthenyourloanportfolio") as String)
-                                        ID_pont3Editer.commit()
-
-
-                                        val ID_point4= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF274, 0)
-                                        val ID_point4Editer = ID_point4.edit()
-                                        ID_point4Editer.putString("Eliminatethelongqueues", jresult3.get("Eliminatethelongqueues") as String)
-                                        ID_point4Editer.commit()
 
                                         val ID_validifsc= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF275, 0)
                                         val ID_validifscEditer = ID_validifsc.edit()
