@@ -4545,6 +4545,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_todteEditer.putString("Selecttodate", jresult3.get("Selecttodate") as String)
                                     ID_todteEditer.commit()
 
+                                    val ID_profil= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF344, 0)
+                                    val ID_profilEditer = ID_profil.edit()
+                                    ID_profilEditer.putString("Profile", jresult3.get("Profile") as String)
+                                    ID_profilEditer.commit()
+
 
                                     val myIntent = Intent(this@HomeActivity, HomeActivity::class.java)
                                     overridePendingTransition(0, 0)

@@ -515,6 +515,12 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_elctrncEditer.commit()
 
 
+                                        val ID_profil= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF344, 0)
+                                        val ID_profilEditer = ID_profil.edit()
+                                        ID_profilEditer.putString("Profile", jresult3.get("Profile") as String)
+                                        ID_profilEditer.commit()
+
+
                                         val ID_point1= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF271, 0)
                                         val ID_point1Editer = ID_point1.edit()
                                         ID_point1Editer.putString("Streamlinetransactions", jresult3.get("Streamlinetransactions") as String)
