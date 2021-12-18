@@ -38,6 +38,7 @@ class FrontViewFragment : Fragment() {
     var vritualcardCombination: String? = null
     var txt_custname: TextView? = null
     var txt_custid: TextView? = null
+    var txtv_id: TextView? = null
     var tv_vritualcard: TextView? = null
 
     var txtv_purpose: TextView? = null
@@ -70,8 +71,8 @@ class FrontViewFragment : Fragment() {
         txt_custid = v.findViewById<View>(R.id.txt_custid) as TextView?
         tv_vritualcard = v.findViewById<View>(R.id.tv_vritualcard) as TextView?
         txtv_header = v.findViewById<View>(R.id.txtv_header) as TextView?
+        txtv_id= v.findViewById<View>(R.id.txtv_id) as TextView?
 
-        txtv_cusid = v.findViewById<View>(R.id.txtv_cusid) as TextView?
         txtv_cusname = v.findViewById<View>(R.id.txtv_cusname) as TextView?
         txtv_elctrnc = v.findViewById<View>(R.id.txtv_elctrnc) as TextView?
 
@@ -85,7 +86,7 @@ class FrontViewFragment : Fragment() {
         txtv_cusname!!.setText(FK_CustomernameSP.getString("Customer Name",null))
 
         val FK_CusidSP = activity!!.getSharedPreferences(Config.SHARED_PREF269, 0)
-        txtv_cusid!!.setText(FK_CusidSP.getString("Customer Id",null))
+        txtv_id!!.setText(FK_CusidSP.getString("Customer Id",null))
 
         val FK_electrncSP = activity!!.getSharedPreferences(Config.SHARED_PREF270, 0)
         txtv_elctrnc!!.setText(FK_electrncSP.getString("Electronicuseonly",null))
@@ -143,7 +144,7 @@ class FrontViewFragment : Fragment() {
         txt_custname!!.text = CustomerNameSP.getString("CustomerName", null)
 
         val CustomerNumberSP = activity!!.getSharedPreferences(Config.SHARED_PREF19,0)
-        txt_custid!!.text = CustomerNumberSP.getString("CustomerNumber1",null)
+        txt_custid!!.text = CustomerNumberSP.getString("CustomerNumber",null)
 
         try {
             val ImageURLSP = context!!.applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)

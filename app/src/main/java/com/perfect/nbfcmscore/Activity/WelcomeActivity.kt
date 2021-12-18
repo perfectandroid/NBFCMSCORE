@@ -1569,7 +1569,7 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
 
                                         val ID_Plsentrweght= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF258, 0)
                                         val ID_PlsentrweghtEditer = ID_Plsentrweght.edit()
-                                        ID_PlsentrweghtEditer.putString("PleaseEnterWeight", jresult3.get("PleaseEnterWeight") as String)
+                                        ID_PlsentrweghtEditer.putString("PleaseEnterWeight", jresult3.get("Pleaseenterweight") as String)
                                         ID_PlsentrweghtEditer.commit()
 
 
