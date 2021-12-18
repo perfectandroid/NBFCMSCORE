@@ -160,7 +160,7 @@
                                                     android:id="@+id/tie_interest"
                                                     android:layout_width="match_parent"
                                                     android:layout_height="match_parent"
-                                                    android:inputType="number"
+                                                    android:inputType="text"
                                                     android:layout_marginLeft="10dp"
                                                     android:layout_marginRight="10dp"
                                                     android:drawablePadding="10dp"

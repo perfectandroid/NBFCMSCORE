@@ -308,6 +308,31 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_plsentrmpinEditer.commit()
 
 
+                                        val ID_todys= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF338, 0)
+                                        val ID_todysEditer = ID_todys.edit()
+                                        ID_todysEditer.putString("TODAYSSTATUS", jresult3.get("TODAYSSTATUS") as String)
+                                        ID_todysEditer.commit()
+
+
+
+                                        val ID_prvstats= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF339, 0)
+                                        val ID_prvstatsEditer = ID_prvstats.edit()
+                                        ID_prvstatsEditer.putString("PREVIOUSSTATUS", jresult3.get("PREVIOUSSTATUS") as String)
+                                        ID_prvstatsEditer.commit()
+
+
+                                        val ID_status= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF340, 0)
+                                        val ID_statusEditer = ID_status.edit()
+                                        ID_statusEditer.putString("Status1", jresult3.get("Status") as String)
+                                        ID_statusEditer.commit()
+
+                                        val ID_weeks= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF341, 0)
+                                        val ID_weeksEditer = ID_weeks.edit()
+                                        ID_weeksEditer.putString("Weeks", jresult3.get("Weeks") as String)
+                                        ID_weeksEditer.commit()
+
+
+
                                         val ID_plsentrfnme= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF303, 0)
                                         val ID_plsentrfnmeEditer = ID_plsentrfnme.edit()
                                         ID_plsentrfnmeEditer.putString("PleaseEnterFirstName", jresult3.get("PleaseEnterFirstName") as String)

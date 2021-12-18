@@ -56,6 +56,10 @@ class OtherBankFundTransferPreviousHistoryFragment : Fragment() , OnItemSelected
     var etFromdate: EditText? = null
     var check = 0
     var submode: String?=null
+    var txtv_status: TextView? = null
+    var txtv_weeks: TextView? = null
+
+
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -70,6 +74,19 @@ class OtherBankFundTransferPreviousHistoryFragment : Fragment() , OnItemSelected
         status_spinner = v!!.findViewById(R.id.status_spinner)
         week_spinner = v!!.findViewById(R.id.week_spinner)
         tv_status = v!!.findViewById(R.id.tv_status)
+
+        txtv_status = v!!.findViewById(R.id.txtv_status)
+        txtv_weeks = v!!.findViewById(R.id.txtv_weeks)
+
+
+        val statsSP = context!!.getSharedPreferences(Config.SHARED_PREF340, 0)
+        var stats =statsSP.getString("Status1", null)
+        txtv_status!!.setText(stats)
+
+        val weeksSP = context!!.getSharedPreferences(Config.SHARED_PREF341, 0)
+        var wks =weeksSP.getString("Weeks", null)
+        txtv_weeks!!.setText(wks)
+
 
 
         etFromdate = v!!.findViewById(R.id.etFromdate)

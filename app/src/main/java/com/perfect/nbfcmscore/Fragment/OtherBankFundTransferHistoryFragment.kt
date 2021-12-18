@@ -42,6 +42,8 @@ class OtherBankFundTransferHistoryFragment:Fragment(), AdapterView.OnItemSelecte
     private var progressDialog: ProgressDialog? = null
     var rv_otherfund: RecyclerView? = null
     var tv_status: TextView? = null
+    var txtv_status: TextView? = null
+
     var token: String? = null
     var submode: String?=null
     var cusid: kotlin.String? = null
@@ -58,6 +60,11 @@ class OtherBankFundTransferHistoryFragment:Fragment(), AdapterView.OnItemSelecte
         rv_otherfund = v!!.findViewById(R.id.rv_otherfund)
         status_spinner = v!!.findViewById(R.id.status_spinner)
         tv_status = v!!.findViewById(R.id.tv_status)
+
+        txtv_status= v!!.findViewById(R.id.txtv_status)
+        val statsSP = context!!.getSharedPreferences(Config.SHARED_PREF340, 0)
+        var stats =statsSP.getString("Status1", null)
+        txtv_status!!.setText(stats)
 
         status_spinner!!.setOnItemSelectedListener(this)
 

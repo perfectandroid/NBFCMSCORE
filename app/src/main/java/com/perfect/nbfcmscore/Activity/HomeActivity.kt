@@ -4511,6 +4511,29 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_plsentrmpinEditer.commit()
 
 
+                                    val ID_todys= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF338, 0)
+                                    val ID_todysEditer = ID_todys.edit()
+                                    ID_todysEditer.putString("TODAYSSTATUS", jresult3.get("TODAYSSTATUS") as String)
+                                    ID_todysEditer.commit()
+
+
+
+                                    val ID_prvstats= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF339, 0)
+                                    val ID_prvstatsEditer = ID_prvstats.edit()
+                                    ID_prvstatsEditer.putString("PREVIOUSSTATUS", jresult3.get("PREVIOUSSTATUS") as String)
+                                    ID_prvstatsEditer.commit()
+
+
+                                    val ID_status= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF340, 0)
+                                    val ID_statusEditer = ID_status.edit()
+                                    ID_statusEditer.putString("Status1", jresult3.get("Status") as String)
+                                    ID_statusEditer.commit()
+
+                                    val ID_weeks= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF341, 0)
+                                    val ID_weeksEditer = ID_weeks.edit()
+                                    ID_weeksEditer.putString("Weeks", jresult3.get("Weeks") as String)
+                                    ID_weeksEditer.commit()
+
 
                                     val myIntent = Intent(this@HomeActivity, HomeActivity::class.java)
                                     overridePendingTransition(0, 0)

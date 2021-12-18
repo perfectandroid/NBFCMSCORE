@@ -400,6 +400,11 @@ object Config {
     const val SHARED_PREF336="District"
     const val SHARED_PREF337="Branch"
 
+    const val SHARED_PREF338="TODAYSSTATUS"
+    const val SHARED_PREF339="PREVIOUSSTATUS"
+    const val SHARED_PREF340="Status1"
+    const val SHARED_PREF341="Weeks"
+
 
 
     fun getHostnameVerifier(): HostnameVerifier {
