@@ -474,13 +474,13 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
             val MaximumAmountD = MaximumAmount.toDouble()
             amount = amount.replace(",", "")
             if (amount.length < 1 && MaximumAmountD > 0) {
-                /*val ID_amt= applicationContext.getSharedPreferences(Config.SHARED_PREF322, 0)
-                var amt =ID_amt.getString("AvailableBalance", null)
-                CustomBottomSheeet.Show(this,amt!!,"0")*/
+                val ID_amt= applicationContext.getSharedPreferences(Config.SHARED_PREF322, 0)
+                var amt =ID_amt.getString("pleaseenteramountbw", null)
+                CustomBottomSheeet.Show(this,amt!!,"0")
                // val amtrngsp = applicationContext.getSharedPreferences(Config.SHARED_PREF322,0)
               //  CustomBottomSheeet.Show(this,
                   //  amtrngsp.getString("PleaseEnterAmountbetween1and25000.0.",null)!!,"0")
-                CustomBottomSheeet.Show(this,"Please enter amount between 1 and $MaximumAmount.","0")
+               // CustomBottomSheeet.Show(this,"Please enter amount between 1 and $MaximumAmount.","0")
                // edtTxtAmount!!.error = "Please enter amount between 1 and $MaximumAmount."
                 return false
             } else if (amount.length < 1 && MaximumAmountD == 0.0) {
