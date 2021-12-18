@@ -125,6 +125,7 @@ class AccountDetailsActivity : AppCompatActivity() , View.OnClickListener {
         data =FK_Account+","+SubModule
         sendpassbookData()
 
+
         if (IsShareAc.equals("0")){
             imgshare!!.visibility = View.GONE
 

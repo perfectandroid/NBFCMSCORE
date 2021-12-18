@@ -4535,6 +4535,17 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_weeksEditer.commit()
 
 
+                                    val ID_slctfrmdte= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF342, 0)
+                                    val ID_slctfrmdteEditer = ID_slctfrmdte.edit()
+                                    ID_slctfrmdteEditer.putString("Selectfromdate", jresult3.get("Selectfromdate") as String)
+                                    ID_slctfrmdteEditer.commit()
+
+                                    val ID_todte= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF343, 0)
+                                    val ID_todteEditer = ID_todte.edit()
+                                    ID_todteEditer.putString("Selecttodate", jresult3.get("Selecttodate") as String)
+                                    ID_todteEditer.commit()
+
+
                                     val myIntent = Intent(this@HomeActivity, HomeActivity::class.java)
                                     overridePendingTransition(0, 0)
                                     startActivity(myIntent)

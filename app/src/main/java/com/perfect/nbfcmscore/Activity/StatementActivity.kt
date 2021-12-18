@@ -412,10 +412,21 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
             validation()
         }
         else if (edt_fromDate!!.text.toString().equals("")){
-            CustomBottomSheeet.Show(this@StatementActivity,"Select From Date","0")
+
+            val ID_slctfrmdte= applicationContext.getSharedPreferences(Config.SHARED_PREF342, 0)
+            var frmdte =ID_slctfrmdte.getString("Selectfromdate", null)
+
+            CustomBottomSheeet.Show(this@StatementActivity,frmdte!!,"0")
+
+           // CustomBottomSheeet.Show(this@StatementActivity,"Select From Date","0")
         }
         else if (edt_toDate!!.text.toString().equals("")){
-            CustomBottomSheeet.Show(this@StatementActivity,"Select End Date","0")
+
+            val ID_slcttodte= applicationContext.getSharedPreferences(Config.SHARED_PREF343, 0)
+            var todte =ID_slcttodte.getString("Selecttodate", null)
+
+            CustomBottomSheeet.Show(this@StatementActivity,todte!!,"0")
+          //  CustomBottomSheeet.Show(this@StatementActivity,"Select End Date","0")
         }
         else {
             validation()

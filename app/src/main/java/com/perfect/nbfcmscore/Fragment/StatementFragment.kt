@@ -440,10 +440,20 @@ class StatementFragment : Fragment() , View.OnClickListener{
            validation()
        }
         else if (edt_fromDate!!.text.toString().equals("")){
-           CustomBottomSheeet.Show(activity!!,"Select From Date","0")
+           val ID_slctfrmdte= context!!.getSharedPreferences(Config.SHARED_PREF342, 0)
+           var frmdte =ID_slctfrmdte.getString("Selectfromdate", null)
+
+           CustomBottomSheeet.Show(activity!!,frmdte!!,"0")
+
+         //  CustomBottomSheeet.Show(activity!!,"Select From Date","0")
        }
        else if (edt_toDate!!.text.toString().equals("")){
-           CustomBottomSheeet.Show(activity!!,"Select End Date","0")
+
+           val ID_slcttodte= context!!.getSharedPreferences(Config.SHARED_PREF343, 0)
+           var todte =ID_slcttodte.getString("Selecttodate", null)
+
+           CustomBottomSheeet.Show(activity!!,todte!!,"0")
+           //CustomBottomSheeet.Show(activity!!,"Select End Date","0")
        }
         else {
            validation()

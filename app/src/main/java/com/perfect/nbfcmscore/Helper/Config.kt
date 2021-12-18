@@ -405,6 +405,10 @@ object Config {
     const val SHARED_PREF340="Status1"
     const val SHARED_PREF341="Weeks"
 
+    const val SHARED_PREF342="Selectfromdate"
+    const val SHARED_PREF343="Selecttodate"
+
+
 
 
     fun getHostnameVerifier(): HostnameVerifier {

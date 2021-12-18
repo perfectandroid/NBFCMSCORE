@@ -331,6 +331,15 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_weeksEditer.putString("Weeks", jresult3.get("Weeks") as String)
                                         ID_weeksEditer.commit()
 
+                                        val ID_slctfrmdte= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF342, 0)
+                                        val ID_slctfrmdteEditer = ID_slctfrmdte.edit()
+                                        ID_slctfrmdteEditer.putString("Selectfromdate", jresult3.get("Selectfromdate") as String)
+                                        ID_slctfrmdteEditer.commit()
+
+                                        val ID_todte= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF343, 0)
+                                        val ID_todteEditer = ID_todte.edit()
+                                        ID_todteEditer.putString("Selecttodate", jresult3.get("Selecttodate") as String)
+                                        ID_todteEditer.commit()
 
 
                                         val ID_plsentrfnme= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF303, 0)
