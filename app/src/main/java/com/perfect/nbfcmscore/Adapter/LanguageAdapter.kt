@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ItemClickListener
 import com.perfect.nbfcmscore.R
 import org.json.JSONArray
@@ -44,6 +45,7 @@ class LanguageAdapter(internal val mContext: Context, internal val jsInfo: JSONA
             jsonObject = jsInfo.getJSONObject(position)
             Log.e(TAG,"jsInfo")
             var id = jsonObject!!.getString("ID_Languages")
+
             if (holder is LanguageAdapter.MainViewHolder) {
                 holder.lang_name!!.setText(jsonObject!!.getString("LanguagesName"))
                 holder.lang_shortname!!.setText(jsonObject!!.getString("ShortName"))
@@ -55,6 +57,13 @@ class LanguageAdapter(internal val mContext: Context, internal val jsInfo: JSONA
                 holder.llmain!!.setTag(position)
                 holder.llmain!!.setOnClickListener { v ->
                     jsonObject = jsInfo.getJSONObject(position)
+                    val ID_LanguagesSP = mContext.getSharedPreferences(Config.SHARED_PREF9, 0)
+                    val ID_LanguagesEditer = ID_LanguagesSP.edit()
+                    ID_LanguagesEditer.putString(
+                        "ID_Languages",
+                        jsonObject!!.getString("ID_Languages")
+                    )
+                    ID_LanguagesEditer.commit()
                     clickListener!!.onClick(position,"lang")
                 }
             }
