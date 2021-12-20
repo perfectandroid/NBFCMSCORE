@@ -42,9 +42,17 @@ class TransactionOTPActivity : AppCompatActivity() , View.OnClickListener{
 
 
        setRegviews()
-        //   getVerifyPaymentOTP()
-        // getVerifySenderOTP()
-        //  getVerifyReceiverOTP()
+        if(intent.getStringExtra("from")!!.equals("quickpay")){
+            getVerifyPaymentOTP()
+        }
+        if(intent.getStringExtra("from")!!.equals("sender")){
+            getVerifySenderOTP()
+        }
+        if(intent.getStringExtra("from")!!.equals("receiver")){
+            getVerifyReceiverOTP()
+        }
+
+
 
     }
 

@@ -241,7 +241,11 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
                                     alertMessage1("", jObject.getString("EXMessage"))
                                 }
                                 else if ( ! jObject.getString("otpRefNo").equals("0") &&  jObject.getString("Status").equals("200") ){
-                                    startActivity(Intent(this@AddSender, TransactionOTPActivity::class.java))
+                                   // startActivity(Intent(this@AddSender, TransactionOTPActivity::class.java))
+                                    var intent = Intent(this@AddSender, TransactionOTPActivity::class.java)
+                                    intent.putExtra("from", "sender")
+                                    startActivity(intent)
+
                                 }
                                 else {
                                     val builder = AlertDialog.Builder(

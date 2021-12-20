@@ -462,7 +462,9 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
                                     alertMessage1("", jObject.getString("EXMessage"))
                                 }
                                 else if (jObject.getString("StatusCode").equals("200") && !jObject.getString("otpRefNo").equals("0")) {
-
+                                    var intent = Intent(this@AddReceiver, TransactionOTPActivity::class.java)
+                                    intent.putExtra("from", "receiver")
+                                    startActivity(intent)
                                 }
 
                                     else {

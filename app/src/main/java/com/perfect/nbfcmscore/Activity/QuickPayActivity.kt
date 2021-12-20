@@ -1234,8 +1234,10 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                                 } else if (jObject.getString("StatusCode")!=null &&
                                         jObject.getString("StatusCode").equals("200") && !jObject.getString("otpRefNo").equals("0")) {
                                     // otprefno!=0
-                                    startActivity(Intent(this@QuickPayActivity, TransactionOTPActivity::class.java))
-
+                                //    startActivity(Intent(this@QuickPayActivity, TransactionOTPActivity::class.java))
+                                    var intent = Intent(this@QuickPayActivity, TransactionOTPActivity::class.java)
+                                    intent.putExtra("from", "quickpay")
+                                    startActivity(intent)
 
                                 } else {
                                     val builder = AlertDialog.Builder(
