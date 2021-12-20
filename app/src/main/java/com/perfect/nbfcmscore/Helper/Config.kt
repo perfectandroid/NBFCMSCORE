@@ -70,7 +70,7 @@ object Config {
     const val SHARED_PREF40 = "Let'sgetstarted"
     const val SHARED_PREF41 = "pleaseenteryourpersonalinformation"
     const val SHARED_PREF42 = "entermobilenumber"
-    const val SHARED_PREF43 = "enter last4digitofa/cno"
+    const val SHARED_PREF43 = "enterlast4digitofacno"
     const val SHARED_PREF44 = "continue"
     const val SHARED_PREF45 = "loginwithmobilenumber"
     const val SHARED_PREF46 = "enteryourmobilenumberwewillsentyouOTPtoverify"

@@ -72,6 +72,10 @@ class RegistrationActivity : AppCompatActivity()  , View.OnClickListener {
     //    etxt_accno!!.setText(ID_last4SP.getString("enter last4digitofa/cno",null))
         btreg!!.setText(ID_ContinueSP.getString("continue",null))
 
+        val ID_enterlst4SP = applicationContext.getSharedPreferences(Config.SHARED_PREF43,0)
+
+        etxt_accno!!.setHint(ID_enterlst4SP.getString("enterlast4digitofacno",null))
+
         Log.i("commit","Test")
     }
 

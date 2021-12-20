@@ -3129,6 +3129,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                     ID_dob1Editer.putString("DateofBirth1", jresult3.get("DateofBirth1") as String)
                                     ID_dob1Editer.commit()
 
+                                    val ID_last4SP = this@HomeActivity.getSharedPreferences(Config.SHARED_PREF43, 0)
+                                    val ID_last4SPEditer = ID_last4SP.edit()
+                                    ID_last4SPEditer.putString("enterlast4digitofacno", jresult3.get("enterlast4digitofacno") as String)
+                                    ID_last4SPEditer.commit()
+
                                     val ID_entramt= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF259, 0)
                                     val ID_entramtEditer = ID_entramt.edit()
                                     ID_entramtEditer.putString("Pleaseenteramount", jresult3.get("Pleaseenteramount") as String)

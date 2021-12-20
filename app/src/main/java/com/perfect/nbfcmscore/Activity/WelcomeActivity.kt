@@ -627,6 +627,14 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_FeedbkEditer.putString("feedback", jresult3.get("feedback") as String)
                                         ID_FeedbkEditer.commit()
 
+
+                                        val ID_last4SP = this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF43, 0)
+                                        val ID_last4SPEditer = ID_last4SP.edit()
+                                        ID_last4SPEditer.putString("enterlast4digitofacno", jresult3.get("enterlast4digitofacno") as String)
+                                        ID_last4SPEditer.commit()
+
+
+
                                         val WelcomeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF34, 0)
                                         val FasterSP = applicationContext.getSharedPreferences(Config.SHARED_PREF35, 0)
                                         val SigninSP = applicationContext.getSharedPreferences(Config.SHARED_PREF36, 0)
