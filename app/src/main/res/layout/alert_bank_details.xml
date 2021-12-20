@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/txtvBankdetl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="17dp"
@@ -22,6 +23,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/txtvBranch"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:textSize="15dp"
@@ -54,6 +56,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/txtv_bnk"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:textSize="15dp"
@@ -87,6 +90,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/txtvAdd"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:textSize="15dp"
@@ -119,6 +123,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/txtv_plce"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:textSize="15dp"
@@ -151,6 +156,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/txtv_post"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:textSize="15dp"
@@ -184,6 +190,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/txtv_distrct"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:textSize="15dp"

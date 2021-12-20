@@ -22,11 +22,16 @@ class ProfileActivity : AppCompatActivity() , View.OnClickListener{
     var tv_gender: TextView? = null
     var tv_dob: TextView? = null
     var tv_cusnumber: TextView? = null
+    var tv_header: TextView? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
         imgBack = findViewById<ImageView>(R.id.imgBack)
         imgBack!!.setOnClickListener(this)
+        tv_header = findViewById<TextView>(R.id.tv_header)
+
+
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)
         tv_customername = findViewById<TextView>(R.id.tv_customername)
@@ -82,6 +87,9 @@ class ProfileActivity : AppCompatActivity() , View.OnClickListener{
 
         tv_cusnumber!!.setText(CustomerNumberSP1.getString("CustomerNumber1",null)+" :"+CustomerNumberSP.getString("CustomerNumber",null))
 
+        val profSP1 = applicationContext.getSharedPreferences(Config.SHARED_PREF344,0)
+
+        tv_header!!.setText(profSP1.getString("Profile",null))
 
 
     }

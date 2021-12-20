@@ -57,7 +57,7 @@ class DuedateActivity : AppCompatActivity() , View.OnClickListener{
     var txtv_Accno:TextView? = null
     var tvamt:TextView? = null
     var txtv_Duedate:TextView? = null
-
+    var txtvremndr:TextView? = null
 
 
 
@@ -89,6 +89,9 @@ class DuedateActivity : AppCompatActivity() , View.OnClickListener{
         val duedtesp = applicationContext.getSharedPreferences(Config.SHARED_PREF204,0)
         txtv_Duedate!!.setText(duedtesp.getString("Duedate",null))
 
+     /*   val remndsp = applicationContext.getSharedPreferences(Config.SHARED_PREF322,0)
+        txtvremndr!!.setText(remndsp.getString("Dueamountshowninthislistisasoftoday.",null))
+*/
 
     }
 
@@ -97,6 +100,7 @@ class DuedateActivity : AppCompatActivity() , View.OnClickListener{
         tv_header = findViewById(R.id.tv_header)
         txtv_Accno= findViewById(R.id.txtv_Accno)
         txtv_Duedate= findViewById(R.id.txtv_Duedate)
+        txtvremndr= findViewById(R.id.txtvremndr)
         tvamt= findViewById(R.id.tvamt)
 
         ll_standnginstr = findViewById(R.id.ll_standnginstr)

@@ -24,7 +24,7 @@
                 android:layout_weight=".2"
                 android:src="@drawable/navback" />
             <TextView
-                android:id="@+id/tv_mycart"
+                android:id="@+id/tv_header"
                 android:layout_width="0dp"
                 android:textColor="@color/white"
                 android:textStyle="bold"

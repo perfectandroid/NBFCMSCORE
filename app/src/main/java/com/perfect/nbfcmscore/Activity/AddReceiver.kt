@@ -16,6 +16,7 @@ import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
+import com.perfect.nbfcmscore.Helper.CustomBottomSheeet
 import com.perfect.nbfcmscore.Helper.MscoreApplication
 import com.perfect.nbfcmscore.Model.SenderReceiver
 import com.perfect.nbfcmscore.Model.SenderReceiverlist
@@ -69,18 +70,18 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
        val Fundtransfrsp = applicationContext.getSharedPreferences(Config.SHARED_PREF139, 0)
         tv_title!!.setText(Fundtransfrsp.getString("AddNewReceiver", null))
 
-        /*   val Sndrnamesp = applicationContext.getSharedPreferences(Config.SHARED_PREF147, 0)
-          txtv_sndrname!!.setHint(Sndrnamesp.getString("SenderName", null))
+        val Sndrnamesp = applicationContext.getSharedPreferences(Config.SHARED_PREF136, 0)
+          txtv_sndrname!!.setText(Sndrnamesp.getString("SelectSender", null))
 
-          val ifscsp = applicationContext.getSharedPreferences(Config.SHARED_PREF150, 0)
-          ifsc_code!!.setHint(ifscsp.getString("IFSCCode", null))
+        /*   val ifscsp = applicationContext.getSharedPreferences(Config.SHARED_PREF150, 0)
+        ifsc_code!!.setHint(ifscsp.getString("IFSCCode", null))
 
-          val accnosp = applicationContext.getSharedPreferences(Config.SHARED_PREF107, 0)
-          account_number!!.setHint(accnosp.getString("AccountNo", null))
+        val accnosp = applicationContext.getSharedPreferences(Config.SHARED_PREF107, 0)
+        account_number!!.setHint(accnosp.getString("AccountNo", null))
 
-          val confrmaccnosp = applicationContext.getSharedPreferences(Config.SHARED_PREF149, 0)
-          confirm_account_number!!.setHint(confrmaccnosp.getString("ConfirmAccountNumber", null))
-  */
+        val confrmaccnosp = applicationContext.getSharedPreferences(Config.SHARED_PREF149, 0)
+        confirm_account_number!!.setHint(confrmaccnosp.getString("ConfirmAccountNumber", null))
+*/
         val Registerp = applicationContext.getSharedPreferences(Config.SHARED_PREF146, 0)
         btn_registr!!.setText(Registerp.getString("REGISTER", null))
 
@@ -590,56 +591,101 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
         val confirmAccNumber: String = confirm_account_number!!.getText().toString()
 
         if (TextUtils.isEmpty(receiverName)) {
-            receiver_name!!.setError("Please enter receiver name")
+            val plsenentrcvrnmeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF324, 0)
+            var plsenentrcvrnme =plsenentrcvrnmeSP.getString("PleaseEnterReceiverName", null)
+
+            CustomBottomSheeet.Show(this, plsenentrcvrnme!!,"0")
+
+
+        //    receiver_name!!.setError("Please enter receiver name")
+
+
             return false
         }
-        receiver_name!!.setError(null)
+     //   receiver_name!!.setError(null)
 
         if (TextUtils.isEmpty(mobileNumber)) {
-            mobile_number!!.setError("Please enter mobile number")
+            val plsentmobSP = applicationContext.getSharedPreferences(Config.SHARED_PREF281, 0)
+            var plsentmoble =plsentmobSP.getString("PleaseEnterMobileNumber", null)
+
+            CustomBottomSheeet.Show(this, plsentmoble!!,"0")
+            //mobile_number!!.setError("Please enter mobile number")
             return false
         }
 
         if (mobileNumber.length > 10 || mobileNumber.length < 10) {
-            mobile_number!!.setError("Please enter valid 10 digit mobile number")
+            val plsentvalicmobSP = applicationContext.getSharedPreferences(Config.SHARED_PREF287, 0)
+            var plsentvaldmoble =plsentvalicmobSP.getString("PleaseEnterValidMobileNumber", null)
+
+            CustomBottomSheeet.Show(this, plsentvaldmoble!!,"0")
+
+            //   mobile_number!!.setError("Please enter valid 10 digit mobile number")
             return false
         }
 
-        mobile_number!!.setError(null)
+      //  mobile_number!!.setError(null)
 
         try {
+
+
             mobile_number!!.getText().toString().toLong()
         } catch (e: java.lang.Exception) {
             return false
         }
-
+        val plsentvalidifscSP = applicationContext.getSharedPreferences(Config.SHARED_PREF325, 0)
+        var plsentvaldifsc =plsentvalidifscSP.getString("PleaseenterIFSCcode", null)
         if (TextUtils.isEmpty(ifscCode)) {
-            ifsc_code!!.setError("Please enter IFSC code")
+
+
+            CustomBottomSheeet.Show(this, plsentvaldifsc!!,"0")
+
+          //  ifsc_code!!.setError("Please enter IFSC code")
             return false
         } else {
             if (!isIfscIsValid(ifscCode)) {
-                ifsc_code!!.setError("Invalid ifsc")
+                val invalidifscSP = applicationContext.getSharedPreferences(Config.SHARED_PREF326, 0)
+                var invaldifsc =invalidifscSP.getString("Invalidifsc", null)
+
+                CustomBottomSheeet.Show(this, invaldifsc!!,"0")
+
+              //  ifsc_code!!.setError("Invalid ifsc")
                 return false
             }
         }
-        ifsc_code!!.setError(null)
+      //  ifsc_code!!.setError(null)
 
         if (TextUtils.isEmpty(accNumber)) {
-            account_number!!.setError("Please enter account number")
+            val plsentaccSP = applicationContext.getSharedPreferences(Config.SHARED_PREF327, 0)
+            var entaccSP =plsentaccSP.getString("PleaseEnterAccountNumber", null)
+
+            CustomBottomSheeet.Show(this, entaccSP!!,"0")
+
+           // account_number!!.setError("Please enter account number")
             return false
         }
-        account_number!!.setError(null)
+     //   account_number!!.setError(null)
 
         if (TextUtils.isEmpty(confirmAccNumber)) {
-            confirm_account_number!!.setError("Please enter confirm account number")
+            val plsentcnfrmaccSP = applicationContext.getSharedPreferences(Config.SHARED_PREF328, 0)
+            var entcnfrmaccSP =plsentcnfrmaccSP.getString("PleaseEnterConfirmAccountNumber", null)
+
+            CustomBottomSheeet.Show(this, entcnfrmaccSP!!,"0")
+
+
+        //    confirm_account_number!!.setError("Please enter confirm account number")
             return false
         }
 
         if (!accNumber.equals(confirmAccNumber, ignoreCase = true)) {
-            confirm_account_number!!.setError("Account number and Confirm Account number not matching")
+            val accndconfrmaccnoSP = applicationContext.getSharedPreferences(Config.SHARED_PREF329, 0)
+            var acccnfrmaccSP =accndconfrmaccnoSP.getString("AccountnumberandConfirmAccountnumbernotmatching", null)
+
+            CustomBottomSheeet.Show(this, acccnfrmaccSP!!,"0")
+
+           // confirm_account_number!!.setError("Account number and Confirm Account number not matching")
             return false
         }
-        confirm_account_number!!.setError(null)
+       // confirm_account_number!!.setError(null)
 
         return true
 

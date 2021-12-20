@@ -15,6 +15,7 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.perfect.nbfcmscore.Fragment.OtherBankFundTransferHistoryFragment
 import com.perfect.nbfcmscore.Fragment.OtherBankFundTransferPreviousHistoryFragment
+import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.R
 import org.json.JSONArray
 import java.util.*
@@ -25,6 +26,7 @@ class OtherfundTransferHistory : AppCompatActivity() ,View.OnClickListener{
     var imgHome: ImageView? = null
     private var rv_fundtransfer: RecyclerView? = null
     private var jresult: JSONArray? = null
+    var tv_header: TextView? = null
     var tv_status: TextView? = null
     var token: String? = null
     var submode: String? = null
@@ -55,6 +57,14 @@ class OtherfundTransferHistory : AppCompatActivity() ,View.OnClickListener{
         imgBack!!.setOnClickListener(this)
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)
+
+        tv_header= findViewById<TextView>(R.id.tv_header)
+
+        val fundtransfrstatsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF154, 0)
+        tv_header!!.setText(fundtransfrstatsSP.getString("FUNDTRANSFERSTATUS", null))
+
+
+
         sendData()
 
     }
@@ -65,8 +75,17 @@ class OtherfundTransferHistory : AppCompatActivity() ,View.OnClickListener{
 
     private fun setupViewPager(viewPager: ViewPager) {
         val adapter = ViewPagerAdapter(supportFragmentManager)
-        adapter.addFragment(OtherBankFundTransferHistoryFragment(), "Today's Status")
-        adapter.addFragment(OtherBankFundTransferPreviousHistoryFragment(), "Previous Status")
+
+        val todaySP = applicationContext.getSharedPreferences(Config.SHARED_PREF338, 0)
+        val prevSP = applicationContext.getSharedPreferences(Config.SHARED_PREF339, 0)
+
+        var tod =todaySP.getString("TODAYSSTATUS", null)
+        var prev =prevSP.getString("PREVIOUSSTATUS", null)
+
+        adapter.addFragment(OtherBankFundTransferHistoryFragment(), tod!!)
+        //adapter.addFragment(OtherBankFundTransferHistoryFragment(), "Today's Status")
+        adapter.addFragment(OtherBankFundTransferPreviousHistoryFragment(), prev!!)
+       // adapter.addFragment(OtherBankFundTransferPreviousHistoryFragment(), "Previous Status")
         viewPager.adapter = adapter
     }
 

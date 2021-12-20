@@ -108,8 +108,8 @@ class BackViewFragment : Fragment() , OnClickListener{
         val PhSP = context!!.getSharedPreferences(Config.SHARED_PREF292, 0)
         txtv_ph!!.setText(PhSP.getString("Phone", null))
 
-        val AddrsSP = context!!.getSharedPreferences(Config.SHARED_PREF4, 0)
-        txtv_add!!.setText(AddrsSP.getString("Address", null))
+        val AddrsSP = context!!.getSharedPreferences(Config.SHARED_PREF299, 0)
+        txtv_add!!.setText(AddrsSP.getString("Address1", null))
 
 
         txtv_purpose = v.findViewById<View>(R.id.txtv_purpose) as TextView?

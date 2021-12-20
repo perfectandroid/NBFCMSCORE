@@ -381,6 +381,34 @@ object Config {
     const val SHARED_PREF309 ="DateofBirth1"
     const val SHARED_PREF310 ="CustomerNumber1"
 
+    const val SHARED_PREF322 ="pleaseenteramountbw"
+    const val SHARED_PREF323 ="pleaseentermpin"
+    const val SHARED_PREF324 ="PleaseEnterReceiverName"
+    const val SHARED_PREF325 ="PleaseenterIFSCcode"
+    const val SHARED_PREF326 ="Invalidifsc"
+    const val SHARED_PREF327 ="PleaseEnterAccountNumber"
+    const val SHARED_PREF328="PleaseEnterConfirmAccountNumber"
+    const val SHARED_PREF329="AccountnumberandConfirmAccountnumbernotmatching"
+
+    const val SHARED_PREF330="Atleast3digitsarerequired."
+    const val SHARED_PREF331="Atleast6digitsarerequired."
+    const val SHARED_PREF332="Pleaseentervalidsubscriberid"
+
+    const val SHARED_PREF333="Bank"
+    const val SHARED_PREF334="Place"
+    const val SHARED_PREF335="Post"
+    const val SHARED_PREF336="District"
+    const val SHARED_PREF337="Branch"
+
+    const val SHARED_PREF338="TODAYSSTATUS"
+    const val SHARED_PREF339="PREVIOUSSTATUS"
+    const val SHARED_PREF340="Status1"
+    const val SHARED_PREF341="Weeks"
+
+    const val SHARED_PREF342="Selectfromdate"
+    const val SHARED_PREF343="Selecttodate"
+
+    const val SHARED_PREF344="Profile"
     const val SHARED_PREF311 ="TestingMobileNo"
     const val SHARED_PREF312 ="BankKey"
     const val SHARED_PREF313 ="BankHeader"
@@ -502,7 +530,7 @@ object Config {
             val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             val view = View(context)
             imm?.hideSoftInputFromWindow(view.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
-            
+
         } catch (e: Exception) {
             // TODO: handle exception
             e.printStackTrace()

@@ -661,7 +661,12 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
 
         if (TextUtils.isEmpty(amt)) {
            // etxt_amount!!.error = "Please Enter Amount"
-            CustomBottomSheeet.Show(this,"Please Enter Amount","0")
+            val entramtsp = applicationContext.getSharedPreferences(Config.SHARED_PREF259, 0)
+            var entramt =entramtsp.getString("Pleaseenteramount", null)
+
+            CustomBottomSheeet.Show(this,entramt!!,"0")
+
+          // CustomBottomSheeet.Show(this,"Please Enter Amount","0")
             return false
         }
        // etxt_amount!!.setError(null)
@@ -670,11 +675,21 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
          //   edt_txt_tenure!!.setError("Please Enter A Value")
              if(spn_tenure!!.selectedItem.toString().equals("Month"))
              {
-                 CustomBottomSheeet.Show(this,"Please Enter Month","0")
+                 val entrmnthsp = applicationContext.getSharedPreferences(Config.SHARED_PREF181, 0)
+                 var mnth =entrmnthsp.getString("PleaseEnterMonth", null)
+
+                 CustomBottomSheeet.Show(this,mnth!!,"0")
+
+                // CustomBottomSheeet.Show(this,"Please Enter Month","0")
              }
             if(spn_tenure!!.selectedItem.toString().equals("Day"))
             {
-                CustomBottomSheeet.Show(this,"Please Enter Day","0")
+                val enterdysp = applicationContext.getSharedPreferences(Config.SHARED_PREF182, 0)
+                var dy =enterdysp.getString("PleaseEnterDay", null)
+
+                CustomBottomSheeet.Show(this,dy!!,"0")
+
+             //   CustomBottomSheeet.Show(this,"Please Enter Day","0")
             }
 
             return false

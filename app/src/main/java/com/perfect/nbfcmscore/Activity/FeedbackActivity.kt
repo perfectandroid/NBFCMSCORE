@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.*
 import com.bumptech.glide.Glide
 import com.perfect.nbfcmscore.Helper.Config
+import com.perfect.nbfcmscore.Helper.CustomBottomSheeet
 import com.perfect.nbfcmscore.Helper.PicassoTrustAll
 import com.perfect.nbfcmscore.R
 
@@ -123,7 +124,14 @@ class FeedbackActivity : AppCompatActivity() , View.OnClickListener, AdapterView
 
 
         if (TextUtils.isEmpty(fdbktxt)) {
-            feedbackText!!.error = "Please Enter Your Feedback"
+
+            val plsentfdbkSP = applicationContext.getSharedPreferences(Config.SHARED_PREF233, 0)
+            var plsentfdbk =plsentfdbkSP.getString("PleaseEnterYourFeedback", null)
+
+            CustomBottomSheeet.Show(this, plsentfdbk!!,"0")
+
+
+          //  feedbackText!!.error = "Please Enter Your Feedback"
             return false
         }
         feedbackText!!.setError(null)

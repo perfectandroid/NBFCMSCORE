@@ -851,6 +851,37 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
         val tva_post = dialog.findViewById(R.id.tva_post) as TextView
         val tva_district = dialog.findViewById(R.id.tva_district) as TextView
 
+        val txtvBankdetl = dialog.findViewById(R.id.txtvBankdetl) as TextView
+        val txtvBranch = dialog.findViewById(R.id.txtvBranch) as TextView
+        val txtv_bnk = dialog.findViewById(R.id.txtv_bnk) as TextView
+        val txtvAdd = dialog.findViewById(R.id.txtvAdd) as TextView
+        val txtv_plce = dialog.findViewById(R.id.txtv_plce) as TextView
+        val txtv_post = dialog.findViewById(R.id.txtv_post) as TextView
+        val txtv_distrct = dialog.findViewById(R.id.txtv_distrct) as TextView
+
+        val ID_bankdetl = applicationContext.getSharedPreferences(Config.SHARED_PREF109,0)
+        txtvBankdetl!!.setText(ID_bankdetl.getString("BankDetails",null))
+
+        val ID_bnk = applicationContext.getSharedPreferences(Config.SHARED_PREF333,0)
+        txtv_bnk!!.setText(ID_bnk.getString("Bank",null))
+
+        val ID_brnch = applicationContext.getSharedPreferences(Config.SHARED_PREF337,0)
+        txtvBranch!!.setText(ID_brnch.getString("Branch",null))
+
+        val ID_add = applicationContext.getSharedPreferences(Config.SHARED_PREF299,0)
+        txtvAdd!!.setText(ID_add.getString("Address1",null))
+
+        val ID_plce= applicationContext.getSharedPreferences(Config.SHARED_PREF334,0)
+        txtv_plce!!.setText(ID_plce.getString("Place",null))
+
+        val ID_pst= applicationContext.getSharedPreferences(Config.SHARED_PREF335,0)
+        txtv_post!!.setText(ID_pst.getString("Post",null))
+
+
+        val ID_distrct= applicationContext.getSharedPreferences(Config.SHARED_PREF336,0)
+        txtv_distrct!!.setText(ID_distrct.getString("District",null))
+
+
 
 
         for (i in 0 until jsonArray!!.length()) {

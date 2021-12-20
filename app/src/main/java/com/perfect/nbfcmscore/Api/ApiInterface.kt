@@ -102,7 +102,7 @@ interface ApiInterface {
     @POST("AccountSummary/FundTransferToOwnBank")
     fun getfundtransferownBank(@Body body: RequestBody): Call<String>
 
-    @POST("AccountSummary/EMICalculatorDateils")
+    @POST("AccountSummary/EMICalculatorDetails")
     fun getEMICalculatorDateils(@Body body: RequestBody): Call<String>
 
     @POST("AccountSummary/EMIMethodDateils")

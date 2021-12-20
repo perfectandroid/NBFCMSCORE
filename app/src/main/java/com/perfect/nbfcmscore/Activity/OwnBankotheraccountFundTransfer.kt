@@ -72,6 +72,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
     public var Submod: String? = null
     private var jresult1: JSONArray? = null
     var MaximumAmount = "0"
+    var types: String? = null
     var list_view: ListView? = null
     private var jresult: JSONArray? = null
     private var mScannedValue: String? = null
@@ -394,7 +395,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                         alertDialog.show()
                         butOk.setOnClickListener { v: View? ->
                             alertDialog.dismiss()
-                            var type: String? = null
+
                           /*  if(!spn_account_type!!.getSelectedItem().toString().equals("Select Account"))
                             {
 
@@ -402,13 +403,13 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                             else
                             {*/
                                 val accountType: String = spn_account_type!!.getSelectedItem().toString()
-                                if (accountType.equals("Savings bank")) {
-                                    type = "DDSB"
+                                if (accountType.equals("Savings Bank")) {
+                                    types = "DDSB"
                                 }
                            // }
 
                             val Finalamount = amount.replace(",", "")
-                            getOwnAccountFundTransfer(accountNumber, type, recieverAccountNo, Finalamount, remark)
+                            getOwnAccountFundTransfer(accountNumber, types, recieverAccountNo, Finalamount, remark)
                         }
                         butCan.setOnClickListener { alertDialog.dismiss() }
                     } else {
@@ -473,17 +474,29 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
             val MaximumAmountD = MaximumAmount.toDouble()
             amount = amount.replace(",", "")
             if (amount.length < 1 && MaximumAmountD > 0) {
-                CustomBottomSheeet.Show(this,"Please enter amount between 1 and $MaximumAmount.","0")
+                val ID_amt= applicationContext.getSharedPreferences(Config.SHARED_PREF322, 0)
+                var amt =ID_amt.getString("pleaseenteramountbw", null)
+                CustomBottomSheeet.Show(this,amt!!,"0")
+               // val amtrngsp = applicationContext.getSharedPreferences(Config.SHARED_PREF322,0)
+              //  CustomBottomSheeet.Show(this,
+                  //  amtrngsp.getString("PleaseEnterAmountbetween1and25000.0.",null)!!,"0")
+               // CustomBottomSheeet.Show(this,"Please enter amount between 1 and $MaximumAmount.","0")
                // edtTxtAmount!!.error = "Please enter amount between 1 and $MaximumAmount."
                 return false
             } else if (amount.length < 1 && MaximumAmountD == 0.0) {
-                CustomBottomSheeet.Show(this,"Please enter valid amount.","0")
+                val entramtsp = applicationContext.getSharedPreferences(Config.SHARED_PREF259,0)
+                CustomBottomSheeet.Show(this,
+                    entramtsp.getString("Pleaseenteramount",null)!!,"0")
+              //  CustomBottomSheeet.Show(this,"Please enter valid amount.","0")
               //  edtTxtAmount!!.error = "Please enter valid amount."
                 return false
             }
             val amt = amount.toDouble()
             if (MaximumAmountD > 0) {
                 if (amt < 1 || amt > MaximumAmountD) {
+                  //  val amtrngsp = applicationContext.getSharedPreferences(Config.SHARED_PREF322,0)
+                  //  CustomBottomSheeet.Show(this,
+                       // amtrngsp.getString("PleaseEnterAmountbetween1and25000.0.",null)!!,"0")
                     CustomBottomSheeet.Show(this,"Please enter amount between 1 and $MaximumAmountD.","0")
                    // edtTxtAmount!!.error = "Please enter amount between 1 and $MaximumAmountD."
                     return false
@@ -517,18 +530,25 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
         } else if (recieverAccountNo != confirmRecieverAccountNo && recieverAccountNo.length == 12 && confirmRecieverAccountNo.length == 12) {
             showAlert()
         } else {
+            val atleast3Sp = applicationContext.getSharedPreferences(Config.SHARED_PREF330, 0)
+            var atl3 = atleast3Sp.getString("Atleast3digitsarerequired.", null)
+
+            val atleast6Sp = applicationContext.getSharedPreferences(Config.SHARED_PREF331, 0)
+            var atl6 = atleast6Sp.getString("Atleast6digitsarerequired.", null)
+
             if (edtTxtAccountNoFirstBlock!!.text.toString().length < 3)
-                edtTxtAccountNoFirstBlock!!.error = "Atleast 3 digit are required"
+
+                edtTxtAccountNoFirstBlock!!.error = atl3
             if (edtTxtAccountNoSecondBlock!!.text.toString().length < 3)
-                edtTxtAccountNoSecondBlock!!.error = "Atleast 3 digit are required"
+                edtTxtAccountNoSecondBlock!!.error = atl3
             if (edtTxtAccountNoThirdBlock!!.text.toString().length < 6)
-                edtTxtAccountNoThirdBlock!!.error = "Atleast 6 digits are required"
+                edtTxtAccountNoThirdBlock!!.error = atl6
             if (edtTxtConfirmAccountNoFirstBlock!!.text.toString().length < 3)
-                edtTxtConfirmAccountNoFirstBlock!!.error = "Atleast 3 digits are required"
+                edtTxtConfirmAccountNoFirstBlock!!.error = atl3
             if (edtTxtConfirmAccountNoSecondBlock!!.text.toString().length < 3)
-                edtTxtConfirmAccountNoSecondBlock!!.error = "Atleast 3 digits are required"
+                edtTxtConfirmAccountNoSecondBlock!!.error = atl3
             if (edtTxtConfirmAccountNoThirdBlock!!.text.toString().length < 6)
-                edtTxtConfirmAccountNoThirdBlock!!.error = "Atleast 6 digits are required"
+                edtTxtConfirmAccountNoThirdBlock!!.error = atl6
         }
         return ""
 
@@ -746,6 +766,11 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spn_account_type!!.setAdapter(spinnerAdapter)
         spn_account_type!!.setOnItemSelectedListener(this)
+
+        val accountType: String = spn_account_type!!.getSelectedItem().toString()
+        if (accountType.equals("Savings Bank")) {
+            types = "DDSB"
+        }
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
@@ -1030,7 +1055,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                         requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
 
 
-                        Log.e("TAG", "requestObject1  ownfund   " + requestObject1)
+                        Log.e("TAG", "requestObject1  ownfund   " +type+"\n"+ requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()

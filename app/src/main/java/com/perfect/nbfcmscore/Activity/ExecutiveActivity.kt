@@ -143,7 +143,7 @@ class ExecutiveActivity : AppCompatActivity() ,View.OnClickListener{
                 txtv_Date!!.text.toString()+"\n"+txt_time!!.text.toString()
         emailIntent.putExtra(Intent.EXTRA_TEXT, data)
         try {
-            startActivity(Intent.createChooser(emailIntent, "Send mail..."))
+            startActivity(Intent.createChooser(emailIntent, "Send mail successfully..."))
         } catch (ex: ActivityNotFoundException) {
         }
     }
