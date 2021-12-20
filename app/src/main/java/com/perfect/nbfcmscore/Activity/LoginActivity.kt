@@ -31,6 +31,8 @@ import java.util.*
 import javax.net.ssl.*
 
 class LoginActivity : AppCompatActivity() , View.OnClickListener {
+
+    val TAG: String ="LoginActivity"
     private var progressDialog: ProgressDialog? = null
     var etxt_mob: EditText? = null
     var btlogin: Button? = null
@@ -104,13 +106,66 @@ class LoginActivity : AppCompatActivity() , View.OnClickListener {
             etxt_mob!!.setError("Please Enter Valid Mobile Number")
         }else{
             //etxt_mob!!.text=null
-            getlogin()
+            setUrl()
+          //  getlogin()
         }
+    }
+
+    private fun setUrl() {
+        val TestingMobileNoSP = applicationContext.getSharedPreferences(Config.SHARED_PREF311, 0)
+        val strTestmobile = TestingMobileNoSP.getString("TestingMobileNo",null)
+
+
+        val mobileNumber = etxt_mob!!.text.toString()
+        if (strTestmobile.equals(mobileNumber) ) {
+
+            val TestingURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF315, 0)
+            val TestingImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF317, 0)
+            val TestBankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF318, 0)
+            val TestBankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF318, 0)
+            val sslcertificatetestSP = applicationContext.getSharedPreferences(Config.SHARED_PREF318, 0)
+
+            val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+            val baseurlSPEditer = baseurlSP.edit()
+            baseurlSPEditer.putString("baseurl", TestingURLSP.getString("TestingURL",null))
+            baseurlSPEditer.commit()
+
+            val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+            val ImageURLSPEditer = ImageURLSP.edit()
+            ImageURLSPEditer.putString("ImageURL", TestingImageURLSP.getString("TestingImageURL",null))
+            ImageURLSPEditer.commit()
+
+
+            val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+            val BankKeyEditer = BankKeySP.edit()
+            BankKeyEditer.putString("BankKey", TestBankKeySP.getString("testBankKey",null))
+            BankKeyEditer.commit()
+
+            val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+            val BankHeaderEditer = BankHeaderSP.edit()
+            BankHeaderEditer.putString("BankHeader", TestBankHeaderSP.getString("testBankHeader",null))
+            BankHeaderEditer.commit()
+
+
+            val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
+            val certificateSPEditer = certificateSP.edit()
+            certificateSPEditer.putString("sslcertificate", sslcertificatetestSP.getString("testsslcertificate",null))
+            certificateSPEditer.commit()
+
+
+        }
+
+            getlogin()
+
+
+
+
     }
 
     private fun getlogin() {
         val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurl = baseurlSP.getString("baseurl", null)
+
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@LoginActivity, R.style.Progress)
@@ -136,9 +191,19 @@ class LoginActivity : AppCompatActivity() , View.OnClickListener {
                     val apiService = retrofit.create(ApiInterface::class.java!!)
                     val requestObject1 = JSONObject()
                     try {
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
+
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("6"))
                         requestObject1.put("MobileNumber", MscoreApplication.encryptStart(etxt_mob!!.text.toString()))
-                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
+                        //requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
+
+                        Log.e(TAG,"requestObject1 Login 10001   "+requestObject1)
+
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -162,6 +227,8 @@ class LoginActivity : AppCompatActivity() , View.OnClickListener {
                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 if (jObject.getString("StatusCode") == "0") {
+
+
                                     val jobjt = jObject.getJSONObject("CustomerLoginVerification")
                                     val builder = AlertDialog.Builder(this@LoginActivity, R.style.MyDialogTheme)
                                     val ID_ResponseSP = applicationContext.getSharedPreferences(Config.SHARED_PREF47,0)
@@ -177,6 +244,9 @@ class LoginActivity : AppCompatActivity() , View.OnClickListener {
                                     }
 
                                     builder.setPositiveButton("Ok"){dialogInterface, which ->
+
+
+
 
                                         val jobjt = jObject.getJSONObject("CustomerLoginVerification")
                                         intent = Intent(applicationContext, OTPActivity::class.java)

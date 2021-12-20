@@ -281,6 +281,10 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                                 0
                         )
                         val Token = TokenSP.getString("Token", null)
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("47"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
@@ -289,13 +293,8 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                                 MscoreApplication.encryptStart(FK_Customer)
                         )
 
-                        requestObject1.put(
-                                "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                        R.string.BankKey
-                                )
-                        )
-                        )
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
 
 
                         Log.e("TAG", "requestObject1  171   " + requestObject1)
@@ -506,6 +505,10 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                                 0
                         )
                         val Token = TokenSP.getString("Token", null)
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                         //requestObject1.put("Reqmode", MscoreApplication.encryptStart("26"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
@@ -533,13 +536,8 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                                 "BenefitType",
                                 MscoreApplication.encryptStart(benefid)
                         )
-                        requestObject1.put(
-                                "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                        R.string.BankKey
-                                )
-                        )
-                        )
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
 
 
                         Log.e("TAG", "requestObject1  deposit   " + requestObject1)

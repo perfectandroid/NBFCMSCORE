@@ -122,20 +122,15 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                             0
                         )
                         val Token = TokenSP.getString("Token", null)
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("8"))
                         requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
-                        requestObject1.put(
-                            "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                    R.string.BankKey
-                                )
-                            )
-                        )
-                        requestObject1.put(
-                            "FK_District",
-                            MscoreApplication.encryptStart("0")
-                        )
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
 
 
@@ -311,12 +306,17 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                             0
                         )
                         val Token = TokenSP.getString("Token", null)
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("24"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put("BranchCode", MscoreApplication.encryptStart(branchid))
                         requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
-                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
 
 
                         Log.e("TAG", "requestObject1  171   " + requestObject1)

@@ -142,6 +142,12 @@ class OtherBankFundTransferHistoryFragment:Fragment(), AdapterView.OnItemSelecte
                         )
                         val Token = TokenSP.getString("Token", null)
 
+
+                        val BankKeySP = activity!!.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = activity!!.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
+
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("32"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put(
@@ -166,13 +172,8 @@ class OtherBankFundTransferHistoryFragment:Fragment(), AdapterView.OnItemSelecte
                                 "TransType",
                                 MscoreApplication.encryptStart("1")
                         )
-                        requestObject1.put(
-                                "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                        R.string.BankKey
-                                )
-                        )
-                        )
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
 
 
                         Log.e("TAG", "requestObject1  status   " + requestObject1+"\n"+"Submode : "+submode)

@@ -182,6 +182,10 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                                 0
                         )
                         val Token = TokenSP.getString("Token", null)
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("40"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
@@ -189,13 +193,8 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                                 "FK_Customer",
                                 MscoreApplication.encryptStart(FK_Customer)
                         )
-                        requestObject1.put(
-                                "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                        R.string.BankKey
-                                )
-                        )
-                        )
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
 
 
                         Log.e("TAG", "requestObject1  senderreceiver   " + requestObject1)
@@ -517,6 +516,10 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                                 0
                         )
                         val Token = TokenSP.getString("Token", null)
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("26"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
@@ -528,13 +531,8 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                                 "SubMode",
                                 MscoreApplication.encryptStart("1")
                         )
-                        requestObject1.put(
-                                "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                        R.string.BankKey
-                                )
-                        )
-                        )
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
 
 
                         Log.e("TAG", "requestObject1  171   " + requestObject1)
@@ -897,12 +895,18 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                                 0
                         )
                         val Token = TokenSP.getString("Token", null)
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("41"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
                         requestObject1.put("SenderID", MscoreApplication.encryptStart(senderid))
-                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
+
 
 
                         Log.e("TAG", "requestObject1  171   " + requestObject1)
@@ -1142,6 +1146,10 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                                 0
                         )
                         val Token = TokenSP.getString("Token", null)
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("41"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
@@ -1173,13 +1181,8 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                                 "MPIN",
                                 MscoreApplication.encryptStart(mPinString)
                         )
-                        requestObject1.put(
-                                "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                        R.string.BankKey
-                                )
-                        )
-                        )
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
 
 
                         Log.e("TAG", "requestObject1  QUICKPAY   " + requestObject1)

@@ -84,26 +84,19 @@ class LoanSlabActivity : AppCompatActivity()  , View.OnClickListener {
                         val result: String = FK_Account!!.substring(0, 12).toString()
                         val SubModuleSP = applicationContext.getSharedPreferences(Config.SHARED_PREF17, 0)
                         val SubModule = SubModuleSP.getString("SubModule", null)
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("20"))
                         requestObject1.put("FK_Customer",  MscoreApplication.encryptStart(FK_Customer))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put("LoanNumber", MscoreApplication.encryptStart(result))
                         requestObject1.put("SubModule", MscoreApplication.encryptStart(SubModule))
-                        requestObject1.put(
-                            "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                    R.string.BankKey
-                                )
-                            )
-                        )
-                        /*   requestObject1.put(
-                               "BankHeader", MscoreApplication.encryptStart(
-                                   getResources().getString(
-                                       R.string.BankHeader
-                                   )
-                               )
-                           )*/
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
+
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()

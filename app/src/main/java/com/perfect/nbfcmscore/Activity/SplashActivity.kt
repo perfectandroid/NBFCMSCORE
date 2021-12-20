@@ -3,6 +3,7 @@ package com.perfect.nbfcmscore.Activity
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.provider.Settings.Secure
@@ -31,7 +32,7 @@ import java.util.*
 
 
 class SplashActivity : AppCompatActivity() {
-
+    val TAG: String ="LoginActivity"
     private var progressDialog: ProgressDialog? = null
     var tv_error_message: TextView? = null
     var btn_proceed: Button? = null
@@ -43,11 +44,23 @@ class SplashActivity : AppCompatActivity() {
 //    val BASE_URL = "https://202.164.150.65:15006/NbfcAndroidAPI/api/"  //DEVELOPMENT
 //    val IMAGE_URL = "https://202.164.150.65:15006/NbfcAndroidAPI/"
 
-    val BASE_URL = "https://202.164.150.65:15006/NbfcAndroidAPI/api/"  //DEVELOPMENT
-    val IMAGE_URL = "https://202.164.150.65:15006/NbfcAndroidAPI/"
-    val BankKey = "-500"
-    val BankHeader = "PERFECT NBFC BANK HEAD OFFICE"
-    val CERT_NAME = "staticvm.pem"  //QA
+    companion object {
+        val BASE_URL  = "https://202.164.150.65:15006/NbfcAndroidAPI/api/"  //DEVELOPMENT
+        val IMAGE_URL = "https://202.164.150.65:15006/NbfcAndroidAPI/"
+        val BankKey = "-500"
+        val BankHeader = "PERFECT NBFC BANK HEAD OFFICE"
+        val CERT_NAME = "staticvm.pem"  //QA
+        val CERT_NAME_TEST = "nbfctest.pem"  //QA
+    }
+
+//    val BASE_URL  = "https://202.164.150.65:15006/NbfcAndroidAPI/api/"  //DEVELOPMENT
+//    val IMAGE_URL = "https://202.164.150.65:15006/NbfcAndroidAPI/"
+//    val BankKey = "-500"
+//    val BankHeader = "PERFECT NBFC BANK HEAD OFFICE"
+//    val CERT_NAME = "staticvm.pem"  //QA
+//    val CERT_NAME_TEST = "nbfctest.pem"  //QA
+
+
 
 
 //    val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPIQA/api/"  //QA
@@ -159,9 +172,12 @@ class SplashActivity : AppCompatActivity() {
                     val requestObject1 = JSONObject()
                     try {
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("5"))
-                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
-                        // requestObject1.put("BankHeader", MscoreApplication.encryptStart(getResources().getString(R.string.BankHeader)))
-                        Log.e("requestObject1", "requestObject1  113   " + requestObject1)
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKey))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeader))
+
+//                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
+//                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(getResources().getString(R.string.BankHeader)))
+                        Log.e(TAG, "requestObject1 Reseller 10001   " + requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -286,38 +302,234 @@ class SplashActivity : AppCompatActivity() {
                                     IsNBFCEditer.putString("IsNBFC", jobjt.getString("IsNBFC"))
                                     IsNBFCEditer.commit()
 
-                                    val m_androidId = Secure.getString(contentResolver, Secure.ANDROID_ID)
-                                    if (m_androidId.equals(jobjt.getString("TestingMachineId"))) {
-                                        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
-                                        val baseurlSPEditer = baseurlSP.edit()
-                                        baseurlSPEditer.putString("baseurl", jobjt.getString("TestingURL"))
-                                        baseurlSPEditer.commit()
-                                        val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
-                                        val ImageURLSPEditer = ImageURLSP.edit()
-                                        ImageURLSPEditer.putString("ImageURL", jobjt.getString("TestingImageURL"))
-                                        ImageURLSPEditer.commit()
-                                    } else {
+                                    val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+                                    val baseurlSPEditer = baseurlSP.edit()
+                                    baseurlSPEditer.putString("baseurl", BASE_URL)
+                                    baseurlSPEditer.commit()
+                                    val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+                                    val ImageURLSPEditer = ImageURLSP.edit()
+                                    ImageURLSPEditer.putString("ImageURL", IMAGE_URL)
+                                    ImageURLSPEditer.commit()
+
+//                                    val m_androidId = Secure.getString(contentResolver, Secure.ANDROID_ID)
+//                                    if (m_androidId.equals(jobjt.getString("TestingMachineId"))) {
+//                                        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+//                                        val baseurlSPEditer = baseurlSP.edit()
+//                                        baseurlSPEditer.putString("baseurl", jobjt.getString("TestingURL"))
+//                                        baseurlSPEditer.commit()
+//                                        val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+//                                        val ImageURLSPEditer = ImageURLSP.edit()
+//                                        ImageURLSPEditer.putString("ImageURL", jobjt.getString("TestingImageURL"))
+//                                        ImageURLSPEditer.commit()
+//                                    } else {
+//                                        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+//                                        val baseurlSPEditer = baseurlSP.edit()
+//                                        baseurlSPEditer.putString("baseurl", BASE_URL)
+//                                        baseurlSPEditer.commit()
+//                                        val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+//                                        val ImageURLSPEditer = ImageURLSP.edit()
+//                                        ImageURLSPEditer.putString("ImageURL", IMAGE_URL)
+//                                        ImageURLSPEditer.commit()
+//                                    }
+
+                                    val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
+                                    val certificateSPEditer = certificateSP.edit()
+                                    certificateSPEditer.putString("sslcertificate", CERT_NAME)
+                                    certificateSPEditer.commit()
+
+
+                                    val TestingMobileNoSP = applicationContext.getSharedPreferences(Config.SHARED_PREF311, 0)
+                                    val TestingMobileNoEditer = TestingMobileNoSP.edit()
+                                    TestingMobileNoEditer.putString("TestingMobileNo",  jobjt.getString("TestingMobileNo"))
+                                    TestingMobileNoEditer.commit()
+
+                                    val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                                    val BankKeyEditer = BankKeySP.edit()
+                                    BankKeyEditer.putString("BankKey", BankKey)
+                                    BankKeyEditer.commit()
+
+                                    val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                                    val BankHeaderEditer = BankHeaderSP.edit()
+                                    BankHeaderEditer.putString("BankHeader", BankHeader)
+                                    BankHeaderEditer.commit()
+
+                                    val CertificateStatusSP = applicationContext.getSharedPreferences(Config.SHARED_PREF314, 0)
+                                    val CertificateStatusEditer = CertificateStatusSP.edit()
+                                    CertificateStatusEditer.putString("CertificateStatus", jobjt.getString("CertificateStatus"))
+                                    CertificateStatusEditer.commit()
+
+                                    val TestingURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF315, 0)
+                                    val TestingURLEditer = TestingURLSP.edit()
+                                    TestingURLEditer.putString("TestingURL", jobjt.getString("TestingURL"))
+                                    TestingURLEditer.commit()
+
+                                    val TestingMachineIdSP = applicationContext.getSharedPreferences(Config.SHARED_PREF316, 0)
+                                    val TestingMachineIdEditer = TestingMachineIdSP.edit()
+                                    TestingMachineIdEditer.putString("TestingMachineId", jobjt.getString("TestingMachineId"))
+                                    TestingMachineIdEditer.commit()
+
+                                    val TestingImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF317, 0)
+                                    val TestingImageURLEditer = TestingImageURLSP.edit()
+                                    TestingImageURLEditer.putString("TestingImageURL", jobjt.getString("TestingImageURL"))
+                                    TestingImageURLEditer.commit()
+
+                                    val sslcertificatetestSP = applicationContext.getSharedPreferences(Config.SHARED_PREF318, 0)
+                                    val sslcertificatetestEditer = sslcertificatetestSP.edit()
+                                    sslcertificatetestEditer.putString("testsslcertificate", CERT_NAME_TEST)
+                                    sslcertificatetestEditer.commit()
+
+                                    val TestBankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF319, 0)
+                                    val TestBankKeyEditer = TestBankKeySP.edit()
+                                    TestBankKeyEditer.putString("testBankKey",  jobjt.getString("BankKey"))
+                                    TestBankKeyEditer.commit()
+
+                                    val TestBankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF320, 0)
+                                    val TestBankHeaderEditer = TestBankHeaderSP.edit()
+                                    TestBankHeaderEditer.putString("testBankHeader",  jobjt.getString("BankHeader"))
+                                    TestBankHeaderEditer.commit()
+
+
+                                    val pref = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
+                                    val strloginmobile = pref.getString("LoginMobileNo", null)
+                                    if(strloginmobile == null || strloginmobile.isEmpty()) {
+
                                         val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
                                         val baseurlSPEditer = baseurlSP.edit()
                                         baseurlSPEditer.putString("baseurl", BASE_URL)
                                         baseurlSPEditer.commit()
+
                                         val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
                                         val ImageURLSPEditer = ImageURLSP.edit()
                                         ImageURLSPEditer.putString("ImageURL", IMAGE_URL)
                                         ImageURLSPEditer.commit()
+
+
+                                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                                        val BankKeyEditer = BankKeySP.edit()
+                                        BankKeyEditer.putString("BankKey", BankKey)
+                                        BankKeyEditer.commit()
+
+                                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                                        val BankHeaderEditer = BankHeaderSP.edit()
+                                        BankHeaderEditer.putString("BankHeader", BankHeader)
+                                        BankHeaderEditer.commit()
+
+
+                                        val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
+                                        val certificateSPEditer = certificateSP.edit()
+                                        certificateSPEditer.putString("sslcertificate", CERT_NAME)
+                                        certificateSPEditer.commit()
+                                    }
+                                    else{
+
+                                        if (jobjt.getString("TestingMobileNo").equals(strloginmobile)){
+
+
+                                            if (jobjt.getString("TestingURL").isEmpty() && jobjt.getString("TestingImageURL").isEmpty()
+                                                && jobjt.getString("BankKey").isEmpty() && jobjt.getString("BankHeader").isEmpty()){
+
+                                                val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+                                                val baseurlSPEditer = baseurlSP.edit()
+                                                baseurlSPEditer.putString("baseurl", BASE_URL)
+                                                baseurlSPEditer.commit()
+
+                                                val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+                                                val ImageURLSPEditer = ImageURLSP.edit()
+                                                ImageURLSPEditer.putString("ImageURL", IMAGE_URL)
+                                                ImageURLSPEditer.commit()
+
+
+                                                val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                                                val BankKeyEditer = BankKeySP.edit()
+                                                BankKeyEditer.putString("BankKey", BankKey)
+                                                BankKeyEditer.commit()
+
+                                                val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                                                val BankHeaderEditer = BankHeaderSP.edit()
+                                                BankHeaderEditer.putString("BankHeader", BankHeader)
+                                                BankHeaderEditer.commit()
+
+
+                                                val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
+                                                val certificateSPEditer = certificateSP.edit()
+                                                certificateSPEditer.putString("sslcertificate", CERT_NAME)
+                                                certificateSPEditer.commit()
+                                            }
+                                            else{
+
+                                                val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+                                                val baseurlSPEditer = baseurlSP.edit()
+                                                baseurlSPEditer.putString("baseurl", jobjt.getString("TestingURL"))
+                                                baseurlSPEditer.commit()
+
+                                                val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+                                                val ImageURLSPEditer = ImageURLSP.edit()
+                                                ImageURLSPEditer.putString("ImageURL", jobjt.getString("TestingImageURL"))
+                                                ImageURLSPEditer.commit()
+
+
+                                                val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                                                val BankKeyEditer = BankKeySP.edit()
+                                                BankKeyEditer.putString("BankKey", jobjt.getString("BankKey"))
+                                                BankKeyEditer.commit()
+
+                                                val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                                                val BankHeaderEditer = BankHeaderSP.edit()
+                                                BankHeaderEditer.putString("BankHeader", jobjt.getString("BankHeader"))
+                                                BankHeaderEditer.commit()
+
+
+                                                val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
+                                                val certificateSPEditer = certificateSP.edit()
+                                                certificateSPEditer.putString("sslcertificate", CERT_NAME_TEST)
+                                                certificateSPEditer.commit()
+                                            }
+                                        }
+                                        else{
+                                            val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+                                            val baseurlSPEditer = baseurlSP.edit()
+                                            baseurlSPEditer.putString("baseurl", BASE_URL)
+                                            baseurlSPEditer.commit()
+
+                                            val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+                                            val ImageURLSPEditer = ImageURLSP.edit()
+                                            ImageURLSPEditer.putString("ImageURL", IMAGE_URL)
+                                            ImageURLSPEditer.commit()
+
+
+                                            val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                                            val BankKeyEditer = BankKeySP.edit()
+                                            BankKeyEditer.putString("BankKey", BankKey)
+                                            BankKeyEditer.commit()
+
+                                            val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                                            val BankHeaderEditer = BankHeaderSP.edit()
+                                            BankHeaderEditer.putString("BankHeader", BankHeader)
+                                            BankHeaderEditer.commit()
+
+
+                                            val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
+                                            val certificateSPEditer = certificateSP.edit()
+                                            certificateSPEditer.putString("sslcertificate", CERT_NAME)
+                                            certificateSPEditer.commit()
+                                        }
+
                                     }
 
-                                    if (jobjt.getString("CertificateStatus").equals("Live")) {
-                                        val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
-                                        val certificateSPEditer = certificateSP.edit()
-                                        certificateSPEditer.putString("sslcertificate", Config.CERT_NAME)
-                                        certificateSPEditer.commit()
-                                    } else {
-                                        val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
-                                        val certificateSPEditer = certificateSP.edit()
-                                        certificateSPEditer.putString("sslcertificate", Config.CERT_NAME)
-                                        certificateSPEditer.commit()
-                                    }
+
+
+//
+//                                    if (jobjt.getString("CertificateStatus").equals("Live")) {
+//                                        val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
+//                                        val certificateSPEditer = certificateSP.edit()
+//                                        certificateSPEditer.putString("sslcertificate", Config.CERT_NAME)
+//                                        certificateSPEditer.commit()
+//                                    } else {
+//                                        val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
+//                                        val certificateSPEditer = certificateSP.edit()
+//                                        certificateSPEditer.putString("sslcertificate", Config.CERT_NAME)
+//                                        certificateSPEditer.commit()
+//                                    }
 
                                     try {
                                         val imagepath = IMAGE_URL + AppIconImageCodeSP!!.getString("AppIconImageCode", null)
@@ -327,38 +539,6 @@ class SplashActivity : AppCompatActivity() {
                                         e.printStackTrace()
                                     }
 
-
-                                 /*   val LicenceImpsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF293, 0)
-                                    val LicenceImpsEditer = LicenceImpsSP.edit()
-                                    LicenceImpsEditer.putString("LicenceImps", "true")
-                                    LicenceImpsEditer.commit()
-
-                                    val LicenceNeftSP = applicationContext.getSharedPreferences(Config.SHARED_PREF295, 0)
-                                    val LicenceNeftEditer = LicenceNeftSP.edit()
-                                    LicenceNeftEditer.putString("LicenceNeft", "true")
-                                    LicenceNeftEditer.commit()
-
-                                    val LicenceRtgsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF298, 0)
-                                    val LicenceRtgsEditer = LicenceRtgsSP.edit()
-                                    LicenceRtgsEditer.putString("LicenceRtgs", "true")
-                                    LicenceRtgsEditer.commit()
-
-
-                                    val LicenceQuickPaySP = applicationContext.getSharedPreferences(Config.SHARED_PREF296, 0)
-                                    val LicenceQuickPayEditer = LicenceQuickPaySP.edit()
-                                    LicenceQuickPayEditer.putString("LicenceQuickPay", "true")
-                                    LicenceQuickPayEditer.commit()
-
-                                    val LicenceKsebSP = applicationContext.getSharedPreferences(Config.SHARED_PREF294, 0)
-                                    val LicenceKsebEditer = LicenceKsebSP.edit()
-                                    LicenceKsebEditer.putString("LicenceKseb", "true")
-                                    LicenceKsebEditer.commit()
-
-                                    val LicenceRechargeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF297, 0)
-                                    val LicenceRechargeEditer = LicenceRechargeSP.edit()
-                                    LicenceRechargeEditer.putString("LicenceRecharge", "true")
-                                    LicenceRechargeEditer.commit()
-*/
                                     doSplash()
                                     getMaintenanceMessage()
                                     //  getlabels()
@@ -462,32 +642,27 @@ class SplashActivity : AppCompatActivity() {
                     val requestObject1 = JSONObject()
                     try {
 
-                        val FK_CustomerSP = this.applicationContext.getSharedPreferences(
-                                Config.SHARED_PREF1,
-                                0
-                        )
+                        val FK_CustomerSP = this.applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
                         val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
-
-                        val TokenSP = this!!.applicationContext.getSharedPreferences(
-                                Config.SHARED_PREF8,
-                                0
-                        )
+                        val TokenSP = this!!.applicationContext.getSharedPreferences(Config.SHARED_PREF8, 0)
                         val Token = TokenSP.getString("Token", null)
+
+
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
+
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("43"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
-                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
-//                        requestObject1.put(
-//                            "BankHeader", MscoreApplication.encryptStart(
-//                                getResources().getString(
-//                                    R.string.BankHeader
-//                                )
-//                            )
-//                        )
+
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
 
 
-                        Log.e("TAG", "requestObject1  maintenance   " + requestObject1)
+                        Log.e(TAG, "requestObject1 Maintance 10001   " + requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -510,7 +685,7 @@ class SplashActivity : AppCompatActivity() {
                             try {
                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
-                                Log.i("Response-Maintenance", response.body())
+                                Log.e("Response-Maintenance", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jobjt = jObject.getJSONObject("MaintenanceMessage")
                                     val maintenancejobjt = jobjt.getJSONArray("MaintenanceMessageList")

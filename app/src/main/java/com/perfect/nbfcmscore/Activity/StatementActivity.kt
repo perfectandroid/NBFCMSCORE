@@ -485,13 +485,18 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
 
                         val FK_CustomerSP = this.applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
                         val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("26"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
                         requestObject1.put("SubMode", MscoreApplication.encryptStart("1"))
-                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
-                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(getResources().getString(R.string.BankHeader)))
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
+
 
                         Log.e(TAG,"requestObject1  516   "+requestObject1)
 
@@ -749,11 +754,15 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
 
                         val FK_CustomerSP = this.applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
                         val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                       //  requestObject1.put("Reqmode", MscoreApplication.encryptStart("26"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
-                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(getResources().getString(R.string.BankHeader)))
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
                         requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
                         requestObject1.put("SubModule", MscoreApplication.encryptStart(SubModule))
                         requestObject1.put("FromNo", MscoreApplication.encryptStart(FromNo))
@@ -937,27 +946,27 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
             .downloadCallback(object : DownloadCallback {
                 override fun onStart(downloadId: Int, totalBytes: Long) {
                     Log.e(TAG,"onStart  675      "+totalBytes)
-                    pDialog.setMessage("Downloading...!");
-                    pDialog.setCancelable(false);
-                    pDialog.show();
+//                    pDialog.setMessage("Downloading...!");
+//                    pDialog.setCancelable(false);
+//                    pDialog.show();
                 }
                 override fun onRetry(downloadId: Int) {
                     Log.e(TAG,"destPath  675      "+destPath)
-                    pDialog.setMessage("Downloading...!");
-                    pDialog.setCancelable(false);
-                    pDialog.show();
+//                    pDialog.setMessage("Downloading...!");
+//                    pDialog.setCancelable(false);
+//                    pDialog.show();
                 }
                 override fun onProgress(downloadId: Int, bytesWritten: Long, totalBytes: Long) {
                     Log.e(TAG,"onProgress  675      "+bytesWritten+"    "+totalBytes)
                 }
                 override fun onSuccess(downloadId: Int, filePath: String) {
                     Log.e(TAG,"onSuccess  675      "+filePath)
-                    pDialog.dismiss()
+                    //pDialog.dismiss()
                     StatementPopup(filePath,"1")
                 }
                 override fun onFailure(downloadId: Int, statusCode: Int, errMsg: String) {
                     Log.e(TAG,"onFailure  675      "+statusCode+"    "+errMsg)
-                    pDialog.dismiss()
+                 //   pDialog.dismiss()
                     StatementPopup(errMsg,"0")
                 }
             })

@@ -6,6 +6,7 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.Window
@@ -109,6 +110,12 @@ class MyaccountsummaryActivity : AppCompatActivity() , View.OnClickListener {
                             AccountStatus = "0"
                         }
 
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
+
+
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("10"))
                         requestObject1.put("FK_Customer",  MscoreApplication.encryptStart(FK_Customer))
                         requestObject1.put("AccountStatus", MscoreApplication.encryptStart(AccountStatus))
@@ -118,20 +125,11 @@ class MyaccountsummaryActivity : AppCompatActivity() , View.OnClickListener {
                         requestObject1.put("SubModule", MscoreApplication.encryptStart(SubModule))
 
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-                        requestObject1.put(
-                                "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                        R.string.BankKey
-                                )
-                        )
-                        )
-                        requestObject1.put(
-                                "BankHeader", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                        R.string.BankHeader
-                                )
-                        )
-                        )
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
+
+                        Log.e("TAG","requestObject1  155  "+requestObject1)
+
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -153,8 +151,11 @@ class MyaccountsummaryActivity : AppCompatActivity() , View.OnClickListener {
                         ) {
                             try {
                                 progressDialog!!.dismiss()
+                                Log.e("TAG","response  155  "+response.body())
+
                                 val jObject = JSONObject(response.body())
                                 if (jObject.getString("StatusCode") == "0") {
+
 
                                     val jobj = jObject.getJSONObject("AccountModuleWiseDetailsList")
                                     val jarray = jobj.getJSONArray("Data")

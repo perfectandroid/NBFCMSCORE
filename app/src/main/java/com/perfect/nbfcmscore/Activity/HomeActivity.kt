@@ -579,31 +579,24 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                         )
                         val Token = TokenSP.getString("Token", null)
                         val versionNumber = getCurrentVersionNumber(this@HomeActivity)
+
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
+
+
                         // requestObject1.put("Reqmode", MscoreApplication.encryptStart("42"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-                        requestObject1.put(
-                                "FK_Customer",
-                                MscoreApplication.encryptStart(FK_Customer)
-                        )
-                        requestObject1.put(
-                                "VersionNo",
-                                MscoreApplication.encryptStart(versionNumber.toString())
-                        )
-                        requestObject1.put(
-                                "OsType",
-                                MscoreApplication.encryptStart("0")
-                        )
+                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
+                        requestObject1.put("VersionNo", MscoreApplication.encryptStart(versionNumber.toString()))
+                        requestObject1.put("OsType", MscoreApplication.encryptStart("0"))
 
-                        requestObject1.put(
-                                "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                        R.string.BankKey
-                                )
-                        )
-                        )
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
 
 
-                        Log.e("TAG", "requestObject1 versionchk   " + requestObject1)
+                        Log.e(TAG, "requestObject1 versionchk  10001 " + requestObject1)
                     } catch (e: Exception) {
                         // progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -827,22 +820,22 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                         )
                         val Token = TokenSP.getString("Token", null)
 
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
+
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("42"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put(
                                 "FK_Customer",
                                 MscoreApplication.encryptStart(FK_Customer)
                         )
-                        requestObject1.put(
-                                "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                        R.string.BankKey
-                                )
-                        )
-                        )
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
 
 
-                        Log.e("TAG", "requestObject1  171   " + requestObject1)
+                        Log.e(TAG, "requestObject1  init 10001   " + requestObject1)
                     } catch (e: Exception) {
                         // progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -1394,6 +1387,36 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         LastloginEditer1.putString("LastLogin", "")
         LastloginEditer1.commit()
 
+
+        /////////
+
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurlSPEditer = baseurlSP.edit()
+        baseurlSPEditer.putString("baseurl", SplashActivity.BASE_URL)
+        baseurlSPEditer.commit()
+
+        val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+        val ImageURLSPEditer = ImageURLSP.edit()
+        ImageURLSPEditer.putString("ImageURL", SplashActivity.IMAGE_URL)
+        ImageURLSPEditer.commit()
+
+
+        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+        val BankKeyEditer = BankKeySP.edit()
+        BankKeyEditer.putString("BankKey", SplashActivity.BankKey)
+        BankKeyEditer.commit()
+
+        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+        val BankHeaderEditer = BankHeaderSP.edit()
+        BankHeaderEditer.putString("BankHeader",SplashActivity.BankHeader)
+        BankHeaderEditer.commit()
+
+
+        val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
+        val certificateSPEditer = certificateSP.edit()
+        certificateSPEditer.putString("sslcertificate", SplashActivity.CERT_NAME)
+        certificateSPEditer.commit()
+
     }
 
 
@@ -1623,6 +1646,10 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                 0
                         )
                         val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("26"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
@@ -1631,20 +1658,11 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                 MscoreApplication.encryptStart(FK_Customer)
                         )
                         requestObject1.put("SubMode", MscoreApplication.encryptStart("1"))
-                        requestObject1.put(
-                                "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                        R.string.BankKey
-                                )
-                        )
-                        )
-                        requestObject1.put(
-                                "BankHeader", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                        R.string.BankHeader
-                                )
-                        )
-                        )
+
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
+
+                        Log.e(TAG,"requestObject1 getOwnAccount  10001  "+requestObject1)
 
 
                     } catch (e: Exception) {
@@ -1785,11 +1803,16 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                     val apiService = retrofit.create(ApiInterface::class.java!!)
                     val requestObject1 = JSONObject()
                     try {
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("7"))
-                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey))
-                        )
 
-                        Log.e("TAG", "requestObject1  language   " + requestObject1)
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
+
+                        Log.e(TAG, "requestObject1  language  10001 " + requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -2052,6 +2075,10 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                 0
                         )
                         val Token = TokenSP.getString("Token", null)
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("16"))
                         // requestObject1.put("Token", MscoreApplication.encryptStart(Token))
@@ -2060,16 +2087,12 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                 "FK_Languages",
                                 MscoreApplication.encryptStart(id)
                         )
-                        requestObject1.put(
-                                "BankKey", MscoreApplication.encryptStart(
-                                this@HomeActivity.getResources().getString(
-                                        R.string.BankKey
-                                )
-                        )
-                        )
+
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
 
 
-                        Log.e("TAG", "requestObject1  labels   " + requestObject1)
+                        Log.e(TAG, "requestObject1  labels 10001   " + requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()

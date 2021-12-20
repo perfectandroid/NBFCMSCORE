@@ -197,11 +197,15 @@ class KsebSectionActivity : AppCompatActivity(), View.OnClickListener, ItemClick
                         val Token = TokenSP.getString("Token", null)
                         val FK_CustomerSP = this.applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
                         val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                       //  requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
-                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
-                         requestObject1.put("BankHeader", MscoreApplication.encryptStart(getResources().getString(R.string.BankHeader)))
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
                         requestObject1.put("SectioName", MscoreApplication.encryptStart(originalString))
 
                         Log.e(TAG,"requestObject1  158   "+requestObject1)

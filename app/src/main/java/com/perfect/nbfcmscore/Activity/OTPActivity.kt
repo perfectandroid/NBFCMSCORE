@@ -576,18 +576,19 @@ class OTPActivity : AppCompatActivity() , View.OnClickListener {
                     val apiService = retrofit.create(ApiInterface::class.java!!)
                     val requestObject1 = JSONObject()
                     try {
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
+
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("1"))
-                        requestObject1.put("FK_Customer",  MscoreApplication.encryptStart(FK_Customer)
-                        )
+                        requestObject1.put("FK_Customer",  MscoreApplication.encryptStart(FK_Customer))
                         requestObject1.put("OTP", MscoreApplication.encryptStart(varOtp))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-                        requestObject1.put(
-                            "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                    R.string.BankKey
-                                )
-                            )
-                        )
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
+
+                        Log.e(TAG,"requestObject1 OTP 10001   "+requestObject1)
 
 
                     } catch (e: Exception) {
@@ -666,6 +667,11 @@ class OTPActivity : AppCompatActivity() , View.OnClickListener {
                                     val CustomerNumberEditer = CustomerNumberSP.edit()
                                     CustomerNumberEditer.putString("CustomerNumber", jobjt.getString("CustomerNumber"))
                                     CustomerNumberEditer.commit()
+
+                                    val LoginMobileNoSP = applicationContext.getSharedPreferences(Config.SHARED_PREF321, 0)
+                                    val LoginMobileNoEditer = LoginMobileNoSP.edit()
+                                    LoginMobileNoEditer.putString("LoginMobileNo",  CusMobile)
+                                    LoginMobileNoEditer.commit()
 
                                     val currentTime = Calendar.getInstance().time
                                     Log.e(TAG,"currentTime  "+currentTime)

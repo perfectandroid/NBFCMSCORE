@@ -154,10 +154,16 @@ class PassbookActivityMoreoption : AppCompatActivity(), OnItemSelectedListener,V
                         )
                         val Token = TokenSP.getString("Token", null)
 
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
+
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("12"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
-                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
 
 
                         Log.e("TAG", "requestObject1  171   " + requestObject1)
@@ -358,6 +364,10 @@ class PassbookActivityMoreoption : AppCompatActivity(), OnItemSelectedListener,V
                                 0
                         )
                         val Token = TokenSP.getString("Token", null)
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("13"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
@@ -365,9 +375,8 @@ class PassbookActivityMoreoption : AppCompatActivity(), OnItemSelectedListener,V
                         requestObject1.put("FK_Customer",MscoreApplication.encryptStart(FK_Customer))
                         requestObject1.put("SubModule", MscoreApplication.encryptStart(submodlemore))
                         requestObject1.put("NoOfDays", MscoreApplication.encryptStart("" + noofdays))
-                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(
-                                        R.string.BankKey
-                                )))
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
 
 
                         Log.e("TAG", "requestObject1  171   " + requestObject1)

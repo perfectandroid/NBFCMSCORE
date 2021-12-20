@@ -314,6 +314,10 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                             0
                         )
                         val Token = TokenSP.getString("Token", null)
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("26"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
@@ -325,13 +329,8 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                             "SubMode",
                             MscoreApplication.encryptStart("2")
                         )
-                        requestObject1.put(
-                            "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                    R.string.BankKey
-                                )
-                            )
-                        )
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
 
 
                         Log.e("TAG", "requestObject1  171   " + requestObject1)
@@ -760,6 +759,10 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                             0
                         )
                         val Token = TokenSP.getString("Token", null)
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
                         var amount = edt_txt_amount!!.text.toString()
                         amount = amount.replace(",", "")
                         //requestObject1.put("Reqmode", MscoreApplication.encryptStart("27"))
@@ -798,13 +801,9 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                         )
                         requestObject1.put("QRCode", MscoreApplication.encryptStart(""))
                         requestObject1.put("Remark", MscoreApplication.encryptStart(remark))
-                        requestObject1.put(
-                            "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                    R.string.BankKey
-                                )
-                            )
-                        )
+
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
 
 
                         Log.e("TAG", "requestObject1  650   " + requestObject1)
@@ -1210,6 +1209,12 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                         )
                         val Token = TokenSP.getString("Token", null)
 
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
+
+
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("27"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put(
@@ -1224,13 +1229,9 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                             "SubModule",
                             MscoreApplication.encryptStart(submodule)
                         )
-                        requestObject1.put(
-                            "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                    R.string.BankKey
-                                )
-                            )
-                        )
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
+
 
 
                         Log.e("TAG", "requestObject1  1091   " + requestObject1)
@@ -1529,6 +1530,10 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                             0
                         )
                         val Token = TokenSP.getString("Token", null)
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("28"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
@@ -1552,13 +1557,8 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                             "IsAdvance",
                             MscoreApplication.encryptStart(isAdvance)
                         )
-                        requestObject1.put(
-                            "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                    R.string.BankKey
-                                )
-                            )
-                        )
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
 
 
                         Log.e("TAG", "requestObject1  171   " + requestObject1)

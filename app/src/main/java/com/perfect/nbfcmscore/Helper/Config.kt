@@ -16,7 +16,7 @@ import java.text.DecimalFormat
 import javax.net.ssl.*
 
 object Config {
-    val CERT_NAME = "staticvm.pem"  //QA
+//    val CERT_NAME = "staticvm.pem"  //QA
  // val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/api/"  //DEVELOPMENT
   //  val IMAGE_URL = "https://202.164.150.65:14262/NbfcAndroidAPI/"  ///DEVELOPMENT
 
@@ -381,6 +381,18 @@ object Config {
     const val SHARED_PREF309 ="DateofBirth1"
     const val SHARED_PREF310 ="CustomerNumber1"
 
+    const val SHARED_PREF311 ="TestingMobileNo"
+    const val SHARED_PREF312 ="BankKey"
+    const val SHARED_PREF313 ="BankHeader"
+    const val SHARED_PREF314 ="CertificateStatus"
+    const val SHARED_PREF315 ="TestingURL"
+    const val SHARED_PREF316 ="TestingMachineId"
+    const val SHARED_PREF317 ="TestingImageURL"
+    const val SHARED_PREF318 ="testsslcertificate"
+    const val SHARED_PREF319 ="testBankKey"
+    const val SHARED_PREF320 ="testBankHeader"
+    const val SHARED_PREF321 ="LoginMobileNo"
+
 
 
 
@@ -490,6 +502,7 @@ object Config {
             val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             val view = View(context)
             imm?.hideSoftInputFromWindow(view.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+            
         } catch (e: Exception) {
             // TODO: handle exception
             e.printStackTrace()

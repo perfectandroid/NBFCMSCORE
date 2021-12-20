@@ -128,6 +128,10 @@ class TransactionOTPActivity : AppCompatActivity() , View.OnClickListener{
                                 0
                         )
                         val Token = TokenSP.getString("Token", null)
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                         //   requestObject1.put("Reqmode", MscoreApplication.encryptStart("40"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
@@ -155,14 +159,8 @@ class TransactionOTPActivity : AppCompatActivity() , View.OnClickListener{
                                 "otpRefNo",
                                 MscoreApplication.encryptStart("1455")
                         )
-                        requestObject1.put(
-                                "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                        R.string.BankKey
-                                )
-                        )
-                        )
-
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
 
                         Log.e("TAG", "requestObject1  verifypayment   " + requestObject1)
                     } catch (e: Exception) {
@@ -345,6 +343,10 @@ class TransactionOTPActivity : AppCompatActivity() , View.OnClickListener{
                                 0
                         )
                         val Token = TokenSP.getString("Token", null)
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                         //   requestObject1.put("Reqmode", MscoreApplication.encryptStart("40"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
@@ -368,13 +370,9 @@ class TransactionOTPActivity : AppCompatActivity() , View.OnClickListener{
                                 "MobileNumber",
                                 MscoreApplication.encryptStart("9539036341")
                         )
-                        requestObject1.put(
-                                "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                        R.string.BankKey
-                                )
-                        )
-                        )
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
+
 
 
                         Log.e("TAG", "requestObject1  verifysender   " + requestObject1)
@@ -559,6 +557,10 @@ class TransactionOTPActivity : AppCompatActivity() , View.OnClickListener{
                                 0
                         )
                         val Token = TokenSP.getString("Token", null)
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                         //  requestObject1.put("Reqmode", MscoreApplication.encryptStart("40"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
@@ -578,13 +580,8 @@ class TransactionOTPActivity : AppCompatActivity() , View.OnClickListener{
                                 "otpRefNo",
                                 MscoreApplication.encryptStart("1455")
                         )
-                        requestObject1.put(
-                                "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                        R.string.BankKey
-                                )
-                        )
-                        )
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
 
 
                         Log.e("TAG", "requestObject1  verifyreceiver   " + requestObject1)

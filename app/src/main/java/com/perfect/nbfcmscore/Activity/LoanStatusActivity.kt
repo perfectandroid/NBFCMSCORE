@@ -94,24 +94,17 @@ class LoanStatusActivity : AppCompatActivity()  , View.OnClickListener {
                         val Token = TokenSP.getString("Token", null)
 
                         val FK_AccountSP = applicationContext.getSharedPreferences(Config.SHARED_PREF19, 0)
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("45"))
                         requestObject1.put("FK_Customer",  MscoreApplication.encryptStart(FK_Customer))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-                        requestObject1.put(
-                            "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                    R.string.BankKey
-                                )
-                            )
-                        )
-                        /*   requestObject1.put(
-                               "BankHeader", MscoreApplication.encryptStart(
-                                   getResources().getString(
-                                       R.string.BankHeader
-                                   )
-                               )
-                           )*/
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
+
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()

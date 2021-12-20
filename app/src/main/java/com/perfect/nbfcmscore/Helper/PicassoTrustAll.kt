@@ -24,8 +24,12 @@ class PicassoTrustAll private constructor(context: Context) {
         KeyManagementException::class
     )
     private fun getSSLSocketFactory(context: Context): SSLSocketFactory {
+        val sslcertificateSP = context.applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
+        val sslcertificate = sslcertificateSP.getString("sslcertificate", null)
+
         val cf = CertificateFactory.getInstance("X.509")
-        val caInput = context!!.assets.open(Config.CERT_NAME)
+//        val caInput = context!!.assets.open(Config.CERT_NAME)
+        val caInput = context!!.assets.open(sslcertificate!!)
         val ca = cf.generateCertificate(caInput)
         caInput.close()
         val keyStore = KeyStore.getInstance("BKS")

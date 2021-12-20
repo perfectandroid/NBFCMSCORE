@@ -116,8 +116,61 @@ class RegistrationActivity : AppCompatActivity()  , View.OnClickListener {
         }else{
         /*    etxt_mob!!.text=null
             etxt_accno!!.text=null*/
-            getRegister()
+
+            setUrl()
+           // getRegister()
         }
+    }
+
+    private fun setUrl() {
+        val TestingMobileNoSP = applicationContext.getSharedPreferences(Config.SHARED_PREF311, 0)
+        val strTestmobile = TestingMobileNoSP.getString("TestingMobileNo",null)
+
+
+        val mobileNumber = etxt_mob!!.text.toString()
+        if (strTestmobile.equals(mobileNumber) ) {
+
+            val TestingURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF315, 0)
+            val TestingImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF317, 0)
+            val TestBankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF318, 0)
+            val TestBankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF318, 0)
+            val sslcertificatetestSP = applicationContext.getSharedPreferences(Config.SHARED_PREF318, 0)
+
+            val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+            val baseurlSPEditer = baseurlSP.edit()
+            baseurlSPEditer.putString("baseurl", TestingURLSP.getString("TestingURL",null))
+            baseurlSPEditer.commit()
+
+            val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+            val ImageURLSPEditer = ImageURLSP.edit()
+            ImageURLSPEditer.putString("ImageURL", TestingImageURLSP.getString("TestingImageURL",null))
+            ImageURLSPEditer.commit()
+
+
+            val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+            val BankKeyEditer = BankKeySP.edit()
+            BankKeyEditer.putString("BankKey", TestBankKeySP.getString("testBankKey",null))
+            BankKeyEditer.commit()
+
+            val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+            val BankHeaderEditer = BankHeaderSP.edit()
+            BankHeaderEditer.putString("BankHeader", TestBankHeaderSP.getString("testBankHeader",null))
+            BankHeaderEditer.commit()
+
+
+            val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
+            val certificateSPEditer = certificateSP.edit()
+            certificateSPEditer.putString("sslcertificate", sslcertificatetestSP.getString("testsslcertificate",null))
+            certificateSPEditer.commit()
+
+
+        }
+
+        getRegister()
+
+
+
+
     }
 
     private fun getRegister() {
@@ -148,9 +201,16 @@ class RegistrationActivity : AppCompatActivity()  , View.OnClickListener {
                     val apiService = retrofit.create(ApiInterface::class.java!!)
                     val requestObject1 = JSONObject()
                     try {
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
+
                         requestObject1.put("MobileNumber", MscoreApplication.encryptStart(etxt_mob!!.text.toString()))
                         requestObject1.put("AccountNumber", MscoreApplication.encryptStart(etxt_accno!!.text.toString()))
-                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
+                      //  requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
 
 
                     } catch (e: Exception) {
@@ -180,6 +240,8 @@ class RegistrationActivity : AppCompatActivity()  , View.OnClickListener {
                                     val builder = AlertDialog.Builder(this@RegistrationActivity, R.style.MyDialogTheme)
                                     builder.setMessage(""+jobjt.getString("ResponseMessage"))
                                     builder.setPositiveButton("Ok"){dialogInterface, which ->
+
+
 
                                         val jobjt = jObject.getJSONObject("CustomerRegistration")
                                         intent = Intent(applicationContext, OTPActivity::class.java)

@@ -299,24 +299,17 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
                         val TokenSP = applicationContext.getSharedPreferences(Config.SHARED_PREF8, 0)
                         val Token = TokenSP.getString("Token", null)
 
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
+
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("21"))
                         requestObject1.put("FK_Customer",  MscoreApplication.encryptStart(FK_Customer))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-                        requestObject1.put(
-                            "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                    R.string.BankKey
-                                )
-                            )
-                        )
-                        requestObject1.put(
-                            "BankHeader", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                    R.string.BankHeader
-                                )
-                            )
-                        )
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
 
                         Log.e(TAG,"requestObject1  558  "+requestObject1)
 
@@ -564,6 +557,10 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
 
                         val TokenSP = applicationContext.getSharedPreferences(Config.SHARED_PREF8, 0)
                         val Token = TokenSP.getString("Token", null)
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("22"))
@@ -575,8 +572,8 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
                         requestObject1.put("TenureValue", MscoreApplication.encryptStart(TenureValue))
                         requestObject1.put("Id_Method", MscoreApplication.encryptStart(ID_EmiMethod))
                         requestObject1.put("LoanDate", MscoreApplication.encryptStart(LoanDate))
-                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
-                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(getResources().getString(R.string.BankHeader)))
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
 
                         Log.e(TAG,"requestObject1  212  "+requestObject1)
 
