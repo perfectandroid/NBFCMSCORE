@@ -409,6 +409,7 @@ object Config {
     const val SHARED_PREF343="Selecttodate"
 
     const val SHARED_PREF344="Profile"
+
     const val SHARED_PREF311 ="TestingMobileNo"
     const val SHARED_PREF312 ="BankKey"
     const val SHARED_PREF313 ="BankHeader"
@@ -420,6 +421,9 @@ object Config {
     const val SHARED_PREF319 ="testBankKey"
     const val SHARED_PREF320 ="testBankHeader"
     const val SHARED_PREF321 ="LoginMobileNo"
+
+    const val SHARED_PREF345 ="nidhicheck"
+    const val SHARED_PREF346 ="nidhicode"
 
 
 

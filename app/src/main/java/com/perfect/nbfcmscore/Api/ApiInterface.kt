@@ -219,6 +219,15 @@ interface ApiInterface {
     @POST("Recharge/KSEBSectionDetails")
     fun getKSEBSectionDetails(@Body body: RequestBody): Call<String>
 
+    @POST("Customer/CommonAppChecking")
+    fun getCommonAppchkng(@Body body: RequestBody): Call<String>
+
+    @POST("Customer/NidhicodeChecking")
+    fun getNidhicode(@Body body: RequestBody): Call<String>
+
+
+
+
     @POST("Recharge/KSEBBilling")
     fun getKSEBBilling(@Body body: RequestBody): Call<String>
 

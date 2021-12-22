@@ -1,17 +1,15 @@
 package com.perfect.nbfcmscore.Activity
 import android.app.AlertDialog
+import android.app.Dialog
 import android.app.ProgressDialog
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
-import android.provider.Settings.Secure
 import android.util.Log
 import android.view.View
+import android.view.Window
 import android.view.WindowManager
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
@@ -44,8 +42,13 @@ class SplashActivity : AppCompatActivity() {
 //    val IMAGE_URL = "https://202.164.150.65:15006/NbfcAndroidAPI/"
 
     companion object {
-        val BASE_URL  = "https://202.164.150.65:15006/NbfcAndroidAPI/api/"  //DEVELOPMENT
-        val IMAGE_URL = "https://202.164.150.65:15006/NbfcAndroidAPI/"
+        public val BASE_URL  = "https://202.164.150.65:15006/NbfcAndroidAPI/api/"  //DEVELOPMENT
+        public val IMAGE_URL = "https://202.164.150.65:15006/NbfcAndroidAPI/"
+
+   //     val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPIQA/api/"  //QA
+    //   val IMAGE_URL = "https://202.164.150.65:14262/NbfcAndroidAPIQA/"
+
+
         val BankKey = "-500"
         val BankHeader = "PERFECT NBFC BANK HEAD OFFICE"
         val CERT_NAME = "staticvm.pem"  //QA
@@ -92,8 +95,425 @@ class SplashActivity : AppCompatActivity() {
         }catch (e: Exception) {
             e.printStackTrace()}
 
+        val statusSP = applicationContext.getSharedPreferences(Config.SHARED_PREF345,0)
+        var chkstatus =statusSP.getString("nidhicheck",null)
 
-        getResellerDetails()
+
+        if(statusSP.getString("nidhicheck",null).equals(null))
+        {
+            getnidhicheck()
+
+        }
+         if(chkstatus.equals("true")||chkstatus.equals("false"))
+        {
+            getResellerDetails()
+        }
+
+
+    }
+
+    private fun getnidhicheck() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurlSPEditer = baseurlSP.edit()
+        baseurlSPEditer.putString("baseurl", BASE_URL)
+        baseurlSPEditer.commit()
+
+        val baseUrlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseUrlSP.getString("baseurl", null)
+
+            when(ConnectivityUtils.isConnected(this)) {
+                true -> {
+                    progressDialog = ProgressDialog(this@SplashActivity, R.style.Progress)
+                    progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
+                    progressDialog!!.setCancelable(false)
+                    progressDialog!!.setIndeterminate(true)
+                    progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
+                    progressDialog!!.show()
+                    try {
+                        val client = OkHttpClient.Builder()
+                                .sslSocketFactory(Config.getSSLSocketFactory(this@SplashActivity))
+                                .hostnameVerifier(Config.getHostnameVerifier())
+                                .build()
+                        val gson = GsonBuilder()
+                                .setLenient()
+                                .create()
+                        val retrofit = Retrofit.Builder()
+                                .baseUrl(baseurl)
+                                .addConverterFactory(ScalarsConverterFactory.create())
+                                .addConverterFactory(GsonConverterFactory.create(gson))
+                                .client(client)
+                                .build()
+                        val apiService = retrofit.create(ApiInterface::class.java!!)
+                        val requestObject1 = JSONObject()
+                        try {
+
+                            val FK_CustomerSP = this.applicationContext.getSharedPreferences(
+                                    Config.SHARED_PREF1,
+                                    0
+                            )
+                            val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
+
+                            val TokenSP = this!!.applicationContext.getSharedPreferences(
+                                    Config.SHARED_PREF8,
+                                    0
+                            )
+                            val Token = TokenSP.getString("Token", null)
+                            val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                            val BankKeyPref = BankKeySP.getString("BankKey", null)
+                            val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                            val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
+
+                            //  requestObject1.put("Reqmode", MscoreApplication.encryptStart("40"))
+                            // requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+
+
+                            requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKey))
+                            requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeader))
+
+
+                            Log.e("TAG", "requestObject1  commonappchk   " + requestObject1)
+                        } catch (e: Exception) {
+                            progressDialog!!.dismiss()
+                            e.printStackTrace()
+                            val mySnackbar = Snackbar.make(
+                                    findViewById(R.id.rl_main),
+                                    " Some technical issues.", Snackbar.LENGTH_SHORT
+                            )
+                            mySnackbar.show()
+                        }
+                        val body = RequestBody.create(
+                                okhttp3.MediaType.parse("application/json; charset=utf-8"),
+                                requestObject1.toString()
+                        )
+                        val call = apiService.getCommonAppchkng(body)
+                        call.enqueue(object : retrofit2.Callback<String> {
+                            override fun onResponse(
+                                    call: retrofit2.Call<String>, response:
+                                    Response<String>
+                            ) {
+                                try {
+                                    progressDialog!!.dismiss()
+                                    val jObject = JSONObject(response.body())
+                                    Log.i("Response-commonappchk", response.body())
+                                    if (jObject.getString("StatusCode") == "0") {
+
+                                        val status =jObject.getString("CommonApp")
+
+                                        if(status!!.equals("true"))
+                                        {
+                                            nidhicodepopup()
+                                        }
+
+                                        val ID_status= this@SplashActivity.getSharedPreferences(Config.SHARED_PREF345, 0)
+                                        val ID_statusEditer = ID_status.edit()
+                                        ID_statusEditer.putString("nidhicheck", jObject.getString("CommonApp") as String)
+                                        ID_statusEditer.commit()
+
+
+
+
+
+
+                                        /*   val jsonObj1: JSONObject =
+                                               jObject.getJSONObject("Addnewsender")
+                                           val jsonobj2 = JSONObject(jsonObj1.toString())
+
+                                           var message = jsonobj2.getString("message")
+                                           var status = jsonobj2.getString("Status")
+                                           var senderid = jsonobj2.getString("ID_Sender")
+                                           var receiverid = jsonobj2.getString("ID_Receiver")
+                                           var otpRefNo = jsonobj2.getString("otpRefNo")
+                                           var statuscode = jsonobj2.getString("StatusCode")
+
+                                           arrayList2 = ArrayList<SenderReceiver>()
+                                           arrayList2!!.add(
+                                               SenderReceiver(
+                                               message, status, senderid, receiverid,otpRefNo,statuscode
+                                           )
+                                           )
+
+                                           alertMessage1(status, message)
+       */
+
+                                    }
+
+                                    else {
+                                        val builder = AlertDialog.Builder(
+                                                this@SplashActivity,
+                                                R.style.MyDialogTheme
+                                        )
+                                        builder.setMessage("" + jObject.getString("EXMessage"))
+                                        builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                        }
+                                        val alertDialog: AlertDialog = builder.create()
+                                        alertDialog.setCancelable(false)
+                                        alertDialog.show()
+                                    }
+                                } catch (e: Exception) {
+                                    progressDialog!!.dismiss()
+
+                                    val builder = AlertDialog.Builder(
+                                            this@SplashActivity,
+                                            R.style.MyDialogTheme
+                                    )
+                                    builder.setMessage("Some technical issues.")
+                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                    }
+                                    val alertDialog: AlertDialog = builder.create()
+                                    alertDialog.setCancelable(false)
+                                    alertDialog.show()
+                                    e.printStackTrace()
+                                }
+                            }
+
+                            override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
+                                progressDialog!!.dismiss()
+
+                                val builder = AlertDialog.Builder(
+                                        this@SplashActivity,
+                                        R.style.MyDialogTheme
+                                )
+                                builder.setMessage("Some technical issues.")
+                                builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                }
+                                val alertDialog: AlertDialog = builder.create()
+                                alertDialog.setCancelable(false)
+                                alertDialog.show()
+                            }
+                        })
+                    } catch (e: Exception) {
+                        progressDialog!!.dismiss()
+                        val builder = AlertDialog.Builder(this@SplashActivity, R.style.MyDialogTheme)
+                        builder.setMessage("Some technical issues.")
+                        builder.setPositiveButton("Ok") { dialogInterface, which ->
+                        }
+                        val alertDialog: AlertDialog = builder.create()
+                        alertDialog.setCancelable(false)
+                        alertDialog.show()
+                        e.printStackTrace()
+                    }
+                }
+                false -> {
+                    val builder = AlertDialog.Builder(this@SplashActivity, R.style.MyDialogTheme)
+                    builder.setMessage("No Internet Connection.")
+                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                    }
+                    val alertDialog: AlertDialog = builder.create()
+                    alertDialog.setCancelable(false)
+                    alertDialog.show()
+                }
+            }
+    }
+
+    private fun nidhicodepopup() {
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setContentView(R.layout.popup_nidhi)
+
+
+        val etxt_nidhicode: EditText = dialog.findViewById<EditText>(R.id.etxt_nidhicode)
+        val btn_submit: Button = dialog.findViewById<Button>(R.id.btn_submit)
+        val btn_resend: Button = dialog.findViewById<Button>(R.id.btn_resend)
+        val idImgV1: ImageView = dialog.findViewById<ImageView>(R.id.idImgV1)
+        Glide.with(this).load(R.drawable.otpgif).into(idImgV1)
+        btn_submit.setOnClickListener {
+            if(!etxt_nidhicode!!.text.toString().equals("")){
+                var nidhicode = etxt_nidhicode!!.text.toString()
+
+                dialog.dismiss()
+                getnidhicode(nidhicode)
+
+            }else {
+                Toast.makeText(applicationContext,"Enter Valid Code", Toast.LENGTH_LONG).show()
+            }
+        }
+
+        dialog.show()
+
+    }
+
+    private fun getnidhicode(nidhicode: String) {
+
+
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
+        when(ConnectivityUtils.isConnected(this)) {
+            true -> {
+                progressDialog = ProgressDialog(this@SplashActivity, R.style.Progress)
+                progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
+                progressDialog!!.setCancelable(false)
+                progressDialog!!.setIndeterminate(true)
+                progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
+                progressDialog!!.show()
+                try {
+                    val client = OkHttpClient.Builder()
+                            .sslSocketFactory(Config.getSSLSocketFactory(this@SplashActivity))
+                            .hostnameVerifier(Config.getHostnameVerifier())
+                            .build()
+                    val gson = GsonBuilder()
+                            .setLenient()
+                            .create()
+                    val retrofit = Retrofit.Builder()
+                            .baseUrl(baseurl)
+                            .addConverterFactory(ScalarsConverterFactory.create())
+                            .addConverterFactory(GsonConverterFactory.create(gson))
+                            .client(client)
+                            .build()
+                    val apiService = retrofit.create(ApiInterface::class.java!!)
+                    val requestObject1 = JSONObject()
+                    try {
+
+                        val FK_CustomerSP = this.applicationContext.getSharedPreferences(
+                                Config.SHARED_PREF1,
+                                0
+                        )
+                        val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
+
+                        val TokenSP = this!!.applicationContext.getSharedPreferences(
+                                Config.SHARED_PREF8,
+                                0
+                        )
+                        val Token = TokenSP.getString("Token", null)
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
+
+                        //  requestObject1.put("Reqmode", MscoreApplication.encryptStart("40"))
+                        // requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+
+                        requestObject1.put("nCode", MscoreApplication.encryptStart(nidhicode))
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKey))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeader))
+
+
+                        Log.e("TAG", "requestObject1  NIDHICODE   " + requestObject1)
+                    } catch (e: Exception) {
+                        progressDialog!!.dismiss()
+                        e.printStackTrace()
+                        val mySnackbar = Snackbar.make(
+                                findViewById(R.id.rl_main),
+                                " Some technical issues.", Snackbar.LENGTH_SHORT
+                        )
+                        mySnackbar.show()
+                    }
+                    val body = RequestBody.create(
+                            okhttp3.MediaType.parse("application/json; charset=utf-8"),
+                            requestObject1.toString()
+                    )
+                    val call = apiService.getNidhicode(body)
+                    call.enqueue(object : retrofit2.Callback<String> {
+                        override fun onResponse(
+                                call: retrofit2.Call<String>, response:
+                                Response<String>
+                        ) {
+                            try {
+                                progressDialog!!.dismiss()
+                                val jObject = JSONObject(response.body())
+                                Log.i("Response-NIDHICODE", response.body())
+                                if (jObject.getString("StatusCode") == "0") {
+                                    var nidhicode = jObject.getString("NidhiCode")
+
+                                    val ID_status= this@SplashActivity.getSharedPreferences(Config.SHARED_PREF346, 0)
+                                    val ID_statusEditer = ID_status.edit()
+                                    ID_statusEditer.putString("nidhicode", jObject.get("NidhiCode") as String)
+                                    ID_statusEditer.commit()
+
+                                    getResellerDetails()
+
+                                    /*   val jsonObj1: JSONObject =
+                                           jObject.getJSONObject("Addnewsender")
+                                       val jsonobj2 = JSONObject(jsonObj1.toString())
+
+                                       var message = jsonobj2.getString("message")
+                                       var status = jsonobj2.getString("Status")
+                                       var senderid = jsonobj2.getString("ID_Sender")
+                                       var receiverid = jsonobj2.getString("ID_Receiver")
+                                       var otpRefNo = jsonobj2.getString("otpRefNo")
+                                       var statuscode = jsonobj2.getString("StatusCode")
+
+                                       arrayList2 = ArrayList<SenderReceiver>()
+                                       arrayList2!!.add(
+                                           SenderReceiver(
+                                           message, status, senderid, receiverid,otpRefNo,statuscode
+                                       )
+                                       )
+
+                                       alertMessage1(status, message)
+   */
+
+                                }
+
+                                else {
+                                    val builder = AlertDialog.Builder(
+                                            this@SplashActivity,
+                                            R.style.MyDialogTheme
+                                    )
+                                    builder.setMessage("" + jObject.getString("EXMessage"))
+                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                        nidhicodepopup()
+                                    }
+                                    val alertDialog: AlertDialog = builder.create()
+                                    alertDialog.setCancelable(false)
+                                    alertDialog.show()
+
+                                }
+
+                            } catch (e: Exception) {
+                                progressDialog!!.dismiss()
+
+                                val builder = AlertDialog.Builder(
+                                        this@SplashActivity,
+                                        R.style.MyDialogTheme
+                                )
+                                builder.setMessage("Some technical issues.")
+                                builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                }
+                                val alertDialog: AlertDialog = builder.create()
+                                alertDialog.setCancelable(false)
+                                alertDialog.show()
+                                e.printStackTrace()
+                            }
+                        }
+
+                        override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
+                            progressDialog!!.dismiss()
+
+                            val builder = AlertDialog.Builder(
+                                    this@SplashActivity,
+                                    R.style.MyDialogTheme
+                            )
+                            builder.setMessage("Some technical issues.")
+                            builder.setPositiveButton("Ok") { dialogInterface, which ->
+                            }
+                            val alertDialog: AlertDialog = builder.create()
+                            alertDialog.setCancelable(false)
+                            alertDialog.show()
+                        }
+                    })
+                } catch (e: Exception) {
+                    progressDialog!!.dismiss()
+                    val builder = AlertDialog.Builder(this@SplashActivity, R.style.MyDialogTheme)
+                    builder.setMessage("Some technical issues.")
+                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                    }
+                    val alertDialog: AlertDialog = builder.create()
+                    alertDialog.setCancelable(false)
+                    alertDialog.show()
+                    e.printStackTrace()
+                }
+            }
+            false -> {
+                val builder = AlertDialog.Builder(this@SplashActivity, R.style.MyDialogTheme)
+                builder.setMessage("No Internet Connection.")
+                builder.setPositiveButton("Ok") { dialogInterface, which ->
+                }
+                val alertDialog: AlertDialog = builder.create()
+                alertDialog.setCancelable(false)
+                alertDialog.show()
+            }
+        }
     }
 
     private fun doSplash() {
@@ -139,10 +559,10 @@ class SplashActivity : AppCompatActivity() {
         val certificateSPEditer = certificateSP.edit()
         certificateSPEditer.putString("sslcertificate", CERT_NAME)
         certificateSPEditer.commit()
-        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+     /*   val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurlSPEditer = baseurlSP.edit()
         baseurlSPEditer.putString("baseurl", BASE_URL)
-        baseurlSPEditer.commit()
+        baseurlSPEditer.commit()*/
         val baseUrlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurl = baseUrlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {

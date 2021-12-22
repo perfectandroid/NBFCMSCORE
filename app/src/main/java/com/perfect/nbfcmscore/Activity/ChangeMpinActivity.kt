@@ -151,6 +151,11 @@ class ChangeMpinActivity : AppCompatActivity(), View.OnClickListener {
                             )
                         )
 
+                        //   val nidhiSP = applicationContext.getSharedPreferences(Config.SHARED_PREF346, 0)
+                        //   val nidhicode = BankHeaderSP.getString("nidhicode", "")
+
+                        //  requestObject1.put("nidhicode", MscoreApplication.encryptStart(nidhicode))
+
                         Log.e("TAG", "requestObject1  varifctn   " + requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()

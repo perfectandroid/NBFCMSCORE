@@ -254,6 +254,11 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
                         requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
 
+                        //   val nidhiSP = applicationContext.getSharedPreferences(Config.SHARED_PREF346, 0)
+                        //   val nidhicode = BankHeaderSP.getString("nidhicode", "")
+
+                        //  requestObject1.put("nidhicode", MscoreApplication.encryptStart(nidhicode))
+
 
                         Log.e("TAG", "requestObject1  171   " + requestObject1)
                     } catch (e: Exception) {
