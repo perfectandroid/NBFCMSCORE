@@ -45,8 +45,8 @@ class SplashActivity : AppCompatActivity() {
         public val BASE_URL  = "https://202.164.150.65:15006/NbfcAndroidAPI/api/"  //DEVELOPMENT
         public val IMAGE_URL = "https://202.164.150.65:15006/NbfcAndroidAPI/"
 
-   //     val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPIQA/api/"  //QA
-    //   val IMAGE_URL = "https://202.164.150.65:14262/NbfcAndroidAPIQA/"
+     //  public val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPIQA/api/"  //QA
+     //  public val IMAGE_URL = "https://202.164.150.65:14262/NbfcAndroidAPIQA/"
 
 
         val BankKey = "-500"
@@ -84,7 +84,7 @@ class SplashActivity : AppCompatActivity() {
         btn_proceed = findViewById<Button>(R.id.btn_proceed)
 
 
-        val imgSplash: ImageView = findViewById(R.id.imsplashlogo)
+    /*    val imgSplash: ImageView = findViewById(R.id.imsplashlogo)
         val imglogo: ImageView = findViewById(R.id.imglogo)
         Glide.with(this).load(R.drawable.splashgif).into(imgSplash)
         try {
@@ -94,7 +94,7 @@ class SplashActivity : AppCompatActivity() {
 
         }catch (e: Exception) {
             e.printStackTrace()}
-
+*/
         val statusSP = applicationContext.getSharedPreferences(Config.SHARED_PREF345,0)
         var chkstatus =statusSP.getString("nidhicheck",null)
 
@@ -102,6 +102,7 @@ class SplashActivity : AppCompatActivity() {
         if(statusSP.getString("nidhicheck",null).equals(null))
         {
             getnidhicheck()
+
 
         }
          if(chkstatus.equals("true")||chkstatus.equals("false"))
@@ -422,6 +423,11 @@ class SplashActivity : AppCompatActivity() {
 
                                     getResellerDetails()
 
+
+
+
+
+
                                     /*   val jsonObj1: JSONObject =
                                            jObject.getJSONObject("Addnewsender")
                                        val jsonobj2 = JSONObject(jsonObj1.toString())
@@ -695,6 +701,9 @@ class SplashActivity : AppCompatActivity() {
                                     val AppIconImageCodeEditer = AppIconImageCodeSP.edit()
                                     AppIconImageCodeEditer.putString("AppIconImageCode", jobjt.getString("AppIconImageCode"))
                                     AppIconImageCodeEditer.commit()
+
+
+                                    setImage()
 
                                     val ResellerNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF15, 0)
                                     val ResellerNameEditer = ResellerNameSP.edit()
@@ -1028,6 +1037,22 @@ class SplashActivity : AppCompatActivity() {
                 alertDialog.show()
             }
         }
+
+    }
+
+    private fun setImage() {
+        val imgSplash: ImageView = findViewById(R.id.imsplashlogo)
+        val imglogo: ImageView = findViewById(R.id.imglogo)
+        Glide.with(this).load(R.drawable.splashgif).into(imgSplash)
+        try {
+            val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
+            val imagepath = IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+            PicassoTrustAll.getInstance(this@SplashActivity)!!.load(imagepath).error(android.R.color.transparent).into(imglogo!!)
+
+        }catch (e: Exception) {
+            e.printStackTrace()}
+
+
 
     }
 
