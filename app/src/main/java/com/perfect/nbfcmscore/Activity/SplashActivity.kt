@@ -48,11 +48,14 @@ class SplashActivity : AppCompatActivity() {
      //  public val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPIQA/api/"  //QA
      //  public val IMAGE_URL = "https://202.164.150.65:14262/NbfcAndroidAPIQA/"
 
+      //  public val BASE_URL  = "https://202.164.150.65:15006/NbfcAndroidAPIQA/api/"  //QA NEW
+         //  public val IMAGE_URL = "https://202.164.150.65:15006/NbfcAndroidAPIQA/"
 
-        val BankKey = "-500"
-        val BankHeader = "PERFECT NBFC BANK HEAD OFFICE"
-        val CERT_NAME = "staticvm.pem"  //QA
-        val CERT_NAME_TEST = "nbfctest.pem"  //QA
+
+        public val BankKey = "-500"
+        public val BankHeader = "PERFECT NBFC BANK HEAD OFFICE"
+        public val CERT_NAME = "staticvm.pem"  //QA
+        public val CERT_NAME_TEST = "nbfctest.pem"  //QA
     }
 
 //    val BASE_URL  = "https://202.164.150.65:15006/NbfcAndroidAPI/api/"  //DEVELOPMENT
@@ -84,7 +87,28 @@ class SplashActivity : AppCompatActivity() {
         btn_proceed = findViewById<Button>(R.id.btn_proceed)
 
 
-    /*    val imgSplash: ImageView = findViewById(R.id.imsplashlogo)
+
+
+
+        val statusSP = applicationContext.getSharedPreferences(Config.SHARED_PREF345,0)
+        var chkstatus =statusSP.getString("nidhicheck","")
+
+
+       if(chkstatus.equals(""))
+        {
+            getnidhicheck()
+
+
+        }
+        else if(chkstatus.equals("true")||chkstatus.equals("false"))
+        {
+            getResellerDetails()
+        }
+
+
+
+      //  getResellerDetails()
+        val imgSplash: ImageView = findViewById(R.id.imsplashlogo)
         val imglogo: ImageView = findViewById(R.id.imglogo)
         Glide.with(this).load(R.drawable.splashgif).into(imgSplash)
         try {
@@ -94,26 +118,15 @@ class SplashActivity : AppCompatActivity() {
 
         }catch (e: Exception) {
             e.printStackTrace()}
-*/
-        val statusSP = applicationContext.getSharedPreferences(Config.SHARED_PREF345,0)
-        var chkstatus =statusSP.getString("nidhicheck",null)
-
-
-        if(statusSP.getString("nidhicheck",null).equals(null))
-        {
-            getnidhicheck()
-
-
-        }
-         if(chkstatus.equals("true")||chkstatus.equals("false"))
-        {
-            getResellerDetails()
-        }
-
 
     }
 
     private fun getnidhicheck() {
+        val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
+        val certificateSPEditer = certificateSP.edit()
+        certificateSPEditer.putString("sslcertificate", CERT_NAME)
+        certificateSPEditer.commit()
+
         val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurlSPEditer = baseurlSP.edit()
         baseurlSPEditer.putString("baseurl", BASE_URL)
@@ -139,7 +152,7 @@ class SplashActivity : AppCompatActivity() {
                                 .setLenient()
                                 .create()
                         val retrofit = Retrofit.Builder()
-                                .baseUrl(baseurl)
+                                .baseUrl(BASE_URL)
                                 .addConverterFactory(ScalarsConverterFactory.create())
                                 .addConverterFactory(GsonConverterFactory.create(gson))
                                 .client(client)
@@ -309,8 +322,9 @@ class SplashActivity : AppCompatActivity() {
     private fun nidhicodepopup() {
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setCancelable(true)
         dialog.setContentView(R.layout.popup_nidhi)
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
 
 
         val etxt_nidhicode: EditText = dialog.findViewById<EditText>(R.id.etxt_nidhicode)
@@ -337,8 +351,8 @@ class SplashActivity : AppCompatActivity() {
     private fun getnidhicode(nidhicode: String) {
 
 
-        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
-        val baseurl = baseurlSP.getString("baseurl", null)
+    /*    val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)*/
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@SplashActivity, R.style.Progress)
@@ -356,7 +370,7 @@ class SplashActivity : AppCompatActivity() {
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(baseurl)
+                            .baseUrl(BASE_URL)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)
@@ -422,6 +436,8 @@ class SplashActivity : AppCompatActivity() {
                                     ID_statusEditer.commit()
 
                                     getResellerDetails()
+
+
 
 
 
@@ -561,11 +577,11 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun getResellerDetails() {
-        val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
+     /*   val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
         val certificateSPEditer = certificateSP.edit()
         certificateSPEditer.putString("sslcertificate", CERT_NAME)
         certificateSPEditer.commit()
-     /*   val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurlSPEditer = baseurlSP.edit()
         baseurlSPEditer.putString("baseurl", BASE_URL)
         baseurlSPEditer.commit()*/
