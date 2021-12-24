@@ -162,6 +162,9 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_main)
 
+        val ID_status= this@HomeActivity.getSharedPreferences(Config.SHARED_PREF346, 0)
+        Log.e(TAG,"nidhicode   166   "+ID_status.getString("nidhicode",null))
+
         setInitialise()
         setRegister()
         setHomeNavMenu()
@@ -1224,10 +1227,10 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                     tv_share.setOnClickListener {
                         alertDialog.dismiss()
                         logout()
-                        val intent = Intent(this, WelcomeActivity::class.java)
-                        intent.putExtra("from", "true")
-                        this.startActivity(intent)
-                        this.finish()
+//                        val intent = Intent(this, WelcomeActivity::class.java)
+//                        intent.putExtra("from", "true")
+//                        this.startActivity(intent)
+//                        this.finish()
                     }
                     alertDialog.show()
 
@@ -1417,6 +1420,21 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         certificateSPEditer.putString("sslcertificate", SplashActivity.CERT_NAME)
         certificateSPEditer.commit()
 
+        val ID_status= applicationContext.getSharedPreferences(Config.SHARED_PREF346, 0)
+        val ID_statusEditer = ID_status.edit()
+        ID_statusEditer.putString("nidhicode", "")
+        ID_statusEditer.commit()
+
+        val ID_CommonApp= applicationContext.getSharedPreferences(Config.SHARED_PREF345, 0)
+        val ID_CommonAppEditer = ID_CommonApp.edit()
+        ID_CommonAppEditer.putString("nidhicheck", "")
+        ID_CommonAppEditer.commit()
+
+        val intent = Intent(this, SplashActivity::class.java)
+        intent.putExtra("from", "true")
+        this.startActivity(intent)
+        this.finish()
+
     }
 
 
@@ -1483,10 +1501,10 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                     tv_share.setOnClickListener {
                         alertDialog.dismiss()
                         logout()
-                        val intent = Intent(this, WelcomeActivity::class.java)
-                        intent.putExtra("from", "true")
-                        this.startActivity(intent)
-                        this.finish()
+//                        val intent = Intent(this, WelcomeActivity::class.java)
+//                        intent.putExtra("from", "true")
+//                        this.startActivity(intent)
+//                        this.finish()
                     }
                     alertDialog.show()
 

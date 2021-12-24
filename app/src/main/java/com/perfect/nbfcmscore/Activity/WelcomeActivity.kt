@@ -1723,14 +1723,6 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
 
 
 
-
-
-
-
-
-
-
-
                                         val ID_applctndt= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF265, 0)
                                         val ID_applctndtEditer = ID_applctndt.edit()
                                         ID_applctndtEditer.putString("ApplicationDate", jresult3.get("ApplicationDate") as String)

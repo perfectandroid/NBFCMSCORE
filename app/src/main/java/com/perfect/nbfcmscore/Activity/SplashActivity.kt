@@ -30,11 +30,12 @@ import java.util.*
 
 class SplashActivity : AppCompatActivity() {
     val TAG: String ="LoginActivity"
+
     private var progressDialog: ProgressDialog? = null
     var tv_error_message: TextView? = null
     var btn_proceed: Button? = null
     var imglogo: ImageView? = null
-
+    var CommonApp: String =""
 
 //    val BASE_URL = "https://202.164.150.65:14261/NbfcAndroidAPI/api/"  //DEVELOPMENT
 //    val IMAGE_URL = "https://202.164.150.65:14261/NbfcAndroidAPI/"
@@ -48,8 +49,8 @@ class SplashActivity : AppCompatActivity() {
      //  public val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPIQA/api/"  //QA
      //  public val IMAGE_URL = "https://202.164.150.65:14262/NbfcAndroidAPIQA/"
 
-      //  public val BASE_URL  = "https://202.164.150.65:15006/NbfcAndroidAPIQA/api/"  //QA NEW
-         //  public val IMAGE_URL = "https://202.164.150.65:15006/NbfcAndroidAPIQA/"
+//        public val BASE_URL  = "https://202.164.150.65:15006/NbfcAndroidAPIQA/api/"  //QA NEW
+//           public val IMAGE_URL = "https://202.164.150.65:15006/NbfcAndroidAPIQA/"
 
 
         public val BankKey = "-500"
@@ -72,6 +73,7 @@ class SplashActivity : AppCompatActivity() {
 //    val IMAGE_URL = "https://202.164.150.65:14262/NbfcAndroidAPIQA/"
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(
@@ -85,19 +87,28 @@ class SplashActivity : AppCompatActivity() {
 
         tv_error_message = findViewById<TextView>(R.id.tv_error_message)
         btn_proceed = findViewById<Button>(R.id.btn_proceed)
+//        btn_proceed!!.setOnClickListener {
+//
+//            startUserregistrationActivity()
+//        //    Handler().postDelayed({ this@SplashActivity.startUserregistrationActivity() }, 1)
+//        }
+        btn_proceed!!.setOnClickListener(View.OnClickListener {
+
+            Log.e(TAG,"btn_proceed   "+97)
+          //  btn_proceed!!.isEnabled = false
+            startUserregistrationActivity()
+        })
 
 
 
 
-
-        val statusSP = applicationContext.getSharedPreferences(Config.SHARED_PREF345,0)
-        var chkstatus =statusSP.getString("nidhicheck","")
+        val ID_CommonApp = applicationContext.getSharedPreferences(Config.SHARED_PREF345,0)
+        var chkstatus =ID_CommonApp.getString("nidhicheck","")
 
 
        if(chkstatus.equals(""))
         {
             getnidhicheck()
-
 
         }
         else if(chkstatus.equals("true")||chkstatus.equals("false"))
@@ -107,7 +118,7 @@ class SplashActivity : AppCompatActivity() {
 
 
 
-      //  getResellerDetails()
+     //   getResellerDetails()
         val imgSplash: ImageView = findViewById(R.id.imsplashlogo)
         val imglogo: ImageView = findViewById(R.id.imglogo)
         Glide.with(this).load(R.drawable.splashgif).into(imgSplash)
@@ -212,16 +223,19 @@ class SplashActivity : AppCompatActivity() {
                                     if (jObject.getString("StatusCode") == "0") {
 
                                         val status =jObject.getString("CommonApp")
+                                        CommonApp = jObject.getString("CommonApp") as String
 
                                         if(status!!.equals("true"))
                                         {
                                             nidhicodepopup()
                                         }
 
-                                        val ID_status= this@SplashActivity.getSharedPreferences(Config.SHARED_PREF345, 0)
-                                        val ID_statusEditer = ID_status.edit()
-                                        ID_statusEditer.putString("nidhicheck", jObject.getString("CommonApp") as String)
-                                        ID_statusEditer.commit()
+
+
+//                                        val ID_status= this@SplashActivity.getSharedPreferences(Config.SHARED_PREF345, 0)
+//                                        val ID_statusEditer = ID_status.edit()
+//                                        ID_statusEditer.putString("nidhicheck", jObject.getString("CommonApp") as String)
+//                                        ID_statusEditer.commit()
 
 
 
@@ -428,12 +442,20 @@ class SplashActivity : AppCompatActivity() {
                                 val jObject = JSONObject(response.body())
                                 Log.i("Response-NIDHICODE", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
+
                                     var nidhicode = jObject.getString("NidhiCode")
 
                                     val ID_status= this@SplashActivity.getSharedPreferences(Config.SHARED_PREF346, 0)
                                     val ID_statusEditer = ID_status.edit()
                                     ID_statusEditer.putString("nidhicode", jObject.get("NidhiCode") as String)
                                     ID_statusEditer.commit()
+
+
+                                    val ID_CommonApp= this@SplashActivity.getSharedPreferences(Config.SHARED_PREF345, 0)
+                                    val ID_CommonAppEditer = ID_CommonApp.edit()
+                                    ID_CommonAppEditer.putString("nidhicheck", CommonApp)
+                                    ID_CommonAppEditer.commit()
+
 
                                     getResellerDetails()
 
@@ -543,6 +565,7 @@ class SplashActivity : AppCompatActivity() {
             override fun run() {
                 try {
                     Thread.sleep((4 * 1000).toLong())
+                    // btn_proceed!!.isEnabled = true
                     val Loginpref = applicationContext.getSharedPreferences(Config.SHARED_PREF, 0)
                     if (Loginpref.getString("loginsession", null) == null) {
                         val i = Intent(this@SplashActivity, WelcomeSliderActivity::class.java)
@@ -983,7 +1006,7 @@ class SplashActivity : AppCompatActivity() {
                                         e.printStackTrace()
                                     }
 
-                                    doSplash()
+//                                    doSplash()
                                     getMaintenanceMessage()
                                     //  getlabels()
                                 } else {
@@ -1253,8 +1276,10 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun startUserregistrationActivity() {
-        var intent = Intent(this@SplashActivity, MpinActivity::class.java)
-        startActivity(intent)
+//        var intent = Intent(this@SplashActivity, MpinActivity::class.java)
+//        startActivity(intent)
+
+        doSplash()
     }
 
 
