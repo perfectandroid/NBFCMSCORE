@@ -29,7 +29,7 @@ import java.util.*
 
 
 class SplashActivity : AppCompatActivity() {
-    val TAG: String ="LoginActivity"
+    val TAG: String ="SplashActivity"
 
     private var progressDialog: ProgressDialog? = null
     var tv_error_message: TextView? = null
@@ -43,8 +43,8 @@ class SplashActivity : AppCompatActivity() {
 //    val IMAGE_URL = "https://202.164.150.65:15006/NbfcAndroidAPI/"
 
     companion object {
-        public val BASE_URL  = "https://202.164.150.65:15006/NbfcAndroidAPI/api/"  //DEVELOPMENT
-        public val IMAGE_URL = "https://202.164.150.65:15006/NbfcAndroidAPI/"
+//        public val BASE_URL  = "https://202.164.150.65:15006/NbfcAndroidAPI/api/"  //DEVELOPMENT
+//        public val IMAGE_URL = "https://202.164.150.65:15006/NbfcAndroidAPI/"
 
      //  public val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPIQA/api/"  //QA
      //  public val IMAGE_URL = "https://202.164.150.65:14262/NbfcAndroidAPIQA/"
@@ -52,11 +52,20 @@ class SplashActivity : AppCompatActivity() {
 //        public val BASE_URL  = "https://202.164.150.65:15006/NbfcAndroidAPIQA/api/"  //QA NEW
 //           public val IMAGE_URL = "https://202.164.150.65:15006/NbfcAndroidAPIQA/"
 
-
+        public val BASE_URL  = "https://202.164.150.65:15006/NbfcAndroidAPI/api/"  //DEV  08.07.2022
+        public val IMAGE_URL = "https://202.164.150.65:15006/NbfcAndroidAPI/"
         public val BankKey = "-500"
         public val BankHeader = "PERFECT NBFC BANK HEAD OFFICE"
-        public val CERT_NAME = "staticvm.pem"  //QA
-        public val CERT_NAME_TEST = "nbfctest.pem"  //QA
+        public val CERT_NAME = "staticvm.pem"
+        public val CERT_NAME_TEST = "nbfctest.pem"
+
+//        public val BASE_URL  = "https://112.133.227.123:14010/NBFCAndroidAPI/api/"  //QA  08.07.2022
+//        public val IMAGE_URL = "https://112.133.227.123:14010/NBFCAndroidAPI/"
+//
+//        public val BankKey = "-500"
+//        public val BankHeader = "CHENNATTU NIDHI LIMITED"
+//        public val CERT_NAME = "staticvm.pem"  //QA
+//        public val CERT_NAME_TEST = "nbfctest.pem"  //QA
     }
 
 //    val BASE_URL  = "https://202.164.150.65:15006/NbfcAndroidAPI/api/"  //DEVELOPMENT
@@ -642,6 +651,7 @@ class SplashActivity : AppCompatActivity() {
 //                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey)))
 //                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(getResources().getString(R.string.BankHeader)))
                         Log.e(TAG, "requestObject1 Reseller 10001   " + requestObject1)
+
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -1042,6 +1052,7 @@ class SplashActivity : AppCompatActivity() {
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
 
+                            Log.e(TAG,"onFailure    1054    "+t.message)
                             val builder = AlertDialog.Builder(
                                     this@SplashActivity,
                                     R.style.MyDialogTheme
