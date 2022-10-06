@@ -129,6 +129,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var txtv_loanstats: TextView? = null
     var txtv_prdctdetail: TextView? = null
     var tv_viewall: TextView? = null
+    var txtv_name: TextView? = null
+    var txtv_custno: TextView? = null
     var txtv_emi: TextView? = null
     var txtv_deposit: TextView? = null
     var txtv_goldloan: TextView? = null
@@ -175,6 +177,9 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         createHomeMenuFund()
         createHomeMenuRecharge()
 
+        val CustomerNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF3, 0)
+        val CustnoSP = applicationContext.getSharedPreferences(Config.SHARED_PREF19, 0)
+        val ID_cusid= applicationContext.getSharedPreferences(Config.SHARED_PREF269, 0)
         val ID_MyaccSP = applicationContext.getSharedPreferences(Config.SHARED_PREF50, 0)
         val ID_PassbkSP = applicationContext.getSharedPreferences(Config.SHARED_PREF51, 0)
         val ID_QuickbalSP = applicationContext.getSharedPreferences(Config.SHARED_PREF52, 0)
@@ -208,6 +213,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         val ID_Executve = applicationContext.getSharedPreferences(Config.SHARED_PREF84, 0)
 
         val ID_Accnt = applicationContext.getSharedPreferences(Config.SHARED_PREF117, 0)
+        val ID_Accno = applicationContext.getSharedPreferences(Config.SHARED_PREF107, 0)
         val ID_Viewall = applicationContext.getSharedPreferences(Config.SHARED_PREF118, 0)
         val ID_Availbal = applicationContext.getSharedPreferences(Config.SHARED_PREF119, 0)
         //   val ID_Lastlog = applicationContext.getSharedPreferences(Config.SHARED_PREF120, 0)
@@ -244,8 +250,10 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         txtv_holidy!!.setText(ID_Holidy.getString("HolidayList", null))
         txtv_exectve!!.setText(ID_Executve.getString("ExecutiveCallBack", null))
 
-        txtv_accnt!!.setText(ID_Accnt.getString("Account", null))
+        txtv_accnt!!.setText(ID_Accno.getString("AccountNo", null))
         tv_viewall!!.setText(ID_Viewall.getString("ViewAllAccounts", null))
+        txtv_name!!.setText(CustomerNameSP.getString("CustomerName", ""))
+        txtv_custno!!.setText("("+ID_cusid.getString("Customer Id","")+" : "+CustnoSP.getString("CustomerNumber", "")+")")
         txtv_availbal!!.setText(ID_Availbal.getString("AvailableBalance", null))
         val LastLoginTimeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF29, 0)
         val LastLogin = applicationContext.getSharedPreferences(Config.SHARED_PREF120, 0)
@@ -284,7 +292,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             e.printStackTrace()}
         tv_header!!.setText(ProductNameSP.getString("ProductName", null))
 
-        val CustomerNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF3, 0)
+
         tvuser!!.setText(CustomerNameSP.getString("CustomerName", null))
         val CusMobileSP = applicationContext.getSharedPreferences(Config.SHARED_PREF2, 0)
         tv_mobile!!.setText(CusMobileSP.getString("CusMobile", null))
@@ -1067,6 +1075,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         tv_def_availablebal = findViewById<TextView>(R.id.tv_def_availablebal)
         tv_lastlogin = findViewById<TextView>(R.id.tv_lastlogin)
         tv_viewall = findViewById<TextView>(R.id.tv_viewall)
+        txtv_name = findViewById<TextView>(R.id.txtv_name)
+        txtv_custno = findViewById<TextView>(R.id.txtv_custno)
 
         txtv_ownbnk = findViewById<TextView>(R.id.txtv_ownbnk)
         txtv_othrbnk = findViewById<TextView>(R.id.txtv_othrbnk)
@@ -2111,7 +2121,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                         requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
 
 
-                        Log.e(TAG, "requestObject1  labels 10001   " + requestObject1)
+                        Log.e(TAG, "requestObject1  labels 21221   " + requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -2129,6 +2139,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                         ) {
                             try {
                                 progressDialog!!.dismiss()
+                                Log.e(TAG, "response  labels 21222   " + response.body())
+
                                 val jObject = JSONObject(response.body())
                                 Log.i("Response-labels", response.body())
                                 if (jObject.getString("StatusCode") == "0") {

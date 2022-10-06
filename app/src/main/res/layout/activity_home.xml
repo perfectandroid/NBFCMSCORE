@@ -93,18 +93,31 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
-                            <TextView
-                                android:id="@+id/txtv_accnt"
+
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:layout_marginTop="10dp"
-                                android:textColor="@color/black"
-                                android:drawablePadding="10dp"
-                                android:drawableLeft="@drawable/accounts"
-                                android:text="Account"/>
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/txtv_name"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginTop="10dp"
+                                    android:textColor="@color/black"
+                                    android:drawablePadding="10dp"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold"
+                                    android:text=""/>
+
+
+
+                            </LinearLayout>
+
 
                             <TextView
                                 android:id="@+id/tv_viewall"
@@ -122,14 +135,43 @@
                         </LinearLayout>
 
                         <TextView
-                            android:id="@+id/tv_def_account"
+                            android:id="@+id/txtv_custno"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="45dp"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:textColor="@color/black"
-                            android:textStyle="bold"
-                            android:text="0010011001"/>
+                            android:drawablePadding="10dp"
+                            android:text=""/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="0dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/txtv_accnt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:textColor="@color/black"
+                                android:drawablePadding="10dp"
+                                android:text="A/C No"/>
+
+                            <TextView
+                                android:id="@+id/tv_def_account"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:textStyle="bold"
+                                android:text="0010011001"/>
+
+                        </LinearLayout>
+
 
                         <TextView
                             android:id="@+id/txtv_availbal"
@@ -150,7 +192,7 @@
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/green"
                                     android:textStyle="bold"
-                                    android:textSize="25dp"
+                                    android:textSize="22dp"
                                     android:layout_gravity="center"
                                     android:gravity="center"
                                     android:text=""/>
