@@ -1083,25 +1083,54 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
            SuccessAdapter successAdapter = new SuccessAdapter( keyValuePairs );
            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager( this );
            mRecyclerView.setLayoutManager( layoutManager );
-           mRecyclerView.setAdapter( successAdapter );*/lay_share.setOnClickListener {
+           mRecyclerView.setAdapter( successAdapter );*/
+
+            lay_share.setOnClickListener {
                 Log.e("img_share", "img_share   1170   ")
-                val bitmap = Bitmap.createBitmap(
-                    rltv_share.width,
-                    rltv_share.height, Bitmap.Config.ARGB_8888
-                )
-                val canvas = Canvas(bitmap)
-                rltv_share.draw(canvas)
-                try {
-                    val bmpUri: Uri = getLocalBitmapUri(bitmap)!!
+//                val bitmap = Bitmap.createBitmap(
+//                    rltv_share.width,
+//                    rltv_share.height, Bitmap.Config.ARGB_8888
+//                )
+//                val canvas = Canvas(bitmap)
+//                rltv_share.draw(canvas)
+//                try {
+//                    val bmpUri: Uri = getLocalBitmapUri(bitmap)!!
+//                    val shareIntent = Intent()
+//                    shareIntent.action = Intent.ACTION_SEND
+//                    shareIntent.putExtra(Intent.EXTRA_STREAM, bmpUri)
+//                    shareIntent.type = "image/*"
+//                    shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+//                    startActivity(Intent.createChooser(shareIntent, "Share"))
+//                } catch (e: java.lang.Exception) {
+//                    e.printStackTrace()
+//                    Log.e("Exception", "Exception   117   $e")
+//                }
+
+                try{
+
+                    val bitmap = Bitmap.createBitmap(rltv_share.width, rltv_share.height, Bitmap.Config.ARGB_8888)
+                    val canvas = Canvas(bitmap)
+                    rltv_share.draw(canvas)
+
+                    val file: File = saveBitmap(bitmap, System.currentTimeMillis().toString() + ".png")
+                    Log.e("chase  2044   ", "filepath: " + file.absolutePath)
+                    val bmpUri = Uri.fromFile(file)
+                    Log.i("Uri", bmpUri.toString())
+
+
+                    // Uri bmpUri = getLocalBitmapUri(bitmap);
                     val shareIntent = Intent()
                     shareIntent.action = Intent.ACTION_SEND
                     shareIntent.putExtra(Intent.EXTRA_STREAM, bmpUri)
                     shareIntent.type = "image/*"
                     shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                    //    shareIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+                    //    shareIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
                     startActivity(Intent.createChooser(shareIntent, "Share"))
-                } catch (e: java.lang.Exception) {
-                    e.printStackTrace()
-                    Log.e("Exception", "Exception   117   $e")
+
+
+                }catch (e : Exception){
+
                 }
             }
 
@@ -1142,6 +1171,38 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
         val alertDialog = dialogBuilder.create()
         alertDialog.show()
     }
+
+
+    private fun saveBitmap(bm: Bitmap, fileName: String): File {
+
+        val docsFolder =
+            File(Environment.getExternalStorageDirectory().toString() + "/Download" + "/")
+        val isPresent = true
+
+        Log.e("photoURI", "StatementDownloadViewActivity   5682   ")
+        if (!docsFolder.exists()) {
+            // isPresent = docsFolder.mkdir();
+            docsFolder.mkdir()
+            Log.e("photoURI", "StatementDownloadViewActivity   5683   ")
+        }
+        val file = File(docsFolder, fileName)
+        Log.i("Filess", file.toString())
+        if (file.exists()) {
+            file.delete()
+        }
+        try {
+            val fOut = FileOutputStream(file)
+            bm.setHasAlpha(true)
+            bm.compress(Bitmap.CompressFormat.PNG, 100, fOut)
+            fOut.flush()
+            fOut.close()
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
+        return file
+    }
+
+
 
     override fun onItemSelected(parent: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
         if (parent!!.id == R.id.spn_account_type) {

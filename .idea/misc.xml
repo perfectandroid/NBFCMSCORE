@@ -4,6 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Working/NBFCMSCORE/app/src/main/res/layout/activity_home.xml" value="0.25384615384615383" />
+        <entry key="..\:/Working/NBFCMSCORE/app/src/main/res/layout/activity_other_bank_fund_transfer.xml" value="0.22592592592592592" />
+        <entry key="..\:/Working/NBFCMSCORE/app/src/main/res/layout/activity_ownbankfundtransfer.xml" value="0.22592592592592592" />
+        <entry key="..\:/Working/NBFCMSCORE/app/src/main/res/layout/activity_quickpay.xml" value="0.19322916666666667" />
+        <entry key="..\:/Working/NBFCMSCORE/app/src/main/res/layout/activity_success_popup.xml" value="0.22592592592592592" />
+        <entry key="..\:/Working/NBFCMSCORE/app/src/main/res/layout/activity_transactionotp.xml" value="0.19322916666666667" />
       </map>
     </option>
   </component>
