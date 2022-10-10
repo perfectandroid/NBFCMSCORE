@@ -1,11 +1,14 @@
 package com.perfect.nbfcmscore.Activity
 
+import android.Manifest
 import android.app.AlertDialog
 import android.app.Dialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.database.Cursor
+import android.os.Build
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.text.Editable
@@ -16,6 +19,8 @@ import android.view.Window
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -44,6 +49,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
     val TAG: String = "RechargeActivity"
     private val PICK_CONTACT = 1
     private val REACHARGE_OFFER = 10
+    val PERMISSIONS_REQUEST_READ_CONTACTS = 2
 
     var im_back: ImageView? = null
     var im_home: ImageView? = null
@@ -104,6 +110,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
     var but_clear: Button? = null
     var rvrecentRecharge: FullLenghRecyclertview? = null
     var jArrayRecent: JSONArray? = null
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -1005,12 +1012,59 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 
 
     private fun contactSelect() {
-        val intent = Intent(
-            Intent.ACTION_PICK,
-            ContactsContract.Contacts.CONTENT_URI
-        )
-        intent.type = ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE
-        startActivityForResult(intent, PICK_CONTACT)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.READ_CONTACTS
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(
+                        this,
+                        Manifest.permission.READ_CONTACTS
+                    )
+                ) {
+                    val builder = AlertDialog.Builder(this)
+                    builder.setTitle("Read Contacts permission")
+                    builder.setPositiveButton(android.R.string.ok, null)
+                    builder.setMessage("Please enable access to contacts.")
+                    builder.setOnDismissListener {
+                        requestPermissions(
+                            arrayOf(Manifest.permission.READ_CONTACTS),
+                            PERMISSIONS_REQUEST_READ_CONTACTS
+                        )
+                    }
+                    builder.show()
+                } else {
+                    ActivityCompat.requestPermissions(
+                        this, arrayOf(Manifest.permission.READ_CONTACTS),
+                        PERMISSIONS_REQUEST_READ_CONTACTS
+                    )
+                }
+            } else {
+              //  getContacts()
+                val intent = Intent(
+                    Intent.ACTION_PICK,
+                    ContactsContract.Contacts.CONTENT_URI
+                )
+                intent.type = ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE
+                startActivityForResult(intent, PICK_CONTACT)
+            }
+        } else {
+         //   getContacts()
+            val intent = Intent(
+                Intent.ACTION_PICK,
+                ContactsContract.Contacts.CONTENT_URI
+            )
+            intent.type = ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE
+            startActivityForResult(intent, PICK_CONTACT)
+        }
+//        val intent = Intent(
+//            Intent.ACTION_PICK,
+//            ContactsContract.Contacts.CONTENT_URI
+//        )
+//        intent.type = ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE
+//        startActivityForResult(intent, PICK_CONTACT)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
