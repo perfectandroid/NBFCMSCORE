@@ -1458,6 +1458,8 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                                     )
                                     builder.setMessage("" + jObject.getString("EXMessage"))
                                     builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                        startActivity(Intent(this@RechargeActivity, HomeActivity::class.java))
+                                        finish()
                                     }
                                     val alertDialog: AlertDialog = builder.create()
                                     alertDialog.setCancelable(false)
@@ -1635,6 +1637,8 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                                     )
                                     builder.setMessage("" + jObject.getString("EXMessage"))
                                     builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                        startActivity(Intent(this@RechargeActivity, HomeActivity::class.java))
+                                        finish()
                                     }
                                     val alertDialog: AlertDialog = builder.create()
                                     alertDialog.setCancelable(false)
@@ -1812,6 +1816,8 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                                     )
                                     builder.setMessage("" + jObject.getString("EXMessage"))
                                     builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                        startActivity(Intent(this@RechargeActivity, HomeActivity::class.java))
+                                        finish()
                                     }
                                     val alertDialog: AlertDialog = builder.create()
                                     alertDialog.setCancelable(false)
