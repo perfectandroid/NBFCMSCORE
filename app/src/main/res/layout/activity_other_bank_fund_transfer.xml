@@ -322,7 +322,6 @@
                                 android:hint=""
                                 android:inputType="number"
                                 android:singleLine="true"
-                                android:maxLength="12"
                                 android:textColor="@color/black"
                                 android:textColorHint="@color/colorPrimarylight" />
 
@@ -390,7 +389,6 @@
                                 android:hint=""
                                 android:inputType="number"
                                 android:singleLine="true"
-                                android:maxLength="12"
                                 android:textColor="@color/black"
                                 android:textColorHint="@color/colorPrimarylight" />
 
@@ -454,7 +452,6 @@
                                 android:background="@android:color/transparent"
                                 android:hint=""
                                 android:inputType="text"
-                                android:maxLength="11"
                                 android:singleLine="true"
                                 android:textColor="@color/black"
                                 android:textColorHint="@color/colorPrimarylight" />

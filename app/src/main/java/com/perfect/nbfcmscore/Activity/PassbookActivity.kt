@@ -172,6 +172,7 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
 
 
                         Log.e("TAG", "requestObject1  171   " + requestObject1)
+                        Log.e("TAG", "baseurl  171   " + baseurl)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -283,7 +284,9 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                                     act_account!!.setOnItemClickListener { parent, view, position, id ->
 
                                         // for (i in 0 until jresult!!.length()) {
+
                                         val json: JSONObject = jresult!!.getJSONObject(position)
+                                        Log.e("TAG","286   act_account   "+json);
                                         if (json.getString("IsShowBalance").equals("1")) {
 
                                             //if (isshowbal.equals("1") ) {
@@ -525,7 +528,7 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
 
 
 
-                        Log.e("TAG", "requestObject1  171   " + requestObject1)
+                        Log.e("TAG", "requestObject1  530   " + requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -548,7 +551,8 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                             try {
                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
-                                Log.i("Response", response.body())
+                                rv_passbook!!.adapter = null
+                                Log.e("TAG","Response   551   "+ response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
                                             jObject.getJSONObject("PassBookAccountStatement")

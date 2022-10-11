@@ -631,7 +631,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
             //Toast.makeText(applicationContext,"Please enter Beneficiary name",Toast.LENGTH_LONG).show()
           //  CustomBottomSheeet.Show(this,"Please enter Beneficiary name","0")
         }
-        else if(BeneAccountNumber!!.equals("") || BeneAccountNumber!!.length != 12){
+        else if(BeneAccountNumber!!.equals("") || BeneAccountNumber!!.length == 0){
             val ID_validbenfacc = applicationContext.getSharedPreferences(Config.SHARED_PREF230,0)
             var valdbenfacc = ID_validbenfacc.getString("PleaseEnterValidBeneficiaryAccountNumber",null)
             CustomBottomSheeet.Show(this,valdbenfacc!!,"0")
@@ -651,13 +651,13 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
             CustomBottomSheeet.Show(this,benfaccmtch!!,"0")
            // Toast.makeText(applicationContext,"Beneficiary account numbers don't match",Toast.LENGTH_LONG).show()
            // CustomBottomSheeet.Show(this,"Beneficiary account numbers don't match","0")
-        }else if(BeneIFSC!!.equals("") || BeneIFSC!!.length != 11){
+        }else if(BeneIFSC!!.equals("") || BeneIFSC!!.length == 0){
             val ID_validifs = applicationContext.getSharedPreferences(Config.SHARED_PREF275,0)
             var validifs = ID_validifs.getString("PleaseEnterValidIFSC",null)
             CustomBottomSheeet.Show(this,validifs!!,"0")
            // Toast.makeText(applicationContext,"Please enter valid IFSC",Toast.LENGTH_LONG).show()
           //  CustomBottomSheeet.Show(this,"Please enter valid IFSC","0")
-        }else if(BeneIFSC!!.equals("") || BeneIFSC!!.length != 11){
+        }else if(BeneIFSC!!.equals("") || BeneIFSC!!.length == 0){
             val ID_validifs = applicationContext.getSharedPreferences(Config.SHARED_PREF275,0)
             var validifs = ID_validifs.getString("PleaseEnterValidIFSC",null)
             CustomBottomSheeet.Show(this,validifs!!,"0")
