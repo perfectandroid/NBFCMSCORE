@@ -5,6 +5,7 @@ import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -13,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
-import com.perfect.bizcorelite.Api.ApiInterface
+import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Adapter.LanguageLsitAdaptor
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
@@ -31,6 +32,9 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
 
     private var progressDialog: ProgressDialog? = null
     var rv_Languagelist: RecyclerView? = null
+    var from: String? = null
+    var tvHeader2: TextView? = null
+    var tvskip: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,25 +44,53 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
         val imglogo: ImageView = findViewById(R.id.imglogo)
         Glide.with(this).load(R.drawable.language).into(imglogo)
 
-        getLanguagelist()
+        from = intent.getStringExtra("From")
+       /* if(from.equals("welcome"))
+        {
+            getLanguagelist()
+        }
+        else
+        {
+            this.recreate();*/
+            getLanguagelist()
+      /*  val SelectlanSP = applicationContext.getSharedPreferences(Config.SHARED_PREF38,0)
+        val SkipSP = applicationContext.getSharedPreferences(Config.SHARED_PREF39,0)
+
+        tvskip!!.setText(SelectlanSP!!.getString("SelectLanguage",null))
+        tvHeader2!!.setText(SkipSP.getString("Skip",null))*/
+        //}
+
+       /* val SkipSP = this.getSharedPreferences(Config.SHARED_PREF39, 0)
+        val LanguageslctSP = this.getSharedPreferences(Config.SHARED_PREF38, 0)
+
+        tvHeader2!!.setText(LanguageslctSP.getString("SelectLanguage", null))
+        tvskip!!.setText(SkipSP.getString("Skip", null))*/
+
+
     }
 
     private fun setRegViews() {
-        val tvskip = findViewById<TextView>(R.id.tvskip) as TextView
+         tvskip = findViewById<TextView>(R.id.tvskip) as TextView
+        tvHeader2 = findViewById<TextView>(R.id.tvHeader2) as TextView
         rv_Languagelist = findViewById<RecyclerView>(R.id.rv_Languagelist) as RecyclerView
         tvskip!!.setOnClickListener(this)
+
+
     }
 
     override fun onClick(v: View) {
         when(v.id){
             R.id.tvskip->{
                 intent = Intent(applicationContext, WelcomeActivity::class.java)
+                intent.putExtra("skip", "1")
                 startActivity(intent)
             }
         }
     }
 
     private fun getLanguagelist() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@LanguageSelectionActivity, R.style.Progress)
@@ -76,7 +108,7 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
                         .setLenient()
                         .create()
                     val retrofit = Retrofit.Builder()
-                        .baseUrl(Config.BASE_URL)
+                        .baseUrl(baseurl)
                         .addConverterFactory(ScalarsConverterFactory.create())
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .client(client)
@@ -84,9 +116,16 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
                     val apiService = retrofit.create(ApiInterface::class.java!!)
                     val requestObject1 = JSONObject()
                     try {
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
+
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("7"))
-                        requestObject1.put("BankKey", MscoreApplication.encryptStart(getResources().getString(R.string.BankKey))
-                        )
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
+
+                        Log.e("TAG", "requestObject1  language   " + requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -120,7 +159,7 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
                                     val obj_adapter = LanguageLsitAdaptor(applicationContext!!, jarray)
                                     rv_Languagelist!!.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
                                     rv_Languagelist!!.adapter = obj_adapter
-
+                                    obj_adapter!!.notifyDataSetChanged()
                                 } else {
                                     val builder = AlertDialog.Builder(
                                         this@LanguageSelectionActivity,

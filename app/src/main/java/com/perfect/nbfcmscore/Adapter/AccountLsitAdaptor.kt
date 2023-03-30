@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,14 +17,17 @@ import com.perfect.nbfcmscore.Activity.AccountDetailsActivity
 import com.perfect.nbfcmscore.Activity.OTPActivity
 import com.perfect.nbfcmscore.Activity.WelcomeActivity
 import com.perfect.nbfcmscore.Helper.Config
+import com.perfect.nbfcmscore.Helper.PicassoTrustAll
 import com.perfect.nbfcmscore.R
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import java.lang.Exception
 
 
 class AccountLsitAdaptor(internal val mContext: Context, internal val jsInfo: JSONArray): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    val TAG: String = "AccountLsitAdaptor"
     internal var jsonObject: JSONObject? = null
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): RecyclerView.ViewHolder {
         val vh: RecyclerView.ViewHolder
@@ -42,10 +46,27 @@ class AccountLsitAdaptor(internal val mContext: Context, internal val jsInfo: JS
         try {
             jsonObject = jsInfo.getJSONObject(position)
             if (holder is MainViewHolder) {
+
+                val ID_accno = mContext.getSharedPreferences(Config.SHARED_PREF158,0)
+                holder.txtv_acntno!!.setText(ID_accno.getString("AccountNumber",null))
+
+                val ID_bal = mContext.getSharedPreferences(Config.SHARED_PREF210,0)
+                holder.txtvbal!!.setText(ID_bal.getString("Balance",null))
+
                 holder.tvaccounttype!!.setText(jsonObject!!.getString("LoanType"))
                 holder.tvaccountno!!.setText(jsonObject!!.getString("AccountNumber"))
-                holder.tvbal!!.setText(jsonObject!!.getString("Balance"))
+                holder.tvbal!!.setText("₹ "+ Config.getDecimelFormate(jsonObject!!.getDouble("Balance")))
                 holder.tvbranch!!.setText(jsonObject!!.getString("BranchName"))
+
+                val ImageURLSP = mContext.applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+                val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
+                try {
+                    val imagepath = IMAGE_URL+jsonObject!!.getString("ImagePath")
+                    Log.e(TAG,"imagepath  55   "+imagepath)
+                    PicassoTrustAll.getInstance(mContext)!!.load(imagepath).error(android.R.color.transparent).into(holder.img_accounttype!!)
+                }catch (e : Exception){
+
+                }
 
 
                 holder.llmain!!.setTag(position)
@@ -68,6 +89,11 @@ class AccountLsitAdaptor(internal val mContext: Context, internal val jsInfo: JS
                     StatusEditer.putString("Status", jsonObject!!.getString("Status"))
                     StatusEditer.commit()
 
+                    val AccountNumberSP = mContext.getSharedPreferences(Config.SHARED_PREF19, 0)
+                    val AccountNumberEditer = AccountNumberSP.edit()
+                    AccountNumberEditer.putString("AccountNumber", jsonObject!!.getString("AccountNumber"))
+                    AccountNumberEditer.commit()
+
                       val intent = Intent(v.context, AccountDetailsActivity::class.java)
                       intent.putExtra("LoanType",jsonObject!!.getString("LoanType"))
                       intent.putExtra("Balance", jsonObject!!.getString("Balance"))
@@ -81,6 +107,8 @@ class AccountLsitAdaptor(internal val mContext: Context, internal val jsInfo: JS
                       intent.putExtra("IsShareAc", jsonObject!!.getString("IsShareAc"))
                       intent.putExtra("EnableDownloadStatement", jsonObject!!.getString("EnableDownloadStatement"))
                       intent.putExtra("IsDue", jsonObject!!.getString("IsDue"))
+                      intent.putExtra("EnableLoanSlab", jsonObject!!.getString("EnableLoanSlab"))
+                      intent.putExtra("ImagePath", jsonObject!!.getString("ImagePath"))
                       v.context.startActivity(intent)
                     }
                 }
@@ -98,7 +126,9 @@ var tvaccounttype: TextView? = null
 var tvaccountno: TextView? = null
 var tvbal: TextView? = null
 var tvbranch: TextView? = null
-
+var img_accounttype: ImageView? = null
+    var txtvbal: TextView? = null
+    var txtv_acntno: TextView? = null
 
 
 init {
@@ -108,8 +138,10 @@ tvaccounttype = v.findViewById<View>(R.id.tvaccounttype) as TextView
 tvaccountno = v.findViewById<View>(R.id.tvaccountno) as TextView
 tvbal = v.findViewById<View>(R.id.tvbal) as TextView
 tvbranch = v.findViewById<View>(R.id.tvbranch) as TextView
+    img_accounttype = v.findViewById<View>(R.id.img_accounttype) as ImageView
 
-
+    txtvbal = v.findViewById<View>(R.id.txtvbal) as TextView
+    txtv_acntno = v.findViewById<View>(R.id.txtv_acntno) as TextView
 }
 }
 }

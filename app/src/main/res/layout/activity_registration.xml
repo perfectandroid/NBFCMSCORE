@@ -37,16 +37,33 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <ImageView
                     android:id="@+id/imgLogo"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:layout_marginTop="25dp"
                     android:src="@drawable/login_reg_gif"
+                    android:gravity="center" />
+                <TextView
+                    android:id="@+id/tv_product_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="25dp"
+                    android:layout_gravity="center"
                     android:gravity="center"
-                    android:layout_marginBottom="50dp"/>
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="50dp" />
 
                 <TextView
+                    android:id="@+id/txtv_lets"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Let's get started"
@@ -61,6 +78,7 @@
                     android:layout_marginBottom="5dp"/>
 
                 <TextView
+                    android:id="@+id/txv_plz"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Please enter your personal information."
@@ -147,12 +165,12 @@
                         android:layout_height="wrap_content"
                         android:hint="Enter Mobile Number"
                         android:textColor="@color/white"
-                        android:textSize="15dp"
+                        android:textSize="11dp"
                         android:layout_gravity="center"
                         android:background="@color/color_activity_transparent"
                         android:maxLength="10"
                         android:textColorHint="@color/white"
-                        android:inputType="phone"
+                        android:inputType="number"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"
@@ -183,7 +201,7 @@
                         android:layout_height="wrap_content"
                         android:hint="Enter Last 4 Digit Of A/C No."
                         android:textColor="@color/white"
-                        android:textSize="15dp"
+                        android:textSize="11dp"
                         android:layout_gravity="center"
                         android:background="@color/color_activity_transparent"
                         android:textColorHint="@color/white"

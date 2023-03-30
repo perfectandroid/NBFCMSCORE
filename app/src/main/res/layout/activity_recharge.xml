@@ -1,293 +1,694 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bgcolour"
+    android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".Activity.RechargeActivity">
 
     <RelativeLayout
-        android:id="@+id/rltv_header"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colortopheader">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <LinearLayout
+                android:id="@+id/rltv_header"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="3.5"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_height="50dp"
+                android:background="@color/colorPrimary">
 
-                <ImageView
-                    android:id="@+id/im_back"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/arrow_back" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv_header"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:textSize="18dp"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/white"
-                    android:text="" />
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3.5"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/im_back"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:src="@drawable/arrow_back" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_header"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:textSize="18dp"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="@color/white"
+                            android:text="" />
+
+                    </LinearLayout>
 
 
-            <LinearLayout
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3.5"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/im_home"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:src="@drawable/ic_home" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+    <ScrollView
+                android:id="@+id/scrl_main"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="3.5"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/im_home"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/ic_home" />
-
-            </LinearLayout>
+                android:layout_below="@+id/rltv_header">
 
 
-        </LinearLayout>
-
-
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:padding="20dp"
-        android:layout_below="@+id/rltv_header">
-
-         <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:padding="5dp"
-             android:layout_marginTop="20dp"
-        android:background="@drawable/bg_light_grey">
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_mobilenumber"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColorHint="@color/colorPrimarylight"
-            app:hintTextColor="@color/colorPrimarylight"
-            android:background="@android:color/transparent"
-            android:layout_toLeftOf="@+id/im_contact">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tie_mobilenumber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@color/colorPrimarylight"
-                android:hint="Mobile Number"
-                android:inputType="phone"
-                android:background="@android:color/transparent"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <ImageView
-            android:id="@+id/im_contact"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:backgroundTint="@color/colorPrimarylight"
-            android:background="@drawable/ic_contact_box"/>
-
-
-
-
-    </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="vertical"
-            android:padding="5dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_light_grey">
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColorHint="@color/colorPrimarylight"
-                app:hintTextColor="@color/colorPrimarylight"
-                android:layout_alignParentBottom="true"
-                android:background="@android:color/transparent">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tie_operator"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="@color/colorPrimarylight"
-                    android:hint="Operator"
-                    android:focusable="false"
-                    android:clickable="true"
-                    android:background="@android:color/transparent"/>
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:orientation="vertical">
 
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"                        android:padding="5dp"
+                            app:cardBackgroundColor="@color/bg_transfer"
+                            app:cardCornerRadius="5dp">
 
+                            <LinearLayout
+                                android:id="@+id/rltv_mobile"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:background="@drawable/bg_light_grey">
 
-        </RelativeLayout>
+                                <TextView
+                                    android:id="@+id/txtmobilenumber"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/input_border"
+                                    android:layout_marginLeft="5dp"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"
+                                    android:text="Mobile Number"/>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="vertical"
-            android:padding="5dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_light_grey">
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColorHint="@color/colorPrimarylight"
-                app:hintTextColor="@color/colorPrimarylight"
-                android:layout_alignParentBottom="true"
-                android:background="@android:color/transparent">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tie_circle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="@color/colorPrimarylight"
-                    android:hint="Circle"
-                    android:focusable="false"
-                    android:clickable="true"
-                    android:background="@android:color/transparent"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="vertical"
-            android:padding="5dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_light_grey">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColorHint="@color/colorPrimarylight"
-                app:hintTextColor="@color/colorPrimarylight"
-                android:layout_alignParentBottom="true"
-                android:background="@android:color/transparent">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tie_amount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="@color/colorPrimarylight"
-                    android:hint="Amount"
-                    android:enabled="true"
-                    android:background="@android:color/transparent"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="vertical"
-            android:padding="5dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_light_grey">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColorHint="@color/colorPrimarylight"
-                app:hintTextColor="@color/colorPrimarylight"
-                android:layout_alignParentBottom="true"
-                android:background="@android:color/transparent">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tie_account"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="@color/colorPrimarylight"
-                    android:hint="Account Number"
-                    android:focusable="false"
-                    android:clickable="true"
-                    android:background="@android:color/transparent"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </RelativeLayout>
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:orientation="horizontal"
+                                    android:padding="5dp">
 
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/bg_button"
-            android:layout_marginTop="30dp">
+                                    <!--                            <com.google.android.material.textfield.TextInputLayout-->
+                                    <!--                                android:id="@+id/til_mobilenumber"-->
+                                    <!--                                android:layout_width="match_parent"-->
+                                    <!--                                android:layout_height="match_parent"-->
+                                    <!--                                android:layout_toLeftOf="@+id/ll_contact"-->
+                                    <!--                                android:background="@android:color/transparent"-->
+                                    <!--                                android:textColorHint="@color/colorPrimarylight"-->
+                                    <!--                                app:hintTextColor="@color/colorPrimarylight">-->
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:textAllCaps="true"
-                android:text="recharge"/>
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/tie_mobilenumber"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_toLeftOf="@+id/ll_contact"
+                                        android:backgroundTint="@color/input_border"
+                                        android:drawableTint="@color/input_border"
+                                        android:hint=""
+                                        android:inputType="phone"
+                                        android:textColorHint="@color/colorPrimarylight" />
 
-        </RelativeLayout>
+                                    <!--                            </com.google.android.material.textfield.TextInputLayout>-->
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_contact"
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+                                        android:layout_alignParentRight="true"
+                                        android:gravity="center">
+
+                                        <ImageView
+                                            android:id="@+id/im_contact"
+                                            android:layout_width="30dp"
+                                            android:layout_height="30dp"
+                                            android:backgroundTint="@color/colorPrimarylight"
+                                            android:src="@drawable/im_contacts" />
+
+                                    </LinearLayout>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="20dp">
-
-            <TextView
-                android:id="@+id/tv_Close"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:textSize="16dp"
-                android:text="Recent Recharges" />
+                                </RelativeLayout>
 
 
-        </LinearLayout>
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"                        android:padding="5dp"
+                            app:cardBackgroundColor="@color/bg_transfer"
+                            app:cardCornerRadius="5dp">
+
+                            <LinearLayout
+                                android:id="@+id/rltv_subscriber"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:background="@drawable/bg_light_grey">
+
+                                <TextView
+                                    android:id="@+id/txtsubscriber"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/input_border"
+                                    android:layout_marginLeft="5dp"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"
+                                    android:text="Subscriber Id"/>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:orientation="horizontal"
+                                    android:padding="5dp">
 
 
-    </LinearLayout>
+                                    <!--                            <com.google.android.material.textfield.TextInputLayout-->
+                                    <!--                                android:id="@+id/til_subscriber"-->
+                                    <!--                                android:layout_width="match_parent"-->
+                                    <!--                                android:layout_height="match_parent"-->
+                                    <!--                                android:background="@android:color/transparent"-->
+                                    <!--                                android:textColorHint="@color/colorPrimarylight"-->
+                                    <!--                                app:hintTextColor="@color/colorPrimarylight">-->
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/tie_subscriber"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:backgroundTint="@color/input_border"
+                                        android:drawableTint="@color/input_border"
+                                        android:hint=""
+                                        android:inputType="phone"
+                                        android:textColorHint="@color/colorPrimarylight" />
+
+                                    <!--                            </com.google.android.material.textfield.TextInputLayout>-->
 
 
-</RelativeLayout>
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"                        android:padding="5dp"
+                            app:cardBackgroundColor="@color/bg_transfer"
+                            app:cardCornerRadius="5dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:background="@drawable/bg_light_grey">
+
+                                <TextView
+                                    android:id="@+id/txtoperator"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/input_border"
+                                    android:layout_marginLeft="5dp"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"
+                                    android:text="Operator"/>
+
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:orientation="vertical"
+                                    android:padding="5dp">
+
+
+<!--                                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                                        android:layout_width="match_parent"-->
+<!--                                        android:layout_height="match_parent"-->
+<!--                                        android:layout_alignParentBottom="true"-->
+<!--                                        android:background="@android:color/transparent"-->
+<!--                                        android:textColorHint="@color/colorPrimarylight"-->
+<!--                                        app:hintTextColor="@color/colorPrimarylight">-->
+
+                                        <com.google.android.material.textfield.TextInputEditText
+                                            android:id="@+id/tie_operator"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:backgroundTint="@color/input_border"
+                                            android:drawableTint="@color/input_border"
+                                            android:clickable="true"
+                                            android:focusable="false"
+                                            android:hint=""
+                                            android:textColorHint="@color/colorPrimarylight" />
+
+<!--                                    </com.google.android.material.textfield.TextInputLayout>-->
+
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"                        android:padding="5dp"
+                            app:cardBackgroundColor="@color/bg_transfer"
+                            app:cardCornerRadius="5dp">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:background="@drawable/bg_light_grey">
+
+                                <TextView
+                                    android:id="@+id/txtcircle"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/input_border"
+                                    android:layout_marginLeft="5dp"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"
+                                    android:text="Circle"/>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:orientation="vertical"
+                                    android:padding="5dp">
+
+
+<!--                                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                                        android:layout_width="match_parent"-->
+<!--                                        android:layout_height="match_parent"-->
+<!--                                        android:layout_alignParentBottom="true"-->
+<!--                                        android:background="@android:color/transparent"-->
+<!--                                        android:textColorHint="@color/colorPrimarylight"-->
+<!--                                        app:hintTextColor="@color/colorPrimarylight">-->
+
+                                        <com.google.android.material.textfield.TextInputEditText
+                                            android:id="@+id/tie_circle"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:backgroundTint="@color/input_border"
+                                            android:drawableTint="@color/input_border"
+                                            android:clickable="true"
+                                            android:focusable="false"
+                                            android:hint=""
+                                            android:textColorHint="@color/colorPrimarylight" />
+
+<!--                                    </com.google.android.material.textfield.TextInputLayout>-->
+
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:padding="5dp"
+                            app:cardBackgroundColor="@color/bg_transfer"
+                            app:cardCornerRadius="5dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:background="@drawable/bg_light_grey">
+
+                                <TextView
+                                    android:id="@+id/txtamount"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/input_border"
+                                    android:layout_marginLeft="5dp"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"
+                                    android:text="Amount"/>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:orientation="vertical"
+                                    android:padding="5dp">
+
+<!--                                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                                        android:layout_width="match_parent"-->
+<!--                                        android:layout_height="match_parent"-->
+<!--                                        android:layout_alignParentBottom="true"-->
+<!--                                        android:layout_toLeftOf="@+id/ll_offers"-->
+<!--                                        android:background="@android:color/transparent"-->
+<!--                                        android:textColorHint="@color/colorPrimarylight"-->
+<!--                                        app:hintTextColor="@color/colorPrimarylight">-->
+
+                                        <com.google.android.material.textfield.TextInputEditText
+                                            android:id="@+id/tie_amount"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_toLeftOf="@+id/ll_offers"
+                                            android:backgroundTint="@color/input_border"
+                                            android:drawableTint="@color/input_border"
+                                            android:enabled="true"
+                                            android:hint=""
+                                            android:inputType="numberDecimal"
+                                            android:textColorHint="@color/colorPrimarylight" />
+
+<!--                                    </com.google.android.material.textfield.TextInputLayout>-->
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_offers"
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+                                        android:layout_alignParentRight="true"
+                                        android:gravity="center">
+
+                                        <ImageView
+                                            android:id="@+id/im_offers"
+                                            android:layout_width="30dp"
+                                            android:layout_height="30dp"
+                                            android:layout_alignParentRight="true"
+                                            android:src="@drawable/ic_offers" />
+
+                                    </LinearLayout>
+
+
+                                </RelativeLayout>
+
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/card_circleAccNo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:padding="5dp"
+                            app:cardBackgroundColor="@color/bg_transfer"
+                            app:cardCornerRadius="5dp"
+                            android:visibility="visible">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:background="@drawable/bg_light_grey">
+
+                                <TextView
+                                    android:id="@+id/txtcircleAccNo"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/input_border"
+                                    android:layout_marginLeft="5dp"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"
+                                    android:text="Account No"/>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:orientation="vertical"
+                                    android:padding="5dp">
+
+<!--                                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                                        android:layout_width="match_parent"-->
+<!--                                        android:layout_height="match_parent"-->
+<!--                                        android:layout_alignParentBottom="true"-->
+<!--                                        android:background="@android:color/transparent"-->
+<!--                                        android:textColorHint="@color/colorPrimarylight"-->
+<!--                                        app:hintTextColor="@color/colorPrimarylight">-->
+
+                                        <com.google.android.material.textfield.TextInputEditText
+                                            android:id="@+id/tie_circleAccNo"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:backgroundTint="@color/input_border"
+                                            android:drawableTint="@color/input_border"
+                                            android:enabled="true"
+                                            android:hint=""
+                                            android:inputType="numberDecimal"
+                                            android:textColorHint="@color/colorPrimarylight" />
+
+<!--                                    </com.google.android.material.textfield.TextInputLayout>-->
+
+
+
+                                </RelativeLayout>
+
+
+                            </LinearLayout>
+
+
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:padding="5dp"
+                            app:cardBackgroundColor="@color/bg_transfer"
+                            app:cardCornerRadius="5dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:background="@drawable/bg_light_grey">
+
+
+                                <TextView
+                                    android:id="@+id/txtaccount"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/input_border"
+                                    android:layout_marginLeft="5dp"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"
+                                    android:text="Select Account"/>
+
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:orientation="vertical"
+                                    android:padding="5dp">
+
+<!--                                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                                        android:layout_width="match_parent"-->
+<!--                                        android:layout_height="match_parent"-->
+<!--                                        android:layout_alignParentBottom="true"-->
+<!--                                        android:background="@android:color/transparent"-->
+<!--                                        android:textColorHint="@color/colorPrimarylight"-->
+<!--                                        app:hintTextColor="@color/colorPrimarylight">-->
+
+                                        <com.google.android.material.textfield.TextInputEditText
+                                            android:id="@+id/tie_account"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:backgroundTint="@color/input_border"
+                                            android:drawableTint="@color/input_border"
+                                            android:clickable="true"
+                                            android:focusable="false"
+                                            android:hint=""
+                                            android:textColorHint="@color/colorPrimarylight" />
+
+<!--                                    </com.google.android.material.textfield.TextInputLayout>-->
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginTop="25dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/but_clear"
+                                android:layout_width="match_parent"
+                                android:layout_height="36dp"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/but_ronded1"
+                                android:text="Reset"
+                                android:textColor="@color/white" />
+
+
+                            <Button
+                                android:id="@+id/but_recharge"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/but_rounded2"
+                                android:text="Calculate"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+
+                        <!--  <LinearLayout
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="20dp"
+                              android:layout_marginRight="10dp"
+                              android:layout_marginLeft="10dp"
+                              android:orientation="horizontal">
+
+                              <RelativeLayout
+                                  android:id="@+id/rltv_clear"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:layout_marginRight="10dp"
+                                  android:layout_weight="1"
+                                  android:background="@drawable/but_rounded2"
+                                  android:orientation="vertical">
+
+                                  <Button
+                                      android:id="@+id/but_clear"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="wrap_content"
+                                      android:background="@android:color/transparent"
+                                      android:text="clear"
+                                      android:textAllCaps="true"
+                                      android:textColor="@color/white" />
+
+                              </RelativeLayout>
+
+
+                              <RelativeLayout
+                                  android:id="@+id/rltv_recharge"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:layout_marginLeft="10dp"
+                                  android:layout_weight="1"
+                                  android:background="@drawable/bg_button"
+                                  android:orientation="vertical">
+
+                                  <Button
+                                      android:id="@+id/but_recharge"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="wrap_content"
+                                      android:background="@android:color/transparent"
+                                      android:text="recharge"
+                                      android:textAllCaps="true"
+                                      android:textColor="@color/white" />
+
+                              </RelativeLayout>
+
+
+                          </LinearLayout>-->
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/ll_recentrecharge"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_Close"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="Recent Recharges"
+                            android:layout_marginLeft="20dp"
+                            android:textColor="@color/black"
+                            android:textSize="16dp" />
+
+                        <com.perfect.nbfcmscore.Helper.FullLenghRecyclertview
+                            android:id="@+id/rvrecentRecharge"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginBottom="10dp"/>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </ScrollView>
+
+
+</LinearLayout>

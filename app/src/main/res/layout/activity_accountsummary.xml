@@ -5,6 +5,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/bgcolour"
         android:orientation="vertical">
         <RelativeLayout
             android:id="@+id/relativeLayout1"
@@ -24,12 +25,12 @@
                     android:layout_weight=".2"
                     android:src="@drawable/navback" />
                 <TextView
-                    android:id="@+id/tv_mycart"
+                    android:id="@+id/tv_header"
                     android:layout_width="0dp"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="15dp"
-                    android:text="   Account Summary"
+                    android:text=" Account Summary"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
@@ -38,6 +39,7 @@
                     android:layout_width="0dp"
                     android:layout_height="35dp"
                     android:layout_weight=".2"
+                    android:padding="5dp"
                     android:src="@drawable/ic_home" />
 
             </LinearLayout>
@@ -46,6 +48,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_accountsummary"
             android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/></LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

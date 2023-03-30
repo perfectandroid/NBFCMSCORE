@@ -5,13 +5,27 @@
     android:orientation="horizontal"
     android:gravity="center_vertical">
 
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        app:cardBackgroundColor="@color/bg_transfer"
+        app:cardCornerRadius="5dp">
+    <RelativeLayout
+        android:id="@+id/ll_mapview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_light_grey"
+        android:orientation="vertical"
+        android:padding="5dp">
     <LinearLayout
         android:id="@+id/ll_branchrow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:orientation="horizontal"
-        android:background="@drawable/border_rectangle">
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -81,9 +95,10 @@
                 android:id="@+id/tv_call"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableTop="@drawable/ic_call"
                 android:drawableTint="@color/colorPrimary"
-                android:text="Call"
+                android:background="@drawable/ic_call"
+                android:backgroundTint="@color/colorPrimary"
+                android:text=""
                 android:visibility="gone" />
 
         </LinearLayout>
@@ -101,16 +116,18 @@
                 android:id="@+id/tv_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableTop="@drawable/ic_location"
+                android:background="@drawable/ic_location"
+                android:backgroundTint="@color/colorPrimary"
                 android:drawableTint="@color/colorPrimary"
-                android:text="Map"
+                android:text=""
                 android:visibility="visible" />
 
         </LinearLayout>
 
 
     </LinearLayout>
-
+    </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
 
 </LinearLayout>

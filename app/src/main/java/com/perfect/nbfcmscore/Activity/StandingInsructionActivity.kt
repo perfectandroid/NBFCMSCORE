@@ -2,11 +2,18 @@ package com.perfect.nbfcmscore.Activity
 
 import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
-import com.perfect.bizcorelite.Api.ApiInterface
+import com.perfect.nbfcmscore.Adapter.StandingInstructionAdaptor
+import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
 import com.perfect.nbfcmscore.Helper.MscoreApplication
@@ -19,16 +26,37 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
-class StandingInsructionActivity : AppCompatActivity() {
+class StandingInsructionActivity : AppCompatActivity(), View.OnClickListener {
     private var progressDialog: ProgressDialog? = null
+    private var rv_si: RecyclerView? = null
+
+    var imgBack: ImageView? = null
+    var imgHome: ImageView? = null
+
+    var tv_header: TextView? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_si)
+
+
+        rv_si  = findViewById<View>(R.id.rv_si) as RecyclerView?
+        imgBack = findViewById<ImageView>(R.id.imgBack)
+        imgBack!!.setOnClickListener(this)
+        imgHome = findViewById<ImageView>(R.id.imgHome)
+        tv_header= findViewById<TextView>(R.id.tv_header)
+        imgHome!!.setOnClickListener(this)
+
+        val ID_stndins = this.getSharedPreferences(Config.SHARED_PREF215,0)
+        tv_header!!.setText(ID_stndins.getString("StandingInstruction",null))
+
         getStandingInstruction()
     }
 
     private fun getStandingInstruction() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@StandingInsructionActivity, R.style.Progress)
@@ -46,7 +74,7 @@ class StandingInsructionActivity : AppCompatActivity() {
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)
@@ -60,25 +88,18 @@ class StandingInsructionActivity : AppCompatActivity() {
 
                         val TokenSP = applicationContext.getSharedPreferences(Config.SHARED_PREF8, 0)
                         val Token = TokenSP.getString("Token", null)
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("15"))
                         requestObject1.put("FK_Customer",  MscoreApplication.encryptStart(FK_Customer))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-                        requestObject1.put(
-                                "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                        R.string.BankKey
-                                )
-                        )
-                        )
-                        requestObject1.put(
-                                "BankHeader", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                        R.string.BankHeader
-                                )
-                        )
-                        )
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
+
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -102,16 +123,13 @@ class StandingInsructionActivity : AppCompatActivity() {
                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 if (jObject.getString("StatusCode") == "0") {
-                                   /*    val jobjt = jObject.getJSONObject("VarificationMaintenance")
-
-                                    val jobjt =
-                                        jObject.getJSONObject("AccountMiniStatement")
+                                       val jobjt = jObject.getJSONObject("StandingInstructionInfo")
                                     val jarray =
-                                        jobjt.getJSONArray("AccountMiniStatementList")
+                                        jobjt.getJSONArray("StandingInstructionDetailsList")
 
-                                    val obj_adapter = MinistatementAdaptor(applicationContext!!, jarray)
-                                    rv_ministatementlist!!.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
-                                    rv_ministatementlist!!.adapter = obj_adapter*/
+                                    val obj_adapter = StandingInstructionAdaptor(applicationContext!!, jarray)
+                                    rv_si!!.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
+                                    rv_si!!.adapter = obj_adapter
 
                                 } else {
                                     val builder = AlertDialog.Builder(
@@ -180,4 +198,14 @@ class StandingInsructionActivity : AppCompatActivity() {
 
     }
 
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.imgBack ->{
+                finish()
+            }
+            R.id.imgHome ->{
+                startActivity(Intent(this@StandingInsructionActivity, HomeActivity::class.java))
+            }
+        }
+    }
 }

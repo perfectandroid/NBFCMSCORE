@@ -1,18 +1,24 @@
 package com.perfect.nbfcmscore.Activity
 
 import android.app.AlertDialog
+import android.app.Dialog
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.Window
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
-import com.perfect.bizcorelite.Api.ApiInterface
 import com.perfect.nbfcmscore.Adapter.AccountSummaryAdaptor
+import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
 import com.perfect.nbfcmscore.Helper.MscoreApplication
@@ -33,6 +39,7 @@ class MyaccountsummaryActivity : AppCompatActivity() , View.OnClickListener {
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
     var AccountStatus: String=""
+    var tv_header: TextView?=null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +47,12 @@ class MyaccountsummaryActivity : AppCompatActivity() , View.OnClickListener {
         setContentView(R.layout.activity_accountsummary)
         rv_accountsummary = findViewById<View>(R.id.rv_accountsummary) as RecyclerView?
         imgBack = findViewById<ImageView>(R.id.imgBack)
+        tv_header= findViewById<TextView>(R.id.tv_header)
+
+        val ID_accsummry = this.getSharedPreferences(Config.SHARED_PREF214,0)
+        tv_header!!.setText(ID_accsummry.getString("AccountSummary",null))
+
+
         imgBack!!.setOnClickListener(this)
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)
@@ -49,6 +62,8 @@ class MyaccountsummaryActivity : AppCompatActivity() , View.OnClickListener {
 
 
     private fun getAccountDetails() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@MyaccountsummaryActivity, R.style.Progress)
@@ -66,7 +81,7 @@ class MyaccountsummaryActivity : AppCompatActivity() , View.OnClickListener {
                             .setLenient()
                             .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(Config.BASE_URL)
+                            .baseUrl(baseurl)
                             .addConverterFactory(ScalarsConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .client(client)
@@ -95,6 +110,12 @@ class MyaccountsummaryActivity : AppCompatActivity() , View.OnClickListener {
                             AccountStatus = "0"
                         }
 
+                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
+
+
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("10"))
                         requestObject1.put("FK_Customer",  MscoreApplication.encryptStart(FK_Customer))
                         requestObject1.put("AccountStatus", MscoreApplication.encryptStart(AccountStatus))
@@ -104,20 +125,11 @@ class MyaccountsummaryActivity : AppCompatActivity() , View.OnClickListener {
                         requestObject1.put("SubModule", MscoreApplication.encryptStart(SubModule))
 
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-                        requestObject1.put(
-                                "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                        R.string.BankKey
-                                )
-                        )
-                        )
-                        requestObject1.put(
-                                "BankHeader", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                        R.string.BankHeader
-                                )
-                        )
-                        )
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
+
+                        Log.e("TAG","requestObject1  155  "+requestObject1)
+
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -139,8 +151,11 @@ class MyaccountsummaryActivity : AppCompatActivity() , View.OnClickListener {
                         ) {
                             try {
                                 progressDialog!!.dismiss()
+                                Log.e("TAG","response  155  "+response.body())
+
                                 val jObject = JSONObject(response.body())
                                 if (jObject.getString("StatusCode") == "0") {
+
 
                                     val jobj = jObject.getJSONObject("AccountModuleWiseDetailsList")
                                     val jarray = jobj.getJSONArray("Data")
@@ -226,4 +241,6 @@ class MyaccountsummaryActivity : AppCompatActivity() , View.OnClickListener {
             }
         }
     }
+
+
 }

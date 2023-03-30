@@ -18,14 +18,16 @@
     <color name="bgcolour">#e7fdf1</color>
     <color name="navtopcolour">#014c60</color>
     <color name="navbottompcolour">#50753b</color>
+    <color name="newbgcolour">#F2F3F5</color>
 
     <color name="colorViolet">#305577</color>
     <color name="coloryellow">#FFEB3B</color>
     <color name="grey">#808080</color>
     <color name="greylight">#E1DFDF</color>
     <color name="greylight3">#FAF4F4</color>
+    <color name="greylight4">#F1F3F3</color>
     <color name="green">#127317</color>
-
+    <color name="btngreen">#61B383</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -34,8 +36,18 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#0168BA</color>
+    <color name="passtext">#014C60</color>
+    <color name="passavailbal">#539F73</color>
+    <color name="passatbleclr">#F4F2FE</color>
 
+    <color name="light_screen">#40FFB2C3</color>
     <color name="color_activity_transparent">#00000000</color>
+
+    <color name="text_primary">#DADADA</color>
+    <color name="text_secondary">#999999</color>
+    <color name="text_fourth">#EDECEC</color>
+    <color name="text_tertary">#ff333333</color>
+
 
     <!-- dots inactive colors -->
     <color name="dot_dark_screen2">#d1395c</color>
@@ -66,4 +78,101 @@
     </array>
 
     <color name="bottom_line">#93c6fd</color>
+    <color name="color_bottom_line">#A89AD3DF</color>
+    <color name="color_text_bg">#e2f8ec</color>
+<!--    <color name="color_text_bg">#F6FAF8</color>-->
+
+<!--    <color name="color_tab_select">#2B6C7B</color>-->
+<!--    <color name="color_tab_unselect">#4A848E</color>-->
+    <color name="color_tab_select">#01323E</color>
+    <color name="color_tab_unselect">#045E75</color>
+
+    <color name="DarkGray">#A9A9A9</color>
+    <color name="google_green1">#63B456</color>
+    <color name="RoyalBlue">#4169E1</color>
+    <color name="gray_btn_bg_color">#e74c3c</color>
+    <color name="red_error_snack_bar">#ca0606</color>
+    <color name="blue_variant2">#1196C3</color>
+    <color name="button_color">#61B383</color>
+
+    <color name="tab_color">#00ace6</color>
+    <color name="black_75_per">#Bf000000</color>
+    <color name="grey1">#CED1D1</color>
+    <color name="input_bg">#FAFAFA</color>
+    <color name="input_border">#00C6FF</color>
+    <color name="border">#DBDBDB</color>
+    <color name="textcolor2">#014C60</color>
+    <color name="but_tint">#61B383</color>
+
+    <color name="bg_textview">#F5F5F5</color>
+    <color name="bottom_line1">#00C6FF</color>
+
+    <color name="but_color1">#61B383</color>
+    <color name="but_color2">#014C60</color>
+    <color name="card_color">#014c60</color>
+
+    <color name="bg_transfer">#f3f2f8</color>
+    <color name="color_prodlist">#f2f3f5</color>
+    <color name="color_langround">#62b484</color>
+    <color name="black_lang">#BF2C2B2B</color>
+
+    <color name="color_asset1">#006064</color>
+    <color name="color_asset2">#01579b</color>
+    <color name="color_asset3">#1a237e</color>
+    <color name="color_asset4">#4a148c</color>
+    <color name="color_asset5">#a857a4</color>
+    <color name="color_asset6">#39C69D</color>
+    <color name="color_asset7">#848976</color>
+    <color name="color_asset8">#ECAE13</color>
+    <color name="color_asset9">#E01F24</color>
+    <color name="color_asset10">#609F9D</color>
+
+
+
+    <color name="color_liability1">#512DA8</color>
+    <color name="color_liability2">#457b9d</color>
+    <color name="color_liability3">#303F9F</color>
+    <color name="color_liability4">#33691e</color>
+    <color name="color_liability5">#FB3C04</color>
+    <color name="color_liability6">#7B9867</color>
+    <color name="color_liability7">#1BAEE4</color>
+    <color name="color_liability8">#0065FF</color>
+    <color name="color_liability9">#C8373B</color>
+    <color name="color_liability10">#25DAD0</color>
+
+
+    <color name="color_payment1">#2C272E</color>
+    <color name="color_payment2">#753188</color>
+    <color name="color_payment3">#E59934</color>
+    <color name="color_payment4">#66806A</color>
+
+
+    <color name="dashboard1">#41AAA8</color>
+    <color name="dashboard2">#F3F0D7</color>
+    <color name="dashboard3">#FFBF86</color>
+    <color name="dashboard4">#71DFE7</color>
+    <color name="dashboard5">#94DAFF</color>
+    <color name="dashboard6">#6C7B95</color>
+    <color name="dashboard7">#E5890A</color>
+    <color name="dashboard8">#D8B6A4</color>
+    <color name="dashboard9">#82ACFF</color>
+    <color name="dashboard10">#ADC2A9</color>
+    <color name="dashboard11">#FFCCD2</color>
+    <color name="dashboard12">#13ABC4</color>
+    <color name="dashboard13">#9D84B7</color>
+    <color name="dashboard14">#CFB784</color>
+    <color name="dashboard15">#52DE97</color>
+
+    <color name="dashboard16">#006064</color>
+    <color name="dashboard17">#7B9867</color>
+
+
+
+
+
+
+
+
+    <color name="test">#fbfbfb</color>
+
 </resources>

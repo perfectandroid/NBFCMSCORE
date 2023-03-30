@@ -35,16 +35,29 @@
                         android:gravity="center"
                         android:layout_margin="10dp"/>
                     <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        android:padding="15dp"
-                        android:src="@drawable/login_icon"
+                        android:id="@+id/imgLogo"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:padding="5dp"
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:layout_marginTop="10dp"
-                        android:layout_marginBottom="100dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"/>
+                    <TextView
+                        android:id="@+id/tv_product_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="25dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="60dp"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -88,7 +101,7 @@
                             android:drawableLeft="@drawable/mpinicon"
                             android:maxLength="6"
                             android:padding="10dp"
-                            android:inputType="phone"
+                            android:inputType="number"
                             android:layout_marginLeft="25dp"
                             android:layout_marginRight="25dp"
                             android:layout_marginTop="10dp"
@@ -110,7 +123,7 @@
                             android:textSize="15dp"
                             android:background="@drawable/btn_bg2"
                             android:maxLength="6"
-                            android:inputType="phone"
+                            android:inputType="number"
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="10dp"/>
 

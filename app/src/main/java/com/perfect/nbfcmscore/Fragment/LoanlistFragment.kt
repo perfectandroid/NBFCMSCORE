@@ -3,6 +3,7 @@ package com.perfect.nbfcmscore.Fragment
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.GsonBuilder
-import com.perfect.bizcorelite.Api.ApiInterface
+import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Adapter.AccountLsitAdaptor
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
@@ -32,6 +33,7 @@ import java.util.*
 
 class LoanlistFragment : Fragment(){
 
+    val TAG: String = "LoanlistFragment"
     private var switch1: Switch? = null
     var tvdate: TextView? = null
 
@@ -49,19 +51,33 @@ class LoanlistFragment : Fragment(){
 
         tvdate = v.findViewById<View>(R.id.tvdate) as TextView?
         val sdf = SimpleDateFormat("dd-M-yyyy")
-        tvdate!!.text="** List as on "+sdf.format(Date())+"."
+
+        val ID_list = context!!.getSharedPreferences(Config.SHARED_PREF209,0)
+        var listason =  ID_list.getString("ListasonDate", null)
+
+
+        tvdate!!.text="** "+listason+" "+sdf.format(Date())+"."
+
+      //  tvdate!!.text="** List as on "+sdf.format(Date())+"."
         rv_Accountlist = v.findViewById<View>(R.id.rv_Accountlist) as RecyclerView?
         getAccountlist("1")
         switch1 = v.findViewById<View>(R.id.switch1) as Switch?
 
+        val ID_Active = activity!!.getSharedPreferences(Config.SHARED_PREF87,0)
+        switch1!!.setText(ID_Active.getString("Active",null))
+
+        val ID_Closed = activity!!.getSharedPreferences(Config.SHARED_PREF199,0)
+
         switch1?.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked){
-                switch1!!.setText("Closed")
+                switch1!!.setText(ID_Closed.getString("Closed",null))
+               // switch1!!.setText("Closed")
                 switch1!!.setTextColor(resources.getColor(R.color.redDark))
 
                 getAccountlist("0")
             }else{
-                switch1!!.setText("Active")
+              //  switch1!!.setText("Active")
+                switch1!!.setText(ID_Active.getString("Active",null))
                 switch1!!.setTextColor(resources.getColor(R.color.green))
                 getAccountlist("1")
             }
@@ -70,6 +86,8 @@ class LoanlistFragment : Fragment(){
     }
 
     private fun getAccountlist(strStatus: String) {
+        val baseurlSP = context!!.applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(context!!)) {
             true -> {
                 progressDialog = ProgressDialog(context, R.style.Progress)
@@ -87,7 +105,7 @@ class LoanlistFragment : Fragment(){
                         .setLenient()
                         .create()
                     val retrofit = Retrofit.Builder()
-                        .baseUrl(Config.BASE_URL)
+                        .baseUrl(baseurl)
                         .addConverterFactory(ScalarsConverterFactory.create())
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .client(client)
@@ -102,25 +120,22 @@ class LoanlistFragment : Fragment(){
                         val TokenSP = context!!.applicationContext.getSharedPreferences(Config.SHARED_PREF8, 0)
                         val Token = TokenSP.getString("Token", null)
 
+
+                        val BankKeySP = context!!.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP = context!!.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
+
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("9"))
                         requestObject1.put("FK_Customer",  MscoreApplication.encryptStart(FK_Customer))
                         requestObject1.put("SubMode", MscoreApplication.encryptStart("0"))
                         requestObject1.put("AccountStatus", MscoreApplication.encryptStart(strStatus))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-                        requestObject1.put(
-                            "BankKey", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                    R.string.BankKey
-                                )
-                            )
-                        )
-                        requestObject1.put(
-                            "BankHeader", MscoreApplication.encryptStart(
-                                getResources().getString(
-                                    R.string.BankHeader
-                                )
-                            )
-                        )
+
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
+
+                        Log.e(TAG,"requestObject1   1291    "+requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -148,11 +163,13 @@ class LoanlistFragment : Fragment(){
                         ) {
                             try {
                                 progressDialog!!.dismiss()
+                                Log.e(TAG,"response   1292    "+response.body())
                                 val jObject = JSONObject(response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jObject = JSONObject(response.body())
                                     if (jObject.getString("StatusCode") == "0") {
                                         //   val jobjt = jObject.getJSONObject("VarificationMaintenance")
+                                        rv_Accountlist!!.visibility=View.VISIBLE
 
                                         val jobjt =
                                             jObject.getJSONObject("CustomerLoanAndDepositDetails")
@@ -164,6 +181,8 @@ class LoanlistFragment : Fragment(){
                                         rv_Accountlist!!.adapter = obj_adapter
 
                                     } else {
+                                        rv_Accountlist!!.visibility=View.GONE
+
                                         val builder = AlertDialog.Builder(
                                             context!!,
                                             R.style.MyDialogTheme
@@ -176,6 +195,7 @@ class LoanlistFragment : Fragment(){
                                         alertDialog.show()
                                     }
                                 } else {
+                                    rv_Accountlist!!.visibility=View.GONE
                                     val builder = AlertDialog.Builder(
                                         context!!,
                                         R.style.MyDialogTheme

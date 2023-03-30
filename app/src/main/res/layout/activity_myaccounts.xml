@@ -42,6 +42,7 @@
                     android:layout_width="0dp"
                     android:layout_height="35dp"
                     android:layout_weight=".2"
+                    android:padding="5dp"
                     android:src="@drawable/ic_home" />
 
             </LinearLayout>
@@ -49,18 +50,19 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             app:tabMode="fixed"
             app:tabGravity="fill"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"
+            app:tabIndicatorColor="@color/color_tab_select"
             app:tabBackground="@drawable/tab_selector"
             tools:ignore="MissingConstraints"
-            app:tabIndicatorColor="@color/red"
-            app:tabSelectedTextColor="@color/black"
+            app:tabSelectedTextColor="@color/white"
             app:tabTextColor="@color/white" />
+<!--        -->
+
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"

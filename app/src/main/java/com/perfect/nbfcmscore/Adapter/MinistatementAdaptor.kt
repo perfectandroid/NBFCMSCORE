@@ -54,12 +54,12 @@ class MinistatementAdaptor(internal val mContext: Context, internal val jsInfo: 
                 holder.tvdate!!.setText(jsonObject!!.getString("TransDate") )
 
                 if(jsonObject!!.getString("TransType").equals("D")){
-                    holder.tvamount!!.setText(jsonObject!!.getString("Amount")+" D")
+                    holder.tvamount!!.setText("₹ "+ Config.getDecimelFormate(jsonObject!!.getDouble("Amount"))+" Dr")
                     holder.tvamount!!.setTextColor(mContext.resources.getColor(R.color.redDark))
 
                 } else if(jsonObject!!.getString("TransType").equals("C")){
 
-                    holder.tvamount!!.setText(jsonObject!!.getString("Amount")+" C")
+                    holder.tvamount!!.setText("₹ "+ Config.getDecimelFormate(jsonObject!!.getDouble("Amount"))+" Cr")
                     holder.tvamount!!.setTextColor(mContext.resources.getColor(R.color.green))
 
                 }

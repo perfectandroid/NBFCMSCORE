@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.KSEBActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:id="@+id/rltv_header"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimary">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3.5"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/im_back"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/arrow_back" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:textSize="18dp"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/white"
+                        android:text="KSEB" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3.5"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/im_home"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/ic_home" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_below="@+id/rltv_header">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/ll_button">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="20dp">
+
+
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:padding="5dp"
+                            app:cardBackgroundColor="@color/bg_transfer"
+                            app:cardCornerRadius="5dp">
+                            <LinearLayout
+                                android:id="@+id/rltv_consumername"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_light_grey"
+                                android:orientation="vertical"
+                                android:padding="2dp">
+
+                                <TextView
+                                    android:id="@+id/txtconsumername"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/input_border"
+                                    android:layout_marginLeft="5dp"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"
+                                    android:text="Consumer name"/>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/tie_consumername"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:backgroundTint="@color/input_border"
+                                        android:drawableTint="@color/input_border"
+                                        android:enabled="true"
+                                        android:hint=""
+                                        android:inputType="text"
+                                        android:textColorHint="@color/colorPrimarylight" />
+
+
+                                </LinearLayout>
+
+
+
+
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"                        android:padding="5dp"
+                            app:cardBackgroundColor="@color/bg_transfer"
+                            app:cardCornerRadius="5dp">
+                            <LinearLayout
+                                android:id="@+id/rltv_mobile"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_light_grey"
+                                android:orientation="vertical"
+                                android:padding="2dp">
+
+                                <TextView
+                                    android:id="@+id/txtmobilenumber"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/input_border"
+                                    android:layout_marginLeft="5dp"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"
+                                    android:text="Mobile number"/>
+
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/tie_mobilenumber"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:backgroundTint="@color/input_border"
+                                    android:drawableTint="@color/input_border"
+                                    android:enabled="true"
+                                    android:hint=""
+                                    android:inputType="number"
+                                    android:textColorHint="@color/colorPrimarylight" />
+
+
+                                <LinearLayout
+                                    android:id="@+id/ll_contact"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_alignParentRight="true"
+                                    android:gravity="center"
+                                    android:visibility="gone">
+
+                                    <ImageView
+                                        android:id="@+id/im_contact"
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:backgroundTint="@color/colorPrimarylight"
+                                        android:src="@drawable/im_contacts" />
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:padding="5dp"
+                            app:cardBackgroundColor="@color/bg_transfer"
+                            app:cardCornerRadius="5dp">
+                            <LinearLayout
+                                android:id="@+id/rltv_consumerno"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_light_grey"
+                                android:orientation="vertical"
+                                android:padding="2dp">
+
+                                <TextView
+                                    android:id="@+id/txtconsumerno"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/input_border"
+                                    android:layout_marginLeft="5dp"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"
+                                    android:text="Consumer number"/>
+
+
+                                <!--                            <com.google.android.material.textfield.TextInputLayout-->
+                                <!--                                android:id="@+id/til_consumerno"-->
+                                <!--                                android:layout_width="match_parent"-->
+                                <!--                                android:layout_height="wrap_content"-->
+                                <!--                                android:background="@android:color/transparent"-->
+                                <!--                                android:backgroundTint="@color/input_border"-->
+                                <!--                                android:textColorHint="@color/colorPrimarylight"-->
+                                <!--                                app:hintTextColor="@color/colorPrimarylight">-->
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/tie_consumerno"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:backgroundTint="@color/input_border"
+                                    android:drawableTint="@color/input_border"
+                                    android:enabled="true"
+                                    android:hint=""
+                                    android:inputType="number"
+                                    android:textColorHint="@color/colorPrimarylight" />
+
+                                <!--                            </com.google.android.material.textfield.TextInputLayout>-->
+
+
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:padding="5dp"
+                            app:cardBackgroundColor="@color/bg_transfer"
+                            app:cardCornerRadius="5dp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_light_grey"
+                                android:orientation="vertical"
+                                android:padding="5dp">
+
+                                <TextView
+                                    android:id="@+id/txtsectionname"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:text="Section name"
+                                    android:textColor="@color/input_border"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <!--                                <com.google.android.material.textfield.TextInputLayout-->
+                                    <!--                                    android:layout_width="match_parent"-->
+                                    <!--                                    android:layout_height="wrap_content"-->
+                                    <!--                                    android:layout_toLeftOf="@+id/ll_sectionname"-->
+                                    <!--                                    android:background="@android:color/transparent"-->
+                                    <!--                                    android:backgroundTint="@color/input_border"-->
+                                    <!--                                    android:textColorHint="@color/colorPrimarylight"-->
+                                    <!--                                    app:hintTextColor="@color/colorPrimarylight">-->
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/tie_sectionname"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_toLeftOf="@+id/ll_sectionname"
+                                        android:backgroundTint="@color/input_border"
+                                        android:clickable="true"
+                                        android:drawableTint="@color/input_border"
+                                        android:focusable="false"
+                                        android:hint=""
+                                        android:inputType="text"
+                                        android:textColorHint="@color/colorPrimarylight" />
+
+                                    <!--                                </com.google.android.material.textfield.TextInputLayout>-->
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_sectionname"
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+                                        android:layout_alignParentRight="true"
+                                        android:gravity="center">
+
+                                        <ImageView
+                                            android:id="@+id/im_sectionname"
+                                            android:layout_width="30dp"
+                                            android:layout_height="30dp"
+                                            android:layout_alignParentRight="true"
+                                            android:background="@drawable/ic_offers"
+                                            android:visibility="visible"/>
+
+                                    </LinearLayout>
+
+
+                                </RelativeLayout>
+
+
+
+
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:padding="5dp"
+                            app:cardBackgroundColor="@color/bg_transfer"
+                            app:cardCornerRadius="5dp">
+                            <LinearLayout
+                                android:id="@+id/rltv_billno"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_light_grey"
+                                android:orientation="vertical"
+                                android:padding="2dp">
+
+
+                                <!--                            <com.google.android.material.textfield.TextInputLayout-->
+                                <!--                                android:id="@+id/til_billno"-->
+                                <!--                                android:layout_width="match_parent"-->
+                                <!--                                android:layout_height="match_parent"-->
+                                <!--                                android:background="@android:color/transparent"-->
+                                <!--                                android:textColorHint="@color/colorPrimarylight"-->
+                                <!--                                app:hintTextColor="@color/colorPrimarylight">-->
+
+                                <!--                                <com.google.android.material.textfield.TextInputEditText-->
+                                <!--                                    android:id="@+id/tie_billno"-->
+                                <!--                                    android:layout_width="match_parent"-->
+                                <!--                                    android:layout_height="wrap_content"-->
+                                <!--                                    android:background="@android:color/transparent"-->
+                                <!--                                    android:hint="Bill number"-->
+                                <!--                                    android:inputType="number"-->
+                                <!--                                    android:textColorHint="@color/colorPrimarylight" />-->
+
+                                <!--                            </com.google.android.material.textfield.TextInputLayout>-->
+
+
+                                <TextView
+                                    android:id="@+id/txtbillno"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:text="Bill number"
+                                    android:textColor="@color/input_border"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/tie_billno"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:backgroundTint="@color/input_border"
+                                    android:drawableTint="@color/input_border"
+                                    android:enabled="true"
+                                    android:hint=""
+                                    android:inputType="number"
+                                    android:textColorHint="@color/colorPrimarylight" />
+
+
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:padding="5dp"
+                            app:cardBackgroundColor="@color/bg_transfer"
+                            app:cardCornerRadius="5dp">
+                            <LinearLayout
+                                android:id="@+id/rltv_amount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_light_grey"
+                                android:orientation="vertical"
+                                android:padding="2dp">
+
+                                <TextView
+                                    android:id="@+id/txtamount"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/input_border"
+                                    android:layout_marginLeft="5dp"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"
+                                    android:text="Amount"/>
+
+
+                                <!--                            <com.google.android.material.textfield.TextInputLayout-->
+                                <!--                                android:id="@+id/til_amount"-->
+                                <!--                                android:layout_width="match_parent"-->
+                                <!--                                android:layout_height="wrap_content"-->
+                                <!--                                android:backgroundTint="@color/input_border"-->
+                                <!--                                android:textColorHint="@color/colorPrimarylight"-->
+                                <!--                                app:hintTextColor="@color/colorPrimarylight">-->
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/tie_amount"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:backgroundTint="@color/input_border"
+                                    android:drawableTint="@color/input_border"
+                                    android:enabled="true"
+                                    android:hint=""
+                                    android:inputType="number"
+                                    android:textColorHint="@color/colorPrimarylight" />
+
+                                <!--                            </com.google.android.material.textfield.TextInputLayout>-->
+
+
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:padding="5dp"
+                            app:cardBackgroundColor="@color/bg_transfer"
+                            app:cardCornerRadius="5dp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_light_grey"
+                                android:orientation="vertical"
+                                android:padding="2dp">
+
+                                <!--                            <com.google.android.material.textfield.TextInputLayout-->
+                                <!--                                android:layout_width="match_parent"-->
+                                <!--                                android:layout_height="match_parent"-->
+                                <!--                                android:layout_alignParentBottom="true"-->
+                                <!--                                android:background="@android:color/transparent"-->
+                                <!--                                android:textColorHint="@color/colorPrimarylight"-->
+                                <!--                                app:hintTextColor="@color/colorPrimarylight">-->
+
+                                <TextView
+                                    android:id="@+id/txtaccount"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:text="Account number"
+                                    android:textColor="@color/input_border"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/tie_account"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+
+                                    android:backgroundTint="@color/input_border"
+                                    android:drawableTint="@color/input_border"
+                                    android:clickable="true"
+                                    android:focusable="false"
+                                    android:hint=""
+                                    android:textColorHint="@color/colorPrimarylight" />
+
+                                <!--                            </com.google.android.material.textfield.TextInputLayout>-->
+
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginTop="25dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/but_clear"
+                                android:layout_width="match_parent"
+                                android:layout_height="36dp"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/but_ronded1"
+                                android:text="Reset"
+                                android:textColor="@color/white" />
+
+
+                            <Button
+                                android:id="@+id/but_recharge"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/but_rounded2"
+                                android:text="Calculate"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </ScrollView>
+
+
+
+
+                <!--<LinearLayout
+                    android:id="@+id/ll_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/rltv_clear"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/but_rounded2"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/but_clear"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:text="clear"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white" />
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:id="@+id/rltv_recharge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_button"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/but_recharge"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:text="pay"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>-->
+
+
+
+
+
+            </RelativeLayout>
+
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

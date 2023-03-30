@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white">
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/imgBack"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight=".2"
+                android:src="@drawable/navback" />
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="0dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:text="Add Sender"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+
+            <ImageView
+                android:id="@+id/imgHome"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight=".2"
+                android:padding="5dp"
+                android:src="@drawable/ic_home" />
+
+        </LinearLayout>
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white">
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                app:cardBackgroundColor="@color/bg_transfer"
+                app:cardCornerRadius="5dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_light_grey"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/receiver_name_inputlayout"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:layout_marginTop="2dp"
+                            android:paddingLeft="10dp"
+                            android:text="First Name : "
+                            android:textColor="@color/bottom_line1"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/txtv_first_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:inputType="textPersonName"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:drawablePadding="10dp"
+                                android:textStyle="bold"
+                                android:textSize="15dp"
+                                android:backgroundTint="@color/bottom_line1"/>
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                app:cardBackgroundColor="@color/bg_transfer"
+                app:cardCornerRadius="5dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_light_grey"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtv_lastname"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:layout_marginTop="2dp"
+                            android:paddingLeft="10dp"
+                            android:text="Last Name : "
+                            android:textColor="@color/bottom_line1"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/txtv_last_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:inputType="textPersonName"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:drawablePadding="10dp"
+                                android:textStyle="bold"
+                                android:textSize="15dp"
+                                android:backgroundTint="@color/bottom_line1"/>
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                app:cardBackgroundColor="@color/bg_transfer"
+                app:cardCornerRadius="5dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_light_grey"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtvmob"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:layout_marginTop="2dp"
+                            android:paddingLeft="10dp"
+                            android:text="Mobile Number : "
+                            android:textColor="@color/bottom_line1"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/txtv_mobile_number"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:inputType="number"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:drawablePadding="10dp"
+                                android:textStyle="bold"
+                                android:textSize="15dp"
+                                android:maxLength="10"
+                                android:backgroundTint="@color/bottom_line1"/>
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                app:cardBackgroundColor="@color/bg_transfer"
+                app:cardCornerRadius="5dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_light_grey"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtvdate"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:layout_marginTop="2dp"
+                            android:paddingLeft="10dp"
+                            android:text="Date : "
+                            android:textColor="@color/bottom_line1"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/txtv_dob"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:inputType="number"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:drawablePadding="10dp"
+                                android:textStyle="bold"
+                                android:textSize="15dp"
+                                android:clickable="true"
+                                android:focusable="false"
+                                android:maxLength="10"
+                                android:drawableRight="@drawable/date_image"
+                                android:backgroundTint="@color/bottom_line1"/>
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+<!--
+                    <RelativeLayout
+                        android:id="@+id/rltv_last_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/bg_light_grey2"
+                        android:orientation="horizontal">
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/last_name_inputlayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:textColorHint="@color/bottom_line1"
+                            app:hintTextColor="@color/bottom_line1">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtv_last_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:hint=""
+                                android:inputType="text"
+                                android:textColorHint="@color/bottom_line1"
+                                android:textSize="16sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                    </RelativeLayout>
+-->
+
+<!--
+                    <RelativeLayout
+                        android:id="@+id/rltv_mobile_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/bg_light_grey2"
+                        android:orientation="horizontal">
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/mobile_number_inputlayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:textColorHint="@color/bottom_line1"
+                            app:hintTextColor="@color/bottom_line1">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtv_mobile_number"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:hint="MOBILE NUMBER"
+                                android:inputType="number"
+                                android:textColorHint="@color/bottom_line1"
+                                android:textSize="16sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                    </RelativeLayout>
+-->
+
+                  <!--  <RelativeLayout
+                        android:id="@+id/rltv_dob"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/bg_light_grey2"
+                        android:orientation="horizontal">
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/dob_inputlayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:layout_toLeftOf="@+id/ll_dob"
+                            android:textColorHint="@color/bottom_line1"
+                            app:hintTextColor="@color/bottom_line1">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtv_dob"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:hint=""
+                                android:clickable="true"
+                                android:focusable="false"
+                                android:textColorHint="@color/bottom_line1"
+                                android:textSize="16sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_dob"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_alignParentRight="true"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:id="@+id/imgv_datepick"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:backgroundTint="@color/colorPrimarylight"
+                                android:src="@drawable/date_image" />
+
+                        </LinearLayout>
+                    </RelativeLayout>-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_alignParentBottom="true"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btn_clear"
+                            android:layout_width="match_parent"
+                            android:layout_height="36dp"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/but_ronded1"
+                            android:text="Reset"
+                            android:textColor="@color/white" />
+
+
+                        <Button
+                            android:id="@+id/btn_register"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/but_rounded2"
+                            android:text="@string/register"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

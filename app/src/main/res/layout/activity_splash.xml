@@ -17,18 +17,56 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:gravity="center_horizontal"
                 tools:ignore="MissingConstraints" >
 
                 <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:id="@+id/imglogo"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:layout_gravity="center"
                     android:gravity="center"
+                    android:padding="10dp"
                     android:layout_marginTop="60dp"
                     android:layout_marginLeft="60dp"
                     android:layout_marginRight="60dp"
-                    android:layout_marginBottom="60dp"
-                    android:src="@drawable/applogo" />
+                    android:layout_marginBottom="60dp" />
+                <TextView
+                    android:id="@+id/tv_error_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imgv1"/>
+
+
+                <Button
+                    android:id="@+id/btn_proceed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="1dp"
+                    android:paddingLeft="50dp"
+                    android:paddingRight="50dp"
+                    android:background="@drawable/but_ronded1"
+                    android:gravity="center"
+                    android:text="PROCEED"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
 
                 <ImageView
                     android:id="@+id/imsplashlogo"
@@ -40,6 +78,23 @@
                     android:gravity="center" />
             </LinearLayout>
         </ScrollView>
+
+        <Button
+            android:id="@+id/btn_proceeds"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="0.1"
+            android:background="@drawable/custom_edt_txt_account_border"
+            android:gravity="center"
+            android:padding="2.5dp"
+            android:text="PROCEED"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:visibility="gone" />
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="50dp"
