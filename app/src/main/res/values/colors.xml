@@ -8,10 +8,10 @@
     <color name="colorViolet">#305577</color>-->
 
 
-    <color name="colorPrimary">#014c60</color>
-    <color name="colorPrimaryDark">#09160c</color>
-    <color name="colorPrimaryExtraDark">#050B06</color>
-    <color name="colorAccent">#b4dd7f</color>
+    <color name="colorPrimary">#AC8299</color>
+    <color name="colorPrimaryDark">#956981</color>
+    <color name="colorPrimaryExtraDark">#6C4D5E</color>
+    <color name="colorAccent">#AC8299</color>
     <color name="colortopheader">#1e3120</color>
     <color name="colorPrimarylight">#CB51A6BC</color>
     <color name="colorAccentlight">#CDCEECA8</color>
