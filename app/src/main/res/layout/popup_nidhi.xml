@@ -36,7 +36,7 @@
             android:layout_marginTop="16dp"
             android:gravity="center_horizontal"
             android:text="Please Enter Nidhi Code"
-            android:textColor="#566573"
+            android:textColor="@color/white"
             android:textSize="14sp" />
 
         <TextView

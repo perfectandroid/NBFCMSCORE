@@ -3,13 +3,22 @@ package com.perfect.nbfcmscore.Activity
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.widget.ImageViewCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.applandeo.materialcalendarview.CalendarView
+import com.applandeo.materialcalendarview.CalendarWeekDay
+import com.applandeo.materialcalendarview.EventDay
+import com.applandeo.materialcalendarview.listeners.OnDayClickListener
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Adapter.HolidayListAdapter
@@ -28,21 +37,30 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import java.text.SimpleDateFormat
 import java.util.*
 
 
-class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener,View.OnClickListener {
+class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener,
+    View.OnClickListener {
     private var progressDialog: ProgressDialog? = null
     private var jresult: JSONArray? = null
     private var jresult1: JSONArray? = null
     private var rv_holiday: RecyclerView? = null
     var spnBranch: Spinner? = null
     var imgBack: ImageView? = null
+    var imgCalender: ImageView? = null
+    var imgList: ImageView? = null
     var imgHome: ImageView? = null
     var tv_header: TextView? = null
+    var txtReason: TextView? = null
     var textView5: TextView? = null
+    var linCalender: LinearLayout? = null
+    var linCalenderMain: LinearLayout? = null
+    var linList: LinearLayout? = null
+    var calendarView: CalendarView? = null
 
-    var branchid:String?=null
+    var branchid: String? = null
     var arrayList1 = ArrayList<String>()
     public var arrayList2: ArrayList<Branchcode>? = null
     val TAG: String? = "HolidayListActivity"
@@ -53,23 +71,24 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         setContentView(R.layout.activity_holiday)
         setRegViews()
         getBranchlist()
-        rv_holiday!!.visibility=View.GONE
-//        getHolidayList(branchid)
-
-
-
-
+        rv_holiday!!.visibility = View.GONE
     }
+
     private fun setRegViews() {
 
         imgBack = findViewById<ImageView>(R.id.imgBack)
+        imgCalender = findViewById<ImageView>(R.id.imgCalender)
+        imgList = findViewById<ImageView>(R.id.imgList)
         imgBack!!.setOnClickListener(this)
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)
-        textView5= findViewById<TextView>(R.id.textView5)
-
-        tv_header= findViewById<TextView>(R.id.tv_header)
-
+        textView5 = findViewById<TextView>(R.id.textView5)
+        txtReason = findViewById<TextView>(R.id.txtReason)
+        linCalender = findViewById<LinearLayout>(R.id.linCalender)
+        linList = findViewById<LinearLayout>(R.id.linList)
+        linCalenderMain = findViewById<LinearLayout>(R.id.linCalenderMain)
+        tv_header = findViewById<TextView>(R.id.tv_header)
+        calendarView = findViewById<CalendarView>(R.id.calendarView)
         val HeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF83, 0)
         tv_header!!.setText(HeaderSP.getString("HolidayList", null))
 
@@ -79,13 +98,16 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 
 
         rv_holiday = findViewById(R.id.rv_holiday)
-        spnBranch = findViewById( R.id.spnBranch)
+        spnBranch = findViewById(R.id.spnBranch)
         spnBranch!!.onItemSelectedListener = this
+        linCalender!!.setOnClickListener(this)
+        linList!!.setOnClickListener(this)
     }
+
     private fun getBranchlist() {
         val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurl = baseurlSP.getString("baseurl", null)
-        when(ConnectivityUtils.isConnected(this)) {
+        when (ConnectivityUtils.isConnected(this)) {
             true -> {
                 /*progressDialog = ProgressDialog(this@HolidayListActivity, R.style.Progress)
                 progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
@@ -122,21 +144,29 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                             0
                         )
                         val Token = TokenSP.getString("Token", null)
-                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeySP =
+                            applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
                         val BankKeyPref = BankKeySP.getString("BankKey", null)
-                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderSP =
+                            applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
                         val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("8"))
-                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
+                        requestObject1.put(
+                            "FK_Customer",
+                            MscoreApplication.encryptStart(FK_Customer)
+                        )
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
-                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
+                        requestObject1.put(
+                            "BankHeader",
+                            MscoreApplication.encryptStart(BankHeaderPref)
+                        )
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
 
 
                         Log.e("TAG", "requestObject1  171   " + requestObject1)
                     } catch (e: Exception) {
-                       // progressDialog!!.dismiss()
+                        // progressDialog!!.dismiss()
                         e.printStackTrace()
                         val mySnackbar = Snackbar.make(
                             findViewById(R.id.rl_main),
@@ -155,7 +185,7 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                             Response<String>
                         ) {
                             try {
-                              //  progressDialog!!.dismiss()
+                                //  progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 Log.i("Response 156", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
@@ -188,9 +218,9 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                                         android.R.layout.simple_spinner_dropdown_item, arrayList2!!
                                     )
 
-                                //    getHolidayList(branchid)
+                                    //    getHolidayList(branchid)
                                 } else {
-                                    Log.e(TAG,"Exception  1961   ")
+                                    Log.e(TAG, "Exception  1961   ")
                                     val builder = AlertDialog.Builder(
                                         this@HolidayListActivity,
                                         R.style.MyDialogTheme
@@ -204,7 +234,7 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                                 }
                             } catch (e: Exception) {
                                 //  progressDialog!!.dismiss()
-                                    Log.e(TAG,"Exception  1962   "+e.toString())
+                                Log.e(TAG, "Exception  1962   " + e.toString())
 
                                 val builder = AlertDialog.Builder(
                                     this@HolidayListActivity,
@@ -222,7 +252,7 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             //  progressDialog!!.dismiss()
-                            Log.e(TAG,"Exception  1963   "+t.message)
+                            Log.e(TAG, "Exception  1963   " + t.message)
                             val builder = AlertDialog.Builder(
                                 this@HolidayListActivity,
                                 R.style.MyDialogTheme
@@ -236,7 +266,7 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                         }
                     })
                 } catch (e: Exception) {
-                    Log.e(TAG,"Exception  1964   "+e.toString())
+                    Log.e(TAG, "Exception  1964   " + e.toString())
                     // progressDialog!!.dismiss()
                     val builder = AlertDialog.Builder(
                         this@HolidayListActivity,
@@ -260,16 +290,72 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                 alertDialog.setCancelable(false)
                 alertDialog.show()
             }
-            }
+        }
     }
 
+    private fun setCalender() {
+        val events: MutableList<EventDay> = ArrayList()
+        val date = Date()
+        val myFormat = SimpleDateFormat("dd-MM-yyyy")
+        val inputString1 = myFormat.format(date);
+        Log.v("dfddddddfsfds", "")
+        for (i in 0 until jresult!!.length()) {
+            val modelChild = jresult!!.getJSONObject(i)
+            var date1 = myFormat.parse(inputString1)
+            var date2 = myFormat.parse(modelChild.getString("HolidayDate"))
+            val diff: Long = date2.getTime() - date1.getTime()
+            val datee = diff / (1000 * 60 * 60 * 24)
+            var day = datee.toInt()
+            val calendar = Calendar.getInstance()
+            calendar.add(Calendar.DATE, day);
+            events.add(EventDay(calendar, R.drawable.round, Color.parseColor("#E91E1E")))
+        }
+        calendarView!!.setFirstDayOfWeek(CalendarWeekDay.SUNDAY)
+        calendarView!!.setCalendarDayLayout(R.layout.custom_calendar_day_row)
+        calendarView!!.setEvents(events)
+        calendarView!!.setOnDayClickListener(object : OnDayClickListener {
+            override fun onDayClick(eventDay: EventDay) {
+                val clickedDayCalendar = eventDay.calendar.timeInMillis
+                loadEvent(clickedDayCalendar)
 
+            }
+
+        })
+    }
+
+    private fun loadEvent(clickedDayCalendar: Long) {
+        val myFormat = SimpleDateFormat("dd-MM-yyyy")
+        val dateFromCalender = myFormat.format(clickedDayCalendar)
+        Log.v("dsfsdfdfdrggggg", "dateFromCalender " + dateFromCalender)
+        var reason = ""
+        var haveReason = false;
+        for (i in 0 until jresult!!.length()) {
+            val modelChild = jresult!!.getJSONObject(i)
+            var dateFromArray = modelChild.getString("HolidayDate")
+            Log.v("dfsddddddd3ere", "dateFromArray " + dateFromArray)
+            if (dateFromCalender.equals(dateFromArray)) {
+                reason = modelChild.getString("HolidayReason")
+                haveReason = true
+                break
+            } else {
+                haveReason = false
+            }
+
+        }
+        if (haveReason) {
+            txtReason!!.visibility = View.VISIBLE
+            txtReason!!.text = reason
+        } else {
+            txtReason!!.visibility = View.GONE
+        }
+
+    }
 
     private fun getHolidayList(branchid: String?) {
-        rv_holiday!!.visibility=View.GONE
+        rv_holiday!!.visibility = View.GONE
         val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurl = baseurlSP.getString("baseurl", null)
-        when(ConnectivityUtils.isConnected(this)) {
+        when (ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@HolidayListActivity, R.style.Progress)
                 progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
@@ -306,17 +392,25 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                             0
                         )
                         val Token = TokenSP.getString("Token", null)
-                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeySP =
+                            applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
                         val BankKeyPref = BankKeySP.getString("BankKey", null)
-                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderSP =
+                            applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
                         val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("24"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
                         requestObject1.put("BranchCode", MscoreApplication.encryptStart(branchid))
-                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
+                        requestObject1.put(
+                            "FK_Customer",
+                            MscoreApplication.encryptStart(FK_Customer)
+                        )
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
-                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
+                        requestObject1.put(
+                            "BankHeader",
+                            MscoreApplication.encryptStart(BankHeaderPref)
+                        )
 
 
                         Log.e("TAG", "requestObject1  171   " + requestObject1)
@@ -344,7 +438,7 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                                 val jObject = JSONObject(response.body())
                                 Log.i("Response", response.body())
                                 if (jObject.getString("StatusCode") == "0") {
-                                    rv_holiday!!.visibility=View.VISIBLE
+                                    //
                                     val jsonObj1: JSONObject =
                                         jObject.getJSONObject("HolidayDetails")
                                     val jsonobj2 = JSONObject(jsonObj1.toString())
@@ -363,13 +457,14 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                                         )
 
                                         rv_holiday!!.adapter = adapter
+                                        setCalender();
+                                        loadList()
 
                                     } else {
-                                        if(rv_holiday!!.isShown())
-                                        {
+                                        if (rv_holiday!!.isShown()) {
                                             val builder = AlertDialog.Builder(
-                                                    this@HolidayListActivity,
-                                                    R.style.MyDialogTheme
+                                                this@HolidayListActivity,
+                                                R.style.MyDialogTheme
                                             )
                                             builder.setMessage("" + jObject.getString("EXMessage"))
                                             builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -377,9 +472,7 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                                             val alertDialog: AlertDialog = builder.create()
                                             alertDialog.setCancelable(false)
                                             alertDialog.show()
-                                        }
-                                        else
-                                        {
+                                        } else {
 
                                         }
 
@@ -387,11 +480,10 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 
 
                                 } else {
-                                    if(rv_holiday!!.isShown())
-                                    {
+                                    if (rv_holiday!!.isShown()) {
                                         val builder = AlertDialog.Builder(
-                                                this@HolidayListActivity,
-                                                R.style.MyDialogTheme
+                                            this@HolidayListActivity,
+                                            R.style.MyDialogTheme
                                         )
                                         builder.setMessage("" + jObject.getString("EXMessage"))
                                         builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -404,11 +496,10 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
-                                if(rv_holiday!!.isShown())
-                                {
+                                if (rv_holiday!!.isShown()) {
                                     val builder = AlertDialog.Builder(
-                                            this@HolidayListActivity,
-                                            R.style.MyDialogTheme
+                                        this@HolidayListActivity,
+                                        R.style.MyDialogTheme
                                     )
                                     builder.setMessage("Some technical issues.")
                                     builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -424,10 +515,10 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
-                            if(rv_holiday!!.isShown()){
+                            if (rv_holiday!!.isShown()) {
                                 val builder = AlertDialog.Builder(
-                                        this@HolidayListActivity,
-                                        R.style.MyDialogTheme
+                                    this@HolidayListActivity,
+                                    R.style.MyDialogTheme
                                 )
                                 builder.setMessage("Some technical issues.")
                                 builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -441,10 +532,10 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    if(rv_holiday!!.isShown()){
+                    if (rv_holiday!!.isShown()) {
                         val builder = AlertDialog.Builder(
-                                this@HolidayListActivity,
-                                R.style.MyDialogTheme
+                            this@HolidayListActivity,
+                            R.style.MyDialogTheme
                         )
                         builder.setMessage("Some technical issues.")
                         builder.setPositiveButton("Ok") { dialogInterface, which ->
@@ -477,16 +568,16 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         val branchcode: Branchcode = arrayList2!!.get(position)
         branchid = branchcode.getId()
 
-      //  Toast.makeText(this, "ID: " + branchcode.getId() + "\nBranch: " + branchcode.getBranch(),
+        //  Toast.makeText(this, "ID: " + branchcode.getId() + "\nBranch: " + branchcode.getBranch(),
         //    Toast.LENGTH_SHORT).show();
-      //
-        rv_holiday!!.visibility=View.VISIBLE
+        //
+        rv_holiday!!.visibility = View.VISIBLE
         getHolidayList(branchid)
 
-       // var id=arrayList2.get(position).
+        // var id=arrayList2.get(position).
         // TextView textView = (TextView)mAccountTypeSpinner.getSelectedView();
-       // var result = adapter1!!.getItem(position).branchcode()
-    //   Toast.makeText(applicationContext, "Branchcode :" + result, Toast.LENGTH_LONG).show()
+        // var result = adapter1!!.getItem(position).branchcode()
+        //   Toast.makeText(applicationContext, "Branchcode :" + result, Toast.LENGTH_LONG).show()
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -501,7 +592,51 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             R.id.imgHome -> {
                 startActivity(Intent(this@HolidayListActivity, HomeActivity::class.java))
             }
+            R.id.linCalender -> {
+                loadCalender()
+            }
+            R.id.linList -> {
+                loadList()
+            }
         }
+    }
+
+    fun loadCalender() {
+        val date = Date()
+        val myFormat = SimpleDateFormat("dd-MM-yyyy")
+        val inputString1 = myFormat.format(date);
+        loadEvent(date.time)
+        rv_holiday!!.visibility = View.GONE
+        linCalenderMain!!.visibility = View.VISIBLE
+        ImageViewCompat.setImageTintList(
+            imgCalender!!,
+            ColorStateList.valueOf(resources.getColor(R.color.white))
+        )
+        ImageViewCompat.setImageTintList(
+            imgList!!,
+            ColorStateList.valueOf(resources.getColor(R.color.black))
+        )
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            linList!!.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#999999")))
+            linCalender!!.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#14a895")))
+        };
+    }
+
+    fun loadList() {
+        rv_holiday!!.visibility = View.VISIBLE
+        linCalenderMain!!.visibility = View.GONE
+        ImageViewCompat.setImageTintList(
+            imgList!!,
+            ColorStateList.valueOf(resources.getColor(R.color.white))
+        )
+        ImageViewCompat.setImageTintList(
+            imgCalender!!,
+            ColorStateList.valueOf(resources.getColor(R.color.black))
+        )
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            linCalender!!.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#999999")))
+            linList!!.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#14a895")))
+        };
     }
 
 

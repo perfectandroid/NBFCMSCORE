@@ -202,6 +202,60 @@
                     tools:ignore="RelativeOverlap" />
 
             </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/linList"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:background="@drawable/bg_select"
+                android:backgroundTint="#14a895"
+                android:layout_margin="10dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/imgList"
+                    android:layout_width="40dp"
+                    android:src="@drawable/baseline_view_list_24"
+                    android:tint="@color/white"
+                    android:padding="10dp"
+                    android:layout_height="40dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:padding="10dp"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content"
+                    android:text="List"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linCalender"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:backgroundTint="#999999"
+                android:background="@drawable/bg_select"
+                android:layout_margin="10dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/imgCalender"
+                    android:layout_width="40dp"
+                    android:src="@drawable/ic_calender"
+                    android:tint="@color/black"
+                    android:padding="10dp"
+                    android:layout_height="40dp"/>
+                <TextView
+                    android:layout_width="80dp"
+                    android:padding="10dp"
+                    android:visibility="gone"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:layout_height="wrap_content"
+                    android:text="Calender"/>
+            </LinearLayout>
+        </LinearLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -222,9 +276,35 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="8dp"
+                    android:visibility="gone"
                     android:layout_marginRight="8dp"
                     android:layout_marginBottom="10dp" />
-
+                <LinearLayout
+                    android:id="@+id/linCalenderMain"
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:orientation="vertical"
+                    android:layout_height="match_parent">
+                <com.applandeo.materialcalendarview.CalendarView
+                    android:id="@+id/calendarView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:headerColor="@color/colorPrimary"
+                    app:selectionColor="@color/blue_variant2"
+                    app:selectionLabelColor="@color/teal_200"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="8dp"
+                    android:visibility="visible"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="10dp" />
+                    <TextView
+                        android:id="@+id/txtReason"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:textSize="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
                 <TextView
                     android:id="@+id/empty_list"
                     android:layout_width="match_parent"

@@ -285,7 +285,7 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
         }, year, month, day)
         dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
         val now = System.currentTimeMillis() - 1000
-        dpd.getDatePicker().setMaxDate(now + 1000 * 60 * 60 * 24 * 2)
+       // dpd.getDatePicker().setMaxDate(now + 1000 * 60 * 60 * 24 * 2)
         dpd.show()
     }
 
