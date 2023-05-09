@@ -1,0 +1,1977 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <LinearLayout
+        android:id="@+id/linmain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:paddingTop="5dp">
+
+            <ImageView
+                android:id="@+id/backBtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:tint="@color/colorPrimaryExtraDark"
+                android:src="@drawable/arrow_left_icon">
+
+            </ImageView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_weight="4"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txt_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nihal Pavithran"
+                    android:textColor="@color/colorPrimaryExtraDark"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+91 9746677291"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/tvUpi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="nihalnihalpavithran@okhdfcbank"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="13dp" />
+                <TextView
+                    android:id="@+id/tvSetup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:layout_marginTop="5dp"
+                    android:text="UPI ID Generation In Progress"
+                    android:textColor="@color/colorPrimaryExtraDark"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profile_image_main"
+                android:layout_width="96dp"
+                android:layout_height="96dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/profile_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/new_account" />
+                <!--                android:src="@drawable/user"-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom|right">
+
+                    <ImageView
+                        android:id="@+id/img_customer"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/roundbg"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:padding="8dp"
+                        android:src="@drawable/ic_baseline_qr_code_24"
+                        app:tint="@color/white" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:gravity="center"
+            android:paddingBottom="10dp">
+
+            <LinearLayout
+                android:id="@+id/llmobile"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:padding="5dp"
+                android:background="@drawable/bg_upi_select"
+                android:layout_marginRight="3dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/img_mobile"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:src="@drawable/new_account" />
+
+                <TextView
+                    android:id="@+id/txt_mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/colorPrimaryExtraDark"
+                    android:gravity="center"
+                    android:text="To Mobile"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llupi"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:padding="5dp"
+                android:layout_marginRight="3dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/img_upi"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:src="@drawable/new_passbook" />
+
+                <TextView
+                    android:id="@+id/txt_upi"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/colorPrimaryExtraDark"
+                    android:gravity="center"
+                    android:text="To UPI ID"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llqr"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginRight="3dp"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/img_qr"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:src="@drawable/new_qr_code_scanner" />
+
+                <TextView
+                    android:id="@+id/txt_qr"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/colorPrimaryExtraDark"
+                    android:gravity="center"
+                    android:text="Scan QR code"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llmore"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:padding="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/img_more"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:src="@drawable/otherbankicon" />
+
+                <TextView
+                    android:id="@+id/txt_more"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:textColor="@color/colorPrimaryExtraDark"
+                    android:text="More"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="15dp">
+
+            <LinearLayout
+                android:id="@+id/llmobilemain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_upi_select"
+                    android:gravity="center"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="5dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="5dp"
+                        android:padding="5dp"
+                        android:src="@drawable/new_account"
+                        app:tint="@color/colorPrimaryExtraDark" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="8"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Mobile Number"
+                            android:textColor="@color/colorPrimaryExtraDark"
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/edtmobile"
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:background="@android:color/transparent"
+                            android:hint="Mobile Number"
+                            android:inputType="phone"
+                            android:singleLine="true"
+                            android:textColorHint="@color/text_secondary"
+                            android:textColor="@color/text_secondary"
+                            android:maxLength="11"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/select_contact_image"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:padding="5dp"
+                        android:src="@drawable/new_mobile"
+                        app:tint="@color/colorPrimaryExtraDark" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:background="@drawable/roundbg"
+                        android:backgroundTint="@color/colorPrimaryExtraDark"
+                        android:padding="11dp"
+                        android:visibility="gone"
+                        android:tint="@color/white"
+                        android:src="@drawable/ic__230511_bank_banking_finance_icon"
+                        android:layout_height="40dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:visibility="visible"
+                            android:textColor="@color/colorPrimaryExtraDark"
+                            android:textSize="12dp"
+                            android:text="Account Number"/>
+                        <TextView
+                            android:id="@+id/txtaccount1"
+                            android:layout_width="wrap_content"
+                            android:layout_marginTop="-3dp"
+                            android:textSize="12dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text_secondary"
+                            android:text="Account Number"/>
+                        <TextView
+                            android:id="@+id/txtaccountbalance1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="\u20b9550.00"
+                            android:layout_marginTop="-3dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimaryExtraDark"
+                            android:textSize="16dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/bg_upi_select"
+                    android:gravity="center"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="5dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="5dp"
+                        android:padding="5dp"
+                        android:src="@drawable/new_notification"
+                        app:tint="@color/colorPrimaryExtraDark" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Amount"
+                            android:textColor="@color/colorPrimaryExtraDark"
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/edtamount"
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:background="@android:color/transparent"
+                            android:textColorHint="@color/text_secondary"
+                            android:hint="Amount"
+                            android:textColor="@color/text_secondary"
+                            android:inputType="phone"
+                            android:singleLine="true"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/rounded_corner"
+                    android:backgroundTint="@color/text_secondary"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:text="Choose account to pay with"
+                        android:textColor="@color/text_secondary"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginBottom="-5dp"
+                                android:src="@drawable/ic__230511_bank_banking_finance_icon" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_weight="6"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:id="@+id/linearAcount1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <AutoCompleteTextView
+                                    android:id="@+id/accountNumber1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@android:color/transparent"
+                                    android:editable="false"
+                                    android:focusable="false"
+                                    android:paddingTop="3dp"
+                                    android:paddingBottom="3dp"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="18dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+
+                            <TextView
+                                android:id="@+id/type1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="-7dp"
+                                android:text=""
+                                android:textColor="@color/text_secondary"
+                                android:visibility="gone" />
+
+                            <TextView
+                                android:id="@+id/balance1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textColor="@color/colorPrimaryExtraDark" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="30dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="25dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/btn_clear"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="CLEAR"
+                            android:backgroundTint="@color/white"
+                            android:textAllCaps="false"
+                            android:background="@drawable/bg_button"
+                            android:textColor="@color/colorPrimaryExtraDark"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            tools:ignore="ButtonStyle" />
+
+                        <View
+                            android:layout_width="20dp"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+                            android:id="@+id/btn_submit"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:background="@drawable/bg_button"
+                            android:backgroundTint="@color/colorExtraLight"
+                            android:textColor="@color/colorPrimaryExtraDark"
+                            android:text="PAY"
+                            android:textAllCaps="false"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            tools:ignore="ButtonStyle" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/nestedScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                tools:ignore="MissingConstraints">
+
+                <LinearLayout
+                    android:id="@+id/llupimain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_vertical"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:background="@drawable/roundbg"
+                            android:backgroundTint="@color/colorPrimaryExtraDark"
+                            android:padding="11dp"
+                            android:visibility="gone"
+                            android:tint="@color/white"
+                            android:src="@drawable/ic__230511_bank_banking_finance_icon"
+                            android:layout_height="40dp"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:visibility="visible"
+                                android:textColor="@color/colorPrimaryExtraDark"
+                                android:textSize="12dp"
+                                android:text="Account Number"/>
+                            <TextView
+                                android:id="@+id/txtaccount2"
+                                android:layout_width="wrap_content"
+                                android:layout_marginTop="-3dp"
+                                android:textSize="12dp"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/text_secondary"
+                                android:text="Account Number"/>
+                            <TextView
+                                android:id="@+id/txtaccountbalance2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="\u20b9550.00"
+                                android:layout_marginTop="-3dp"
+                                android:textStyle="bold"
+                                android:textColor="@color/colorPrimaryExtraDark"
+                                android:textSize="16dp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/bg_upi_select"
+                        android:gravity="center"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginLeft="5dp"
+                            android:padding="5dp"
+                            android:src="@drawable/new_notification"
+                            app:tint="@color/colorPrimaryExtraDark" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Amount"
+                                android:textColor="@color/colorPrimaryExtraDark"
+                                android:textSize="12dp"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/edtAmountUpi"
+                                android:layout_width="match_parent"
+                                android:layout_height="25dp"
+                                android:background="@android:color/transparent"
+                                android:textColorHint="@color/text_secondary"
+                                android:hint="Amount"
+                                android:textColor="@color/text_secondary"
+                                android:inputType="phone"
+                                android:singleLine="true"
+                                android:textSize="15dp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_upi_select"
+                        android:gravity="center"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginLeft="5dp"
+                            android:padding="5dp"
+                            android:src="@drawable/new_passbook" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/colorPrimaryExtraDark"
+                                android:text="UPI"
+                                android:textSize="12dp"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/edtUpi"
+                                android:layout_width="match_parent"
+                                android:layout_height="25dp"
+                                android:singleLine="true"
+                                android:background="@android:color/transparent"
+                                android:textColorHint="@color/text_secondary"
+                                android:textColor="@color/text_secondary"
+                                android:hint="UPI"
+                                android:textSize="15dp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/rounded_corner"
+                        android:backgroundTint="@color/text_secondary"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:text="Choose account to pay with"
+                            android:textColor="@color/text_secondary"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_marginBottom="-5dp"
+                                    android:src="@drawable/ic__230511_bank_banking_finance_icon" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_weight="6"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:id="@+id/linearAcount2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/accountNumber2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="@android:color/transparent"
+                                        android:editable="false"
+                                        android:focusable="false"
+                                        android:paddingTop="3dp"
+                                        android:paddingBottom="3dp"
+                                        android:textColor="@color/colorPrimary"
+                                        android:textSize="18dp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+
+                                <TextView
+                                    android:id="@+id/type2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="-7dp"
+                                    android:text=""
+                                    android:textColor="@color/text_secondary"
+                                    android:visibility="gone" />
+
+                                <TextView
+                                    android:id="@+id/balance2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=""
+                                    android:textColor="@color/colorPrimaryExtraDark" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_weight="7"
+                            android:drawableTint="@color/text_secondary"
+                            android:hint="Mobile Number"
+                            android:textColorHint="@color/text_secondary"
+                            android:visibility="visible">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edtMobileUpi"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/icon_phone"
+                                android:drawablePadding="5dp"
+                                android:drawableTint="@color/text_secondary"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="8dp"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="14dp"
+                                android:textStyle="normal" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:id="@+id/select_contact_image_upi"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/ic_usericon" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="2"
+                        android:drawableTint="@color/text_secondary"
+                        android:hint="Address"
+                        android:textColorHint="@color/text_secondary"
+                        android:visibility="gone">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtAddress"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/ic_location"
+                            android:drawablePadding="5dp"
+                            android:drawableTint="@color/text_secondary"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="14dp"
+                            android:textStyle="normal" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="2"
+                        android:drawableTint="@color/text_secondary"
+                        android:hint="Name"
+                        android:textColorHint="@color/text_secondary"
+                        android:visibility="gone">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/user"
+                            android:drawablePadding="5dp"
+                            android:drawableTint="@color/text_secondary"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="14dp"
+                            android:textStyle="normal" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="2"
+                        android:drawableTint="@color/text_secondary"
+                        android:hint="Email"
+                        android:textColorHint="@color/text_secondary"
+                        android:visibility="gone">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/email"
+                            android:drawablePadding="5dp"
+                            android:drawableTint="@color/text_secondary"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="14dp"
+                            android:textStyle="normal" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="30dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="25dp"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+
+                                android:id="@+id/btn_clear_upi"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="CLEAR"
+                                android:backgroundTint="@color/white"
+                                android:textAllCaps="false"
+                                android:background="@drawable/bg_button"
+                                android:textColor="@color/colorPrimaryExtraDark"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                tools:ignore="ButtonStyle" />
+
+                            <View
+                                android:layout_width="20dp"
+                                android:layout_height="match_parent" />
+
+                            <TextView
+                                android:id="@+id/btn_submit_upi"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:background="@drawable/bg_button"
+                                android:backgroundTint="@color/colorExtraLight"
+                                android:textColor="@color/colorPrimaryExtraDark"
+                                android:text="PAY"
+                                android:textAllCaps="false"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                tools:ignore="ButtonStyle" />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/nestedScrollView_scan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                tools:ignore="MissingConstraints">
+
+                <LinearLayout
+                    android:id="@+id/llupi_scan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="7"
+                            android:gravity="bottom"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="UPI ID"
+                                android:textSize="12dp" />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:id="@+id/qrcode_scan"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/ic_baseline_qr_code_24" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_upi_select"
+                        android:gravity="center"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginLeft="5dp"
+                            android:padding="5dp"
+                            android:src="@drawable/new_notification"
+                            app:tint="@color/colorPrimaryExtraDark" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="UPI"
+                                android:textColor="@color/colorPrimaryExtraDark"
+                                android:textSize="12dp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_upi_scan"
+                                android:layout_width="match_parent"
+                                android:layout_height="25dp"
+                                android:singleLine="true"
+                                android:textColor="@color/text_secondary"
+                                android:textColorHint="@color/text_secondary"
+                                android:hint="Upi"
+                                android:textSize="15dp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:visibility="visible"
+                        android:textColor="@color/colorPrimaryExtraDark"
+                        android:textSize="12dp"
+                        android:text="Account Number"/>
+                    <TextView
+                        android:id="@+id/txtaccount3"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="-3dp"
+                        android:textSize="12dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_secondary"
+                        android:text="Account Number"/>
+                    <TextView
+                        android:id="@+id/txtaccountbalance3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="\u20b9550.00"
+                        android:layout_marginTop="-3dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryExtraDark"
+                        android:textSize="16dp"/>
+                </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_upi_select"
+                        android:gravity="center"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginLeft="5dp"
+                            android:padding="5dp"
+                            android:src="@drawable/new_notification"
+                            app:tint="@color/colorPrimaryExtraDark" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Amount"
+                                android:textColor="@color/colorPrimaryExtraDark"
+                                android:textSize="12dp"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/edtAmountUpi_scan"
+                                android:layout_width="match_parent"
+                                android:layout_height="25dp"
+                                android:singleLine="true"
+                                android:background="@android:color/transparent"
+                                android:textColor="@color/text_secondary"
+                                android:textColorHint="@color/text_secondary"
+                                android:hint="Amount"
+                                android:inputType="phone"
+                                android:textSize="15dp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_weight="7"
+                            android:drawableTint="@color/text_secondary"
+                            android:hint="Mobile Number"
+                            android:textColorHint="@color/text_secondary"
+                            android:visibility="visible">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edtMobileUpi_scan"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/icon_phone"
+                                android:drawablePadding="5dp"
+                                android:drawableTint="@color/text_secondary"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="8dp"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="14dp"
+                                android:textStyle="normal" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:id="@+id/select_contact_image_upi_scan"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/ic_usericon" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="2"
+                        android:drawableTint="@color/text_secondary"
+                        android:hint="Address"
+                        android:textColorHint="@color/text_secondary"
+                        android:visibility="gone">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtAddress_scan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/ic_location"
+                            android:drawablePadding="5dp"
+                            android:drawableTint="@color/text_secondary"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="14dp"
+                            android:textStyle="normal" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="2"
+                        android:drawableTint="@color/text_secondary"
+                        android:hint="Name"
+                        android:textColorHint="@color/text_secondary"
+                        android:visibility="gone">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtName_scan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/user"
+                            android:drawablePadding="5dp"
+                            android:drawableTint="@color/text_secondary"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="14dp"
+                            android:textStyle="normal" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="2"
+                        android:drawableTint="@color/text_secondary"
+                        android:hint="Email"
+                        android:textColorHint="@color/text_secondary"
+                        android:visibility="gone">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtEmail_scan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/email"
+                            android:drawablePadding="5dp"
+                            android:drawableTint="@color/text_secondary"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="14dp"
+                            android:textStyle="normal" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/rounded_corner"
+                        android:backgroundTint="@color/text_secondary"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:text="Choose account to pay with"
+                            android:textColor="@color/text_secondary"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:id="@+id/main"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_marginBottom="-5dp"
+                                    android:src="@drawable/ic__230511_bank_banking_finance_icon" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_weight="6"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:id="@+id/linearAcount3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/accountNumber3"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="@android:color/transparent"
+                                        android:editable="false"
+                                        android:focusable="false"
+                                        android:paddingTop="3dp"
+                                        android:paddingBottom="3dp"
+                                        android:textColor="@color/colorPrimary"
+                                        android:textSize="18dp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+
+                                <TextView
+                                    android:id="@+id/type3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="-7dp"
+                                    android:text=""
+                                    android:textColor="@color/text_secondary"
+                                    android:visibility="gone" />
+
+                                <TextView
+                                    android:id="@+id/balance3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=""
+                                    android:textColor="@color/colorPrimaryExtraDark" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/ll_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="30dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="25dp"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/btn_clear_upi_scan"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="CLEAR"
+                                android:backgroundTint="@color/white"
+                                android:textAllCaps="false"
+                                android:background="@drawable/bg_button"
+                                android:textColor="@color/colorPrimaryExtraDark"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                tools:ignore="ButtonStyle" />
+
+                            <View
+                                android:layout_width="20dp"
+                                android:layout_height="match_parent" />
+
+                            <TextView
+                                android:id="@+id/btn_submit_upi_scan"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/bg_button"
+                                android:backgroundTint="@color/colorExtraLight"
+                                android:gravity="center"
+                                android:text="PAY"
+                                android:textAllCaps="false"
+                                android:textColor="@color/colorPrimaryExtraDark"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                tools:ignore="ButtonStyle" />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/linmain2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="-6dp"
+        android:visibility="visible"
+        android:gravity="bottom">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:backgroundTint="@color/white"
+            android:background="@drawable/bg_button">
+
+            <LinearLayout
+                android:id="@+id/llHistory"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/img_mobile"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/new_satement" />
+
+                <TextView
+                    android:id="@+id/txt_mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:gravity="center"
+                    android:text="History"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryExtraDark"
+                    android:visibility="visible"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llSetting"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/img_upi"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/new_more" />
+
+                <TextView
+                    android:id="@+id/txt_upi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:gravity="center"
+                    android:text="Settings"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryExtraDark"
+                    android:visibility="visible"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/linPin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/relative_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="15dp"
+                        android:paddingTop="10dp">
+
+                        <ImageView
+                            android:id="@+id/backBtn2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/arrow_left_icon">
+
+                        </ImageView>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginRight="10dp"
+                        android:contentDescription="@string/share"
+                        android:src="@drawable/upi2" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/text_primary"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1.5"
+                            android:text="To :"
+                            android:textSize="13dp" />
+
+                        <TextView
+                            android:id="@+id/txt_reciver"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="4"
+                            android:textColor="@color/white"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1.5"
+                            android:text="Sending :"
+                            android:textSize="13dp" />
+
+                        <TextView
+                            android:id="@+id/txt_sending"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="4"
+                            android:textColor="@color/white"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:gravity="center"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="15dp"
+                        android:paddingRight="20dp"
+                        android:paddingBottom="10dp"
+                        android:text="Enter 6 - Digit MPIN"
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relative_show_pwd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="15dp">
+
+                    <Button
+                        android:id="@+id/btn_pswrd_one"
+                        style="@style/empty_show_upi"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true" />
+
+                    <Button
+                        android:id="@+id/btn_pswrd_two"
+                        style="@style/empty_show_upi"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_toEndOf="@+id/btn_pswrd_one"
+                        android:layout_toRightOf="@id/btn_pswrd_one" />
+
+                    <Button
+                        android:id="@+id/btn_pswrd_three"
+                        style="@style/empty_show_upi"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_toEndOf="@+id/btn_pswrd_two"
+                        android:layout_toRightOf="@id/btn_pswrd_two" />
+
+                    <Button
+                        android:id="@+id/btn_pswrd_four"
+                        style="@style/empty_show_upi"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_toEndOf="@+id/btn_pswrd_three"
+                        android:layout_toRightOf="@id/btn_pswrd_three" />
+
+                    <Button
+                        android:id="@+id/btn_pswrd_five"
+                        style="@style/empty_show_upi"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_toEndOf="@+id/btn_pswrd_four"
+                        android:layout_toRightOf="@id/btn_pswrd_four" />
+
+                    <Button
+                        android:id="@+id/btn_pswrd_six"
+                        style="@style/empty_show_upi"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_toEndOf="@+id/btn_pswrd_five"
+                        android:layout_toRightOf="@id/btn_pswrd_five" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/roundbg"
+                        android:padding="5dp"
+                        android:tint="@color/white"
+                        android:layout_marginRight="20dp"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:src="@drawable/ic_close" />
+
+                    <TextView
+                        android:id="@+id/textupi"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <LinearLayout
+                            android:id="@+id/linear_key_pad"
+                            android:layout_width="match_parent"
+                            android:background="@color/text_primary"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            tools:ignore="UselessParent">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="15dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="15dp"
+                                android:gravity="bottom"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:id="@+id/btn_layout"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="1dp"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+
+                                    <Button
+                                        android:id="@+id/btn_keypad_one"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/transparent_btn_selector"
+                                        android:text="1"
+                                        android:textStyle="bold"
+                                        android:textSize="20sp"
+                                        android:textColor="@color/colorPrimaryExtraDark" />
+
+                                    <Button
+                                        android:id="@+id/btn_keypad_two"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="1dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/transparent_btn_selector"
+                                        android:text="2"
+                                        android:textColor="@color/colorPrimaryExtraDark"
+                                        android:textStyle="bold"
+                                        android:textSize="20sp" />
+
+
+                                    <Button
+                                        android:id="@+id/btn_keypad_three"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="1dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/transparent_btn_selector"
+                                        android:text="3"
+                                        android:textColor="@color/colorPrimaryExtraDark"
+                                        android:textStyle="bold"
+                                        android:textSize="20sp" />
+
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="1dp"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+
+                                    <Button
+                                        android:id="@+id/btn_keypad_four"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/transparent_btn_selector"
+                                        android:text="4"
+                                        android:textColor="@color/colorPrimaryExtraDark"
+                                        android:textStyle="bold"
+                                        android:textSize="20sp" />
+
+                                    <Button
+                                        android:id="@+id/btn_keypad_five"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="1dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/transparent_btn_selector"
+                                        android:text="5"
+                                        android:textColor="@color/colorPrimaryExtraDark"
+                                        android:textStyle="bold"
+                                        android:textSize="20sp" />
+
+                                    <Button
+                                        android:id="@+id/btn_keypad_six"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="1dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/transparent_btn_selector"
+                                        android:text="6"
+                                        android:textColor="@color/colorPrimaryExtraDark"
+                                        android:textStyle="bold"
+                                        android:textSize="20sp" />
+
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="1dp"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+                                    <Button
+                                        android:id="@+id/btn_keypad_seven"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/transparent_btn_selector"
+                                        android:text="7"
+                                        android:textColor="@color/colorPrimaryExtraDark"
+                                        android:textStyle="bold"
+                                        android:textSize="20sp" />
+
+                                    <Button
+                                        android:id="@+id/btn_keypad_eight"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="1dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/transparent_btn_selector"
+                                        android:text="8"
+                                        android:textColor="@color/colorPrimaryExtraDark"
+                                        android:textStyle="bold"
+                                        android:textSize="20sp" />
+
+
+                                    <Button
+                                        android:id="@+id/btn_keypad_nine"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="1dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/transparent_btn_selector"
+                                        android:text="9"
+                                        android:textColor="@color/colorPrimaryExtraDark"
+                                        android:textStyle="bold"
+                                        android:textSize="20sp" />
+
+                                </LinearLayout>
+
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+
+                                    <!--<Button
+                                        android:id="@+id/clear"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/button_pin"
+                                        android:text="clear"
+                                        android:layout_margin="1dp"
+                                        android:textSize="15sp"
+                                        android:textColor="@color/colorPrimary"
+                                        android:textStyle="bold" />-->
+                                    <ImageView
+                                        android:id="@+id/btn_keypad_back"
+                                        android:src="@drawable/ic_close"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:padding="10dp"
+                                        android:tint="@color/white"
+                                        android:backgroundTint="@color/colorPrimaryExtraDark"
+                                        android:background="@drawable/bg_select"
+                                        android:text="Del"
+                                        android:textColor="@color/black"
+                                        android:textSize="18sp" />
+
+                                    <Button
+                                        android:id="@+id/btn_keypad_zero"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="1dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/transparent_btn_selector"
+                                        android:text="0"
+                                        android:textColor="@color/colorPrimaryExtraDark"
+                                        android:textStyle="bold"
+                                        android:textSize="20sp" />
+
+                                    <ImageView
+                                        android:id="@+id/btn_keypad_success"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="1dp"
+                                        android:tint="@color/white"
+                                        android:padding="10dp"
+                                        android:src="@drawable/check"
+                                        android:layout_weight="1"
+                                        android:backgroundTint="@color/colorPrimaryExtraDark"
+                                        android:background="@drawable/bg_select"
+                                        android:text="CLR"
+                                        android:textColor="@color/black"
+                                        android:textSize="18sp" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

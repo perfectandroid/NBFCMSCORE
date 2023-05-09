@@ -21,6 +21,12 @@
     <style name="AppTheme.StatusBar" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimaryDark">@color/colorViolet</item>
     </style>
+    <style name="empty_show_upi">
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="tint">@color/text_secondary</item>
+        <item name="backgroundTint">@color/text_secondary</item>
+        <item name="android:background">@drawable/dash_minus_substract_icon</item>
+    </style>
 
     <style name="Progress" parent="android:Theme.Holo.Dialog">
         <item name="android:alertDialogStyle">@style/CustomAlertDialogStyle</item>
@@ -101,6 +107,9 @@
 
     <style name="SpinnerTheme" parent="android:Widget.Spinner">
         <item name="android:background">@drawable/bg_spinner</item>
+    </style>
+    <style name="BottomSheetDialogStyle" parent="Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
     </style>
 
 

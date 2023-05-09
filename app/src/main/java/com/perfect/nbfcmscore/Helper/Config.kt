@@ -424,6 +424,7 @@ object Config {
 
     const val SHARED_PREF345 ="nidhicheck"
     const val SHARED_PREF346 ="nidhicode"
+    const val SHARED_PREF347 ="UPIPinSET"
 
 
 

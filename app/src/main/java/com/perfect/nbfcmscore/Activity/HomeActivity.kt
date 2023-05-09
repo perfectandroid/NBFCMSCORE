@@ -84,6 +84,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var llprofile: LinearLayout? = null
     var llexecutive: LinearLayout? = null
     var llenquiry: LinearLayout? = null
+    var llupimain: LinearLayout? = null
     var ll_fundtransfer: LinearLayout? = null
     var ll_recharge: LinearLayout? = null
 
@@ -1070,6 +1071,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         llstatement = findViewById<LinearLayout>(R.id.llstatement)
         llquickpay = findViewById<LinearLayout>(R.id.llquickpay)
         llenquiry = findViewById<LinearLayout>(R.id.llenquiry)
+        llupimain = findViewById<LinearLayout>(R.id.llupimain)
 
         tv_def_account = findViewById<TextView>(R.id.tv_def_account)
         tv_def_availablebal = findViewById<TextView>(R.id.tv_def_availablebal)
@@ -1139,6 +1141,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         ll_otherbank!!.setOnClickListener(this)
         llloanapplication!!.setOnClickListener(this)
         llenquiry!!.setOnClickListener(this)
+        llupimain!!.setOnClickListener(this)
         llprofile!!.setOnClickListener(this)
         llquickpay!!.setOnClickListener(this)
         llnotif!!.setOnClickListener(this)
@@ -1636,6 +1639,10 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             R.id.llenquiry -> {
 
                 startActivity(Intent(this@HomeActivity, EnquiryActivity::class.java))
+            }
+            R.id.llupimain -> {
+
+                startActivity(Intent(this@HomeActivity, UpiMain::class.java))
             }
         }
     }

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:backgroundTint="@color/white"
+        android:background="@drawable/bg_button">
+
+        <LinearLayout
+            android:id="@+id/llHistory"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/img_mobile"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/new_satement" />
+
+            <TextView
+                android:id="@+id/txt_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:gravity="center"
+                android:text="History"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryExtraDark"
+                android:visibility="visible"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llSetting"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/img_upi"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/new_notification" />
+
+            <TextView
+                android:id="@+id/txt_upi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:gravity="center"
+                android:text="Settings"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryExtraDark"
+                android:visibility="visible"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

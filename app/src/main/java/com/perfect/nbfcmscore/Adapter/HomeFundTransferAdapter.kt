@@ -1,6 +1,7 @@
 package com.perfect.nbfcmscore.Adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,6 +49,7 @@ class HomeFundTransferAdapter (internal val mContext: Context, internal val jsIn
 ////                    holder.itemView.layoutParams = params
 //                    holder.ll_fund!!.visibility = View.GONE
 //                }else{
+                Log.v("dfsdddddddd","FundImage "+jsonObject!!.getInt("FundImage"))
                     holder.txtv_fund!!.setText(jsonObject!!.getString("Fundlabel"))
                     holder.im_fund!!.setImageResource(jsonObject!!.getInt("FundImage"))
 //                }
@@ -71,7 +73,7 @@ class HomeFundTransferAdapter (internal val mContext: Context, internal val jsIn
        // internal var ll_adp_account: LinearLayout? = null
         var im_fund: ImageView? = null
         var txtv_fund: TextView? = null
-        var card_fund: CardView? = null
+     //   var card_fund: CardView? = null
         var ll_fund: LinearLayout? = null
 
 
@@ -79,7 +81,7 @@ class HomeFundTransferAdapter (internal val mContext: Context, internal val jsIn
 
             im_fund = v.findViewById<View>(R.id.im_fund) as ImageView
             txtv_fund = v.findViewById<View>(R.id.txtv_fund) as TextView
-            card_fund = v.findViewById<View>(R.id.card_fund) as CardView
+         //   card_fund = v.findViewById<View>(R.id.card_fund) as CardView
             ll_fund = v.findViewById<View>(R.id.ll_fund) as LinearLayout
 
 
