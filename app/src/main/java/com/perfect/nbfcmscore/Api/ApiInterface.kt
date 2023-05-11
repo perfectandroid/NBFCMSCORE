@@ -225,7 +225,8 @@ interface ApiInterface {
     @POST("Customer/NidhicodeChecking")
     fun getNidhicode(@Body body: RequestBody): Call<String>
 
-
+    @POST("api/cbsMobile/GetKitNumber")
+    fun generateAceKitNumber(@Body body: RequestBody): Call<String>
 
 
     @POST("Recharge/KSEBBilling")

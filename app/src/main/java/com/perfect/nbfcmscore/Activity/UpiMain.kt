@@ -564,7 +564,7 @@ class UpiMain : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun paymentThroughMobile() {
-        val UPIPinSETSP = getSharedPreferences(Config.SHARED_PREF347, 0)
+        val UPIPinSETSP = getSharedPreferences(Config.SHARED_PREF353, 0)
         val UPIPinSET = UPIPinSETSP.getString("UPIPinSET", "true")
         if (!validateMobile()!!) {
             return
@@ -580,7 +580,7 @@ class UpiMain : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun paymentThroughUpi() {
-        val UPIPinSETSP = getSharedPreferences(Config.SHARED_PREF77, 0)
+        val UPIPinSETSP = getSharedPreferences(Config.SHARED_PREF353, 0)
         val UPIPinSET = UPIPinSETSP.getString("UPIPinSET", "false")
         if (!validateAmount2()!!) {
             return

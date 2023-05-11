@@ -1,16 +1,20 @@
 package com.perfect.nbfcmscore.Activity
 
 import android.app.AlertDialog
+import android.app.Dialog
 import android.app.ProgressDialog
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
+import android.widget.AdapterView.OnItemSelectedListener
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
+import com.perfect.nbfcmscore.Activity.SplashActivity.Companion.BankKey
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
@@ -27,6 +31,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
+
 class UserOnboardUPI : AppCompatActivity(), View.OnClickListener {
     val TAG: String? = "UserOnboardUPI"
     var edtMobilenumber: EditText? = null
@@ -34,11 +39,19 @@ class UserOnboardUPI : AppCompatActivity(), View.OnClickListener {
     var btn_submit: TextView? = null
     var btn_cancel: TextView? = null
     var edtDateofBirth: EditText? = null
+    var edtAgentEmail: EditText? = null
     var checkBox: CheckBox? = null
     private var mAccountSpinner: Spinner? = null
     private var jresult: JSONArray? = null
     private var progressDialog: ProgressDialog? = null
     public var arrayList1: java.util.ArrayList<Splitupdetail>? = null
+    var accountNumber: String = ""
+    var strtypeShort: String = ""
+    var strKitNumber: String = ""
+    var strFK_Account: String = ""
+    var strMobileNumber: String = ""
+
+    //    var accountNumber:String=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_onboard_upi)
@@ -46,8 +59,9 @@ class UserOnboardUPI : AppCompatActivity(), View.OnClickListener {
         setId()
         setListners()
         getAccountnumber()
-        val DateOfBirthSP = applicationContext.getSharedPreferences(Config.SHARED_PREF7, 0)
-        edtDateofBirth!!.setText(DateOfBirthSP.getString("DateOfBirth", null)?.replace("-", "/"))
+        getSharedPrefdata()
+        btn_submit?.setEnabled(false)
+        btn_submit?.setAlpha(.4f)
     }
 
     private fun setListners() {
@@ -71,18 +85,80 @@ class UserOnboardUPI : AppCompatActivity(), View.OnClickListener {
         btn_submit = findViewById<View>(R.id.btn_submit) as TextView
         btn_cancel = findViewById<View>(R.id.btn_cancel) as TextView
         edtDateofBirth = findViewById<View>(R.id.edtDateofBirth) as EditText
+        edtAgentEmail = findViewById<View>(R.id.edtAgentEmail) as EditText
         mAccountSpinner = findViewById<Spinner>(R.id.spn_account_num)
     }
 
     override fun onClick(v: View?) {
         if (v?.id == R.id.btn_cancel) {
             onBackPressed()
-        }
-        else if (v?.id == R.id.edtDateofBirth) {
+        } else if (v?.id == R.id.edtDateofBirth) {
             openBottomSheetDate()
+        } else if (v?.id == R.id.btn_submit) {
+            validateData()
         }
     }
 
+    private fun getSharedPrefdata() {
+        val AgentEmailSP = applicationContext.getSharedPreferences(Config.SHARED_PREF351, 0)
+        val mobileNoSP = applicationContext.getSharedPreferences(Config.SHARED_PREF2, 0)
+        val DateOfBirthSP = applicationContext.getSharedPreferences(Config.SHARED_PREF7, 0)
+        strMobileNumber = mobileNoSP.getString("mobileNo", "").toString();
+        edtAgentEmail!!.setText(AgentEmailSP.getString("AgentEmail", ""))
+        edtMobilenumber!!.setText(strMobileNumber)
+        edtDateofBirth!!.setText(DateOfBirthSP.getString("DateOfBirth", null)?.replace("-", "/"))
+    }
+
+    private fun validateData() {
+        val KItNumberSP = applicationContext.getSharedPreferences(Config.SHARED_PREF349, 0)
+        var strAgentEmail = edtAgentEmail!!.getText().toString()
+        var strMobileNumber = edtMobilenumber!!.text.toString()
+        var strDob = edtDateofBirth!!.text.toString()
+        //  strKitNumber = "4210011416";
+        strKitNumber = KItNumberSP.getString("KItNumber", "").toString()
+
+//        Existing user Correct data
+
+//        customer name : DIVIN
+//        Customer number : 001001142958
+//        demand deposit number : 001001016763
+//        demand deposit number : 001001016909
+//        phone number : 9037591858
+//        8075115147
+
+//        strAgentEmail = "kscbp373@gmail.com";
+//        strMobileNumber = "9656292477";
+//        strAccountNumber = "001001017268";
+//        strDob = "31/08/2001";
+//        strKitNumber = "4210011256";
+//        strtypeShort = "SB";
+        if (TextUtils.isEmpty(strAgentEmail)) {
+            Toast.makeText(applicationContext, "Invalid Email", Toast.LENGTH_SHORT).show()
+        } else if (TextUtils.isEmpty(strMobileNumber)) {
+            Toast.makeText(applicationContext, "Invalid Mobile Number", Toast.LENGTH_SHORT).show()
+        } else if (TextUtils.isEmpty(accountNumber)) {
+            Toast.makeText(applicationContext, "Invalid A|c Number", Toast.LENGTH_SHORT).show()
+        } else if (TextUtils.isEmpty(strDob)) {
+            Toast.makeText(applicationContext, "Invalid DOB", Toast.LENGTH_SHORT).show()
+        } else {
+            Log.e(
+                TAG, """
+     validateData   861  
+     strAgentEmail    :   $strAgentEmail
+     strMobileNumber  :   $strMobileNumber
+     strAccountNumber :   $accountNumber
+     strtypeShort     :   $strtypeShort
+     strDob           :   $strDob
+     strKitNumber     :   $strKitNumber
+     """.trimIndent()
+            )
+            if (strKitNumber == "") {
+                generateKitNo()
+            } else {
+                //     onBoardingUser()
+            }
+        }
+    }
 
     private fun getAccountnumber() {
         val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
@@ -205,9 +281,343 @@ class UserOnboardUPI : AppCompatActivity(), View.OnClickListener {
                                         this@UserOnboardUPI,
                                         android.R.layout.simple_spinner_dropdown_item, arrayList1!!
                                     )
+                                    mAccountSpinner!!.setOnItemSelectedListener(object :
+                                        OnItemSelectedListener {
+                                        override fun onItemSelected(
+                                            parentView: AdapterView<*>?,
+                                            selectedItemView: View,
+                                            position: Int,
+                                            id: Long
+                                        ) {
+                                            var accountNumberAll =
+                                                arrayList1!!.get(position).accountno
+                                            strFK_Account = arrayList1!!.get(position).fkaccount
+                                            strtypeShort = arrayList1!!.get(position).submodule
+                                            accountNumber = accountNumberAll.substring(
+                                                0,
+                                                Math.min(accountNumberAll.length, 12)
+                                            )
+                                            Log.v("dfdsfdsdddd", "accountNumber " + accountNumber)
+                                            Log.v("dfdsfdsdddd", "strtypeShort " + strtypeShort)
+                                        }
+
+                                        override fun onNothingSelected(parentView: AdapterView<*>?) {
+                                            // your code here
+                                        }
+                                    })
 
                                     //    spn_account_num!!.setSelection(arrayList1.indexOf("Select Account"));
 
+                                } else {
+                                    val builder = AlertDialog.Builder(
+                                        this@UserOnboardUPI,
+                                        R.style.MyDialogTheme
+                                    )
+                                    builder.setMessage("" + jObject.getString("EXMessage"))
+                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                    }
+                                    val alertDialog: AlertDialog = builder.create()
+                                    alertDialog.setCancelable(false)
+                                    alertDialog.show()
+                                }
+                            } catch (e: Exception) {
+                                progressDialog!!.dismiss()
+
+                                val builder = AlertDialog.Builder(
+                                    this@UserOnboardUPI,
+                                    R.style.MyDialogTheme
+                                )
+                                builder.setMessage("Some technical issues.")
+                                builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                }
+                                val alertDialog: AlertDialog = builder.create()
+                                alertDialog.setCancelable(false)
+                                alertDialog.show()
+                                e.printStackTrace()
+                            }
+                        }
+
+                        override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
+                            progressDialog!!.dismiss()
+
+                            val builder = AlertDialog.Builder(
+                                this@UserOnboardUPI,
+                                R.style.MyDialogTheme
+                            )
+                            builder.setMessage("Some technical issues.")
+                            builder.setPositiveButton("Ok") { dialogInterface, which ->
+                            }
+                            val alertDialog: AlertDialog = builder.create()
+                            alertDialog.setCancelable(false)
+                            alertDialog.show()
+                        }
+                    })
+                } catch (e: Exception) {
+                    progressDialog!!.dismiss()
+                    val builder = AlertDialog.Builder(
+                        this@UserOnboardUPI,
+                        R.style.MyDialogTheme
+                    )
+                    builder.setMessage("Some technical issues.")
+                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                    }
+                    val alertDialog: AlertDialog = builder.create()
+                    alertDialog.setCancelable(false)
+                    alertDialog.show()
+                    e.printStackTrace()
+                }
+            }
+            false -> {
+                val builder = AlertDialog.Builder(
+                    this@UserOnboardUPI,
+                    R.style.MyDialogTheme
+                )
+                builder.setMessage("No Internet Connection.")
+                builder.setPositiveButton("Ok") { dialogInterface, which ->
+                }
+                val alertDialog: AlertDialog = builder.create()
+                alertDialog.setCancelable(false)
+                alertDialog.show()
+            }
+        }
+    }
+
+    private fun generateKitNo() {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
+        when (ConnectivityUtils.isConnected(this)) {
+            true -> {
+                progressDialog = ProgressDialog(this@UserOnboardUPI, R.style.Progress)
+                progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
+                progressDialog!!.setCancelable(false)
+                progressDialog!!.setIndeterminate(true)
+                progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
+                progressDialog!!.show()
+                try {
+                    val client = OkHttpClient.Builder()
+                        .sslSocketFactory(Config.getSSLSocketFactory(this@UserOnboardUPI))
+                        .hostnameVerifier(Config.getHostnameVerifier())
+                        .build()
+                    val gson = GsonBuilder()
+                        .setLenient()
+                        .create()
+                    val retrofit = Retrofit.Builder()
+                        .baseUrl(baseurl)
+                        .addConverterFactory(ScalarsConverterFactory.create())
+                        .addConverterFactory(GsonConverterFactory.create(gson))
+                        .client(client)
+                        .build()
+                    val apiService = retrofit.create(ApiInterface::class.java!!)
+                    val requestObject1 = JSONObject()
+                    try {
+                        requestObject1.put("ServiceType", MscoreApplication.encryptStart("1"))
+                        requestObject1.put("ServiceProvider", MscoreApplication.encryptStart("2"))
+                        requestObject1.put("CorpCode", MscoreApplication.encryptStart(BankKey))
+                        Log.e("TAG", "requestObject1  171   " + requestObject1)
+                    } catch (e: Exception) {
+                        progressDialog!!.dismiss()
+                        e.printStackTrace()
+                        val mySnackbar = Snackbar.make(
+                            findViewById(R.id.rl_main),
+                            " Some technical issues.", Snackbar.LENGTH_SHORT
+                        )
+                        mySnackbar.show()
+                    }
+                    val body = RequestBody.create(
+                        okhttp3.MediaType.parse("application/json; charset=utf-8"),
+                        requestObject1.toString()
+                    )
+                    val call = apiService.generateAceKitNumber(body)
+                    call.enqueue(object : retrofit2.Callback<String> {
+                        override fun onResponse(
+                            call: retrofit2.Call<String>, response:
+                            Response<String>
+                        ) {
+                            try {
+                                progressDialog!!.dismiss()
+                                val jObject = JSONObject(response.body())
+                                Log.i("Response2-AccountNumber", response.body())
+                                if (jObject.getString("StatusCode") == "0") {
+                                    val jsonObj1: JSONObject = jObject.getJSONObject("KitNumber")
+                                    strKitNumber = jsonObj1.getString("NextKitNumber")
+                                } else {
+                                    val builder = AlertDialog.Builder(
+                                        this@UserOnboardUPI,
+                                        R.style.MyDialogTheme
+                                    )
+                                    builder.setMessage("" + jObject.getString("EXMessage"))
+                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                    }
+                                    val alertDialog: AlertDialog = builder.create()
+                                    alertDialog.setCancelable(false)
+                                    alertDialog.show()
+                                }
+                            } catch (e: Exception) {
+                                progressDialog!!.dismiss()
+
+                                val builder = AlertDialog.Builder(
+                                    this@UserOnboardUPI,
+                                    R.style.MyDialogTheme
+                                )
+                                builder.setMessage("Some technical issues.")
+                                builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                }
+                                val alertDialog: AlertDialog = builder.create()
+                                alertDialog.setCancelable(false)
+                                alertDialog.show()
+                                e.printStackTrace()
+                            }
+                        }
+
+                        override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
+                            progressDialog!!.dismiss()
+
+                            val builder = AlertDialog.Builder(
+                                this@UserOnboardUPI,
+                                R.style.MyDialogTheme
+                            )
+                            builder.setMessage("Some technical issues.")
+                            builder.setPositiveButton("Ok") { dialogInterface, which ->
+                            }
+                            val alertDialog: AlertDialog = builder.create()
+                            alertDialog.setCancelable(false)
+                            alertDialog.show()
+                        }
+                    })
+                } catch (e: Exception) {
+                    progressDialog!!.dismiss()
+                    val builder = AlertDialog.Builder(
+                        this@UserOnboardUPI,
+                        R.style.MyDialogTheme
+                    )
+                    builder.setMessage("Some technical issues.")
+                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                    }
+                    val alertDialog: AlertDialog = builder.create()
+                    alertDialog.setCancelable(false)
+                    alertDialog.show()
+                    e.printStackTrace()
+                }
+            }
+            false -> {
+                val builder = AlertDialog.Builder(
+                    this@UserOnboardUPI,
+                    R.style.MyDialogTheme
+                )
+                builder.setMessage("No Internet Connection.")
+                builder.setPositiveButton("Ok") { dialogInterface, which ->
+                }
+                val alertDialog: AlertDialog = builder.create()
+                alertDialog.setCancelable(false)
+                alertDialog.show()
+            }
+        }
+    }
+
+    private fun updateUserID(userid: String, vpa: String, dialogOld: Dialog) {
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurl = baseurlSP.getString("baseurl", null)
+        when (ConnectivityUtils.isConnected(this)) {
+            true -> {
+                progressDialog = ProgressDialog(this@UserOnboardUPI, R.style.Progress)
+                progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
+                progressDialog!!.setCancelable(false)
+                progressDialog!!.setIndeterminate(true)
+                progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
+                progressDialog!!.show()
+                try {
+                    val client = OkHttpClient.Builder()
+                        .sslSocketFactory(Config.getSSLSocketFactory(this@UserOnboardUPI))
+                        .hostnameVerifier(Config.getHostnameVerifier())
+                        .build()
+                    val gson = GsonBuilder()
+                        .setLenient()
+                        .create()
+                    val retrofit = Retrofit.Builder()
+                        .baseUrl(baseurl)
+                        .addConverterFactory(ScalarsConverterFactory.create())
+                        .addConverterFactory(GsonConverterFactory.create(gson))
+                        .client(client)
+                        .build()
+                    val apiService = retrofit.create(ApiInterface::class.java!!)
+                    val requestObject1 = JSONObject()
+                    try {
+                        val customerIdSP =
+                            applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
+                        val cusid = customerIdSP.getString("customerId", null)
+                        requestObject1.put("ServiceType", MscoreApplication.encryptStart("1"))
+                        requestObject1.put("ServiceProvider", MscoreApplication.encryptStart("2"))
+                        requestObject1.put("CorpCode", MscoreApplication.encryptStart(BankKey))
+
+                        requestObject1.put("ID_Customer", MscoreApplication.encryptStart(cusid))
+                        requestObject1.put(
+                            "Fk_AccountCode",
+                            MscoreApplication.encryptStart(strFK_Account)
+                        )
+                        requestObject1.put(
+                            "SubModule",
+                            MscoreApplication.encryptStart(strtypeShort)
+                        )
+                        requestObject1.put("KitID", MscoreApplication.encryptStart(strKitNumber))
+                        requestObject1.put("MobNo", MscoreApplication.encryptStart(strMobileNumber))
+                        requestObject1.put("ReqID", MscoreApplication.encryptStart("1"))
+                        requestObject1.put("UPIUserID", MscoreApplication.encryptStart(userid))
+                        requestObject1.put("UPIID", MscoreApplication.encryptStart(vpa))
+                        requestObject1.put(
+                            "MsgMode",
+                            MscoreApplication.encryptStart("0")
+                        ) //for forgot pin otp send
+
+                        requestObject1.put("UPIPinOld", "")
+                        Log.e("TAG", "requestObject1  171   " + requestObject1)
+                    } catch (e: Exception) {
+                        progressDialog!!.dismiss()
+                        e.printStackTrace()
+                        val mySnackbar = Snackbar.make(
+                            findViewById(R.id.rl_main),
+                            " Some technical issues.", Snackbar.LENGTH_SHORT
+                        )
+                        mySnackbar.show()
+                    }
+                    val body = RequestBody.create(
+                        okhttp3.MediaType.parse("application/json; charset=utf-8"),
+                        requestObject1.toString()
+                    )
+                    val call = apiService.generateAceKitNumber(body)
+                    call.enqueue(object : retrofit2.Callback<String> {
+                        override fun onResponse(
+                            call: retrofit2.Call<String>, response:
+                            Response<String>
+                        ) {
+                            try {
+                                progressDialog!!.dismiss()
+                                val jObject = JSONObject(response.body())
+                                Log.i("Response2-AccountNumber", response.body())
+                                if (jObject.getString("StatusCode") == "0") {
+                                    val AceMoneyUserIDSP = applicationContext.getSharedPreferences(
+                                        Config.SHARED_PREF347,
+                                        0
+                                    )
+                                    val AceMoneyUserIDEditer = AceMoneyUserIDSP.edit()
+                                    AceMoneyUserIDEditer.putString("AceMoneyUserID", userid)
+                                    AceMoneyUserIDEditer.commit()
+
+                                    val AceMoneyUPIIDSP = applicationContext.getSharedPreferences(
+                                        Config.SHARED_PREF348,
+                                        0
+                                    )
+                                    val AceMoneyUPIIDEditer = AceMoneyUPIIDSP.edit()
+                                    AceMoneyUPIIDEditer.putString("AceMoneyUPIID", vpa)
+                                    AceMoneyUPIIDEditer.commit()
+
+
+                                    val UPIAccNoSP = applicationContext.getSharedPreferences(
+                                        Config.SHARED_PREF354,
+                                        0
+                                    )
+                                    val UPIAccNoEditer = UPIAccNoSP.edit()
+                                    UPIAccNoEditer.putString("UPIAccNo", accountNumber)
+                                    UPIAccNoEditer.commit()
                                 } else {
                                     val builder = AlertDialog.Builder(
                                         this@UserOnboardUPI,
