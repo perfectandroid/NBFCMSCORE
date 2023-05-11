@@ -45,6 +45,11 @@ import java.net.URL
 import java.util.*
 import android.R.id
 import androidx.recyclerview.widget.GridLayoutManager
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import java.security.KeyStore
+import java.util.concurrent.TimeUnit
+import javax.net.ssl.TrustManagerFactory
+import javax.net.ssl.X509TrustManager
 
 
 class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener, View.OnClickListener,
@@ -562,8 +567,21 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                  progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
                  progressDialog!!.show()*/
                 try {
-                    val client = OkHttpClient.Builder()
-                            .sslSocketFactory(Config.getSSLSocketFactory(this@HomeActivity))
+                    val trustManagerFactory = TrustManagerFactory.getInstance(
+                        TrustManagerFactory.getDefaultAlgorithm()
+                    )
+                    trustManagerFactory.init(null as KeyStore?)
+                    val trustManagers = trustManagerFactory.trustManagers
+                    check(!(trustManagers.size != 1 || trustManagers[0] !is X509TrustManager)) {
+                        ("Unexpected default trust managers:"
+                                + Arrays.toString(trustManagers))
+                    }
+                    val trustManager = trustManagers[0] as X509TrustManager
+                    val client:OkHttpClient = okhttp3 . OkHttpClient . Builder ()
+                        .connectTimeout(60, TimeUnit.SECONDS)
+                        .readTimeout(60, TimeUnit.SECONDS)
+                        .writeTimeout(60, TimeUnit.SECONDS)
+                        .sslSocketFactory(Config.getSSLSocketFactory(this), trustManager)
                             .hostnameVerifier(Config.getHostnameVerifier())
                             .build()
                     val gson = GsonBuilder()
@@ -619,8 +637,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                         mySnackbar.show()
                     }
                     val body = RequestBody.create(
-                            okhttp3.MediaType.parse("application/json; charset=utf-8"),
-                            requestObject1.toString()
+                        "application/json; charset=utf-8".toMediaTypeOrNull(),
+                        requestObject1.toString()
                     )
                     val call = apiService.getVersioncheck(body)
                     call.enqueue(object : retrofit2.Callback<String> {
@@ -631,7 +649,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                             try {
                                 //  progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
-                                Log.i("Response-Versioncheck", response.body())
+                                Log.i("Response-Versioncheck", response.body().toString())
 
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
@@ -803,8 +821,21 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
                 progressDialog!!.show()*/
                 try {
-                    val client = OkHttpClient.Builder()
-                            .sslSocketFactory(Config.getSSLSocketFactory(this@HomeActivity))
+                    val trustManagerFactory = TrustManagerFactory.getInstance(
+                        TrustManagerFactory.getDefaultAlgorithm()
+                    )
+                    trustManagerFactory.init(null as KeyStore?)
+                    val trustManagers = trustManagerFactory.trustManagers
+                    check(!(trustManagers.size != 1 || trustManagers[0] !is X509TrustManager)) {
+                        ("Unexpected default trust managers:"
+                                + Arrays.toString(trustManagers))
+                    }
+                    val trustManager = trustManagers[0] as X509TrustManager
+                    val client:OkHttpClient = okhttp3 . OkHttpClient . Builder ()
+                        .connectTimeout(60, TimeUnit.SECONDS)
+                        .readTimeout(60, TimeUnit.SECONDS)
+                        .writeTimeout(60, TimeUnit.SECONDS)
+                        .sslSocketFactory(Config.getSSLSocketFactory(this), trustManager)
                             .hostnameVerifier(Config.getHostnameVerifier())
                             .build()
                     val gson = GsonBuilder()
@@ -858,8 +889,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                         mySnackbar.show()
                     }
                     val body = RequestBody.create(
-                            okhttp3.MediaType.parse("application/json; charset=utf-8"),
-                            requestObject1.toString()
+                        "application/json; charset=utf-8".toMediaTypeOrNull(),
+                        requestObject1.toString()
                     )
                     val call = apiService.getBannerdetails(body)
                     call.enqueue(object : retrofit2.Callback<String> {
@@ -870,7 +901,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                             try {
                                 //  progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
-                                Log.i("Response-Banner", response.body())
+                                Log.i("Response-Banner", response.body().toString())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
                                             jObject.getJSONObject("BannerDetails")
@@ -1655,8 +1686,21 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             true -> {
 
                 try {
-                    val client = OkHttpClient.Builder()
-                            .sslSocketFactory(Config.getSSLSocketFactory(this@HomeActivity))
+                    val trustManagerFactory = TrustManagerFactory.getInstance(
+                        TrustManagerFactory.getDefaultAlgorithm()
+                    )
+                    trustManagerFactory.init(null as KeyStore?)
+                    val trustManagers = trustManagerFactory.trustManagers
+                    check(!(trustManagers.size != 1 || trustManagers[0] !is X509TrustManager)) {
+                        ("Unexpected default trust managers:"
+                                + Arrays.toString(trustManagers))
+                    }
+                    val trustManager = trustManagers[0] as X509TrustManager
+                    val client:OkHttpClient = okhttp3 . OkHttpClient . Builder ()
+                        .connectTimeout(60, TimeUnit.SECONDS)
+                        .readTimeout(60, TimeUnit.SECONDS)
+                        .writeTimeout(60, TimeUnit.SECONDS)
+                        .sslSocketFactory(Config.getSSLSocketFactory(this), trustManager)
                             .hostnameVerifier(Config.getHostnameVerifier())
                             .build()
                     val gson = GsonBuilder()
@@ -1710,8 +1754,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                         mySnackbar.show()
                     }
                     val body = RequestBody.create(
-                            okhttp3.MediaType.parse("application/json; charset=utf-8"),
-                            requestObject1.toString()
+                        "application/json; charset=utf-8".toMediaTypeOrNull(),
+                        requestObject1.toString()
                     )
                     val call = apiService.getOwnAccounDetails(body)
                     call.enqueue(object : retrofit2.Callback<String> {
@@ -1823,8 +1867,21 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
                 progressDialog!!.show()
                 try {
-                    val client = OkHttpClient.Builder()
-                            .sslSocketFactory(Config.getSSLSocketFactory(this@HomeActivity))
+                    val trustManagerFactory = TrustManagerFactory.getInstance(
+                        TrustManagerFactory.getDefaultAlgorithm()
+                    )
+                    trustManagerFactory.init(null as KeyStore?)
+                    val trustManagers = trustManagerFactory.trustManagers
+                    check(!(trustManagers.size != 1 || trustManagers[0] !is X509TrustManager)) {
+                        ("Unexpected default trust managers:"
+                                + Arrays.toString(trustManagers))
+                    }
+                    val trustManager = trustManagers[0] as X509TrustManager
+                    val client:OkHttpClient = okhttp3 . OkHttpClient . Builder ()
+                        .connectTimeout(60, TimeUnit.SECONDS)
+                        .readTimeout(60, TimeUnit.SECONDS)
+                        .writeTimeout(60, TimeUnit.SECONDS)
+                        .sslSocketFactory(Config.getSSLSocketFactory(this), trustManager)
                             .hostnameVerifier(Config.getHostnameVerifier())
                             .build()
                     val gson = GsonBuilder()
@@ -1859,8 +1916,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                         mySnackbar.show()
                     }
                     val body = RequestBody.create(
-                            okhttp3.MediaType.parse("application/json; charset=utf-8"),
-                            requestObject1.toString()
+                        "application/json; charset=utf-8".toMediaTypeOrNull(),
+                        requestObject1.toString()
                     )
                     val call = apiService.getLanguages(body)
                     call.enqueue(object : retrofit2.Callback<String> {
@@ -2083,8 +2140,21 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
                 progressDialog!!.show()
                 try {
-                    val client = OkHttpClient.Builder()
-                            .sslSocketFactory(Config.getSSLSocketFactory(this@HomeActivity))
+                    val trustManagerFactory = TrustManagerFactory.getInstance(
+                        TrustManagerFactory.getDefaultAlgorithm()
+                    )
+                    trustManagerFactory.init(null as KeyStore?)
+                    val trustManagers = trustManagerFactory.trustManagers
+                    check(!(trustManagers.size != 1 || trustManagers[0] !is X509TrustManager)) {
+                        ("Unexpected default trust managers:"
+                                + Arrays.toString(trustManagers))
+                    }
+                    val trustManager = trustManagers[0] as X509TrustManager
+                    val client:OkHttpClient = okhttp3 . OkHttpClient . Builder ()
+                        .connectTimeout(60, TimeUnit.SECONDS)
+                        .readTimeout(60, TimeUnit.SECONDS)
+                        .writeTimeout(60, TimeUnit.SECONDS)
+                        .sslSocketFactory(Config.getSSLSocketFactory(this), trustManager)
                             .hostnameVerifier(Config.getHostnameVerifier())
                             .build()
                     val gson = GsonBuilder()
@@ -2135,8 +2205,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                         val mSnackbar = Snackbar.make(this@HomeActivity.findViewById(android.R.id.content), "Some technical issues.", Snackbar.LENGTH_INDEFINITE)
                     }
                     val body = RequestBody.create(
-                            okhttp3.MediaType.parse("application/json; charset=utf-8"),
-                            requestObject1.toString()
+                        "application/json; charset=utf-8".toMediaTypeOrNull(),
+                        requestObject1.toString()
                     )
                     val call = apiService.getLabels(body)
                     call.enqueue(object : retrofit2.Callback<String> {
@@ -2149,7 +2219,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                                 Log.e(TAG, "response  labels 21222   " + response.body())
 
                                 val jObject = JSONObject(response.body())
-                                Log.i("Response-labels", response.body())
+                                Log.i("Response-labels", response.body().toString())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
                                             jObject.getJSONObject("LabelDetails")

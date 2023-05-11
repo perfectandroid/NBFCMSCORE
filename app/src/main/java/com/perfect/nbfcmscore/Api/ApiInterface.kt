@@ -14,36 +14,34 @@ import retrofit2.http.GET
 import retrofit2.http.Streaming
 
 
-
-
 interface ApiInterface {
 
     @POST("Customer/CustomerRegistration")
-    fun getregistration(@Body body: RequestBody):Call<String>
+    fun getregistration(@Body body: RequestBody): Call<String>
 
     @POST("Customer/VarificationMaintenance")
-    fun getOTP(@Body body: RequestBody):Call<String>
+    fun getOTP(@Body body: RequestBody): Call<String>
 
     @POST("Customer/MPINVarificationMaintenance")
-    fun getMPINVarificationMaintenance(@Body body: RequestBody):Call<String>
+    fun getMPINVarificationMaintenance(@Body body: RequestBody): Call<String>
 
     @POST("Customer/Languages")
-    fun getLanguages(@Body body: RequestBody):Call<String>
+    fun getLanguages(@Body body: RequestBody): Call<String>
 
     @POST("Customer/CustomerLoginVerification")
-    fun getCustomerLoginVerification(@Body body: RequestBody):Call<String>
+    fun getCustomerLoginVerification(@Body body: RequestBody): Call<String>
 
     @POST("Customer/ResellerDetails")
-    fun getResellerDetails(@Body body: RequestBody):Call<String>
+    fun getResellerDetails(@Body body: RequestBody): Call<String>
 
     @POST("AccountSummary/CustomerLoanAndDepositDetails")
-    fun getCustomerLoanAndDepositDetails(@Body body: RequestBody):Call<String>
+    fun getCustomerLoanAndDepositDetails(@Body body: RequestBody): Call<String>
 
     @POST("AccountSummary/AccountModuleWiseDetailsList")
-    fun getAccountModuleWiseDetailsList(@Body body: RequestBody):Call<String>
+    fun getAccountModuleWiseDetailsList(@Body body: RequestBody): Call<String>
 
     @POST("AccountSummary/AccountMiniStatement")
-    fun getAccountMiniStatement(@Body body: RequestBody):Call<String>
+    fun getAccountMiniStatement(@Body body: RequestBody): Call<String>
 
     @POST("AccountSummary/BankBranchDetails")
     fun getBankBranchDetails(@Body body: RequestBody): Call<String>
@@ -228,12 +226,14 @@ interface ApiInterface {
     @POST("api/cbsMobile/GetKitNumber")
     fun generateAceKitNumber(@Body body: RequestBody): Call<String>
 
+    @POST("api/cbsMobile/UpdateUPIDetails")
+    fun sendOTPforUPIPinGeneration(@Body body: RequestBody): Call<String>
 
     @POST("Recharge/KSEBBilling")
     fun getKSEBBilling(@Body body: RequestBody): Call<String>
 
-        @GET
-         fun downloadFile(@Url fileUrl:String): Call<File>
+    @GET
+    fun downloadFile(@Url fileUrl: String): Call<File>
 
 //        fun exportPdf(@Url url: HttpUrl): Call<ResponseBody>
 

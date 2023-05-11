@@ -27,6 +27,7 @@ import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.*
 import com.perfect.nbfcmscore.Model.EMIModel
 import com.perfect.nbfcmscore.R
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
 import org.json.JSONArray
@@ -35,9 +36,13 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import java.security.KeyStore
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.TimeUnit
+import javax.net.ssl.TrustManagerFactory
+import javax.net.ssl.X509TrustManager
 
 class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListener {
 
@@ -276,8 +281,21 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
                 progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
                 progressDialog!!.show()
                 try {
-                    val client = OkHttpClient.Builder()
-                        .sslSocketFactory(Config.getSSLSocketFactory(this@EMIActivity))
+                    val trustManagerFactory = TrustManagerFactory.getInstance(
+                        TrustManagerFactory.getDefaultAlgorithm()
+                    )
+                    trustManagerFactory.init(null as KeyStore?)
+                    val trustManagers = trustManagerFactory.trustManagers
+                    check(!(trustManagers.size != 1 || trustManagers[0] !is X509TrustManager)) {
+                        ("Unexpected default trust managers:"
+                                + Arrays.toString(trustManagers))
+                    }
+                    val trustManager = trustManagers[0] as X509TrustManager
+                    val client:OkHttpClient = okhttp3 . OkHttpClient . Builder ()
+                        .connectTimeout(60, TimeUnit.SECONDS)
+                        .readTimeout(60, TimeUnit.SECONDS)
+                        .writeTimeout(60, TimeUnit.SECONDS)
+                        .sslSocketFactory(Config.getSSLSocketFactory(this), trustManager)
                         .hostnameVerifier(Config.getHostnameVerifier())
                         .build()
                     val gson = GsonBuilder()
@@ -323,7 +341,7 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
                         mySnackbar.show()
                     }
                     val body = RequestBody.create(
-                        okhttp3.MediaType.parse("application/json; charset=utf-8"),
+                        "application/json; charset=utf-8".toMediaTypeOrNull(),
                         requestObject1.toString()
                     )
                     val call = apiService.getEMIMethodDateils(body)
@@ -535,8 +553,21 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
                 progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
                 progressDialog!!.show()
                 try {
-                    val client = OkHttpClient.Builder()
-                        .sslSocketFactory(Config.getSSLSocketFactory(this@EMIActivity))
+                    val trustManagerFactory = TrustManagerFactory.getInstance(
+                        TrustManagerFactory.getDefaultAlgorithm()
+                    )
+                    trustManagerFactory.init(null as KeyStore?)
+                    val trustManagers = trustManagerFactory.trustManagers
+                    check(!(trustManagers.size != 1 || trustManagers[0] !is X509TrustManager)) {
+                        ("Unexpected default trust managers:"
+                                + Arrays.toString(trustManagers))
+                    }
+                    val trustManager = trustManagers[0] as X509TrustManager
+                    val client:OkHttpClient = okhttp3 . OkHttpClient . Builder ()
+                        .connectTimeout(60, TimeUnit.SECONDS)
+                        .readTimeout(60, TimeUnit.SECONDS)
+                        .writeTimeout(60, TimeUnit.SECONDS)
+                        .sslSocketFactory(Config.getSSLSocketFactory(this), trustManager)
                         .hostnameVerifier(Config.getHostnameVerifier())
                         .build()
                     val gson = GsonBuilder()
@@ -587,7 +618,7 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
                         mySnackbar.show()
                     }
                     val body = RequestBody.create(
-                        okhttp3.MediaType.parse("application/json; charset=utf-8"),
+                        "application/json; charset=utf-8".toMediaTypeOrNull(),
                         requestObject1.toString()
                     )
                     val call = apiService.getEMICalculatorDateils(body)

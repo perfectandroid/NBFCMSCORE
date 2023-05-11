@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:background="@drawable/background"
+    android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:background="@color/colorPrimary"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:background="@color/colortopheader">
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/imgMenu"
@@ -21,42 +20,42 @@
             android:layout_height="match_parent"
             android:layout_weight="4"
             android:padding="10dp"
-            android:src="@drawable/homenavwhite" />
+            android:src="@drawable/homenavwhite"
+            android:tint="@color/white" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
+            android:layout_weight="1"
             android:gravity="center_vertical"
-            android:layout_weight="1">
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:orientation="horizontal"
                 android:gravity="center"
+                android:orientation="horizontal"
                 android:padding="5dp">
 
-                  <ImageView
-                      android:id="@+id/im_applogo"
-                      android:layout_width="30dp"
-                      android:layout_height="30dp" />
+                <ImageView
+                    android:id="@+id/im_applogo"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
 
             </LinearLayout>
-
 
 
             <TextView
                 android:id="@+id/tv_header"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text=""
-                android:gravity="center_vertical"
-                android:textSize="20dp"
                 android:layout_marginLeft="5dp"
-                android:textStyle="normal"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text=""
                 android:textColor="@color/white"
-                android:layout_weight="1" />
+                android:textSize="20dp"
+                android:textStyle="normal" />
 
 
         </LinearLayout>
@@ -64,169 +63,161 @@
 
     </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardview2"
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="0dp"
-                app:cardMaxElevation="0dp">
+                android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/main_bglight"
                     android:orientation="vertical">
+                    <!--                        android:background="@drawable/transparent_bg"-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-<!--                        android:background="@drawable/transparent_bg"-->
+                        android:orientation="horizontal">
+
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/txtv_name"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
-                                    android:layout_marginTop="10dp"
-                                    android:textColor="@color/black"
-                                    android:drawablePadding="10dp"
-                                    android:textSize="20dp"
-                                    android:textStyle="bold"
-                                    android:text=""/>
-
-
-
-                            </LinearLayout>
-
-
-                            <TextView
-                                android:id="@+id/tv_viewall"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:layout_marginTop="10dp"
-                                android:textColor="@color/blue"
-                                android:textStyle="bold"
-                                android:textSize="12dp"
-                                android:gravity="right"
-                                android:text="View All Accounts"/>
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/txtv_custno"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:textColor="@color/black"
-                            android:drawablePadding="10dp"
-                            android:text=""/>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:layout_marginTop="0dp"
-                            android:orientation="horizontal">
+                            android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/txtv_accnt"
-                                android:layout_width="wrap_content"
+                                android:id="@+id/txtv_name"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
                                 android:layout_marginRight="10dp"
-                                android:textColor="@color/black"
+                                android:layout_weight="1"
                                 android:drawablePadding="10dp"
-                                android:text="A/C No"/>
-
-                            <TextView
-                                android:id="@+id/tv_def_account"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:text=""
                                 android:textColor="@color/black"
-                                android:textStyle="bold"
-                                android:text="0010011001"/>
+                                android:textSize="20dp"
+                                android:textStyle="bold" />
+
 
                         </LinearLayout>
 
 
                         <TextView
-                            android:id="@+id/txtv_availbal"
+                            android:id="@+id/tv_viewall"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
-                            android:gravity="center"
-                            android:text="Available Balance"
-                            android:textColor="@color/black"
-                            android:textSize="15dp" />
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:text="View All Accounts"
+                            android:textColor="@color/blue"
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txtv_custno"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:drawablePadding="10dp"
+                        android:text=""
+                        android:textColor="@color/black" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="0dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
                         <TextView
-                                android:id="@+id/tv_def_availablebal"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/green"
-                                    android:textStyle="bold"
-                                    android:textSize="22dp"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:text=""/>
-                            <TextView
-                                android:id="@+id/tv_lastlogin"
-                               android:layout_width="match_parent"
-                               android:layout_height="wrap_content"
-                               android:textColor="@color/black"
-                               android:textSize="10dp"
-                               android:layout_gravity="center"
-                               android:gravity="right"
-                               android:layout_margin="5dp"
-                               android:text="Last Login : 12-10-2021 9:30 am"/>
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="@color/greylight"/>
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Mini statement"
-                                android:drawableRight="@drawable/arrowright"
-                                android:drawablePadding="10dp"
-                                android:padding="10dp"
-                                android:textSize="15dp"
-                                android:textStyle="bold"
-                                android:layout_gravity="center"
-                                android:gravity="left"
-                                android:textColor="@color/black"
-                                android:visibility="gone"/>
+                            android:id="@+id/txtv_accnt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:drawablePadding="10dp"
+                            android:text="A/C No"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/tv_def_account"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0010011001"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
                     </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/txtv_availbal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="Available Balance"
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/tv_def_availablebal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/green"
+                        android:textSize="22dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_lastlogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:gravity="right"
+                        android:text="Last Login : 12-10-2021 9:30 am"
+                        android:textColor="@color/black"
+                        android:textSize="10dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/greylight" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:drawableRight="@drawable/arrowright"
+                        android:drawablePadding="10dp"
+                        android:gravity="left"
+                        android:padding="10dp"
+                        android:text="Mini statement"
+                        android:textColor="@color/black"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
+            </LinearLayout>
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -241,17 +232,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-                <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="5dp"
-                    app:cardUseCompatPadding="true">
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="120dp">
+                    android:layout_height="120dp"
+                    android:layout_margin="10dp">
+
                     <RelativeLayout
                         android:layout_width="fill_parent"
                         android:layout_height="match_parent">
@@ -268,7 +254,7 @@
                             android:layout_alignParentBottom="true" />
                     </RelativeLayout>
                 </LinearLayout>
-                </androidx.cardview.widget.CardView>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -280,8 +266,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
                         android:layout_marginTop="5dp"
+                        android:layout_marginRight="20dp"
                         android:gravity="left"
                         android:text="Account Details"
                         android:textColor="#000"
@@ -296,140 +282,140 @@
                         android:layout_marginRight="10dp"
                         android:orientation="horizontal">
 
-<!--                        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="110dp"-->
-<!--                            android:layout_weight="1"-->
-<!--                            app:cardBackgroundColor="@color/white"-->
-<!--                            app:cardCornerRadius="10dp"-->
-<!--                            app:cardElevation="5dp"-->
-<!--                            app:cardUseCompatPadding="true">-->
+                        <!--                        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                        <!--                            android:layout_width="match_parent"-->
+                        <!--                            android:layout_height="110dp"-->
+                        <!--                            android:layout_weight="1"-->
+                        <!--                            app:cardBackgroundColor="@color/white"-->
+                        <!--                            app:cardCornerRadius="10dp"-->
+                        <!--                            app:cardElevation="5dp"-->
+                        <!--                            app:cardUseCompatPadding="true">-->
 
-                            <LinearLayout
-                                android:id="@+id/llmyaccounts"
-                                android:layout_width="match_parent"
-                                android:layout_height="110dp"
-                                android:layout_gravity="center"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:orientation="vertical">
+                        <LinearLayout
+                            android:id="@+id/llmyaccounts"
+                            android:layout_width="match_parent"
+                            android:layout_height="110dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
 
-                                <ImageView
-                                    android:layout_width="55dp"
-                                    android:layout_height="55dp"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_marginRight="5dp"
-                                    android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/new_account2" />
+                            <ImageView
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginRight="5dp"
+                                android:padding="6dp"
+                                android:src="@drawable/new_account" />
 
-                                <TextView
-                                    android:id="@+id/txtv_myacc"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_marginRight="5dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:text="My Accounts"
-                                    android:textAlignment="center"
-                                    android:textColor="#000"
-                                    android:textSize="13sp" />
+                            <TextView
+                                android:id="@+id/txtv_myacc"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:text="My Accounts"
+                                android:textAlignment="center"
+                                android:textColor="#000"
+                                android:textSize="13sp" />
 
-                            </LinearLayout>
-<!--                        </androidx.cardview.widget.CardView>-->
+                        </LinearLayout>
+                        <!--                        </androidx.cardview.widget.CardView>-->
 
-<!--                        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="110dp"-->
-<!--                            android:layout_weight="1"-->
-<!--                            app:cardBackgroundColor="@color/white"-->
-<!--                            app:cardCornerRadius="10dp"-->
-<!--                            app:cardElevation="5dp"-->
-<!--                            app:cardUseCompatPadding="true">-->
+                        <!--                        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                        <!--                            android:layout_width="match_parent"-->
+                        <!--                            android:layout_height="110dp"-->
+                        <!--                            android:layout_weight="1"-->
+                        <!--                            app:cardBackgroundColor="@color/white"-->
+                        <!--                            app:cardCornerRadius="10dp"-->
+                        <!--                            app:cardElevation="5dp"-->
+                        <!--                            app:cardUseCompatPadding="true">-->
 
-                            <LinearLayout
-                                android:id="@+id/llpassbook"
-                                android:layout_width="match_parent"
-                                android:layout_height="110dp"
-                                android:layout_gravity="center"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:orientation="vertical">
+                        <LinearLayout
+                            android:id="@+id/llpassbook"
+                            android:layout_width="match_parent"
+                            android:layout_height="110dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
 
-                                <ImageView
-                                    android:layout_width="55dp"
-                                    android:layout_height="55dp"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_marginRight="5dp"
-                                    android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/new_passbook2" />
+                            <ImageView
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginRight="5dp"
+                                android:padding="6dp"
+                                android:src="@drawable/new_passbook" />
 
-                                <TextView
-                                    android:id="@+id/txtv_pasbk"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_marginRight="5dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:text="Passbook"
-                                    android:textAlignment="center"
-                                    android:textColor="#000"
-                                    android:textSize="13sp" />
+                            <TextView
+                                android:id="@+id/txtv_pasbk"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:text="Passbook"
+                                android:textAlignment="center"
+                                android:textColor="#000"
+                                android:textSize="13sp" />
 
-                            </LinearLayout>
-<!--                        </androidx.cardview.widget.CardView>-->
+                        </LinearLayout>
+                        <!--                        </androidx.cardview.widget.CardView>-->
 
-<!--                        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="110dp"-->
-<!--                            android:layout_weight="1"-->
-<!--                            app:cardBackgroundColor="@color/white"-->
-<!--                            app:cardCornerRadius="10dp"-->
-<!--                            app:cardElevation="5dp"-->
-<!--                            app:cardUseCompatPadding="true">-->
+                        <!--                        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                        <!--                            android:layout_width="match_parent"-->
+                        <!--                            android:layout_height="110dp"-->
+                        <!--                            android:layout_weight="1"-->
+                        <!--                            app:cardBackgroundColor="@color/white"-->
+                        <!--                            app:cardCornerRadius="10dp"-->
+                        <!--                            app:cardElevation="5dp"-->
+                        <!--                            app:cardUseCompatPadding="true">-->
 
-                            <LinearLayout
-                                android:id="@+id/llquickbalance"
-                                android:layout_width="match_parent"
-                                android:layout_height="110dp"
-                                android:layout_weight="1"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:orientation="vertical">
+                        <LinearLayout
+                            android:id="@+id/llquickbalance"
+                            android:layout_width="match_parent"
+                            android:layout_height="110dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
 
-                                <ImageView
-                                    android:layout_width="55dp"
-                                    android:layout_height="55dp"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_marginRight="5dp"
-                                    android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/new_quick_balance2" />
+                            <ImageView
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginRight="5dp"
+                                android:padding="6dp"
+                                android:src="@drawable/new_quick_balance" />
 
-                                <TextView
-                                    android:id="@+id/txtv_quickbal"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_marginRight="5dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:text="Quick Balance"
-                                    android:textAlignment="center"
-                                    android:textColor="#000"
-                                    android:textSize="13sp" />
+                            <TextView
+                                android:id="@+id/txtv_quickbal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:text="Quick Balance"
+                                android:textAlignment="center"
+                                android:textColor="#000"
+                                android:textSize="13sp" />
 
-                            </LinearLayout>
-<!--                        </androidx.cardview.widget.CardView>-->
+                        </LinearLayout>
+                        <!--                        </androidx.cardview.widget.CardView>-->
 
 
                     </LinearLayout>
@@ -442,140 +428,140 @@
                         android:orientation="horizontal"
                         android:weightSum="3">
 
-<!--                        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="110dp"-->
-<!--                            android:layout_weight="1"-->
-<!--                            app:cardBackgroundColor="@color/white"-->
-<!--                            app:cardCornerRadius="10dp"-->
-<!--                            app:cardElevation="5dp"-->
-<!--                            app:cardUseCompatPadding="true">-->
+                        <!--                        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                        <!--                            android:layout_width="match_parent"-->
+                        <!--                            android:layout_height="110dp"-->
+                        <!--                            android:layout_weight="1"-->
+                        <!--                            app:cardBackgroundColor="@color/white"-->
+                        <!--                            app:cardCornerRadius="10dp"-->
+                        <!--                            app:cardElevation="5dp"-->
+                        <!--                            app:cardUseCompatPadding="true">-->
 
-                            <LinearLayout
-                                android:id="@+id/llstatement"
-                                android:layout_width="match_parent"
-                                android:layout_height="110dp"
-                                android:layout_gravity="center"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:orientation="vertical">
+                        <LinearLayout
+                            android:id="@+id/llstatement"
+                            android:layout_width="match_parent"
+                            android:layout_height="110dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
 
-                                <ImageView
-                                    android:layout_width="55dp"
-                                    android:layout_height="55dp"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_marginRight="5dp"
-                                    android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/new_satement" />
+                            <ImageView
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginRight="5dp"
+                                android:padding="6dp"
+                                android:src="@drawable/new_satement" />
 
-                                <TextView
-                                    android:id="@+id/txtvstatmnt"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_marginRight="5dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:text="Statement "
-                                    android:textAlignment="center"
-                                    android:textColor="#000"
-                                    android:textSize="13sp" />
+                            <TextView
+                                android:id="@+id/txtvstatmnt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:text="Statement "
+                                android:textAlignment="center"
+                                android:textColor="#000"
+                                android:textSize="13sp" />
 
-                            </LinearLayout>
-<!--                        </androidx.cardview.widget.CardView>-->
+                        </LinearLayout>
+                        <!--                        </androidx.cardview.widget.CardView>-->
 
-<!--                        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="110dp"-->
-<!--                            android:layout_weight="1"-->
-<!--                            app:cardBackgroundColor="@color/white"-->
-<!--                            app:cardCornerRadius="10dp"-->
-<!--                            app:cardElevation="5dp"-->
-<!--                            app:cardUseCompatPadding="true">-->
+                        <!--                        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                        <!--                            android:layout_width="match_parent"-->
+                        <!--                            android:layout_height="110dp"-->
+                        <!--                            android:layout_weight="1"-->
+                        <!--                            app:cardBackgroundColor="@color/white"-->
+                        <!--                            app:cardCornerRadius="10dp"-->
+                        <!--                            app:cardElevation="5dp"-->
+                        <!--                            app:cardUseCompatPadding="true">-->
 
-                            <LinearLayout
-                                android:id="@+id/lldueremindrer"
-                                android:layout_width="match_parent"
-                                android:layout_height="110dp"
-                                android:layout_weight="1"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:orientation="vertical">
+                        <LinearLayout
+                            android:id="@+id/lldueremindrer"
+                            android:layout_width="match_parent"
+                            android:layout_height="110dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
 
-                                <ImageView
-                                    android:layout_width="55dp"
-                                    android:layout_height="55dp"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_marginRight="5dp"
-                                    android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
-                                    android:src="@drawable/new_duereminder" />
+                            <ImageView
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginRight="5dp"
+                                android:padding="6dp"
+                                android:src="@drawable/new_duereminder" />
 
-                                <TextView
-                                    android:id="@+id/txtv_dueremndr"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_marginRight="5dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:text="Due Reminder"
-                                    android:textAlignment="center"
-                                    android:textColor="#000"
-                                    android:textSize="13sp" />
+                            <TextView
+                                android:id="@+id/txtv_dueremndr"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:text="Due Reminder"
+                                android:textAlignment="center"
+                                android:textColor="#000"
+                                android:textSize="13sp" />
 
-                            </LinearLayout>
-<!--                        </androidx.cardview.widget.CardView>-->
+                        </LinearLayout>
+                        <!--                        </androidx.cardview.widget.CardView>-->
 
-<!--                        <androidx.cardview.widget.CardView-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="110dp"-->
-<!--                            android:layout_weight="1"-->
-<!--                            app:cardBackgroundColor="@color/white"-->
-<!--                            app:cardCornerRadius="10dp"-->
-<!--                            app:cardElevation="5dp"-->
-<!--                            app:cardUseCompatPadding="true">-->
+                        <!--                        <androidx.cardview.widget.CardView-->
+                        <!--                            android:layout_width="match_parent"-->
+                        <!--                            android:layout_height="110dp"-->
+                        <!--                            android:layout_weight="1"-->
+                        <!--                            app:cardBackgroundColor="@color/white"-->
+                        <!--                            app:cardCornerRadius="10dp"-->
+                        <!--                            app:cardElevation="5dp"-->
+                        <!--                            app:cardUseCompatPadding="true">-->
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="110dp"
-                                android:layout_gravity="center"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:id="@+id/llnotif"
-                                android:orientation="vertical">
+                        <LinearLayout
+                            android:id="@+id/llnotif"
+                            android:layout_width="match_parent"
+                            android:layout_height="110dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
 
-                                <ImageView
-                                    android:layout_width="55dp"
-                                    android:layout_height="55dp"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_marginRight="5dp"
-                                    android:layout_marginTop="5dp"
-                                    android:padding="6dp"
-                                    android:src="@drawable/new_notification" />
+                            <ImageView
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginRight="5dp"
+                                android:padding="6dp"
+                                android:src="@drawable/new_notification" />
 
-                                <TextView
-                                    android:id="@+id/txtvnotif"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_marginRight="5dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:text="Notification &amp; Messages"
-                                    android:textAlignment="center"
-                                    android:textColor="#000"
-                                    android:textSize="13sp" />
+                            <TextView
+                                android:id="@+id/txtvnotif"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:text="Notification &amp; Messages"
+                                android:textAlignment="center"
+                                android:textColor="#000"
+                                android:textSize="13sp" />
 
-                            </LinearLayout>
-<!--                        </androidx.cardview.widget.CardView>-->
+                        </LinearLayout>
+                        <!--                        </androidx.cardview.widget.CardView>-->
 
 
                     </LinearLayout>
@@ -591,15 +577,13 @@
                     android:orientation="vertical">
 
 
-
-
                     <TextView
                         android:id="@+id/txtv_fundtrans"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
                         android:layout_marginTop="5dp"
+                        android:layout_marginRight="20dp"
                         android:gravity="left"
                         android:text="Fund Transfer"
                         android:textColor="#000"
@@ -609,10 +593,10 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rvfundTransfer"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp" />
 
 
                     <LinearLayout
@@ -621,8 +605,8 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:orientation="horizontal"
-                        android:weightSum="3"
-                        android:visibility="gone">
+                        android:visibility="gone"
+                        android:weightSum="3">
 
                         <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
@@ -644,11 +628,11 @@
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:src="@drawable/myonwbank" />
 
                                 <TextView
@@ -656,12 +640,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:text="Own Bank"
-                                    android:textAlignment="center"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
+                                    android:text="Own Bank"
+                                    android:textAlignment="center"
                                     android:textColor="#000"
                                     android:textSize="10sp" />
 
@@ -688,11 +672,11 @@
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:src="@drawable/myotherbank" />
 
                                 <TextView
@@ -700,11 +684,11 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:text="Other Bank"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
+                                    android:text="Other Bank"
                                     android:textAlignment="center"
                                     android:textColor="#000"
                                     android:textSize="10sp" />
@@ -732,11 +716,11 @@
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:src="@drawable/myquickpay" />
 
                                 <TextView
@@ -744,11 +728,11 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:text="Quick Pay"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
+                                    android:text="Quick Pay"
                                     android:textAlignment="center"
                                     android:textColor="#000"
                                     android:textSize="10sp" />
@@ -764,8 +748,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:visibility="gone"
                         android:orientation="horizontal"
+                        android:visibility="gone"
                         android:weightSum="3">
 
                         <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -787,21 +771,22 @@
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:src="@drawable/branch" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
-                                    android:layout_marginBottom="5dp"                                    android:text="Scan &amp; Pay"
+                                    android:layout_marginBottom="5dp"
+                                    android:text="Scan &amp; Pay"
                                     android:textAlignment="center"
                                     android:textColor="#000"
                                     android:textSize="10sp" />
@@ -828,19 +813,19 @@
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:src="@drawable/vcard" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
                                     android:text="To Phone"
@@ -870,19 +855,19 @@
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:src="@drawable/emi" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
                                     android:text="UPI Transaction"
@@ -911,8 +896,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
                         android:layout_marginTop="5dp"
+                        android:layout_marginRight="20dp"
                         android:gravity="left"
                         android:text="Recharge &amp; Bills"
                         android:textColor="#000"
@@ -921,11 +906,10 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rvRecharge"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp" />
 
 
                     <LinearLayout
@@ -934,8 +918,8 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:orientation="horizontal"
-                        android:weightSum="3"
-                        android:visibility="gone">
+                        android:visibility="gone"
+                        android:weightSum="3">
 
                         <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:layout_width="match_parent"
@@ -957,11 +941,11 @@
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:src="@drawable/myprepaidmobile" />
 
                                 <TextView
@@ -969,8 +953,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
                                     android:text="Prepaid Mobile"
@@ -1001,11 +985,11 @@
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:src="@drawable/mypostpaidmobile" />
 
                                 <TextView
@@ -1013,8 +997,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
                                     android:text="Postpaid Mobile"
@@ -1045,11 +1029,11 @@
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:src="@drawable/mylandline" />
 
                                 <TextView
@@ -1057,8 +1041,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
                                     android:text="Landline"
@@ -1078,8 +1062,8 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:orientation="horizontal"
-                        android:weightSum="3"
-                        android:visibility="gone">
+                        android:visibility="gone"
+                        android:weightSum="3">
 
                         <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:layout_width="match_parent"
@@ -1101,11 +1085,11 @@
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:src="@drawable/mydth" />
 
                                 <TextView
@@ -1113,8 +1097,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
                                     android:text="DTH"
@@ -1145,11 +1129,11 @@
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:src="@drawable/mydatacard" />
 
                                 <TextView
@@ -1157,8 +1141,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
                                     android:text="Data Card"
@@ -1189,11 +1173,11 @@
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:src="@drawable/mykseb" />
 
                                 <TextView
@@ -1201,8 +1185,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
                                     android:text="KSEB"
@@ -1222,8 +1206,8 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:orientation="horizontal"
-                        android:weightSum="3"
-                        android:visibility="gone">
+                        android:visibility="gone"
+                        android:weightSum="3">
 
                         <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
@@ -1257,8 +1241,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
                                     android:text="History"
@@ -1273,11 +1257,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="110dp"
                             android:layout_weight="1"
+                            android:visibility="invisible"
                             app:cardBackgroundColor="@color/white"
                             app:cardCornerRadius="10dp"
                             app:cardElevation="5dp"
-                            app:cardUseCompatPadding="true"
-                            android:visibility="invisible">
+                            app:cardUseCompatPadding="true">
 
 
                         </androidx.cardview.widget.CardView>
@@ -1286,11 +1270,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="110dp"
                             android:layout_weight="1"
+                            android:visibility="invisible"
                             app:cardBackgroundColor="@color/white"
                             app:cardCornerRadius="10dp"
                             app:cardElevation="5dp"
-                            app:cardUseCompatPadding="true"
-                            android:visibility="invisible">
+                            app:cardUseCompatPadding="true">
 
 
                         </androidx.cardview.widget.CardView>
@@ -1312,8 +1296,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
                         android:layout_marginTop="5dp"
+                        android:layout_marginRight="20dp"
                         android:gravity="left"
                         android:text="Reports &amp; Other Services"
                         android:textColor="#000"
@@ -1349,11 +1333,11 @@
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:src="@drawable/mydashboard" />
 
                                 <TextView
@@ -1361,8 +1345,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
                                     android:text="Dashboard"
@@ -1393,11 +1377,11 @@
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:src="@drawable/myvirtualcard" />
 
                                 <TextView
@@ -1405,8 +1389,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
                                     android:text="Virtual Card"
@@ -1437,11 +1421,11 @@
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:src="@drawable/mybranchdetails" />
 
                                 <TextView
@@ -1449,8 +1433,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
                                     android:text="Branch Details"
@@ -1492,11 +1476,11 @@
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:src="@drawable/myloanapplication" />
 
                                 <TextView
@@ -1504,8 +1488,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
                                     android:text="Loan Application"
@@ -1536,11 +1520,11 @@
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:src="@drawable/myloanstatus" />
 
                                 <TextView
@@ -1548,8 +1532,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
                                     android:text="Loan Status"
@@ -1580,11 +1564,11 @@
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:src="@drawable/myproductdetails" />
 
                                 <TextView
@@ -1592,8 +1576,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
                                     android:text="Product Details"
@@ -1621,8 +1605,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
                         android:layout_marginTop="5dp"
+                        android:layout_marginRight="20dp"
                         android:gravity="left"
                         android:text="Tools &amp; Settings"
                         android:textColor="#000"
@@ -1650,19 +1634,19 @@
                             <LinearLayout
                                 android:id="@+id/llEmi"
                                 android:layout_width="match_parent"
-                                android:gravity="center"
+                                android:layout_height="match_parent"
                                 android:layout_gravity="center"
-                                android:orientation="vertical"
-                                android:layout_height="match_parent">
+                                android:gravity="center"
+                                android:orientation="vertical">
 
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:src="@drawable/emicalculator" />
 
                                 <TextView
@@ -1670,8 +1654,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
                                     android:text="EMI Calculator"
@@ -1694,19 +1678,19 @@
                             <LinearLayout
                                 android:id="@+id/llDeposit"
                                 android:layout_width="match_parent"
-                                android:gravity="center"
+                                android:layout_height="match_parent"
                                 android:layout_gravity="center"
-                                android:orientation="vertical"
-                                android:layout_height="match_parent">
+                                android:gravity="center"
+                                android:orientation="vertical">
 
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:src="@drawable/mydepositcal" />
 
                                 <TextView
@@ -1714,8 +1698,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
                                     android:text="Deposit Calculator"
@@ -1738,19 +1722,19 @@
                             <LinearLayout
                                 android:id="@+id/llgoldslab"
                                 android:layout_width="match_parent"
-                                android:gravity="center"
+                                android:layout_height="match_parent"
                                 android:layout_gravity="center"
-                                android:orientation="vertical"
-                                android:layout_height="match_parent">
+                                android:gravity="center"
+                                android:orientation="vertical">
 
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:src="@drawable/mygoldloaneligible" />
 
                                 <TextView
@@ -1758,8 +1742,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
                                     android:text="Gold Loan Eligible Calculator"
@@ -1793,19 +1777,19 @@
                             <LinearLayout
                                 android:id="@+id/llenquiry"
                                 android:layout_width="match_parent"
-                                android:gravity="center"
+                                android:layout_height="match_parent"
                                 android:layout_gravity="center"
-                                android:orientation="vertical"
-                                android:layout_height="match_parent">
+                                android:gravity="center"
+                                android:orientation="vertical">
 
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:src="@drawable/myenquiry" />
 
                                 <TextView
@@ -1813,8 +1797,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
                                     android:text="Enquiries"
@@ -1837,19 +1821,19 @@
                             <LinearLayout
                                 android:id="@+id/ll_holidaylist"
                                 android:layout_width="match_parent"
-                                android:gravity="center"
+                                android:layout_height="match_parent"
                                 android:layout_gravity="center"
-                                android:orientation="vertical"
-                                android:layout_height="match_parent">
+                                android:gravity="center"
+                                android:orientation="vertical">
 
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:src="@drawable/myholidaylist" />
 
                                 <TextView
@@ -1857,8 +1841,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
                                     android:text="Holiday List"
@@ -1882,19 +1866,19 @@
                             <LinearLayout
                                 android:id="@+id/llexecutive"
                                 android:layout_width="match_parent"
-                                android:gravity="center"
+                                android:layout_height="match_parent"
                                 android:layout_gravity="center"
-                                android:orientation="vertical"
-                                android:layout_height="match_parent">
+                                android:gravity="center"
+                                android:orientation="vertical">
 
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:src="@drawable/myexecutivecall" />
 
                                 <TextView
@@ -1902,8 +1886,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
                                     android:text="Executive Call Back"
@@ -1916,6 +1900,7 @@
 
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -1936,19 +1921,19 @@
                             <LinearLayout
                                 android:id="@+id/llupimain"
                                 android:layout_width="match_parent"
-                                android:gravity="center"
+                                android:layout_height="match_parent"
                                 android:layout_gravity="center"
-                                android:orientation="vertical"
-                                android:layout_height="match_parent">
+                                android:gravity="center"
+                                android:orientation="vertical">
 
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:src="@drawable/upi2" />
 
                                 <TextView
@@ -1956,8 +1941,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
                                     android:text="UPI"
@@ -1980,27 +1965,27 @@
                             <LinearLayout
                                 android:id="@+id/ll_upiscan"
                                 android:layout_width="match_parent"
-                                android:gravity="center"
+                                android:layout_height="match_parent"
                                 android:layout_gravity="center"
-                                android:orientation="vertical"
-                                android:layout_height="match_parent">
+                                android:gravity="center"
+                                android:orientation="vertical">
 
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:src="@drawable/ic_baseline_qr_code_24" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
                                     android:text="Scan"
@@ -2024,19 +2009,19 @@
                             <LinearLayout
                                 android:id="@+id/llexecutive"
                                 android:layout_width="match_parent"
-                                android:gravity="center"
+                                android:layout_height="match_parent"
                                 android:layout_gravity="center"
-                                android:orientation="vertical"
-                                android:layout_height="match_parent">
+                                android:gravity="center"
+                                android:orientation="vertical">
 
                                 <ImageView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:padding="6dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:src="@drawable/myexecutivecall" />
 
                                 <TextView
@@ -2044,8 +2029,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginBottom="5dp"
                                     android:text="Executive Call Back"
@@ -2066,48 +2051,100 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="55dp"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="30dp"
-            android:background="@drawable/nav_bg"
+            android:background="@color/colorLight"
+            android:gravity="center"
             android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/improfile"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:padding="15dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/profilenav" />
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/imlanguage"
-                android:layout_width="match_parent"
+                <ImageView
+                    android:id="@+id/improfile"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/profilenav"
+                    android:tint="@color/colorPrimaryExtraDark" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Profile"
+                    android:textSize="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:padding="15dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/langicon" />
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/imlogout"
-                android:layout_width="match_parent"
+                <ImageView
+                    android:id="@+id/imlanguage"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/langicon"
+                    android:tint="@color/colorPrimaryExtraDark" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Language"
+                    android:textSize="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:padding="15dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/logout" />
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/imquit"
-                android:layout_width="match_parent"
+                <ImageView
+                    android:id="@+id/imlogout"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/logout"
+                    android:tint="@color/colorPrimaryExtraDark" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Logout"
+                    android:textSize="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:padding="15dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/exitnav" />
+                android:gravity="center"
+                android:orientation="vertical">
 
+                <ImageView
+                    android:id="@+id/imquit"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/exitnav"
+                    android:tint="@color/colorPrimaryExtraDark" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Quit"
+                    android:textSize="10dp" />
+            </LinearLayout>
 
         </LinearLayout>
     </RelativeLayout>

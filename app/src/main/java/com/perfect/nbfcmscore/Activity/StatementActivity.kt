@@ -50,7 +50,11 @@ import android.R.attr.path
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import java.security.KeyStore
 import java.text.ParseException
+import javax.net.ssl.TrustManagerFactory
+import javax.net.ssl.X509TrustManager
 
 
 class StatementActivity : AppCompatActivity(), View.OnClickListener {
@@ -475,8 +479,21 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
                 progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
                 progressDialog!!.show()
                 try {
-                    val client = OkHttpClient.Builder()
-                        .sslSocketFactory(Config.getSSLSocketFactory(this@StatementActivity))
+                    val trustManagerFactory = TrustManagerFactory.getInstance(
+                        TrustManagerFactory.getDefaultAlgorithm()
+                    )
+                    trustManagerFactory.init(null as KeyStore?)
+                    val trustManagers = trustManagerFactory.trustManagers
+                    check(!(trustManagers.size != 1 || trustManagers[0] !is X509TrustManager)) {
+                        ("Unexpected default trust managers:"
+                                + Arrays.toString(trustManagers))
+                    }
+                    val trustManager = trustManagers[0] as X509TrustManager
+                    val client:OkHttpClient = okhttp3 . OkHttpClient . Builder ()
+                        .connectTimeout(60, TimeUnit.SECONDS)
+                        .readTimeout(60, TimeUnit.SECONDS)
+                        .writeTimeout(60, TimeUnit.SECONDS)
+                        .sslSocketFactory(Config.getSSLSocketFactory(this), trustManager)
                         .hostnameVerifier(Config.getHostnameVerifier())
                         .build()
                     val gson = GsonBuilder()
@@ -522,7 +539,7 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
                         mySnackbar.show()
                     }
                     val body = RequestBody.create(
-                        okhttp3.MediaType.parse("application/json; charset=utf-8"),
+                        "application/json; charset=utf-8".toMediaTypeOrNull(),
                         requestObject1.toString()
                     )
                     val call = apiService.getOwnAccounDetails(body)
@@ -679,7 +696,7 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun downloadFile2() {
+    /*private fun downloadFile2() {
         val client = OkHttpClient.Builder()
             .sslSocketFactory(Config.getSSLSocketFactory(this@StatementActivity))
             .hostnameVerifier(Config.getHostnameVerifier())
@@ -729,7 +746,7 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
             .build()
 
         val downloadId = manager!!.add(request)
-    }
+    }*/
 
 
     private fun getStatementOfAccountDocs(FromNo: String) {
@@ -744,8 +761,21 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
                 progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
                 progressDialog!!.show()
                 try {
-                    val client = OkHttpClient.Builder()
-                        .sslSocketFactory(Config.getSSLSocketFactory(this@StatementActivity))
+                    val trustManagerFactory = TrustManagerFactory.getInstance(
+                        TrustManagerFactory.getDefaultAlgorithm()
+                    )
+                    trustManagerFactory.init(null as KeyStore?)
+                    val trustManagers = trustManagerFactory.trustManagers
+                    check(!(trustManagers.size != 1 || trustManagers[0] !is X509TrustManager)) {
+                        ("Unexpected default trust managers:"
+                                + Arrays.toString(trustManagers))
+                    }
+                    val trustManager = trustManagers[0] as X509TrustManager
+                    val client:OkHttpClient = okhttp3 . OkHttpClient . Builder ()
+                        .connectTimeout(60, TimeUnit.SECONDS)
+                        .readTimeout(60, TimeUnit.SECONDS)
+                        .writeTimeout(60, TimeUnit.SECONDS)
+                        .sslSocketFactory(Config.getSSLSocketFactory(this), trustManager)
                         .hostnameVerifier(Config.getHostnameVerifier())
                         .build()
                     val gson = GsonBuilder()
@@ -794,7 +824,7 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
                         mySnackbar.show()
                     }
                     val body = RequestBody.create(
-                        okhttp3.MediaType.parse("application/json; charset=utf-8"),
+                        "application/json; charset=utf-8".toMediaTypeOrNull(),
                         requestObject1.toString()
                     )
                     val call = apiService.getStatementOfAccount(body)
@@ -918,8 +948,21 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
     private fun downloadFile(filename1: String, filename2: String) {
         val pDialog = ProgressDialog(applicationContext!!)
 
-        val client = OkHttpClient.Builder()
-            .sslSocketFactory(Config.getSSLSocketFactory(this@StatementActivity))
+        val trustManagerFactory = TrustManagerFactory.getInstance(
+            TrustManagerFactory.getDefaultAlgorithm()
+        )
+        trustManagerFactory.init(null as KeyStore?)
+        val trustManagers = trustManagerFactory.trustManagers
+        check(!(trustManagers.size != 1 || trustManagers[0] !is X509TrustManager)) {
+            ("Unexpected default trust managers:"
+                    + Arrays.toString(trustManagers))
+        }
+        val trustManager = trustManagers[0] as X509TrustManager
+        val client:OkHttpClient = okhttp3 . OkHttpClient . Builder ()
+            .connectTimeout(60, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
+            .writeTimeout(60, TimeUnit.SECONDS)
+            .sslSocketFactory(Config.getSSLSocketFactory(this), trustManager)
             .hostnameVerifier(Config.getHostnameVerifier())
             .build()
 

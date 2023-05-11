@@ -8,8 +8,8 @@ android {
    // buildToolsVersion "30.0.0"
 
     defaultConfig {
-        applicationId "com.perfect.nbfcmscore"
-        minSdkVersion 16
+        applicationId "com.perfect.nbfcmscore1"
+        minSdkVersion 21
         targetSdkVersion 33
         versionCode 1
         versionName "1.0"
@@ -33,7 +33,15 @@ android {
 }
 
 dependencies {
-
+    configurations {
+        implementation.exclude module: 'gson' //Remove duplicate dependencies： gson
+        implementation.exclude module: 'retrofit' //Remove duplicate dependencies： gson
+        implementation.exclude module: 'converter-gson' //Remove duplicate dependencies： gson
+        //implementation.exclude module: 'okhttp' //Remove duplicate dependencies： gson
+        implementation.exclude module: 'okio' //Remove duplicate dependencies： gson
+        implementation.exclude group: 'com.squareup.okhttp3'
+        //  implementation.exclude group : 'com.squareup.retrofit2'
+    }
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
@@ -51,13 +59,15 @@ dependencies {
     implementation 'com.android.support:support-v4:30.0.0'
     implementation 'me.dm7.barcodescanner:zxing:1.9'
     implementation 'com.journeyapps:zxing-android-embedded:3.0.2@aar'
-    implementation 'com.squareup.retrofit2:retrofit:2.1.0'
-    implementation 'com.google.code.gson:gson:2.6.2'
-    implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
-    implementation 'com.squareup.okhttp3:okhttp:3.4.1'
-    implementation 'com.squareup.okio:okio:1.10.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
-    implementation 'com.squareup.retrofit2:converter-scalars:2.0.0'
+  //  implementation 'com.squareup.retrofit2:retrofit:2.1.0'
+//    implementation 'com.google.code.gson:gson:2.6.2'
+//    implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
+//    implementation 'com.squareup.okhttp3:okhttp:3.4.1'
+//    implementation 'com.squareup.okio:okio:1.10.0'
+//    implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+//    implementation 'com.squareup.retrofit2:converter-scalars:2.0.0'
+
+
    // implementation 'com.github.scottyab:showhidepasswordedittext:0.8'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     implementation 'com.github.GoodieBag:Pinview:v1.4'
@@ -112,6 +122,33 @@ dependencies {
     implementation 'com.github.aabhasr1:OtpView:v1.1.2'
     def lottieVersion = "3.4.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    implementation files('libs/cobrandprepaidkit-release.aar')
+    implementation('com.google.code.gson:gson:2.8.5') {
+        transitive = true;
+        exclude group: 'com.google.code.gson', module: 'gson'
+    }
+    implementation('com.squareup.retrofit2:retrofit:2.3.0') {
+        //  transitive = true;
+        exclude group: 'com.squareup.retrofit2', module: 'retrofit'
+    }
+    implementation('com.squareup.retrofit2:converter-gson:2.3.0') {
+        exclude group: 'com.squareup.retrofit2', module: 'converter-gson'
+    }
+    implementation('com.squareup.okio:okio:1.14.0') {
+        exclude group: 'com.squareup.okio', module: 'okio'
+    }
+    implementation('com.squareup.retrofit2:converter-scalars:2.0.0') {
+        exclude group: 'com.squareup.retrofit2', module: 'converter-scalars'
+    }
+    implementation('com.squareup.okhttp3:okhttp:3.10.0') {
+        transitive = true;
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+    }
+    implementation('com.squareup.okhttp3:logging-interceptor:3.4.1') {
+        transitive = true;
+        exclude group: 'com.squareup.okhttp3', module: 'logging-interceptor'
+    }
 
 
 }

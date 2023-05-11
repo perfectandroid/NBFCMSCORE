@@ -21,6 +21,7 @@ import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
 import com.perfect.nbfcmscore.Helper.MscoreApplication
 import com.perfect.nbfcmscore.R
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
 import org.json.JSONArray
@@ -29,6 +30,11 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import java.security.KeyStore
+import java.util.*
+import java.util.concurrent.TimeUnit
+import javax.net.ssl.TrustManagerFactory
+import javax.net.ssl.X509TrustManager
 
 class OwnbankownaccountTransferActivity : AppCompatActivity(),View.OnClickListener {
     private var progressDialog: ProgressDialog? = null
@@ -72,8 +78,21 @@ class OwnbankownaccountTransferActivity : AppCompatActivity(),View.OnClickListen
                 progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
                 progressDialog!!.show()
                 try {
-                    val client = OkHttpClient.Builder()
-                            .sslSocketFactory(Config.getSSLSocketFactory(this@OwnbankownaccountTransferActivity))
+                    val trustManagerFactory = TrustManagerFactory.getInstance(
+                        TrustManagerFactory.getDefaultAlgorithm()
+                    )
+                    trustManagerFactory.init(null as KeyStore?)
+                    val trustManagers = trustManagerFactory.trustManagers
+                    check(!(trustManagers.size != 1 || trustManagers[0] !is X509TrustManager)) {
+                        ("Unexpected default trust managers:"
+                                + Arrays.toString(trustManagers))
+                    }
+                    val trustManager = trustManagers[0] as X509TrustManager
+                    val client:OkHttpClient = okhttp3 . OkHttpClient . Builder ()
+                        .connectTimeout(60, TimeUnit.SECONDS)
+                        .readTimeout(60, TimeUnit.SECONDS)
+                        .writeTimeout(60, TimeUnit.SECONDS)
+                        .sslSocketFactory(Config.getSSLSocketFactory(this), trustManager)
                             .hostnameVerifier(Config.getHostnameVerifier())
                             .build()
                     val gson = GsonBuilder()
@@ -131,8 +150,8 @@ class OwnbankownaccountTransferActivity : AppCompatActivity(),View.OnClickListen
                         mySnackbar.show()
                     }
                     val body = RequestBody.create(
-                            okhttp3.MediaType.parse("application/json; charset=utf-8"),
-                            requestObject1.toString()
+                        "application/json; charset=utf-8".toMediaTypeOrNull(),
+                        requestObject1.toString()
                     )
                     val call = apiService.getOwnbankownaccountdetail(body)
                     call.enqueue(object : retrofit2.Callback<String> {
@@ -143,7 +162,7 @@ class OwnbankownaccountTransferActivity : AppCompatActivity(),View.OnClickListen
                             try {
                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
-                                Log.i("Response", response.body())
+                                Log.i("Response", response.body().toString())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
                                             jObject.getJSONObject("OwnAccountdetails")

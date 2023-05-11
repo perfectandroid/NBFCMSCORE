@@ -50,13 +50,19 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.*
 import com.github.mikephil.charting.components.XAxis
+import com.perfect.nbfcmscore.Helper.Config.getSSLSocketFactory
 import lecho.lib.hellocharts.gesture.ZoomType
 import lecho.lib.hellocharts.model.Axis
 import lecho.lib.hellocharts.model.Column
 import lecho.lib.hellocharts.model.ColumnChartData
 import lecho.lib.hellocharts.model.SubcolumnValue
 import lecho.lib.hellocharts.view.ColumnChartView
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import org.json.JSONException
+import java.security.KeyStore
+import java.util.concurrent.TimeUnit
+import javax.net.ssl.TrustManagerFactory
+import javax.net.ssl.X509TrustManager
 
 
 class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValueSelectedListener {
@@ -207,8 +213,21 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                 progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
                 progressDialog!!.show()
                 try {
-                    val client = OkHttpClient.Builder()
-                            .sslSocketFactory(Config.getSSLSocketFactory(this@DashboardActivity))
+                    val trustManagerFactory = TrustManagerFactory.getInstance(
+                        TrustManagerFactory.getDefaultAlgorithm()
+                    )
+                    trustManagerFactory.init(null as KeyStore?)
+                    val trustManagers = trustManagerFactory.trustManagers
+                    check(!(trustManagers.size != 1 || trustManagers[0] !is X509TrustManager)) {
+                        ("Unexpected default trust managers:"
+                                + Arrays.toString(trustManagers))
+                    }
+                    val trustManager = trustManagers[0] as X509TrustManager
+                    val client:OkHttpClient = okhttp3 . OkHttpClient . Builder ()
+                        .connectTimeout(60, TimeUnit.SECONDS)
+                        .readTimeout(60, TimeUnit.SECONDS)
+                        .writeTimeout(60, TimeUnit.SECONDS)
+                        .sslSocketFactory(Config.getSSLSocketFactory(this), trustManager)
                             .hostnameVerifier(Config.getHostnameVerifier())
                             .build()
                     val gson = GsonBuilder()
@@ -271,8 +290,8 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                         mySnackbar.show()
                     }
                     val body = RequestBody.create(
-                            okhttp3.MediaType.parse("application/json; charset=utf-8"),
-                            requestObject1.toString()
+                        "application/json; charset=utf-8".toMediaTypeOrNull(),
+                        requestObject1.toString()
                     )
                     val call = apiService.getDashBoardAssetsDataDetails(body)
                     call.enqueue(object : retrofit2.Callback<String> {
@@ -284,7 +303,7 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                             try {
                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
-                                Log.e("Response-assets", response.body())
+                                Log.e("Response-assets", response.body().toString())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
                                             jObject.getJSONObject("DashBoardDataAssetsDetailsIfo")
@@ -519,8 +538,21 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                 progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
                 progressDialog!!.show()*/
                 try {
-                    val client = OkHttpClient.Builder()
-                            .sslSocketFactory(Config.getSSLSocketFactory(this@DashboardActivity))
+                    val trustManagerFactory = TrustManagerFactory.getInstance(
+                        TrustManagerFactory.getDefaultAlgorithm()
+                    )
+                    trustManagerFactory.init(null as KeyStore?)
+                    val trustManagers = trustManagerFactory.trustManagers
+                    check(!(trustManagers.size != 1 || trustManagers[0] !is X509TrustManager)) {
+                        ("Unexpected default trust managers:"
+                                + Arrays.toString(trustManagers))
+                    }
+                    val trustManager = trustManagers[0] as X509TrustManager
+                    val client:OkHttpClient = okhttp3 . OkHttpClient . Builder ()
+                        .connectTimeout(60, TimeUnit.SECONDS)
+                        .readTimeout(60, TimeUnit.SECONDS)
+                        .writeTimeout(60, TimeUnit.SECONDS)
+                        .sslSocketFactory(Config.getSSLSocketFactory(this), trustManager)
                             .hostnameVerifier(Config.getHostnameVerifier())
                             .build()
                     val gson = GsonBuilder()
@@ -579,8 +611,8 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                         mySnackbar.show()
                     }
                     val body = RequestBody.create(
-                            okhttp3.MediaType.parse("application/json; charset=utf-8"),
-                            requestObject1.toString()
+                        "application/json; charset=utf-8".toMediaTypeOrNull(),
+                        requestObject1.toString()
                     )
                     val call = apiService.getDashBoardLiabilityDetails(body)
                     call.enqueue(object : retrofit2.Callback<String> {
@@ -591,7 +623,7 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                             try {
                                 //   progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
-                                Log.i("Response-liability", response.body())
+                                Log.i("Response-liability", response.body().toString())
 
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
@@ -821,8 +853,21 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                 progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
                 progressDialog!!.show()*/
                 try {
-                    val client = OkHttpClient.Builder()
-                            .sslSocketFactory(Config.getSSLSocketFactory(this@DashboardActivity))
+                    val trustManagerFactory = TrustManagerFactory.getInstance(
+                        TrustManagerFactory.getDefaultAlgorithm()
+                    )
+                    trustManagerFactory.init(null as KeyStore?)
+                    val trustManagers = trustManagerFactory.trustManagers
+                    check(!(trustManagers.size != 1 || trustManagers[0] !is X509TrustManager)) {
+                        ("Unexpected default trust managers:"
+                                + Arrays.toString(trustManagers))
+                    }
+                    val trustManager = trustManagers[0] as X509TrustManager
+                    val client:OkHttpClient = okhttp3 . OkHttpClient . Builder ()
+                        .connectTimeout(60, TimeUnit.SECONDS)
+                        .readTimeout(60, TimeUnit.SECONDS)
+                        .writeTimeout(60, TimeUnit.SECONDS)
+                        .sslSocketFactory(getSSLSocketFactory(this), trustManager)
                             .hostnameVerifier(Config.getHostnameVerifier())
                             .build()
                     val gson = GsonBuilder()
@@ -880,8 +925,8 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                         mySnackbar.show()
                     }
                     val body = RequestBody.create(
-                            okhttp3.MediaType.parse("application/json; charset=utf-8"),
-                            requestObject1.toString()
+                        "application/json; charset=utf-8".toMediaTypeOrNull(),
+                        requestObject1.toString()
                     )
                     val call = apiService.getDashBoardpaymentandreceipt(body)
                     call.enqueue(object : retrofit2.Callback<String> {
@@ -949,7 +994,7 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
 //                                        "    \"StatusCode\": 0,\n" +
 //                                        "    \"EXMessage\": null\n" +
 //                                        "}")
-                                Log.i("Response-payment", response.body())
+                                Log.i("Response-payment", response.body().toString())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
                                             jObject.getJSONObject("DashBoardDataPaymentAndReceiptDetailsIfo")
