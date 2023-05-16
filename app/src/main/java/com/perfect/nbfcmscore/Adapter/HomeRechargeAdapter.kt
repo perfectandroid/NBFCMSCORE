@@ -63,7 +63,7 @@ class HomeRechargeAdapter (internal val mContext: Context, internal val jsInfo: 
         // internal var ll_adp_account: LinearLayout? = null
         var im_recharge: ImageView? = null
         var txtv_recharge: TextView? = null
-        var card_recharge: CardView? = null
+        var card_recharge: LinearLayout? = null
         var ll_recharge: LinearLayout? = null
 
 
@@ -71,7 +71,7 @@ class HomeRechargeAdapter (internal val mContext: Context, internal val jsInfo: 
 
             im_recharge = v.findViewById<View>(R.id.im_recharge) as ImageView
             txtv_recharge = v.findViewById<View>(R.id.txtv_recharge) as TextView
-            card_recharge = v.findViewById<View>(R.id.card_recharge) as CardView
+            card_recharge = v.findViewById<View>(R.id.card_recharge) as LinearLayout
             ll_recharge = v.findViewById<View>(R.id.ll_recharge) as LinearLayout
 
 

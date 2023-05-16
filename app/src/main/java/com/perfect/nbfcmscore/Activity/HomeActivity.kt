@@ -105,6 +105,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     var txtv_tools: TextView? = null
 
     var improfile: ImageView? = null
+    var img_barcode: ImageView? = null
     var imlanguage: ImageView? = null
     var imquit: ImageView? = null
     var imlogout: ImageView? = null
@@ -425,25 +426,25 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
             dlObjectRech.put("RechId",0)
             dlObjectRech.put("Rechlabel",ID_Prepaid.getString("PrepaidMobile", null))
-            dlObjectRech.put("RechImage",R.drawable.myprepaidmobile)
+            dlObjectRech.put("RechImage",R.drawable.new_prepaid_mobile)
             jArrayMenuRech!!.put(dlObjectRech)
 
             dlObjectRech = JSONObject()
             dlObjectRech.put("RechId",1)
             dlObjectRech.put("Rechlabel",ID_Postpaid.getString("PostpaidMobile", null))
-            dlObjectRech.put("RechImage",R.drawable.mypostpaidmobile)
+            dlObjectRech.put("RechImage",R.drawable.new_postpaid_mobile)
             jArrayMenuRech!!.put(dlObjectRech)
 
             dlObjectRech = JSONObject()
             dlObjectRech.put("RechId",2)
             dlObjectRech.put("Rechlabel",ID_Landline.getString("Landline", null))
-            dlObjectRech.put("RechImage",R.drawable.mylandline)
+            dlObjectRech.put("RechImage",R.drawable.new_landline)
             jArrayMenuRech!!.put(dlObjectRech)
 
             dlObjectRech = JSONObject()
             dlObjectRech.put("RechId",3)
             dlObjectRech.put("Rechlabel",ID_DTH.getString("DTH", null))
-            dlObjectRech.put("RechImage",R.drawable.mydth)
+            dlObjectRech.put("RechImage",R.drawable.new_dth)
             jArrayMenuRech!!.put(dlObjectRech)
 
 
@@ -451,7 +452,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             dlObjectRech = JSONObject()
             dlObjectRech.put("RechId",4)
             dlObjectRech.put("Rechlabel",ID_Datacrdpay.getString("DataCard", null))
-            dlObjectRech.put("RechImage",R.drawable.mydatacard)
+            dlObjectRech.put("RechImage",R.drawable.new_data_card)
             jArrayMenuRech!!.put(dlObjectRech)
 
 
@@ -460,7 +461,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             dlObjectRech = JSONObject()
             dlObjectRech.put("RechId",5)
             dlObjectRech.put("Rechlabel",ID_KSEB.getString("KSEB", null))
-            dlObjectRech.put("RechImage",R.drawable.mykseb)
+            dlObjectRech.put("RechImage",R.drawable.new_kseb)
             jArrayMenuRech!!.put(dlObjectRech)
         }
 
@@ -469,7 +470,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             dlObjectRech = JSONObject()
             dlObjectRech.put("RechId",6)
             dlObjectRech.put("Rechlabel",ID_Histry.getString("History", null))
-            dlObjectRech.put("RechImage",R.drawable.myhistory)
+            dlObjectRech.put("RechImage",R.drawable.new_history)
             jArrayMenuRech!!.put(dlObjectRech)
         }
 
@@ -1041,6 +1042,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
 
         llloanstatus = findViewById(R.id.llloanstatus)
+        img_barcode = findViewById(R.id.img_barcode)
         im_applogo = findViewById(R.id.im_applogo)
         txtv_availbal = findViewById(R.id.txtv_availbal)
 
@@ -1142,6 +1144,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     }
 
     open fun setRegister() {
+        img_barcode!!.setOnClickListener(this)
         llloanstatus!!.setOnClickListener(this)
         improfile!!.setOnClickListener(this)
         imlanguage!!.setOnClickListener(this)
@@ -1580,6 +1583,8 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             }
             R.id.llloanapplication -> {
                 startActivity(Intent(this@HomeActivity, LoanApplicationActivity::class.java))
+            }  R.id.img_barcode -> {
+            startActivity(Intent(this, BarcodeMain::class.java))
             }
             R.id.llloanstatus -> {
                 startActivity(Intent(this@HomeActivity, LoanStatusActivity::class.java))

@@ -3,28 +3,65 @@ package com.perfect.nbfcmscore.Activity
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.app.Dialog
+import android.app.ProgressDialog
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.database.Cursor
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.provider.ContactsContract
 import android.text.method.DigitsKeyListener
 import android.util.Log
 import android.view.View
+import android.view.Window
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.core.widget.NestedScrollView
+import com.aceware.cobrandprepaidkit.CobrandPrepaidSdkkit
+import com.aceware.cobrandprepaidkit.CobrandPrepaidSdkkit.ResponseListener
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.textfield.TextInputEditText
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonObject
+import com.perfect.nbfcmscore.Api.ApiInterface
+import com.perfect.nbfcmscore.BuildConfig
 import com.perfect.nbfcmscore.Helper.Config
+import com.perfect.nbfcmscore.Helper.Config.getHostnameVerifier
+import com.perfect.nbfcmscore.Helper.Config.getSSLSocketFactory
+import com.perfect.nbfcmscore.Helper.ConnectivityUtils
+import com.perfect.nbfcmscore.Helper.MscoreApplication
 import com.perfect.nbfcmscore.R
 import `in`.aabhasjindal.otptextview.OtpTextView
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.OkHttpClient
+import okhttp3.RequestBody
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.security.KeyStore
 import java.util.*
+import java.util.concurrent.TimeUnit
+import javax.net.ssl.TrustManagerFactory
+import javax.net.ssl.X509TrustManager
 
 class UpiMain : AppCompatActivity(), View.OnClickListener {
 
@@ -42,6 +79,9 @@ class UpiMain : AppCompatActivity(), View.OnClickListener {
     var btn_clear_upi: TextView? = null
     var btn_submit: TextView? = null
     var btn_submit_upi: TextView? = null
+    var txtaccountbalance1: TextView? = null
+    var txtaccountbalance2: TextView? = null
+    var txtaccountbalance3: TextView? = null
     var select_contact_image: ImageView? = null
     var othersUPI: String? = null
     var profile_image_main: ConstraintLayout? = null
@@ -61,9 +101,12 @@ class UpiMain : AppCompatActivity(), View.OnClickListener {
     var txt_reciver: TextView? = null
     var txt_sending: TextView? = null
     var edtMobileUpi_scan: EditText? = null
+    var edtName_scan: EditText? = null
     var edtAddress: TextInputEditText? = null
     var edtEmail: TextInputEditText? = null
     var edtName: TextInputEditText? = null
+    var edtEmail_scan: TextInputEditText? = null
+    var edtAddress_scan: TextInputEditText? = null
     val PERMISSIONS_REQUEST_READ_CONTACTS = 2
     val PICK_CONTACT_0 = 0
     val PICK_CONTACT_1 = 1
@@ -82,16 +125,37 @@ class UpiMain : AppCompatActivity(), View.OnClickListener {
     var fourthLetter: String? = null
     var fifthLetter: String? = null
     var sixthLetter: String? = null
+    var UPIModule: String? = null
+    var UPIAccID: String? = null
+    var BASE_URL: String? = null
+    var cusid: String? = null
+    var BankKey: String? = null
+    var strKitNumber: String? = null
+    var AceMoneyUser: String? = null
+    var upiid: String? = null
+    var mobile: String? = null
+    var strMobileNumber: String? = null
+    var strAmount: String? = null
+    var strUpiId: String? = null
     var counter = 0
     var upiType = 0
+    var dialog: AlertDialog? = null
+    private var progressDialog: ProgressDialog? = null
+    var TAG = "Upi_main"
     lateinit var btnArray: Array<Button>
     lateinit var btnOthersArray: Array<ImageView>
+    lateinit var cobrandPrepaidSdkkit: CobrandPrepaidSdkkit
+    lateinit var file: File
+    var bitmapt: Bitmap? = null
+    var uri: Uri? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upi_main)
         getSupportActionBar()?.hide();
         setID()
         setRegister()
+        getPref()
+        cobrandPrepaidSdkkit = CobrandPrepaidSdkkit(this)
         if (intent.getStringExtra("from") != null) {
             if (intent.getStringExtra("from").equals("barcode", ignoreCase = true)) {
                 othersUPI = intent.getStringExtra("upi")
@@ -104,11 +168,42 @@ class UpiMain : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    private fun getPref() {
+        val pref = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        BASE_URL = pref.getString("baseurl", null)
+        val customerIdSP = applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
+        cusid = customerIdSP.getString("FK_Customer", "")
+        val bankkeypref = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+        BankKey = bankkeypref.getString("BankKey", null)
+        val KItNumberSP = applicationContext.getSharedPreferences(Config.SHARED_PREF349, 0)
+        strKitNumber = KItNumberSP.getString("KItNumber", "")
+        val AceMoneyUserIDSP = applicationContext.getSharedPreferences(Config.SHARED_PREF347, 0)
+        AceMoneyUser = AceMoneyUserIDSP.getString("AceMoneyUserID", "")
+        val AceMoneyUPIIDSP = applicationContext.getSharedPreferences(Config.SHARED_PREF348, 0)
+        upiid = AceMoneyUPIIDSP.getString("AceMoneyUPIID", "")
+        val mobileNoSP = getSharedPreferences(Config.SHARED_PREF2, 0)
+        mobile = mobileNoSP.getString("CusMobile", "")
+//        val acntpref: SharedPreferences =
+//            this@UpiMain.getSharedPreferences(Config.SHARED_PREF352, 0)
+//        val UpiDetlsArray = acntpref.getString("UpiDetlsArray", null)
+//        try {
+//            val array = JSONArray(UpiDetlsArray)
+//            val obj1 = array.getJSONObject(0)
+//            UPIModule = obj1.getString("UPIModule")
+//            UPIAccID = obj1.getString("UPIAccID")
+//        } catch (e: JSONException) {
+//            e.printStackTrace()
+//        }
+    }
+
     private fun setID() {
+
         select_contact_image = findViewById<View>(R.id.select_contact_image) as ImageView
         btn_keypad_success = findViewById<View>(R.id.btn_keypad_success) as ImageView
         edtAddress = findViewById<View>(R.id.edtAddress) as TextInputEditText
         edtEmail = findViewById<View>(R.id.edtEmail) as TextInputEditText
+        edtAddress_scan = findViewById<View>(R.id.edtAddress_scan) as TextInputEditText
+        edtName_scan = findViewById<View>(R.id.edtName_scan) as TextInputEditText
         edtName = findViewById<View>(R.id.edtName) as TextInputEditText
         backBtn2 = findViewById<View>(R.id.backBtn2) as ImageView
         btn_keypad_back = findViewById<View>(R.id.btn_keypad_back) as ImageView
@@ -120,6 +215,9 @@ class UpiMain : AppCompatActivity(), View.OnClickListener {
         linmain2 = findViewById<View>(R.id.linmain2) as LinearLayout
         txt_upi_scan = findViewById<View>(R.id.txt_upi_scan) as TextView
         btn_clear_upi = findViewById<View>(R.id.btn_clear_upi) as TextView
+        txtaccountbalance1 = findViewById<View>(R.id.txtaccountbalance1) as TextView
+        txtaccountbalance2 = findViewById<View>(R.id.txtaccountbalance2) as TextView
+        txtaccountbalance3 = findViewById<View>(R.id.txtaccountbalance3) as TextView
         textupi = findViewById<View>(R.id.textupi) as TextView
         txt_sending = findViewById<View>(R.id.txt_sending) as TextView
         txt_reciver = findViewById<View>(R.id.txt_reciver) as TextView
@@ -127,6 +225,7 @@ class UpiMain : AppCompatActivity(), View.OnClickListener {
         btn_submit_upi = findViewById<View>(R.id.btn_submit_upi) as TextView
         btn_clear = findViewById<View>(R.id.btn_clear) as TextView
         edtmobile = findViewById<View>(R.id.edtmobile) as EditText
+        edtEmail_scan = findViewById<View>(R.id.edtEmail_scan) as TextInputEditText
         edtUpi = findViewById<View>(R.id.edtUpi) as EditText
         edtAmountUpi = findViewById<View>(R.id.edtAmountUpi) as EditText
         edtAmountUpi_scan = findViewById<View>(R.id.edtAmountUpi_scan) as EditText
@@ -169,7 +268,7 @@ class UpiMain : AppCompatActivity(), View.OnClickListener {
             submitUpiPayment()
         } else if (v?.id == R.id.backBtn2) {
             onBackPressed()
-         } else if (v?.id == R.id.llSetting) {
+        } else if (v?.id == R.id.llSetting) {
             startActivity(Intent(this, Upi_settings::class.java))
         } else if (v?.id == R.id.btn_clear) {
             onClickClear()
@@ -243,7 +342,473 @@ class UpiMain : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun verifyPin(pin: String) {
+        when (ConnectivityUtils.isConnected(this)) {
+            true -> {
+                progressDialog = ProgressDialog(this@UpiMain, R.style.Progress)
+                progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
+                progressDialog!!.setCancelable(false)
+                progressDialog!!.setIndeterminate(true)
+                progressDialog!!.setIndeterminateDrawable(
+                    this.resources
+                        .getDrawable(R.drawable.progress)
+                )
+                progressDialog!!.show()
+                try {
+                    val trustManagerFactory = TrustManagerFactory.getInstance(
+                        TrustManagerFactory.getDefaultAlgorithm()
+                    )
+                    trustManagerFactory.init(null as KeyStore?)
+                    val trustManagers = trustManagerFactory.trustManagers
+                    check(!(trustManagers.size != 1 || trustManagers[0] !is X509TrustManager)) {
+                        ("Unexpected default trust managers:"
+                                + Arrays.toString(trustManagers))
+                    }
+                    val trustManager = trustManagers[0] as X509TrustManager
+                    val client: OkHttpClient = okhttp3.OkHttpClient.Builder()
+                        .connectTimeout(60, TimeUnit.SECONDS)
+                        .readTimeout(60, TimeUnit.SECONDS)
+                        .writeTimeout(60, TimeUnit.SECONDS)
+                        .sslSocketFactory(getSSLSocketFactory(this), trustManager)
+                        .hostnameVerifier(getHostnameVerifier())
+                        .build()
+                    val gson = GsonBuilder()
+                        .setLenient()
+                        .create()
+                    val retrofit = Retrofit.Builder()
+                        .baseUrl(BASE_URL)
+                        .addConverterFactory(ScalarsConverterFactory.create())
+                        .addConverterFactory(GsonConverterFactory.create(gson))
+                        .client(client)
+                        .build()
+                    val apiService = retrofit.create(ApiInterface::class.java!!)
+                    val requestObject1 = JSONObject()
+                    try {
+                        requestObject1.put("CorpCode", MscoreApplication.encryptStart(BankKey))
+                        requestObject1.put("ServiceType", MscoreApplication.encryptStart("1"))
+                        requestObject1.put("ServiceProvider", MscoreApplication.encryptStart("2"))
+                        requestObject1.put("ID_Customer", MscoreApplication.encryptStart(cusid))
+                        requestObject1.put(
+                            "Fk_AccountCode",
+                            MscoreApplication.encryptStart(UPIAccID)
+                        )
+                        requestObject1.put("SubModule", MscoreApplication.encryptStart(UPIModule))
+                        requestObject1.put("KitID", MscoreApplication.encryptStart(strKitNumber))
+                        requestObject1.put("MobNo", MscoreApplication.encryptStart(mobile))
+                        //  requestObject1.put("ReqID", IScoreApplication.encryptStart("3"));
+                        //requestObject1.put("UPIUserID", IScoreApplication.encryptStart(AceMoneyUser));
+                        requestObject1.put("UPIPin", MscoreApplication.encryptStart(pin))
+                        Log.e(TAG, "requestObject1  131457  $requestObject1")
+                    } catch (e: java.lang.Exception) {
+                        e.printStackTrace()
+                    }
+                    val body = RequestBody.create(
+                        "application/json; charset=utf-8".toMediaTypeOrNull(),
+                        requestObject1.toString()
+                    )
+                    val call: Call<String> = apiService.verifyPin(body)
+                    call.enqueue(object : Callback<String> {
+                        override fun onResponse(call: Call<String>, response: Response<String>) {
+                            Log.e(TAG, "response  131458  " + response.body())
+                            try {
+                                progressDialog!!.dismiss()
+                                val jObject = JSONObject(response.body())
+                                val statuscode = jObject.getInt("StatusCode")
+                                val EXMessage = jObject.getString("EXMessage")
+                                Log.v("ffdadasdss", "status code $statuscode")
+                                if (statuscode == 0) {
+                                    linmain!!.visibility = View.VISIBLE
+                                    linPin!!.visibility = View.GONE
+                                    isPinVisible = false
+                                    if (paymentType == 0) {
+                                        SubmitDataMobile()
+                                    } else if (paymentType == 1) {
+                                        submitDataUpi2()
+                                    } else {
+                                        submitDataScan()
+                                    }
+                                } else {
+                                    val builder = AlertDialog.Builder(
+                                        this@UpiMain,
+                                        R.style.MyDialogTheme
+                                    )
+                                    builder.setMessage("" + jObject.getString("EXMessage"))
+                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+                                    }
+                                    val alertDialog: AlertDialog = builder.create()
+                                    alertDialog.setCancelable(false)
+                                    alertDialog.show()
+                                }
+                            } catch (e: java.lang.Exception) {
+                                e.printStackTrace()
+                                Log.e(TAG, "3184   :   $e")
+                            }
+                        }
 
+                        override fun onFailure(call: Call<String>, t: Throwable) {
+                            progressDialog!!.dismiss()
+                            Log.i("Imagedetails", "Something went wrong t $t")
+                        }
+                    })
+                } catch (e: java.lang.Exception) {
+                    progressDialog!!.dismiss()
+                    Log.i("Imagedetails", "Something went wrong e $e")
+                    e.printStackTrace()
+                }
+            }
+            false -> {
+                val builder = AlertDialog.Builder(
+                    this@UpiMain,
+                    R.style.MyDialogTheme
+                )
+                builder.setMessage("No Internet Connection.")
+                builder.setPositiveButton("Ok") { dialogInterface, which ->
+                }
+                val alertDialog: AlertDialog = builder.create()
+                alertDialog.setCancelable(false)
+                alertDialog.show()
+            }
+        }
+    }
+
+    private fun submitDataScan() {
+        strUpiId = txt_upi_scan!!.text.toString().trim { it <= ' ' }
+        strAmount =edtAmountUpi_scan?.getText().toString()
+            .trim { it <= ' ' }
+        PayoutUsingVPAScan(strAmount!!)
+    }
+
+
+    private fun submitDataUpi2() {
+        strAmount =edtAmountUpi?.getText().toString()
+            .trim { it <= ' ' }
+        strUpiId =
+           edtUpi?.getText().toString().trim { it <= ' ' }
+        PayoutUsingVPAEnter(strAmount!!, strUpiId!!)
+    }
+
+    private fun SubmitDataMobile() {
+        strMobileNumber =
+            edtmobile?.getText().toString().trim { it <= ' ' }
+        strAmount =
+            edtamount?.getText().toString().trim { it <= ' ' }
+        PayoutUsingPhoneNumber(strMobileNumber!!, strAmount!!)
+    }
+
+    private fun PayoutUsingVPAEnter(strAmount: String, strUpiId: String) {
+        Log.e(
+            TAG, """
+     validateData   683  
+     strAmount  :   $strAmount
+     strUpiId   :   $strUpiId
+     """.trimIndent()
+        )
+        val AceMoneyUpiBankCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF74, 0)
+        val upiBankCode = AceMoneyUpiBankCodeSP.getString("AceMoneyUpiBankCode", "")
+        val AceMoneyUserIDSP = applicationContext.getSharedPreferences(Config.SHARED_PREF71, 0)
+        val AceMoneyUser = AceMoneyUserIDSP.getString("AceMoneyUserID", "")
+        val AgentEmailSP = applicationContext.getSharedPreferences(Config.SHARED_PREF75, 0)
+        val AgentEmail = AgentEmailSP.getString("AgentEmail", "")
+        val customerNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF28, 0)
+        val customerName = customerNameSP.getString("customerName", "")
+        val mobileNoSP = applicationContext.getSharedPreferences(Config.SHARED_PREF31, 0)
+        val mobileNo = mobileNoSP.getString("mobileNo", "")
+        val customerAddress1SP = applicationContext.getSharedPreferences(Config.SHARED_PREF29, 0)
+        val customerAddress1 = customerAddress1SP.getString("customerAddress1", "")
+        val dialog1 = showLoadingDialog("Paying to $strUpiId")
+        val map = ArrayList<String?>()
+        map.add(strAmount) // Amount
+        map.add(customerAddress1) // Address
+        map.add(mobileNo) // Phone
+        map.add(strUpiId) // uoi
+        map.add(customerName) // Name
+        map.add(AceMoneyUser) //userid
+        map.add(AgentEmail) //email
+        cobrandPrepaidSdkkit.initService(upiBankCode, "GetVpaDetailstxn", map)
+        cobrandPrepaidSdkkit.setResponseCall(object : ResponseListener {
+            override fun onSuccess(s: String, jsonObject: JsonObject) {
+                dialog1!!.dismiss()
+                try {
+                    Log.e("TAG", "3301  :  $s")
+                    Log.e("TAG", "3302  :  $jsonObject")
+                    if (jsonObject["status"].asBoolean == true) {
+                        SuccessPopupPayMobile(jsonObject.toString(), strUpiId)
+                    } else {
+                        val `object` = JSONObject(jsonObject.toString())
+                        val jsonObject1 = `object`.getJSONArray("errors").getJSONObject(0)
+                        Log.e(TAG, "713  :  " + jsonObject1.getString("message"))
+                        val builder = AlertDialog.Builder(this@UpiMain)
+                        builder.setMessage("" + jsonObject1.getString("message"))
+                            .setPositiveButton(
+                                "Ok"
+                            ) { dialog, which -> dialog.dismiss() }
+                        val alert = builder.create()
+                        alert.show()
+                    }
+                } catch (e: java.lang.Exception) {
+                    Log.e("TAG", "3302.1  :  $e")
+                    e.printStackTrace()
+                }
+            }
+
+            override fun onFailure(s: String, jsonObject: JsonObject) {
+                dialog1!!.dismiss()
+                Log.e("TAG", "3303  :  $s")
+                Log.e("TAG", "3304  :  $jsonObject")
+                val builder = AlertDialog.Builder(this@UpiMain)
+                builder.setMessage("" + jsonObject["message"])
+                    .setPositiveButton(
+                        "Ok"
+                    ) { dialog, which -> dialog.dismiss() }
+                val alert = builder.create()
+                alert.show()
+            }
+        })
+    }
+
+    private fun PayoutUsingVPAScan(strAmount: String) {
+        Log.e(
+            TAG, """
+     validateData   776  
+     strAmount  :   $strAmount
+     strUpiId   :   $strUpiId
+     """.trimIndent()
+        )
+        val AceMoneyUpiBankCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF74, 0)
+        val upiBankCode = AceMoneyUpiBankCodeSP.getString("AceMoneyUpiBankCode", "")
+        val AceMoneyUserIDSP = applicationContext.getSharedPreferences(Config.SHARED_PREF71, 0)
+        val AceMoneyUser = AceMoneyUserIDSP.getString("AceMoneyUserID", "")
+        val AgentEmailSP = applicationContext.getSharedPreferences(Config.SHARED_PREF75, 0)
+        val AgentEmail = AgentEmailSP.getString("AgentEmail", "")
+        val customerNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF28, 0)
+        val customerName = customerNameSP.getString("customerName", "")
+        val mobileNoSP = applicationContext.getSharedPreferences(Config.SHARED_PREF31, 0)
+        val mobileNo = mobileNoSP.getString("mobileNo", "")
+        val customerAddress1SP = applicationContext.getSharedPreferences(Config.SHARED_PREF29, 0)
+        val customerAddress1 = customerAddress1SP.getString("customerAddress1", "")
+        val dialog1 = showLoadingDialog("Paying to $strUpiId")
+        val map = ArrayList<String?>()
+        map.add(strAmount) // Amount
+        map.add(customerAddress1) // Address
+        map.add(mobileNo) // Phone
+        map.add(strUpiId) // uoi
+        map.add(customerName) // Name
+        map.add(AceMoneyUser) //userid
+        map.add(AgentEmail) //email
+        cobrandPrepaidSdkkit.initService(upiBankCode, "GetVpaDetailstxn", map)
+        cobrandPrepaidSdkkit.setResponseCall(object : ResponseListener {
+            override fun onSuccess(s: String, jsonObject: JsonObject) {
+                Log.v("fdfdsdfddee", "success $jsonObject")
+                dialog1!!.dismiss()
+                try {
+                    Log.e("TAG", "3301  :  $s")
+                    Log.e("TAG", "3302  :  $jsonObject")
+                    if (jsonObject["status"].asBoolean == true) {
+                        SuccessPopupPayMobile(jsonObject.toString(), strUpiId!!)
+                    } else {
+                        val `object` = JSONObject(jsonObject.toString())
+                        val jsonObject1 = `object`.getJSONArray("errors").getJSONObject(0)
+                        Log.e(TAG, "713  :  " + jsonObject1.getString("message"))
+                        val builder = AlertDialog.Builder(this@UpiMain)
+                        builder.setMessage("" + jsonObject1.getString("message"))
+                            .setPositiveButton(
+                                "Ok"
+                            ) { dialog, which -> dialog.dismiss() }
+                        val alert = builder.create()
+                        alert.show()
+                    }
+                } catch (e: java.lang.Exception) {
+                    Log.v("fdfdsdfddee", "exc $e")
+                    e.printStackTrace()
+                }
+            }
+
+            override fun onFailure(s: String, jsonObject: JsonObject) {
+                Log.v("fdfdsdfddee", "fail $jsonObject")
+                dialog1!!.dismiss()
+                Log.e("TAG", "3303  :  $s")
+                Log.e("TAG", "3304  :  $jsonObject")
+                val builder = AlertDialog.Builder(this@UpiMain)
+                builder.setMessage("" + jsonObject["message"])
+                    .setPositiveButton(
+                        "Ok"
+                    ) { dialog, which -> dialog.dismiss() }
+                val alert = builder.create()
+                alert.show()
+            }
+        })
+    }
+
+    private fun PayoutUsingPhoneNumber(
+        strMobileNumber: String,
+        strAmount: String
+    ) {
+        val AceMoneyUpiBankCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF74, 0)
+        val upiBankCode = AceMoneyUpiBankCodeSP.getString("AceMoneyUpiBankCode", "")
+        val AceMoneyUserIDSP = applicationContext.getSharedPreferences(Config.SHARED_PREF71, 0)
+        val AceMoneyUser = AceMoneyUserIDSP.getString("AceMoneyUserID", "")
+        val dialog1: Dialog? = showLoadingDialog("Paying to $strMobileNumber")
+        val map = ArrayList<String?>()
+        map.add(AceMoneyUser)
+        map.add(strMobileNumber)
+        map.add(strAmount)
+        cobrandPrepaidSdkkit.initService(upiBankCode, "GetPhonenoDetailstxn", map)
+        cobrandPrepaidSdkkit.setResponseCall(object : ResponseListener {
+            override fun onSuccess(s: String, jsonObject: JsonObject) {
+                dialog1?.dismiss()
+                try {
+//                    {"status":true,"meta":{"code":201,"message":"success"},"message":"success","data":[{"response":true,"status":"0","message":"Transaction SUCCESS","refId":"REF8148024","date":"11/04/2023 12:04:42","amount":"1"}],"errors":[]}
+//                    {"status":false,"meta":{"code":400,"message":"success"},"message":"success","data":[],"errors":[{"message":"Invalid Phone Number, Please Check."}]}
+                    Log.v("fdfdsdfddee", "success $jsonObject")
+                    Log.e("TAG", "3301  :  $s")
+                    Log.e("TAG", "3301 AceMoneyUser :  $AceMoneyUser")
+                    Log.e("TAG", "3302  :  $jsonObject")
+                    if (jsonObject["status"].asBoolean == true) {
+//                        {"status":true,"meta":{"code":201,"message":"success"},"message":"success","data":[{"response":true,"status":"0","message":"Transaction SUCCESS","refId":"REF8148024","date":"11/04/2023 12:04:42","amount":"1"}],"errors":[]}
+                        SuccessPopupPayMobile(jsonObject.toString(), strMobileNumber)
+                    } else {
+                        val `object` = JSONObject(jsonObject.toString())
+                        val jsonObject1 = `object`.getJSONArray("errors").getJSONObject(0)
+                        Log.e(TAG, "713  :  " + jsonObject1.getString("message"))
+                        val builder = AlertDialog.Builder(this@UpiMain)
+                        builder.setMessage("" + jsonObject1.getString("message"))
+                            .setPositiveButton(
+                                "Ok"
+                            ) { dialog, which -> dialog.dismiss() }
+                        val alert = builder.create()
+                        alert.show()
+
+//                        String ss = "{\"status\":true,\"meta\":{\"code\":201,\"message\":\"success\"},\"message\":\"success\",\"data\":[{\"response\":true,\"status\":\"0\",\"message\":\"Transaction SUCCESS\",\"refId\":89031,\"date\":\"03/04/2023 13:52:10\",\"amount\":\"1\"}],\"errors\":[]}";
+//
+//                        SuccessPopupPayMobile(ss);
+                    }
+                } catch (e: java.lang.Exception) {
+                    Log.v("fdfdsdfddee", "exce $e")
+                    e.printStackTrace()
+                }
+            }
+
+            override fun onFailure(s: String, jsonObject: JsonObject) {
+                dialog1?.dismiss()
+                Log.v("fdfdsdfddee", "failure $jsonObject")
+                Log.e("TAG", "3303  :  $s")
+                Log.e("TAG", "3304  :  $jsonObject")
+                val builder = AlertDialog.Builder(this@UpiMain)
+                builder.setMessage("" + jsonObject["message"])
+                    .setPositiveButton(
+                        "Ok"
+                    ) { dialog, which -> dialog.dismiss() }
+                val alert = builder.create()
+                alert.show()
+            }
+        })
+    }
+
+    private fun SuccessPopupPayMobile(jsonObject: String, paidToString: String) {
+        try {
+            val builder2 = AlertDialog.Builder(this@UpiMain)
+            val customLayout2: View = layoutInflater.inflate(R.layout.success_pop_pay_mobile, null)
+            val txtMessage = customLayout2.findViewById<TextView>(R.id.txtMessage)
+            val txtRedId = customLayout2.findViewById<TextView>(R.id.txtRedId)
+            val txtDate = customLayout2.findViewById<TextView>(R.id.txtDate)
+            val txt_to_upi = customLayout2.findViewById<TextView>(R.id.txt_to_upi)
+            val txt_from_upi = customLayout2.findViewById<TextView>(R.id.txt_from_upi)
+            val txt_paid = customLayout2.findViewById<TextView>(R.id.txt_paid)
+            val txtAmount = customLayout2.findViewById<TextView>(R.id.txtAmount)
+            val txt_from = customLayout2.findViewById<TextView>(R.id.txt_from)
+            val paidTo = customLayout2.findViewById<TextView>(R.id.paidTo)
+            val lay_share = customLayout2.findViewById<TextView>(R.id.lay_share)
+            val rltv_footer = customLayout2.findViewById<TextView>(R.id.rltv_footer)
+            builder2.setView(customLayout2)
+            val `object` = JSONObject(jsonObject)
+            val jsonObject1 = `object`.getJSONArray("data").getJSONObject(0)
+            txtMessage.text = "" + jsonObject1.getString("message")
+            txtRedId.text = "" + jsonObject1.getString("refId")
+            txtDate.text = "" + jsonObject1.getString("date")
+            paidTo.text = paidToString
+            txt_to_upi.text = paidToString
+            txtAmount.text = "" + jsonObject1.getString("amount")
+            txt_paid.text = "Paid \u20b9" + jsonObject1.getString("amount")
+            val AceMoneyUPIIDSP = applicationContext.getSharedPreferences(Config.SHARED_PREF72, 0)
+            val AceMoneyUPIID = AceMoneyUPIIDSP.getString("AceMoneyUPIID", "")
+            txt_from_upi.text = "UPI ID:" + AceMoneyUPIIDSP.getString("AceMoneyUPIID", "")
+            val customerNameSP = getSharedPreferences(Config.SHARED_PREF28, 0)
+            txt_from.text = customerNameSP.getString("customerName", "")
+            sharelayout(customLayout2)
+            rltv_footer.setOnClickListener {
+                dialog?.dismiss()
+                clear()
+                clearScan()
+                onClickClear()
+                getCustomerBalance()
+            }
+            lay_share.setOnClickListener {
+                val sendIntent = Intent(Intent.ACTION_SEND)
+                sendIntent.type = "image/*"
+                sendIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                sendIntent.putExtra(
+                    Intent.EXTRA_STREAM,
+                    FileProvider.getUriForFile(
+                        this@UpiMain,
+                        BuildConfig.APPLICATION_ID + ".fileprovider",
+                        file
+                    )
+                )
+                startActivity(Intent.createChooser(sendIntent, "Share "))
+            }
+            dialog = builder2.create()
+            dialog?.setCancelable(true)
+            dialog?.show()
+        } catch (e: java.lang.Exception) {
+            Log.v(
+                "dfsfsdfsbbbbbb",
+                "IOException while trying to write file for sharing: " + e.message
+            )
+        }
+    }
+
+    private fun sharelayout(customLayout2: View) {
+        val view: LinearLayout
+        view = customLayout2.findViewById(R.id.screen)
+        view.isDrawingCacheEnabled = true
+        view.measure(
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        )
+        view.layout(0, 0, view.measuredWidth, view.measuredHeight)
+        view.buildDrawingCache(true)
+        bitmapt = Bitmap.createBitmap(view.drawingCache)
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                file = File(getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), "nnnmmmmnn.png")
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                Log.v(
+                    "fdsfsdfd",
+                    "directory  " + getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
+                )
+            }
+            val stream: FileOutputStream = FileOutputStream(file)
+            bitmapt!!.compress(
+                Bitmap.CompressFormat.PNG,
+                90,
+                stream
+            )
+            stream.close()
+            uri = Uri.fromFile(file)
+        } catch (e: IOException) {
+            Log.v("fdsfsdfd", "IOException while trying to write file for sharing: " + e.message)
+        }
+    }
+
+    fun showLoadingDialog(msg: String?): Dialog? {
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.alert_loading)
+        val text = dialog.findViewById<TextView>(R.id.text)
+        text.text = msg
+        dialog.show()
+        return dialog
     }
 
     private fun pinBackPressed() {
@@ -550,6 +1115,15 @@ class UpiMain : AppCompatActivity(), View.OnClickListener {
         edtUpi?.setError(null)
     }
 
+    fun clearScan() {
+        edtAmountUpi_scan?.setText("")
+        edtAddress_scan?.setText("")
+        edtMobileUpi_scan?.setText("")
+        edtName_scan?.setText("")
+        edtEmail_scan?.setText("")
+        edtAmountUpi_scan?.setError(null)
+    }
+
     private fun hideKeyboard() {
         val view = this.currentFocus
         if (view != null) {
@@ -706,6 +1280,108 @@ class UpiMain : AppCompatActivity(), View.OnClickListener {
             }
         }
         bottomSheetDialog.show()
+    }
+
+    private fun getCustomerBalance() {
+
+        when (ConnectivityUtils.isConnected(this)) {
+            true -> {
+                try {
+                    val trustManagerFactory = TrustManagerFactory.getInstance(
+                        TrustManagerFactory.getDefaultAlgorithm()
+                    )
+                    trustManagerFactory.init(null as KeyStore?)
+                    val trustManagers = trustManagerFactory.trustManagers
+                    check(!(trustManagers.size != 1 || trustManagers[0] !is X509TrustManager)) {
+                        ("Unexpected default trust managers:"
+                                + Arrays.toString(trustManagers))
+                    }
+                    val trustManager = trustManagers[0] as X509TrustManager
+                    val client: OkHttpClient = okhttp3.OkHttpClient.Builder()
+                        .connectTimeout(60, TimeUnit.SECONDS)
+                        .readTimeout(60, TimeUnit.SECONDS)
+                        .writeTimeout(60, TimeUnit.SECONDS)
+                        .sslSocketFactory(getSSLSocketFactory(this), trustManager)
+                        .hostnameVerifier(getHostnameVerifier())
+                        .build()
+                    val gson = GsonBuilder()
+                        .setLenient()
+                        .create()
+                    val retrofit = Retrofit.Builder()
+                        .baseUrl(BASE_URL)
+                        .addConverterFactory(ScalarsConverterFactory.create())
+                        .addConverterFactory(GsonConverterFactory.create(gson))
+                        .client(client)
+                        .build()
+                    val apiService = retrofit.create(ApiInterface::class.java)
+                    val requestObject1 = JSONObject()
+                    try {
+                        requestObject1.put("CorpCode", MscoreApplication.encryptStart(BankKey))
+                        requestObject1.put("ServiceType", MscoreApplication.encryptStart("1"))
+                        requestObject1.put("ServiceProvider", MscoreApplication.encryptStart("2"))
+                        requestObject1.put("ID_Customer", MscoreApplication.encryptStart(cusid))
+                        requestObject1.put(
+                            "Fk_AccountCode",
+                            MscoreApplication.encryptStart(UPIAccID)
+                        )
+                        requestObject1.put("SubModule", MscoreApplication.encryptStart(UPIModule))
+                        requestObject1.put("KitID", MscoreApplication.encryptStart(strKitNumber))
+                        requestObject1.put("MobNo", MscoreApplication.encryptStart(mobile))
+                        requestObject1.put(
+                            "UPIUserID",
+                            MscoreApplication.encryptStart(AceMoneyUser)
+                        )
+                        requestObject1.put("UPIID", MscoreApplication.encryptStart(upiid))
+                        requestObject1.put("JsonLogParameter", "")
+                        Log.e("request balance  ", requestObject1.toString())
+                    } catch (e: java.lang.Exception) {
+                        e.printStackTrace()
+                    }
+                    val body = RequestBody.create(
+                        "application/json; charset=utf-8".toMediaTypeOrNull(),
+                        requestObject1.toString()
+                    )
+                    val call: Call<String> = apiService.getBalance(body)
+                    call.enqueue(object : Callback<String?> {
+                        override fun onResponse(call: Call<String?>, response: Response<String?>) {
+                            try {
+                                Log.e("response balance  ", (response.body())!!)
+                                // Toast.makeText(getActivity(),response.body(),Toast.LENGTH_LONG).show();
+                                val jObject = JSONObject(response.body())
+                                val statuscode = jObject.getString("StatusCode")
+                                if ((statuscode == "0")) {
+                                    val UPIBalanceAmt = jObject.getString("UPIBalanceAmt")
+                                    txtaccountbalance1?.setText(UPIBalanceAmt)
+                                    txtaccountbalance2?.setText(UPIBalanceAmt)
+                                    txtaccountbalance3?.setText(UPIBalanceAmt)
+                                } else if ((statuscode == "-1")) {
+                                }
+                            } catch (e: java.lang.Exception) {
+                                e.printStackTrace()
+                            }
+                        }
+
+                        override fun onFailure(call: Call<String?>, t: Throwable) {
+                            Log.i("Imagedetails", "Something went wrong")
+                        }
+                    })
+                } catch (e: java.lang.Exception) {
+                    e.printStackTrace()
+                }
+            }
+            false -> {
+                val builder = AlertDialog.Builder(
+                    this@UpiMain,
+                    R.style.MyDialogTheme
+                )
+                builder.setMessage("No Internet Connection.")
+                builder.setPositiveButton("Ok") { dialogInterface, which ->
+                }
+                val alertDialog: AlertDialog = builder.create()
+                alertDialog.setCancelable(false)
+                alertDialog.show()
+            }
+        }
     }
 
     fun showPinLayout() {

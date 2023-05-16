@@ -16,9 +16,9 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:itemTextColor="#fff"
-        app:itemIconTint="#fff"
-        android:background="@drawable/main_bg"
+        app:itemTextColor="@color/colorPrimaryExtraDark"
+        app:itemIconTint="@color/colorPrimaryExtraDark"
+        android:background="@drawable/background"
         android:fitsSystemWindows="true"
        >
             <LinearLayout
@@ -49,7 +49,7 @@
                                 android:layout_marginRight="10dp"
                                 android:layout_marginTop="10dp"
                                 android:textSize="18dp"
-                                android:textColor="@color/white"
+                                android:textColor="@color/colorPrimaryExtraDark"
                                 android:text=""/>
                             <TextView
                                 android:id="@+id/tv_mobile"
@@ -58,7 +58,7 @@
                                 android:layout_marginLeft="20dp"
                                 android:layout_marginRight="10dp"
                                 android:textSize="13dp"
-                                android:textColor="@color/white"
+                                android:textColor="@color/colorPrimaryExtraDark"
                                 android:text=""/>
                         </LinearLayout>
                         <ImageView
@@ -68,10 +68,6 @@
                             android:layout_gravity="center"
                             android:src="@drawable/arrownext"/>
                     </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height=".5dp"
-                    android:background="@color/colorPrimaryDark"/>
                     <com.perfect.nbfcmscore.Helper.FullLenghtListview
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"

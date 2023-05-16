@@ -1,4 +1,5 @@
 package com.perfect.nbfcmscore.Activity
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
 import android.app.ProgressDialog
@@ -147,6 +148,7 @@ class SplashActivity : AppCompatActivity() {
 
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun getnidhicheck() {
         val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
         val certificateSPEditer = certificateSP.edit()

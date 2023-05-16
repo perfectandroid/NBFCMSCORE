@@ -81,6 +81,8 @@ interface ApiInterface {
 
     @POST("AccountSummary/OwnAccounDetails")
     fun getOwnbankownaccountdetail(@Body body: RequestBody): Call<String>
+    @POST("api/cbsMobile/UPIPinVerification")
+    fun verifyPin(@Body body: RequestBody): Call<String>
 
     @POST("AccountSummary/RechargeCircleDetails")
     fun getRechargeCircleDetails(@Body body: RequestBody): Call<String>
@@ -225,6 +227,9 @@ interface ApiInterface {
 
     @POST("api/cbsMobile/GetKitNumber")
     fun generateAceKitNumber(@Body body: RequestBody): Call<String>
+
+    @POST("api/cbsMobile/UPIGetAccountBalance")
+    fun getBalance(@Body body: RequestBody): Call<String>
 
     @POST("api/cbsMobile/UpdateUPIDetails")
     fun sendOTPforUPIPinGeneration(@Body body: RequestBody): Call<String>
