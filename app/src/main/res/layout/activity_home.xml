@@ -1373,7 +1373,7 @@
                             android:layout_width="5dp"
                             android:layout_height="match_parent"
                             android:layout_marginRight="3dp"
-                            android:background="@color/colorPrimaryExtraDark"/>
+                            android:background="@color/colorPrimary"/>
                         <TextView
                             android:id="@+id/txtv_reprts"
                             android:layout_width="wrap_content"
@@ -1632,7 +1632,7 @@
                             android:layout_width="5dp"
                             android:layout_height="match_parent"
                             android:layout_marginRight="3dp"
-                            android:background="@color/colorPrimaryExtraDark"/>
+                            android:background="@color/colorPrimary"/>
                         <TextView
                             android:id="@+id/txtv_tools"
                             android:layout_width="wrap_content"
@@ -1706,7 +1706,8 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginRight="5dp"
-                                android:src="@drawable/new_virtual_card" />
+                                android:padding="6dp"
+                                android:src="@drawable/new_deposite_calculator" />
 
                             <TextView
                                 android:id="@+id/txtv_deposit"
