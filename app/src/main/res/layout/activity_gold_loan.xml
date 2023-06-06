@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Activity.BranchDetailActivity"
-    android:background="@color/white">
+    android:background="@drawable/background">
 
     <RelativeLayout
         android:id="@+id/rltv_header"
@@ -30,9 +30,10 @@
 
                 <ImageView
                     android:id="@+id/im_back"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/navback" />
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/arrow_left_icon"
+                    app:tint="@color/white" />
 
             </LinearLayout>
 
@@ -68,7 +69,8 @@
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:padding="5dp"
-                    android:src="@drawable/ic_home" />
+                    android:src="@drawable/ic_home"
+                    app:tint="@color/white" />
 
             </LinearLayout>
 
@@ -200,7 +202,7 @@
                                         android:textStyle="bold"
                                         android:textSize="15dp"
                                         android:maxLength="13"
-                                        android:backgroundTint="@color/bottom_line1"/>
+                                        android:backgroundTint="@color/transparent"/>
 
 
                                 </LinearLayout>
@@ -219,37 +221,45 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="45dp"
+                            android:layout_marginTop="25dp"
                             android:orientation="horizontal">
 
+                            <TextView
 
-                            <Button
                                 android:id="@+id/but_reset"
                                 android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:layout_marginRight="5dp"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:background="@drawable/but_rounded2"
-                                android:text="reset"
-                                android:textAllCaps="true"
-                                android:textColor="@color/white" />
+                                android:gravity="center"
+                                android:text="Reset"
+                                android:backgroundTint="@color/white"
+                                android:textAllCaps="false"
+                                android:background="@drawable/bg_button"
+                                android:textColor="@color/colorPrimaryExtraDark"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
 
+                            <View
+                                android:layout_width="20dp"
+                                android:layout_height="match_parent" />
 
-                            <Button
+                            <TextView
                                 android:id="@+id/but_calculate"
                                 android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:layout_marginLeft="5dp"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:background="@drawable/but_ronded1"
-                                android:text="calculate"
-                                android:textAllCaps="true"
-                                android:textColor="@color/white" />
+                                android:gravity="center"
+                                android:background="@drawable/bg_button"
+                                android:backgroundTint="@color/colorExtraLight"
+                                android:textColor="@color/colorPrimaryExtraDark"
+                                android:text="Submit"
+                                android:textAllCaps="false"
+                                android:textSize="16sp"
+                                android:textStyle="bold"/>
 
 
                         </LinearLayout>
-
-
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -267,7 +277,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginBottom="5dp"
-                    android:background="@color/but_color1"
+                    android:background="@color/colorPrimary"
                     android:orientation="vertical"
                     android:padding="2dp">
 

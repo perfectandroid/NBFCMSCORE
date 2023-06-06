@@ -67,8 +67,8 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
     var jArrayEmi: JSONArray? = null
     var  dialogEmii: BottomSheetDialog? = null
 
-    var  btn_calculate: Button? = null
-    var  btn_clear: Button? = null
+    var  btn_calculate: TextView? = null
+    var  btn_clear: TextView? = null
 
     var LoanAmount: String? = ""
     var RateOfInterset: String? = ""
@@ -216,8 +216,8 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
         imgBack = findViewById<ImageView>(R.id.imgBack)
         imgHome = findViewById<ImageView>(R.id.imgHome)
 
-        btn_calculate = findViewById<Button>(R.id.btn_calculate)
-        btn_clear = findViewById<Button>(R.id.btn_clear)
+        btn_calculate = findViewById<TextView>(R.id.btn_calculate)
+        btn_clear = findViewById<TextView>(R.id.btn_clear)
 
         tv_instalment = findViewById<TextView>(R.id.tv_instalment)
         tv_interest_total = findViewById<TextView>(R.id.tv_interest_total)

@@ -648,8 +648,8 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             ColorStateList.valueOf(resources.getColor(R.color.black))
         )
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            linList!!.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#999999")))
-            linCalender!!.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#14a895")))
+            linList!!.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#b28599")))
+            linCalender!!.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#F4CBB6")))
         };
     }
 
@@ -665,8 +665,8 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             ColorStateList.valueOf(resources.getColor(R.color.black))
         )
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            linCalender!!.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#999999")))
-            linList!!.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#14a895")))
+            linCalender!!.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#b28599")))
+            linList!!.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#F4CBB6")))
         };
     }
 

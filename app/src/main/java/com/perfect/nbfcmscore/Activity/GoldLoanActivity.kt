@@ -51,8 +51,8 @@ class GoldLoanActivity : AppCompatActivity() , View.OnClickListener{
     var chk_weight: CheckBox? = null
     var tie_amountweight: EditText? = null
     var til_amountweight: TextView? = null
-    var but_calculate: Button? = null
-    var but_reset: Button? = null
+    var but_calculate: TextView? = null
+    var but_reset: TextView? = null
     var rv_goldestimator: RecyclerView? = null
     var ll_estimatelist: LinearLayout? = null
     var tv_weight: TextView? = null

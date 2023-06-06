@@ -30,7 +30,7 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
     var etxtmob: EditText? = null
     var etxtemail: EditText? = null
     var rad_callbk:CheckBox?=null
-    var btn_submit: Button? = null
+    var btn_submit: TextView? = null
     var lltime: LinearLayout? = null
     var llmob: LinearLayout? = null
     var lltimeinterval: LinearLayout? = null
@@ -44,7 +44,7 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
     var etxt_tmfrm: TextView? = null
     var etxt_tmto: TextView? = null
     var etxtDate: EditText? = null
-    var btn_clear: Button? = null
+    var btn_clear: TextView? = null
     var matter:String?=null
 
     var feedback = arrayOfNulls<String>(0)
@@ -73,7 +73,7 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
         imgBack = findViewById<ImageView>(R.id.imgBack) as ImageView
         imgHome = findViewById<ImageView>(R.id.imgHome) as ImageView
 
-        btn_clear = findViewById<Button>(R.id.btn_clear) as Button
+        btn_clear = findViewById<Button>(R.id.btn_clear) as TextView
 
         feedbackText = findViewById<EditText>(R.id.feedbackText) as EditText
         etxtmob= findViewById<EditText>(R.id.etxtmob) as EditText
@@ -87,7 +87,7 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
         llemail= findViewById<LinearLayout>(R.id.llemail) as LinearLayout
 
         spn_feedbk = findViewById<Spinner>(R.id.spn_feedbk) as Spinner
-        btn_submit = findViewById<Button>(R.id.btn_submit) as Button
+        btn_submit = findViewById<Button>(R.id.btn_submit) as TextView
 
         spn_time= findViewById<Spinner>(R.id.spn_time) as Spinner
         spn_ampm= findViewById<Spinner>(R.id.spn_ampm) as Spinner

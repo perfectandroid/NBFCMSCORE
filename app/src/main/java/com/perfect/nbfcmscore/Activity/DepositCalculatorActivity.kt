@@ -55,8 +55,8 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
     var tv_amt: TextView? = null
     var tv_maturityamt: TextView? = null
 
-    var btn_clear: Button? = null
-    var btn_submit: Button? = null
+    var btn_clear: TextView? = null
+    var btn_submit: TextView? = null
     var tv_header: TextView? = null
     var submodule: String? = null
     var benefid: String? = null
