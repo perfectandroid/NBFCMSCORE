@@ -109,14 +109,6 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="5dp"
-                        android:layout_height="55dp"
-                        android:backgroundTint="@color/colorPrimary"
-                        android:background="@drawable/gradient1">
-
-                    </LinearLayout>
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
@@ -132,6 +124,7 @@
                         <TextView
                             android:id="@+id/txtmobilenumber"
                             android:layout_width="wrap_content"
+                            android:textSize="12dp"
                             android:layout_height="wrap_content"
                             android:text="Mobile Number"/>
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -191,14 +184,6 @@
                     android:background="@drawable/v2_edit_text_back"
                     android:layout_marginRight="10dp"
                     android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="5dp"
-                        android:layout_height="match_parent"
-                        android:backgroundTint="@color/colorPrimary"
-                        android:background="@drawable/gradient1">
-
-                    </LinearLayout>
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
@@ -214,6 +199,7 @@
                             android:id="@+id/txtsubscriber"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:textSize="12dp"
                             android:text="Subscriber Id"/>
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -250,14 +236,6 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="5dp"
-                        android:layout_height="55dp"
-                        android:backgroundTint="@color/colorPrimary"
-                        android:background="@drawable/gradient1">
-
-                    </LinearLayout>
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
@@ -273,6 +251,7 @@
                         <TextView
                             android:id="@+id/txtoperator"
                             android:layout_width="wrap_content"
+                            android:textSize="12dp"
                             android:layout_height="wrap_content"
                             android:text="Operator"/>
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -311,14 +290,6 @@
                     android:background="@drawable/v2_edit_text_back"
                     android:layout_marginRight="10dp"
                     android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="5dp"
-                        android:layout_height="55dp"
-                        android:backgroundTint="@color/colorPrimary"
-                        android:background="@drawable/gradient1">
-
-                    </LinearLayout>
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
@@ -334,6 +305,7 @@
                         <TextView
                             android:id="@+id/txtcircle"
                             android:layout_width="wrap_content"
+                            android:textSize="12dp"
                             android:layout_height="wrap_content"
                             android:text="Circle"/>
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -373,13 +345,6 @@
                     android:background="@drawable/v2_edit_text_back"
                     android:layout_marginRight="10dp"
                     android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="5dp"
-                        android:layout_height="55dp"
-                        android:backgroundTint="@color/colorPrimary"
-                        android:background="@drawable/gradient1">
-                    </LinearLayout>
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
@@ -395,6 +360,7 @@
                         <TextView
                             android:id="@+id/txtamount"
                             android:layout_width="wrap_content"
+                            android:textSize="12dp"
                             android:layout_height="wrap_content"
                             android:text="Amount"/>
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -454,14 +420,6 @@
                     android:background="@drawable/v2_edit_text_back"
                     android:layout_marginRight="10dp"
                     android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="5dp"
-                        android:layout_height="55dp"
-                        android:backgroundTint="@color/colorPrimary"
-                        android:background="@drawable/gradient1">
-
-                    </LinearLayout>
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
@@ -477,6 +435,7 @@
                         <TextView
                             android:id="@+id/txtcircleAccNo"
                             android:layout_width="wrap_content"
+                            android:textSize="12dp"
                             android:layout_height="wrap_content"
                             android:text="Account No"/>
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -514,14 +473,6 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="5dp"
-                        android:layout_height="55dp"
-                        android:backgroundTint="@color/colorPrimary"
-                        android:background="@drawable/gradient1">
-
-                    </LinearLayout>
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
@@ -537,6 +488,7 @@
                         <TextView
                             android:id="@+id/txtaccount"
                             android:layout_width="wrap_content"
+                            android:textSize="12dp"
                             android:layout_height="wrap_content"
                             android:text="Account No"/>
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -580,25 +532,25 @@
                     <Button
                         android:id="@+id/but_clear"
                         android:layout_width="match_parent"
-                        android:layout_height="80dp"
+                        android:layout_height="45dp"
                         android:layout_marginRight="6dp"
                         android:layout_weight="1"
-                        android:paddingBottom="20dp"
-                        android:background="@drawable/button_back1"
+                        android:background="@drawable/bg_button"
+                        android:backgroundTint="@color/white"
+                        android:textColor="@color/colorPrimaryExtraDark"
                         android:text="Reset"
-                        android:textColor="@color/white"
                         android:textStyle="bold" />
 
 
                     <Button
                         android:id="@+id/but_recharge"
                         android:layout_width="match_parent"
-                        android:layout_height="80dp"
+                        android:layout_height="45dp"
                         android:layout_weight="1"
-                        android:paddingBottom="20dp"
-                        android:background="@drawable/button_back2"
+                        android:backgroundTint="@color/colorExtraLight"
+                        android:background="@drawable/bg_button"
+                        android:textColor="@color/colorPrimaryExtraDark"
                         android:text="Calculate"
-                        android:textColor="@color/white"
                         android:textStyle="bold" />
                 </LinearLayout>
 

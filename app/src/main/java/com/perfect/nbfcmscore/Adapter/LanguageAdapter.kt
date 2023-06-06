@@ -50,7 +50,7 @@ class LanguageAdapter(internal val mContext: Context, internal val jsInfo: JSONA
                 holder.lang_name!!.setText(jsonObject!!.getString("LanguagesName"))
                 holder.lang_shortname!!.setText(jsonObject!!.getString("ShortName"))
 //                holder.lang_shortname!!.background.setColorFilter(Color.parseColor("#E5E8E8"), PorterDuff.Mode.SRC_ATOP)
-                holder.lang_shortname!!.background.setColorFilter(Color.parseColor("#62b484"), PorterDuff.Mode.SRC_ATOP)
+            //    holder.lang_shortname!!.background.setColorFilter(Color.parseColor("#62b484"), PorterDuff.Mode.SRC_ATOP)
                 Log.e(TAG,"ShortName   53   "+jsonObject!!.getString("ShortName"))
                 //holder.lang_shortname!!.setTextColor(Color.parseColor(jsonObject!!.getString("ColorCode")));
 

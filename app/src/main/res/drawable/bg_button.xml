@@ -11,6 +11,6 @@
         android:color="@color/button_color" />
 
     <corners
-        android:radius="8dp" />
+        android:radius="0dp" />
 
 </shape>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_bg"
+    android:background="@drawable/background"
     tools:context=".Activity.LoginActivity">
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,7 +52,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorPrimaryExtraDark"
                     android:textStyle="bold"
                     android:textSize="25dp"
                     android:layout_gravity="center"
@@ -67,7 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Let's get started"
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorPrimaryExtraDark"
                     android:textStyle="bold"
                     android:textSize="18dp"
                     android:layout_gravity="center"
@@ -82,7 +82,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Please enter your personal information."
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorPrimaryExtraDark"
                     android:textSize="15dp"
                     android:layout_gravity="center"
                     android:gravity="center"
@@ -128,7 +128,7 @@
                 <LinearLayout
                     android:id="@+id/ll_mob"
                     android:orientation="horizontal"
-                    android:background="@drawable/btn_bg2"
+                    android:background="@drawable/btn_bg4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="35dp"
@@ -146,7 +146,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="+91"
-                        android:textColor="@color/white"
+                        android:textColor="@color/text_secondary"
                         android:textStyle="bold"
                         android:textSize="15dp"
                         android:layout_gravity="center"
@@ -157,19 +157,19 @@
                     <View
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
-                        android:background="@color/white"/>
+                        android:background="@color/colorPrimaryExtraDark"/>
 
                     <EditText
                         android:id="@+id/etxt_mob"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Enter Mobile Number"
-                        android:textColor="@color/white"
+                        android:textColor="@color/colorPrimaryExtraDark"
                         android:textSize="11dp"
                         android:layout_gravity="center"
                         android:background="@color/color_activity_transparent"
                         android:maxLength="10"
-                        android:textColorHint="@color/white"
+                        android:textColorHint="@color/text_secondary"
                         android:inputType="number"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
@@ -180,7 +180,7 @@
                 <LinearLayout
                     android:id="@+id/ll_accno"
                     android:orientation="horizontal"
-                    android:background="@drawable/btn_bg2"
+                    android:background="@drawable/btn_bg4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="35dp"
@@ -190,7 +190,7 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/email"
+                        android:src="@drawable/new_passbook"
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:layout_margin="10dp"/>
@@ -200,11 +200,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Enter Last 4 Digit Of A/C No."
-                        android:textColor="@color/white"
+                        android:textColor="@color/colorPrimaryExtraDark"
                         android:textSize="11dp"
                         android:layout_gravity="center"
                         android:background="@color/color_activity_transparent"
-                        android:textColorHint="@color/white"
+                        android:textColorHint="@color/text_secondary"
                         android:inputType="number"
                         android:maxLength="4"
                         android:layout_marginLeft="10dp"

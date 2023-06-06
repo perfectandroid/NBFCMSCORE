@@ -152,6 +152,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
             ProvidersMode = "3"
             rltv_subscriber!!.visibility = View.GONE
             ll_contact!!.visibility = View.GONE
+            im_offers!!.visibility=View.GONE
         }
         if(intent.getStringExtra("from")!!.equals("dth")){
             val dthSP = applicationContext.getSharedPreferences(Config.SHARED_PREF69, 0)

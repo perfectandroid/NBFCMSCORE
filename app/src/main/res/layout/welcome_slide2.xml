@@ -2,7 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_bg1">
+    android:background="@drawable/background">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -38,7 +38,7 @@
                 android:layout_marginRight="20dp"
                 android:textStyle="bold"
                 android:text="Branch Details"
-                android:textColor="@color/white"/>
+                android:textColor="@color/colorPrimaryExtraDark"/>
             <TextView
                 android:id="@+id/tvdescriptn2"
                 android:layout_width="wrap_content"
@@ -48,9 +48,9 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="20dp"
-                android:textSize="15dp"
+                android:textSize="14dp"
                 android:text="The easiest way to find your bank branch is to log in and go to your branch details page. This should give you the branch name, address, contact details, opening &amp; closing time etc.  You can also locate your branch on Map &amp; can get exact location by tracking."
-                android:textColor="@color/white"/>
+                android:textColor="@color/colorPrimaryExtraDark"/>
 
         </LinearLayout>
     </ScrollView>

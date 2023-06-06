@@ -9,8 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:background="@color/colorPrimary"
+        android:orientation="vertical"
         tools:ignore="MissingConstraints">
         <RelativeLayout
             android:id="@+id/relativeLayout1"
@@ -24,9 +24,10 @@
                 <ImageView
                     android:id="@+id/imgBack"
                     android:layout_width="0dp"
-                    android:layout_height="35dp"
+                    android:layout_height="25dp"
                     android:layout_weight=".2"
-                    android:src="@drawable/navback" />
+                    android:src="@drawable/arrow_left_icon"
+                    app:tint="@color/white" />
                 <TextView
                     android:id="@+id/tv_mycart"
                     android:layout_width="0dp"
@@ -43,6 +44,7 @@
                     android:layout_height="35dp"
                     android:layout_weight=".2"
                     android:padding="5dp"
+                    app:tint="@color/white"
                     android:src="@drawable/ic_home" />
 
             </LinearLayout>
@@ -50,13 +52,13 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
             app:tabMode="fixed"
             app:tabGravity="fill"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"
-            app:tabIndicatorColor="@color/color_tab_select"
+            app:tabIndicatorColor="@color/white"
             app:tabBackground="@drawable/tab_selector"
             tools:ignore="MissingConstraints"
             app:tabSelectedTextColor="@color/white"
@@ -66,7 +68,9 @@
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
+            android:background="@color/white"
             android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
     </LinearLayout>
 

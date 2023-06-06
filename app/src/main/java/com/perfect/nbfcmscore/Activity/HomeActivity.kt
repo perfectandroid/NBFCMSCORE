@@ -19,17 +19,21 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Adapter.*
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.*
 import com.perfect.nbfcmscore.R
 import me.relex.circleindicator.CircleIndicator
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
 import org.json.JSONArray
@@ -41,14 +45,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.net.MalformedURLException
 import java.net.URL
-import java.util.*
-import android.R.id
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.recyclerview.widget.GridLayoutManager
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import `in`.aabhasjindal.otptextview.OtpTextView
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import java.security.KeyStore
+import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.net.ssl.TrustManagerFactory
 import javax.net.ssl.X509TrustManager
@@ -106,7 +104,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var txtv_rechbill: TextView? = null
     var txtv_reprts: TextView? = null
     var txtv_tools: TextView? = null
-
+    var appUpdateManager: AppUpdateManager? = null
     var improfile: ImageView? = null
     var img_barcode: ImageView? = null
     var imlanguage: ImageView? = null
@@ -691,8 +689,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                                     var status = jsonobj2.getString("Status")
                                     if (status.equals("10")) {
-                                        goToPlayStore()
-                                    } else {
+                                           goToPlayStore()
+                                        } else {
 
                                     }
 
@@ -811,6 +809,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             alertDialog.dismiss()
         }
 
+        alertDialog.window?.setBackgroundDrawableResource(R.color.transparent)
         alertDialog.show()
 
 
@@ -2158,12 +2157,13 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             rv_Languagelist = layout.findViewById<View>(R.id.rv_Languagelist) as RecyclerView
             val obj_adapter = LanguageAdapter(applicationContext!!, jArrayLang!!)
-            rv_Languagelist!!.layoutManager =
-                LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
+            rv_Languagelist!!.layoutManager=GridLayoutManager(this, 2)
+//            rv_Languagelist!!.layoutManager =
+//                LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
             rv_Languagelist!!.adapter = obj_adapter
             obj_adapter.setClickListener(this@HomeActivity)
 
-
+            alertDialogLang!!.window?.setBackgroundDrawableResource(R.color.transparent)
             alertDialogLang!!.show()
         } catch (e: Exception) {
             e.printStackTrace()

@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_marginRight="30dp"
-    android:layout_marginLeft="30dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginLeft="10dp"
     android:layout_marginBottom="10dp"
     android:layout_height="wrap_content">
     <LinearLayout
@@ -24,10 +24,9 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/lang_shortname"
-            android:textColor="@color/white"
+            android:textColor="@color/colorPrimaryExtraDark"
             android:layout_gravity="center"
             android:gravity="center"
-            android:background="@drawable/tvbg"
             android:padding="10dp"
             android:textStyle="bold"
             android:textSize="25dp"/>
@@ -39,7 +38,6 @@
             android:layout_gravity="center"
             android:gravity="left"
             android:padding="10dp"
-            android:drawableRight="@drawable/arrowright"
             android:textStyle="bold"
             android:textSize="15dp"/>
     </LinearLayout>

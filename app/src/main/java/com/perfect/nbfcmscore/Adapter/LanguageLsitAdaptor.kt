@@ -60,10 +60,10 @@ class LanguageLsitAdaptor(internal val mContext: Context, internal val jsInfo: J
             if (holder is MainViewHolder) {
                 holder.lang_name!!.setText(jsonObject!!.getString("LanguagesName"))
                 holder.lang_shortname!!.setText(jsonObject!!.getString("ShortName"))
-                holder.lang_shortname!!.background.setColorFilter(
-                        Color.parseColor("#E5E8E8"),
-                        PorterDuff.Mode.SRC_ATOP
-                )
+//                holder.lang_shortname!!.background.setColorFilter(
+//                        Color.parseColor("#E5E8E8"),
+//                        PorterDuff.Mode.SRC_ATOP
+//                )
                 //holder.lang_shortname!!.setTextColor(Color.parseColor(jsonObject!!.getString("ColorCode")));
 
                 holder.llmain!!.setTag(position)

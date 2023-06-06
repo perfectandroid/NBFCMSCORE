@@ -48,7 +48,7 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
         setRegViews()
 
         val imglogo: ImageView = findViewById(R.id.imglogo)
-        Glide.with(this).load(R.drawable.language).into(imglogo)
+        Glide.with(this).load(R.drawable.langicon).into(imglogo)
 
         from = intent.getStringExtra("From")
        /* if(from.equals("welcome"))

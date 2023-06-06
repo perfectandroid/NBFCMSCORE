@@ -2,7 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_bg">
+    android:background="@drawable/background">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -35,7 +35,7 @@
                 android:layout_marginRight="20dp"
                 android:textStyle="bold"
                 android:text="Easy Payment"
-                android:textColor="@color/white"/>
+                android:textColor="@color/colorPrimaryExtraDark"/>
             <TextView
                 android:id="@+id/tvdescriptn1"
                 android:layout_width="wrap_content"
@@ -45,9 +45,9 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="20dp"
-                android:textSize="15dp"
+                android:textSize="14dp"
                 android:text="Send or receive money without any trouble with this app’s fund transfer channels. We make transferring funds from your Bank account very simple and convenient. In fact, there are various options that we provide for transferring your funds online."
-                android:textColor="@color/white"/>
+                android:textColor="@color/colorPrimaryExtraDark"/>
 
         </LinearLayout>
     </ScrollView>

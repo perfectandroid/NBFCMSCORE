@@ -59,6 +59,8 @@ class SplashActivity : AppCompatActivity() {
 //        public val BASE_URL  = "https://202.164.150.65:15006/NbfcAndroidAPIQA/api/"  //QA NEW
 //           public val IMAGE_URL = "https://202.164.150.65:15006/NbfcAndroidAPIQA/"
 
+
+///////Development
         public val BASE_URL  = "https://202.164.150.65:15006/NbfcAndroidAPI/api/"  //DEV  08.07.2022
         public val IMAGE_URL = "https://202.164.150.65:15006/NbfcAndroidAPI/"
         public val BankKey = "-500"
@@ -66,9 +68,10 @@ class SplashActivity : AppCompatActivity() {
         public val CERT_NAME = "staticvm.pem"
         public val CERT_NAME_TEST = "nbfctest.pem"
 
+
+///////QA
 //        public val BASE_URL  = "https://112.133.227.123:14010/NBFCAndroidAPI/api/"  //QA  08.07.2022
 //        public val IMAGE_URL = "https://112.133.227.123:14010/NBFCAndroidAPI/"
-//
 //        public val BankKey = "-500"
 //        public val BankHeader = "CHENNATTU NIDHI LIMITED"
 //        public val CERT_NAME = "staticvm.pem"  //QA
@@ -1057,7 +1060,7 @@ class SplashActivity : AppCompatActivity() {
 
                                     try {
                                         val imagepath = IMAGE_URL + AppIconImageCodeSP!!.getString("AppIconImageCode", null)
-                                        PicassoTrustAll.getInstance(this@SplashActivity)!!.load(imagepath).error(android.R.color.transparent).into(imglogo!!)
+                                   //     PicassoTrustAll.getInstance(this@SplashActivity)!!.load(imagepath).error(android.R.color.transparent).into(imglogo!!)
 
                                     } catch (e: Exception) {
                                         e.printStackTrace()
