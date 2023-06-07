@@ -2,24 +2,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:layout_margin="8dp"
     android:layout_height="wrap_content">
     <LinearLayout
         android:id="@+id/llmain"
         android:layout_width="match_parent"
+        android:background="@drawable/btn_bg3"
         android:layout_height="match_parent">
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardview2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="0dp"
-            app:cardMaxElevation="0dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:orientation="vertical">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -42,9 +37,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:gravity="center"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="5dp"
                             android:textStyle="bold"
                             android:drawablePadding="10dp"
                             android:textColor="@color/redDark"
@@ -74,7 +66,6 @@
                             android:id="@+id/txtvloanappno"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:text="Application Number"
@@ -87,7 +78,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left"
-                            android:layout_marginLeft="10dp"
                             android:layout_marginRight="5dp"
                             android:textStyle="bold"
                             android:textColor="@color/colorPrimary"
@@ -147,7 +137,6 @@
                             android:id="@+id/txtv_loanpurpse"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:text="Loan Purpose"
@@ -160,7 +149,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left"
-                            android:layout_marginLeft="10dp"
                             android:layout_marginRight="5dp"
                             android:textStyle="bold"
                             android:textColor="@color/colorPrimary"
@@ -222,7 +210,6 @@
                         android:id="@+id/txtv_applctdt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
                         android:text="Application Date"
@@ -237,7 +224,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:layout_marginLeft="10dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginBottom="5dp"
                         android:textStyle="bold"
@@ -276,6 +262,5 @@
                 </LinearLayout>
             </LinearLayout>
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

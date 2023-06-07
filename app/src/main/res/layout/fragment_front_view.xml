@@ -4,20 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/bgcolour"
     tools:context=".Fragment.FrontViewFragment">
-
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        android:elevation="20dp"
-        android:background="@drawable/backcard">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="10dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -66,7 +58,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
-                    android:background="@drawable/main_bglight"
                     android:orientation="vertical">
 <!--                    android:background="@drawable/backcard"-->
 
@@ -205,7 +196,7 @@
                             android:id="@+id/tv_vritualcard"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/colorPrimaryExtraDark"
                             android:text=""
                             android:textSize="13dp"
                             android:textStyle="normal"
@@ -409,13 +400,4 @@
 
 
         </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-
-
-
-
-
-
 </LinearLayout>

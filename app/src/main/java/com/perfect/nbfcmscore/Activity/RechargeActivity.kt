@@ -65,10 +65,10 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 
     var tv_header: TextView? = null
 
-    var tie_mobilenumber: TextInputEditText? = null
-    var tie_subscriber: TextInputEditText? = null
+    var tie_mobilenumber: EditText? = null
+    var tie_subscriber: EditText? = null
     var tie_operator: EditText? = null
-    var tie_circle: TextInputEditText? = null
+    var tie_circle: EditText? = null
     var tie_account: TextInputEditText? = null
     var tie_amount: TextInputEditText? = null
     var tie_circleAccNo: TextInputEditText? = null
@@ -80,8 +80,8 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
     var jArrayAccount: JSONArray? = null
 
 
-    var rltv_mobile: LinearLayout? = null
-    var rltv_subscriber: LinearLayout? = null
+    var rltv_mobile: RelativeLayout? = null
+    var rltv_subscriber: RelativeLayout? = null
     var ll_recentrecharge: LinearLayout? = null
     var ll_contact: LinearLayout? = null
 
@@ -243,10 +243,10 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
         txtaccount = findViewById<TextView>(R.id.txtaccount)
 
 
-        tie_mobilenumber = findViewById<TextInputEditText>(R.id.tie_mobilenumber)
-        tie_subscriber = findViewById<TextInputEditText>(R.id.tie_subscriber)
+        tie_mobilenumber = findViewById<EditText>(R.id.tie_mobilenumber)
+        tie_subscriber = findViewById<EditText>(R.id.tie_subscriber)
         tie_operator = findViewById<EditText>(R.id.tie_operator)
-        tie_circle = findViewById<TextInputEditText>(R.id.tie_circle)
+        tie_circle = findViewById<EditText>(R.id.tie_circle)
         tie_account = findViewById<TextInputEditText>(R.id.tie_account)
         tie_circleAccNo = findViewById<TextInputEditText>(R.id.tie_circleAccNo)
 
@@ -295,8 +295,8 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 
         rvrecentRecharge = findViewById<FullLenghRecyclertview>(R.id.rvrecentRecharge)
 
-        rltv_mobile = findViewById<LinearLayout>(R.id.rltv_mobile)
-        rltv_subscriber = findViewById<LinearLayout>(R.id.rltv_subscriber)
+        rltv_mobile = findViewById<RelativeLayout>(R.id.rltv_mobile)
+        rltv_subscriber = findViewById<RelativeLayout>(R.id.rltv_subscriber)
         ll_recentrecharge = findViewById<LinearLayout>(R.id.ll_recentrecharge)
         ll_contact = findViewById<LinearLayout>(R.id.ll_contact)
 

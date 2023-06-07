@@ -4,19 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/bgcolour"
     tools:context=".Fragment.BackViewFragment">
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        android:elevation="20dp"
-        android:background="@drawable/backcard">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="10dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -58,7 +50,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
-                    android:background="@drawable/main_bglight"
                     android:orientation="vertical">
 
 <!--                    android:background="@drawable/backcard"-->
@@ -390,7 +381,4 @@
 
 
         </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
 </LinearLayout>

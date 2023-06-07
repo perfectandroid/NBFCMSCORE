@@ -32,7 +32,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:padding="3dp"
-                    android:src="@drawable/arrow_back"
+                    android:src="@drawable/arrow_left_icon"
                     app:tint="@color/colorPrimary" />
 
             </LinearLayout>
@@ -68,8 +68,8 @@
                     android:id="@+id/im_home"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/vector_home"
-                    android:tint="@color/colorPrimary" />
+                    android:src="@drawable/ic_home"
+                    app:tint="@color/colorPrimary" />
 
             </LinearLayout>
 
@@ -100,60 +100,74 @@
                 android:layout_marginRight="10dp"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <RelativeLayout
                     android:id="@+id/rltv_mobile"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:background="@drawable/v2_edit_text_back"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginRight="10dp"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="match_parent"
-                        android:padding="16dp"
-                        android:src="@drawable/baseline_smartphone_24"
-                        android:tint="@color/colorPrimary" />
+                    android:background="@drawable/bg_light_grey"
+                    android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:layout_marginLeft="3dp"
-                        android:padding="6dp"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
                         <TextView
                             android:id="@+id/txtmobilenumber"
-                            android:layout_width="wrap_content"
-                            android:textSize="12dp"
+                            android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:text="Mobile Number"/>
+                            android:layout_marginTop="2dp"
+                            android:gravity="start"
+                            android:text="Mobile Number"
+                            android:textColor="@color/colorPrimaryExtraDark"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_marginTop="-5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_height="match_parent">
+                            android:layout_marginRight="5dp">
 
                             <LinearLayout
+                                android:id="@+id/linearLayout"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:gravity="center_vertical"
                                 android:orientation="horizontal">
 
-                                <com.google.android.material.textfield.TextInputEditText
+                                <ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:src="@drawable/input_rupees"
+                                    app:tint="@color/colorPrimaryExtraDark" />
+
+                                <EditText
                                     android:id="@+id/tie_mobilenumber"
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@android:color/transparent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:backgroundTint="@color/transparent"
                                     android:hint="Mobile Number"
                                     android:inputType="phone"
+                                    android:maxLength="13"
                                     android:textColor="@color/colorAccent"
+                                    android:textColorHint="@color/text_secondary"
                                     android:textSize="15dp" />
+
+
                             </LinearLayout>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:gravity="right">
+                                android:gravity="right"
+                                app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+                                app:layout_constraintTop_toTopOf="@+id/linearLayout">
 
                                 <LinearLayout
                                     android:id="@+id/ll_contact"
@@ -173,169 +187,179 @@
                             </LinearLayout>
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>
-
-                </LinearLayout>
-                <LinearLayout
+                </RelativeLayout>
+                <RelativeLayout
                     android:id="@+id/rltv_subscriber"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/v2_edit_text_back"
+                    android:layout_marginTop="15dp"
                     android:layout_marginRight="10dp"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="match_parent"
-                        android:padding="16dp"
-                        android:src="@drawable/vector_consumer_name"
-                        android:tint="@color/colorPrimary" />
+                    android:background="@drawable/bg_light_grey"
+                    android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:padding="6dp"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
                         <TextView
                             android:id="@+id/txtsubscriber"
-                            android:layout_width="wrap_content"
+                            android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="12dp"
-                            android:text="Subscriber Id"/>
-                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_marginTop="2dp"
+                            android:gravity="start"
+                            android:text="Subscriber Id"
+                            android:textColor="@color/colorPrimaryExtraDark"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_marginTop="-5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_height="match_parent">
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
 
-                            <LinearLayout
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/input_rupees"
+                                android:layout_marginLeft="5dp"
+                                app:tint="@color/colorPrimaryExtraDark" />
+
+                            <EditText
+                                android:id="@+id/tie_subscriber"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:gravity="center_vertical"
-                                android:orientation="horizontal">
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:backgroundTint="@color/transparent"
+                                android:maxLength="13"
+                                android:hint="Subscriber Id"
+                                android:inputType="phone"
+                                android:textColor="@color/colorAccent"
+                                android:textColorHint="@color/text_secondary"
+                                android:textSize="15dp" />
 
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/tie_subscriber"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@android:color/transparent"
-                                    android:hint="Subscriber Id"
-                                    android:inputType="phone"
-                                    android:textColor="@color/colorAccent"
-                                    android:textSize="15dp" />
-                            </LinearLayout>
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </LinearLayout>
                     </LinearLayout>
-
-                </LinearLayout>
-                <LinearLayout
+                </RelativeLayout>
+                <RelativeLayout
                     android:id="@+id/rltv_subscriber"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:background="@drawable/v2_edit_text_back"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginRight="10dp"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="match_parent"
-                        android:padding="16dp"
-                        android:src="@drawable/vector_operator"
-                        android:tint="@color/colorPrimary" />
+                    android:background="@drawable/bg_light_grey"
+                    android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:layout_marginLeft="3dp"
-                        android:padding="6dp"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
                         <TextView
                             android:id="@+id/txtoperator"
-                            android:layout_width="wrap_content"
-                            android:textSize="12dp"
+                            android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:text="Operator"/>
-                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_marginTop="2dp"
+                            android:gravity="start"
+                            android:text="Operator"
+                            android:textColor="@color/colorPrimaryExtraDark"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_marginTop="-5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_height="match_parent">
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
 
-                            <LinearLayout
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/input_rupees"
+                                android:layout_marginLeft="5dp"
+                                app:tint="@color/colorPrimaryExtraDark" />
+
+                            <EditText
+                                android:id="@+id/tie_operator"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:gravity="center_vertical"
-                                android:orientation="horizontal">
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:backgroundTint="@color/transparent"
+                                android:inputType="number"
+                                android:hint="Operator"
+                                android:focusableInTouchMode="false"
+                                android:focusable="false"
+                                android:editable="false"
+                                android:maxLength="13"
+                                android:textColorHint="@color/text_secondary"
+                                android:textSize="15dp" />
 
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/tie_operator"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@android:color/transparent"
-                                    android:hint="Operator" android:focusableInTouchMode="false"
-                                    android:focusable="false"
-                                    android:editable="false"
-                                    android:textColor="@color/colorAccent"
-                                    android:textSize="15dp" />
-                            </LinearLayout>
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </LinearLayout>
                     </LinearLayout>
-
-                </LinearLayout>
-                <LinearLayout
+                </RelativeLayout>
+                <RelativeLayout
                     android:id="@+id/rltv_mobile"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/v2_edit_text_back"
+                    android:layout_marginTop="15dp"
                     android:layout_marginRight="10dp"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="match_parent"
-                        android:padding="16dp"
-                        android:src="@drawable/vector_circle"
-                        android:tint="@color/colorPrimary" />
+                    android:background="@drawable/bg_light_grey"
+                    android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:layout_marginLeft="3dp"
-                        android:padding="6dp"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
                         <TextView
                             android:id="@+id/txtcircle"
-                            android:layout_width="wrap_content"
-                            android:textSize="12dp"
+                            android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:text="Circle"/>
-                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_marginTop="2dp"
+                            android:gravity="start"
+                            android:text="Circle"
+                            android:textColor="@color/colorPrimaryExtraDark"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_marginTop="-5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_height="match_parent">
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
 
-                            <LinearLayout
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/input_rupees"
+                                android:layout_marginLeft="5dp"
+                                app:tint="@color/colorPrimaryExtraDark" />
+
+                            <EditText
+                                android:id="@+id/tie_circle"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:gravity="center_vertical"
-                                android:orientation="horizontal">
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:backgroundTint="@color/transparent"
+                                android:hint="Circle"
+                                android:focusableInTouchMode="false"
+                                android:focusable="false"
+                                android:editable="false"
+                                android:inputType="number"
+                                android:maxLength="13"
+                                android:textColorHint="@color/text_secondary"
+                                android:textSize="15dp" />
 
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/tie_circle"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@android:color/transparent"
-                                    android:hint="Circle"
-                                    android:focusableInTouchMode="false"
-                                    android:focusable="false"
-                                    android:editable="false"
-                                    android:textColor="@color/colorAccent"
-                                    android:textSize="15dp" />
-                            </LinearLayout>
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </LinearLayout>
                     </LinearLayout>
-
-                </LinearLayout>
+                </RelativeLayout>
                 <LinearLayout
                     android:id="@+id/rltv_mobile"
                     android:layout_width="match_parent"

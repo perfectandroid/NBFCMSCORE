@@ -785,7 +785,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         val dialogBuilder = android.app.AlertDialog.Builder(this@HomeActivity)
         val inflater: LayoutInflater = this@HomeActivity.getLayoutInflater()
-        val dialogView: View = inflater.inflate(R.layout.alert_layout, null)
+        val dialogView: View = inflater.inflate(R.layout.bottom_update, null)
         dialogBuilder.setView(dialogView)
         val alertDialog = dialogBuilder.create()
         val tv_share = dialogView.findViewById<TextView>(R.id.tv_share)
@@ -793,7 +793,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val tv_msg2 = dialogView.findViewById<TextView>(R.id.txt2)
         tv_msg.text = "New Version Available"
         tv_msg2.text = "New version of this application is available.\n" +
-                "Click OK to upgrade now"
+                "Click update for new version"
         val tv_cancel = dialogView.findViewById<TextView>(R.id.tv_cancel)
         tv_cancel.setOnClickListener { alertDialog.dismiss() }
         tv_share.setOnClickListener { //  finishAffinity();
@@ -806,13 +806,35 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             } catch (anfe: ActivityNotFoundException) {
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
             }
-            alertDialog.dismiss()
+          //  alertDialog.dismiss()
         }
 
         alertDialog.window?.setBackgroundDrawableResource(R.color.transparent)
+        alertDialog.setCancelable(false)
         alertDialog.show()
 
 
+    }
+
+    private fun showBottomUpdate() {
+        val bottomSheetDialog = BottomSheetDialog(this)
+        bottomSheetDialog.setContentView(R.layout.bottom_update)
+        val ID_dlt = applicationContext.getSharedPreferences(Config.SHARED_PREF205, 0)
+        val logout = bottomSheetDialog.findViewById<ImageView>(R.id.logout)
+        val close = bottomSheetDialog.findViewById<ImageView>(R.id.close)
+        val txt1 = bottomSheetDialog.findViewById<TextView>(R.id.txt1)
+        logout!!.setOnClickListener {
+            bottomSheetDialog.dismiss()
+            logout()
+            val intent = Intent(this, WelcomeActivity::class.java)
+            intent.putExtra("from", "true")
+            this.startActivity(intent)
+            this.finish()
+        }
+        close!!.setOnClickListener(View.OnClickListener {
+            bottomSheetDialog.dismiss()
+        })
+        bottomSheetDialog.show()
     }
 
 

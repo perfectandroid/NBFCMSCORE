@@ -94,7 +94,6 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="start"
                                 android:layout_marginTop="2dp"
-                                android:paddingLeft="10dp"
                                 android:text="Type of Deposit"
                                 android:textColor="@color/colorPrimaryExtraDark"
                                 android:textSize="15sp"
@@ -102,9 +101,15 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
                                 android:orientation="horizontal">
 
-
+                                <ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:src="@drawable/input_deposite"
+                                    android:layout_marginLeft="5dp"
+                                    app:tint="@color/colorPrimaryExtraDark" />
                                 <Spinner
                                     android:id="@+id/spn_deposit_type"
                                     android:layout_width="match_parent"
@@ -144,7 +149,6 @@
                                     android:layout_height="wrap_content"
                                     android:gravity="start"
                                     android:layout_marginTop="2dp"
-                                    android:paddingLeft="10dp"
                                     android:text="Beneficiary"
                                     android:textColor="@color/colorPrimaryExtraDark"
                                     android:textSize="15sp"
@@ -152,13 +156,20 @@
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
                                     android:orientation="horizontal">
-
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:src="@drawable/input_user"
+                                        android:layout_marginLeft="5dp"
+                                        app:tint="@color/colorPrimaryExtraDark" />
 
                                     <Spinner
                                         android:id="@+id/spn_beneficiary"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginLeft="5dp"
                                         android:layout_gravity="start"
                                         android:gravity="start"
                                         android:popupBackground="#cccccc"
@@ -210,7 +221,6 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="start"
                                 android:layout_marginTop="2dp"
-                                android:layout_marginLeft="7dp"
                                 android:textColor="@color/colorPrimaryExtraDark"
                                 android:textSize="15sp"
                                 android:textStyle="bold"
@@ -219,15 +229,33 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:src="@drawable/input_rupees"
+                                        android:layout_marginLeft="5dp"
+                                        app:tint="@color/colorPrimaryExtraDark" />
+
                                 <EditText
                                     android:id="@+id/etxt_amount"
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
                                     android:inputType="number"
                                     android:drawablePadding="10dp"
                                     android:textSize="15dp"
+                                    android:hint="Amount"
+                                    android:textColorHint="@color/text_secondary"
                                     android:maxLength="13"
-                                    android:backgroundTint="@color/colorPrimary"/>
+                                    android:backgroundTint="@color/transparent"/>
+                                </LinearLayout>
 
                                 <TextView
                                     android:id="@+id/txt_amtinword"
@@ -276,7 +304,6 @@
                                     android:layout_height="wrap_content"
                                     android:gravity="start"
                                     android:layout_marginTop="2dp"
-                                    android:paddingLeft="10dp"
                                     android:text="Tenure"
                                     android:textColor="@color/colorPrimaryExtraDark"
                                     android:textSize="15sp"
@@ -302,18 +329,27 @@
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="vertical">
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal">
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:src="@drawable/input_calender"
+                                        android:layout_marginLeft="5dp"
+                                        app:tint="@color/colorPrimaryExtraDark" />
                                     <EditText
                                         android:id="@+id/edt_txt_tenure"
                                         android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
+                                        android:layout_height="wrap_content"
                                         android:inputType="number"
                                         android:layout_marginLeft="10dp"
+                                        android:hint="Tenure"
+                                        android:textColorHint="@color/text_secondary"
                                         android:layout_marginRight="10dp"
                                         android:drawablePadding="10dp"
                                         android:textSize="15dp"
                                         android:maxLength="13"
-                                        android:backgroundTint="@color/colorPrimary"/>
+                                        android:backgroundTint="@color/transparent"/>
                                 </LinearLayout>
 
 

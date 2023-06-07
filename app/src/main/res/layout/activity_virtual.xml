@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bgcolour"
+    android:background="@drawable/background1"
     tools:context=".Activity.VirtualActivity">
 
     <RelativeLayout
@@ -28,8 +28,9 @@
 
                 <ImageView
                     android:id="@+id/im_back"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:tint="@color/white"
                     android:src="@drawable/navback" />
 
             </LinearLayout>
@@ -64,6 +65,7 @@
                 <ImageView
                     android:id="@+id/im_home"
                     android:layout_width="35dp"
+                    android:tint="@color/white"
                     android:layout_height="35dp"
                     android:padding="5dp"
                     android:src="@drawable/ic_home" />

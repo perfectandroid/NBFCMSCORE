@@ -15,8 +15,7 @@
     <TextView
         android:id="@+id/tv_liability_name"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:text="ewete"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:layout_margin="5dp"
         android:textSize="13dp"

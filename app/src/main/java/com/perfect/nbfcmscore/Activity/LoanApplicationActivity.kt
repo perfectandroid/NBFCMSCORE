@@ -65,8 +65,8 @@ class LoanApplicationActivity : AppCompatActivity()   , View.OnClickListener, It
     var jArrayEmi: JSONArray? = null
     var  dialogEmii: BottomSheetDialog? = null
 
-    var  btn_calculate: Button? = null
-    var  btn_clear: Button? = null
+    var  btn_calculate: TextView? = null
+    var  btn_clear: TextView? = null
 
     var LoanAmount: String? = ""
     var RateOfInterset: String? = ""
@@ -210,8 +210,8 @@ class LoanApplicationActivity : AppCompatActivity()   , View.OnClickListener, It
         txtv_type = findViewById<TextView>(R.id.txtv_type)
         txtv_loanpur = findViewById<TextView>(R.id.txtv_loanpur)
 
-        btn_calculate = findViewById<Button>(R.id.btn_calculate)
-        btn_clear = findViewById<Button>(R.id.btn_clear)
+        btn_calculate = findViewById<TextView>(R.id.btn_calculate)
+        btn_clear = findViewById<TextView>(R.id.btn_clear)
 
         tv_header = findViewById<TextView>(R.id.tv_header)
 

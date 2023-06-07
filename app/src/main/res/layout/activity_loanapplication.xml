@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background"
     android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,9 +23,10 @@
                 <ImageView
                     android:id="@+id/imgBack"
                     android:layout_width="0dp"
-                    android:layout_height="35dp"
+                    android:layout_height="25dp"
                     android:layout_weight=".2"
-                    android:src="@drawable/navback" />
+                    android:src="@drawable/navback"
+                    app:tint="@color/white" />
                 <TextView
                     android:id="@+id/tv_header"
                     android:layout_width="0dp"
@@ -41,6 +43,7 @@
                     android:layout_width="0dp"
                     android:layout_height="35dp"
                     android:layout_weight=".2"
+                    app:tint="@color/white"
                     android:padding="5dp"
                     android:src="@drawable/ic_home" />
 
@@ -62,18 +65,10 @@
                             android:visibility="gone"
                             android:layout_width="150dp"
                             android:layout_height="150dp"/>
-
-
-
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="15dp"
-                                app:cardBackgroundColor="@color/bg_transfer"
-                                app:cardCornerRadius="5dp">
                                 <RelativeLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginTop="15dp"
                                     android:background="@drawable/bg_light_grey"
                                     android:orientation="vertical"
                                     android:padding="5dp">
@@ -88,48 +83,45 @@
                                             android:layout_height="wrap_content"
                                             android:gravity="start"
                                             android:layout_marginTop="2dp"
-                                            android:paddingLeft="10dp"
-                                            android:text="Principal Amount : "
-                                            android:textColor="@color/bottom_line1"
+                                            android:text="Principal Amount"
+                                            android:textColor="@color/colorPrimaryExtraDark"
                                             android:textSize="15sp"
                                             android:textStyle="bold" />
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginBottom="10dp"
+                                            android:gravity="center_vertical"
                                             android:orientation="horizontal">
-
+                                            <ImageView
+                                                android:layout_width="20dp"
+                                                android:layout_height="20dp"
+                                                android:src="@drawable/input_rupees"
+                                                android:layout_marginLeft="5dp"
+                                                app:tint="@color/colorPrimaryExtraDark" />
                                             <EditText
                                                 android:id="@+id/tie_principal"
                                                 android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
+                                                android:layout_height="wrap_content"
                                                 android:inputType="number"
-                                                android:layout_marginLeft="10dp"
+                                                android:layout_marginLeft="5dp"
+                                                android:hint="Amount"
+                                                android:textColorHint="@color/text_secondary"
                                                 android:layout_marginRight="10dp"
-                                                android:drawableLeft="@drawable/rupee"
                                                 android:drawablePadding="10dp"
-                                                android:textStyle="bold"
                                                 android:textSize="15dp"
                                                 android:maxLength="13"
-                                                android:backgroundTint="@color/bottom_line1"/>
+                                                android:backgroundTint="@color/transparent"/>
 
 
 
                                         </LinearLayout>
                                     </LinearLayout>
                                 </RelativeLayout>
-                            </androidx.cardview.widget.CardView>
-
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:padding="5dp"
-                                app:cardBackgroundColor="@color/bg_transfer"
-                                app:cardCornerRadius="5dp">
                                 <RelativeLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
                                     android:background="@drawable/bg_light_grey"
                                     android:orientation="vertical"
                                     android:padding="5dp">
@@ -144,45 +136,45 @@
                                             android:layout_height="wrap_content"
                                             android:gravity="start"
                                             android:layout_marginTop="2dp"
-                                            android:paddingLeft="10dp"
-                                            android:text="Month : "
-                                            android:textColor="@color/bottom_line1"
+                                            android:text="Month"
+                                            android:textColor="@color/colorPrimaryExtraDark"
                                             android:textSize="15sp"
                                             android:textStyle="bold" />
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginBottom="10dp"
+                                            android:gravity="center_vertical"
                                             android:orientation="horizontal">
+                                            <ImageView
+                                                android:layout_width="20dp"
+                                                android:layout_height="20dp"
+                                                android:src="@drawable/input_calender"
+                                                android:layout_marginLeft="5dp"
+                                                app:tint="@color/colorPrimaryExtraDark" />
 
                                             <EditText
                                                 android:id="@+id/tie_years"
                                                 android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
+                                                android:layout_height="wrap_content"
                                                 android:inputType="number"
-                                                android:layout_marginLeft="10dp"
+                                                android:layout_marginLeft="5dp"
+                                                android:hint="Month"
+                                                android:textColorHint="@color/text_secondary"
                                                 android:layout_marginRight="10dp"
                                                 android:drawablePadding="10dp"
-                                                android:textStyle="bold"
                                                 android:textSize="15dp"
                                                 android:maxLength="13"
-                                                android:backgroundTint="@color/bottom_line1"/>
+                                                android:backgroundTint="@color/transparent"/>
 
 
                                         </LinearLayout>
                                     </LinearLayout>
                                 </RelativeLayout>
-                            </androidx.cardview.widget.CardView>
-
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"                        android:padding="5dp"
-                                app:cardBackgroundColor="@color/bg_transfer"
-                                app:cardCornerRadius="5dp">
                                 <RelativeLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
                                     android:background="@drawable/bg_light_grey"
                                     android:orientation="vertical"
                                     android:padding="5dp">
@@ -197,22 +189,28 @@
                                             android:layout_height="wrap_content"
                                             android:gravity="start"
                                             android:layout_marginTop="2dp"
-                                            android:paddingLeft="10dp"
-                                            android:text="Loan Type : "
-                                            android:textColor="@color/bottom_line1"
+                                            android:text="Loan Type"
+                                            android:textColor="@color/colorPrimaryExtraDark"
                                             android:textSize="15sp"
                                             android:textStyle="bold" />
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
+                                            android:gravity="center_vertical"
                                             android:layout_marginBottom="10dp"
-                                            android:layout_marginLeft="10dp"
                                             android:layout_marginRight="10dp"
                                             android:orientation="horizontal">
+                                            <ImageView
+                                                android:layout_width="20dp"
+                                                android:layout_height="20dp"
+                                                android:src="@drawable/input_loan"
+                                                android:layout_marginLeft="5dp"
+                                                app:tint="@color/colorPrimaryExtraDark" />
                                             <com.google.android.material.textfield.TextInputLayout
                                                 android:layout_width="match_parent"
                                                 android:layout_height="40dp"
                                                 android:layout_alignParentBottom="true"
+                                                android:layout_marginLeft="5dp"
                                                 android:background="@android:color/transparent"
                                                 android:textColorHint="@color/bottom_line1"
                                                 app:hintTextColor="@color/bottom_line1">
@@ -238,16 +236,10 @@
                                         </LinearLayout>
                                     </LinearLayout>
                                 </RelativeLayout>
-                            </androidx.cardview.widget.CardView>
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"                        android:padding="5dp"
-                                app:cardBackgroundColor="@color/bg_transfer"
-                                app:cardCornerRadius="5dp">
                                 <RelativeLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
                                     android:background="@drawable/bg_light_grey"
                                     android:orientation="vertical"
                                     android:padding="5dp">
@@ -262,22 +254,28 @@
                                             android:layout_height="wrap_content"
                                             android:gravity="start"
                                             android:layout_marginTop="2dp"
-                                            android:paddingLeft="10dp"
-                                            android:text="Loan Purpose : "
-                                            android:textColor="@color/bottom_line1"
+                                            android:text="Loan Purpose"
+                                            android:textColor="@color/colorPrimaryExtraDark"
                                             android:textSize="15sp"
                                             android:textStyle="bold" />
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginBottom="10dp"
-                                            android:layout_marginLeft="10dp"
+                                            android:gravity="center_vertical"
                                             android:layout_marginRight="10dp"
                                             android:orientation="horizontal">
+                                            <ImageView
+                                                android:layout_width="20dp"
+                                                android:layout_height="20dp"
+                                                android:src="@drawable/input_loan"
+                                                android:layout_marginLeft="5dp"
+                                                app:tint="@color/colorPrimaryExtraDark" />
                                             <com.google.android.material.textfield.TextInputLayout
                                                 android:layout_width="match_parent"
                                                 android:layout_height="40dp"
                                                 android:layout_alignParentBottom="true"
+                                                android:layout_marginLeft="5dp"
                                                 android:background="@android:color/transparent"
                                                 android:textColorHint="@color/bottom_line1"
                                                 app:hintTextColor="@color/bottom_line1">
@@ -303,8 +301,6 @@
                                         </LinearLayout>
                                     </LinearLayout>
                                 </RelativeLayout>
-                            </androidx.cardview.widget.CardView>
-
 <!--
                             <RelativeLayout
                                 android:layout_width="match_parent"
@@ -443,35 +439,46 @@
 
 
                             </LinearLayout>
-
-
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="50dp"
-                                android:layout_alignParentBottom="true"
-                                android:layout_marginTop="25dp"
+                                android:layout_height="45dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginRight="10dp"
                                 android:orientation="horizontal">
 
-                                <Button
+                                <TextView
+
                                     android:id="@+id/btn_clear"
                                     android:layout_width="match_parent"
-                                    android:layout_height="36dp"
-                                    android:layout_margin="5dp"
+                                    android:layout_height="match_parent"
                                     android:layout_weight="1"
-                                    android:background="@drawable/but_ronded1"
+                                    android:background="@drawable/bg_button"
+                                    android:backgroundTint="@color/white"
+                                    android:gravity="center"
                                     android:text="Reset"
-                                    android:textColor="@color/white" />
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/colorPrimaryExtraDark"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
 
+                                <View
+                                    android:layout_width="20dp"
+                                    android:layout_height="match_parent" />
 
-                                <Button
+                                <TextView
                                     android:id="@+id/btn_calculate"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="5dp"
+                                    android:layout_height="match_parent"
                                     android:layout_weight="1"
-                                    android:background="@drawable/but_rounded2"
+                                    android:background="@drawable/bg_button"
+                                    android:backgroundTint="@color/colorExtraLight"
+                                    android:gravity="center"
                                     android:text="Calculate"
-                                    android:textColor="@color/white" />
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/colorPrimaryExtraDark"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
 
 
