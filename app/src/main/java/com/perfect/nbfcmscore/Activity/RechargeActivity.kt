@@ -69,11 +69,11 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
     var tie_subscriber: EditText? = null
     var tie_operator: EditText? = null
     var tie_circle: EditText? = null
-    var tie_account: TextInputEditText? = null
-    var tie_amount: TextInputEditText? = null
-    var tie_circleAccNo: TextInputEditText? = null
+    var tie_account: EditText? = null
+    var tie_amount: EditText? = null
+    var tie_circleAccNo: EditText? = null
 
-    var card_circleAccNo: LinearLayout? = null
+    var card_circleAccNo: RelativeLayout? = null
 
     var jArrayOperator: JSONArray? = null
     var jArrayCircle: JSONArray? = null
@@ -247,15 +247,15 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
         tie_subscriber = findViewById<EditText>(R.id.tie_subscriber)
         tie_operator = findViewById<EditText>(R.id.tie_operator)
         tie_circle = findViewById<EditText>(R.id.tie_circle)
-        tie_account = findViewById<TextInputEditText>(R.id.tie_account)
-        tie_circleAccNo = findViewById<TextInputEditText>(R.id.tie_circleAccNo)
+        tie_account = findViewById<EditText>(R.id.tie_account)
+        tie_circleAccNo = findViewById<EditText>(R.id.tie_circleAccNo)
 
-        card_circleAccNo = findViewById<LinearLayout>(R.id.card_circleAccNo)
-
-
+        card_circleAccNo = findViewById<RelativeLayout>(R.id.card_circleAccNo)
 
 
-        tie_amount = findViewById<TextInputEditText>(R.id.tie_amount)
+
+
+        tie_amount = findViewById<EditText>(R.id.tie_amount)
 
         val MobileSP = applicationContext.getSharedPreferences(Config.SHARED_PREF110, 0)
         val SubscriberSP = applicationContext.getSharedPreferences(Config.SHARED_PREF116, 0)

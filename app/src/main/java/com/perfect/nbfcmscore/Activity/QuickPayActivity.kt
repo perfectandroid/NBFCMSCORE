@@ -64,13 +64,13 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
     var receiverAccountno: String? = null
     var receiverid: String? = null
     var mode: String? = null
-    var btn_clear: Button? = null
+    var btn_clear: TextView? = null
     private val mLnrAnimatorContainer: LinearLayout? = null
     private val mRltvError: RelativeLayout? = null
     private val mTxtError: TextView? = null
     private  var txt_amtinword:TextView? = null
     var BranchName: String? = null
-    private var mBtnSubmit: Button? = null
+    private var mBtnSubmit: TextView? = null
     private var jresult: JSONArray? = null
     private val accountlist = ArrayList<String>()
     var imgBack: ImageView? = null
@@ -89,7 +89,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
     var sendername: String? = null
     var senderid: String? = null
     public var branchname:String?=null
-    var btn_forgot_mpin: Button? = null
+    var btn_forgot_mpin: TextView? = null
     private var progressDialog: ProgressDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -382,8 +382,8 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
 
     private fun setRegviews() {
 
-        btn_forgot_mpin= findViewById<Button>(R.id.btn_forgot_mpin)
-        btn_clear= findViewById<Button>(R.id.btn_clear)
+        btn_forgot_mpin= findViewById<TextView>(R.id.btn_forgot_mpin)
+        btn_clear= findViewById<TextView>(R.id.btn_clear)
 
         txt_amtinword= findViewById<TextView>(R.id.txt_amtinword)
         mMessageEt= findViewById<EditText>(R.id.message)
@@ -406,7 +406,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
         imgHome = findViewById<ImageView>(R.id.imgHome)
         imgHome!!.setOnClickListener(this)
         mAccountSpinner = findViewById<Spinner>(R.id.spn_account_num)
-        mBtnSubmit = findViewById<Button>(R.id.btn_submit)
+        mBtnSubmit = findViewById<TextView>(R.id.btn_submit)
         mBtnSubmit!!.setOnClickListener(this)
         add_new_sender!!.setOnClickListener(this)
         add_new_receiver!!.setOnClickListener(this)

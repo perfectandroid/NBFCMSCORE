@@ -15,6 +15,7 @@ import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
@@ -51,16 +52,16 @@ class KSEBActivity : AppCompatActivity(), View.OnClickListener, ItemClickListene
     var im_home: ImageView? = null
     var tv_header: TextView? = null
 
-    var but_recharge: Button? = null
-    var but_clear: Button? = null
+    var but_recharge: TextView? = null
+    var but_clear: TextView? = null
 
-    var tie_consumername: TextInputEditText? = null
-    var tie_mobilenumber: TextInputEditText? = null
-    var tie_consumerno: TextInputEditText? = null
-    var tie_sectionname: TextInputEditText? = null
-    var tie_billno: TextInputEditText? = null
-    var tie_amount: TextInputEditText? = null
-    var tie_account: TextInputEditText? = null
+    var tie_consumername: EditText? = null
+    var tie_mobilenumber: EditText? = null
+    var tie_consumerno: EditText? = null
+    var tie_sectionname: EditText? = null
+    var tie_billno: EditText? = null
+    var tie_amount: EditText? = null
+    var tie_account: EditText? = null
 
     var im_sectionname: ImageView? = null
 
@@ -198,18 +199,18 @@ class KSEBActivity : AppCompatActivity(), View.OnClickListener, ItemClickListene
         im_back = findViewById<ImageView>(R.id.im_back)
         im_home = findViewById<ImageView>(R.id.im_home)
 
-        tie_consumername = findViewById<TextInputEditText>(R.id.tie_consumername)
-        tie_mobilenumber = findViewById<TextInputEditText>(R.id.tie_mobilenumber)
-        tie_consumerno = findViewById<TextInputEditText>(R.id.tie_consumerno)
-        tie_sectionname = findViewById<TextInputEditText>(R.id.tie_sectionname)
-        tie_billno = findViewById<TextInputEditText>(R.id.tie_billno)
-        tie_amount = findViewById<TextInputEditText>(R.id.tie_amount)
-        tie_account = findViewById<TextInputEditText>(R.id.tie_account)
+        tie_consumername = findViewById<EditText>(R.id.tie_consumername)
+        tie_mobilenumber = findViewById<EditText>(R.id.tie_mobilenumber)
+        tie_consumerno = findViewById<EditText>(R.id.tie_consumerno)
+        tie_sectionname = findViewById<EditText>(R.id.tie_sectionname)
+        tie_billno = findViewById<EditText>(R.id.tie_billno)
+        tie_amount = findViewById<EditText>(R.id.tie_amount)
+        tie_account = findViewById<EditText>(R.id.tie_account)
 
         im_sectionname = findViewById<ImageView>(R.id.im_sectionname)
 
-        but_recharge = findViewById<Button>(R.id.but_recharge)
-        but_clear = findViewById<Button>(R.id.but_clear)
+        but_recharge = findViewById<TextView>(R.id.but_recharge)
+        but_clear = findViewById<TextView>(R.id.but_clear)
     }
 
     private fun setRegister() {

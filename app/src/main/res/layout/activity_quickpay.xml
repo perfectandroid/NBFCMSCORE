@@ -1,37 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/background"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <RelativeLayout
         android:id="@+id/relativeLayout1"
-        android:background="@color/colorPrimary"
-
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center"
             android:orientation="horizontal">
+
             <ImageView
                 android:id="@+id/imgBack"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
+                android:layout_height="25dp"
                 android:layout_weight=".2"
-                android:src="@drawable/navback" />
+                android:src="@drawable/navback"
+                app:tint="@color/white" />
+
             <TextView
                 android:id="@+id/tv_header"
                 android:layout_width="0dp"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="15dp"
-                android:text="Quick Pay"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:text="Quick Pay"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/imgHome"
@@ -39,13 +44,16 @@
                 android:layout_height="35dp"
                 android:layout_weight=".2"
                 android:padding="5dp"
-                android:src="@drawable/ic_home" />
+                android:src="@drawable/ic_home"
+                app:tint="@color/white" />
 
         </LinearLayout>
     </RelativeLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:id="@+id/linear_animation_container"
             android:layout_width="fill_parent"
@@ -61,79 +69,79 @@
                 android:background="@color/gray_btn_bg_color"
                 android:padding="10dp"
                 android:visibility="gone">
+
                 <TextView
                     android:id="@+id/txt_error"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:text="An error was occured !!!...."
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/white" />
             </RelativeLayout>
 
-            <androidx.cardview.widget.CardView
+            <RelativeLayout
+                android:id="@+id/rltv_subscriber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"                        android:padding="5dp"
-                app:cardBackgroundColor="@color/bg_transfer"
-                app:cardCornerRadius="5dp">
-                <RelativeLayout
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bg_light_grey"
+                android:orientation="vertical">
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_light_grey"
-                    android:orientation="vertical"
-                    android:padding="5dp">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtv_slctacnt"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:gravity="start"
+                        android:text="@string/select_account"
+                        android:textColor="@color/colorPrimaryExtraDark"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/txtv_slctacnt"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="start"
-                            android:layout_marginTop="2dp"
-                            android:paddingLeft="10dp"
-                            android:text="@string/select_account"
-                            android:textColor="@color/bottom_line1"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-                        <LinearLayout
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="5dp"
+                            android:src="@drawable/input_user"
+                            app:tint="@color/colorPrimaryExtraDark" />
+
+                        <Spinner
+                            android:id="@+id/spn_account_num"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp" >
-                            <Spinner
-                                android:id="@+id/spn_account_num"
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:dropDownWidth="match_parent"
-                                android:spinnerMode="dropdown">
-
-                            </Spinner>
-                        </LinearLayout>
+                            android:layout_height="40dp"
+                            android:dropDownWidth="match_parent"
+                            android:spinnerMode="dropdown" />
                     </LinearLayout>
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"                        android:padding="5dp"
-                app:cardBackgroundColor="@color/bg_transfer"
-                app:cardCornerRadius="5dp">
-                <RelativeLayout
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bg_light_grey"
+                android:orientation="vertical">
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_light_grey"
-                    android:orientation="vertical"
-                    android:padding="5dp">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -143,23 +151,23 @@
                             android:id="@+id/txtv_slctsndr"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="start"
                             android:layout_marginTop="2dp"
-                            android:paddingLeft="10dp"
-                            android:text="@string/select_sender"
-                            android:textColor="@color/bottom_line1"
-                            android:textSize="15sp"
                             android:layout_weight="1"
+                            android:gravity="start"
+                            android:text="@string/select_sender"
+                            android:textColor="@color/colorPrimaryExtraDark"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
+
                         <TextView
                             android:id="@+id/add_new_sender"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_marginTop="2dp"
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentRight="true"
                             android:layout_gravity="center"
+                            android:layout_marginTop="2dp"
+                            android:layout_weight="1"
                             android:gravity="right"
                             android:paddingStart="8dp"
                             android:paddingLeft="8dp"
@@ -170,57 +178,61 @@
                             android:textStyle="normal"
                             tools:ignore="RelativeOverlap" />
                     </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp" >
-                            <Spinner
-                                android:id="@+id/sender_spinner"
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:dropDownWidth="match_parent"
-                                android:spinnerMode="dropdown">
 
-                            </Spinner>
-                        </LinearLayout>
-                    </LinearLayout>
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"                        android:padding="5dp"
-                app:cardBackgroundColor="@color/bg_transfer"
-                app:cardCornerRadius="5dp">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_light_grey"
-                    android:orientation="vertical"
-                    android:padding="5dp">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="5dp"
+                            android:src="@drawable/input_user"
+                            app:tint="@color/colorPrimaryExtraDark" />
+
+                        <Spinner
+                            android:id="@+id/sender_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:dropDownWidth="match_parent"
+                            android:spinnerMode="dropdown" />
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bg_light_grey"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+
                         <TextView
                             android:id="@+id/txtv_slctrecvr"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="start"
                             android:layout_marginTop="2dp"
-                            android:paddingLeft="10dp"
                             android:layout_weight="1"
+                            android:gravity="start"
                             android:text="@string/select_receiver"
-                            android:textColor="@color/bottom_line1"
+                            android:textColor="@color/colorPrimaryExtraDark"
                             android:textSize="15sp"
                             android:textStyle="bold" />
+
                         <TextView
                             android:id="@+id/add_new_receiver"
                             android:layout_width="match_parent"
@@ -228,8 +240,8 @@
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentRight="true"
                             android:layout_gravity="center"
-                            android:gravity="right"
                             android:layout_weight="1"
+                            android:gravity="right"
                             android:paddingStart="8dp"
                             android:paddingLeft="8dp"
                             android:paddingEnd="8dp"
@@ -239,245 +251,264 @@
                             android:textStyle="normal"
                             tools:ignore="RelativeOverlap" />
                     </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp" >
-                            <Spinner
-                                android:id="@+id/receiver_spinner"
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:dropDownWidth="match_parent"
-                                android:spinnerMode="dropdown">
-
-                            </Spinner>
-                        </LinearLayout>
-                    </LinearLayout>
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"                        android:padding="5dp"
-                app:cardBackgroundColor="@color/bg_transfer"
-                app:cardCornerRadius="5dp">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_light_grey"
-                    android:orientation="vertical"
-                    android:padding="5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:background="@color/color_activity_transparent"
-                        android:layout_marginBottom="15dp"
-                        android:orientation="vertical">
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="5dp"
+                            android:src="@drawable/input_user"
+                            app:tint="@color/colorPrimaryExtraDark" />
 
-
-                        <TextView
-                            android:id="@+id/txtamt"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="start"
-                            android:layout_marginTop="2dp"
-                            android:layout_marginLeft="7dp"
-                            android:textColor="@color/bottom_line1"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:text="Amount Payable :"/>
-                        <LinearLayout
+                        <Spinner
+                            android:id="@+id/receiver_spinner"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-                            <EditText
-                                android:id="@+id/etxt_amount"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:inputType="number"
-                                android:drawableLeft="@drawable/rupee"
-                                android:drawablePadding="10dp"
-                                android:textStyle="bold"
-                                android:textSize="15dp"
-                                android:maxLength="13"
-                                android:backgroundTint="@color/bottom_line1"/>
-
-                            <TextView
-                                android:id="@+id/txt_amtinword"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="13dp"
-                                android:textStyle="bold"/>
-                        </LinearLayout>
+                            android:layout_height="40dp"
+                            android:dropDownWidth="match_parent"
+                            android:spinnerMode="dropdown" />
                     </LinearLayout>
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginRight="10dp"
-                android:padding="5dp"
-                app:cardBackgroundColor="@color/bg_transfer"
-                app:cardCornerRadius="5dp">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_light_grey"
-                    android:orientation="vertical"
-                    android:padding="5dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/txtvremark"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="start"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginLeft="7dp"
-                            android:textColor="#00C6FF"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:text="Remark : "/>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:orientation="vertical">
-                            <EditText
-                                android:id="@+id/message"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:backgroundTint="@color/input_border"
-                                android:drawableTint="@color/input_border"
-                                android:gravity="start"
-                                android:inputType="text"
-                                android:padding="5dp" />
-
-                            <!--                android:background="@drawable/custom_edt_txt_account_border"-->
-
-
-
-
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:padding="5dp"
-                app:cardBackgroundColor="@color/bg_transfer"
-                app:cardCornerRadius="5dp">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_light_grey"
-                    android:orientation="vertical"
-                    android:padding="5dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/txtvMPIN"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="start"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginLeft="7dp"
-                            android:textColor="#00C6FF"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:text="MPIN : "/>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:orientation="vertical">
-                            <EditText
-                                android:id="@+id/etxt_mpin"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:backgroundTint="@color/input_border"
-                                android:drawableTint="@color/input_border"
-                                android:gravity="start"
-                                android:maxLength="5"
-                                android:inputType="number"
-                                android:padding="5dp" />
-
-
-                            <Button
-                                android:id="@+id/btn_forgot_mpin"
-                                android:layout_width="wrap_content"
-                                android:layout_height="40dp"
-                                android:layout_gravity="right"
-                                android:paddingRight="5dp"
-                                android:backgroundTint="@color/color_activity_transparent"
-                                android:gravity="center"
-                                android:text="Forgot Mpin"
-                                android:textAllCaps="false"
-                                android:textStyle="bold"
-                                android:textColor="@color/redDark"/>
-
-
-
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
+                android:background="@drawable/bg_light_grey"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="25dp"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                    <Button
-                        android:id="@+id/btn_clear"
-                        android:layout_width="match_parent"
-                        android:layout_height="36dp"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/but_ronded1"
-                        android:text="Reset"
-                        android:textColor="@color/white" />
+                    <TextView
+                        android:id="@+id/txtamt"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:gravity="start"
+                        android:text="Amount Payable"
+                        android:textColor="@color/colorPrimaryExtraDark"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
-
-                    <Button
-                        android:id="@+id/btn_submit"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/but_rounded2"
-                        android:text="PAY"
-                        android:textColor="@color/white" />
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="5dp"
+                            android:src="@drawable/input_user"
+                            app:tint="@color/colorPrimaryExtraDark" />
+
+                        <EditText
+                            android:id="@+id/etxt_amount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:backgroundTint="@color/transparent"
+                            android:hint="Amount"
+                            android:inputType="number"
+                            android:maxLength="13"
+                            android:textColor="@color/colorAccent"
+                            android:textColorHint="@color/text_secondary"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txt_amtinword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="13dp"
+                        android:textStyle="bold" />
                 </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rltv_subscriber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bg_light_grey"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtvremark"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:gravity="start"
+                        android:text="Remark"
+                        android:textColor="@color/colorPrimaryExtraDark"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="5dp"
+                            android:src="@drawable/input_user"
+                            app:tint="@color/colorPrimaryExtraDark" />
+
+                        <EditText
+                            android:id="@+id/message"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:backgroundTint="@color/transparent"
+                            android:hint="Remark"
+                            android:inputType="text"
+                            android:maxLength="13"
+                            android:textColor="@color/colorAccent"
+                            android:textColorHint="@color/text_secondary"
+                            android:textSize="15dp" />
 
 
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rltv_subscriber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bg_light_grey"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtvMPIN"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:gravity="start"
+                        android:text="MPIN"
+                        android:textColor="@color/colorPrimaryExtraDark"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="5dp"
+                            android:src="@drawable/input_user"
+                            app:tint="@color/colorPrimaryExtraDark" />
+
+                        <EditText
+                            android:id="@+id/etxt_mpin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:backgroundTint="@color/transparent"
+                            android:hint="MPIN"
+                            android:inputType="number"
+                            android:maxLength="5"
+                            android:textColor="@color/colorAccent"
+                            android:textColorHint="@color/text_secondary"
+                            android:textSize="15dp" />
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/btn_forgot_mpin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:background="@drawable/bg_light_grey"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="10dp"
+                        android:layout_marginRight="5dp"
+                        android:paddingBottom="5dp"
+                        android:text="Forgot Mpin"
+                        android:textAllCaps="false"
+                        android:textColor="@color/redDark"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+
+                    android:id="@+id/btn_clear"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_button"
+                    android:backgroundTint="@color/white"
+                    android:gravity="center"
+                    android:text="Reset"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorPrimaryExtraDark"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/btn_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_button"
+                    android:backgroundTint="@color/colorExtraLight"
+                    android:gravity="center"
+                    android:text="Make Payement"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorPrimaryExtraDark"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
 
         </LinearLayout>

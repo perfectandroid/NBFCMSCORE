@@ -11,7 +11,8 @@
     <RelativeLayout
         android:id="@+id/rltv_header"
         android:layout_width="match_parent"
-        android:layout_height="60dp">
+        android:background="@color/colorPrimary"
+        android:layout_height="50dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,7 +34,7 @@
                     android:layout_height="24dp"
                     android:padding="3dp"
                     android:src="@drawable/arrow_left_icon"
-                    app:tint="@color/colorPrimary" />
+                    app:tint="@color/white" />
 
             </LinearLayout>
 
@@ -51,7 +52,7 @@
                     android:layout_marginLeft="10dp"
                     android:gravity="center_vertical"
                     android:text=""
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/white"
                     android:textSize="18dp" />
 
             </LinearLayout>
@@ -69,7 +70,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_home"
-                    app:tint="@color/colorPrimary" />
+                    app:tint="@color/white" />
 
             </LinearLayout>
 
@@ -95,9 +96,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
                 android:orientation="vertical">
 
                 <RelativeLayout
@@ -143,7 +142,7 @@
                                     android:layout_width="20dp"
                                     android:layout_height="20dp"
                                     android:layout_marginLeft="5dp"
-                                    android:src="@drawable/input_rupees"
+                                    android:src="@drawable/input_mobile"
                                     app:tint="@color/colorPrimaryExtraDark" />
 
                                 <EditText
@@ -223,7 +222,7 @@
                             <ImageView
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
-                                android:src="@drawable/input_rupees"
+                                android:src="@drawable/input_user"
                                 android:layout_marginLeft="5dp"
                                 app:tint="@color/colorPrimaryExtraDark" />
 
@@ -279,7 +278,7 @@
                             <ImageView
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
-                                android:src="@drawable/input_rupees"
+                                android:src="@drawable/input_operator"
                                 android:layout_marginLeft="5dp"
                                 app:tint="@color/colorPrimaryExtraDark" />
 
@@ -337,7 +336,7 @@
                             <ImageView
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
-                                android:src="@drawable/input_rupees"
+                                android:src="@drawable/input_tower"
                                 android:layout_marginLeft="5dp"
                                 app:tint="@color/colorPrimaryExtraDark" />
 
@@ -360,60 +359,74 @@
                         </LinearLayout>
                     </LinearLayout>
                 </RelativeLayout>
-                <LinearLayout
+                <RelativeLayout
                     android:id="@+id/rltv_mobile"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/v2_edit_text_back"
+                    android:layout_marginTop="15dp"
                     android:layout_marginRight="10dp"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="match_parent"
-                        android:padding="16dp"
-                        android:src="@drawable/vector_amount"
-                        android:tint="@color/colorPrimary" />
+                    android:background="@drawable/bg_light_grey"
+                    android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:layout_marginLeft="3dp"
-                        android:padding="6dp"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
                         <TextView
                             android:id="@+id/txtamount"
-                            android:layout_width="wrap_content"
-                            android:textSize="12dp"
+                            android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:text="Amount"/>
+                            android:layout_marginTop="2dp"
+                            android:gravity="start"
+                            android:text="Amount"
+                            android:textColor="@color/colorPrimaryExtraDark"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_marginTop="-5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_height="match_parent">
+                            android:layout_marginRight="5dp">
 
                             <LinearLayout
+                                android:id="@+id/linearLayout"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:gravity="center_vertical"
                                 android:orientation="horizontal">
 
-                                <com.google.android.material.textfield.TextInputEditText
+                                <ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:src="@drawable/input_rupees"
+                                    app:tint="@color/colorPrimaryExtraDark" />
+
+                                <EditText
                                     android:id="@+id/tie_amount"
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@android:color/transparent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:backgroundTint="@color/transparent"
                                     android:hint="Amount"
-                                    android:inputType="phone"
+                                    android:inputType="numberDecimal"
+                                    android:maxLength="13"
                                     android:textColor="@color/colorAccent"
+                                    android:textColorHint="@color/text_secondary"
                                     android:textSize="15dp" />
+
+
                             </LinearLayout>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:gravity="right">
+                                android:gravity="right"
+                                app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+                                app:layout_constraintTop_toTopOf="@+id/linearLayout">
 
                                 <LinearLayout
                                     android:id="@+id/ll_offers"
@@ -433,116 +446,117 @@
                             </LinearLayout>
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>
-
-                </LinearLayout>
-                <LinearLayout
+                </RelativeLayout>
+                <RelativeLayout
                     android:id="@+id/card_circleAccNo"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/v2_edit_text_back"
+                    android:layout_marginTop="15dp"
                     android:layout_marginRight="10dp"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="match_parent"
-                        android:padding="16dp"
-                        android:src="@drawable/vector_account"
-                        android:tint="@color/colorPrimary" />
+                    android:background="@drawable/bg_light_grey"
+                    android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:layout_marginLeft="3dp"
-                        android:padding="6dp"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
                         <TextView
                             android:id="@+id/txtcircleAccNo"
-                            android:layout_width="wrap_content"
-                            android:textSize="12dp"
+                            android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:text="Account No"/>
-                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_marginTop="2dp"
+                            android:gravity="start"
+                            android:text="Account No"
+                            android:textColor="@color/colorPrimaryExtraDark"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_marginTop="-5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_height="match_parent">
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
 
-                            <LinearLayout
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/input_bank"
+                                android:layout_marginLeft="5dp"
+                                app:tint="@color/colorPrimaryExtraDark" />
+
+                            <EditText
+                                android:id="@+id/tie_circleAccNo"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:gravity="center_vertical"
-                                android:orientation="horizontal">
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:backgroundTint="@color/transparent"
+                                android:hint="Account No"
+                                android:inputType="number"
+                                android:maxLength="13"
+                                android:textColorHint="@color/text_secondary"
+                                android:textSize="15dp" />
 
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/tie_circleAccNo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@android:color/transparent"
-                                    android:hint="Account No"
-                                    android:inputType="phone"
-                                    android:textColor="@color/colorAccent"
-                                    android:textSize="15dp" />
-                            </LinearLayout>
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </LinearLayout>
                     </LinearLayout>
-
-                </LinearLayout>
-                <LinearLayout
+                </RelativeLayout>
+                <RelativeLayout
                     android:id="@+id/card_circleAccNo"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:background="@drawable/v2_edit_text_back"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginRight="10dp"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="match_parent"
-                        android:padding="16dp"
-                        android:src="@drawable/vector_account"
-                        android:tint="@color/colorPrimary" />
+                    android:background="@drawable/bg_light_grey"
+                    android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:layout_marginLeft="3dp"
-                        android:padding="6dp"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
                         <TextView
                             android:id="@+id/txtaccount"
-                            android:layout_width="wrap_content"
-                            android:textSize="12dp"
+                            android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:text="Account No"/>
-                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_marginTop="2dp"
+                            android:gravity="start"
+                            android:text="Account No"
+                            android:textColor="@color/colorPrimaryExtraDark"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_marginTop="-5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_height="match_parent">
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
 
-                            <LinearLayout
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/input_bank"
+                                android:layout_marginLeft="5dp"
+                                app:tint="@color/colorPrimaryExtraDark" />
+
+                            <EditText
+                                android:id="@+id/tie_account"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:gravity="center_vertical"
-                                android:orientation="horizontal">
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:backgroundTint="@color/transparent"
+                                android:hint="Account No"
+                                android:inputType="number"
+                                android:maxLength="13"
+                                android:textColorHint="@color/text_secondary"
+                                android:textSize="15dp" />
 
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/tie_account"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@android:color/transparent"
-                                    android:hint="Account No"
-                                    android:focusableInTouchMode="false"
-                                    android:focusable="false"
-                                    android:editable="false"
-                                    android:textColor="@color/colorAccent"
-                                    android:textSize="15dp" />
-                            </LinearLayout>
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </LinearLayout>
                     </LinearLayout>
-
-                </LinearLayout>
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
