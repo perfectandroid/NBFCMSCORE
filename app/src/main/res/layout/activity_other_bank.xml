@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background3"
+    android:background="@drawable/background"
     tools:context=".Activity.OtherBankActivity">
 
     <RelativeLayout
@@ -82,211 +82,205 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/rltv_header">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_margin="15dp"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:gravity="center">
 
-                <LinearLayout
-                    android:id="@+id/ll_imps_main"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:background="@drawable/btn_bg5"
-                    android:orientation="vertical"
-                    android:padding="1dp">
-
-                    <LinearLayout
-                        android:id="@+id/ll_imps"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:layout_marginTop="10dp"
-                                android:scaleType="fitXY"
-                                android:src="@drawable/icon_imps" />
-
-                            <TextView
-                                android:id="@+id/tv_imps"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:gravity="center"
-                                android:text="IMPS"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="18dp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_neft_main"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                <GridLayout
+                    android:id="@+id/idGVcourses"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/btn_bg5"
-                    android:orientation="vertical"
-                    android:padding="1dp">
+                    android:alignmentMode="alignBounds"
+                    android:columnOrderPreserved="true"
+                    android:columnCount="2"
+                    android:rowCount="2">
 
                     <LinearLayout
-                        android:id="@+id/ll_neft"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal">
+                        android:id="@+id/ll_imps_main"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/btn_bg3"
+                        android:orientation="vertical">
 
                         <LinearLayout
+                            android:id="@+id/ll_imps"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
                             android:gravity="center"
-                            android:orientation="vertical">
+                            android:orientation="horizontal">
 
-                            <ImageView
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:layout_marginTop="10dp"
-                                android:scaleType="fitXY"
-                                android:src="@drawable/icon_neft" />
-
-                            <TextView
-                                android:id="@+id/tv_neft"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginBottom="10dp"
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:gravity="center"
-                                android:padding="5dp"
-                                android:text="NEFT"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="18dp"
-                                android:textStyle="bold" />
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/new_imps" />
+
+                                <TextView
+                                    android:id="@+id/tv_imps"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:gravity="center"
+                                    android:text="IMPS"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="13dp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_neft_main"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:visibility="visible"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/btn_bg3"
+                        android:orientation="vertical"
+                        android:padding="1dp">
+
+                        <LinearLayout
+                            android:id="@+id/ll_neft"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_marginTop="10dp"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/new_neft" />
+
+                                <TextView
+                                    android:id="@+id/tv_neft"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:padding="5dp"
+                                    android:text="NEFT"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="13dp" />
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_rtgs_main"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/btn_bg3"
+                        android:orientation="vertical"
+                        android:padding="1dp">
+
+                        <LinearLayout
+                            android:id="@+id/ll_rtgs"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_marginTop="10dp"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/new_rtgs" />
+
+                                <TextView
+                                    android:id="@+id/tv_rtgs"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:gravity="center"
+                                    android:padding="5dp"
+                                    android:text="RTGS"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="13dp" />
+
+                            </LinearLayout>
+
 
                         </LinearLayout>
 
-
                     </LinearLayout>
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/ll_rtgs_main"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/btn_bg5"
-                    android:orientation="vertical"
-                    android:padding="1dp">
 
                     <LinearLayout
-                        android:id="@+id/ll_rtgs"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal">
+                        android:id="@+id/ll_fundtransfer_main"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/btn_bg3"
+                        android:orientation="vertical"
+                        android:padding="1dp">
 
                         <LinearLayout
+                            android:id="@+id/ll_fundtransfer"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
                             android:gravity="center"
-                            android:orientation="vertical">
+                            android:orientation="horizontal">
 
-                            <ImageView
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:layout_marginTop="10dp"
-                                android:scaleType="fitXY"
-                                android:src="@drawable/icon_rtgs" />
-
-                            <TextView
-                                android:id="@+id/tv_rtgs"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginBottom="10dp"
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
                                 android:gravity="center"
-                                android:padding="5dp"
-                                android:text="RTGS"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="18dp"
-                                android:textStyle="bold" />
+                                android:orientation="vertical">
 
-                        </LinearLayout>
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_marginTop="10dp"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/new_fund_transfer_status" />
 
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_fundtransfer_main"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/btn_bg5"
-                    android:orientation="vertical"
-                    android:padding="1dp">
-
-                    <LinearLayout
-                        android:id="@+id/ll_fundtransfer"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:layout_marginTop="10dp"
-                                android:scaleType="fitXY"
-                                android:src="@drawable/icon_fundtrans" />
-
-                            <TextView
-                                android:id="@+id/tv_fndtransfer"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:gravity="center"
-                                android:text="FUND TRANSFER STATUS"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="18dp"
-                                android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/tv_fndtransfer"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:gravity="center"
+                                    android:text="FUND TRANSFER STATUS"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="13dp" />
+                            </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
-                </LinearLayout>
+                </GridLayout>
             </LinearLayout>
-        </ScrollView>
     </RelativeLayout>
 </RelativeLayout>

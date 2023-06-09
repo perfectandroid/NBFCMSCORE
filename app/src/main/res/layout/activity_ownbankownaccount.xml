@@ -1,5 +1,7 @@
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
     <LinearLayout
@@ -20,9 +22,10 @@
                 <ImageView
                     android:id="@+id/imgBack"
                     android:layout_width="0dp"
-                    android:layout_height="35dp"
+                    android:layout_height="25dp"
                     android:layout_weight=".2"
-                    android:src="@drawable/navback" />
+                    android:src="@drawable/navback"
+                    app:tint="@color/white" />
                 <TextView
                     android:id="@+id/tv_mycart"
                     android:layout_width="0dp"
@@ -38,6 +41,7 @@
                     android:layout_width="0dp"
                     android:layout_height="35dp"
                     android:layout_weight=".2"
+                    app:tint="@color/white"
                     android:padding="5dp"
                     android:src="@drawable/ic_home" />
 

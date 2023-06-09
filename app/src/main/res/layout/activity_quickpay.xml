@@ -115,7 +115,7 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginLeft="5dp"
-                            android:src="@drawable/input_user"
+                            android:src="@drawable/input_bank"
                             app:tint="@color/colorPrimaryExtraDark" />
 
                         <Spinner
@@ -310,7 +310,7 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginLeft="5dp"
-                            android:src="@drawable/input_user"
+                            android:src="@drawable/input_rupees"
                             app:tint="@color/colorPrimaryExtraDark" />
 
                         <EditText
@@ -332,8 +332,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="13dp"
-                        android:textStyle="bold" />
+                        android:textSize="13dp" />
                 </LinearLayout>
             </RelativeLayout>
 
@@ -373,7 +372,7 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginLeft="5dp"
-                            android:src="@drawable/input_user"
+                            android:src="@drawable/input_remark"
                             app:tint="@color/colorPrimaryExtraDark" />
 
                         <EditText
@@ -430,7 +429,7 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginLeft="5dp"
-                            android:src="@drawable/input_user"
+                            android:src="@drawable/input_pin"
                             app:tint="@color/colorPrimaryExtraDark" />
 
                         <EditText
@@ -488,7 +487,7 @@
                     android:text="Reset"
                     android:textAllCaps="false"
                     android:textColor="@color/colorPrimaryExtraDark"
-                    android:textSize="16sp"
+                    android:textSize="12dp"
                     android:textStyle="bold" />
 
                 <View
@@ -506,7 +505,7 @@
                     android:text="Make Payement"
                     android:textAllCaps="false"
                     android:textColor="@color/colorPrimaryExtraDark"
-                    android:textSize="16sp"
+                    android:textSize="12dp"
                     android:textStyle="bold" />
             </LinearLayout>
 

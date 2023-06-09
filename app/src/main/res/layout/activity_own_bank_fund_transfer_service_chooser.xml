@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bgcolour"
+    android:background="@drawable/background"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -20,7 +20,8 @@
             <ImageView
                 android:id="@+id/imgBack"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
+                android:layout_height="25dp"
+                android:tint="@color/white"
                 android:layout_weight=".2"
                 android:src="@drawable/navback" />
             <TextView
@@ -39,6 +40,7 @@
                 android:layout_height="35dp"
                 android:layout_weight=".2"
                 android:padding="5dp"
+                android:tint="@color/white"
                 android:src="@drawable/ic_home" />
         </LinearLayout>
     </RelativeLayout>
@@ -48,8 +50,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        android:visibility="visible"
-        android:background="@color/bgcolour">
+        android:visibility="visible">
 
         <TextView
             android:id="@+id/btn_hist"
@@ -79,13 +80,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="1dp"
-                    android:background="@drawable/bg_grey_border1">
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:cardCornerRadius="5dp"
-                        app:cardBackgroundColor="@color/bg_transfer">
+                    android:background="@drawable/btn_bg3">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -106,7 +101,7 @@
                                     android:layout_height="60dp"
                                     android:layout_marginTop="10dp"
                                     android:scaleType="fitXY"
-                                    android:background="@drawable/ownbankicon"/>
+                                    android:background="@drawable/new_account"/>
 
                                 <TextView
                                     android:id="@+id/txt_ownacc"
@@ -196,8 +191,6 @@
 
                         </LinearLayout>
 
-                    </androidx.cardview.widget.CardView>
-
                 </LinearLayout>
 
 
@@ -207,14 +200,7 @@
                 android:orientation="vertical"
                 android:layout_marginTop="10dp"
                 android:padding="1dp"
-                android:background="@drawable/bg_grey_border1">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="10dp"
-                    app:cardBackgroundColor="@color/bg_transfer">
-
+                android:background="@drawable/btn_bg3">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -319,8 +305,6 @@
 
 
                     </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 
