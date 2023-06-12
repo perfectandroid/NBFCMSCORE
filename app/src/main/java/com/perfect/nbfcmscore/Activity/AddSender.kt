@@ -49,8 +49,8 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
     var txtv_last_name: EditText? = null
     var txtv_mobile_number: EditText? = null
     var txtv_dob: EditText? = null
-    var btn_register: Button? = null
-    var btn_clear: Button? = null
+    var btn_register: TextView? = null
+    var btn_clear: TextView? = null
     var tv_title: TextView? = null
 
     var receiver_name_inputlayout: TextView? = null
@@ -108,8 +108,8 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
         txtv_last_name = findViewById<EditText>(R.id.txtv_last_name)
         txtv_mobile_number = findViewById<EditText>(R.id.txtv_mobile_number)
         txtv_dob = findViewById<EditText>(R.id.txtv_dob)
-        btn_register = findViewById<Button>(R.id.btn_register)
-        btn_clear= findViewById<Button>(R.id.btn_clear)
+        btn_register = findViewById<TextView>(R.id.btn_register)
+        btn_clear= findViewById<TextView>(R.id.btn_clear)
 
         receiver_name_inputlayout = findViewById<TextView>(R.id.receiver_name_inputlayout)
         txtv_lastname = findViewById<TextView>(R.id.txtv_lastname)

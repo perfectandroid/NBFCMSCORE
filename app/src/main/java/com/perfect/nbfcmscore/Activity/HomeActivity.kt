@@ -20,7 +20,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -30,6 +29,7 @@ import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Adapter.*
 import com.perfect.nbfcmscore.Api.ApiInterface
+import com.perfect.nbfcmscore.BuildConfig
 import com.perfect.nbfcmscore.Helper.*
 import com.perfect.nbfcmscore.R
 import me.relex.circleindicator.CircleIndicator
@@ -50,12 +50,9 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.net.ssl.TrustManagerFactory
 import javax.net.ssl.X509TrustManager
-
-
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
     View.OnClickListener,
     ItemClickListener {
-
     val TAG: String? = "HomeActivity"
     private var progressDialog: ProgressDialog? = null
     var llloanstatus: LinearLayout? = null
@@ -146,6 +143,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var txtv_holidy: TextView? = null
     var txtv_exectve: TextView? = null
     var txtv_accnt: TextView? = null
+    var txt_vcode: TextView? = null
+    var txt_vname: TextView? = null
 
 
     private var mPager: ViewPager? = null
@@ -185,6 +184,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setdefaultAccountDetails()
         createHomeMenuFund()
         createHomeMenuRecharge()
+        val versionCode: Int = BuildConfig.VERSION_CODE
+        val versionName: String = BuildConfig.VERSION_NAME
+        txt_vcode?.text="V."+versionCode
+        txt_vname?.text=versionName
 
         val CustomerNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF3, 0)
         val CustnoSP = applicationContext.getSharedPreferences(Config.SHARED_PREF19, 0)
@@ -1208,6 +1211,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         txtv_enqry = findViewById<TextView>(R.id.txtv_enqry)
         txtv_holidy = findViewById<TextView>(R.id.txtv_holidy)
         txtv_exectve = findViewById<TextView>(R.id.txtv_exectve)
+        txt_vcode = findViewById<TextView>(R.id.txt_vcode)
+        txt_vname = findViewById<TextView>(R.id.txt_vname)
+
 
 
     }

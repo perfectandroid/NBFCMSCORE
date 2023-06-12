@@ -48,8 +48,8 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
     var ifsc_code: EditText? = null
     var account_number: EditText? = null
     var confirm_account_number: EditText? = null
-    var btn_registr: Button? = null
-    var btn_clear: Button? = null
+    var btn_registr: TextView? = null
+    var btn_clear: TextView? = null
 
     public var arrayList2: ArrayList<SenderReceiverlist>? = null
     var imgHome: ImageView? = null
@@ -341,8 +341,8 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
         ifsc_code = findViewById<EditText>(R.id.ifsc_code)
         account_number = findViewById<EditText>(R.id.account_number)
         confirm_account_number = findViewById<EditText>(R.id.confirm_account_number)
-        btn_registr = findViewById<Button>(R.id.btn_registr)
-        btn_clear = findViewById<Button>(R.id.btn_clear)
+        btn_registr = findViewById<TextView>(R.id.btn_registr)
+        btn_clear = findViewById<TextView>(R.id.btn_clear)
 
         tv_title= findViewById<TextView>(R.id.tv_title)
 

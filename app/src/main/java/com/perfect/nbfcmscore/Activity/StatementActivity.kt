@@ -78,9 +78,9 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
     var txtv_slctperd: TextView? = null
     var txtv_slctcustomdte: TextView? = null
 
-    var tv_reset: Button? = null
+    var tv_reset: TextView? = null
     var tv_header: TextView? = null
-    var tv_download: Button? = null
+    var tv_download: TextView? = null
     var txtv_or: TextView? = null
     var edt_fromDate: EditText? = null
     var edt_toDate: EditText? = null
@@ -182,8 +182,8 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
         edt_fromDate = findViewById<EditText>(R.id.edt_fromDate)
         edt_toDate = findViewById<EditText>(R.id.edt_toDate)
 
-        tv_reset = findViewById<Button>(R.id.tv_reset)
-        tv_download = findViewById<Button>(R.id.tv_download)
+        tv_reset = findViewById<TextView>(R.id.tv_reset)
+        tv_download = findViewById<TextView>(R.id.tv_download)
 
     }
 

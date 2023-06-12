@@ -1,6 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
@@ -8,31 +8,34 @@
 
     <RelativeLayout
         android:id="@+id/relativeLayout1"
-        android:background="@color/colorPrimary"
-
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center"
             android:orientation="horizontal">
+
             <ImageView
                 android:id="@+id/imgBack"
                 android:layout_width="0dp"
                 android:layout_height="25dp"
-                android:tint="@color/white"
                 android:layout_weight=".2"
-                android:src="@drawable/navback" />
+                android:src="@drawable/navback"
+                android:tint="@color/white" />
+
             <TextView
                 android:id="@+id/tv_mycart"
                 android:layout_width="0dp"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="15dp"
-                android:text="Own Bank"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:text="Own Bank"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/imgHome"
@@ -40,16 +43,16 @@
                 android:layout_height="35dp"
                 android:layout_weight=".2"
                 android:padding="5dp"
-                android:tint="@color/white"
-                android:src="@drawable/ic_home" />
+                android:src="@drawable/ic_home"
+                android:tint="@color/white" />
         </LinearLayout>
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:gravity="center"
+        android:orientation="vertical"
         android:visibility="visible">
 
         <TextView
@@ -57,84 +60,86 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:drawablePadding="10dp"
-            android:paddingTop="15dp"
-            android:visibility="gone"
             android:layout_marginTop="10dp"
             android:layout_marginRight="50dp"
-            android:text="Transaction History"/>
+            android:drawablePadding="10dp"
+            android:paddingTop="15dp"
+            android:text="Transaction History"
+            android:visibility="gone" />
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:paddingLeft="15dp"
-                android:paddingRight="15dp"
                 android:paddingTop="40dp"
+                android:paddingRight="15dp"
                 android:paddingBottom="40dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/btn_bg3"
                     android:orientation="vertical"
-                    android:padding="1dp"
-                    android:background="@drawable/btn_bg3">
+                    android:padding="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical">
 
                         <LinearLayout
+                            android:id="@+id/rltv_ownaccount"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
+                            android:gravity="center"
                             android:orientation="vertical">
 
-                            <LinearLayout
-                                android:id="@+id/rltv_ownaccount"
-                                android:layout_width="match_parent"
+                            <ImageView
+                                android:id="@+id/imgimps"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/new_account"
+                                android:scaleType="fitXY" />
+
+                            <TextView
+                                android:id="@+id/txt_ownacc"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
                                 android:gravity="center"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:id="@+id/imgimps"
-                                    android:layout_width="60dp"
-                                    android:layout_height="60dp"
-                                    android:layout_marginTop="10dp"
-                                    android:scaleType="fitXY"
-                                    android:background="@drawable/new_account"/>
-
-                                <TextView
-                                    android:id="@+id/txt_ownacc"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:textStyle="bold"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:textSize="18dp"
-                                    android:text="OWN ACCOUNT"
-                                    android:textColor="@color/colorPrimary"/>
+                                android:text="OWN ACCOUNT"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="18dp"
+                                android:textStyle="bold" />
 
 
-                                <ImageView
-                                    android:visibility="gone"
-                                    android:id="@+id/imghist"
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:layout_marginLeft="15dp"
-                                    android:scaleType="fitXY"
-                                    android:layout_marginTop="15dp" />
+                            <ImageView
+                                android:id="@+id/imghist"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginTop="15dp"
+                                android:scaleType="fitXY"
+                                android:visibility="gone" />
 
-                                <ImageView
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:padding="5dp"
-                                    android:visibility="gone"
-                                    android:scaleType="fitXY"
-                                    app:tint="@color/black" />
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:padding="5dp"
+                                android:scaleType="fitXY"
+                                android:visibility="gone"
+                                app:tint="@color/black" />
 
 
-                            </LinearLayout>
+                        </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/ll_source_acc_list_own"
@@ -143,64 +148,48 @@
                             android:orientation="vertical"
                             android:visibility="gone">
 
-                            <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                app:cardBackgroundColor="@color/white"
-                                app:cardCornerRadius="5dp"
-                                app:cardElevation="5dp"
-                                app:cardUseCompatPadding="true">
+                                android:layout_margin="5dp"
+                                android:orientation="vertical"
+                                android:visibility="visible">
 
-                                <LinearLayout
+                                <TextView
+                                    android:id="@+id/txtv_Selacc"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:visibility="visible"
-                                    android:layout_margin="5dp"
-                                    android:background="@color/white">
-                                    <TextView
-                                        android:id="@+id/txtv_Selacc"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginBottom="10dp"
-                                        android:textSize="15sp"
-                                        android:textStyle="bold"
-                                        android:layout_gravity="center"
-                                        android:gravity="center"
-                                        android:text="Select Your Account"
-                                        android:background="@color/white"
-                                        android:textColor="@color/red"/>
-                                    <com.perfect.nbfcmscore.Helper.FullLenghRecyclertview
-                                        android:id="@+id/rv_source_acc_list_own"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginBottom="5dp"/>
-                                </LinearLayout>
+                                    android:layout_gravity="center"
+                                    android:layout_marginBottom="10dp"
+                                    android:gravity="center"
+                                    android:text="Select Your Account"
+                                    android:textColor="@color/colorPrimaryExtraDark"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
 
-
-                            </androidx.cardview.widget.CardView>
+                                <com.perfect.nbfcmscore.Helper.FullLenghRecyclertview
+                                    android:id="@+id/rv_source_acc_list_own"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="5dp" />
+                            </LinearLayout>
 
                         </LinearLayout>
 
 
-
-
-
-
-
-
-                        </LinearLayout>
+                    </LinearLayout>
 
                 </LinearLayout>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp"
-                android:padding="1dp"
-                android:background="@drawable/btn_bg3">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/btn_bg3"
+                    android:orientation="vertical"
+                    android:padding="1dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -220,96 +209,82 @@
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
                                 android:layout_marginTop="10dp"
-                                android:scaleType="fitXY"
-                                android:background="@drawable/otherbankicon"/>
+                                android:background="@drawable/otherbankicon"
+                                android:scaleType="fitXY" />
 
                             <TextView
                                 android:id="@+id/txtotheracc"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:textStyle="bold"
-                                android:text="OTHER ACCOUNT"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginBottom="10dp"
+                                android:gravity="center"
+                                android:text="OTHER ACCOUNT"
+                                android:textColor="@color/colorPrimary"
                                 android:textSize="18dp"
-                                android:textColor="@color/colorPrimary"/>
+                                android:textStyle="bold" />
 
 
                             <ImageView
                                 android:id="@+id/imghist1"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
-                                android:visibility="gone"
                                 android:layout_marginLeft="15dp"
-                                android:scaleType="fitXY"
                                 android:layout_marginTop="15dp"
                                 android:layout_toRightOf="@+id/txtotheracc"
-                                />
+                                android:scaleType="fitXY"
+                                android:visibility="gone" />
+
                             <ImageView
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
                                 android:padding="5dp"
                                 android:scaleType="fitXY"
                                 android:visibility="gone"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
                                 app:tint="@color/black" />
 
 
                         </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/ll_source_acc_list_other"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:visibility="gone">
-
-                        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        <LinearLayout
+                            android:id="@+id/ll_source_acc_list_other"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:cardBackgroundColor="@color/white"
-                            app:cardCornerRadius="5dp"
-                            app:cardElevation="5dp"
-                            app:cardUseCompatPadding="true">
+                            android:orientation="vertical"
+                            android:visibility="gone">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:visibility="visible"
                                 android:layout_margin="5dp"
-                                android:background="@color/white">
+                                android:orientation="vertical"
+                                android:visibility="visible">
+
                                 <TextView
                                     android:id="@+id/txtv_Selacc1"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginBottom="5dp"
-                                    android:textSize="15sp"
-                                    android:textStyle="bold"
                                     android:layout_gravity="center"
+                                    android:layout_marginBottom="5dp"
                                     android:gravity="center"
                                     android:text="Select Your Account"
-                                    android:background="@color/white"
-                                    android:textColor="@color/red"/>
+                                    android:textColor="@color/colorPrimaryExtraDark"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
                                 <com.perfect.nbfcmscore.Helper.FullLenghRecyclertview
                                     android:id="@+id/rv_source_acc_list_other"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"/>
+                                    android:layout_height="wrap_content" />
                             </LinearLayout>
-
-                        </androidx.cardview.widget.CardView>
-
-                    </LinearLayout>
+                        </LinearLayout>
 
 
                     </LinearLayout>
 
-            </LinearLayout>
-
-
-
+                </LinearLayout>
 
 
             </LinearLayout>
@@ -317,65 +292,67 @@
         </ScrollView>
 
 
-
-
     </LinearLayout>
-
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:layout_margin="20dp"
         android:orientation="vertical"
-        android:layout_centerVertical="true"
         android:visibility="gone">
+
         <Button
             android:id="@+id/btn_imps"
+            style="@style/service_chooser_before"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:text="IMPS"
-            android:textColor="@color/blue"
-            style="@style/service_chooser_before"
-            android:layout_margin="5dp" />
+            android:textColor="@color/blue" />
+
         <Button
             android:id="@+id/btn_neft"
+            style="@style/service_chooser_before"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="NEFT"
-            style="@style/service_chooser_before"
-            android:layout_margin="5dp" />
+            android:layout_margin="5dp"
+            android:text="NEFT" />
+
         <Button
             android:id="@+id/btn_rtgs"
+            style="@style/service_chooser_before"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RTGS"
-            style="@style/service_chooser_before"
-            android:layout_margin="5dp" />
+            android:layout_margin="5dp"
+            android:text="RTGS" />
+
         <Button
             android:id="@+id/btn_qck_pay"
+            style="@style/service_chooser_before"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="QUICK PAY"
-            style="@style/service_chooser_before"
-            android:layout_margin="5dp" />
+            android:layout_margin="5dp"
+            android:text="QUICK PAY" />
     </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/rltv_proceed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:visibility="invisible"
-        android:layout_margin="10dp">
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:visibility="invisible">
+
         <Button
             android:id="@+id/btn_proceed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Proceed"
             android:background="@drawable/ripple_effect_confirmation"
-            android:textColor="@color/white"/>
+            android:text="Proceed"
+            android:textColor="@color/white" />
     </RelativeLayout>
 </LinearLayout>

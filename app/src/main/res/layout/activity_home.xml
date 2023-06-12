@@ -9,6 +9,7 @@
 <androidx.cardview.widget.CardView
     android:layout_width="match_parent"
     android:background="@drawable/bg_head"
+    android:layout_marginTop="-5dp"
     app:cardCornerRadius="8dp"
     android:layout_height="190dp">
     <LinearLayout
@@ -19,6 +20,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
             android:layout_height="40dp">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -76,13 +78,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:gravity="right|center_vertical"
+                android:layout_marginTop="5dp"
                 android:layout_height="match_parent">
                 <ImageView
                     android:id="@+id/img_barcode"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_marginRight="14dp"
-                    android:src="@drawable/scan"
+                    android:src="@drawable/new_qr_code_scanner"
                     app:tint="@color/white" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

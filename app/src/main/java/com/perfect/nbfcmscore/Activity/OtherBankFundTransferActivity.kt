@@ -70,12 +70,12 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
 
     var im_beneficiarylist: ImageView? = null
 
-    var tie_accountnumber: TextInputEditText? = null
-    var tie_beneficiary: TextInputEditText? = null
-    var tie_beneficiary_aacno: TextInputEditText? = null
-    var tie_Conf_beneficiary_aacno: TextInputEditText? = null
-    var tie_ifsc_code: TextInputEditText? = null
-    var tie_amount: TextInputEditText? = null
+    var tie_accountnumber: EditText? = null
+    var tie_beneficiary: EditText? = null
+    var tie_beneficiary_aacno: EditText? = null
+    var tie_Conf_beneficiary_aacno: EditText? = null
+    var tie_ifsc_code: EditText? = null
+    var tie_amount: EditText? = null
 
 
     var jArrayAccount: JSONArray? = null
@@ -93,8 +93,8 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
     var SubModule: String? = ""
     var BranchName: String? = ""
 
-    var but_pay: Button? = null
-    var btn_clear: Button? = null
+    var but_pay: TextView? = null
+    var btn_clear: TextView? = null
 
     // Save
     var AccountNo: String? = ""
@@ -258,17 +258,17 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
         tv_beneficiarylist = findViewById<TextView>(R.id.tv_beneficiarylist)
 
 
-        tie_accountnumber = findViewById<TextInputEditText>(R.id.tie_accountnumber)
-        tie_beneficiary = findViewById<TextInputEditText>(R.id.tie_beneficiary)
-        tie_beneficiary_aacno = findViewById<TextInputEditText>(R.id.tie_beneficiary_aacno)
-        tie_Conf_beneficiary_aacno = findViewById<TextInputEditText>(R.id.tie_Conf_beneficiary_aacno)
-        tie_ifsc_code = findViewById<TextInputEditText>(R.id.tie_ifsc_code)
-        tie_amount = findViewById<TextInputEditText>(R.id.tie_amount)
+        tie_accountnumber = findViewById<EditText>(R.id.tie_accountnumber)
+        tie_beneficiary = findViewById<EditText>(R.id.tie_beneficiary)
+        tie_beneficiary_aacno = findViewById<EditText>(R.id.tie_beneficiary_aacno)
+        tie_Conf_beneficiary_aacno = findViewById<EditText>(R.id.tie_Conf_beneficiary_aacno)
+        tie_ifsc_code = findViewById<EditText>(R.id.tie_ifsc_code)
+        tie_amount = findViewById<EditText>(R.id.tie_amount)
 
         ll_chk_bene = findViewById<LinearLayout>(R.id.ll_chk_bene)
         chk_beneficiary = findViewById<CheckBox>(R.id.chk_beneficiary)
-        but_pay = findViewById<Button>(R.id.but_pay)
-        btn_clear = findViewById<Button>(R.id.btn_clear)
+        but_pay = findViewById<TextView>(R.id.but_pay)
+        btn_clear = findViewById<TextView>(R.id.btn_clear)
         llhist = findViewById(R.id.llhist)
         imhist = findViewById(R.id.imhist)
 

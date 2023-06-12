@@ -84,13 +84,13 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
     private var edtTxtAccountNoFirstBlock: EditText? = null
     private var edtTxtAccountNoSecondBlock: EditText? = null
     private var edtTxtAccountNoThirdBlock: EditText? = null
-    private var mAccountNumberEt: AppCompatEditText? = null
-    private var mConfirmAccountNumberEt: AppCompatEditText? = null
+//    private var mAccountNumberEt: AppCompatEditText? = null
+   // private var mConfirmAccountNumberEt: AppCompatEditText? = null
     private var edtTxtConfirmAccountNoFirstBlock: EditText? = null
     private var edtTxtConfirmAccountNoSecondBlock: EditText? = null
     private var edtTxtConfirmAccountNoThirdBlock: EditText? = null
-    private var btn_submit: Button? = null
-    private  var btn_clear:android.widget.Button? = null
+    private var btn_submit: TextView? = null
+    private  var btn_clear:TextView? = null
     private var edtTxtAmount: EditText? = null
     private var edt_txt_remark: EditText? = null
     private var txtv_availbl: TextView? = null
@@ -127,8 +127,8 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
 
         txtv_availbl= findViewById(R.id.txtv_availbl)
         txtv_header= findViewById(R.id.tv_header)
-        mAccountNumberEt = findViewById(R.id.account_number)
-        mConfirmAccountNumberEt = findViewById(R.id.confirm_account_number)
+//        mAccountNumberEt = findViewById(R.id.account_number)
+        //mConfirmAccountNumberEt = findViewById(R.id.confirm_account_number)
 
         tv_account_no = findViewById<TextView>(R.id.tv_account_no)
         tv_branch_name = findViewById<TextView>(R.id.tv_branch_name)
@@ -205,7 +205,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
 
 
 
-        btn_submit = findViewById<Button>(R.id.btn_submit)
+        btn_submit = findViewById<TextView>(R.id.btn_submit)
         btn_clear = findViewById(R.id.btn_clear)
 
 
@@ -244,21 +244,21 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
 
         btnScanAccounttNo!!.setOnClickListener(this)
 
-        mAccountNumberEt!!.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-                // Do nothing
-            }
-
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (s != null && s.length < 14) {
-                    mScannedValue = null
-                }
-            }
-
-            override fun afterTextChanged(s: Editable) {
-                //Do nothing
-            }
-        })
+//        mAccountNumberEt!!.addTextChangedListener(object : TextWatcher {
+//            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+//                // Do nothing
+//            }
+//
+//            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+//                if (s != null && s.length < 14) {
+//                    mScannedValue = null
+//                }
+//            }
+//
+//            override fun afterTextChanged(s: Editable) {
+//                //Do nothing
+//            }
+//        })
 
 
 
@@ -1511,8 +1511,8 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
         edtTxtConfirmAccountNoSecondBlock!!.setText(secondValueQrScanned)
         edtTxtConfirmAccountNoThirdBlock!!.setText(thirdValueQrScanned)
 
-        mAccountNumberEt!!.setText(dataItem)
-        mConfirmAccountNumberEt!!.setText(dataItem)
+//        mAccountNumberEt!!.setText(dataItem)
+       // mConfirmAccountNumberEt!!.setText(dataItem)
 
         edtTxtAmount!!.requestFocus()
         edtTxtAmount!!.setSelection(edtTxtAmount!!.getText().length)

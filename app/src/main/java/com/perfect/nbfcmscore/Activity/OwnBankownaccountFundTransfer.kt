@@ -68,7 +68,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
     private var txtv_acno: TextView? = null
     private var tvInstallment: TextView? = null
     private var txtv_payingto: TextView? = null
-    private var txtv_acno1: TextView? = null
+//    private var txtv_acno1: TextView? = null
     private var txtamtpayable: TextView? = null
     private var txtvremark: TextView? = null
     private var tv_availbal: TextView? = null
@@ -80,8 +80,8 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
     public var txtv_availbal: TextView? = null
     public var spn_account_num: Spinner? = null
     private var progressDialog: ProgressDialog? = null
-    private var btn_submit: Button? = null
-    private var btn_clear: Button? = null
+    private var btn_submit: TextView? = null
+    private var btn_clear: TextView? = null
     private var rv_split_details: FullLenghRecyclertview? = null
     private var card_split_details: CardView? = null
     private var ll_list: LinearLayout? = null
@@ -117,8 +117,8 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
         status_spinner = findViewById(R.id.status_spinner)
         status_spinner!!.setOnItemSelectedListener(this)
         spn_account_num = findViewById<Spinner>(R.id.spn_account_type)
-        btn_submit = findViewById<Button>(R.id.btn_submit)
-        btn_clear = findViewById<Button>(R.id.btn_clear)
+        btn_submit = findViewById<TextView>(R.id.btn_submit)
+        btn_clear = findViewById<TextView>(R.id.btn_clear)
         imgBack = findViewById<ImageView>(R.id.imgBack)
         imgBack!!.setOnClickListener(this)
         imgHome = findViewById<ImageView>(R.id.imgHome)
@@ -140,7 +140,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
         textView= findViewById(R.id.textView)
         txtv_acno= findViewById(R.id.txtv_acno)
         txtv_payingto= findViewById(R.id.txtv_payingto)
-        txtv_acno1= findViewById(R.id.txtv_acno1)
+//        txtv_acno1= findViewById(R.id.txtv_acno1)
         txtamtpayable= findViewById(R.id.txtamtpayable)
         txtvremark= findViewById(R.id.txtvremark)
 
@@ -162,7 +162,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
 
         textView!!.setText(PayingFromSP.getString("PayingFrom", null))
         txtv_acno!!.setText(AccnoSP.getString("AccountNo", null))
-        txtv_acno1!!.setText(AccnoSP.getString("AccountNo", null) + " : ")
+//        txtv_acno1!!.setText(AccnoSP.getString("AccountNo", null) + " : ")
         txtv_payingto!!.setText(PayingToSP.getString("PayingTo", null))
         txtamtpayable!!.setText(AMtpaybleSP.getString("AmountPayable", null))
         txtvremark!!.setText(RemarkeSP.getString("Remark", null))
@@ -508,9 +508,10 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
             }
             R.id.btn_submit -> {
                 if (this == null) return
+                try {
                 // String recieverAccountNo = confirmAndSetRecieversAccountNo();
                 val accountPayingTo: String = spn_account_num!!.getSelectedItem().toString()
-                try {
+
                     if (accountPayingTo !== "Select Account") {
                         val recieverAccountNo = accountPayingTo.substring(0, 12)
                         Log.e("TAG", "recieverAccountNo   619   $recieverAccountNo")
@@ -686,6 +687,10 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                     }
                 } catch (e: java.lang.Exception) {
                     e.printStackTrace()
+                    alertMessage1(
+                        "",
+                        "Something went wrong"
+                    )
                 }
 
 
@@ -1808,6 +1813,7 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
         tv_share.setOnClickListener { //  finishAffinity();
             alertDialog.dismiss()
         }
+        alertDialog.window?.setBackgroundDrawableResource(R.color.transparent)
         alertDialog.show()
     }
     private fun isValid(): Boolean {

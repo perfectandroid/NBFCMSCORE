@@ -89,19 +89,20 @@
 
                 <GridLayout
                     android:id="@+id/idGVcourses"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
+                    android:padding="10dp"
                     android:alignmentMode="alignBounds"
                     android:columnOrderPreserved="true"
-                    android:columnCount="2"
-                    android:rowCount="2">
+                    android:columnCount="1"
+                    android:rowCount="4">
 
                     <LinearLayout
                         android:id="@+id/ll_imps_main"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
                         android:layout_margin="5dp"
                         android:background="@drawable/btn_bg3"
                         android:orientation="vertical">
@@ -120,8 +121,8 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
                                     android:scaleType="fitXY"
                                     android:src="@drawable/new_imps" />
 
@@ -140,8 +141,8 @@
 
                     <LinearLayout
                         android:id="@+id/ll_neft_main"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
                         android:visibility="visible"
                         android:layout_margin="5dp"
                         android:background="@drawable/btn_bg3"
@@ -164,8 +165,8 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
                                     android:layout_marginTop="10dp"
                                     android:scaleType="fitXY"
                                     android:src="@drawable/new_neft" />
@@ -188,8 +189,8 @@
 
                     <LinearLayout
                         android:id="@+id/ll_rtgs_main"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
                         android:layout_margin="5dp"
                         android:background="@drawable/btn_bg3"
                         android:orientation="vertical"
@@ -211,8 +212,8 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
                                     android:layout_marginTop="10dp"
                                     android:scaleType="fitXY"
                                     android:src="@drawable/new_rtgs" />
@@ -238,8 +239,8 @@
 
                     <LinearLayout
                         android:id="@+id/ll_fundtransfer_main"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
                         android:layout_margin="5dp"
                         android:background="@drawable/btn_bg3"
                         android:orientation="vertical"
@@ -261,8 +262,8 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
                                     android:layout_marginTop="10dp"
                                     android:scaleType="fitXY"
                                     android:src="@drawable/new_fund_transfer_status" />
