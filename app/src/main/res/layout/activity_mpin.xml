@@ -41,7 +41,7 @@
                         android:layout_height="wrap_content"
                         android:text=""
                         android:padding="5dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/colorPrimaryExtraDark"
                         android:textStyle="bold"
                         android:textSize="25dp"
                         android:layout_gravity="center"
@@ -60,7 +60,7 @@
                         android:layout_marginTop="10dp"
                         android:gravity="center"
                         android:text="MPIN Verification"
-                        android:textColor="@color/white"
+                        android:textColor="@color/colorPrimaryExtraDark"
                         android:textSize="18dp"
                         android:textStyle="bold" />
 
@@ -69,7 +69,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Please unlock with your MPIN. "
-                        android:textColor="@color/white"
+                        android:textColor="@color/colorPrimaryExtraDark"
                         android:textSize="15dp"
                         android:layout_gravity="center"
                         android:gravity="center"

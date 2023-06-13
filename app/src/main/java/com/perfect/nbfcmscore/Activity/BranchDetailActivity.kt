@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.common.ConnectionResult
@@ -796,26 +797,31 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
     }
 
     private fun setMarker1(jsonObject1: JSONObject, mMap: GoogleMap?) {
-        val id = jsonObject1.getString("ID_Branch")
-        val bank = jsonObject1.getString("BankName")
-        mMap!!.clear()
-        mMap!!.addMarker(
-            MarkerOptions()
-                .position(LatLng(jsonObject1.getDouble("LocationLatitude"), jsonObject1.getDouble("LocationLongitude")))
-                .title(id + ") " + bank)
+            val id = jsonObject1.getString("ID_Branch")
+            val bank = jsonObject1.getString("BankName")
+            mMap!!.clear()
+            mMap!!.addMarker(
+                MarkerOptions()
+                    .position(
+                        LatLng(
+                            jsonObject1.getDouble("LocationLatitude"),
+                            jsonObject1.getDouble("LocationLongitude")
+                        )
+                    )
+                    .title(id + ") " + bank)
 //                .title(""+jsonObject1.getString("Address"))
 //                .title(jsonObject1.toString())
 //                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
-        )
-
-        mMap.animateCamera(
-            CameraUpdateFactory.newLatLngZoom(
-                LatLng(
-                    jsonObject1.getDouble("LocationLatitude"),
-                    jsonObject1.getDouble("LocationLongitude")
-                ), 10f
             )
-        )
+
+            mMap.animateCamera(
+                CameraUpdateFactory.newLatLngZoom(
+                    LatLng(
+                        jsonObject1.getDouble("LocationLatitude"),
+                        jsonObject1.getDouble("LocationLongitude")
+                    ), 10f
+                )
+            )
 
 //        val ids = jsonObject1.getString("ID_Branch")
 //        popupBankDetails(ids)

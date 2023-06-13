@@ -29,9 +29,11 @@
 
             <ImageView
                 android:id="@+id/im_back"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:src="@drawable/navback" />
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/navback"
+                android:tint="@color/white"
+                />
 
         </LinearLayout>
 
@@ -67,7 +69,9 @@
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:padding="5dp"
-                    android:src="@drawable/ic_home" />
+                    android:src="@drawable/ic_home"
+                    android:tint="@color/white"
+                    />
 
             </LinearLayout>
 
@@ -87,82 +91,66 @@
         android:paddingRight="10dp"
         android:paddingTop="10dp">
 
-        <androidx.cardview.widget.CardView
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:padding="5dp"
-            app:cardBackgroundColor="@color/bg_transfer"
-            app:cardCornerRadius="5dp">
-            <RelativeLayout
-                android:id="@+id/ll_dist"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/bg_light_grey"
+            android:orientation="vertical">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_light_grey"
-                android:orientation="vertical"
-                android:padding="5dp">
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtv_entrdistrct"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:gravity="start"
+                    android:text="Enter District"
+                    android:textColor="@color/colorPrimaryExtraDark"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/txtv_entrdistrct"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="start"
-                        android:layout_marginTop="2dp"
-                        android:paddingLeft="10dp"
-                        android:text="Enter District"
-                        android:textColor="@color/bottom_line1"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-                    <LinearLayout
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/input_rupees"
+                        android:layout_marginLeft="5dp"
+                        app:tint="@color/colorPrimaryExtraDark" />
+
+                    <AutoCompleteTextView
+                        android:id="@+id/act_district"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginLeft="10dp"
-                        android:orientation="horizontal">
+                        android:layout_height="40dp"
+                        android:dropDownHeight="wrap_content"
+                        android:hint="District"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:backgroundTint="@color/transparent"
+                        android:drawableTint="@color/input_border"
+                        android:textColor="@color/black"/>
 
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-
-                            <AutoCompleteTextView
-                                android:id="@+id/act_district"
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:dropDownHeight="wrap_content"
-                                android:text=""
-                                android:padding="5dp"
-                                android:textSize="16dp"
-                                android:backgroundTint="@color/input_border"
-                                android:drawableTint="@color/input_border"
-                                android:textColor="@color/black"/>
-
-                        </LinearLayout>
-
-                    </LinearLayout>
                 </LinearLayout>
-
-
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:padding="5dp"
-            app:cardBackgroundColor="@color/bg_transfer"
-            app:cardCornerRadius="5dp">
+            </LinearLayout>
+        </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/ll_mapview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:background="@drawable/bg_light_grey"
                 android:orientation="vertical"
                 android:padding="5dp">
@@ -181,7 +169,6 @@
 
                         </LinearLayout>
             </RelativeLayout>
-        </androidx.cardview.widget.CardView>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvBranchList"
             android:layout_width="match_parent"

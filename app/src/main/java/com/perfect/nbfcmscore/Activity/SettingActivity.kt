@@ -38,14 +38,14 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
 
     var im_back: ImageView? = null
     var im_home: ImageView? = null
-    var btn_clear: Button? = null
+    var btn_clear: TextView? = null
 
     var act_UpdateDays: AutoCompleteTextView? = null
     var act_hours: AutoCompleteTextView? = null
     var act_minutes: AutoCompleteTextView? = null
     var act_DefAcc: AutoCompleteTextView? = null
 
-    var btn_apply: Button? = null
+    var btn_apply: TextView? = null
     var tv_header: TextView? = null
 
     val daysItems : Array<String> = arrayOf("7", "10", "14", "30", "60", "120", "150", "180")
@@ -153,7 +153,7 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
         im_back = findViewById<ImageView>(R.id.im_back)
         im_home = findViewById<ImageView>(R.id.im_home)
         tv_header= findViewById<TextView>(R.id.tv_header)
-        btn_clear= findViewById<Button>(R.id.btn_clear)
+        btn_clear= findViewById<TextView>(R.id.btn_clear)
 
         act_UpdateDays = findViewById<AutoCompleteTextView>(R.id.act_UpdateDays)
         act_hours = findViewById<AutoCompleteTextView>(R.id.act_hours)
@@ -164,7 +164,7 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
         txtvupdteintrvl= findViewById<TextView>(R.id.txtvupdteintrvl)
         txtvdefltacc= findViewById<TextView>(R.id.txtvdefltacc)
 
-        btn_apply = findViewById<Button>(R.id.btn_apply)
+        btn_apply = findViewById<TextView>(R.id.btn_apply)
 
     }
 

@@ -47,10 +47,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
                 android:background="@color/white"
                 android:orientation="vertical">
                 <View
@@ -62,110 +58,162 @@
                     android:layout_margin="10dp"
                     android:textSize="14dp"
                     android:layout_gravity="center"
-                    android:gravity="center"
                     android:textStyle="bold"
                     android:text="Set your convenient date &amp; time."
                     android:textColor="@color/black"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/etdate"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_weight="1"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
-                        android:background="@drawable/etbackgroung1"
-                        android:lines="1"
-                        android:drawableTint="@color/grey"
-                        android:drawableRight="@drawable/ic_calender"
-                        android:gravity="center_vertical"
-                        android:hint="Select Date"
-                        android:textColor="@android:color/black"
-                        android:textSize="15sp" />
-
-                    <ImageView
-                        android:visibility="gone"
-                        android:id="@+id/select_date"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="40dp"
-                        android:layout_weight="2"
-                        android:src="@drawable/ic_calender"
-                        tools:ignore="VectorDrawableCompat" />
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/ettime"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_weight="1"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
-                        android:lines="1"
-                        android:drawableTint="@color/grey"
-                        android:background="@drawable/etbackgroung1"
-                        android:drawableRight="@drawable/ic_clock"
-                        android:gravity="center_vertical"
-                        android:hint="Select Time"
-                        android:textColor="@android:color/black"
-                        android:textSize="15sp" />
-
-                    <ImageView
-                        android:id="@+id/select_time"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="40dp"
-                        android:visibility="gone"
-                        android:layout_weight="2"
-                        android:src="@drawable/ic_clock"
-                        tools:ignore="VectorDrawableCompat" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp" />
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:orientation="horizontal">
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/bg_light_grey"
+                    android:orientation="vertical">
 
-                    <EditText
-                        android:id="@+id/etdis"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_weight="1"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
-                        android:lines="8"
-                        android:background="@drawable/etbackgroung1"
-                        android:drawableRight="@drawable/ic_edit"
-                        android:gravity="center_vertical"
-                        android:hint="Description"
-                        android:drawableTint="@color/grey"
-                        android:textColor="@android:color/black"
-                        android:textSize="15sp" />
-                </LinearLayout>
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtv_month"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:text="Select Date"
+                            android:textColor="@color/colorPrimaryExtraDark"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/input_calender"
+                                android:layout_marginLeft="5dp"
+                                app:tint="@color/colorPrimaryExtraDark" />
+                            <EditText
+                                android:id="@+id/etdate"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:hint="Select Date"
+                                android:textColorHint="@color/text_secondary"
+                                android:backgroundTint="@color/transparent"
+                                android:drawablePadding="10dp"
+                                android:inputType="number"
+                                android:maxLength="13"
+                                android:textSize="15dp" />
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/bg_light_grey"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:text="Select Time"
+                            android:textColor="@color/colorPrimaryExtraDark"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/input_calender"
+                                android:layout_marginLeft="5dp"
+                                app:tint="@color/colorPrimaryExtraDark" />
+                            <EditText
+                                android:id="@+id/ettime"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:hint="Select Time"
+                                android:textColorHint="@color/text_secondary"
+                                android:backgroundTint="@color/transparent"
+                                android:drawablePadding="10dp"
+                                android:inputType="number"
+                                android:maxLength="13"
+                                android:textSize="15dp" />
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/bg_light_grey"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:text="Description"
+                            android:textColor="@color/colorPrimaryExtraDark"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginTop="11dp"
+                                android:src="@drawable/input_remark"
+                                android:layout_marginLeft="5dp"
+                                app:tint="@color/colorPrimaryExtraDark" />
+                            <EditText
+                                android:id="@+id/etdis"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:hint="Description"
+                                android:gravity="top"
+                                android:textColorHint="@color/text_secondary"
+                                android:backgroundTint="@color/transparent"
+                                android:drawablePadding="10dp"
+                                android:lines="8"
+                                android:textSize="15dp" />
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
 
                 <TextView
                     android:layout_width="match_parent"

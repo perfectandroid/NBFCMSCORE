@@ -181,7 +181,7 @@ class QuickBalanceActivity : AppCompatActivity(), OnItemSelectedListener,View.On
                         )
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
                         requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
-
+                        requestObject1.put("Mode", MscoreApplication.encryptStart("0"))
 
 
                         Log.e("TAG", "requestObject1  171   " + requestObject1)

@@ -22,9 +22,10 @@
             <ImageView
                 android:id="@+id/imgBack"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
+                android:layout_height="25dp"
                 android:layout_weight=".2"
-                android:src="@drawable/navback" />
+                android:src="@drawable/navback"
+                app:tint="@color/white" />
 
             <TextView
                 android:id="@+id/tv_header"
@@ -42,6 +43,7 @@
                 android:layout_height="35dp"
                 android:layout_weight=".2"
                 android:padding="5dp"
+                app:tint="@color/white"
                 android:src="@drawable/ic_home" />
 
         </LinearLayout>
@@ -95,7 +97,7 @@
                 android:id="@+id/ll_standnginstr"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:visibility="visible"
                 android:layout_above="@+id/llreminder"
                 android:orientation="vertical">
@@ -106,7 +108,7 @@
                     android:orientation="vertical"
                     android:layout_marginLeft="3dp"
                     android:layout_marginRight="3dp"
-                    android:background="@color/but_color1">
+                    android:background="@color/colorPrimaryExtraDark">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -114,12 +116,12 @@
                         android:orientation="horizontal"
                         android:layout_marginLeft="1dp"
                         android:layout_marginRight="1dp"
-                        android:background="@color/but_color1">
+                        android:background="@color/colorPrimaryExtraDark">
                         <ImageView
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:src="@drawable/ic_summary"
-                            android:padding="2dp"
+                            android:padding="5dp"
                             tools:ignore="VectorDrawableCompat" />
 
                         <TextView
@@ -139,7 +141,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/but_color1"
+                        android:background="@color/colorPrimaryExtraDark"
                         android:orientation="horizontal"
                         android:layout_marginLeft="3dp"
                         android:layout_marginRight="3dp">

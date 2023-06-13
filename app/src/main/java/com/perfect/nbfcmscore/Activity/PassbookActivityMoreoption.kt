@@ -183,7 +183,7 @@ class PassbookActivityMoreoption : AppCompatActivity(), OnItemSelectedListener,V
                         requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
                         requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
-
+                        requestObject1.put("Mode", MscoreApplication.encryptStart("1"))
 
                         Log.e("TAG", "requestObject1  171   " + requestObject1)
                     } catch (e: Exception) {

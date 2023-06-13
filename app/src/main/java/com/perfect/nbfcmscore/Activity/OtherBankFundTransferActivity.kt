@@ -561,6 +561,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
         dialogAccount!!.setCancelable(true)
 
         dialogAccount!!.setContentView(view)
+        dialogAccount!!.window?.setBackgroundDrawableResource(R.color.transparent)
 
         dialogAccount!!.show()
 
@@ -731,8 +732,8 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
 //        val txtvbranchto: TextView = dialog.findViewById<TextView>(R.id.txtvbranchto)
 //        val txtvbalnceto: TextView = dialog.findViewById<TextView>(R.id.txtvbalnceto)
 
-        val butOk: Button = dialog.findViewById<Button>(R.id.btnOK)
-        val butCan: Button = dialog.findViewById<Button>(R.id.btnCncl)
+        val butOk: TextView = dialog.findViewById<TextView>(R.id.btnOK)
+        val butCan: TextView = dialog.findViewById<TextView>(R.id.btnCncl)
 
         txtvAcntno.text = ""+ accountNo
         txtvbranch!!.setText(""+BranchName)

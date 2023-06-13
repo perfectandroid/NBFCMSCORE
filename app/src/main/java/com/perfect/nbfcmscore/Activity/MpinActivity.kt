@@ -642,6 +642,13 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
     }
 
     private fun getMPINVerification(varOtp: String) {
+        pinValue = ""
+        et_1!!.setText("")
+        et_2!!.setText("")
+        et_3!!.setText("")
+        et_4!!.setText("")
+        et_5!!.setText("")
+        et_6!!.setText("")
         val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {

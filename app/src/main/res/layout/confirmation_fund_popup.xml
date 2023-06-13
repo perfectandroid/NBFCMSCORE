@@ -39,7 +39,7 @@
                             android:layout_gravity="center"
                             android:layout_alignParentTop="true"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="40dp"
                             android:layout_marginBottom="5dp"
                             android:visibility="visible"/>
                         <TextView
@@ -132,7 +132,7 @@
                                 android:id="@+id/txtvbalnceto"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textColor="@color/RoyalBlue"
+                                android:textColor="@color/colorPrimaryExtraDark"
                                 android:textStyle="bold"
                                 android:textSize="20dp"
                                 android:layout_marginLeft="33dp"
@@ -189,6 +189,49 @@
                             android:layout_height="wrap_content"/>
 
                     </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+
+                            android:id="@+id/btnCncl"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_button"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:gravity="center"
+                            android:text="CANCEL"
+                            android:textAllCaps="false"
+                            android:textColor="@color/colorPrimaryExtraDark"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <View
+                            android:layout_width="20dp"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+                            android:id="@+id/btnOK"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_button"
+                            android:backgroundTint="@color/colorExtraLight"
+                            android:gravity="center"
+                            android:text="OK"
+                            android:textAllCaps="false"
+                            android:textColor="@color/colorPrimaryExtraDark"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -196,11 +239,11 @@
                         android:orientation="horizontal"
                         android:layout_marginTop="5dp"
                         android:layout_marginLeft="30dp"
+                        android:visibility="invisible"
                         android:layout_marginRight="30dp"
                         android:layout_marginBottom="5dp">
 
                         <Button
-                            android:id="@+id/btnCncl"
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:layout_margin="10dp"
@@ -211,7 +254,7 @@
                             android:text="Cancel"
                             android:textColor="@color/white" />
                         <Button
-                            android:id="@+id/btnOK"
+
                             android:text="OK"
                             android:textStyle="normal"
                             android:textSize="16dp"

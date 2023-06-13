@@ -22,7 +22,7 @@ class FeedbackActivity : AppCompatActivity() , View.OnClickListener, AdapterView
     var imgHome: ImageView? = null
     var spn_feedbk: Spinner? = null
     var feedbackText: EditText? = null
-    var btn_submit: Button? = null
+    var btn_submit: TextView? = null
     var tv_mycart: TextView? = null
     var feedback = arrayOfNulls<String>(0)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +48,7 @@ class FeedbackActivity : AppCompatActivity() , View.OnClickListener, AdapterView
         imgHome = findViewById<ImageView>(R.id.imgHome) as ImageView
         feedbackText = findViewById<EditText>(R.id.feedbackText) as EditText
         spn_feedbk = findViewById<Spinner>(R.id.spn_feedbk) as Spinner
-        btn_submit = findViewById<Button>(R.id.btn_submit) as Button
+        btn_submit = findViewById<TextView>(R.id.btn_submit) as TextView
 
         btn_submit!!.setOnClickListener(this)
         imgBack!!.setOnClickListener(this)

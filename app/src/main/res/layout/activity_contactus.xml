@@ -1,34 +1,40 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@drawable/background3"
+    android:orientation="vertical">
+
     <RelativeLayout
         android:id="@+id/relativeLayout1"
-        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center"
             android:orientation="horizontal">
+
             <ImageView
                 android:id="@+id/imgBack"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
+                android:layout_height="25dp"
                 android:layout_weight=".2"
-                android:src="@drawable/navback" />
+                android:src="@drawable/navback"
+                app:tint="@color/white" />
+
             <TextView
                 android:id="@+id/tv_header"
                 android:layout_width="0dp"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="15dp"
-                android:text="   Contact Us"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:text="   Contact Us"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
 
             <ImageView
@@ -37,159 +43,151 @@
                 android:layout_height="35dp"
                 android:layout_weight=".2"
                 android:padding="5dp"
-                android:src="@drawable/ic_home" />
+                android:src="@drawable/ic_home"
+                app:tint="@color/white" />
 
         </LinearLayout>
     </RelativeLayout>
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <ImageView
-            android:id="@+id/imlogo"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"/>
 
-        <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            card_view:cardCornerRadius="10dp">
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:paddingLeft="25dp"
+            android:paddingBottom="100dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imlogo"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:visibility="gone" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/bgcolour"
-                android:orientation="horizontal">
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="105dp"
+                android:orientation="vertical">
 
-                <ImageView
-                    android:scaleType="fitXY"
-                    android:layout_width="50dp"
-                    android:layout_margin="20dp"
-                    android:padding="5dp"
-                    android:src="@drawable/profilemobilephone"
-                    android:layout_height="50dp"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="20dp"
-                    android:orientation="vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/input_mobile"
+                        app:tint="@color/colorPrimaryExtraDark" />
+
                     <TextView
                         android:id="@+id/tv_customername"
-                        android:layout_marginTop="10dp"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Give us a call"
-                        android:textColor="@color/black"
-                        android:textSize="22dp"></TextView>
-                    <TextView
-                        android:id="@+id/tv_mobile"
-                        android:layout_marginTop="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:layout_marginBottom="20dp"
-                       android:textColor="@color/black"
-                        android:textSize="16dp"></TextView>
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="25dp" />
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_mobile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-2dp"
+                    android:text="Give us a call"
+                    android:background="@color/colorPrimaryExtraDark"
+                    android:textColor="@color/white"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textSize="15dp" />
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
-<androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            card_view:cardCornerRadius="10dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/bgcolour"
-                android:orientation="horizontal">
+                android:layout_margin="10dp"
+                android:orientation="vertical">
 
-                <ImageView
-                    android:scaleType="fitXY"
-                    android:layout_width="50dp"
-                    android:layout_margin="20dp"
-                    android:padding="5dp"
-                    android:src="@drawable/profileemail"
-                    android:layout_height="50dp"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="20dp"
-                    android:orientation="vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/input_remark"
+                        app:tint="@color/colorPrimaryExtraDark" />
+
                     <TextView
                         android:id="@+id/txtv_msg"
-                        android:layout_marginTop="10dp"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Send us a message"
-                        android:textColor="@color/black"
-                        android:textSize="22dp"></TextView>
-                    <TextView
-                        android:id="@+id/tv_email"
-                        android:layout_marginTop="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:layout_marginBottom="20dp"
-                        android:textColor="@color/black"
-                        android:textSize="16dp"></TextView>
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="25dp" />
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-2dp"
+                    android:text="Give us a call"
+                    android:background="@color/colorPrimaryExtraDark"
+                    android:textColor="@color/white"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textSize="15dp" />
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
-<androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            card_view:cardCornerRadius="10dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/bgcolour"
-                android:orientation="horizontal">
+                android:layout_margin="10dp"
+                android:orientation="vertical">
 
-                <ImageView
-                    android:scaleType="fitXY"
-                    android:layout_width="50dp"
-                    android:layout_margin="20dp"
-                    android:padding="5dp"
-                    android:src="@drawable/profileaddress"
-                    android:layout_height="50dp"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="20dp"
-                    android:orientation="vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/input_places"
+                        app:tint="@color/colorPrimaryExtraDark" />
+
                     <TextView
                         android:id="@+id/txtv_loctn"
-                        android:layout_marginTop="10dp"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Visit our location"
-                        android:textColor="@color/black"
-                        android:textSize="22dp"></TextView>
-                    <TextView
-                        android:id="@+id/tv_address"
-                        android:layout_marginTop="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:layout_marginBottom="20dp"
-                       android:textColor="@color/black"
-                        android:textSize="16dp"></TextView>
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="25dp" />
                 </LinearLayout>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
-    </LinearLayout>
-</ScrollView>
+                <TextView
+                    android:id="@+id/tv_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-2dp"
+                    android:text="Give us a call"
+                    android:background="@color/colorPrimaryExtraDark"
+                    android:textColor="@color/white"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
+        </LinearLayout>
 
 </LinearLayout>
