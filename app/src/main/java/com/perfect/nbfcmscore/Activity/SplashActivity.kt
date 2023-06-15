@@ -44,20 +44,7 @@ class SplashActivity : AppCompatActivity() {
     var imglogo: ImageView? = null
     var CommonApp: String =""
 
-//    val BASE_URL = "https://202.164.150.65:14261/NbfcAndroidAPI/api/"  //DEVELOPMENT
-//    val IMAGE_URL = "https://202.164.150.65:14261/NbfcAndroidAPI/"
-//    val BASE_URL = "https://202.164.150.65:15006/NbfcAndroidAPI/api/"  //DEVELOPMENT
-//    val IMAGE_URL = "https://202.164.150.65:15006/NbfcAndroidAPI/"
-
     companion object {
-//        public val BASE_URL  = "https://202.164.150.65:15006/NbfcAndroidAPI/api/"  //DEVELOPMENT
-//        public val IMAGE_URL = "https://202.164.150.65:15006/NbfcAndroidAPI/"
-
-     //  public val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPIQA/api/"  //QA
-     //  public val IMAGE_URL = "https://202.164.150.65:14262/NbfcAndroidAPIQA/"
-
-//        public val BASE_URL  = "https://202.164.150.65:15006/NbfcAndroidAPIQA/api/"  //QA NEW
-//           public val IMAGE_URL = "https://202.164.150.65:15006/NbfcAndroidAPIQA/"
 
 
 ///////Development
@@ -70,26 +57,14 @@ class SplashActivity : AppCompatActivity() {
 
 
 ///////QA
-//        public val BASE_URL  = "https://112.133.227.123:14010/NBFCAndroidAPI/api/"  //QA  08.07.2022
-//        public val IMAGE_URL = "https://112.133.227.123:14010/NBFCAndroidAPI/"
-//        public val BankKey = "-500"
-//        public val BankHeader = "CHENNATTU NIDHI LIMITED"
-//        public val CERT_NAME = "staticvm.pem"  //QA
+//        public val BASE_URL  = "https://112.133.227.123:14013/BizCoreNBFC/api/"  //QA  08.07.2022
+//        public val IMAGE_URL = "https://112.133.227.123:14013/BizCoreNBFC/"
+//        public val BankKey = "d.22333"
+//        public val BankHeader = "PERFECT NBFC BANK HEAD OFFICE"
+//        public val CERT_NAME = "staticvm1.pem"  //QA
 //        public val CERT_NAME_TEST = "nbfctest.pem"  //QA
     }
 
-//    val BASE_URL  = "https://202.164.150.65:15006/NbfcAndroidAPI/api/"  //DEVELOPMENT
-//    val IMAGE_URL = "https://202.164.150.65:15006/NbfcAndroidAPI/"
-//    val BankKey = "-500"
-//    val BankHeader = "PERFECT NBFC BANK HEAD OFFICE"
-//    val CERT_NAME = "staticvm.pem"  //QA
-//    val CERT_NAME_TEST = "nbfctest.pem"  //QA
-
-
-
-
-//    val BASE_URL = "https://202.164.150.65:14262/NbfcAndroidAPIQA/api/"  //QA
-//    val IMAGE_URL = "https://202.164.150.65:14262/NbfcAndroidAPIQA/"
 
 
 

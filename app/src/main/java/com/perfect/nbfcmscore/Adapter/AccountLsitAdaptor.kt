@@ -96,6 +96,7 @@ class AccountLsitAdaptor(internal val mContext: Context, internal val jsInfo: JS
 
                       val intent = Intent(v.context, AccountDetailsActivity::class.java)
                       intent.putExtra("LoanType",jsonObject!!.getString("LoanType"))
+                    Log.v("sdfsdfddd","loan "+jsonObject!!.getString("LoanType"))
                       intent.putExtra("Balance", jsonObject!!.getString("Balance"))
                       intent.putExtra("AccountNumber", jsonObject!!.getString("AccountNumber"))
                       intent.putExtra("BranchName", jsonObject!!.getString("BranchName"))

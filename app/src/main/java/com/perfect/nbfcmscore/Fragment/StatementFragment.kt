@@ -55,8 +55,8 @@ class StatementFragment : Fragment() , View.OnClickListener{
     var rad_last_6_month: RadioButton? = null
     var rad_last_12_month: RadioButton? = null
 
-    var tv_reset: Button? = null
-    var tv_download: Button? = null
+    var tv_reset: TextView? = null
+    var tv_download: TextView? = null
 
 
 

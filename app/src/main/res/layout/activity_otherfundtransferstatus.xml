@@ -75,9 +75,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:tabMode="fixed"
-                app:tabTextColor="@color/black"
-                app:tabSelectedTextColor="@color/blue"
-                android:background="@color/white"
+                app:tabTextColor="@color/colorPrimaryExtraDark"
+                app:tabSelectedTextColor="@color/white"
+                android:background="@color/colorPrimary"
                 app:tabGravity="fill">
 
             </com.google.android.material.tabs.TabLayout>

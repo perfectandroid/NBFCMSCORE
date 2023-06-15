@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Activity.BranchDetailActivity"
-    android:background="@color/white">
+    android:background="@drawable/background">
 
     <RelativeLayout
         android:id="@+id/rltv_header"

@@ -116,17 +116,27 @@ class PassbookTransactionDetailsActivity : AppCompatActivity(), View.OnClickList
                         val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
                         val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
-                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("14"))
-                        requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
-                        requestObject1.put("TransactionID", MscoreApplication.encryptStart(transactionID))
-                        requestObject1.put("SubModule", MscoreApplication.encryptStart(subModule))
+//                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("14"))
+//                        requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+//                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
+//                        requestObject1.put("TransactionID", MscoreApplication.encryptStart(transactionID))
+//                        requestObject1.put("SubModule", MscoreApplication.encryptStart(subModule))
+//
+//                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+//                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
 
-                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
-                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
+
+                        requestObject1.put("Reqmode", "14")
+                        requestObject1.put("Token", Token)
+                        requestObject1.put("FK_Customer", FK_Customer)
+                        requestObject1.put("TransactionID", transactionID)
+                        requestObject1.put("SubModule",subModule)
+
+                        requestObject1.put("BankKey",BankKeyPref)
+                        requestObject1.put("BankHeader", BankHeaderPref)
 
 
-                        Log.e("TAG", "requestObject1  171   " + requestObject1)
+                        Log.e("TAG", "requestObject1  17333   " + requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -149,7 +159,7 @@ class PassbookTransactionDetailsActivity : AppCompatActivity(), View.OnClickList
                             try {
                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
-                                Log.i("Response", response.body().toString())
+                                Log.e("Response 17333", response.body().toString())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject = jObject.getJSONObject("PassBookAccountTransactionList")
                                     val jresult = jsonObj1.getJSONArray("Data")

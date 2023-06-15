@@ -42,7 +42,7 @@ class QuickBalanceActivity : AppCompatActivity(), OnItemSelectedListener,View.On
     var spnAccountNum: Spinner? = null
     private var jresult: JSONArray? = null
     private var jresult1: JSONArray? = null
-    private var Account: TextView? = null
+    private var Account: EditText? = null
     private var available_balance: TextView? = null
     private var unclear_balance: TextView? = null
     private var txtLastUpdatedAt: TextView? = null
@@ -50,7 +50,7 @@ class QuickBalanceActivity : AppCompatActivity(), OnItemSelectedListener,View.On
     private var tv_list_days: TextView? = null
     private var tv_mycart: TextView? = null
     private var rv_passbook: RecyclerView? = null
-    private var ll_balance1: CardView? = null
+    private var ll_balance1: LinearLayout? = null
     private var txtv_acnttype: TextView? = null
     private var txtvaccno: TextView? = null
     private var ll_balance: LinearLayout? = null
@@ -308,7 +308,7 @@ class QuickBalanceActivity : AppCompatActivity(), OnItemSelectedListener,View.On
             val json = jresult!!.getJSONObject(position)
             Log.e("TAG","json    289   "+json)
             Log.e(TAG,"AccountType    2891   "+json.getString("AccountType"))
-            Account!!.text = json.getString("AccountType")
+            Account!!.setText(json.getString("AccountType"))
             if (json.getString("IsShowBalance").equals("1")) {
 
             //if (isshowbal.equals("1") ) {

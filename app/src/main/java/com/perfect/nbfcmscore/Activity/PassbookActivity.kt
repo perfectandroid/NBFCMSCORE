@@ -44,14 +44,14 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
     var spnAccountNum: Spinner? = null
     private var jresult: JSONArray? = null
     private var jresult1: JSONArray? = null
-    private var Account: TextView? = null
+    private var Account: EditText? = null
     private var available_balance: TextView? = null
     private var unclear_balance: TextView? = null
     private var txtLastUpdatedAt: TextView? = null
     private var empty_list: TextView? = null
     private var tv_list_days: TextView? = null
     private var rv_passbook: RecyclerView? = null
-    private var ll_balance1: CardView? = null
+    private var ll_balance1: LinearLayout? = null
     private var card_list: CardView? = null
 
     private var txtvAcnttype: TextView? = null
@@ -330,7 +330,7 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                                             rv_passbook!!.visibility = View.GONE
                                         }
 
-                                            Account!!.text = json.getString("AccountType")
+                                            Account!!.setText(json.getString("AccountType"))
                                             getPassBookAccountStatement(
                                                 json.getString("FK_Account"),
                                                 json.getString("SubModule"),
@@ -466,7 +466,7 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                 rv_passbook!!.visibility = View.GONE
             }
 
-            Account!!.text = json.getString("AccountType")
+            Account!!.setText(json.getString("AccountType"))
             getPassBookAccountStatement(
                     json.getString("FK_Account"),
                     json.getString("SubModule"),

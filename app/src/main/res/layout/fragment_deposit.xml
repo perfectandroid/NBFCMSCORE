@@ -8,7 +8,7 @@
         android:layout_gravity="right"
         android:gravity="right"
         android:orientation="vertical"
-        android:background="@color/greylight">
+        android:background="@drawable/background">
 
         <LinearLayout
             android:layout_width="match_parent"

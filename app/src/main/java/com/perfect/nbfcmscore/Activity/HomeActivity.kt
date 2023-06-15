@@ -450,7 +450,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             dlObjectRech = JSONObject()
             dlObjectRech.put("RechId", 1)
             dlObjectRech.put("Rechlabel", ID_Postpaid.getString("PostpaidMobile", null))
-            dlObjectRech.put("RechImage", R.drawable.new_postpaid_mobile)
+            dlObjectRech.put("RechImage", R.drawable.new_postpaid)
             jArrayMenuRech!!.put(dlObjectRech)
 
             dlObjectRech = JSONObject()
