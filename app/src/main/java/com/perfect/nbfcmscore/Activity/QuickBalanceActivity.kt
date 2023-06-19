@@ -86,7 +86,7 @@ class QuickBalanceActivity : AppCompatActivity(), OnItemSelectedListener,View.On
 
 
         val imlogo: ImageView = findViewById(R.id.imlogo)
-        Glide.with(this).load(R.drawable.quickbalgif).into(imlogo)
+      //  Glide.with(this).load(R.drawable.quickbalgif).into(imlogo)
 
         getAccList()
     }

@@ -3,25 +3,32 @@
 <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="300dp"
     android:layout_weight="1"
-    app:cardBackgroundColor="#F8D7DA"
-    app:cardCornerRadius="10dp"
-    app:cardElevation="5dp">
+    app:cardBackgroundColor="@color/white">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         android:gravity="center"
         android:padding="5dp"
-        android:background="#F8D7DA">
+        android:background="@color/white">
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/alert"/>
-
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/new_alert"/>
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="Alert"
+            android:textColor="@color/colorPrimaryExtraDark"
+            android:textSize="18dp" />
         <TextView
             android:id="@+id/tv_message"
             android:layout_width="wrap_content"
@@ -29,9 +36,9 @@
             android:text=""
             android:textStyle="normal"
             android:layout_marginTop="10dp"
-            android:textColor="#721C24"
+            android:textColor="@color/colorPrimaryExtraDark"
             android:gravity="center_vertical"
-            android:textSize="14sp"
+            android:textSize="13dp"
             android:focusable="false"
             android:layout_margin="10dp"/>
 

@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -40,7 +41,7 @@ class StandingInsructionActivity : AppCompatActivity(), View.OnClickListener {
     var imgHome: ImageView? = null
 
     var tv_header: TextView? = null
-
+    val TAG: String = "Standing Instruction"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -113,12 +114,12 @@ class StandingInsructionActivity : AppCompatActivity(), View.OnClickListener {
                         val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
 
-                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("15"))
-                        requestObject1.put("FK_Customer",  MscoreApplication.encryptStart(FK_Customer))
-                        requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
-                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
-
+                        requestObject1.put("Reqmode", "15")
+                        requestObject1.put("FK_Customer", FK_Customer)
+                        requestObject1.put("Token", Token)
+                        requestObject1.put("BankKey",BankKeyPref)
+                        requestObject1.put("BankHeader", BankHeaderPref)
+                        Log.e(TAG,"requestObject1  516   "+requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -141,6 +142,7 @@ class StandingInsructionActivity : AppCompatActivity(), View.OnClickListener {
                             try {
                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
+                                Log.e(TAG,"response  5162   "+response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                        val jobjt = jObject.getJSONObject("StandingInstructionInfo")
                                     val jarray =

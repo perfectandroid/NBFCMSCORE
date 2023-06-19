@@ -54,7 +54,6 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
                                 android:layout_marginBottom="2dp"
                                 android:orientation="horizontal">
 
@@ -68,9 +67,9 @@
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginLeft="20dp"
+                                        android:layout_marginLeft="10dp"
                                         android:layout_marginTop="10dp"
-                                        android:layout_marginRight="20dp"
+                                        android:layout_marginRight="10dp"
                                         android:layout_marginBottom="5dp"
                                         android:orientation="horizontal">
 
@@ -96,9 +95,9 @@
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginLeft="20dp"
+                                        android:layout_marginLeft="10dp"
                                         android:layout_marginTop="10dp"
-                                        android:layout_marginRight="20dp"
+                                        android:layout_marginRight="10dp"
                                         android:layout_marginBottom="20dp"
                                         android:orientation="horizontal">
 
@@ -149,9 +148,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
-                        android:background="@drawable/bg_light_grey"
-                        android:orientation="vertical"
-                        android:padding="5dp">
+                        android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -184,10 +181,8 @@
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:layout_marginTop="15dp"
-                                        android:layout_marginRight="10dp"
                                         android:layout_marginBottom="20dp"
+                                        android:layout_marginTop="5dp"
                                         android:orientation="horizontal">
 
                                         <EditText
@@ -196,7 +191,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_marginRight="5dp"
                                             android:layout_weight="1"
-                                            android:background="@drawable/btn_bg3"
+                                            android:background="@drawable/bg_light_grey"
                                             android:clickable="true"
                                             android:drawableRight="@drawable/ic_calender"
                                             android:drawableTint="@color/colorPrimaryExtraDark"
@@ -211,7 +206,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_marginLeft="5dp"
                                             android:layout_weight="1"
-                                            android:background="@drawable/btn_bg3"
+                                            android:background="@drawable/bg_light_grey"
                                             android:clickable="true"
                                             android:drawableRight="@drawable/ic_calender"
                                             android:drawableTint="@color/colorPrimaryExtraDark"
@@ -233,7 +228,6 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
-                        android:layout_marginTop="20dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -244,6 +238,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_button"
                             android:backgroundTint="@color/white"
+                            android:layout_marginRight="5dp"
                             android:gravity="center"
                             android:text="Reset"
                             android:textAllCaps="false"
@@ -251,15 +246,12 @@
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
-                        <View
-                            android:layout_width="20dp"
-                            android:layout_height="match_parent" />
-
                         <TextView
                             android:id="@+id/tv_download"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
+                            android:layout_marginLeft="5dp"
                             android:background="@drawable/bg_button"
                             android:backgroundTint="@color/colorExtraLight"
                             android:gravity="center"

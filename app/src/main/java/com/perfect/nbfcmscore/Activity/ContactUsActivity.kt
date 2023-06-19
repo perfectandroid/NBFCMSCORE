@@ -37,7 +37,7 @@ class ContactUsActivity : AppCompatActivity() , View.OnClickListener{
 
 
         val imlogo: ImageView = findViewById(R.id.imlogo)
-        Glide.with(this).load(R.drawable.contactusgif).into(imlogo)
+      //  Glide.with(this).load(R.drawable.contactusgif).into(imlogo)
 
         val CustomerNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF31,0)
         tv_email!!.setText(CustomerNameSP.getString("ContactEmail",null))

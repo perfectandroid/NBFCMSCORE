@@ -71,8 +71,7 @@ class LoanStatusAdaptor(internal val mContext: Context, internal val jsInfo: JSO
                 holder.txtv_applamt!!.setText(ID_loanapplamt.getString("ApplicationAmount",null) )
 
                 val ID_loanappdte= mContext.getSharedPreferences(Config.SHARED_PREF265,0)
-               // holder.txtv_applctdt!!.setText(ID_loanappdte.getString("ApplicationDate",null) )
-                holder.txtv_applctdt!!.setText("ApplicationDate")
+                holder.txtv_applctdt!!.setText(ID_loanappdte.getString("ApplicationDate",null) )
 
 
                 holder.tvType!!.setText(jsonObject!!.getString("LoanType") )

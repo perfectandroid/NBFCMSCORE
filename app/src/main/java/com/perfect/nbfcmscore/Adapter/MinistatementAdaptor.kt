@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +30,8 @@ import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 
 
-class MinistatementAdaptor(internal val mContext: Context, internal val jsInfo: JSONArray): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MinistatementAdaptor(internal val mContext: Context, internal val jsInfo: JSONArray) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     internal var jsonObject: JSONObject? = null
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): RecyclerView.ViewHolder {
@@ -50,49 +52,67 @@ class MinistatementAdaptor(internal val mContext: Context, internal val jsInfo: 
         try {
             jsonObject = jsInfo.getJSONObject(position)
             if (holder is MainViewHolder) {
+                try {
+                    var date = jsonObject!!.getString("TransDate").substring(0,10)
+                    Log.v("dsfsdfdsf", "date  " + date)
+                    holder.tvdate!!.setText(date)
+                }
+                catch (e:Exception)
+                {
+                    holder.tvdate!!.setText(jsonObject!!.getString("TransDate"))
+                }
 
-                holder.tvdate!!.setText(jsonObject!!.getString("TransDate") )
 
-                if(jsonObject!!.getString("TransType").equals("D")){
-                    holder.tvamount!!.setText("₹ "+ Config.getDecimelFormate(jsonObject!!.getDouble("Amount"))+" Dr")
+                if (jsonObject!!.getString("TransType").equals("D")) {
+                    holder.tvamount!!.setText(
+                        "₹ " + Config.getDecimelFormate(
+                            jsonObject!!.getDouble(
+                                "Amount"
+                            )
+                        ) + " Dr"
+                    )
                     holder.tvamount!!.setTextColor(mContext.resources.getColor(R.color.redDark))
 
-                } else if(jsonObject!!.getString("TransType").equals("C")){
+                } else if (jsonObject!!.getString("TransType").equals("C")) {
 
-                    holder.tvamount!!.setText("₹ "+ Config.getDecimelFormate(jsonObject!!.getDouble("Amount"))+" Cr")
+                    holder.tvamount!!.setText(
+                        "₹ " + Config.getDecimelFormate(
+                            jsonObject!!.getDouble(
+                                "Amount"
+                            )
+                        ) + " Cr"
+                    )
                     holder.tvamount!!.setTextColor(mContext.resources.getColor(R.color.green))
 
                 }
                 holder.tvnaration!!.setText(jsonObject!!.getString("Narration"))
-              // holder.tvtranstype!!.setText(jsonObject!!.getString("TransType"))
+                // holder.tvtranstype!!.setText(jsonObject!!.getString("TransType"))
 
-                }
-            } catch (e: JSONException) {
-            e.printStackTrace()
             }
-}
-
-inner class MainViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-
-
-
-internal var llmain: LinearLayout? = null
-var tvtranstype: TextView? = null
-var tvdate: TextView? = null
-var tvamount: TextView? = null
-var tvnaration: TextView? = null
-
-
-
-    init {
-
-    llmain = v.findViewById<View>(R.id.llmain) as LinearLayout
-        tvtranstype = v.findViewById<View>(R.id.tvtranstype) as TextView
-        tvdate = v.findViewById<View>(R.id.tvdate) as TextView
-        tvamount = v.findViewById<View>(R.id.tvamount) as TextView
-        tvnaration = v.findViewById<View>(R.id.tvnaration) as TextView
-
-
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
     }
+
+    inner class MainViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+
+
+        internal var llmain: LinearLayout? = null
+        var tvtranstype: TextView? = null
+        var tvdate: TextView? = null
+        var tvamount: TextView? = null
+        var tvnaration: TextView? = null
+
+
+        init {
+
+            llmain = v.findViewById<View>(R.id.llmain) as LinearLayout
+            tvtranstype = v.findViewById<View>(R.id.tvtranstype) as TextView
+            tvdate = v.findViewById<View>(R.id.tvdate) as TextView
+            tvamount = v.findViewById<View>(R.id.tvamount) as TextView
+            tvnaration = v.findViewById<View>(R.id.tvnaration) as TextView
+
+
+        }
     }
 }

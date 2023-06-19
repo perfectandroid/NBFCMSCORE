@@ -57,9 +57,9 @@ class SplashActivity : AppCompatActivity() {
 
 
 ///////QA
-//        public val BASE_URL  = "https://112.133.227.123:14013/BizCoreNBFC/api/"  //QA  08.07.2022
-//        public val IMAGE_URL = "https://112.133.227.123:14013/BizCoreNBFC/"
-//        public val BankKey = "d.22333"
+//        public val BASE_URL  = "https://112.133.227.123:14010/NBFCAndroidAPI/api/"  //QA  08.07.2022
+//        public val IMAGE_URL = "https://112.133.227.123:14010/NBFCAndroidAPI/"
+//        public val BankKey = "-500"
 //        public val BankHeader = "PERFECT NBFC BANK HEAD OFFICE"
 //        public val CERT_NAME = "staticvm1.pem"  //QA
 //        public val CERT_NAME_TEST = "nbfctest.pem"  //QA

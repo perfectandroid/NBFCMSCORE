@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
@@ -20,9 +21,10 @@
                 <ImageView
                     android:id="@+id/imgBack"
                     android:layout_width="0dp"
-                    android:layout_height="35dp"
+                    android:layout_height="25dp"
                     android:layout_weight=".2"
-                    android:src="@drawable/navback" />
+                    android:src="@drawable/navback"
+                    app:tint="@color/white" />
                 <TextView
                     android:id="@+id/tv_header"
                     android:layout_width="0dp"
@@ -31,7 +33,8 @@
                     android:textSize="15dp"
                     android:text="   Standing Instruction"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    />
 
                 <ImageView
                     android:id="@+id/imgHome"
@@ -39,7 +42,9 @@
                     android:layout_height="35dp"
                     android:layout_weight=".2"
                     android:padding="5dp"
-                    android:src="@drawable/ic_home" />
+                    android:src="@drawable/ic_home"
+                    android:tint="@color/white"
+                    />
 
             </LinearLayout>
         </RelativeLayout>

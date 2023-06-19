@@ -99,12 +99,12 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
         setRegister()
 
         val imemilogo: ImageView = findViewById(R.id.imemilogo)
-        Glide.with(this).load(R.drawable.emigif).into(imemilogo)
+        //Glide.with(this).load(R.drawable.emigif).into(imemilogo)
 
         val ID_header = applicationContext.getSharedPreferences(Config.SHARED_PREF79,0)
         tv_header!!.setText(ID_header.getString("EMICalculator",null))
 
-        /*val ID_princamt = applicationContext.getSharedPreferences(Config.SHARED_PREF191,0)
+        val ID_princamt = applicationContext.getSharedPreferences(Config.SHARED_PREF191,0)
         principal!!.setHint(ID_princamt.getString("PRINCIPALAMOUNT",null))
 
         val ID_rate = applicationContext.getSharedPreferences(Config.SHARED_PREF192,0)
@@ -114,7 +114,7 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
         years!!.setHint(ID_mnth.getString("MONTH",null))
 
         val ID_emityp = applicationContext.getSharedPreferences(Config.SHARED_PREF194,0)
-        tie_emi!!.setHint(ID_emityp.getString("Selectemitype",null))*/
+        tie_emi!!.setHint(ID_emityp.getString("Selectemitype",null))
 
         val ID_reset = applicationContext.getSharedPreferences(Config.SHARED_PREF189,0)
         btn_clear!!.setText(ID_reset.getString("RESET",null))
@@ -122,13 +122,13 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
         val ID_calc = applicationContext.getSharedPreferences(Config.SHARED_PREF190,0)
         btn_calculate!!.setText(ID_calc.getString("CALCULATE",null))
 
-        val ID_princamt = applicationContext.getSharedPreferences(Config.SHARED_PREF191,0)
+
         txtv_emi!!.setText(ID_princamt.getString("PRINCIPALAMOUNT",null))
 
         val ID_intrstrate = applicationContext.getSharedPreferences(Config.SHARED_PREF192,0)
         txtv_intrstrate!!.setText(ID_intrstrate.getString("INTERESTRATE",null))
 
-        val ID_mnth = applicationContext.getSharedPreferences(Config.SHARED_PREF193,0)
+
         txtv_month!!.setText(ID_mnth.getString("MONTH",null))
 
         val ID_type = applicationContext.getSharedPreferences(Config.SHARED_PREF256,0)
@@ -334,11 +334,7 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                            findViewById(R.id.rl_main),
-                            " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@EMIActivity,this@EMIActivity,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -398,67 +394,27 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
                                     emiBottomSheet(jArrayEmi!!)
 
                                 } else {
-                                    val builder = AlertDialog.Builder(
-                                        this@EMIActivity,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(this@EMIActivity,this@EMIActivity,"Alert",jObject.getString("EXMessage"),1);
                                 }                            } catch (e: Exception) {
                                 progressDialog!!.dismiss()
 
-                                val builder = AlertDialog.Builder(
-                                    this@EMIActivity,
-                                    R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@EMIActivity,this@EMIActivity,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
 
-                            val builder = AlertDialog.Builder(
-                                this@EMIActivity,
-                                R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@EMIActivity,this@EMIActivity,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(this@EMIActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
-                    e.printStackTrace()
+                    AlertMessage().alertMessage(this@EMIActivity,this@EMIActivity,"Alert","Some technical issues.",1);
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@EMIActivity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@EMIActivity,this@EMIActivity,"Alert"," No Internet Connection. ",3);
             }
         }
     }
@@ -611,11 +567,7 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                            findViewById(R.id.rl_main),
-                            " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@EMIActivity,this@EMIActivity,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -645,67 +597,28 @@ class EMIActivity : AppCompatActivity()  , View.OnClickListener, ItemClickListen
                                     tv_interest_total!!.setText("\u20B9 " + Config.getDecimelFormate(jobjt.getDouble("TotalInterest")))
                                     tv_interest_principal!!.setText("\u20B9 " + Config.getDecimelFormate(jobjt.getDouble("PrincipalInterest")))
                                 } else {
-                                    val builder = AlertDialog.Builder(
-                                        this@EMIActivity,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(this@EMIActivity,this@EMIActivity,"Alert",jObject.getString("EXMessage"),1);
                                 }                            } catch (e: Exception) {
                                 progressDialog!!.dismiss()
 
-                                val builder = AlertDialog.Builder(
-                                    this@EMIActivity,
-                                    R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@EMIActivity,this@EMIActivity,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
 
-                            val builder = AlertDialog.Builder(
-                                this@EMIActivity,
-                                R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@EMIActivity,this@EMIActivity,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(this@EMIActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(this@EMIActivity,this@EMIActivity,"Alert","Some technical issues.",1);
                     e.printStackTrace()
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@EMIActivity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@EMIActivity,this@EMIActivity,"Alert"," No Internet Connection. ",3);
             }
         }
 

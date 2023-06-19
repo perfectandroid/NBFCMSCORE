@@ -267,13 +267,13 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
         val AccnoSP = applicationContext.getSharedPreferences(Config.SHARED_PREF107, 0)
 
 
-       /* tie_mobilenumber!!.setHint(MobileSP.getString("MobileNumber", null))
+        tie_mobilenumber!!.setHint(MobileSP.getString("MobileNumber", null))
         tie_subscriber!!.setHint(SubscriberSP.getString("SubscriberID", null))
         tie_operator!!.setHint(OperatorSP.getString("Operator", null))
         tie_circle!!.setHint(CircleSP.getString("Circle", null))
         tie_amount!!.setHint(AmountSP.getString("Amount", null))
         tie_account!!.setHint(SelctaccSP.getString("SelectAccount", null))
-        tie_circleAccNo!!.setHint("Acoount no ")*/
+        tie_circleAccNo!!.setHint("Acoount no ")
 
         txtmobilenumber!!.setText(MobileSP.getString("MobileNumber", null))
         txtsubscriber!!.setText(SubscriberSP.getString("SubscriberID", null))

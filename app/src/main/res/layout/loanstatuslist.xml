@@ -80,7 +80,7 @@
                             android:layout_gravity="left"
                             android:layout_marginRight="5dp"
                             android:textStyle="bold"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/colorPrimaryExtraDark"
                             android:textSize="15sp" />
                     </LinearLayout>
                     <LinearLayout
@@ -111,7 +111,7 @@
                             android:layout_weight="1"
                             android:textStyle="bold"
                             android:drawablePadding="10dp"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/colorPrimaryExtraDark"
                             android:textSize="15sp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -151,7 +151,7 @@
                             android:layout_gravity="left"
                             android:layout_marginRight="5dp"
                             android:textStyle="bold"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/colorPrimaryExtraDark"
                             android:textSize="15sp" />
                     </LinearLayout>
                     <LinearLayout
@@ -182,7 +182,7 @@
                             android:layout_weight="1"
                             android:textStyle="bold"
                             android:drawablePadding="10dp"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/colorPrimaryExtraDark"
                             android:textSize="15sp" />
                     </LinearLayout>
                 </LinearLayout>

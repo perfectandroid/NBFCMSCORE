@@ -83,6 +83,7 @@
                             <ImageView
                                 android:id="@+id/imcallbacklogo"
                                 android:layout_width="250dp"
+                                android:visibility="gone"
                                 android:layout_height="150dp"
                                 android:layout_gravity="center_horizontal"
                                 />

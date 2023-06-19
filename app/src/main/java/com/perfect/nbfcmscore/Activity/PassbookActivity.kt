@@ -19,6 +19,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Adapter.PassbookTranscationListAdapter
 import com.perfect.nbfcmscore.Api.ApiInterface
+import com.perfect.nbfcmscore.Helper.AlertMessage
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
 import com.perfect.nbfcmscore.Helper.MscoreApplication
@@ -616,16 +617,17 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
 
 
                                 } else {
-                                    val builder = AlertDialog.Builder(
-                                            this@PassbookActivity,
-                                            R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(this@PassbookActivity,this@PassbookActivity,"Alert",jObject.getString("EXMessage"),1);
+//                                    val builder = AlertDialog.Builder(
+//                                            this@PassbookActivity,
+//                                            R.style.MyDialogTheme
+//                                    )
+//                                    builder.setMessage("" + jObject.getString("EXMessage"))
+//                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+//                                    }
+//                                    val alertDialog: AlertDialog = builder.create()
+//                                    alertDialog.setCancelable(false)
+//                                    alertDialog.show()
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()

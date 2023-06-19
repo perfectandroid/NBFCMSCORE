@@ -143,12 +143,12 @@ class BeneficiaryListActivity : AppCompatActivity() , View.OnClickListener , Ite
                         val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
                         val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
-                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("29    "))
-                        requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
+                        requestObject1.put("Reqmode", "29    ")
+                        requestObject1.put("Token", Token)
+                        requestObject1.put("FK_Customer", FK_Customer)
 
-                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
-                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
+                        requestObject1.put("BankKey", BankKeyPref)
+                        requestObject1.put("BankHeader", BankHeaderPref)
 
                         //   val nidhiSP = applicationContext.getSharedPreferences(Config.SHARED_PREF346, 0)
                         //   val nidhicode = BankHeaderSP.getString("nidhicode", "")

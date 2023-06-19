@@ -107,25 +107,31 @@ class KSEBActivity : AppCompatActivity(), View.OnClickListener, ItemClickListene
 
         val ID_cnsmrnme = applicationContext.getSharedPreferences(Config.SHARED_PREF277,0)
         txtconsumername!!.setText(ID_cnsmrnme.getString("ConsumerName",null))
+        tie_consumername!!.setHint(ID_cnsmrnme.getString("ConsumerName",null))
 
         val ID_mob = applicationContext.getSharedPreferences(Config.SHARED_PREF110,0)
         txtmobilenumber!!.setText(ID_mob.getString("MobileNumber",null))
-
+        tie_mobilenumber!!.setHint(ID_mob.getString("MobileNumber",null))
 
         val ID_consumrno = applicationContext.getSharedPreferences(Config.SHARED_PREF278,0)
         txtconsumerno!!.setText(ID_consumrno.getString("ConsumerNumber",null))
+        tie_consumerno!!.setHint(ID_consumrno.getString("ConsumerNumber",null))
 
         val ID_sectnname = applicationContext.getSharedPreferences(Config.SHARED_PREF279,0)
         txtsectionname!!.setText(ID_sectnname.getString("SectionName",null))
+        tie_sectionname!!.setHint(ID_sectnname.getString("SectionName",null))
 
         val ID_billno= applicationContext.getSharedPreferences(Config.SHARED_PREF280,0)
         txtbillno!!.setText(ID_billno.getString("BillNumber",null))
+        tie_billno!!.setHint(ID_billno.getString("BillNumber",null))
 
         val ID_amt= applicationContext.getSharedPreferences(Config.SHARED_PREF113,0)
         txtamount!!.setText(ID_amt.getString("Amount",null))
+        tie_amount!!.setHint(ID_amt.getString("Amount",null))
 
         val ID_accno= applicationContext.getSharedPreferences(Config.SHARED_PREF158,0)
         txtaccount!!.setText(ID_accno.getString("AccountNumber",null))
+        tie_account!!.setHint(ID_accno.getString("AccountNumber",null))
 
         val ID_header= applicationContext.getSharedPreferences(Config.SHARED_PREF71,0)
         tv_header!!.setText(ID_header.getString("KSEB",null))

@@ -119,7 +119,7 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
         setRegister()
 
         val imemilogo: ImageView = findViewById(R.id.imemilogo)
-        Glide.with(this).load(R.drawable.statementgif).into(imemilogo)
+      //  Glide.with(this).load(R.drawable.statementgif).into(imemilogo)
 
 
 

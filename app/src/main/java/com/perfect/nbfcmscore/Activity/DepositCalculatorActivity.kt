@@ -77,7 +77,7 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
         setRegViews()
 
         val imemilogo: ImageView = findViewById(R.id.imemilogo)
-        Glide.with(this).load(R.drawable.emigif).into(imemilogo)
+       // Glide.with(this).load(R.drawable.emigif).into(imemilogo)
 
         val Headersp = applicationContext.getSharedPreferences(Config.SHARED_PREF80, 0)
         tv_header!!.setText(Headersp.getString("DepositCalculator", null))
@@ -90,6 +90,7 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
 
         val Amtsp = applicationContext.getSharedPreferences(Config.SHARED_PREF113, 0)
         txtamt!!.setText(Amtsp.getString("Amount", null))
+        etxt_amount!!.setText(Amtsp.getString("Amount", null))
 
         val Tenresp = applicationContext.getSharedPreferences(Config.SHARED_PREF180, 0)
         txtv_tenure!!.setText(Tenresp.getString("Tenure", null))
@@ -319,11 +320,12 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                     } catch (e: Exception) {
                         // progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                                findViewById(R.id.rl_main),
-                                " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@DepositCalculatorActivity,this@DepositCalculatorActivity,"Alert"," Some technical issues.",1);
+//                        val mySnackbar = Snackbar.make(
+//                                findViewById(R.id.rl_main),
+//                                " Some technical issues.", Snackbar.LENGTH_SHORT
+//                        )
+//                        mySnackbar.show()
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -370,75 +372,68 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                                     //    spn_account_num!!.setSelection(arrayList1.indexOf("Select Account"));
 
                                 } else {
-                                    val builder = AlertDialog.Builder(
-                                            this@DepositCalculatorActivity,
-                                            R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(this@DepositCalculatorActivity,this@DepositCalculatorActivity,"Alert",jObject.getString("EXMessage"),1);
+//                                    val builder = AlertDialog.Builder(
+//                                            this@DepositCalculatorActivity,
+//                                            R.style.MyDialogTheme
+//                                    )
+//                                    builder.setMessage("" + jObject.getString("EXMessage"))
+//                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+//                                    }
+//                                    val alertDialog: AlertDialog = builder.create()
+//                                    alertDialog.setCancelable(false)
+//                                    alertDialog.show()
                                 }
                             } catch (e: Exception) {
                                 //  progressDialog!!.dismiss()
-
-                                val builder = AlertDialog.Builder(
-                                        this@DepositCalculatorActivity,
-                                        R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
-                                e.printStackTrace()
+                                AlertMessage().alertMessage(this@DepositCalculatorActivity,this@DepositCalculatorActivity,"Alert","Some technical issues.",1);
+//                                val builder = AlertDialog.Builder(
+//                                        this@DepositCalculatorActivity,
+//                                        R.style.MyDialogTheme
+//                                )
+//                                builder.setMessage("Some technical issues.")
+//                                builder.setPositiveButton("Ok") { dialogInterface, which ->
+//                                }
+//                                val alertDialog: AlertDialog = builder.create()
+//                                alertDialog.setCancelable(false)
+//                                alertDialog.show()
+//                                e.printStackTrace()
                             }
                         }
 
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             //  progressDialog!!.dismiss()
-
-                            val builder = AlertDialog.Builder(
-                                    this@DepositCalculatorActivity,
-                                    R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@DepositCalculatorActivity,this@DepositCalculatorActivity,"Alert","Some technical issues.",1);
+//                            val builder = AlertDialog.Builder(
+//                                    this@DepositCalculatorActivity,
+//                                    R.style.MyDialogTheme
+//                            )
+//                            builder.setMessage("Some technical issues.")
+//                            builder.setPositiveButton("Ok") { dialogInterface, which ->
+//                            }
+//                            val alertDialog: AlertDialog = builder.create()
+//                            alertDialog.setCancelable(false)
+//                            alertDialog.show()
                         }
                     })
                 } catch (e: Exception) {
                     //  progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(
-                            this@DepositCalculatorActivity,
-                            R.style.MyDialogTheme
-                    )
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(this@DepositCalculatorActivity,this@DepositCalculatorActivity,"Alert","Some technical issues.",1);
                     e.printStackTrace()
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(
-                        this@DepositCalculatorActivity,
-                        R.style.MyDialogTheme
-                )
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@DepositCalculatorActivity,this@DepositCalculatorActivity,"Alert","No Internet Connection.",3);
+//                val builder = AlertDialog.Builder(
+//                        this@DepositCalculatorActivity,
+//                        R.style.MyDialogTheme
+//                )
+//                builder.setMessage("No Internet Connection.")
+//                builder.setPositiveButton("Ok") { dialogInterface, which ->
+//                }
+//                val alertDialog: AlertDialog = builder.create()
+//                alertDialog.setCancelable(false)
+//                alertDialog.show()
             }
         }
     }
@@ -575,11 +570,7 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                                findViewById(R.id.rl_main),
-                                " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@DepositCalculatorActivity,this@DepositCalculatorActivity,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -611,75 +602,38 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
 
 
                                 } else {
-                                    val builder = AlertDialog.Builder(
-                                            this@DepositCalculatorActivity,
-                                            R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(this@DepositCalculatorActivity,this@DepositCalculatorActivity,"Alert",jObject.getString("EXMessage"),1);
+//                                    val builder = AlertDialog.Builder(
+//                                            this@DepositCalculatorActivity,
+//                                            R.style.MyDialogTheme
+//                                    )
+//                                    builder.setMessage("" + jObject.getString("EXMessage"))
+//                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+//                                    }
+//                                    val alertDialog: AlertDialog = builder.create()
+//                                    alertDialog.setCancelable(false)
+//                                    alertDialog.show()
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
 
-                                val builder = AlertDialog.Builder(
-                                        this@DepositCalculatorActivity,
-                                        R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
-                                e.printStackTrace()
+                                AlertMessage().alertMessage(this@DepositCalculatorActivity,this@DepositCalculatorActivity,"Alert","Some technical issues.",1);
                             }
                         }
 
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
 
-                            val builder = AlertDialog.Builder(
-                                    this@DepositCalculatorActivity,
-                                    R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@DepositCalculatorActivity,this@DepositCalculatorActivity,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     //  progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(
-                            this@DepositCalculatorActivity,
-                            R.style.MyDialogTheme
-                    )
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
-                    e.printStackTrace()
+                    AlertMessage().alertMessage(this@DepositCalculatorActivity,this@DepositCalculatorActivity,"Alert","Some technical issues.",1);
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(
-                        this@DepositCalculatorActivity,
-                        R.style.MyDialogTheme
-                )
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@DepositCalculatorActivity,this@DepositCalculatorActivity,"Alert"," No Internet Connection. ",3);
             }
         }
     }

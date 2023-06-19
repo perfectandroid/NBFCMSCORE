@@ -13,6 +13,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
+import com.applandeo.materialcalendarview.exceptions.InvalidCustomLayoutException.message
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Api.ApiInterface
@@ -114,12 +115,10 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
         val slctaddnwrecvrSP = applicationContext.getSharedPreferences(Config.SHARED_PREF139, 0)
         add_new_receiver!!.setText(slctaddnwrecvrSP.getString("AddNewReceiver", null))
 
-       /* val amtpaybleSP = applicationContext.getSharedPreferences(Config.SHARED_PREF95, 0)
+        val amtpaybleSP = applicationContext.getSharedPreferences(Config.SHARED_PREF95, 0)
         etxt_amount!!.setHint(amtpaybleSP.getString("AmountPayable", null))
-*/
-        /*val MpinSP = applicationContext.getSharedPreferences(Config.SHARED_PREF140, 0)
+        val MpinSP = applicationContext.getSharedPreferences(Config.SHARED_PREF140, 0)
         etxt_mpin!!.setHint(MpinSP.getString("MPIN", null))
-*/
         val frgtMpinSP = applicationContext.getSharedPreferences(Config.SHARED_PREF141, 0)
         btn_forgot_mpin!!.setText(frgtMpinSP.getString("ForgotMPIN", null))
 
@@ -137,6 +136,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
 
         val RemarkSP = applicationContext.getSharedPreferences(Config.SHARED_PREF96, 0)
         txtvremark!!.setText(RemarkSP.getString("Remark", null))
+        mMessageEt!!.setHint(RemarkSP.getString("Remark", null))
 
         val MPINSP = applicationContext.getSharedPreferences(Config.SHARED_PREF140, 0)
         txtvMPIN!!.setText(MPINSP.getString("MPIN", null))

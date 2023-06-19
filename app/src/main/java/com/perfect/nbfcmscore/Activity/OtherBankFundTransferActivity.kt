@@ -147,27 +147,27 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
         tv_beneficiarylist!!.setText(ID_Benflist.getString("BeneficiaryList",null))
 
         val ID_Accno = applicationContext.getSharedPreferences(Config.SHARED_PREF158,0)
-       // tie_accountnumber!!.setHint(ID_Accno.getString("AccountNumber",null))
+        tie_accountnumber!!.setHint(ID_Accno.getString("AccountNumber",null))
         txtv_accntno!!.setText(ID_Accno.getString("AccountNumber",null))
 
         val ID_Benfname = applicationContext.getSharedPreferences(Config.SHARED_PREF159,0)
-       // tie_beneficiary!!.setHint(ID_Benfname.getString("BeneficiaryName",null))
+        tie_beneficiary!!.setHint(ID_Benfname.getString("BeneficiaryName",null))
         txtvbenf!!.setText(ID_Benfname.getString("BeneficiaryName",null))
 
         val ID_Benfaccno = applicationContext.getSharedPreferences(Config.SHARED_PREF160,0)
-        //tie_beneficiary_aacno!!.setHint(ID_Benfaccno.getString("BeneficiaryCNo",null))
+        tie_beneficiary_aacno!!.setHint(ID_Benfaccno.getString("BeneficiaryCNo",null))
         txtv_benfacno!!.setText(ID_Benfaccno.getString("BeneficiaryCNo",null))
 
         val ID_confBenfacc = applicationContext.getSharedPreferences(Config.SHARED_PREF161,0)
-       // tie_Conf_beneficiary_aacno!!.setHint(ID_confBenfacc.getString("ConfirmBeneficiaryACNo",null))
+        tie_Conf_beneficiary_aacno!!.setHint(ID_confBenfacc.getString("ConfirmBeneficiaryACNo",null))
         txtv_confrmbenfacno!!.setText(ID_confBenfacc.getString("ConfirmBeneficiaryACNo",null))
 
         val ID_ifsc = applicationContext.getSharedPreferences(Config.SHARED_PREF150,0)
-       // tie_ifsc_code!!.setHint(ID_ifsc.getString("IFSCCode",null))
+        tie_ifsc_code!!.setHint(ID_ifsc.getString("IFSCCode",null))
         txtv_ifs!!.setText(ID_ifsc.getString("IFSCCode",null))
 
         val ID_amtpyble = applicationContext.getSharedPreferences(Config.SHARED_PREF95,0)
-      //  tie_amount!!.setHint(ID_amtpyble.getString("AmountPayable",null))
+        tie_amount!!.setHint(ID_amtpyble.getString("AmountPayable",null))
         txtv_amtpay!!.setText(ID_amtpyble.getString("AmountPayable",null))
 
         val ID_chkbenf = applicationContext.getSharedPreferences(Config.SHARED_PREF162,0)

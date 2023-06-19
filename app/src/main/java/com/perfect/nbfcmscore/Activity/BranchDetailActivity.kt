@@ -47,10 +47,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Adapter.BranchListAdapter
 import com.perfect.nbfcmscore.Api.ApiInterface
-import com.perfect.nbfcmscore.Helper.Config
-import com.perfect.nbfcmscore.Helper.ConnectivityUtils
-import com.perfect.nbfcmscore.Helper.ItemClickListener
-import com.perfect.nbfcmscore.Helper.MscoreApplication
+import com.perfect.nbfcmscore.Helper.*
 import com.perfect.nbfcmscore.R
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
@@ -102,13 +99,10 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_branch_detail)
-
-
         setInitialise()
         setRegister()
         getBranchList();
         getDistricts()
-
     }
 
     private fun getDistricts() {
@@ -177,11 +171,12 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                     } catch (e: Exception) {
                         // progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                            findViewById(R.id.rl_main),
-                            " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@BranchDetailActivity,this@BranchDetailActivity,"Alert"," Some technical issues.",1);
+//                        val mySnackbar = Snackbar.make(
+//                            findViewById(R.id.rl_main),
+//                            " Some technical issues.", Snackbar.LENGTH_SHORT
+//                        )
+//                        mySnackbar.show()
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -520,12 +515,7 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                         Log.e(TAG,"requestObject1  171   "+requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
-                        e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                            findViewById(R.id.rl_main),
-                            " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@BranchDetailActivity,this@BranchDetailActivity,"Alert"," Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -577,16 +567,7 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                                 card_branches!!.visibility = View.GONE
                                 ll_branches!!.visibility = View.GONE
 
-                                val builder = AlertDialog.Builder(
-                                    this@BranchDetailActivity,
-                                    R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@BranchDetailActivity,this@BranchDetailActivity,"Alert"," Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
@@ -595,42 +576,20 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                             card_branches!!.visibility = View.GONE
                             ll_branches!!.visibility = View.GONE
 
-                            val builder = AlertDialog.Builder(
-                                this@BranchDetailActivity,
-                                R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@BranchDetailActivity,this@BranchDetailActivity,"Alert"," Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
                     card_branches!!.visibility = View.GONE
                     ll_branches!!.visibility = View.GONE
-                    val builder = AlertDialog.Builder(this@BranchDetailActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
-                    e.printStackTrace()
+                    AlertMessage().alertMessage(this@BranchDetailActivity,this@BranchDetailActivity,"Alert"," Some technical issues.",1);
                 }
             }
             false -> {
                 card_branches!!.visibility = View.GONE
                 ll_branches!!.visibility = View.GONE
-                val builder = AlertDialog.Builder(this@BranchDetailActivity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@BranchDetailActivity,this@BranchDetailActivity,"Alert"," Some technical issues.",1);
             }
         }
     }

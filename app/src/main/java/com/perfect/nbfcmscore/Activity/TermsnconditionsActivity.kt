@@ -32,7 +32,7 @@ class TermsnconditionsActivity : AppCompatActivity() , View.OnClickListener{
 
 
         val imlogo: ImageView = findViewById(R.id.imlogo)
-        Glide.with(this).load(R.drawable.hand).into(imlogo)
+       // Glide.with(this).load(R.drawable.hand).into(imlogo)
 
     }
 

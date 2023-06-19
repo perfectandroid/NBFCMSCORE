@@ -39,7 +39,7 @@ class ExecutiveActivity : AppCompatActivity() ,View.OnClickListener{
         setRegViews()
 
         val imcallbacklogo: ImageView = findViewById(R.id.imcallbacklogo)
-        Glide.with(this).load(R.drawable.callbackgif).into(imcallbacklogo)
+       // Glide.with(this).load(R.drawable.callbackgif).into(imcallbacklogo)
 
 
         val HeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF84, 0)

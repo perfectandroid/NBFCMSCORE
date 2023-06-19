@@ -34,7 +34,7 @@ class PrivacyPolicyActivity : AppCompatActivity() , View.OnClickListener{
 
 
         val imlogo: ImageView = findViewById(R.id.imlogo)
-        Glide.with(this).load(R.drawable.privacypolicygif).into(imlogo)
+        //Glide.with(this).load(R.drawable.privacypolicygif).into(imlogo)
 
     }
 

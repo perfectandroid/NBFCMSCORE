@@ -27,6 +27,8 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
     var spn_feedbk: Spinner? = null
     var feedbackText: EditText? = null
     var tv_mycart: TextView? = null
+    var txtMobile: TextView? = null
+    var txtFeedBack: TextView? = null
     var etxtmob: EditText? = null
     var etxtemail: EditText? = null
     var rad_callbk:CheckBox?=null
@@ -57,8 +59,9 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
         setContentView(R.layout.activity_enquiry1)
 
         setRegViews()
+        setLabel()
         val imfeedbacklogo: ImageView = findViewById(R.id.imfeedbacklogo)
-        Glide.with(this).load(R.drawable.feedbackgif).into(imfeedbacklogo)
+       // Glide.with(this).load(R.drawable.feedbackgif).into(imfeedbacklogo)
      /*   val ID_enqry = applicationContext.getSharedPreferences(Config.SHARED_PREF82,0)
         tv_mycart!!.setText(ID_enqry.getString("Enquires",null))
         val ID_feedbk = applicationContext.getSharedPreferences(Config.SHARED_PREF56,0)
@@ -66,9 +69,32 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
 
     }
 
+    private fun setLabel() {
+        val ID_feedbk = applicationContext.getSharedPreferences(Config.SHARED_PREF56,0)
+        txtFeedBack!!.setText(ID_feedbk.getString("feedback",null))
+        feedbackText!!.setHint(ID_feedbk.getString("feedback",null))
+
+        val ID_mob = applicationContext.getSharedPreferences(Config.SHARED_PREF110,0)
+        txtMobile!!.setText(ID_mob.getString("MobileNumber",null))
+        etxtmob!!.setHint(ID_mob.getString("MobileNumber",null))
+
+        val ID_clr = applicationContext.getSharedPreferences(Config.SHARED_PREF189,0)
+        btn_clear!!.setText(ID_clr.getString("RESET",null))
+        val ID_submt = applicationContext.getSharedPreferences(Config.SHARED_PREF250,0)
+        btn_submit!!.setText(ID_submt.getString("Submit",null))
+
+        val ID_Enqry = applicationContext.getSharedPreferences(Config.SHARED_PREF82, 0)
+        tv_mycart!!.setText(ID_Enqry.getString("Enquires", null))
+
+        val HeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF84, 0)
+        rad_callbk!!.setText(HeaderSP.getString("ExecutiveCallBack", null))
+    }
+
     private fun setRegViews() {
 
         tv_mycart = findViewById<TextView>(R.id.tv_mycart) as TextView
+        txtMobile = findViewById<TextView>(R.id.txtMobile) as TextView
+        txtFeedBack = findViewById<TextView>(R.id.txtFeedBack) as TextView
         rad_callbk = findViewById<CheckBox>(R.id.rad_callbk) as CheckBox
         imgBack = findViewById<ImageView>(R.id.imgBack) as ImageView
         imgHome = findViewById<ImageView>(R.id.imgHome) as ImageView

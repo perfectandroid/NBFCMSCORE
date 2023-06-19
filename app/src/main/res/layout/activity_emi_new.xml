@@ -170,7 +170,7 @@
                                 android:layout_marginLeft="5dp"
                                 android:backgroundTint="@color/transparent"
                                 android:hint="Interest Rate"
-                                android:inputType="text"
+                                android:inputType="numberDecimal"
                                 android:maxLength="13"
                                 android:textColorHint="@color/text_secondary"
                                 android:textSize="15dp" />

@@ -43,7 +43,7 @@ class AboutActivity : AppCompatActivity() , View.OnClickListener{
 
 
         val imlogo: ImageView = findViewById(R.id.imlogo)
-        Glide.with(this).load(R.drawable.aboutusgif).into(imlogo)
+        //Glide.with(this).load(R.drawable.aboutusgif).into(imlogo)
 
         val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
         val IMAGE_URL = ImageURLSP.getString("ImageURL", null)

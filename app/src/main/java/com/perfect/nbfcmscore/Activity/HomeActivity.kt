@@ -18,6 +18,7 @@ import android.widget.AdapterView.OnItemClickListener
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -50,6 +51,7 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.net.ssl.TrustManagerFactory
 import javax.net.ssl.X509TrustManager
+
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
     View.OnClickListener,
     ItemClickListener {
@@ -186,8 +188,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         createHomeMenuRecharge()
         val versionCode: Int = BuildConfig.VERSION_CODE
         val versionName: String = BuildConfig.VERSION_NAME
-        txt_vcode?.text="V."+versionCode
-        txt_vname?.text=versionName
+        txt_vcode?.text = "V." + versionCode
+        txt_vname?.text = versionName
 
         val CustomerNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF3, 0)
         val CustnoSP = applicationContext.getSharedPreferences(Config.SHARED_PREF19, 0)
@@ -692,8 +694,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                                     var status = jsonobj2.getString("Status")
                                     if (status.equals("10")) {
-                                           goToPlayStore()
-                                        } else {
+                                        goToPlayStore()
+                                    } else {
 
                                     }
 
@@ -786,20 +788,17 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             alertDialogBuilder.show()
             return
         }
-        val dialogBuilder = android.app.AlertDialog.Builder(this@HomeActivity)
-        val inflater: LayoutInflater = this@HomeActivity.getLayoutInflater()
-        val dialogView: View = inflater.inflate(R.layout.bottom_update, null)
-        dialogBuilder.setView(dialogView)
-        val alertDialog = dialogBuilder.create()
-        val tv_share = dialogView.findViewById<TextView>(R.id.tv_share)
-        val tv_msg = dialogView.findViewById<TextView>(R.id.txt1)
-        val tv_msg2 = dialogView.findViewById<TextView>(R.id.txt2)
-        tv_msg.text = "New Version Available"
-        tv_msg2.text = "New version of this application is available.\n" +
+        val bottomSheetDialog = BottomSheetDialog(this)
+        bottomSheetDialog.setContentView(R.layout.bottom_update)
+        val tv_share = bottomSheetDialog.findViewById<TextView>(R.id.tv_share)
+        val tv_msg = bottomSheetDialog.findViewById<TextView>(R.id.txt1)
+        val tv_msg2 = bottomSheetDialog.findViewById<TextView>(R.id.txt2)
+        tv_msg?.text = "New Version Available"
+        tv_msg2?.text = "New version of this application is available.\n" +
                 "Click update for new version"
-        val tv_cancel = dialogView.findViewById<TextView>(R.id.tv_cancel)
-        tv_cancel.setOnClickListener { alertDialog.dismiss() }
-        tv_share.setOnClickListener { //  finishAffinity();
+        val tv_cancel = bottomSheetDialog.findViewById<TextView>(R.id.tv_cancel)
+        tv_cancel?.setOnClickListener { bottomSheetDialog.dismiss() }
+        tv_share?.setOnClickListener { //  finishAffinity();
 
             val pref = applicationContext.getSharedPreferences(Config.SHARED_PREF11, 0)
             val url = pref.getString("PlayStoreLink", null)
@@ -809,12 +808,40 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             } catch (anfe: ActivityNotFoundException) {
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
             }
-          //  alertDialog.dismiss()
         }
+        bottomSheetDialog.setCancelable(false)
+        bottomSheetDialog.show()
 
-        alertDialog.window?.setBackgroundDrawableResource(R.color.transparent)
-        alertDialog.setCancelable(false)
-        alertDialog.show()
+
+//        val dialogBuilder = android.app.AlertDialog.Builder(this@HomeActivity)
+//        val inflater: LayoutInflater = this@HomeActivity.getLayoutInflater()
+//        val dialogView: View = inflater.inflate(R.layout.bottom_update, null)
+//        dialogBuilder.setView(dialogView)
+//        val alertDialog = dialogBuilder.create()
+//        val tv_share = dialogView.findViewById<TextView>(R.id.tv_share)
+//        val tv_msg = dialogView.findViewById<TextView>(R.id.txt1)
+//        val tv_msg2 = dialogView.findViewById<TextView>(R.id.txt2)
+//        tv_msg.text = "New Version Available"
+//        tv_msg2.text = "New version of this application is available.\n" +
+//                "Click update for new version"
+//        val tv_cancel = dialogView.findViewById<TextView>(R.id.tv_cancel)
+//        tv_cancel.setOnClickListener { alertDialog.dismiss() }
+//        tv_share.setOnClickListener { //  finishAffinity();
+//
+//            val pref = applicationContext.getSharedPreferences(Config.SHARED_PREF11, 0)
+//            val url = pref.getString("PlayStoreLink", null)
+//            Log.i("URL", url.toString())
+//            try {
+//                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+//            } catch (anfe: ActivityNotFoundException) {
+//                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+//            }
+//          //  alertDialog.dismiss()
+//        }
+//
+//        alertDialog.window?.setBackgroundDrawableResource(R.color.transparent)
+//        alertDialog.setCancelable(false)
+//        alertDialog.show()
 
 
     }
@@ -822,21 +849,26 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun showBottomUpdate() {
         val bottomSheetDialog = BottomSheetDialog(this)
         bottomSheetDialog.setContentView(R.layout.bottom_update)
-        val ID_dlt = applicationContext.getSharedPreferences(Config.SHARED_PREF205, 0)
-        val logout = bottomSheetDialog.findViewById<ImageView>(R.id.logout)
-        val close = bottomSheetDialog.findViewById<ImageView>(R.id.close)
-        val txt1 = bottomSheetDialog.findViewById<TextView>(R.id.txt1)
-        logout!!.setOnClickListener {
-            bottomSheetDialog.dismiss()
-            logout()
-            val intent = Intent(this, WelcomeActivity::class.java)
-            intent.putExtra("from", "true")
-            this.startActivity(intent)
-            this.finish()
+        val tv_share = bottomSheetDialog.findViewById<TextView>(R.id.tv_share)
+        val tv_msg = bottomSheetDialog.findViewById<TextView>(R.id.txt1)
+        val tv_msg2 = bottomSheetDialog.findViewById<TextView>(R.id.txt2)
+        tv_msg?.text = "New Version Available"
+        tv_msg2?.text = "New version of this application is available.\n" +
+                "Click update for new version"
+        val tv_cancel = bottomSheetDialog.findViewById<TextView>(R.id.tv_cancel)
+        tv_cancel?.setOnClickListener { bottomSheetDialog.dismiss() }
+        tv_share?.setOnClickListener { //  finishAffinity();
+
+            val pref = applicationContext.getSharedPreferences(Config.SHARED_PREF11, 0)
+            val url = pref.getString("PlayStoreLink", null)
+            Log.i("URL", url.toString())
+            try {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+            } catch (anfe: ActivityNotFoundException) {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+            }
+            //  alertDialog.dismiss()
         }
-        close!!.setOnClickListener(View.OnClickListener {
-            bottomSheetDialog.dismiss()
-        })
         bottomSheetDialog.show()
     }
 
@@ -1215,7 +1247,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         txt_vname = findViewById<TextView>(R.id.txt_vname)
 
 
-
     }
 
     open fun setRegister() {
@@ -1383,12 +1414,26 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val bottomSheetDialog = BottomSheetDialog(this)
         bottomSheetDialog.setContentView(R.layout.bottom_logout)
         val ID_dlt = applicationContext.getSharedPreferences(Config.SHARED_PREF205, 0)
-        val logout = bottomSheetDialog.findViewById<ImageView>(R.id.logout)
-        val close = bottomSheetDialog.findViewById<ImageView>(R.id.close)
+        val ID_LogoutSP = applicationContext.getSharedPreferences(Config.SHARED_PREF61, 0)
+        val logout = bottomSheetDialog.findViewById<TextView>(R.id.logout)
+        val close = bottomSheetDialog.findViewById<TextView>(R.id.close)
+        val txt2 = bottomSheetDialog.findViewById<TextView>(R.id.txt2)
         val txt1 = bottomSheetDialog.findViewById<TextView>(R.id.txt1)
         txt1!!.setText(
+            ID_LogoutSP.getString(
+                "logout",
+                null
+            )
+        )
+        txt2!!.setText(
             ID_dlt.getString(
                 "DoYouWanttoDeleteThisAccountAndRegisterWithAnotherAccount?",
+                null
+            )
+        )
+        logout!!.setText(
+            ID_LogoutSP.getString(
+                "logout",
                 null
             )
         )
@@ -1411,10 +1456,14 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val bottomSheetDialog = BottomSheetDialog(this)
         bottomSheetDialog.setContentView(R.layout.bottom_quit)
         val ID_quit = applicationContext.getSharedPreferences(Config.SHARED_PREF208, 0)
-        val logout = bottomSheetDialog.findViewById<ImageView>(R.id.logout)
-        val close = bottomSheetDialog.findViewById<ImageView>(R.id.close)
+        val ID_Quit = applicationContext.getSharedPreferences(Config.SHARED_PREF106, 0)
+        val logout = bottomSheetDialog.findViewById<TextView>(R.id.logout)
+        val close = bottomSheetDialog.findViewById<TextView>(R.id.close)
+        val txt2 = bottomSheetDialog.findViewById<TextView>(R.id.txt2)
         val txt1 = bottomSheetDialog.findViewById<TextView>(R.id.txt1)
-        txt1!!.setText(ID_quit.getString("DoYouWantToQuit?", null))
+        txt2!!.setText(ID_quit.getString("DoYouWantToQuit?", null))
+        txt1!!.setText(ID_Quit.getString("quit", null))
+        logout!!.setText(ID_Quit.getString("quit", null))
         logout!!.setOnClickListener {
             bottomSheetDialog.dismiss()
             finish()
@@ -2004,7 +2053,12 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onBackPressed() {
 
 //        quit()
-        showBottomQuit()
+        Log.v("dsfsdfdsddd", "vis " + drawer!!.isVisible)
+        if (drawer!!.isDrawerOpen(GravityCompat.START)) {
+            drawer!!.closeDrawer(GravityCompat.START)
+        } else {
+            showBottomQuit()
+        }
 
     }
 
@@ -2185,7 +2239,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             rv_Languagelist = layout.findViewById<View>(R.id.rv_Languagelist) as RecyclerView
             val obj_adapter = LanguageAdapter(applicationContext!!, jArrayLang!!)
-            rv_Languagelist!!.layoutManager=GridLayoutManager(this, 2)
+            rv_Languagelist!!.layoutManager = GridLayoutManager(this, 2)
 //            rv_Languagelist!!.layoutManager =
 //                LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
             rv_Languagelist!!.adapter = obj_adapter

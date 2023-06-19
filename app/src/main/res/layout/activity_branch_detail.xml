@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".Activity.BranchDetailActivity"
-    android:background="@drawable/background">
+    tools:context=".Activity.BranchDetailActivity">
 
     <RelativeLayout
         android:id="@+id/rltv_header"
@@ -20,22 +20,21 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="3.5"
-            android:gravity="center"
-            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3.5"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/im_back"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/navback"
-                android:tint="@color/white"
-                />
+                <ImageView
+                    android:id="@+id/im_back"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/navback"
+                    android:tint="@color/white" />
 
-        </LinearLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -48,11 +47,11 @@
                     android:id="@+id/tv_header"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:textSize="18dp"
                     android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:text="Branch Details"
                     android:textColor="@color/white"
-                    android:text="Branch Details" />
+                    android:textSize="18dp" />
 
             </LinearLayout>
 
@@ -70,15 +69,12 @@
                     android:layout_height="35dp"
                     android:padding="5dp"
                     android:src="@drawable/ic_home"
-                    android:tint="@color/white"
-                    />
+                    android:tint="@color/white" />
 
             </LinearLayout>
 
 
         </LinearLayout>
-
-
 
 
     </RelativeLayout>
@@ -88,8 +84,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="10dp">
+        android:paddingTop="10dp"
+        android:paddingRight="10dp">
 
 
         <RelativeLayout
@@ -126,90 +122,92 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/input_rupees"
                         android:layout_marginLeft="5dp"
+                        android:src="@drawable/input_rupees"
                         app:tint="@color/colorPrimaryExtraDark" />
 
                     <AutoCompleteTextView
                         android:id="@+id/act_district"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
+                        android:backgroundTint="@color/transparent"
+                        android:drawableTint="@color/input_border"
                         android:dropDownHeight="wrap_content"
                         android:hint="District"
                         android:padding="5dp"
-                        android:textSize="16dp"
-                        android:backgroundTint="@color/transparent"
-                        android:drawableTint="@color/input_border"
-                        android:textColor="@color/black"/>
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
 
 
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
-            <RelativeLayout
-                android:id="@+id/ll_mapview"
+
+        <RelativeLayout
+            android:id="@+id/ll_mapview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/bg_light_grey"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@drawable/bg_light_grey"
-                android:orientation="vertical"
-                android:padding="5dp">
+                android:layout_height="180dp"
+                android:orientation="horizontal">
 
-               <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="180dp"
-                            android:orientation="horizontal">
+                <fragment
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center" />
 
-                            <fragment
-                                android:id="@+id/map"
-                                android:name="com.google.android.gms.maps.SupportMapFragment"
-                                android:layout_width="match_parent"
-                                android:layout_gravity="center"
-                                android:layout_height="match_parent" />
+            </LinearLayout>
+        </RelativeLayout>
 
-                        </LinearLayout>
-            </RelativeLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvBranchList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/ll_dist"
             android:layout_marginBottom="10dp"
-            android:visibility="gone"
-            android:orientation="vertical">
-<!--
-            <RelativeLayout
-                android:id="@+id/ll_mapview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/ll_dist"
-                android:layout_weight="12"
-                android:orientation="vertical">
-&lt;!&ndash;                android:layout_height="300dp"&ndash;&gt;
+            android:orientation="vertical"
+            android:visibility="gone">
+            <!--
+                        <RelativeLayout
+                            android:id="@+id/ll_mapview"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@+id/ll_dist"
+                            android:layout_weight="12"
+                            android:orientation="vertical">
+            &lt;!&ndash;                android:layout_height="300dp"&ndash;&gt;
 
 
 
-            </RelativeLayout>-->
+                        </RelativeLayout>-->
 
             <LinearLayout
                 android:id="@+id/ll_branches"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
                 android:layout_below="@+id/ll_mapview"
+                android:layout_marginTop="5dp"
                 android:layout_weight="6"
-                android:layout_marginTop="5dp">
+                android:orientation="vertical">
 
-                <androidx.cardview.widget.CardView
-                    xmlns:android="http://schemas.android.com/apk/res/android"
+                <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/card_branches"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:elevation="20dp"
-                    android:id="@+id/card_branches"
                     android:outlineAmbientShadowColor="@color/colorPrimary"
                     android:outlineSpotShadowColor="@color/colorPrimary"
 
@@ -218,9 +216,9 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
                         android:layout_marginTop="2dp"
-                        android:layout_marginBottom="5dp">
+                        android:layout_marginBottom="5dp"
+                        android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -233,13 +231,13 @@
                                 android:id="@+id/tv_branch"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:gravity="center"
                                 android:layout_weight="1"
-                                android:textSize="18dp"
-                                android:textColor="@color/black"
-                                android:textStyle="bold"
+                                android:gravity="center"
                                 android:text="Branch"
-                                android:visibility="gone"/>
+                                android:textColor="@color/black"
+                                android:textSize="18dp"
+                                android:textStyle="bold"
+                                android:visibility="gone" />
 
                             <!--                        android:background="@drawable/bottom_line"-->
 
@@ -247,33 +245,24 @@
                                 android:id="@+id/tv_bankdetails"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:gravity="center"
                                 android:layout_weight="1"
-                                android:textSize="18dp"
-                                android:textColor="@color/black"
+                                android:gravity="center"
                                 android:text="Bank Details"
-                                android:visibility="gone"/>
+                                android:textColor="@color/black"
+                                android:textSize="18dp"
+                                android:visibility="gone" />
 
 
                         </LinearLayout>
+
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:background="@color/greylight"
-                            android:visibility="gone"/>
-
-
-
-
-
-
-
-
+                            android:visibility="gone" />
 
 
                     </LinearLayout>
-
-
 
 
                 </androidx.cardview.widget.CardView>
