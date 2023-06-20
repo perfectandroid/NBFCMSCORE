@@ -1,9 +1,11 @@
 package com.perfect.nbfcmscore.Activity
 
 import android.Manifest
+import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
@@ -17,6 +19,7 @@ import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
@@ -486,11 +489,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                         Log.e(TAG,"Some  2161   "+e.toString())
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                            findViewById(R.id.rl_main),
-                            " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -516,70 +515,31 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                                     OperatorbottomSheet(jArrayOperator!!)
 
                                 } else {
-                                    val builder = AlertDialog.Builder(
-                                        this@RechargeActivity,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert",jObject.getString("EXMessage"),1);
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
                                 Log.e(TAG,"Some  2162   "+e.toString())
-                                val builder = AlertDialog.Builder(
-                                    this@RechargeActivity,
-                                    R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
                             Log.e(TAG,"Some  2163   "+t.message)
-                            val builder = AlertDialog.Builder(
-                                this@RechargeActivity,
-                                R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
                     Log.e(TAG,"Some  2165   "+e.toString())
-                    val builder = AlertDialog.Builder(this@RechargeActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert","Some technical issues.",1);
                     e.printStackTrace()
                 }
             }
             false -> {
 
-                val builder = AlertDialog.Builder(this@RechargeActivity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert"," No Internet Connection. ",3);
             }
         }
     }
@@ -646,11 +606,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                         Log.e(TAG,"Some  3151   "+e.toString())
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                            findViewById(R.id.rl_main),
-                            " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -676,70 +632,31 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                                     CirclebottomSheet(jArrayCircle!!)
 
                                 } else {
-                                    val builder = AlertDialog.Builder(
-                                        this@RechargeActivity,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert",jObject.getString("EXMessage"),1);
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
                                 Log.e(TAG,"Some  2162   "+e.toString())
-                                val builder = AlertDialog.Builder(
-                                    this@RechargeActivity,
-                                    R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
                             Log.e(TAG,"Some  2163   "+t.message)
-                            val builder = AlertDialog.Builder(
-                                this@RechargeActivity,
-                                R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
                     Log.e(TAG,"Some  2165   "+e.toString())
-                    val builder = AlertDialog.Builder(this@RechargeActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert","Some technical issues.",1);
                     e.printStackTrace()
                 }
             }
             false -> {
 
-                val builder = AlertDialog.Builder(this@RechargeActivity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert"," No Internet Connection. ",3);
             }
         }
     }
@@ -809,11 +726,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                         Log.e(TAG,"Some  5161   "+e.toString())
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                            findViewById(R.id.rl_main),
-                            " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -839,70 +752,29 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                                     AccountNobottomSheet(jArrayAccount!!)
 
                                 } else {
-                                    val builder = AlertDialog.Builder(
-                                        this@RechargeActivity,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert",jObject.getString("EXMessage"),1);
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
                                 Log.e(TAG,"Some  2162   "+e.toString())
-                                val builder = AlertDialog.Builder(
-                                    this@RechargeActivity,
-                                    R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
-                                e.printStackTrace()
+                                AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert","Some technical issues.",1);
                             }
                         }
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
                             Log.e(TAG,"Some  2163   "+t.message)
-                            val builder = AlertDialog.Builder(
-                                this@RechargeActivity,
-                                R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
                     Log.e(TAG,"Some  2165   "+e.toString())
-                    val builder = AlertDialog.Builder(this@RechargeActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
-                    e.printStackTrace()
+                    AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert","Some technical issues.",1);
                 }
             }
             false -> {
 
-                val builder = AlertDialog.Builder(this@RechargeActivity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert"," No Internet Connection. ",3);
             }
         }
     }
@@ -1072,17 +944,20 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                         Manifest.permission.READ_CONTACTS
                     )
                 ) {
-                    val builder = AlertDialog.Builder(this)
-                    builder.setTitle("Read Contacts permission")
-                    builder.setPositiveButton(android.R.string.ok, null)
-                    builder.setMessage("Please enable access to contacts.")
-                    builder.setOnDismissListener {
-                        requestPermissions(
-                            arrayOf(Manifest.permission.READ_CONTACTS),
-                            PERMISSIONS_REQUEST_READ_CONTACTS
-                        )
-                    }
-                    builder.show()
+//                    val builder = AlertDialog.Builder(this)
+//                    builder.setTitle("Read Contacts permission")
+//                    builder.setPositiveButton(android.R.string.ok, null)
+//                    builder.setMessage("Please enable access to contacts.")
+//                    builder.setOnDismissListener {
+//                        requestPermissions(
+//                            arrayOf(Manifest.permission.READ_CONTACTS),
+//                            PERMISSIONS_REQUEST_READ_CONTACTS
+//                        )
+//                    }
+//                    builder.show()
+
+                    alertMessageContact("Read Contacts permission","Please enable access to contacts.",1)
+//                    alertMessage("Read Contacts permission","Please enable access to contacts.",2)
                 } else {
                     ActivityCompat.requestPermissions(
                         this, arrayOf(Manifest.permission.READ_CONTACTS),
@@ -1468,11 +1343,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                         Log.e(TAG,"Some  9011   "+e.toString())
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                            findViewById(R.id.rl_main),
-                            " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -1498,88 +1369,59 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 //                                    OperatorbottomSheet(jArrayOperator!!)
 
                                     // Toast.makeText(applicationContext,"Not Complete",Toast.LENGTH_LONG).show()
-                                    val builder = AlertDialog.Builder(
-                                        this@RechargeActivity,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                        startActivity(Intent(this@RechargeActivity, HomeActivity::class.java))
-                                        finish()
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    alertMessage("Success",jObject.getString("EXMessage"),2)
+//                                    val builder = AlertDialog.Builder(
+//                                        this@RechargeActivity,
+//                                        R.style.MyDialogTheme
+//                                    )
+//                                    builder.setMessage("" + jObject.getString("EXMessage"))
+//                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+//                                        startActivity(Intent(this@RechargeActivity, HomeActivity::class.java))
+//                                        finish()
+//                                    }
+//                                    val alertDialog: AlertDialog = builder.create()
+//                                    alertDialog.setCancelable(false)
+//                                    alertDialog.show()
 
 
 
                                 } else {
-                                    val builder = AlertDialog.Builder(
-                                        this@RechargeActivity,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                        startActivity(Intent(this@RechargeActivity, HomeActivity::class.java))
-                                        finish()
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    alertMessage("Alert",jObject.getString("EXMessage"),1)
+//                                    val builder = AlertDialog.Builder(
+//                                        this@RechargeActivity,
+//                                        R.style.MyDialogTheme
+//                                    )
+//                                    builder.setMessage("" + jObject.getString("EXMessage"))
+//                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+//                                        startActivity(Intent(this@RechargeActivity, HomeActivity::class.java))
+//                                        finish()
+//                                    }
+//                                    val alertDialog: AlertDialog = builder.create()
+//                                    alertDialog.setCancelable(false)
+//                                    alertDialog.show()
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
-                                Log.e(TAG,"Some  2162   "+e.toString())
-                                val builder = AlertDialog.Builder(
-                                    this@RechargeActivity,
-                                    R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
                             Log.e(TAG,"Some  2163   "+t.message)
-                            val builder = AlertDialog.Builder(
-                                this@RechargeActivity,
-                                R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
                     Log.e(TAG,"Some  2165   "+e.toString())
-                    val builder = AlertDialog.Builder(this@RechargeActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert","Some technical issues.",1);
                     e.printStackTrace()
                 }
             }
             false -> {
 
-                val builder = AlertDialog.Builder(this@RechargeActivity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert"," No Internet Connection. ",3);
             }
         }
 
@@ -1660,11 +1502,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                         Log.e(TAG,"Some  11301   "+e.toString())
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                            findViewById(R.id.rl_main),
-                            " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -1690,88 +1528,59 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 //                                    OperatorbottomSheet(jArrayOperator!!)
 
                                     // Toast.makeText(applicationContext,"Not Complete",Toast.LENGTH_LONG).show()
-                                    val builder = AlertDialog.Builder(
-                                        this@RechargeActivity,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                        startActivity(Intent(this@RechargeActivity, HomeActivity::class.java))
-                                        finish()
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    alertMessage("Success",jObject.getString("EXMessage"),2)
+//                                    val builder = AlertDialog.Builder(
+//                                        this@RechargeActivity,
+//                                        R.style.MyDialogTheme
+//                                    )
+//                                    builder.setMessage("" + jObject.getString("EXMessage"))
+//                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+//                                        startActivity(Intent(this@RechargeActivity, HomeActivity::class.java))
+//                                        finish()
+//                                    }
+//                                    val alertDialog: AlertDialog = builder.create()
+//                                    alertDialog.setCancelable(false)
+//                                    alertDialog.show()
 
 
 
                                 } else {
-                                    val builder = AlertDialog.Builder(
-                                        this@RechargeActivity,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                        startActivity(Intent(this@RechargeActivity, HomeActivity::class.java))
-                                        finish()
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+//                                    val builder = AlertDialog.Builder(
+//                                        this@RechargeActivity,
+//                                        R.style.MyDialogTheme
+//                                    )
+//                                    builder.setMessage("" + jObject.getString("EXMessage"))
+//                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+//                                        startActivity(Intent(this@RechargeActivity, HomeActivity::class.java))
+//                                        finish()
+//                                    }
+//                                    val alertDialog: AlertDialog = builder.create()
+//                                    alertDialog.setCancelable(false)
+//                                    alertDialog.show()
+                                    alertMessage("Alert",jObject.getString("EXMessage"),1)
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
                                 Log.e(TAG,"Some  2162   "+e.toString())
-                                val builder = AlertDialog.Builder(
-                                    this@RechargeActivity,
-                                    R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
                             Log.e(TAG,"Some  2163   "+t.message)
-                            val builder = AlertDialog.Builder(
-                                this@RechargeActivity,
-                                R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
                     Log.e(TAG,"Some  2165   "+e.toString())
-                    val builder = AlertDialog.Builder(this@RechargeActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
-                    e.printStackTrace()
+                    AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert","Some technical issues.",1);
                 }
             }
             false -> {
 
-                val builder = AlertDialog.Builder(this@RechargeActivity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert"," No Internet Connection. ",3);
             }
         }
 
@@ -1852,11 +1661,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                         Log.e(TAG,"Some  15491   "+e.toString())
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                            findViewById(R.id.rl_main),
-                            " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -1882,88 +1687,59 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 //                                    OperatorbottomSheet(jArrayOperator!!)
 
                                    // Toast.makeText(applicationContext,"Not Complete",Toast.LENGTH_LONG).show()
-                                    val builder = AlertDialog.Builder(
-                                        this@RechargeActivity,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                        startActivity(Intent(this@RechargeActivity, HomeActivity::class.java))
-                                        finish()
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
-
+//                                    val builder = AlertDialog.Builder(
+//                                        this@RechargeActivity,
+//                                        R.style.MyDialogTheme
+//                                    )
+//                                    builder.setMessage("" + jObject.getString("EXMessage"))
+//                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+//                                        startActivity(Intent(this@RechargeActivity, HomeActivity::class.java))
+//                                        finish()
+//                                    }
+//                                    val alertDialog: AlertDialog = builder.create()
+//                                    alertDialog.setCancelable(false)
+//                                    alertDialog.show()
+                                    alertMessage("Success",jObject.getString("EXMessage"),2)
 
 
                                 } else {
-                                    val builder = AlertDialog.Builder(
-                                        this@RechargeActivity,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                        startActivity(Intent(this@RechargeActivity, HomeActivity::class.java))
-                                        finish()
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+//                                    val builder = AlertDialog.Builder(
+//                                        this@RechargeActivity,
+//                                        R.style.MyDialogTheme
+//                                    )
+//                                    builder.setMessage("" + jObject.getString("EXMessage"))
+//                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+//                                        startActivity(Intent(this@RechargeActivity, HomeActivity::class.java))
+//                                        finish()
+//                                    }
+//                                    val alertDialog: AlertDialog = builder.create()
+//                                    alertDialog.setCancelable(false)
+//                                    alertDialog.show()
+                                    alertMessage("Alert",jObject.getString("EXMessage"),1)
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
                                 Log.e(TAG,"Some  15494   "+e.toString())
-                                val builder = AlertDialog.Builder(
-                                    this@RechargeActivity,
-                                    R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
                             Log.e(TAG,"Some  15495   "+t.message)
-                            val builder = AlertDialog.Builder(
-                                this@RechargeActivity,
-                                R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
                     Log.e(TAG,"Some  15496   "+e.toString())
-                    val builder = AlertDialog.Builder(this@RechargeActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert","Some technical issues.",1);
                     e.printStackTrace()
                 }
             }
             false -> {
 
-                val builder = AlertDialog.Builder(this@RechargeActivity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert"," No Internet Connection. ",3);
             }
         }
 
@@ -2037,11 +1813,7 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
                         Log.e(TAG,"Some  10851   "+e.toString())
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                            findViewById(R.id.rl_main),
-                            " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -2081,70 +1853,30 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 
                                 }
                                 else {
-                                    val builder = AlertDialog.Builder(
-                                        this@RechargeActivity,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert",jObject.getString("EXMessage"),1);
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
                                 Log.e(TAG,"Some  2162   "+e.toString())
-                                val builder = AlertDialog.Builder(
-                                    this@RechargeActivity,
-                                    R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
                             Log.e(TAG,"Some  2163   "+t.message)
-                            val builder = AlertDialog.Builder(
-                                this@RechargeActivity,
-                                R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    Log.e(TAG,"Some  2165   "+e.toString())
-                    val builder = AlertDialog.Builder(this@RechargeActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert","Some technical issues.",1);
                     e.printStackTrace()
                 }
             }
             false -> {
 
-                val builder = AlertDialog.Builder(this@RechargeActivity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@RechargeActivity,this@RechargeActivity,"Alert"," No Internet Connection. ",3);
             }
         }
 
@@ -2155,6 +1887,84 @@ class RechargeActivity : AppCompatActivity() , View.OnClickListener, ItemClickLi
 
         return (ProvidersMode.equals("3") || ProvidersMode.equals("4")) && (tie_operator!!.text.toString().contains("MTNL") && tie_circle!!.text.toString()
             .contains("Delhi") || tie_operator!!.text.toString().contains("BSNL"))
+    }
+
+    fun alertMessage(header:String, message:String, type:Int) {
+        val bottomSheetDialog = BottomSheetDialog(this@RechargeActivity)
+        bottomSheetDialog.setContentView(R.layout.alert_message)
+        val txt_ok = bottomSheetDialog.findViewById<TextView>(R.id.txt_ok)
+        val img = bottomSheetDialog.findViewById<ImageView>(R.id.img)
+        val txt_cancel = bottomSheetDialog.findViewById<TextView>(R.id.txt_cancel)
+        val txtheader = bottomSheetDialog.findViewById<TextView>(R.id.header)
+        val txtmessage = bottomSheetDialog.findViewById<TextView>(R.id.message)
+        txtmessage!!.setText(message)
+        txtheader!!.setText(header)
+        txt_cancel!!.setText("OK")
+        txt_cancel!!.setOnClickListener {
+            bottomSheetDialog.dismiss()
+            startActivity(Intent(this@RechargeActivity, HomeActivity::class.java))
+            finish()
+        }
+        if(type==1)
+        {
+            txt_ok!!.visibility=View.GONE
+            txt_cancel!!.visibility=View.VISIBLE
+            img!!.setImageResource(R.drawable.new_alert)
+        }
+        else if(type==2)
+        {
+            txt_ok!!.visibility=View.GONE
+            txt_cancel!!.visibility=View.VISIBLE
+            img!!.setImageResource(R.drawable.new_success)
+        }
+        else if(type==3)
+        {
+            txt_ok!!.visibility=View.GONE
+            txt_cancel!!.visibility=View.VISIBLE
+            img!!.setImageResource(R.drawable.new_nonetwork)
+        }
+
+        bottomSheetDialog.setCancelable(false)
+        bottomSheetDialog.show()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    fun alertMessageContact(header:String, message:String, type:Int) {
+        val bottomSheetDialog = BottomSheetDialog(this@RechargeActivity)
+        bottomSheetDialog.setContentView(R.layout.alert_message)
+        val txt_ok = bottomSheetDialog.findViewById<TextView>(R.id.txt_ok)
+        val img = bottomSheetDialog.findViewById<ImageView>(R.id.img)
+        val txt_cancel = bottomSheetDialog.findViewById<TextView>(R.id.txt_cancel)
+        val txtheader = bottomSheetDialog.findViewById<TextView>(R.id.header)
+        val txtmessage = bottomSheetDialog.findViewById<TextView>(R.id.message)
+        txtmessage!!.setText(message)
+        txtheader!!.setText(header)
+        txt_cancel!!.setOnClickListener {
+            bottomSheetDialog.dismiss()
+            requestPermissions(
+                arrayOf(Manifest.permission.READ_CONTACTS),
+                PERMISSIONS_REQUEST_READ_CONTACTS
+            )
+        }
+        if(type==1)
+        {
+            txt_ok!!.visibility=View.GONE
+            txt_cancel!!.visibility=View.VISIBLE
+            img!!.setImageResource(R.drawable.new_alert)
+        }
+        else if(type==2)
+        {
+            txt_ok!!.visibility=View.GONE
+            txt_cancel!!.visibility=View.VISIBLE
+            img!!.setImageResource(R.drawable.new_success)
+        }
+        else if(type==3)
+        {
+            txt_ok!!.visibility=View.GONE
+            txt_cancel!!.visibility=View.VISIBLE
+            img!!.setImageResource(R.drawable.new_nonetwork)
+        }
+        bottomSheetDialog.show()
     }
 
 

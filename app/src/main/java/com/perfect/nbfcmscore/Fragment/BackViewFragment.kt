@@ -27,6 +27,7 @@ import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
 import com.google.zxing.common.BitMatrix
 import com.perfect.nbfcmscore.Api.ApiInterface
+import com.perfect.nbfcmscore.Helper.AlertMessage
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
 import com.perfect.nbfcmscore.Helper.MscoreApplication
@@ -331,13 +332,7 @@ class BackViewFragment : Fragment() , OnClickListener{
             }
             false -> {
 
-                val builder = AlertDialog.Builder(activity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(context!!,activity!!,"Alert"," No Internet Connection. ",3);
             }
         }
     }

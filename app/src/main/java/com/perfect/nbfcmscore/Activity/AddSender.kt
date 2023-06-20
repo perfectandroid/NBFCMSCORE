@@ -14,14 +14,12 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.applandeo.materialcalendarview.exceptions.InvalidCustomLayoutException.message
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Api.ApiInterface
-import com.perfect.nbfcmscore.Helper.Config
-import com.perfect.nbfcmscore.Helper.ConnectivityUtils
-import com.perfect.nbfcmscore.Helper.CustomBottomSheeet
-import com.perfect.nbfcmscore.Helper.MscoreApplication
+import com.perfect.nbfcmscore.Helper.*
 import com.perfect.nbfcmscore.Model.SenderReceiver
 import com.perfect.nbfcmscore.Model.SenderReceiverlist
 import com.perfect.nbfcmscore.R
@@ -78,12 +76,15 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
 
         val firstnamesp = applicationContext.getSharedPreferences(Config.SHARED_PREF143, 0)
         receiver_name_inputlayout!!.setText(firstnamesp.getString("FirstName", null))
+        txtv_first_name!!.setHint(firstnamesp.getString("FirstName", null))
 
         val lastnamesp = applicationContext.getSharedPreferences(Config.SHARED_PREF144, 0)
         txtv_lastname!!.setText(lastnamesp.getString("LastName", null))
+        txtv_last_name!!.setHint(lastnamesp.getString("LastName", null))
 
         val mobsp = applicationContext.getSharedPreferences(Config.SHARED_PREF110, 0)
         txtvmob!!.setText(mobsp.getString("MobileNumber", null))
+        txtv_mobile_number!!.setHint(mobsp.getString("MobileNumber", null))
 
         val datesp = applicationContext.getSharedPreferences(Config.SHARED_PREF173, 0)
         txtvdate!!.setText(datesp.getString("Date", null))
@@ -219,11 +220,7 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                                findViewById(R.id.rl_main),
-                                " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@AddSender,this@AddSender,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -256,12 +253,12 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
                                            message, status, senderid, receiverid,otpRefNo,statuscode
                                     ))
 
-                                    alertMessage1(status, message)
-
+                                    AlertMessage().alertMessage(this@AddSender,this@AddSender,status,message,2);
 
                                 }
                                 else if ( jObject.getString("StatusCode").equals("-1") ){
-                                    alertMessage1("", jObject.getString("EXMessage"))
+                                  //  alertMessage1("", jObject.getString("EXMessage"))
+                                    AlertMessage().alertMessage(this@AddSender,this@AddSender,"Alert",jObject.getString("EXMessage"),1);
                                 }
                                 else if ( ! jObject.getString("otpRefNo").equals("0") &&  jObject.getString("Status").equals("200") ){
                                    // startActivity(Intent(this@AddSender, TransactionOTPActivity::class.java))
@@ -271,30 +268,12 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
 
                                 }
                                 else {
-                                    val builder = AlertDialog.Builder(
-                                            this@AddSender,
-                                            R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(this@AddSender,this@AddSender,"Alert",jObject.getString("EXMessage"),1);
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
 
-                                val builder = AlertDialog.Builder(
-                                        this@AddSender,
-                                        R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@AddSender,this@AddSender,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
@@ -302,38 +281,16 @@ class AddSender : AppCompatActivity() , View.OnClickListener{
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
 
-                            val builder = AlertDialog.Builder(
-                                    this@AddSender,
-                                    R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@AddSender,this@AddSender,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(this@AddSender, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
-                    e.printStackTrace()
+                    AlertMessage().alertMessage(this@AddSender,this@AddSender,"Alert","Some technical issues.",1);
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@AddSender, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@AddSender,this@AddSender,"Alert"," No Internet Connection. ",3);
             }
         }
     }

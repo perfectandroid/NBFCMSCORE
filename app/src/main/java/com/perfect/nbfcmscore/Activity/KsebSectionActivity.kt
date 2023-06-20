@@ -19,10 +19,7 @@ import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Adapter.KsebSectionAdapter
 import com.perfect.nbfcmscore.Adapter.RechargeHeaderAdapters
 import com.perfect.nbfcmscore.Api.ApiInterface
-import com.perfect.nbfcmscore.Helper.Config
-import com.perfect.nbfcmscore.Helper.ConnectivityUtils
-import com.perfect.nbfcmscore.Helper.ItemClickListener
-import com.perfect.nbfcmscore.Helper.MscoreApplication
+import com.perfect.nbfcmscore.Helper.*
 import com.perfect.nbfcmscore.R
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
@@ -230,11 +227,7 @@ class KsebSectionActivity : AppCompatActivity(), View.OnClickListener, ItemClick
                     } catch (e: Exception) {
                         // progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                            findViewById(R.id.rl_main),
-                            " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@KsebSectionActivity,this@KsebSectionActivity,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),

@@ -15,6 +15,7 @@ import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Adapter.LoanSlabAdaptor
 import com.perfect.nbfcmscore.Adapter.LoanStatusAdaptor
 import com.perfect.nbfcmscore.Api.ApiInterface
+import com.perfect.nbfcmscore.Helper.AlertMessage
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
 import com.perfect.nbfcmscore.Helper.MscoreApplication
@@ -127,12 +128,8 @@ class LoanStatusActivity : AppCompatActivity()  , View.OnClickListener {
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                            findViewById(R.id.rl_main),
-                            " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
-                    }
+                        AlertMessage().alertMessage(this@LoanStatusActivity,this@LoanStatusActivity,"Alert","Some technical issues.",1);
+                                            }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
                         requestObject1.toString()
@@ -157,67 +154,28 @@ class LoanStatusActivity : AppCompatActivity()  , View.OnClickListener {
                                     rv_status!!.adapter = obj_adapter
 
                                 } else {
-                                    val builder = AlertDialog.Builder(
-                                        this@LoanStatusActivity,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(this@LoanStatusActivity,this@LoanStatusActivity,"Alert",jObject.getString("EXMessage"),1);
                                 }                            } catch (e: Exception) {
                                 progressDialog!!.dismiss()
 
-                                val builder = AlertDialog.Builder(
-                                    this@LoanStatusActivity,
-                                    R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@LoanStatusActivity,this@LoanStatusActivity,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
 
-                            val builder = AlertDialog.Builder(
-                                this@LoanStatusActivity,
-                                R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@LoanStatusActivity,this@LoanStatusActivity,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(this@LoanStatusActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(this@LoanStatusActivity,this@LoanStatusActivity,"Alert","Some technical issues.",1);
                     e.printStackTrace()
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@LoanStatusActivity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@LoanStatusActivity,this@LoanStatusActivity,"Alert"," No Internet Connection. ",3);
             }
         }
 

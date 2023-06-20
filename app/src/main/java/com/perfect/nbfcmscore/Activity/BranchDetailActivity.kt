@@ -756,6 +756,7 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
     }
 
     private fun setMarker1(jsonObject1: JSONObject, mMap: GoogleMap?) {
+        try {
             val id = jsonObject1.getString("ID_Branch")
             val bank = jsonObject1.getString("BankName")
             mMap!!.clear()
@@ -763,8 +764,8 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                 MarkerOptions()
                     .position(
                         LatLng(
-                            jsonObject1.getDouble("LocationLatitude"),
-                            jsonObject1.getDouble("LocationLongitude")
+                            jsonObject1.getDouble("LocationLatitude").toDouble(),
+                            jsonObject1.getDouble("LocationLongitude").toDouble()
                         )
                     )
                     .title(id + ") " + bank)
@@ -776,14 +777,19 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
             mMap.animateCamera(
                 CameraUpdateFactory.newLatLngZoom(
                     LatLng(
-                        jsonObject1.getDouble("LocationLatitude"),
-                        jsonObject1.getDouble("LocationLongitude")
+                        jsonObject1.getDouble("LocationLatitude").toDouble(),
+                        jsonObject1.getDouble("LocationLongitude").toDouble()
                     ), 10f
                 )
             )
 
 //        val ids = jsonObject1.getString("ID_Branch")
 //        popupBankDetails(ids)
+        }
+        catch (e:Exception)
+        {
+            AlertMessage().alertMessage(this@BranchDetailActivity,this@BranchDetailActivity,"Alert"," Some technical issues.",1);
+        }
 
     }
 

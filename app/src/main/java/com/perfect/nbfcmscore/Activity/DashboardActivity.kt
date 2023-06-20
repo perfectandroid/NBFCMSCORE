@@ -50,6 +50,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.*
 import com.github.mikephil.charting.components.XAxis
+import com.perfect.nbfcmscore.Helper.AlertMessage
 import com.perfect.nbfcmscore.Helper.Config.getSSLSocketFactory
 import lecho.lib.hellocharts.gesture.ZoomType
 import lecho.lib.hellocharts.model.Axis
@@ -283,11 +284,7 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                                findViewById(R.id.rl_main),
-                                " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@DashboardActivity,this@DashboardActivity,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -414,30 +411,12 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                                     rvAssetList!!.adapter = asset_adapter
 
                                 } else {
-                                    val builder = AlertDialog.Builder(
-                                            this@DashboardActivity,
-                                            R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(this@DashboardActivity,this@DashboardActivity,"Alert",jObject.getString("EXMessage"),1);
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
 
-                                val builder = AlertDialog.Builder(
-                                        this@DashboardActivity,
-                                        R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@DashboardActivity,this@DashboardActivity,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
@@ -445,38 +424,17 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
 
-                            val builder = AlertDialog.Builder(
-                                    this@DashboardActivity,
-                                    R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@DashboardActivity,this@DashboardActivity,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(this@DashboardActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(this@DashboardActivity,this@DashboardActivity,"Alert","Some technical issues.",1);
                     e.printStackTrace()
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@DashboardActivity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@DashboardActivity,this@DashboardActivity,"Alert"," No Internet Connection. ",3);
             }
         }
     }
@@ -604,11 +562,7 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                     } catch (e: Exception) {
                         // progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                                findViewById(R.id.rl_main),
-                                " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@DashboardActivity,this@DashboardActivity,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -767,31 +721,13 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
 
 
                                 } else {
-                                    val builder = AlertDialog.Builder(
-                                            this@DashboardActivity,
-                                            R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(this@DashboardActivity,this@DashboardActivity,"Alert",jObject.getString("EXMessage"),1);
                                 }
                             } catch (e: Exception) {
                                 //  progressDialog!!.dismiss()
 
                                     Log.e(TAG,"Exception  5281  "+e.toString())
-                                val builder = AlertDialog.Builder(
-                                        this@DashboardActivity,
-                                        R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@DashboardActivity,this@DashboardActivity,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
@@ -799,39 +735,18 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             //  progressDialog!!.dismiss()
                             Log.e(TAG,"onFailure  5282  "+t.message)
-                            val builder = AlertDialog.Builder(
-                                    this@DashboardActivity,
-                                    R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@DashboardActivity,this@DashboardActivity,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     //   progressDialog!!.dismiss()
                     Log.e(TAG,"Exception  5283  "+e.toString())
-                    val builder = AlertDialog.Builder(this@DashboardActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(this@DashboardActivity,this@DashboardActivity,"Alert","Some technical issues.",1);
                     e.printStackTrace()
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@DashboardActivity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@DashboardActivity,this@DashboardActivity,"Alert"," No Internet Connection. ",3);
             }
         }
     }
@@ -918,11 +833,7 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                     } catch (e: Exception) {
                         //  progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                                findViewById(R.id.rl_main),
-                                " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@DashboardActivity,this@DashboardActivity,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -1108,30 +1019,12 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
 
 
                                 } else {
-                                    val builder = AlertDialog.Builder(
-                                            this@DashboardActivity,
-                                            R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(this@DashboardActivity,this@DashboardActivity,"Alert",jObject.getString("EXMessage"),1);
                                 }
                             } catch (e: Exception) {
                                 // progressDialog!!.dismiss()
 
-                                val builder = AlertDialog.Builder(
-                                        this@DashboardActivity,
-                                        R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@DashboardActivity,this@DashboardActivity,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
@@ -1139,38 +1032,17 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             //    progressDialog!!.dismiss()
 
-                            val builder = AlertDialog.Builder(
-                                    this@DashboardActivity,
-                                    R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@DashboardActivity,this@DashboardActivity,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     //  progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(this@DashboardActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(this@DashboardActivity,this@DashboardActivity,"Alert","Some technical issues.",1);
                     e.printStackTrace()
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@DashboardActivity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@DashboardActivity,this@DashboardActivity,"Alert"," No Internet Connection. ",3);
             }
         }
     }
@@ -1235,14 +1107,7 @@ class DashboardActivity : AppCompatActivity(),View.OnClickListener, OnChartValue
                 )
                 //  data.setAxisXBottom(new Axis().setName("").setHasLines(true).setTextColor(Color.BLACK));
             } else {
-                val builder = AlertDialog.Builder(applicationContext)
-                builder.setMessage("No data found.")
-                    .setCancelable(false)
-                    .setPositiveButton(
-                        "OK"
-                    ) { dialog, id -> dialog.dismiss() }
-                val alert = builder.create()
-                alert.show()
+                AlertMessage().alertMessage(this@DashboardActivity,this@DashboardActivity,"Alert","No data found.",1);
             }
         } catch (e: JSONException) {
             e.printStackTrace()

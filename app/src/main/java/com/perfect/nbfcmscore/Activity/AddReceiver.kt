@@ -11,13 +11,11 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
+import com.applandeo.materialcalendarview.exceptions.InvalidCustomLayoutException.message
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Api.ApiInterface
-import com.perfect.nbfcmscore.Helper.Config
-import com.perfect.nbfcmscore.Helper.ConnectivityUtils
-import com.perfect.nbfcmscore.Helper.CustomBottomSheeet
-import com.perfect.nbfcmscore.Helper.MscoreApplication
+import com.perfect.nbfcmscore.Helper.*
 import com.perfect.nbfcmscore.Model.SenderReceiver
 import com.perfect.nbfcmscore.Model.SenderReceiverlist
 import com.perfect.nbfcmscore.R
@@ -78,7 +76,7 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
         val Sndrnamesp = applicationContext.getSharedPreferences(Config.SHARED_PREF136, 0)
           txtv_sndrname!!.setText(Sndrnamesp.getString("SelectSender", null))
 
-        /*   val ifscsp = applicationContext.getSharedPreferences(Config.SHARED_PREF150, 0)
+           val ifscsp = applicationContext.getSharedPreferences(Config.SHARED_PREF150, 0)
         ifsc_code!!.setHint(ifscsp.getString("IFSCCode", null))
 
         val accnosp = applicationContext.getSharedPreferences(Config.SHARED_PREF107, 0)
@@ -86,7 +84,6 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
 
         val confrmaccnosp = applicationContext.getSharedPreferences(Config.SHARED_PREF149, 0)
         confirm_account_number!!.setHint(confrmaccnosp.getString("ConfirmAccountNumber", null))
-*/
         val Registerp = applicationContext.getSharedPreferences(Config.SHARED_PREF146, 0)
         btn_registr!!.setText(Registerp.getString("REGISTER", null))
 
@@ -107,11 +104,7 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
 
         val Resetsp = applicationContext.getSharedPreferences(Config.SHARED_PREF189, 0)
         btn_clear!!.setText(Resetsp.getString("RESET", null))
-
-
-
-        /* val Receiversp = applicationContext.getSharedPreferences(Config.SHARED_PREF148, 0)
-         receiver_name!!.setHint(Receiversp.getString("ReceiverName", null))*/
+         receiver_name!!.setHint(Receiversp.getString("ReceiverName", null))
 
 
 
@@ -194,11 +187,7 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
                     } catch (e: Exception) {
                         // progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                                findViewById(R.id.rl_main),
-                                " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@AddReceiver,this@AddReceiver,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -259,30 +248,12 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
                                     //    spn_account_num!!.setSelection(arrayList1.indexOf("Select Account"));
 
                                 } else {
-                                    val builder = AlertDialog.Builder(
-                                            this@AddReceiver,
-                                            R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(this@AddReceiver,this@AddReceiver,"Alert",jObject.getString("EXMessage"),1);
                                 }
                             } catch (e: Exception) {
                                 //  progressDialog!!.dismiss()
 
-                                val builder = AlertDialog.Builder(
-                                        this@AddReceiver,
-                                        R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@AddReceiver,this@AddReceiver,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
@@ -290,44 +261,17 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             //  progressDialog!!.dismiss()
 
-                            val builder = AlertDialog.Builder(
-                                    this@AddReceiver,
-                                    R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@AddReceiver,this@AddReceiver,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     //  progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(
-                            this@AddReceiver,
-                            R.style.MyDialogTheme
-                    )
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(this@AddReceiver,this@AddReceiver,"Alert","Some technical issues.",1);
                     e.printStackTrace()
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(
-                        this@AddReceiver,
-                        R.style.MyDialogTheme
-                )
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@AddReceiver,this@AddReceiver,"Alert"," No Internet Connection. ",3);
             }
         }
     }
@@ -455,11 +399,7 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                                findViewById(R.id.rl_main),
-                                " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@AddReceiver,this@AddReceiver,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -491,12 +431,13 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
                                     arrayList1!!.add(SenderReceiver(
                                             message, status, senderid, receiverid, otpRefNo, statuscode
                                     ))
-                                    alertMessage1(status, message)
-
+//                                    alertMessage1(status, message)
+                                    AlertMessage().alertMessage(this@AddReceiver,this@AddReceiver,status,message,2);
 
                                 }
                                 else if ( jObject.getString("StatusCode").equals("-1") ){
-                                    alertMessage1("", jObject.getString("EXMessage"))
+                                    AlertMessage().alertMessage(this@AddReceiver,this@AddReceiver,"Alert",jObject.getString("EXMessage"),1);
+                                   // alertMessage1("", jObject.getString("EXMessage"))
                                 }
                                 else if (jObject.getString("StatusCode").equals("200") && !jObject.getString("otpRefNo").equals("0")) {
                                     var intent = Intent(this@AddReceiver, TransactionOTPActivity::class.java)
@@ -505,30 +446,12 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
                                 }
 
                                     else {
-                                        val builder = AlertDialog.Builder(
-                                                this@AddReceiver,
-                                                R.style.MyDialogTheme
-                                        )
-                                        builder.setMessage("" + jObject.getString("EXMessage"))
-                                        builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                        }
-                                        val alertDialog: AlertDialog = builder.create()
-                                        alertDialog.setCancelable(false)
-                                        alertDialog.show()
+                                    AlertMessage().alertMessage(this@AddReceiver,this@AddReceiver,"Alert",jObject.getString("EXMessage"),1);
                                     }
                                 } catch (e: Exception) {
                                     progressDialog!!.dismiss()
 
-                                    val builder = AlertDialog.Builder(
-                                            this@AddReceiver,
-                                            R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("Some technical issues.")
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                AlertMessage().alertMessage(this@AddReceiver,this@AddReceiver,"Alert","Some technical issues.",1);
                                     e.printStackTrace()
                                 }
                             }
@@ -536,38 +459,17 @@ class AddReceiver : AppCompatActivity() , View.OnClickListener, AdapterView.OnIt
                             override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                                 progressDialog!!.dismiss()
 
-                                val builder = AlertDialog.Builder(
-                                        this@AddReceiver,
-                                        R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@AddReceiver,this@AddReceiver,"Alert","Some technical issues.",1);
                             }
                         })
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
-                        val builder = AlertDialog.Builder(this@AddReceiver, R.style.MyDialogTheme)
-                        builder.setMessage("Some technical issues.")
-                        builder.setPositiveButton("Ok") { dialogInterface, which ->
-                        }
-                        val alertDialog: AlertDialog = builder.create()
-                        alertDialog.setCancelable(false)
-                        alertDialog.show()
+                    AlertMessage().alertMessage(this@AddReceiver,this@AddReceiver,"Alert","Some technical issues.",1);
                         e.printStackTrace()
                     }
                 }
                 false -> {
-                    val builder = AlertDialog.Builder(this@AddReceiver, R.style.MyDialogTheme)
-                    builder.setMessage("No Internet Connection.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(this@AddReceiver,this@AddReceiver,"Alert"," No Internet Connection. ",3);
                 }
             }
     }

@@ -37,7 +37,7 @@
             android:textStyle="normal"
             android:layout_marginTop="10dp"
             android:textColor="@color/colorPrimaryExtraDark"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:textSize="13dp"
             android:focusable="false"
             android:layout_margin="10dp"/>

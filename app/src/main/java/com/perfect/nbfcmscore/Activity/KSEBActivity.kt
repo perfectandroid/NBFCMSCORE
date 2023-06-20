@@ -468,11 +468,7 @@ class KSEBActivity : AppCompatActivity(), View.OnClickListener, ItemClickListene
                         Log.e(TAG,"Some  5161   "+e.toString())
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                            findViewById(R.id.rl_main),
-                            " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@KSEBActivity,this@KSEBActivity,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -498,70 +494,31 @@ class KSEBActivity : AppCompatActivity(), View.OnClickListener, ItemClickListene
                                     AccountNobottomSheet(jArrayAccount!!)
 
                                 } else {
-                                    val builder = AlertDialog.Builder(
-                                        this@KSEBActivity,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(this@KSEBActivity,this@KSEBActivity,"Alert",jObject.getString("EXMessage"),1);
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
                                 Log.e(TAG,"Some  2162   "+e.toString())
-                                val builder = AlertDialog.Builder(
-                                    this@KSEBActivity,
-                                    R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@KSEBActivity,this@KSEBActivity,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
                             Log.e(TAG,"Some  2163   "+t.message)
-                            val builder = AlertDialog.Builder(
-                                this@KSEBActivity,
-                                R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@KSEBActivity,this@KSEBActivity,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
                     Log.e(TAG,"Some  2165   "+e.toString())
-                    val builder = AlertDialog.Builder(this@KSEBActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(this@KSEBActivity,this@KSEBActivity,"Alert","Some technical issues.",1);
                     e.printStackTrace()
                 }
             }
             false -> {
 
-                val builder = AlertDialog.Builder(this@KSEBActivity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@KSEBActivity,this@KSEBActivity,"Alert"," No Internet Connection. ",3);
             }
         }
     }
@@ -762,11 +719,7 @@ class KSEBActivity : AppCompatActivity(), View.OnClickListener, ItemClickListene
                         Log.e(TAG,"Some  9011   "+e.toString())
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                            findViewById(R.id.rl_main),
-                            " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@KSEBActivity,this@KSEBActivity,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -792,89 +745,89 @@ class KSEBActivity : AppCompatActivity(), View.OnClickListener, ItemClickListene
 //                                    OperatorbottomSheet(jArrayOperator!!)
 
                                     // Toast.makeText(applicationContext,"Not Complete",Toast.LENGTH_LONG).show()
-                                    val builder = AlertDialog.Builder(
-                                        this@KSEBActivity,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                        startActivity(Intent(this@KSEBActivity, HomeActivity::class.java))
-                                        finish()
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+//                                    val builder = AlertDialog.Builder(
+//                                        this@KSEBActivity,
+//                                        R.style.MyDialogTheme
+//                                    )
+//                                    builder.setMessage("" + jObject.getString("EXMessage"))
+//                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
+//                                        startActivity(Intent(this@KSEBActivity, HomeActivity::class.java))
+//                                        finish()
+//                                    }
+//                                    val alertDialog: AlertDialog = builder.create()
+//                                    alertDialog.setCancelable(false)
+//                                    alertDialog.show()
 
-
+                                    alertMessage("Success",jObject.getString("EXMessage"),2)
 
                                 } else {
-                                    val builder = AlertDialog.Builder(
-                                        this@KSEBActivity,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(this@KSEBActivity,this@KSEBActivity,"Alert",jObject.getString("EXMessage"),1);
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
                                 Log.e(TAG,"Some  2162   "+e.toString())
-                                val builder = AlertDialog.Builder(
-                                    this@KSEBActivity,
-                                    R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@KSEBActivity,this@KSEBActivity,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
                             Log.e(TAG,"Some  2163   "+t.message)
-                            val builder = AlertDialog.Builder(
-                                this@KSEBActivity,
-                                R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@KSEBActivity,this@KSEBActivity,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
                     Log.e(TAG,"Some  2165   "+e.toString())
-                    val builder = AlertDialog.Builder(this@KSEBActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(this@KSEBActivity,this@KSEBActivity,"Alert","Some technical issues.",1);
                     e.printStackTrace()
                 }
             }
             false -> {
 
-                val builder = AlertDialog.Builder(this@KSEBActivity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@KSEBActivity,this@KSEBActivity,"Alert"," No Internet Connection. ",3);
             }
         }
 
+    }
+
+    fun alertMessage(header:String, message:String, type:Int) {
+        val bottomSheetDialog = BottomSheetDialog(this@KSEBActivity)
+        bottomSheetDialog.setContentView(R.layout.alert_message)
+        val txt_ok = bottomSheetDialog.findViewById<TextView>(R.id.txt_ok)
+        val img = bottomSheetDialog.findViewById<ImageView>(R.id.img)
+        val txt_cancel = bottomSheetDialog.findViewById<TextView>(R.id.txt_cancel)
+        val txtheader = bottomSheetDialog.findViewById<TextView>(R.id.header)
+        val txtmessage = bottomSheetDialog.findViewById<TextView>(R.id.message)
+        txtmessage!!.setText(message)
+        txtheader!!.setText(header)
+        txt_cancel!!.setText("OK")
+        txt_cancel!!.setOnClickListener {
+            bottomSheetDialog.dismiss()
+            startActivity(Intent(this@KSEBActivity, HomeActivity::class.java))
+            finish()
+        }
+        if(type==1)
+        {
+            txt_ok!!.visibility=View.GONE
+            txt_cancel!!.visibility=View.VISIBLE
+            img!!.setImageResource(R.drawable.new_alert)
+        }
+        else if(type==2)
+        {
+            txt_ok!!.visibility=View.GONE
+            txt_cancel!!.visibility=View.VISIBLE
+            img!!.setImageResource(R.drawable.new_success)
+        }
+        else if(type==3)
+        {
+            txt_ok!!.visibility=View.GONE
+            txt_cancel!!.visibility=View.VISIBLE
+            img!!.setImageResource(R.drawable.new_nonetwork)
+        }
+
+        bottomSheetDialog.setCancelable(false)
+        bottomSheetDialog.show()
     }
 
 

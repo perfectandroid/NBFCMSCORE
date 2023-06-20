@@ -9,6 +9,7 @@ import android.graphics.Canvas
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.os.Handler
 import android.os.StrictMode
 import android.text.Editable
 import android.text.TextWatcher
@@ -17,6 +18,7 @@ import android.view.View
 import android.view.Window
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -29,6 +31,7 @@ import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.*
 import com.perfect.nbfcmscore.Helper.Config.getSSLSocketFactory
 import com.perfect.nbfcmscore.R
+import `in`.aabhasjindal.otptextview.OtpTextView
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
@@ -433,11 +436,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                         Log.e("TAG","Some  5161   "+e.toString())
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                            findViewById(R.id.rl_main),
-                            " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@OtherBankFundTransferActivity,this@OtherBankFundTransferActivity,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -476,70 +475,31 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                                   //  AccountNobottomSheet(jArrayAccount!!)
 
                                 } else {
-                                    val builder = AlertDialog.Builder(
-                                        this@OtherBankFundTransferActivity,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(this@OtherBankFundTransferActivity,this@OtherBankFundTransferActivity,"Alert",jObject.getString("EXMessage"),1);
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
 //                                Log.e(TAG,"Some  2162   "+e.toString())
-                                val builder = AlertDialog.Builder(
-                                    this@OtherBankFundTransferActivity,
-                                    R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@OtherBankFundTransferActivity,this@OtherBankFundTransferActivity,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
 //                            Log.e(TAG,"Some  2163   "+t.message)
-                            val builder = AlertDialog.Builder(
-                                this@OtherBankFundTransferActivity,
-                                R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@OtherBankFundTransferActivity,this@OtherBankFundTransferActivity,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
 //                    Log.e(TAG,"Some  2165   "+e.toString())
-                    val builder = AlertDialog.Builder(this@OtherBankFundTransferActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(this@OtherBankFundTransferActivity,this@OtherBankFundTransferActivity,"Alert","Some technical issues.",1);
                     e.printStackTrace()
                 }
             }
             false -> {
 
-                val builder = AlertDialog.Builder(this@OtherBankFundTransferActivity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@OtherBankFundTransferActivity,this@OtherBankFundTransferActivity,"Alert"," No Internet Connection. ",3);
             }
         }
     }
@@ -865,11 +825,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
 //                        Log.e(TAG,"Some  6662   "+e.toString())
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                            findViewById(R.id.rl_main),
-                            " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@OtherBankFundTransferActivity,this@OtherBankFundTransferActivity,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -896,102 +852,81 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                                     otpPopup()
 
                                 } else {
-                                    val builder = AlertDialog.Builder(
-                                        this@OtherBankFundTransferActivity,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(this@OtherBankFundTransferActivity,this@OtherBankFundTransferActivity,"Alert",jObject.getString("EXMessage"),1);
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
 //                                Log.e(TAG,"Some  6666   "+e.toString())
-                                val builder = AlertDialog.Builder(
-                                    this@OtherBankFundTransferActivity,
-                                    R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@OtherBankFundTransferActivity,this@OtherBankFundTransferActivity,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
 //                            Log.e(TAG,"Some  6667   "+t.message)
-                            val builder = AlertDialog.Builder(
-                                this@OtherBankFundTransferActivity,
-                                R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@OtherBankFundTransferActivity,this@OtherBankFundTransferActivity,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
 //                    Log.e(TAG,"Some  6668   "+e.toString())
-                    val builder = AlertDialog.Builder(this@OtherBankFundTransferActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(this@OtherBankFundTransferActivity,this@OtherBankFundTransferActivity,"Alert","Some technical issues.",1);
                     e.printStackTrace()
                 }
             }
             false -> {
 
-                val builder = AlertDialog.Builder(this@OtherBankFundTransferActivity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@OtherBankFundTransferActivity,this@OtherBankFundTransferActivity,"Alert"," No Internet Connection. ",3);
             }
         }
 
     }
 
-    private fun otpPopup(){
+//    private fun otpPopup(){
+//
+//        val dialog = Dialog(this)
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+//        dialog.setCancelable(true)
+//        dialog.setContentView(R.layout.popup_other_fundtransfer)
+//
+//
+//        val edt_txt_otp: EditText = dialog.findViewById<EditText>(R.id.edt_txt_otp)
+//        val btn_submit: Button = dialog.findViewById<Button>(R.id.btn_submit)
+//        val btn_resend: Button = dialog.findViewById<Button>(R.id.btn_resend)
+//        val idImgV1: ImageView = dialog.findViewById<ImageView>(R.id.idImgV1)
+//        Glide.with(this).load(R.drawable.otpgif).into(idImgV1)
+//        btn_submit.setOnClickListener {
+//            if(edt_txt_otp!!.text.toString(). length == 6){
+//                OTPCode = edt_txt_otp!!.text.toString()
+//                dialog.dismiss()
+//
+//                FundTransfer(AccountNo!!, SubModule!!, BeneName!!, BeneIFSC!!, BeneAccountNumber!!, Amount!!, EftType!!, BeneAdd!!, OTPRef!!, OTPCode!!)
+//            }else{
+//                Toast.makeText(applicationContext,"Enter Valid OTP",Toast.LENGTH_LONG).show()
+//            }
+//        }
+//
+//        dialog.show()
+//
+//
+//    }
 
-        val dialog = Dialog(this)
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setCancelable(true)
-        dialog.setContentView(R.layout.popup_other_fundtransfer)
-
-
-        val edt_txt_otp: EditText = dialog.findViewById<EditText>(R.id.edt_txt_otp)
-        val btn_submit: Button = dialog.findViewById<Button>(R.id.btn_submit)
-        val btn_resend: Button = dialog.findViewById<Button>(R.id.btn_resend)
-        val idImgV1: ImageView = dialog.findViewById<ImageView>(R.id.idImgV1)
-        Glide.with(this).load(R.drawable.otpgif).into(idImgV1)
-        btn_submit.setOnClickListener {
+    private fun otpPopup() {
+        val bottomSheetDialog = BottomSheetDialog(this)
+        bottomSheetDialog.setContentView(R.layout.popup_other_fundtransfer_new)
+        val edt_txt_otp: EditText? = bottomSheetDialog.findViewById<EditText>(R.id.edt_txt_otp)
+        val btn_submit: TextView? = bottomSheetDialog.findViewById<TextView>(R.id.btn_submit)
+        val btn_resend: Button? = bottomSheetDialog.findViewById<Button>(R.id.btn_resend)
+        btn_submit?.setOnClickListener {
             if(edt_txt_otp!!.text.toString(). length == 6){
                 OTPCode = edt_txt_otp!!.text.toString()
-                dialog.dismiss()
-
+                bottomSheetDialog.dismiss()
                 FundTransfer(AccountNo!!, SubModule!!, BeneName!!, BeneIFSC!!, BeneAccountNumber!!, Amount!!, EftType!!, BeneAdd!!, OTPRef!!, OTPCode!!)
             }else{
                 Toast.makeText(applicationContext,"Enter Valid OTP",Toast.LENGTH_LONG).show()
             }
         }
-
-        dialog.show()
-
-
+        bottomSheetDialog.show()
     }
 
 
@@ -1091,11 +1026,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
 //                        Log.e(TAG,"Some  8561   "+e.toString())
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                            findViewById(R.id.rl_main),
-                            " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@OtherBankFundTransferActivity,this@OtherBankFundTransferActivity,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -1148,16 +1079,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
 
                                 } else {
 //                                    Log.e(TAG,"response  8566   "+jObject.getString("EXMessage"))
-                                    val builder = AlertDialog.Builder(
-                                        this@OtherBankFundTransferActivity,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(this@OtherBankFundTransferActivity,this@OtherBankFundTransferActivity,"Alert",jObject.getString("EXMessage"),1);
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
@@ -1178,40 +1100,19 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
 //                            Log.e(TAG,"Some  8568   "+t.message)
-                            val builder = AlertDialog.Builder(
-                                this@OtherBankFundTransferActivity,
-                                R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@OtherBankFundTransferActivity,this@OtherBankFundTransferActivity,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
 //                    Log.e(TAG,"Some  8569   "+e.toString())
-                    val builder = AlertDialog.Builder(this@OtherBankFundTransferActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(this@OtherBankFundTransferActivity,this@OtherBankFundTransferActivity,"Alert","Some technical issues.",1);
                     e.printStackTrace()
                 }
             }
             false -> {
 
-                val builder = AlertDialog.Builder(this@OtherBankFundTransferActivity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@OtherBankFundTransferActivity,this@OtherBankFundTransferActivity,"Alert"," No Internet Connection. ",3);
             }
         }
 
