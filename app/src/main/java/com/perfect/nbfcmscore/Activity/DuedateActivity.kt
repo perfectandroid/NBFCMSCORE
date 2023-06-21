@@ -1,9 +1,7 @@
 package com.perfect.nbfcmscore.Activity
 
-import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -15,10 +13,10 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Adapter.DuedateAdapter
 import com.perfect.nbfcmscore.Api.ApiInterface
+import com.perfect.nbfcmscore.Helper.AlertMessage
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
 import com.perfect.nbfcmscore.Helper.MscoreApplication
@@ -262,11 +260,7 @@ class DuedateActivity : AppCompatActivity() , View.OnClickListener{
                         Log.e(TAG, "Exception  198   ")
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                                findViewById(R.id.rl_main),
-                                " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@DuedateActivity,this@DuedateActivity,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -296,46 +290,18 @@ class DuedateActivity : AppCompatActivity() , View.OnClickListener{
                                         val adapter = DuedateAdapter(this@DuedateActivity, jresult!!, strHeader)
                                         rv_standinginst!!.adapter = adapter
                                     } else {
-                                        val builder = AlertDialog.Builder(
-                                                this@DuedateActivity,
-                                                R.style.MyDialogTheme
-                                        )
-                                        builder.setMessage("" + jObject.getString("EXMessage"))
-                                        builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                        }
-                                        val alertDialog: AlertDialog = builder.create()
-                                        alertDialog.setCancelable(false)
-                                        alertDialog.show()
+                                        AlertMessage().alertMessage(this@DuedateActivity,this@DuedateActivity,"Alert",jObject.getString("EXMessage"),1);
                                     }
 
                                 } else {
                                     ll_standnginstr!!.visibility = View.GONE
                                     llreminder!!.visibility = View.GONE
-                                    val builder = AlertDialog.Builder(
-                                            this@DuedateActivity,
-                                            R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(this@DuedateActivity,this@DuedateActivity,"Alert",jObject.getString("EXMessage"),1);
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
                                 Log.e(TAG, "Exception  1981   "+e.toString())
-
-                                val builder = AlertDialog.Builder(
-                                        this@DuedateActivity,
-                                        R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@DuedateActivity,this@DuedateActivity,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
@@ -343,39 +309,18 @@ class DuedateActivity : AppCompatActivity() , View.OnClickListener{
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
                             Log.e(TAG, "onFailure  1982   "+t.message)
-                            val builder = AlertDialog.Builder(
-                                    this@DuedateActivity,
-                                    R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@DuedateActivity,this@DuedateActivity,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
                     Log.e(TAG, "Exception  1983   "+e.toString())
-                    val builder = AlertDialog.Builder(this@DuedateActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(this@DuedateActivity,this@DuedateActivity,"Alert","Some technical issues.",1);
                     e.printStackTrace()
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@DuedateActivity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@DuedateActivity,this@DuedateActivity,"Alert"," No Internet Connection. ",3);
             }
             }
     }

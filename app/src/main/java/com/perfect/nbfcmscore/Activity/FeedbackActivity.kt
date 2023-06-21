@@ -9,6 +9,7 @@ import android.text.TextUtils
 import android.view.View
 import android.widget.*
 import com.bumptech.glide.Glide
+import com.perfect.nbfcmscore.Helper.AlertMessage
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.CustomBottomSheeet
 import com.perfect.nbfcmscore.Helper.PicassoTrustAll
@@ -137,7 +138,8 @@ class FeedbackActivity : AppCompatActivity() , View.OnClickListener, AdapterView
         feedbackText!!.setError(null)
 
         if (TextUtils.isEmpty(fdbkslctn)) {
-           Toast.makeText(applicationContext,"Please select a reason",Toast.LENGTH_LONG).show()
+//           Toast.makeText(applicationContext,"Please select a reason",Toast.LENGTH_LONG).show()
+            AlertMessage().alertMessage(this@FeedbackActivity,this@FeedbackActivity,"Alert","Please select a reason",1);
             return false
         }
 

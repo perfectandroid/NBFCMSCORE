@@ -1,6 +1,5 @@
 package com.perfect.nbfcmscore.Activity
 
-import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -11,14 +10,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import com.bumptech.glide.Glide
-import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Api.ApiInterface
-import com.perfect.nbfcmscore.Helper.Config
-import com.perfect.nbfcmscore.Helper.ConnectivityUtils
-import com.perfect.nbfcmscore.Helper.MscoreApplication
-import com.perfect.nbfcmscore.Helper.PicassoTrustAll
+import com.perfect.nbfcmscore.Helper.*
 import com.perfect.nbfcmscore.R
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
@@ -223,11 +218,7 @@ class LoginActivity : AppCompatActivity() , View.OnClickListener {
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                            findViewById(R.id.rl_main),
-                            " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@LoginActivity,this@LoginActivity,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -246,93 +237,111 @@ class LoginActivity : AppCompatActivity() , View.OnClickListener {
 
 
                                     val jobjt = jObject.getJSONObject("CustomerLoginVerification")
-                                    val builder = AlertDialog.Builder(this@LoginActivity, R.style.MyDialogTheme)
+
+                                   // val builder = AlertDialog.Builder(this@LoginActivity, R.style.MyDialogTheme)
                                     val ID_ResponseSP = applicationContext.getSharedPreferences(Config.SHARED_PREF47,0)
 
                                     Log.i("popup",jobjt.getString("ResponseMessage"))
                                     if(jobjt.getString("ResponseMessage").equals("User Login Verified"))
                                     {
-                                        builder.setMessage(""+ID_ResponseSP.getString("userloginverified",null))
+                                      //  builder.setMessage(""+ID_ResponseSP.getString("userloginverified",null))
+                                        alertMessage("Success",""+ID_ResponseSP.getString("userloginverified",null),2,jObject)
                                     }
                                     else
                                     {
-                                        builder.setMessage(""+jobjt.getString("ResponseMessage"))
+                                        //builder.setMessage(""+jobjt.getString("ResponseMessage"))
+                                        alertMessage("Success",""+jobjt.getString("ResponseMessage"),2,jObject)
                                     }
 
-                                    builder.setPositiveButton("Ok"){dialogInterface, which ->
-
-
-
-
-                                        val jobjt = jObject.getJSONObject("CustomerLoginVerification")
-                                        intent = Intent(applicationContext, OTPActivity::class.java)
-                                        intent.putExtra("FK_Customer", jobjt.getString("FK_Customer"))
-                                        intent.putExtra("Token", jobjt.getString("Token"))
-                                        intent.putExtra("CusMobile", jobjt.getString("CusMobile"))
-                                        startActivity(intent)
-                                        finish()
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+//                                    builder.setPositiveButton("Ok"){dialogInterface, which ->
+//
+//
+//
+//
+//                                        val jobjt = jObject.getJSONObject("CustomerLoginVerification")
+//                                        intent = Intent(applicationContext, OTPActivity::class.java)
+//                                        intent.putExtra("FK_Customer", jobjt.getString("FK_Customer"))
+//                                        intent.putExtra("Token", jobjt.getString("Token"))
+//                                        intent.putExtra("CusMobile", jobjt.getString("CusMobile"))
+//                                        startActivity(intent)
+//                                        finish()
+//                                    }
+//                                    val alertDialog: AlertDialog = builder.create()
+//                                    alertDialog.setCancelable(false)
+//                                    alertDialog.show()
                                 } else {
-                                    val builder = AlertDialog.Builder(this@LoginActivity, R.style.MyDialogTheme)
-                                    builder.setMessage(""+jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok"){dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(this@LoginActivity,this@LoginActivity,"Alert",jObject.getString("EXMessage"),1);
                                 }
                             }
                             catch (e: Exception) {
                                 progressDialog!!.dismiss()
-                                val builder = AlertDialog.Builder(this@LoginActivity, R.style.MyDialogTheme)
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok"){dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@LoginActivity,this@LoginActivity,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
 
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
-                            val builder = AlertDialog.Builder(this@LoginActivity, R.style.MyDialogTheme)
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok"){dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@LoginActivity,this@LoginActivity,"Alert","Some technical issues.",1);
                         }
                     })
 
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
                     e.printStackTrace()
-                    val builder = AlertDialog.Builder(this@LoginActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok"){dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(this@LoginActivity,this@LoginActivity,"Alert","Some technical issues.",1);
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@LoginActivity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok"){dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@LoginActivity,this@LoginActivity,"Alert"," No Internet Connection. ",3);
             }
         }
 
     }
+
+    fun alertMessage(header: String, message: String, type: Int, jobjt: JSONObject) {
+        val bottomSheetDialog = BottomSheetDialog(this@LoginActivity)
+        bottomSheetDialog.setContentView(R.layout.alert_message)
+        val txt_ok = bottomSheetDialog.findViewById<TextView>(R.id.txt_ok)
+        val img = bottomSheetDialog.findViewById<ImageView>(R.id.img)
+        val txt_cancel = bottomSheetDialog.findViewById<TextView>(R.id.txt_cancel)
+        val txtheader = bottomSheetDialog.findViewById<TextView>(R.id.header)
+        val txtmessage = bottomSheetDialog.findViewById<TextView>(R.id.message)
+        txtmessage!!.setText(message)
+        txtheader!!.setText(header)
+        txt_cancel!!.setText("OK")
+        txt_cancel!!.setOnClickListener {
+            bottomSheetDialog.dismiss()
+            val jobjt = jobjt.getJSONObject("CustomerLoginVerification")
+            intent = Intent(applicationContext, OTPActivity::class.java)
+            intent.putExtra("FK_Customer", jobjt.getString("FK_Customer"))
+            intent.putExtra("Token", jobjt.getString("Token"))
+            intent.putExtra("CusMobile", jobjt.getString("CusMobile"))
+            startActivity(intent)
+            finish()
+        }
+        if(type==1)
+        {
+            txt_ok!!.visibility=View.GONE
+            txt_cancel!!.visibility=View.VISIBLE
+            img!!.setImageResource(R.drawable.new_alert)
+        }
+        else if(type==2)
+        {
+            txt_ok!!.visibility=View.GONE
+            txt_cancel!!.visibility=View.VISIBLE
+            img!!.setImageResource(R.drawable.new_success)
+        }
+        else if(type==3)
+        {
+            txt_ok!!.visibility=View.GONE
+            txt_cancel!!.visibility=View.VISIBLE
+            img!!.setImageResource(R.drawable.new_nonetwork)
+        }
+
+        bottomSheetDialog.setCancelable(false)
+        bottomSheetDialog.show()
+    }
+
 
 }

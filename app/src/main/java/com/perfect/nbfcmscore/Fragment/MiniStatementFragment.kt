@@ -21,6 +21,7 @@ import com.perfect.nbfcmscore.Activity.MpinActivity
 import com.perfect.nbfcmscore.Adapter.AccountLsitAdaptor
 import com.perfect.nbfcmscore.Adapter.LanguageLsitAdaptor
 import com.perfect.nbfcmscore.Adapter.MinistatementAdaptor
+import com.perfect.nbfcmscore.Helper.AlertMessage
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
 import com.perfect.nbfcmscore.Helper.MscoreApplication
@@ -133,13 +134,7 @@ class MiniStatementFragment : Fragment(){
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val builder = AlertDialog.Builder(context!!, R.style.MyDialogTheme)
-                        builder.setMessage("Some technical issues.")
-                        builder.setPositiveButton("Ok") { dialogInterface, which ->
-                        }
-                        val alertDialog: AlertDialog = builder.create()
-                        alertDialog.setCancelable(false)
-                        alertDialog.show()
+                        AlertMessage().alertMessage(context!!,activity!!,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -168,68 +163,28 @@ class MiniStatementFragment : Fragment(){
                                     rv_ministatementlist!!.adapter = obj_adapter
 
                                 } else {
-                                    val builder = AlertDialog.Builder(
-                                        context!!,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(context!!,activity!!,"Alert",jObject.getString("EXMessage"),1);
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
 
-                                val builder = AlertDialog.Builder(
-                                    context!!,
-                                    R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(context!!,activity!!,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
 
-                            val builder = AlertDialog.Builder(
-                                context!!,
-                                R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(context!!,activity!!,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(context!!, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
-                    e.printStackTrace()
+                    AlertMessage().alertMessage(context!!,activity!!,"Alert","Some technical issues.",1);
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(context!!, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(context!!,activity!!,"Alert"," No Internet Connection. ",3);
             }
         }
 

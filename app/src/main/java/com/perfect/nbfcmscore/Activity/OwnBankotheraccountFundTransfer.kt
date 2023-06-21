@@ -24,10 +24,8 @@ import android.view.inputmethod.EditorInfo
 import android.widget.*
 import android.widget.TextView.OnEditorActionListener
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Adapter.CustomListAdapter
 import com.perfect.nbfcmscore.Api.ApiInterface
@@ -638,11 +636,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                     } catch (e: Exception) {
                         //progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                                findViewById(R.id.rl_main),
-                                " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@OwnBankotheraccountFundTransfer,this@OwnBankotheraccountFundTransfer,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -680,16 +674,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                                     }
                                 } else {
                                     tv_maxamount!!.visibility = View.GONE
-                                    val builder = AlertDialog.Builder(
-                                            this@OwnBankotheraccountFundTransfer,
-                                            R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(this@OwnBankotheraccountFundTransfer,this@OwnBankotheraccountFundTransfer,"Alert",jObject.getString("EXMessage"),1);
                                 }
                                 /* if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
@@ -716,16 +701,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                             } catch (e: Exception) {
                                 //   progressDialog!!.dismiss()
 
-                                val builder = AlertDialog.Builder(
-                                        this@OwnBankotheraccountFundTransfer,
-                                        R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@OwnBankotheraccountFundTransfer,this@OwnBankotheraccountFundTransfer,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
@@ -733,44 +709,17 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             //   progressDialog!!.dismiss()
 
-                            val builder = AlertDialog.Builder(
-                                    this@OwnBankotheraccountFundTransfer,
-                                    R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@OwnBankotheraccountFundTransfer,this@OwnBankotheraccountFundTransfer,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     // progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(
-                            this@OwnBankotheraccountFundTransfer,
-                            R.style.MyDialogTheme
-                    )
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(this@OwnBankotheraccountFundTransfer,this@OwnBankotheraccountFundTransfer,"Alert","Some technical issues.",1);
                     e.printStackTrace()
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(
-                        this@OwnBankotheraccountFundTransfer,
-                        R.style.MyDialogTheme
-                )
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@OwnBankotheraccountFundTransfer,this@OwnBankotheraccountFundTransfer,"Alert"," No Internet Connection. ",3);
             }
         }
     }
@@ -1090,11 +1039,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                                findViewById(R.id.rl_main),
-                                " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@OwnBankotheraccountFundTransfer,this@OwnBankotheraccountFundTransfer,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -1127,30 +1072,12 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
 
 
                                 } else {
-                                    val builder = AlertDialog.Builder(
-                                            this@OwnBankotheraccountFundTransfer,
-                                            R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(this@OwnBankotheraccountFundTransfer,this@OwnBankotheraccountFundTransfer,"Alert",jObject.getString("EXMessage"),1);
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
 
-                                val builder = AlertDialog.Builder(
-                                        this@OwnBankotheraccountFundTransfer,
-                                        R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@OwnBankotheraccountFundTransfer,this@OwnBankotheraccountFundTransfer,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
@@ -1158,44 +1085,17 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
 
-                            val builder = AlertDialog.Builder(
-                                    this@OwnBankotheraccountFundTransfer,
-                                    R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@OwnBankotheraccountFundTransfer,this@OwnBankotheraccountFundTransfer,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(
-                            this@OwnBankotheraccountFundTransfer,
-                            R.style.MyDialogTheme
-                    )
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(this@OwnBankotheraccountFundTransfer,this@OwnBankotheraccountFundTransfer,"Alert","Some technical issues.",1);
                     e.printStackTrace()
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(
-                        this@OwnBankotheraccountFundTransfer,
-                        R.style.MyDialogTheme
-                )
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@OwnBankotheraccountFundTransfer,this@OwnBankotheraccountFundTransfer,"Alert"," No Internet Connection. ",3);
             }
         }
     }
@@ -1335,11 +1235,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                     } catch (e: Exception) {
                         //progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                                findViewById(R.id.rl_main),
-                                " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@OwnBankotheraccountFundTransfer,this@OwnBankotheraccountFundTransfer,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -1389,16 +1285,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
 
                                 } else {
                                     //   tv_maxamount!!.visibility = View.GONE
-                                    val builder = AlertDialog.Builder(
-                                            this@OwnBankotheraccountFundTransfer,
-                                            R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(this@OwnBankotheraccountFundTransfer,this@OwnBankotheraccountFundTransfer,"Alert",jObject.getString("EXMessage"),1);
                                 }
                                 /* if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
@@ -1425,16 +1312,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                             } catch (e: Exception) {
                                 //   progressDialog!!.dismiss()
 
-                                val builder = AlertDialog.Builder(
-                                        this@OwnBankotheraccountFundTransfer,
-                                        R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@OwnBankotheraccountFundTransfer,this@OwnBankotheraccountFundTransfer,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
@@ -1442,44 +1320,17 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             //   progressDialog!!.dismiss()
 
-                            val builder = AlertDialog.Builder(
-                                    this@OwnBankotheraccountFundTransfer,
-                                    R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@OwnBankotheraccountFundTransfer,this@OwnBankotheraccountFundTransfer,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     // progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(
-                            this@OwnBankotheraccountFundTransfer,
-                            R.style.MyDialogTheme
-                    )
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(this@OwnBankotheraccountFundTransfer,this@OwnBankotheraccountFundTransfer,"Alert","Some technical issues.",1);
                     e.printStackTrace()
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(
-                        this@OwnBankotheraccountFundTransfer,
-                        R.style.MyDialogTheme
-                )
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@OwnBankotheraccountFundTransfer,this@OwnBankotheraccountFundTransfer,"Alert"," No Internet Connection. ",3);
             }
         }
     }

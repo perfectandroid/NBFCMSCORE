@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.app.ProgressDialog
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -13,6 +14,7 @@ import android.view.WindowManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Api.ApiInterface
@@ -63,6 +65,15 @@ class SplashActivity : AppCompatActivity() {
 //        public val BankHeader = "PERFECT NBFC BANK HEAD OFFICE"
 //        public val CERT_NAME = "staticvm1.pem"  //QA
 //        public val CERT_NAME_TEST = "nbfctest.pem"  //QA
+
+
+///////NBFC COMMON
+//        public val BASE_URL  = "https://112.133.227.123:14422/NBFCANDROIDAPI/api/"
+//        public val IMAGE_URL = "https://112.133.227.123:14422/NBFCANDROIDAPI/"
+//        public val BankKey = "500"
+//        public val BankHeader = "PERFECT NBFC BANK HEAD OFFICE"
+//        public val CERT_NAME = "nbfccommon.pem"
+//        public val CERT_NAME_TEST = "nbfctest.pem"
     }
 
 
@@ -341,33 +352,56 @@ class SplashActivity : AppCompatActivity() {
             }
     }
 
+//    private fun nidhicodepopup() {
+//        val dialog = Dialog(this)
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+//        dialog.setContentView(R.layout.popup_nidhi)
+//        dialog.setCanceledOnTouchOutside(false);
+//        dialog.setCancelable(false);
+//
+//
+//        val etxt_nidhicode: EditText = dialog.findViewById<EditText>(R.id.etxt_nidhicode)
+//        val btn_submit: Button = dialog.findViewById<Button>(R.id.btn_submit)
+//        val btn_resend: Button = dialog.findViewById<Button>(R.id.btn_resend)
+//        val idImgV1: ImageView = dialog.findViewById<ImageView>(R.id.idImgV1)
+//        Glide.with(this).load(R.drawable.otpgif).into(idImgV1)
+//        btn_submit.setOnClickListener {
+//            if(!etxt_nidhicode!!.text.toString().equals("")){
+//                var nidhicode = etxt_nidhicode!!.text.toString()
+//
+//                dialog.dismiss()
+//                getnidhicode(nidhicode)
+//
+//            }else {
+//                Toast.makeText(applicationContext,"Enter Valid Code", Toast.LENGTH_LONG).show()
+//            }
+//        }
+//
+//        dialog.show()
+//
+//    }
+
+
     private fun nidhicodepopup() {
-        val dialog = Dialog(this)
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.popup_nidhi)
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.setCancelable(false);
-
-
-        val etxt_nidhicode: EditText = dialog.findViewById<EditText>(R.id.etxt_nidhicode)
-        val btn_submit: Button = dialog.findViewById<Button>(R.id.btn_submit)
-        val btn_resend: Button = dialog.findViewById<Button>(R.id.btn_resend)
-        val idImgV1: ImageView = dialog.findViewById<ImageView>(R.id.idImgV1)
-        Glide.with(this).load(R.drawable.otpgif).into(idImgV1)
-        btn_submit.setOnClickListener {
+        val bottomSheetDialog = BottomSheetDialog(this)
+        bottomSheetDialog.setContentView(R.layout.popup_nidhi)
+        val etxt_nidhicode: EditText? = bottomSheetDialog.findViewById<EditText>(R.id.etxt_nidhicode)
+        val btn_submit: TextView? = bottomSheetDialog.findViewById<TextView>(R.id.btn_submit)
+        val btn_resend: Button? = bottomSheetDialog.findViewById<Button>(R.id.btn_resend)
+        val idImgV1: ImageView? = bottomSheetDialog.findViewById<ImageView>(R.id.idImgV1)
+       // Glide.with(this).load(R.drawable.otpgif).into(idImgV1)
+        btn_submit?.setOnClickListener {
             if(!etxt_nidhicode!!.text.toString().equals("")){
                 var nidhicode = etxt_nidhicode!!.text.toString()
-
-                dialog.dismiss()
+                bottomSheetDialog.dismiss()
                 getnidhicode(nidhicode)
-
             }else {
                 Toast.makeText(applicationContext,"Enter Valid Code", Toast.LENGTH_LONG).show()
             }
         }
 
-        dialog.show()
-
+        bottomSheetDialog.setCancelable(false)
+        bottomSheetDialog.show()
     }
 
     private fun getnidhicode(nidhicode: String) {

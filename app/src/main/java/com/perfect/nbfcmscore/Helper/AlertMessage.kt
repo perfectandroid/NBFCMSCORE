@@ -2,13 +2,10 @@ package com.perfect.nbfcmscore.Helper
 
 import android.app.Activity
 import android.content.Context
-import android.content.Intent
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.perfect.nbfcmscore.Activity.WelcomeActivity
 import com.perfect.nbfcmscore.R
 
 public class AlertMessage {
@@ -49,7 +46,7 @@ public class AlertMessage {
 //
 //    }
 
-    fun alertMessage(context:Context,activity:Activity,header:String,message:String,type:Int) {
+    fun alertMessage(context:Context, activity: Activity?, header:String, message:String, type:Int) {
         //type 1=failed alert
         //type 2=Success alert
         //type 3=No network
@@ -73,7 +70,9 @@ public class AlertMessage {
         }
         else if(type==2)
         {
-
+            txt_ok!!.visibility=View.GONE
+            txt_cancel!!.visibility=View.VISIBLE
+            img!!.setImageResource(R.drawable.new_success)
         }
         else if(type==3)
         {

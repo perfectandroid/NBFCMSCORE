@@ -1,11 +1,8 @@
 package com.perfect.nbfcmscore.Activity
 
 import android.Manifest
-import android.app.Activity
-import android.app.AlertDialog
 import android.app.Dialog
 import android.app.ProgressDialog
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
@@ -21,14 +18,11 @@ import android.view.Window
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Adapter.AccountAdapter
 import com.perfect.nbfcmscore.Adapter.CircleAdapter

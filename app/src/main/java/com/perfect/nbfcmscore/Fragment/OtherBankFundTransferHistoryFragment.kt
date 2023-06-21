@@ -1,6 +1,5 @@
 package com.perfect.nbfcmscore.Fragment
 
-import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.os.Bundle
 import android.util.Log
@@ -14,7 +13,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Activity.OtherfundTransferHistory
 import com.perfect.nbfcmscore.Adapter.ProductSummaryAdapter

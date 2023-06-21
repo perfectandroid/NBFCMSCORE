@@ -33,7 +33,7 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 import android.provider.CalendarContract.Reminders
-import java.lang.StringBuilder
+import com.perfect.nbfcmscore.Helper.AlertMessage
 
 
 class DuedateAdapter(internal val mContext: Context, internal val jsInfo: JSONArray, strHeader: String) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -223,12 +223,13 @@ class DuedateAdapter(internal val mContext: Context, internal val jsInfo: JSONAr
                     try {
                         Log.e("TAG","220   "+date+"    "+hr.toString() + ":" + min)
                         if (dateFormat.parse(dateFormat.format(date)).after(dateFormat.parse(hr.toString() + ":" + min))) {
-                            val builder = AlertDialog.Builder(mContext)
-                            builder.setMessage("Set time greater than current time.")
-                                    .setCancelable(false)
-                                    .setPositiveButton("OK") { dialog, id -> dialog.dismiss() }
-                            val alert = builder.create()
-                            alert.show()
+                            AlertMessage().alertMessage(mContext,null,"Alert","Set time greater than current time.",1);
+//                            val builder = AlertDialog.Builder(mContext)
+//                            builder.setMessage("Set time greater than current time.")
+//                                    .setCancelable(false)
+//                                    .setPositiveButton("OK") { dialog, id -> dialog.dismiss() }
+//                            val alert = builder.create()
+//                            alert.show()
                         } else {
 
                             val dates1 = etdate!!.text.toString()
@@ -246,12 +247,13 @@ class DuedateAdapter(internal val mContext: Context, internal val jsInfo: JSONAr
                     }
                 }
                 if (newDate!!.before(datecurrent)) {
-                    val builder = AlertDialog.Builder(mContext)
-                    builder.setMessage("Set date greater than or equal to current date.")
-                            .setCancelable(false)
-                            .setPositiveButton("OK") { dialog, id -> dialog.dismiss() }
-                    val alert = builder.create()
-                    alert.show()
+                    AlertMessage().alertMessage(mContext,null,"Alert","Set date greater than or equal to current date.",1);
+//                    val builder = AlertDialog.Builder(mContext)
+//                    builder.setMessage("Set date greater than or equal to current date.")
+//                            .setCancelable(false)
+//                            .setPositiveButton("OK") { dialog, id -> dialog.dismiss() }
+//                    val alert = builder.create()
+//                    alert.show()
                 }
                 //addEvent(yr, month, day, hr, min, etdis.getText().toString(),title+" Due Notification");
             }
@@ -401,12 +403,13 @@ class DuedateAdapter(internal val mContext: Context, internal val jsInfo: JSONAr
             values.put(Reminders.MINUTES, 10)
             cr.insert(REMINDERS_URI, values)
             Log.e("TAG","Success  1963    "+endTime.time)
-            val builder = AlertDialog.Builder(mContext)
-            builder.setMessage("Due date reminder set on calender successfully.")
-                .setCancelable(false)
-                .setPositiveButton("OK") { dialog, id -> dialog.dismiss() }
-            val alert = builder.create()
-            alert.show()
+            AlertMessage().alertMessage(mContext,null,"Success","Due date reminder set on calender successfully.",2);
+//            val builder = AlertDialog.Builder(mContext)
+//            builder.setMessage("Due date reminder set on calender successfully.")
+//                .setCancelable(false)
+//                .setPositiveButton("OK") { dialog, id -> dialog.dismiss() }
+//            val alert = builder.create()
+//            alert.show()
         }
         catch (e: Exception){
             Log.e("TAG","Exception  1964    "+e.toString())

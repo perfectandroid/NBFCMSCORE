@@ -20,7 +20,7 @@
         android:layout_gravity="start"
         android:layout_marginEnd="-65dp"
         android:layout_marginRight="-65dp"
-        android:background="@drawable/background"
+        android:background="@drawable/background4"
         android:fitsSystemWindows="true"
         app:itemIconTint="@color/colorPrimaryExtraDark"
         app:itemTextColor="@color/colorPrimaryExtraDark">
@@ -86,8 +86,7 @@
                 <com.perfect.nbfcmscore.Helper.FullLenghtListview
                     android:id="@+id/lvNavMenu"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:dividerHeight="1dp"></com.perfect.nbfcmscore.Helper.FullLenghtListview>
+                    android:layout_height="wrap_content"></com.perfect.nbfcmscore.Helper.FullLenghtListview>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
