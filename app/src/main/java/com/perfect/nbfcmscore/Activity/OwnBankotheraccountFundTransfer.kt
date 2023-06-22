@@ -632,7 +632,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                         requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
 
 
-                        Log.e("TAG", "requestObject1  700   " + requestObject1)
+                        Log.e("TAG", "requestObject1  4567   " + requestObject1)
                     } catch (e: Exception) {
                         //progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -651,7 +651,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                             try {
                                 //   progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
-                                Log.i("Response-fundtransfer", response.body().toString())
+                                Log.e("Response-fundtransfer 4567", response.body().toString())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
                                             jObject.getJSONObject("FundTransferLimit")

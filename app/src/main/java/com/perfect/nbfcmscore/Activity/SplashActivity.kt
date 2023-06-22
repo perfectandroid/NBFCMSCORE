@@ -1,4 +1,5 @@
 package com.perfect.nbfcmscore.Activity
+
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
@@ -38,19 +39,19 @@ import javax.net.ssl.X509TrustManager
 
 
 class SplashActivity : AppCompatActivity() {
-    val TAG: String ="SplashActivity"
+    val TAG: String = "SplashActivity"
 
     private var progressDialog: ProgressDialog? = null
     var tv_error_message: TextView? = null
     var btn_proceed: Button? = null
     var imglogo: ImageView? = null
-    var CommonApp: String =""
+    var CommonApp: String = ""
 
     companion object {
 
 
-///////Development
-        public val BASE_URL  = "https://202.164.150.65:15006/NbfcAndroidAPI/api/"  //DEV  08.07.2022
+        ///////Development
+        public val BASE_URL = "https://202.164.150.65:15006/NbfcAndroidAPI/api/"  //DEV  08.07.2022
         public val IMAGE_URL = "https://202.164.150.65:15006/NbfcAndroidAPI/"
         public val BankKey = "-500"
         public val BankHeader = "PERFECT NBFC BANK HEAD OFFICE"
@@ -77,16 +78,14 @@ class SplashActivity : AppCompatActivity() {
     }
 
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
         setContentView(R.layout.activity_splash)
-      //  doSplash()
+        //  doSplash()
 
         Log.e("BASE_URL", "BASE_URL  49    " + BASE_URL)
 
@@ -99,41 +98,38 @@ class SplashActivity : AppCompatActivity() {
 //        }
         btn_proceed!!.setOnClickListener(View.OnClickListener {
 
-            Log.e(TAG,"btn_proceed   "+97)
-          //  btn_proceed!!.isEnabled = false
+            Log.e(TAG, "btn_proceed   " + 97)
+            //  btn_proceed!!.isEnabled = false
             startUserregistrationActivity()
         })
 
 
+        val ID_CommonApp = applicationContext.getSharedPreferences(Config.SHARED_PREF345, 0)
+        var chkstatus = ID_CommonApp.getString("nidhicheck", "")
 
 
-        val ID_CommonApp = applicationContext.getSharedPreferences(Config.SHARED_PREF345,0)
-        var chkstatus =ID_CommonApp.getString("nidhicheck","")
-
-
-       if(chkstatus.equals(""))
-        {
+        if (chkstatus.equals("")) {
             getnidhicheck()
 
-        }
-        else if(chkstatus.equals("true")||chkstatus.equals("false"))
-        {
+        } else if (chkstatus.equals("true") || chkstatus.equals("false")) {
             getResellerDetails()
         }
 
 
-
-     //   getResellerDetails()
+        //   getResellerDetails()
         val imgSplash: ImageView = findViewById(R.id.imsplashlogo)
         val imglogo: ImageView = findViewById(R.id.imglogo)
         Glide.with(this).load(R.drawable.splashgif).into(imgSplash)
         try {
-            val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
-            val imagepath = IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
-            PicassoTrustAll.getInstance(this@SplashActivity)!!.load(imagepath).error(android.R.color.transparent).into(imglogo!!)
+            val AppIconImageCodeSP =
+                applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
+            val imagepath = IMAGE_URL + AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+            PicassoTrustAll.getInstance(this@SplashActivity)!!.load(imagepath)
+                .error(android.R.color.transparent).into(imglogo!!)
 
-        }catch (e: Exception) {
-            e.printStackTrace()}
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
 
     }
 
@@ -152,103 +148,105 @@ class SplashActivity : AppCompatActivity() {
         val baseUrlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurl = baseUrlSP.getString("baseurl", null)
 
-            when(ConnectivityUtils.isConnected(this)) {
-                true -> {
-                    progressDialog = ProgressDialog(this@SplashActivity, R.style.Progress)
-                    progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
-                    progressDialog!!.setCancelable(false)
-                    progressDialog!!.setIndeterminate(true)
-                    progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
-                    progressDialog!!.show()
+        when (ConnectivityUtils.isConnected(this)) {
+            true -> {
+                progressDialog = ProgressDialog(this@SplashActivity, R.style.Progress)
+                progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
+                progressDialog!!.setCancelable(false)
+                progressDialog!!.setIndeterminate(true)
+                progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
+                progressDialog!!.show()
+                try {
+                    val trustManagerFactory = TrustManagerFactory.getInstance(
+                        TrustManagerFactory.getDefaultAlgorithm()
+                    )
+                    trustManagerFactory.init(null as KeyStore?)
+                    val trustManagers = trustManagerFactory.trustManagers
+                    check(!(trustManagers.size != 1 || trustManagers[0] !is X509TrustManager)) {
+                        ("Unexpected default trust managers:"
+                                + Arrays.toString(trustManagers))
+                    }
+                    val trustManager = trustManagers[0] as X509TrustManager
+                    val client: OkHttpClient = okhttp3.OkHttpClient.Builder()
+                        .connectTimeout(60, TimeUnit.SECONDS)
+                        .readTimeout(60, TimeUnit.SECONDS)
+                        .writeTimeout(60, TimeUnit.SECONDS)
+                        .sslSocketFactory(getSSLSocketFactory(this), trustManager)
+                        .hostnameVerifier(Config.getHostnameVerifier())
+                        .build()
+                    val gson = GsonBuilder()
+                        .setLenient()
+                        .create()
+                    val retrofit = Retrofit.Builder()
+                        .baseUrl(BASE_URL)
+                        .addConverterFactory(ScalarsConverterFactory.create())
+                        .addConverterFactory(GsonConverterFactory.create(gson))
+                        .client(client)
+                        .build()
+                    val apiService = retrofit.create(ApiInterface::class.java!!)
+                    val requestObject1 = JSONObject()
                     try {
-                        val trustManagerFactory = TrustManagerFactory.getInstance(
-                            TrustManagerFactory.getDefaultAlgorithm()
+
+                        val FK_CustomerSP = this.applicationContext.getSharedPreferences(
+                            Config.SHARED_PREF1,
+                            0
                         )
-                        trustManagerFactory.init(null as KeyStore?)
-                        val trustManagers = trustManagerFactory.trustManagers
-                        check(!(trustManagers.size != 1 || trustManagers[0] !is X509TrustManager)) {
-                            ("Unexpected default trust managers:"
-                                    + Arrays.toString(trustManagers))
-                        }
-                        val trustManager = trustManagers[0] as X509TrustManager
-                        val client:OkHttpClient = okhttp3 . OkHttpClient . Builder ()
-                            .connectTimeout(60, TimeUnit.SECONDS)
-                            .readTimeout(60, TimeUnit.SECONDS)
-                            .writeTimeout(60, TimeUnit.SECONDS)
-                            .sslSocketFactory(getSSLSocketFactory(this), trustManager)
-                                .hostnameVerifier(Config.getHostnameVerifier())
-                                .build()
-                        val gson = GsonBuilder()
-                                .setLenient()
-                                .create()
-                        val retrofit = Retrofit.Builder()
-                                .baseUrl(BASE_URL)
-                                .addConverterFactory(ScalarsConverterFactory.create())
-                                .addConverterFactory(GsonConverterFactory.create(gson))
-                                .client(client)
-                                .build()
-                        val apiService = retrofit.create(ApiInterface::class.java!!)
-                        val requestObject1 = JSONObject()
-                        try {
+                        val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
 
-                            val FK_CustomerSP = this.applicationContext.getSharedPreferences(
-                                    Config.SHARED_PREF1,
-                                    0
-                            )
-                            val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
-
-                            val TokenSP = this!!.applicationContext.getSharedPreferences(
-                                    Config.SHARED_PREF8,
-                                    0
-                            )
-                            val Token = TokenSP.getString("Token", null)
-                            val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
-                            val BankKeyPref = BankKeySP.getString("BankKey", null)
-                            val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
-                            val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
-
-                            //  requestObject1.put("Reqmode", MscoreApplication.encryptStart("40"))
-                            // requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-
-
-                            requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKey))
-                            requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeader))
-
-
-                            Log.e("TAG", "requestObject1  commonappchk   " + requestObject1)
-                        } catch (e: Exception) {
-                            progressDialog!!.dismiss()
-                            e.printStackTrace()
-                            val mySnackbar = Snackbar.make(
-                                    findViewById(R.id.rl_main),
-                                    " Some technical issues.", Snackbar.LENGTH_SHORT
-                            )
-                            mySnackbar.show()
-                        }
-                        val body = RequestBody.create(
-                            "application/json; charset=utf-8".toMediaTypeOrNull(),
-                            requestObject1.toString()
+                        val TokenSP = this!!.applicationContext.getSharedPreferences(
+                            Config.SHARED_PREF8,
+                            0
                         )
-                        val call = apiService.getCommonAppchkng(body)
-                        call.enqueue(object : retrofit2.Callback<String> {
-                            override fun onResponse(
-                                    call: retrofit2.Call<String>, response:
-                                    Response<String>
-                            ) {
-                                try {
-                                    progressDialog!!.dismiss()
-                                    val jObject = JSONObject(response.body())
-                                    Log.i("Response-commonappchk", response.body().toString())
-                                    if (jObject.getString("StatusCode") == "0") {
+                        val Token = TokenSP.getString("Token", null)
+                        val BankKeySP =
+                            applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeyPref = BankKeySP.getString("BankKey", null)
+                        val BankHeaderSP =
+                            applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
-                                        val status =jObject.getString("CommonApp")
-                                        CommonApp = jObject.getString("CommonApp") as String
+                        //  requestObject1.put("Reqmode", MscoreApplication.encryptStart("40"))
+                        // requestObject1.put("Token", MscoreApplication.encryptStart(Token))
 
-                                        if(status!!.equals("true"))
-                                        {
-                                            nidhicodepopup()
-                                        }
 
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKey))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeader))
+
+
+                        Log.e("TAG", "requestObject1  commonappchk   " + requestObject1)
+                    } catch (e: Exception) {
+                        progressDialog!!.dismiss()
+                        e.printStackTrace()
+                        AlertMessage().alertMessage(
+                            this@SplashActivity,
+                            this@SplashActivity,
+                            "Alert",
+                            "Some technical issues.",
+                            1
+                        );
+                    }
+                    val body = RequestBody.create(
+                        "application/json; charset=utf-8".toMediaTypeOrNull(),
+                        requestObject1.toString()
+                    )
+                    val call = apiService.getCommonAppchkng(body)
+                    call.enqueue(object : retrofit2.Callback<String> {
+                        override fun onResponse(
+                            call: retrofit2.Call<String>, response:
+                            Response<String>
+                        ) {
+                            try {
+                                progressDialog!!.dismiss()
+                                val jObject = JSONObject(response.body())
+                                Log.i("Response-commonappchk", response.body().toString())
+                                if (jObject.getString("StatusCode") == "0") {
+
+                                    val status = jObject.getString("CommonApp")
+                                    CommonApp = jObject.getString("CommonApp") as String
+
+                                    if (status!!.equals("true")) {
+                                        nidhicodepopup()
+                                    }
 
 
 //                                        val ID_status= this@SplashActivity.getSharedPreferences(Config.SHARED_PREF345, 0)
@@ -257,99 +255,84 @@ class SplashActivity : AppCompatActivity() {
 //                                        ID_statusEditer.commit()
 
 
+                                    /*   val jsonObj1: JSONObject =
+                                           jObject.getJSONObject("Addnewsender")
+                                       val jsonobj2 = JSONObject(jsonObj1.toString())
 
+                                       var message = jsonobj2.getString("message")
+                                       var status = jsonobj2.getString("Status")
+                                       var senderid = jsonobj2.getString("ID_Sender")
+                                       var receiverid = jsonobj2.getString("ID_Receiver")
+                                       var otpRefNo = jsonobj2.getString("otpRefNo")
+                                       var statuscode = jsonobj2.getString("StatusCode")
 
+                                       arrayList2 = ArrayList<SenderReceiver>()
+                                       arrayList2!!.add(
+                                           SenderReceiver(
+                                           message, status, senderid, receiverid,otpRefNo,statuscode
+                                       )
+                                       )
 
+                                       alertMessage1(status, message)
+   */
 
-                                        /*   val jsonObj1: JSONObject =
-                                               jObject.getJSONObject("Addnewsender")
-                                           val jsonobj2 = JSONObject(jsonObj1.toString())
-
-                                           var message = jsonobj2.getString("message")
-                                           var status = jsonobj2.getString("Status")
-                                           var senderid = jsonobj2.getString("ID_Sender")
-                                           var receiverid = jsonobj2.getString("ID_Receiver")
-                                           var otpRefNo = jsonobj2.getString("otpRefNo")
-                                           var statuscode = jsonobj2.getString("StatusCode")
-
-                                           arrayList2 = ArrayList<SenderReceiver>()
-                                           arrayList2!!.add(
-                                               SenderReceiver(
-                                               message, status, senderid, receiverid,otpRefNo,statuscode
-                                           )
-                                           )
-
-                                           alertMessage1(status, message)
-       */
-
-                                    }
-
-                                    else {
-                                        val builder = AlertDialog.Builder(
-                                                this@SplashActivity,
-                                                R.style.MyDialogTheme
-                                        )
-                                        builder.setMessage("" + jObject.getString("EXMessage"))
-                                        builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                        }
-                                        val alertDialog: AlertDialog = builder.create()
-                                        alertDialog.setCancelable(false)
-                                        alertDialog.show()
-                                    }
-                                } catch (e: Exception) {
-                                    progressDialog!!.dismiss()
-
-                                    val builder = AlertDialog.Builder(
-                                            this@SplashActivity,
-                                            R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("Some technical issues.")
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
-                                    e.printStackTrace()
+                                } else {
+                                    AlertMessage().alertMessage(
+                                        this@SplashActivity,
+                                        this@SplashActivity,
+                                        "Alert",
+                                        jObject.getString("EXMessage"),
+                                        1
+                                    );
                                 }
-                            }
-
-                            override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
+                            } catch (e: Exception) {
                                 progressDialog!!.dismiss()
 
-                                val builder = AlertDialog.Builder(
-                                        this@SplashActivity,
-                                        R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(
+                                    this@SplashActivity,
+                                    this@SplashActivity,
+                                    "Alert",
+                                    "Some technical issues.",
+                                    1
+                                );
+                                e.printStackTrace()
                             }
-                        })
-                    } catch (e: Exception) {
-                        progressDialog!!.dismiss()
-                        val builder = AlertDialog.Builder(this@SplashActivity, R.style.MyDialogTheme)
-                        builder.setMessage("Some technical issues.")
-                        builder.setPositiveButton("Ok") { dialogInterface, which ->
                         }
-                        val alertDialog: AlertDialog = builder.create()
-                        alertDialog.setCancelable(false)
-                        alertDialog.show()
-                        e.printStackTrace()
-                    }
-                }
-                false -> {
-                    val builder = AlertDialog.Builder(this@SplashActivity, R.style.MyDialogTheme)
-                    builder.setMessage("No Internet Connection.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+
+                        override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
+                            progressDialog!!.dismiss()
+
+                            AlertMessage().alertMessage(
+                                this@SplashActivity,
+                                this@SplashActivity,
+                                "Alert",
+                                "Some technical issues.",
+                                1
+                            );
+                        }
+                    })
+                } catch (e: Exception) {
+                    progressDialog!!.dismiss()
+                    AlertMessage().alertMessage(
+                        this@SplashActivity,
+                        this@SplashActivity,
+                        "Alert",
+                        "Some technical issues.",
+                        1
+                    );
+                    e.printStackTrace()
                 }
             }
+            false -> {
+                AlertMessage().alertMessage(
+                    this@SplashActivity,
+                    this@SplashActivity,
+                    "Alert",
+                    "No Internet Connection.",
+                    3
+                );
+            }
+        }
     }
 
 //    private fun nidhicodepopup() {
@@ -385,18 +368,19 @@ class SplashActivity : AppCompatActivity() {
     private fun nidhicodepopup() {
         val bottomSheetDialog = BottomSheetDialog(this)
         bottomSheetDialog.setContentView(R.layout.popup_nidhi)
-        val etxt_nidhicode: EditText? = bottomSheetDialog.findViewById<EditText>(R.id.etxt_nidhicode)
+        val etxt_nidhicode: EditText? =
+            bottomSheetDialog.findViewById<EditText>(R.id.etxt_nidhicode)
         val btn_submit: TextView? = bottomSheetDialog.findViewById<TextView>(R.id.btn_submit)
         val btn_resend: Button? = bottomSheetDialog.findViewById<Button>(R.id.btn_resend)
         val idImgV1: ImageView? = bottomSheetDialog.findViewById<ImageView>(R.id.idImgV1)
-       // Glide.with(this).load(R.drawable.otpgif).into(idImgV1)
+        // Glide.with(this).load(R.drawable.otpgif).into(idImgV1)
         btn_submit?.setOnClickListener {
-            if(!etxt_nidhicode!!.text.toString().equals("")){
+            if (!etxt_nidhicode!!.text.toString().equals("")) {
                 var nidhicode = etxt_nidhicode!!.text.toString()
                 bottomSheetDialog.dismiss()
                 getnidhicode(nidhicode)
-            }else {
-                Toast.makeText(applicationContext,"Enter Valid Code", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(applicationContext, "Enter Valid Code", Toast.LENGTH_LONG).show()
             }
         }
 
@@ -407,9 +391,9 @@ class SplashActivity : AppCompatActivity() {
     private fun getnidhicode(nidhicode: String) {
 
 
-    /*    val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
-        val baseurl = baseurlSP.getString("baseurl", null)*/
-        when(ConnectivityUtils.isConnected(this)) {
+        /*    val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+            val baseurl = baseurlSP.getString("baseurl", null)*/
+        when (ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@SplashActivity, R.style.Progress)
                 progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
@@ -428,40 +412,42 @@ class SplashActivity : AppCompatActivity() {
                                 + Arrays.toString(trustManagers))
                     }
                     val trustManager = trustManagers[0] as X509TrustManager
-                    val client:OkHttpClient = okhttp3 . OkHttpClient . Builder ()
+                    val client: OkHttpClient = okhttp3.OkHttpClient.Builder()
                         .connectTimeout(60, TimeUnit.SECONDS)
                         .readTimeout(60, TimeUnit.SECONDS)
                         .writeTimeout(60, TimeUnit.SECONDS)
                         .sslSocketFactory(getSSLSocketFactory(this), trustManager)
-                            .hostnameVerifier(Config.getHostnameVerifier())
-                            .build()
+                        .hostnameVerifier(Config.getHostnameVerifier())
+                        .build()
                     val gson = GsonBuilder()
-                            .setLenient()
-                            .create()
+                        .setLenient()
+                        .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(BASE_URL)
-                            .addConverterFactory(ScalarsConverterFactory.create())
-                            .addConverterFactory(GsonConverterFactory.create(gson))
-                            .client(client)
-                            .build()
+                        .baseUrl(BASE_URL)
+                        .addConverterFactory(ScalarsConverterFactory.create())
+                        .addConverterFactory(GsonConverterFactory.create(gson))
+                        .client(client)
+                        .build()
                     val apiService = retrofit.create(ApiInterface::class.java!!)
                     val requestObject1 = JSONObject()
                     try {
 
                         val FK_CustomerSP = this.applicationContext.getSharedPreferences(
-                                Config.SHARED_PREF1,
-                                0
+                            Config.SHARED_PREF1,
+                            0
                         )
                         val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
 
                         val TokenSP = this!!.applicationContext.getSharedPreferences(
-                                Config.SHARED_PREF8,
-                                0
+                            Config.SHARED_PREF8,
+                            0
                         )
                         val Token = TokenSP.getString("Token", null)
-                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeySP =
+                            applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
                         val BankKeyPref = BankKeySP.getString("BankKey", null)
-                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderSP =
+                            applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
                         val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                         //  requestObject1.put("Reqmode", MscoreApplication.encryptStart("40"))
@@ -476,11 +462,13 @@ class SplashActivity : AppCompatActivity() {
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                                findViewById(R.id.rl_main),
-                                " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(
+                            this@SplashActivity,
+                            this@SplashActivity,
+                            "Alert",
+                            "Some technical issues.",
+                            1
+                        );
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -489,8 +477,8 @@ class SplashActivity : AppCompatActivity() {
                     val call = apiService.getNidhicode(body)
                     call.enqueue(object : retrofit2.Callback<String> {
                         override fun onResponse(
-                                call: retrofit2.Call<String>, response:
-                                Response<String>
+                            call: retrofit2.Call<String>, response:
+                            Response<String>
                         ) {
                             try {
                                 progressDialog!!.dismiss()
@@ -500,25 +488,28 @@ class SplashActivity : AppCompatActivity() {
 
                                     var nidhicode = jObject.getString("NidhiCode")
 
-                                    val ID_status= this@SplashActivity.getSharedPreferences(Config.SHARED_PREF346, 0)
+                                    val ID_status = this@SplashActivity.getSharedPreferences(
+                                        Config.SHARED_PREF346,
+                                        0
+                                    )
                                     val ID_statusEditer = ID_status.edit()
-                                    ID_statusEditer.putString("nidhicode", jObject.get("NidhiCode") as String)
+                                    ID_statusEditer.putString(
+                                        "nidhicode",
+                                        jObject.get("NidhiCode") as String
+                                    )
                                     ID_statusEditer.commit()
 
 
-                                    val ID_CommonApp= this@SplashActivity.getSharedPreferences(Config.SHARED_PREF345, 0)
+                                    val ID_CommonApp = this@SplashActivity.getSharedPreferences(
+                                        Config.SHARED_PREF345,
+                                        0
+                                    )
                                     val ID_CommonAppEditer = ID_CommonApp.edit()
                                     ID_CommonAppEditer.putString("nidhicheck", CommonApp)
                                     ID_CommonAppEditer.commit()
 
 
                                     getResellerDetails()
-
-
-
-
-
-
 
 
                                     /*   val jsonObj1: JSONObject =
@@ -542,36 +533,21 @@ class SplashActivity : AppCompatActivity() {
                                        alertMessage1(status, message)
    */
 
-                                }
-
-                                else {
-                                    val builder = AlertDialog.Builder(
-                                            this@SplashActivity,
-                                            R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                        nidhicodepopup()
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                } else {
+                                    alertMessage("Alert", jObject.getString("EXMessage"), 1);
 
                                 }
 
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
 
-                                val builder = AlertDialog.Builder(
-                                        this@SplashActivity,
-                                        R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(
+                                    this@SplashActivity,
+                                    this@SplashActivity,
+                                    "Alert",
+                                    "Some technical issues.",
+                                    1
+                                );
                                 e.printStackTrace()
                             }
                         }
@@ -579,38 +555,35 @@ class SplashActivity : AppCompatActivity() {
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
 
-                            val builder = AlertDialog.Builder(
-                                    this@SplashActivity,
-                                    R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(
+                                this@SplashActivity,
+                                this@SplashActivity,
+                                "Alert",
+                                "Some technical issues.",
+                                1
+                            );
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(this@SplashActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(
+                        this@SplashActivity,
+                        this@SplashActivity,
+                        "Alert",
+                        "Some technical issues.",
+                        1
+                    );
                     e.printStackTrace()
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@SplashActivity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(
+                    this@SplashActivity,
+                    this@SplashActivity,
+                    "Alert",
+                    "No Internet Connection.",
+                    3
+                );
             }
         }
     }
@@ -626,17 +599,25 @@ class SplashActivity : AppCompatActivity() {
                         val i = Intent(this@SplashActivity, WelcomeSliderActivity::class.java)
                         startActivity(i)
                         finish()
-                    } else if (Loginpref.getString("loginsession", null) != null && !Loginpref.getString(
-                                    "loginsession",
-                                    null
-                            )!!.isEmpty() && Loginpref.getString("loginsession", null) == "Yes") {
+                    } else if (Loginpref.getString(
+                            "loginsession",
+                            null
+                        ) != null && !Loginpref.getString(
+                            "loginsession",
+                            null
+                        )!!.isEmpty() && Loginpref.getString("loginsession", null) == "Yes"
+                    ) {
                         val i = Intent(this@SplashActivity, MpinActivity::class.java)
                         startActivity(i)
                         finish()
-                    } else if (Loginpref.getString("loginsession", null) != null && !Loginpref.getString(
-                                    "loginsession",
-                                    null
-                            )!!.isEmpty() && Loginpref.getString("loginsession", null) == "No") {
+                    } else if (Loginpref.getString(
+                            "loginsession",
+                            null
+                        ) != null && !Loginpref.getString(
+                            "loginsession",
+                            null
+                        )!!.isEmpty() && Loginpref.getString("loginsession", null) == "No"
+                    ) {
 
                         val i = Intent(this@SplashActivity, WelcomeActivity::class.java)
                         startActivity(i)
@@ -655,17 +636,17 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun getResellerDetails() {
-     /*   val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
-        val certificateSPEditer = certificateSP.edit()
-        certificateSPEditer.putString("sslcertificate", CERT_NAME)
-        certificateSPEditer.commit()
-        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
-        val baseurlSPEditer = baseurlSP.edit()
-        baseurlSPEditer.putString("baseurl", BASE_URL)
-        baseurlSPEditer.commit()*/
+        /*   val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
+           val certificateSPEditer = certificateSP.edit()
+           certificateSPEditer.putString("sslcertificate", CERT_NAME)
+           certificateSPEditer.commit()
+           val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+           val baseurlSPEditer = baseurlSP.edit()
+           baseurlSPEditer.putString("baseurl", BASE_URL)
+           baseurlSPEditer.commit()*/
         val baseUrlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurl = baseUrlSP.getString("baseurl", null)
-        when(ConnectivityUtils.isConnected(this)) {
+        when (ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@SplashActivity, R.style.Progress)
                 progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
@@ -684,22 +665,22 @@ class SplashActivity : AppCompatActivity() {
                                 + Arrays.toString(trustManagers))
                     }
                     val trustManager = trustManagers[0] as X509TrustManager
-                    val client:OkHttpClient = okhttp3 . OkHttpClient . Builder ()
+                    val client: OkHttpClient = okhttp3.OkHttpClient.Builder()
                         .connectTimeout(60, TimeUnit.SECONDS)
                         .readTimeout(60, TimeUnit.SECONDS)
                         .writeTimeout(60, TimeUnit.SECONDS)
                         .sslSocketFactory(getSSLSocketFactory(this), trustManager)
-                            .hostnameVerifier(Config.getHostnameVerifier())
-                            .build()
+                        .hostnameVerifier(Config.getHostnameVerifier())
+                        .build()
                     val gson = GsonBuilder()
-                            .setLenient()
-                            .create()
+                        .setLenient()
+                        .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(baseurl)
-                            .addConverterFactory(ScalarsConverterFactory.create())
-                            .addConverterFactory(GsonConverterFactory.create(gson))
-                            .client(client)
-                            .build()
+                        .baseUrl(baseurl)
+                        .addConverterFactory(ScalarsConverterFactory.create())
+                        .addConverterFactory(GsonConverterFactory.create(gson))
+                        .client(client)
+                        .build()
                     val apiService = retrofit.create(ApiInterface::class.java!!)
                     val requestObject1 = JSONObject()
                     try {
@@ -714,11 +695,13 @@ class SplashActivity : AppCompatActivity() {
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                                findViewById(R.id.rl_main),
-                                " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(
+                            this@SplashActivity,
+                            this@SplashActivity,
+                            "Alert",
+                            "Some technical issues.",
+                            1
+                        );
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -727,8 +710,8 @@ class SplashActivity : AppCompatActivity() {
                     val call = apiService.getResellerDetails(body)
                     call.enqueue(object : retrofit2.Callback<String> {
                         override fun onResponse(
-                                call: retrofit2.Call<String>, response:
-                                Response<String>
+                            call: retrofit2.Call<String>, response:
+                            Response<String>
                         ) {
                             try {
                                 progressDialog!!.dismiss()
@@ -749,100 +732,188 @@ class SplashActivity : AppCompatActivity() {
                                         var qpy = json_data.getString("QuickPay")
 
 
-                                        val LicenceImpsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF293, 0)
+                                        val LicenceImpsSP = applicationContext.getSharedPreferences(
+                                            Config.SHARED_PREF293,
+                                            0
+                                        )
                                         val LicenceImpsEditer = LicenceImpsSP.edit()
-                                        LicenceImpsEditer.putString("LicenceImps",imp)
+                                        LicenceImpsEditer.putString("LicenceImps", imp)
                                         LicenceImpsEditer.commit()
 
-                                        val LicenceNeftSP = applicationContext.getSharedPreferences(Config.SHARED_PREF295, 0)
+                                        val LicenceNeftSP = applicationContext.getSharedPreferences(
+                                            Config.SHARED_PREF295,
+                                            0
+                                        )
                                         val LicenceNeftEditer = LicenceNeftSP.edit()
                                         LicenceNeftEditer.putString("LicenceNeft", nft)
                                         LicenceNeftEditer.commit()
 
-                                        val LicenceRtgsSP = applicationContext.getSharedPreferences(Config.SHARED_PREF298, 0)
+                                        val LicenceRtgsSP = applicationContext.getSharedPreferences(
+                                            Config.SHARED_PREF298,
+                                            0
+                                        )
                                         val LicenceRtgsEditer = LicenceRtgsSP.edit()
                                         LicenceRtgsEditer.putString("LicenceRtgs", rtg)
                                         LicenceRtgsEditer.commit()
 
 
-                                        val LicenceQuickPaySP = applicationContext.getSharedPreferences(Config.SHARED_PREF296, 0)
+                                        val LicenceQuickPaySP =
+                                            applicationContext.getSharedPreferences(
+                                                Config.SHARED_PREF296,
+                                                0
+                                            )
                                         val LicenceQuickPayEditer = LicenceQuickPaySP.edit()
                                         LicenceQuickPayEditer.putString("LicenceQuickPay", qpy)
                                         LicenceQuickPayEditer.commit()
 
-                                        val LicenceKsebSP = applicationContext.getSharedPreferences(Config.SHARED_PREF294, 0)
+                                        val LicenceKsebSP = applicationContext.getSharedPreferences(
+                                            Config.SHARED_PREF294,
+                                            0
+                                        )
                                         val LicenceKsebEditer = LicenceKsebSP.edit()
                                         LicenceKsebEditer.putString("LicenceKseb", ksb)
                                         LicenceKsebEditer.commit()
 
-                                        val LicenceRechargeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF297, 0)
+                                        val LicenceRechargeSP =
+                                            applicationContext.getSharedPreferences(
+                                                Config.SHARED_PREF297,
+                                                0
+                                            )
                                         val LicenceRechargeEditer = LicenceRechargeSP.edit()
                                         LicenceRechargeEditer.putString("LicenceRecharge", rchrg)
                                         LicenceRechargeEditer.commit()
 
 
-                                        Log.i("Rchrgs",rchrg+"\n"+imp+"\n"+rtg+"\n"+ksb+"\n"+nft+"\n"+qpy)
+                                        Log.i(
+                                            "Rchrgs",
+                                            rchrg + "\n" + imp + "\n" + rtg + "\n" + ksb + "\n" + nft + "\n" + qpy
+                                        )
                                     }
 
 
-                                    val AppStoreLinkSP = applicationContext.getSharedPreferences(Config.SHARED_PREF10, 0)
+                                    val AppStoreLinkSP = applicationContext.getSharedPreferences(
+                                        Config.SHARED_PREF10,
+                                        0
+                                    )
                                     val AppStoreLinkEditer = AppStoreLinkSP.edit()
-                                    AppStoreLinkEditer.putString("AppStoreLink", jobjt.getString("AppStoreLink"))
+                                    AppStoreLinkEditer.putString(
+                                        "AppStoreLink",
+                                        jobjt.getString("AppStoreLink")
+                                    )
                                     AppStoreLinkEditer.commit()
 
-                                    val PlayStoreLinkSP = applicationContext.getSharedPreferences(Config.SHARED_PREF11, 0)
+                                    val PlayStoreLinkSP = applicationContext.getSharedPreferences(
+                                        Config.SHARED_PREF11,
+                                        0
+                                    )
                                     val PlayStoreLinkEditer = PlayStoreLinkSP.edit()
-                                    PlayStoreLinkEditer.putString("PlayStoreLink", jobjt.getString("PlayStoreLink"))
+                                    PlayStoreLinkEditer.putString(
+                                        "PlayStoreLink",
+                                        jobjt.getString("PlayStoreLink")
+                                    )
                                     PlayStoreLinkEditer.commit()
 
-                                    val ProductNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF12, 0)
+                                    val ProductNameSP = applicationContext.getSharedPreferences(
+                                        Config.SHARED_PREF12,
+                                        0
+                                    )
                                     val ProductNameEditer = ProductNameSP.edit()
-                                    ProductNameEditer.putString("ProductName", jobjt.getString("ProductName"))
+                                    ProductNameEditer.putString(
+                                        "ProductName",
+                                        jobjt.getString("ProductName")
+                                    )
                                     ProductNameEditer.commit()
 
-                                    val CompanyLogoImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF13, 0)
+                                    val CompanyLogoImageCodeSP =
+                                        applicationContext.getSharedPreferences(
+                                            Config.SHARED_PREF13,
+                                            0
+                                        )
                                     val CompanyLogoImageCodeEditer = CompanyLogoImageCodeSP.edit()
-                                    CompanyLogoImageCodeEditer.putString("CompanyLogoImageCode", jobjt.getString("CompanyLogoImageCode"))
+                                    CompanyLogoImageCodeEditer.putString(
+                                        "CompanyLogoImageCode",
+                                        jobjt.getString("CompanyLogoImageCode")
+                                    )
                                     CompanyLogoImageCodeEditer.commit()
 
-                                    val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
+                                    val AppIconImageCodeSP =
+                                        applicationContext.getSharedPreferences(
+                                            Config.SHARED_PREF14,
+                                            0
+                                        )
                                     val AppIconImageCodeEditer = AppIconImageCodeSP.edit()
-                                    AppIconImageCodeEditer.putString("AppIconImageCode", jobjt.getString("AppIconImageCode"))
+                                    AppIconImageCodeEditer.putString(
+                                        "AppIconImageCode",
+                                        jobjt.getString("AppIconImageCode")
+                                    )
                                     AppIconImageCodeEditer.commit()
 
 
                                     setImage()
 
-                                    val ResellerNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF15, 0)
+                                    val ResellerNameSP = applicationContext.getSharedPreferences(
+                                        Config.SHARED_PREF15,
+                                        0
+                                    )
                                     val ResellerNameEditer = ResellerNameSP.edit()
-                                    ResellerNameEditer.putString("ResellerName", jobjt.getString("ResellerName"))
+                                    ResellerNameEditer.putString(
+                                        "ResellerName",
+                                        jobjt.getString("ResellerName")
+                                    )
                                     ResellerNameEditer.commit()
 
-                                    val ContactNumberSP = applicationContext.getSharedPreferences(Config.SHARED_PREF30, 0)
+                                    val ContactNumberSP = applicationContext.getSharedPreferences(
+                                        Config.SHARED_PREF30,
+                                        0
+                                    )
                                     val ContactNumberEditer = ContactNumberSP.edit()
-                                    ContactNumberEditer.putString("ContactNumber", jobjt.getString("ContactNumber"))
+                                    ContactNumberEditer.putString(
+                                        "ContactNumber",
+                                        jobjt.getString("ContactNumber")
+                                    )
                                     ContactNumberEditer.commit()
 
-                                    val ContactEmailSP = applicationContext.getSharedPreferences(Config.SHARED_PREF31, 0)
+                                    val ContactEmailSP = applicationContext.getSharedPreferences(
+                                        Config.SHARED_PREF31,
+                                        0
+                                    )
                                     val ContactEmailEditer = ContactEmailSP.edit()
-                                    ContactEmailEditer.putString("ContactEmail", jobjt.getString("ContactEmail"))
+                                    ContactEmailEditer.putString(
+                                        "ContactEmail",
+                                        jobjt.getString("ContactEmail")
+                                    )
                                     ContactEmailEditer.commit()
 
-                                    val ContactAddressSP = applicationContext.getSharedPreferences(Config.SHARED_PREF32, 0)
+                                    val ContactAddressSP = applicationContext.getSharedPreferences(
+                                        Config.SHARED_PREF32,
+                                        0
+                                    )
                                     val ContactAddressEditer = ContactAddressSP.edit()
-                                    ContactAddressEditer.putString("ContactAddress", jobjt.getString("ContactAddress"))
+                                    ContactAddressEditer.putString(
+                                        "ContactAddress",
+                                        jobjt.getString("ContactAddress")
+                                    )
                                     ContactAddressEditer.commit()
 
-                                    val IsNBFCSP = applicationContext.getSharedPreferences(Config.SHARED_PREF33, 0)
+                                    val IsNBFCSP = applicationContext.getSharedPreferences(
+                                        Config.SHARED_PREF33,
+                                        0
+                                    )
                                     val IsNBFCEditer = IsNBFCSP.edit()
                                     IsNBFCEditer.putString("IsNBFC", jobjt.getString("IsNBFC"))
                                     IsNBFCEditer.commit()
 
-                                    val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+                                    val baseurlSP = applicationContext.getSharedPreferences(
+                                        Config.SHARED_PREF163,
+                                        0
+                                    )
                                     val baseurlSPEditer = baseurlSP.edit()
                                     baseurlSPEditer.putString("baseurl", BASE_URL)
                                     baseurlSPEditer.commit()
-                                    val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+                                    val ImageURLSP = applicationContext.getSharedPreferences(
+                                        Config.SHARED_PREF165,
+                                        0
+                                    )
                                     val ImageURLSPEditer = ImageURLSP.edit()
                                     ImageURLSPEditer.putString("ImageURL", IMAGE_URL)
                                     ImageURLSPEditer.commit()
@@ -868,190 +939,350 @@ class SplashActivity : AppCompatActivity() {
 //                                        ImageURLSPEditer.commit()
 //                                    }
 
-                                    val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
+                                    val certificateSP = applicationContext.getSharedPreferences(
+                                        Config.SHARED_PREF164,
+                                        0
+                                    )
                                     val certificateSPEditer = certificateSP.edit()
                                     certificateSPEditer.putString("sslcertificate", CERT_NAME)
                                     certificateSPEditer.commit()
 
 
-                                    val TestingMobileNoSP = applicationContext.getSharedPreferences(Config.SHARED_PREF311, 0)
+                                    val TestingMobileNoSP = applicationContext.getSharedPreferences(
+                                        Config.SHARED_PREF311,
+                                        0
+                                    )
                                     val TestingMobileNoEditer = TestingMobileNoSP.edit()
-                                    TestingMobileNoEditer.putString("TestingMobileNo",  jobjt.getString("TestingMobileNo"))
+                                    TestingMobileNoEditer.putString(
+                                        "TestingMobileNo",
+                                        jobjt.getString("TestingMobileNo")
+                                    )
                                     TestingMobileNoEditer.commit()
 
-                                    val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                                    val BankKeySP = applicationContext.getSharedPreferences(
+                                        Config.SHARED_PREF312,
+                                        0
+                                    )
                                     val BankKeyEditer = BankKeySP.edit()
                                     BankKeyEditer.putString("BankKey", BankKey)
                                     BankKeyEditer.commit()
 
-                                    val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                                    val BankHeaderSP = applicationContext.getSharedPreferences(
+                                        Config.SHARED_PREF313,
+                                        0
+                                    )
                                     val BankHeaderEditer = BankHeaderSP.edit()
                                     BankHeaderEditer.putString("BankHeader", BankHeader)
                                     BankHeaderEditer.commit()
 
-                                    val CertificateStatusSP = applicationContext.getSharedPreferences(Config.SHARED_PREF314, 0)
+                                    val CertificateStatusSP =
+                                        applicationContext.getSharedPreferences(
+                                            Config.SHARED_PREF314,
+                                            0
+                                        )
                                     val CertificateStatusEditer = CertificateStatusSP.edit()
-                                    CertificateStatusEditer.putString("CertificateStatus", jobjt.getString("CertificateStatus"))
+                                    CertificateStatusEditer.putString(
+                                        "CertificateStatus",
+                                        jobjt.getString("CertificateStatus")
+                                    )
                                     CertificateStatusEditer.commit()
 
-                                    val TestingURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF315, 0)
+                                    val TestingURLSP = applicationContext.getSharedPreferences(
+                                        Config.SHARED_PREF315,
+                                        0
+                                    )
                                     val TestingURLEditer = TestingURLSP.edit()
-                                    TestingURLEditer.putString("TestingURL", jobjt.getString("TestingURL"))
+                                    TestingURLEditer.putString(
+                                        "TestingURL",
+                                        jobjt.getString("TestingURL")
+                                    )
                                     TestingURLEditer.commit()
 
-                                    val TestingMachineIdSP = applicationContext.getSharedPreferences(Config.SHARED_PREF316, 0)
+                                    val TestingMachineIdSP =
+                                        applicationContext.getSharedPreferences(
+                                            Config.SHARED_PREF316,
+                                            0
+                                        )
                                     val TestingMachineIdEditer = TestingMachineIdSP.edit()
-                                    TestingMachineIdEditer.putString("TestingMachineId", jobjt.getString("TestingMachineId"))
+                                    TestingMachineIdEditer.putString(
+                                        "TestingMachineId",
+                                        jobjt.getString("TestingMachineId")
+                                    )
                                     TestingMachineIdEditer.commit()
 
-                                    val TestingImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF317, 0)
+                                    val TestingImageURLSP = applicationContext.getSharedPreferences(
+                                        Config.SHARED_PREF317,
+                                        0
+                                    )
                                     val TestingImageURLEditer = TestingImageURLSP.edit()
-                                    TestingImageURLEditer.putString("TestingImageURL", jobjt.getString("TestingImageURL"))
+                                    TestingImageURLEditer.putString(
+                                        "TestingImageURL",
+                                        jobjt.getString("TestingImageURL")
+                                    )
                                     TestingImageURLEditer.commit()
 
-                                    val sslcertificatetestSP = applicationContext.getSharedPreferences(Config.SHARED_PREF318, 0)
+                                    val sslcertificatetestSP =
+                                        applicationContext.getSharedPreferences(
+                                            Config.SHARED_PREF318,
+                                            0
+                                        )
                                     val sslcertificatetestEditer = sslcertificatetestSP.edit()
-                                    sslcertificatetestEditer.putString("testsslcertificate", CERT_NAME_TEST)
+                                    sslcertificatetestEditer.putString(
+                                        "testsslcertificate",
+                                        CERT_NAME_TEST
+                                    )
                                     sslcertificatetestEditer.commit()
 
-                                    val TestBankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF319, 0)
+                                    val TestBankKeySP = applicationContext.getSharedPreferences(
+                                        Config.SHARED_PREF319,
+                                        0
+                                    )
                                     val TestBankKeyEditer = TestBankKeySP.edit()
-                                    TestBankKeyEditer.putString("testBankKey",  jobjt.getString("BankKey"))
+                                    TestBankKeyEditer.putString(
+                                        "testBankKey",
+                                        jobjt.getString("BankKey")
+                                    )
                                     TestBankKeyEditer.commit()
 
-                                    val TestBankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF320, 0)
+                                    val TestBankHeaderSP = applicationContext.getSharedPreferences(
+                                        Config.SHARED_PREF320,
+                                        0
+                                    )
                                     val TestBankHeaderEditer = TestBankHeaderSP.edit()
-                                    TestBankHeaderEditer.putString("testBankHeader",  jobjt.getString("BankHeader"))
+                                    TestBankHeaderEditer.putString(
+                                        "testBankHeader",
+                                        jobjt.getString("BankHeader")
+                                    )
                                     TestBankHeaderEditer.commit()
 
 
-                                    val pref = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
+                                    val pref = applicationContext.getSharedPreferences(
+                                        Config.SHARED_PREF14,
+                                        0
+                                    )
                                     val strloginmobile = pref.getString("LoginMobileNo", null)
-                                    if(strloginmobile == null || strloginmobile.isEmpty()) {
+                                    if (strloginmobile == null || strloginmobile.isEmpty()) {
 
-                                        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+                                        val baseurlSP = applicationContext.getSharedPreferences(
+                                            Config.SHARED_PREF163,
+                                            0
+                                        )
                                         val baseurlSPEditer = baseurlSP.edit()
                                         baseurlSPEditer.putString("baseurl", BASE_URL)
                                         baseurlSPEditer.commit()
 
-                                        val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+                                        val ImageURLSP = applicationContext.getSharedPreferences(
+                                            Config.SHARED_PREF165,
+                                            0
+                                        )
                                         val ImageURLSPEditer = ImageURLSP.edit()
                                         ImageURLSPEditer.putString("ImageURL", IMAGE_URL)
                                         ImageURLSPEditer.commit()
 
 
-                                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                                        val BankKeySP = applicationContext.getSharedPreferences(
+                                            Config.SHARED_PREF312,
+                                            0
+                                        )
                                         val BankKeyEditer = BankKeySP.edit()
                                         BankKeyEditer.putString("BankKey", BankKey)
                                         BankKeyEditer.commit()
 
-                                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                                        val BankHeaderSP = applicationContext.getSharedPreferences(
+                                            Config.SHARED_PREF313,
+                                            0
+                                        )
                                         val BankHeaderEditer = BankHeaderSP.edit()
                                         BankHeaderEditer.putString("BankHeader", BankHeader)
                                         BankHeaderEditer.commit()
 
 
-                                        val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
+                                        val certificateSP = applicationContext.getSharedPreferences(
+                                            Config.SHARED_PREF164,
+                                            0
+                                        )
                                         val certificateSPEditer = certificateSP.edit()
                                         certificateSPEditer.putString("sslcertificate", CERT_NAME)
                                         certificateSPEditer.commit()
-                                    }
-                                    else{
+                                    } else {
 
-                                        if (jobjt.getString("TestingMobileNo").equals(strloginmobile)){
+                                        if (jobjt.getString("TestingMobileNo")
+                                                .equals(strloginmobile)
+                                        ) {
 
 
-                                            if (jobjt.getString("TestingURL").isEmpty() && jobjt.getString("TestingImageURL").isEmpty()
-                                                && jobjt.getString("BankKey").isEmpty() && jobjt.getString("BankHeader").isEmpty()){
+                                            if (jobjt.getString("TestingURL")
+                                                    .isEmpty() && jobjt.getString("TestingImageURL")
+                                                    .isEmpty()
+                                                && jobjt.getString("BankKey")
+                                                    .isEmpty() && jobjt.getString("BankHeader")
+                                                    .isEmpty()
+                                            ) {
 
-                                                val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+                                                val baseurlSP =
+                                                    applicationContext.getSharedPreferences(
+                                                        Config.SHARED_PREF163,
+                                                        0
+                                                    )
                                                 val baseurlSPEditer = baseurlSP.edit()
                                                 baseurlSPEditer.putString("baseurl", BASE_URL)
                                                 baseurlSPEditer.commit()
 
-                                                val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+                                                val ImageURLSP =
+                                                    applicationContext.getSharedPreferences(
+                                                        Config.SHARED_PREF165,
+                                                        0
+                                                    )
                                                 val ImageURLSPEditer = ImageURLSP.edit()
                                                 ImageURLSPEditer.putString("ImageURL", IMAGE_URL)
                                                 ImageURLSPEditer.commit()
 
 
-                                                val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                                                val BankKeySP =
+                                                    applicationContext.getSharedPreferences(
+                                                        Config.SHARED_PREF312,
+                                                        0
+                                                    )
                                                 val BankKeyEditer = BankKeySP.edit()
                                                 BankKeyEditer.putString("BankKey", BankKey)
                                                 BankKeyEditer.commit()
 
-                                                val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                                                val BankHeaderSP =
+                                                    applicationContext.getSharedPreferences(
+                                                        Config.SHARED_PREF313,
+                                                        0
+                                                    )
                                                 val BankHeaderEditer = BankHeaderSP.edit()
                                                 BankHeaderEditer.putString("BankHeader", BankHeader)
                                                 BankHeaderEditer.commit()
 
 
-                                                val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
+                                                val certificateSP =
+                                                    applicationContext.getSharedPreferences(
+                                                        Config.SHARED_PREF164,
+                                                        0
+                                                    )
                                                 val certificateSPEditer = certificateSP.edit()
-                                                certificateSPEditer.putString("sslcertificate", CERT_NAME)
+                                                certificateSPEditer.putString(
+                                                    "sslcertificate",
+                                                    CERT_NAME
+                                                )
                                                 certificateSPEditer.commit()
-                                            }
-                                            else{
+                                            } else {
 
-                                                val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+                                                val baseurlSP =
+                                                    applicationContext.getSharedPreferences(
+                                                        Config.SHARED_PREF163,
+                                                        0
+                                                    )
                                                 val baseurlSPEditer = baseurlSP.edit()
-                                                baseurlSPEditer.putString("baseurl", jobjt.getString("TestingURL"))
+                                                baseurlSPEditer.putString(
+                                                    "baseurl",
+                                                    jobjt.getString("TestingURL")
+                                                )
                                                 baseurlSPEditer.commit()
 
-                                                val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+                                                val ImageURLSP =
+                                                    applicationContext.getSharedPreferences(
+                                                        Config.SHARED_PREF165,
+                                                        0
+                                                    )
                                                 val ImageURLSPEditer = ImageURLSP.edit()
-                                                ImageURLSPEditer.putString("ImageURL", jobjt.getString("TestingImageURL"))
+                                                ImageURLSPEditer.putString(
+                                                    "ImageURL",
+                                                    jobjt.getString("TestingImageURL")
+                                                )
                                                 ImageURLSPEditer.commit()
 
 
-                                                val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                                                val BankKeySP =
+                                                    applicationContext.getSharedPreferences(
+                                                        Config.SHARED_PREF312,
+                                                        0
+                                                    )
                                                 val BankKeyEditer = BankKeySP.edit()
-                                                BankKeyEditer.putString("BankKey", jobjt.getString("BankKey"))
+                                                BankKeyEditer.putString(
+                                                    "BankKey",
+                                                    jobjt.getString("BankKey")
+                                                )
                                                 BankKeyEditer.commit()
 
-                                                val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                                                val BankHeaderSP =
+                                                    applicationContext.getSharedPreferences(
+                                                        Config.SHARED_PREF313,
+                                                        0
+                                                    )
                                                 val BankHeaderEditer = BankHeaderSP.edit()
-                                                BankHeaderEditer.putString("BankHeader", jobjt.getString("BankHeader"))
+                                                BankHeaderEditer.putString(
+                                                    "BankHeader",
+                                                    jobjt.getString("BankHeader")
+                                                )
                                                 BankHeaderEditer.commit()
 
 
-                                                val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
+                                                val certificateSP =
+                                                    applicationContext.getSharedPreferences(
+                                                        Config.SHARED_PREF164,
+                                                        0
+                                                    )
                                                 val certificateSPEditer = certificateSP.edit()
-                                                certificateSPEditer.putString("sslcertificate", CERT_NAME_TEST)
+                                                certificateSPEditer.putString(
+                                                    "sslcertificate",
+                                                    CERT_NAME_TEST
+                                                )
                                                 certificateSPEditer.commit()
                                             }
-                                        }
-                                        else{
-                                            val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+                                        } else {
+                                            val baseurlSP = applicationContext.getSharedPreferences(
+                                                Config.SHARED_PREF163,
+                                                0
+                                            )
                                             val baseurlSPEditer = baseurlSP.edit()
                                             baseurlSPEditer.putString("baseurl", BASE_URL)
                                             baseurlSPEditer.commit()
 
-                                            val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+                                            val ImageURLSP =
+                                                applicationContext.getSharedPreferences(
+                                                    Config.SHARED_PREF165,
+                                                    0
+                                                )
                                             val ImageURLSPEditer = ImageURLSP.edit()
                                             ImageURLSPEditer.putString("ImageURL", IMAGE_URL)
                                             ImageURLSPEditer.commit()
 
 
-                                            val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                                            val BankKeySP = applicationContext.getSharedPreferences(
+                                                Config.SHARED_PREF312,
+                                                0
+                                            )
                                             val BankKeyEditer = BankKeySP.edit()
                                             BankKeyEditer.putString("BankKey", BankKey)
                                             BankKeyEditer.commit()
 
-                                            val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                                            val BankHeaderSP =
+                                                applicationContext.getSharedPreferences(
+                                                    Config.SHARED_PREF313,
+                                                    0
+                                                )
                                             val BankHeaderEditer = BankHeaderSP.edit()
                                             BankHeaderEditer.putString("BankHeader", BankHeader)
                                             BankHeaderEditer.commit()
 
 
-                                            val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
+                                            val certificateSP =
+                                                applicationContext.getSharedPreferences(
+                                                    Config.SHARED_PREF164,
+                                                    0
+                                                )
                                             val certificateSPEditer = certificateSP.edit()
-                                            certificateSPEditer.putString("sslcertificate", CERT_NAME)
+                                            certificateSPEditer.putString(
+                                                "sslcertificate",
+                                                CERT_NAME
+                                            )
                                             certificateSPEditer.commit()
                                         }
 
                                     }
-
 
 
 //
@@ -1068,8 +1299,11 @@ class SplashActivity : AppCompatActivity() {
 //                                    }
 
                                     try {
-                                        val imagepath = IMAGE_URL + AppIconImageCodeSP!!.getString("AppIconImageCode", null)
-                                   //     PicassoTrustAll.getInstance(this@SplashActivity)!!.load(imagepath).error(android.R.color.transparent).into(imglogo!!)
+                                        val imagepath = IMAGE_URL + AppIconImageCodeSP!!.getString(
+                                            "AppIconImageCode",
+                                            null
+                                        )
+                                        //     PicassoTrustAll.getInstance(this@SplashActivity)!!.load(imagepath).error(android.R.color.transparent).into(imglogo!!)
 
                                     } catch (e: Exception) {
                                         e.printStackTrace()
@@ -1079,31 +1313,25 @@ class SplashActivity : AppCompatActivity() {
                                     getMaintenanceMessage()
                                     //  getlabels()
                                 } else {
-                                    val builder = AlertDialog.Builder(
-                                            this@SplashActivity,
-                                            R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(
+                                        this@SplashActivity,
+                                        this@SplashActivity,
+                                        "Alert",
+                                        jObject.getString("EXMessage"),
+                                        1
+                                    );
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
 
                                 Log.e("TAG", "Exception   289  " + e.toString())
-                                val builder = AlertDialog.Builder(
-                                        this@SplashActivity,
-                                        R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(
+                                    this@SplashActivity,
+                                    this@SplashActivity,
+                                    "Alert",
+                                    "Some technical issues.",
+                                    1
+                                );
                                 e.printStackTrace()
                             }
                         }
@@ -1111,39 +1339,36 @@ class SplashActivity : AppCompatActivity() {
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
 
-                            Log.e(TAG,"onFailure    1054    "+t.message)
-                            val builder = AlertDialog.Builder(
-                                    this@SplashActivity,
-                                    R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            Log.e(TAG, "onFailure    1054    " + t.message)
+                            AlertMessage().alertMessage(
+                                this@SplashActivity,
+                                this@SplashActivity,
+                                "Alert",
+                                "Some technical issues.",
+                                1
+                            );
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(this@SplashActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(
+                        this@SplashActivity,
+                        this@SplashActivity,
+                        "Alert",
+                        "Some technical issues.",
+                        1
+                    );
                     e.printStackTrace()
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@SplashActivity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(
+                    this@SplashActivity,
+                    this@SplashActivity,
+                    "Alert",
+                    "No Internet Connection.",
+                    3
+                );
             }
         }
 
@@ -1154,13 +1379,15 @@ class SplashActivity : AppCompatActivity() {
         val imglogo: ImageView = findViewById(R.id.imglogo)
         Glide.with(this).load(R.drawable.splashgif).into(imgSplash)
         try {
-            val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
-            val imagepath = IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
-            PicassoTrustAll.getInstance(this@SplashActivity)!!.load(imagepath).error(android.R.color.transparent).into(imglogo!!)
+            val AppIconImageCodeSP =
+                applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
+            val imagepath = IMAGE_URL + AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+            PicassoTrustAll.getInstance(this@SplashActivity)!!.load(imagepath)
+                .error(android.R.color.transparent).into(imglogo!!)
 
-        }catch (e: Exception) {
-            e.printStackTrace()}
-
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
 
 
     }
@@ -1169,7 +1396,7 @@ class SplashActivity : AppCompatActivity() {
 
         val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurl = baseurlSP.getString("baseurl", null)
-        when(ConnectivityUtils.isConnected(this)) {
+        when (ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@SplashActivity, R.style.Progress)
                 progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
@@ -1188,55 +1415,67 @@ class SplashActivity : AppCompatActivity() {
                                 + Arrays.toString(trustManagers))
                     }
                     val trustManager = trustManagers[0] as X509TrustManager
-                    val client:OkHttpClient = okhttp3 . OkHttpClient . Builder ()
+                    val client: OkHttpClient = okhttp3.OkHttpClient.Builder()
                         .connectTimeout(60, TimeUnit.SECONDS)
                         .readTimeout(60, TimeUnit.SECONDS)
                         .writeTimeout(60, TimeUnit.SECONDS)
                         .sslSocketFactory(getSSLSocketFactory(this), trustManager)
-                            .hostnameVerifier(Config.getHostnameVerifier())
-                            .build()
+                        .hostnameVerifier(Config.getHostnameVerifier())
+                        .build()
                     val gson = GsonBuilder()
-                            .setLenient()
-                            .create()
+                        .setLenient()
+                        .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(baseurl)
-                            .addConverterFactory(ScalarsConverterFactory.create())
-                            .addConverterFactory(GsonConverterFactory.create(gson))
-                            .client(client)
-                            .build()
+                        .baseUrl(baseurl)
+                        .addConverterFactory(ScalarsConverterFactory.create())
+                        .addConverterFactory(GsonConverterFactory.create(gson))
+                        .client(client)
+                        .build()
                     val apiService = retrofit.create(ApiInterface::class.java!!)
                     val requestObject1 = JSONObject()
                     try {
 
-                        val FK_CustomerSP = this.applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
+                        val FK_CustomerSP =
+                            this.applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
                         val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
-                        val TokenSP = this!!.applicationContext.getSharedPreferences(Config.SHARED_PREF8, 0)
+                        val TokenSP =
+                            this!!.applicationContext.getSharedPreferences(Config.SHARED_PREF8, 0)
                         val Token = TokenSP.getString("Token", null)
 
 
-                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeySP =
+                            applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
                         val BankKeyPref = BankKeySP.getString("BankKey", null)
-                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderSP =
+                            applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
                         val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("43"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
+                        requestObject1.put(
+                            "FK_Customer",
+                            MscoreApplication.encryptStart(FK_Customer)
+                        )
 
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
-                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
+                        requestObject1.put(
+                            "BankHeader",
+                            MscoreApplication.encryptStart(BankHeaderPref)
+                        )
 
 
                         Log.e(TAG, "requestObject1 Maintance 10001   " + requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                                findViewById(R.id.rl_main),
-                                " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(
+                            this@SplashActivity,
+                            this@SplashActivity,
+                            "Alert",
+                            "Some technical issues.",
+                            1
+                        );
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -1245,8 +1484,8 @@ class SplashActivity : AppCompatActivity() {
                     val call = apiService.getMaintenanceMsg(body)
                     call.enqueue(object : retrofit2.Callback<String> {
                         override fun onResponse(
-                                call: retrofit2.Call<String>, response:
-                                Response<String>
+                            call: retrofit2.Call<String>, response:
+                            Response<String>
                         ) {
                             try {
                                 progressDialog!!.dismiss()
@@ -1254,19 +1493,23 @@ class SplashActivity : AppCompatActivity() {
                                 Log.e("Response-Maintenance", response.body().toString())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jobjt = jObject.getJSONObject("MaintenanceMessage")
-                                    val maintenancejobjt = jobjt.getJSONArray("MaintenanceMessageList")
+                                    val maintenancejobjt =
+                                        jobjt.getJSONArray("MaintenanceMessageList")
                                     val MaintenanceMessageList = maintenancejobjt.getJSONObject(0)
                                     val type = MaintenanceMessageList.getString("Type")
 
                                     var message = ""
                                     if (maintenancejobjt.length() != 0) {
                                         for (i in 0 until maintenancejobjt.length()) {
-                                            val MaintenanceMessageL = maintenancejobjt.getJSONObject(i)
+                                            val MaintenanceMessageL =
+                                                maintenancejobjt.getJSONObject(i)
                                             message += if (type == "1") {
                                                 "" + MaintenanceMessageL.getString("Description")
                                             } else {
                                                 if (i == 0) {
-                                                    "" + (i + 1) + " - " + MaintenanceMessageL.getString("Description")
+                                                    "" + (i + 1) + " - " + MaintenanceMessageL.getString(
+                                                        "Description"
+                                                    )
                                                 } else {
                                                     """
                                               ${i + 1} - ${MaintenanceMessageL.getString("Description")}"""
@@ -1283,7 +1526,10 @@ class SplashActivity : AppCompatActivity() {
                                         } else if (type == "-1") {
                                             val splashScreen = getString(R.string.splash_screen)
                                             if (splashScreen == "ON") {
-                                                Handler().postDelayed({ this@SplashActivity.startUserregistrationActivity() }, 3000)
+                                                Handler().postDelayed(
+                                                    { this@SplashActivity.startUserregistrationActivity() },
+                                                    3000
+                                                )
                                             } else {
                                                 startUserregistrationActivity()
                                             }
@@ -1291,30 +1537,24 @@ class SplashActivity : AppCompatActivity() {
                                     }
 
                                 } else {
-                                    val builder = AlertDialog.Builder(
-                                            this@SplashActivity,
-                                            R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(
+                                        this@SplashActivity,
+                                        this@SplashActivity,
+                                        "Alert",
+                                        jObject.getString("EXMessage"),
+                                        1
+                                    );
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
 
-                                val builder = AlertDialog.Builder(
-                                        this@SplashActivity,
-                                        R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(
+                                    this@SplashActivity,
+                                    this@SplashActivity,
+                                    "Alert",
+                                    "Some technical issues.",
+                                    1
+                                );
                                 e.printStackTrace()
                             }
                         }
@@ -1322,38 +1562,35 @@ class SplashActivity : AppCompatActivity() {
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
 
-                            val builder = AlertDialog.Builder(
-                                    this@SplashActivity,
-                                    R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(
+                                this@SplashActivity,
+                                this@SplashActivity,
+                                "Alert",
+                                "Some technical issues.",
+                                1
+                            );
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(this@SplashActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(
+                        this@SplashActivity,
+                        this@SplashActivity,
+                        "Alert",
+                        "Some technical issues.",
+                        1
+                    );
                     e.printStackTrace()
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@SplashActivity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(
+                    this@SplashActivity,
+                    this@SplashActivity,
+                    "Alert",
+                    "No Internet Connection.",
+                    3
+                );
             }
         }
     }
@@ -1363,6 +1600,39 @@ class SplashActivity : AppCompatActivity() {
 //        startActivity(intent)
 
         doSplash()
+    }
+
+    fun alertMessage(header: String, message: String, type: Int) {
+        val bottomSheetDialog = BottomSheetDialog(this@SplashActivity)
+        bottomSheetDialog.setContentView(R.layout.alert_message)
+        val txt_ok = bottomSheetDialog.findViewById<TextView>(R.id.txt_ok)
+        val img = bottomSheetDialog.findViewById<ImageView>(R.id.img)
+        val txt_cancel = bottomSheetDialog.findViewById<TextView>(R.id.txt_cancel)
+        val txtheader = bottomSheetDialog.findViewById<TextView>(R.id.header)
+        val txtmessage = bottomSheetDialog.findViewById<TextView>(R.id.message)
+        txtmessage!!.setText(message)
+        txtheader!!.setText(header)
+        txt_cancel!!.setText("OK")
+        txt_cancel!!.setOnClickListener {
+            bottomSheetDialog.dismiss()
+            nidhicodepopup()
+        }
+        if (type == 1) {
+            txt_ok!!.visibility = View.GONE
+            txt_cancel!!.visibility = View.VISIBLE
+            img!!.setImageResource(R.drawable.new_alert)
+        } else if (type == 2) {
+            txt_ok!!.visibility = View.GONE
+            txt_cancel!!.visibility = View.VISIBLE
+            img!!.setImageResource(R.drawable.new_success)
+        } else if (type == 3) {
+            txt_ok!!.visibility = View.GONE
+            txt_cancel!!.visibility = View.VISIBLE
+            img!!.setImageResource(R.drawable.new_nonetwork)
+        }
+
+        bottomSheetDialog.setCancelable(false)
+        bottomSheetDialog.show()
     }
 
 

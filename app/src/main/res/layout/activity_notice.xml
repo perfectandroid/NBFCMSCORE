@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@color/but_color1"
+            android:background="@color/colorPrimaryExtraDark"
             android:orientation="vertical"
             android:visibility="gone"
             android:padding="5dp">

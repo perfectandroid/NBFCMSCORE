@@ -6,9 +6,9 @@ plugins {
 android {
     signingConfigs {
         debug {
-            storeFile file('C:\\Users\\nihal\\Desktop\\nbfc1.jks')
+            storeFile file('D:\\JKS\\nbfc.jks')
             storePassword 'nbfcnbfc'
-            keyAlias 'key0'
+            keyAlias 'nbfc'
             keyPassword 'nbfcnbfc'
         }
     }
@@ -20,7 +20,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 33
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

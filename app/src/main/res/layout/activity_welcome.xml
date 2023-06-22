@@ -70,7 +70,7 @@
                         android:layout_marginBottom="20dp"
                         android:textSize="13dp"
                         android:text=""
-                        android:textColor="@color/colorPrimaryExtraDark"/>
+                        android:textColor="@color/white"/>
                 </LinearLayout>
             </ScrollView>
             <LinearLayout

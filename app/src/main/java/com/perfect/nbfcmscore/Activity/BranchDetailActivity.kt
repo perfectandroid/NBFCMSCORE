@@ -62,22 +62,22 @@ import javax.net.ssl.TrustManagerFactory
 import javax.net.ssl.X509TrustManager
 
 
-class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnClickListener,
+class BranchDetailActivity : AppCompatActivity(), OnMapReadyCallback, View.OnClickListener,
     ItemClickListener, LocationListener, ConnectionCallbacks,
     OnConnectionFailedListener {
-//    , GoogleMap.OnMarkerClickListener
+    //    , GoogleMap.OnMarkerClickListener
     private var progressDialog: ProgressDialog? = null
     var mapFragment: SupportMapFragment? = null
     var tv_branch: TextView? = null
     var txtv_entrdistrct: TextView? = null
     var tv_bankdetails: TextView? = null
     var tv_header: TextView? = null
-    var strBranches ="";
-    var mMap : GoogleMap?=null
+    var strBranches = "";
+    var mMap: GoogleMap? = null
     val TAG: String = "BranchDetailActivity"
-    var LandPhoneNumber: String? =""
-    var ContactPersonMobile: String? =""
-    var BranchPhoneNumber: String? =""
+    var LandPhoneNumber: String? = ""
+    var ContactPersonMobile: String? = ""
+    var BranchPhoneNumber: String? = ""
     var jsonArray: JSONArray? = null
     var jsonArrayDist: JSONArray? = null
     var rvBranchList: RecyclerView? = null
@@ -95,17 +95,21 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_branch_detail)
-        setInitialise()
-        setRegister()
-        getBranchList();
-        getDistricts()
+        try {
+            setContentView(R.layout.activity_branch_detail)
+            setInitialise()
+            setRegister()
+            getBranchList();
+            getDistricts()
+        } catch (e: Exception) {
+
+        }
     }
 
     private fun getDistricts() {
         val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurl = baseurlSP.getString("baseurl", null)
-        when(ConnectivityUtils.isConnected(this)) {
+        when (ConnectivityUtils.isConnected(this)) {
             true -> {
 //                progressDialog = ProgressDialog(this@BranchDetailActivity, R.style.Progress)
 //                progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
@@ -124,7 +128,7 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                                 + Arrays.toString(trustManagers))
                     }
                     val trustManager = trustManagers[0] as X509TrustManager
-                    val client:OkHttpClient = okhttp3 . OkHttpClient . Builder ()
+                    val client: OkHttpClient = okhttp3.OkHttpClient.Builder()
                         .connectTimeout(60, TimeUnit.SECONDS)
                         .readTimeout(60, TimeUnit.SECONDS)
                         .writeTimeout(60, TimeUnit.SECONDS)
@@ -144,31 +148,47 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                     val requestObject1 = JSONObject()
                     try {
 
-                        val TokenSP = applicationContext.getSharedPreferences(Config.SHARED_PREF8, 0)
+                        val TokenSP =
+                            applicationContext.getSharedPreferences(Config.SHARED_PREF8, 0)
                         val Token = TokenSP.getString("Token", null)
-                        val FK_CustomerSP = this.applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
+                        val FK_CustomerSP =
+                            this.applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
                         val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
-                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeySP =
+                            applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
                         val BankKeyPref = BankKeySP.getString("BankKey", null)
-                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderSP =
+                            applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
                         val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("19"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
+                        requestObject1.put(
+                            "FK_Customer",
+                            MscoreApplication.encryptStart(FK_Customer)
+                        )
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
-                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
+                        requestObject1.put(
+                            "BankHeader",
+                            MscoreApplication.encryptStart(BankHeaderPref)
+                        )
 
                         //   val nidhiSP = applicationContext.getSharedPreferences(Config.SHARED_PREF346, 0)
                         //   val nidhicode = BankHeaderSP.getString("nidhicode", "")
 
                         //  requestObject1.put("nidhicode", MscoreApplication.encryptStart(nidhicode))
 
-                        Log.e(TAG,"requestObject1  171   "+requestObject1)
+                        Log.e(TAG, "requestObject1  171   " + requestObject1)
                     } catch (e: Exception) {
                         // progressDialog!!.dismiss()
                         e.printStackTrace()
-                        AlertMessage().alertMessage(this@BranchDetailActivity,this@BranchDetailActivity,"Alert"," Some technical issues.",1);
+                        AlertMessage().alertMessage(
+                            this@BranchDetailActivity,
+                            this@BranchDetailActivity,
+                            "Alert",
+                            " Some technical issues.",
+                            1
+                        );
 //                        val mySnackbar = Snackbar.make(
 //                            findViewById(R.id.rl_main),
 //                            " Some technical issues.", Snackbar.LENGTH_SHORT
@@ -189,8 +209,7 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                                 //  progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 if (jObject.getString("StatusCode") == "0") {
-                                    Log.e(TAG,"response  153   "+response.body())
-
+                                    Log.e(TAG, "response  153   " + response.body())
 
 
                                     val jobjt = jObject.getJSONObject("DistrictDetails")
@@ -202,35 +221,41 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                                         distnames.add(obj.getString("DistrictName"));
                                     }
 
-                                    val adapter = ArrayAdapter(this@BranchDetailActivity,
-                                        android.R.layout.simple_list_item_1, distnames)
+                                    val adapter = ArrayAdapter(
+                                        this@BranchDetailActivity,
+                                        android.R.layout.simple_list_item_1, distnames
+                                    )
                                     act_district!!.setAdapter(adapter)
 //                                    act_district!!.showDropDown()
-                                    act_district!!.threshold =1
+                                    act_district!!.threshold = 1
 
                                     act_district!!.addTextChangedListener(object : TextWatcher {
                                         override fun onTextChanged(
                                             s: CharSequence,
                                             start: Int,
                                             before: Int,
-                                            count: Int) {
+                                            count: Int
+                                        ) {
                                             mMap!!.clear()
                                             rvBranchList!!.adapter = null
                                             card_branches!!.visibility = View.GONE
                                             ll_branches!!.visibility = View.GONE
 
-                                          //  val str: String? = "Hello"
-
+                                            //  val str: String? = "Hello"
 
 
                                             for (i in 0 until jsonArrayDist!!.length()) {
-                                                val obj1: JSONObject = jsonArrayDist!!.getJSONObject(i)
+                                                val obj1: JSONObject =
+                                                    jsonArrayDist!!.getJSONObject(i)
                                                 var FK_District: String = ""
-                                                if (obj1.getString("DistrictName")==(""+ act_district!!.text.toString())){
+                                                if (obj1.getString("DistrictName") == ("" + act_district!!.text.toString())) {
 
                                                     FK_District = obj1.getString("FK_District")
-                                                    Log.e("DistrictName","DistrictName  192   "+obj1.getString("DistrictName")+"  "+FK_District)
-                                                    getBranchList1(mMap!!,FK_District)
+                                                    Log.e(
+                                                        "DistrictName",
+                                                        "DistrictName  192   " + obj1.getString("DistrictName") + "  " + FK_District
+                                                    )
+                                                    getBranchList1(mMap!!, FK_District)
                                                 }
 
                                                 //
@@ -285,6 +310,7 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
 //                                e.printStackTrace()
                             }
                         }
+
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             //  progressDialog!!.dismiss()
 
@@ -326,8 +352,8 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
 
     private fun getBranchList() {
 
-     //   strBranches =getString(R.string.strBranches)
-        Log.e("TAG","strBranches  78  "+strBranches)
+        //   strBranches =getString(R.string.strBranches)
+        Log.e("TAG", "strBranches  78  " + strBranches)
 
 
         mapFragment = supportFragmentManager
@@ -380,30 +406,30 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
         tv_branch = findViewById<TextView>(R.id.tv_branch)
         tv_bankdetails = findViewById<TextView>(R.id.tv_bankdetails)
         rvBranchList = findViewById<RecyclerView>(R.id.rvBranchList)
-        txtv_entrdistrct= findViewById<TextView>(R.id.txtv_entrdistrct)
+        txtv_entrdistrct = findViewById<TextView>(R.id.txtv_entrdistrct)
 
         im_back = findViewById<ImageView>(R.id.im_back)
         im_home = findViewById<ImageView>(R.id.im_home)
 
         act_district = findViewById<AutoCompleteTextView>(R.id.act_district)
-        tv_header= findViewById<AutoCompleteTextView>(R.id.tv_header)
-        card_branches= findViewById<CardView>(R.id.card_branches)
-        ll_branches= findViewById<LinearLayout>(R.id.ll_branches)
+        tv_header = findViewById<AutoCompleteTextView>(R.id.tv_header)
+        card_branches = findViewById<CardView>(R.id.card_branches)
+        ll_branches = findViewById<LinearLayout>(R.id.ll_branches)
 
         val EnterDistSP = applicationContext.getSharedPreferences(Config.SHARED_PREF108, 0)
         val BranchdetailSP = applicationContext.getSharedPreferences(Config.SHARED_PREF75, 0)
 
-     //   act_district!!.setText(EnterDistSP.getString("EnterDistrict", null))
+        //   act_district!!.setText(EnterDistSP.getString("EnterDistrict", null))
         tv_header!!.setText(BranchdetailSP.getString("BranchDetails", null))
 
-        txtv_entrdistrct!!.setText(EnterDistSP.getString("EnterDistrict",null))
+        txtv_entrdistrct!!.setText(EnterDistSP.getString("EnterDistrict", null))
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
 //        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mMap = googleMap
-        getBranchList1(mMap!!,"0");
-       // mMap!!.setOnMarkerClickListener(this);
+        getBranchList1(mMap!!, "0");
+        // mMap!!.setOnMarkerClickListener(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(
                     applicationContext,
@@ -418,7 +444,7 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
             buildGoogleApiClient()
             mMap!!.setMyLocationEnabled(true)
         }
-       // mMap!!.getUiSettings().setMapToolbarEnabled(false);
+        // mMap!!.getUiSettings().setMapToolbarEnabled(false);
 //        mMap!!.uiSettings.isMapToolbarEnabled = true
 //        mMap!!.uiSettings.isZoomControlsEnabled = true
 
@@ -447,11 +473,11 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
 //        )
     }
 
-    private fun getBranchList1(mMap: GoogleMap,FK_District: String) {
+    private fun getBranchList1(mMap: GoogleMap, FK_District: String) {
         val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurl = baseurlSP.getString("baseurl", null)
         closeKeyBoard()
-        when(ConnectivityUtils.isConnected(this)) {
+        when (ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@BranchDetailActivity, R.style.Progress)
                 progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
@@ -470,7 +496,7 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                                 + Arrays.toString(trustManagers))
                     }
                     val trustManager = trustManagers[0] as X509TrustManager
-                    val client:OkHttpClient = okhttp3 . OkHttpClient . Builder ()
+                    val client: OkHttpClient = okhttp3.OkHttpClient.Builder()
                         .connectTimeout(60, TimeUnit.SECONDS)
                         .readTimeout(60, TimeUnit.SECONDS)
                         .writeTimeout(60, TimeUnit.SECONDS)
@@ -490,18 +516,30 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                     val requestObject1 = JSONObject()
                     try {
 
-                        val FK_CustomerSP = this.applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
+                        val FK_CustomerSP =
+                            this.applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
                         val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
-                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeySP =
+                            applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
                         val BankKeyPref = BankKeySP.getString("BankKey", null)
-                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderSP =
+                            applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
                         val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("8"))
-                        requestObject1.put("FK_District", MscoreApplication.encryptStart(FK_District))
-                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
+                        requestObject1.put(
+                            "FK_District",
+                            MscoreApplication.encryptStart(FK_District)
+                        )
+                        requestObject1.put(
+                            "FK_Customer",
+                            MscoreApplication.encryptStart(FK_Customer)
+                        )
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
-                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
+                        requestObject1.put(
+                            "BankHeader",
+                            MscoreApplication.encryptStart(BankHeaderPref)
+                        )
 
                         //   val nidhiSP = applicationContext.getSharedPreferences(Config.SHARED_PREF346, 0)
                         //   val nidhicode = BankHeaderSP.getString("nidhicode", "")
@@ -509,10 +547,16 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                         //  requestObject1.put("nidhicode", MscoreApplication.encryptStart(nidhicode))
 
 
-                        Log.e(TAG,"requestObject1  171   "+requestObject1)
+                        Log.e(TAG, "requestObject1  171   " + requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
-                        AlertMessage().alertMessage(this@BranchDetailActivity,this@BranchDetailActivity,"Alert"," Some technical issues.",1);
+                        AlertMessage().alertMessage(
+                            this@BranchDetailActivity,
+                            this@BranchDetailActivity,
+                            "Alert",
+                            " Some technical issues.",
+                            1
+                        );
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -526,7 +570,7 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                         ) {
                             try {
                                 progressDialog!!.dismiss()
-                                Log.e(TAG,"response  195   "+response.body())
+                                Log.e(TAG, "response  195   " + response.body())
                                 val jObject = JSONObject(response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     card_branches!!.visibility = View.VISIBLE
@@ -536,14 +580,19 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                                     val jobjt = jObject.getJSONObject("BankBranchDetails")
                                     jsonArray = jobjt.getJSONArray("BankBranchDetailsListInfo")
 
-                                    Log.e(TAG,"jarray   200  "+jsonArray)
+                                    Log.e(TAG, "jarray   200  " + jsonArray)
 
-                                    val obj_adapter = BranchListAdapter(applicationContext!!, jsonArray!!)
-                                    rvBranchList!!.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
+                                    val obj_adapter =
+                                        BranchListAdapter(applicationContext!!, jsonArray!!)
+                                    rvBranchList!!.layoutManager = LinearLayoutManager(
+                                        applicationContext,
+                                        LinearLayoutManager.VERTICAL,
+                                        false
+                                    )
                                     rvBranchList!!.adapter = obj_adapter
                                     obj_adapter.setClickListener(this@BranchDetailActivity)
 
-                                    setMarker(jsonArray!!,mMap)
+                                    setMarker(jsonArray!!, mMap)
 
                                 } else {
                                     card_branches!!.visibility = View.GONE
@@ -564,29 +613,54 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                                 card_branches!!.visibility = View.GONE
                                 ll_branches!!.visibility = View.GONE
 
-                                AlertMessage().alertMessage(this@BranchDetailActivity,this@BranchDetailActivity,"Alert"," Some technical issues.",1);
+                                AlertMessage().alertMessage(
+                                    this@BranchDetailActivity,
+                                    this@BranchDetailActivity,
+                                    "Alert",
+                                    " Some technical issues.",
+                                    1
+                                );
                                 e.printStackTrace()
                             }
                         }
+
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
                             card_branches!!.visibility = View.GONE
                             ll_branches!!.visibility = View.GONE
 
-                            AlertMessage().alertMessage(this@BranchDetailActivity,this@BranchDetailActivity,"Alert"," Some technical issues.",1);
+                            AlertMessage().alertMessage(
+                                this@BranchDetailActivity,
+                                this@BranchDetailActivity,
+                                "Alert",
+                                " Some technical issues.",
+                                1
+                            );
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
                     card_branches!!.visibility = View.GONE
                     ll_branches!!.visibility = View.GONE
-                    AlertMessage().alertMessage(this@BranchDetailActivity,this@BranchDetailActivity,"Alert"," Some technical issues.",1);
+                    AlertMessage().alertMessage(
+                        this@BranchDetailActivity,
+                        this@BranchDetailActivity,
+                        "Alert",
+                        " Some technical issues.",
+                        1
+                    );
                 }
             }
             false -> {
                 card_branches!!.visibility = View.GONE
                 ll_branches!!.visibility = View.GONE
-                AlertMessage().alertMessage(this@BranchDetailActivity,this@BranchDetailActivity,"Alert"," Some technical issues.",1);
+                AlertMessage().alertMessage(
+                    this@BranchDetailActivity,
+                    this@BranchDetailActivity,
+                    "Alert",
+                    " Some technical issues.",
+                    1
+                );
             }
         }
     }
@@ -604,13 +678,18 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
         for (i in 0 until jsonArray.length()) {
             var jsonObject = jsonArray.getJSONObject(i)
 
-            Log.e(TAG,"jsonObject  286   "+jsonObject)
+            Log.e(TAG, "jsonObject  286   " + jsonObject)
 
             val id = jsonObject.getString("ID_Branch")
             val bank = jsonObject.getString("BankName")
             mMap.addMarker(
                 MarkerOptions()
-                    .position(LatLng(jsonObject.getDouble("LocationLatitude"), jsonObject.getDouble("LocationLongitude")))
+                    .position(
+                        LatLng(
+                            jsonObject.getDouble("LocationLatitude"),
+                            jsonObject.getDouble("LocationLongitude")
+                        )
+                    )
                     .title(id + ") " + bank)
 //                    .title(jsonObject.toString())
 //                    .title(jsonObject.getString("BranchName")+","+jsonObject.getString("BankName")+""+jsonObject.getString("Address"))
@@ -631,7 +710,7 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                 val ids = st.nextToken()
                 val banks = st.nextToken()
 
-                Log.e(TAG,"title  3691   "+title+"  "+ids+"   "+banks)
+                Log.e(TAG, "title  3691   " + title + "  " + ids + "   " + banks)
 //                var obj = JSONObject(title)
 //                popupBankDetails(obj)
                 popupBankDetails(ids)
@@ -650,7 +729,7 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
                 val ids = st.nextToken()
                 val banks = st.nextToken()
 
-                Log.e(TAG,"title  3691   "+title+"  "+ids+"   "+banks)
+                Log.e(TAG, "title  3691   " + title + "  " + ids + "   " + banks)
 
 //                Log.e(TAG,"title  3692   "+title)
 //                var obj = JSONObject(title)
@@ -689,62 +768,58 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
 //        })
 
 
-
     }
-
-
 
 
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.tv_branch ->{
+            R.id.tv_branch -> {
                 tv_branch!!.setBackgroundResource(R.drawable.bottom_line);
                 tv_bankdetails!!.setBackgroundResource(R.drawable.bg_white);
             }
 
-            R.id.tv_bankdetails ->{
+            R.id.tv_bankdetails -> {
                 tv_branch!!.setBackgroundResource(R.drawable.bg_white);
                 tv_bankdetails!!.setBackgroundResource(R.drawable.bottom_line);
             }
 
-            R.id.im_back ->{
+            R.id.im_back -> {
                 onBackPressed()
             }
 
-            R.id.im_home ->{
+            R.id.im_home -> {
                 startActivity(Intent(this@BranchDetailActivity, HomeActivity::class.java))
                 finish()
             }
         }
     }
 
-    override fun onClick(position: Int,data: String) {
-        Log.e(TAG,"position  331  "+position+"  "+jsonArray)
-        if (data.equals("map")){
+    override fun onClick(position: Int, data: String) {
+        Log.e(TAG, "position  331  " + position + "  " + jsonArray)
+        if (data.equals("map")) {
 
             var jsonObject1 = jsonArray!!.getJSONObject(position)
-            setMarker1(jsonObject1,mMap)
+            setMarker1(jsonObject1, mMap)
 //            val ids = jsonObject1.getString("ID_Branch")
 //            popupBankDetails(ids)
         }
 
-        if (data.equals("call")){
-            Log.e(TAG,"position  Call  331  "+position)
+        if (data.equals("call")) {
+            Log.e(TAG, "position  Call  331  " + position)
             var jsonObject1 = jsonArray!!.getJSONObject(position)
             LandPhoneNumber = jsonObject1.getString("LandPhoneNumber")
             ContactPersonMobile = jsonObject1.getString("ContactPersonMobile")
-            if (!LandPhoneNumber!!.equals("")){
-             //   LandPhoneNumber = "8075283549"
-                 BranchPhoneNumber = LandPhoneNumber
+            if (!LandPhoneNumber!!.equals("")) {
+                //   LandPhoneNumber = "8075283549"
+                BranchPhoneNumber = LandPhoneNumber
                 checkPermissions()
-            }
-            else if (!ContactPersonMobile!!.equals("")){
+            } else if (!ContactPersonMobile!!.equals("")) {
                 BranchPhoneNumber = ContactPersonMobile
                 checkPermissions()
             }
 
         }
-        if (data.equals("branch")){
+        if (data.equals("branch")) {
             var jsonObject1 = jsonArray!!.getJSONObject(position)
             val ids = jsonObject1.getString("ID_Branch")
             popupBankDetails(ids)
@@ -782,31 +857,43 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
 
 //        val ids = jsonObject1.getString("ID_Branch")
 //        popupBankDetails(ids)
-        }
-        catch (e:Exception)
-        {
-            AlertMessage().alertMessage(this@BranchDetailActivity,this@BranchDetailActivity,"Alert"," Some technical issues.",1);
+        } catch (e: Exception) {
+            AlertMessage().alertMessage(
+                this@BranchDetailActivity,
+                this@BranchDetailActivity,
+                "Alert",
+                " Some technical issues.",
+                1
+            );
         }
 
     }
 
     fun checkPermissions() {
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.CALL_PHONE)
-            != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.CALL_PHONE
+            )
+            != PackageManager.PERMISSION_GRANTED
+        ) {
 
             // Permission is not granted
             // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.CALL_PHONE)) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(
+                    this,
+                    Manifest.permission.CALL_PHONE
+                )
+            ) {
                 // Show an explanation to the user *asynchronously* -- don't block
                 // this thread waiting for the user's response! After the user
                 // sees the explanation, try again to request the permission.
             } else {
                 // No explanation needed, we can request the permission.
-                ActivityCompat.requestPermissions(this,
+                ActivityCompat.requestPermissions(
+                    this,
                     arrayOf(Manifest.permission.CALL_PHONE),
-                    42)
+                    42
+                )
             }
         } else {
             // Permission has already been granted
@@ -814,16 +901,17 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int,
-                                            permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>, grantResults: IntArray
+    ) {
         if (requestCode == 42) {
             // If request is cancelled, the result arrays are empty.
             if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                 // permission was granted, yay!
                 callPhone()
-            }
-            else {
-                Log.e(TAG,"permission denied  417")
+            } else {
+                Log.e(TAG, "permission denied  417")
                 // permission denied, boo! Disable the
                 // functionality
             }
@@ -831,7 +919,7 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
         }
     }
 
-    fun callPhone(){
+    fun callPhone() {
         val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:" + BranchPhoneNumber))
         startActivity(intent)
     }
@@ -842,7 +930,7 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
 
     private fun popupBankDetails(ids: String) {
 
-        Log.e(TAG,"name    4642    "+ids)
+        Log.e(TAG, "name    4642    " + ids)
 
 //        mMap!!.getUiSettings().setMapToolbarEnabled(true);
         mMap!!.uiSettings.isMapToolbarEnabled = true
@@ -868,34 +956,34 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
         val txtv_post = dialog.findViewById(R.id.txtv_post) as TextView
         val txtv_distrct = dialog.findViewById(R.id.txtv_distrct) as TextView
 
-        val ID_bankdetl = applicationContext.getSharedPreferences(Config.SHARED_PREF109,0)
-        txtvBankdetl!!.setText(ID_bankdetl.getString("BankDetails",null))
+        val ID_bankdetl = applicationContext.getSharedPreferences(Config.SHARED_PREF109, 0)
+        txtvBankdetl!!.setText(ID_bankdetl.getString("BankDetails", null))
 
-        val ID_bnk = applicationContext.getSharedPreferences(Config.SHARED_PREF333,0)
-        txtv_bnk!!.setText(ID_bnk.getString("Bank",null))
+        val ID_bnk = applicationContext.getSharedPreferences(Config.SHARED_PREF333, 0)
+        txtv_bnk!!.setText(ID_bnk.getString("Bank", null))
 
-        val ID_brnch = applicationContext.getSharedPreferences(Config.SHARED_PREF337,0)
-        txtvBranch!!.setText(ID_brnch.getString("Branch",null))
+        val ID_brnch = applicationContext.getSharedPreferences(Config.SHARED_PREF337, 0)
+        txtvBranch!!.setText(ID_brnch.getString("Branch", null))
 
-        val ID_add = applicationContext.getSharedPreferences(Config.SHARED_PREF299,0)
-        txtvAdd!!.setText(ID_add.getString("Address1",null))
+        val ID_add = applicationContext.getSharedPreferences(Config.SHARED_PREF299, 0)
+        txtvAdd!!.setText(ID_add.getString("Address1", null))
 
-        val ID_plce= applicationContext.getSharedPreferences(Config.SHARED_PREF334,0)
-        txtv_plce!!.setText(ID_plce.getString("Place",null))
+        val ID_plce = applicationContext.getSharedPreferences(Config.SHARED_PREF334, 0)
+        txtv_plce!!.setText(ID_plce.getString("Place", null))
 
-        val ID_pst= applicationContext.getSharedPreferences(Config.SHARED_PREF335,0)
-        txtv_post!!.setText(ID_pst.getString("Post",null))
+        val ID_pst = applicationContext.getSharedPreferences(Config.SHARED_PREF335, 0)
+        txtv_post!!.setText(ID_pst.getString("Post", null))
 
 
-        val ID_distrct= applicationContext.getSharedPreferences(Config.SHARED_PREF336,0)
-        txtv_distrct!!.setText(ID_distrct.getString("District",null))
+        val ID_distrct = applicationContext.getSharedPreferences(Config.SHARED_PREF336, 0)
+        txtv_distrct!!.setText(ID_distrct.getString("District", null))
 
 
 
 
         for (i in 0 until jsonArray!!.length()) {
             var obj = jsonArray!!.getJSONObject(i)
-            if (obj.getString("ID_Branch").equals(ids)){
+            if (obj.getString("ID_Branch").equals(ids)) {
 
                 tva_branch.text = obj.getString("BranchName")
                 tva_bank.text = obj.getString("BankName")
@@ -963,7 +1051,7 @@ class BranchDetailActivity : AppCompatActivity() , OnMapReadyCallback , View.OnC
         mLocationRequest!!.setFastestInterval(1000)
         mLocationRequest!!.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY)
         if (ContextCompat.checkSelfPermission(
-               applicationContext,
+                applicationContext,
                 Manifest.permission.ACCESS_FINE_LOCATION
             )
             == PackageManager.PERMISSION_GRANTED

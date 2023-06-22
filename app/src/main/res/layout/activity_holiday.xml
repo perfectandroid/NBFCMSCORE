@@ -200,36 +200,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
-                android:id="@+id/linList"
-                android:layout_width="wrap_content"
-                android:gravity="center"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:background="@drawable/bg_select"
-                android:backgroundTint="@color/colorButton1.3"
-                android:layout_margin="10dp"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:id="@+id/imgList"
-                    android:layout_width="40dp"
-                    android:src="@drawable/baseline_view_list_24"
-                    android:tint="@color/white"
-                    android:padding="10dp"
-                    android:layout_height="40dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:padding="10dp"
-                    android:visibility="gone"
-                    android:layout_height="wrap_content"
-                    android:text="List"/>
-            </LinearLayout>
-            <LinearLayout
                 android:id="@+id/linCalender"
                 android:layout_width="wrap_content"
                 android:gravity="center"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:backgroundTint="@color/colorAccent"
+                android:backgroundTint="@color/colorButton1.3"
                 android:background="@drawable/bg_select"
                 android:layout_margin="10dp"
                 android:layout_height="wrap_content">
@@ -237,9 +213,9 @@
                     android:id="@+id/imgCalender"
                     android:layout_width="40dp"
                     android:src="@drawable/ic_calender"
-                    android:tint="@color/black"
                     android:padding="10dp"
-                    android:layout_height="40dp"/>
+                    android:layout_height="40dp"
+                    app:tint="@color/white" />
                 <TextView
                     android:layout_width="80dp"
                     android:padding="10dp"
@@ -249,6 +225,31 @@
                     android:layout_height="wrap_content"
                     android:text="Calender"/>
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linList"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:background="@drawable/bg_select"
+                android:backgroundTint="@color/colorAccent"
+                android:layout_margin="10dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/imgList"
+                    android:layout_width="40dp"
+                    android:src="@drawable/baseline_view_list_24"
+                    app:tint="@color/black"
+                    android:padding="10dp"
+                    android:layout_height="40dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:padding="10dp"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content"
+                    android:text="List"/>
+            </LinearLayout>
+
         </LinearLayout>
             <RelativeLayout
                 android:layout_width="match_parent"

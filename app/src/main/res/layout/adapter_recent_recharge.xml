@@ -5,20 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/transparent">
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="10dp"
-        android:padding="5dp"
-        app:cardBackgroundColor="@color/bg_transfer"
-        app:cardCornerRadius="5dp">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_light_grey"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_bg3"
             android:orientation="vertical"
             android:padding="5dp">
 
@@ -36,8 +29,7 @@
                 <ImageView
                     android:id="@+id/img_operator"
                     android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/no_image"/>
+                    android:layout_height="50dp"/>
 
             </LinearLayout>
 
@@ -53,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:text="Ranjith"
                     android:textSize="16dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/colorPrimaryExtraDark"
                     android:visibility="visible"/>
 
 
@@ -81,9 +73,6 @@
 
         </LinearLayout>
         </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-
-
 </RelativeLayout>
 
 

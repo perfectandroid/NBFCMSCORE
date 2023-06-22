@@ -746,4 +746,6 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
     override fun onNothingSelected(p0: AdapterView<*>?) {
 
     }
+
+
 }

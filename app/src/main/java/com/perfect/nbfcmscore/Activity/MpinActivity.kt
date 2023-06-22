@@ -16,6 +16,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.goodiebag.pinview.Pinview
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Api.ApiInterface
@@ -70,6 +71,7 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
     var IMAGRURL: String =""
 
     var txtv_mpinverf: TextView? = null
+    var txtChangeUser: TextView? = null
     var txtv_unlock: TextView? = null
 
 
@@ -174,6 +176,7 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
 
 
     private fun setRegViews() {
+        txtChangeUser = findViewById<TextView>(R.id.txtChangeUser) as TextView
          tvforgetpassword = findViewById<TextView>(R.id.tvforgetpassword) as TextView
          tvchangepassword = findViewById<TextView>(R.id.tvchangepassword) as TextView
 
@@ -186,6 +189,7 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
 //        btverify!!.setOnClickListener(this)
         tvforgetpassword!!.setOnClickListener(this)
         tvchangepassword!!.setOnClickListener(this)
+        txtChangeUser!!.setOnClickListener(this)
 
 
         one = findViewById<Button>(R.id.one) as Button
@@ -249,6 +253,10 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
 //                }
 //
 //            }
+
+            R.id.txtChangeUser -> {
+                showBottomLogout();
+            }
             R.id.tvforgetpassword -> {
                 startActivity( Intent(this@MpinActivity, ForgetActivity::class.java) )
             }
@@ -861,6 +869,188 @@ class MpinActivity : AppCompatActivity() , View.OnClickListener {
                 AlertMessage().alertMessage(this@MpinActivity,this@MpinActivity,"Alert"," No Internet Connection. ",3);
             }
         }
+
+    }
+
+    private fun showBottomLogout() {
+        val bottomSheetDialog = BottomSheetDialog(this)
+        bottomSheetDialog.setContentView(R.layout.bottom_logout)
+        val ID_dlt = applicationContext.getSharedPreferences(Config.SHARED_PREF205, 0)
+        val ID_LogoutSP = applicationContext.getSharedPreferences(Config.SHARED_PREF61, 0)
+        val logout = bottomSheetDialog.findViewById<TextView>(R.id.logout)
+        val close = bottomSheetDialog.findViewById<TextView>(R.id.close)
+        val txt2 = bottomSheetDialog.findViewById<TextView>(R.id.txt2)
+        val txt1 = bottomSheetDialog.findViewById<TextView>(R.id.txt1)
+        txt1!!.setText(
+            ID_LogoutSP.getString(
+                "logout",
+                null
+            )
+        )
+        txt2!!.setText(
+            ID_dlt.getString(
+                "DoYouWanttoDeleteThisAccountAndRegisterWithAnotherAccount?",
+                null
+            )
+        )
+        logout!!.setText(
+            ID_LogoutSP.getString(
+                "logout",
+                null
+            )
+        )
+        logout!!.setOnClickListener {
+            bottomSheetDialog.dismiss()
+            logout()
+            val intent = Intent(this, WelcomeActivity::class.java)
+            intent.putExtra("from", "true")
+            this.startActivity(intent)
+            this.finish()
+        }
+        close!!.setOnClickListener(View.OnClickListener {
+            bottomSheetDialog.dismiss()
+        })
+        bottomSheetDialog.show()
+    }
+
+
+    private fun logout() {
+        val loginSP = this!!.getSharedPreferences(Config.SHARED_PREF, 0)
+        val loginEditer = loginSP.edit()
+        loginEditer.putString("loginsession", "No")
+        loginEditer.commit()
+
+
+        val FK_CustomerSP = this!!.getSharedPreferences(Config.SHARED_PREF1, 0)
+        val FK_CustomerEditer = FK_CustomerSP.edit()
+        FK_CustomerEditer.putString("FK_Customer", "")
+        FK_CustomerEditer.commit()
+
+        val FK_CustomerMobSp = this!!.getSharedPreferences(Config.SHARED_PREF2, 0)
+        val FK_CustomerMobEditer = FK_CustomerMobSp.edit()
+        FK_CustomerMobEditer.putString("CusMobile", "")
+        FK_CustomerMobEditer.commit()
+
+        val CustomerNameSP = this!!.getSharedPreferences(Config.SHARED_PREF3, 0)
+        val CustomerNameEditer = CustomerNameSP.edit()
+        CustomerNameEditer.putString("CustomerName", "")
+        CustomerNameEditer.commit()
+
+        val CustomerAddressSP = this!!.getSharedPreferences(Config.SHARED_PREF4, 0)
+        val CustomerAddressEditer = CustomerAddressSP.edit()
+        CustomerAddressEditer.putString("Address", "")
+        CustomerAddressEditer.commit()
+
+        val CustomerEmailSP = this!!.getSharedPreferences(Config.SHARED_PREF5, 0)
+        val CustomerEmailEditer = CustomerEmailSP.edit()
+        CustomerEmailEditer.putString("Email", "")
+        CustomerEmailEditer.commit()
+
+        val CustomerGenderSP = this!!.getSharedPreferences(Config.SHARED_PREF6, 0)
+        val CustomerGenderEditer = CustomerGenderSP.edit()
+        CustomerGenderEditer.putString("Gender", "")
+        CustomerGenderEditer.commit()
+
+        val CustomerDobSP = this!!.getSharedPreferences(Config.SHARED_PREF7, 0)
+        val CustomerDobEditer = CustomerDobSP.edit()
+        CustomerDobEditer.putString("DateOfBirth", "")
+        CustomerDobEditer.commit()
+
+        val TokenSP = this!!.getSharedPreferences(Config.SHARED_PREF8, 0)
+        val TokenEditer = TokenSP.edit()
+        TokenEditer.putString("Token", "")
+        TokenEditer.commit()
+
+        val AppstoreSP = this!!.getSharedPreferences(Config.SHARED_PREF10, 0)
+        val AppstoreEditer = AppstoreSP.edit()
+        AppstoreEditer.putString("AppStoreLink", "")
+        AppstoreEditer.commit()
+
+
+        val ID_PlaystoreSP = this!!.getSharedPreferences(Config.SHARED_PREF11, 0)
+        val ID_PlaystoreEditer = ID_PlaystoreSP.edit()
+        ID_PlaystoreEditer.putString("PlayStoreLink", "")
+        ID_PlaystoreEditer.commit()
+
+        val FKAccountSP = this!!.getSharedPreferences(Config.SHARED_PREF16, 0)
+        val FKAccountEditer = FKAccountSP.edit()
+        FKAccountEditer.putString("FK_Account", "")
+        FKAccountEditer.commit()
+
+        val SubmoduleeSP = this!!.getSharedPreferences(Config.SHARED_PREF17, 0)
+        val SubmoduleEditer = SubmoduleeSP.edit()
+        SubmoduleEditer.putString("SubModule", "")
+        SubmoduleEditer.commit()
+
+        val StatusSP = this!!.getSharedPreferences(Config.SHARED_PREF18, 0)
+        val StatusEditer = StatusSP.edit()
+        StatusEditer.putString("Status", "")
+        StatusEditer.commit()
+
+        val CustnoSP = this!!.getSharedPreferences(Config.SHARED_PREF19, 0)
+        val CustnoEditer = CustnoSP.edit()
+        CustnoEditer.putString("CustomerNumber", "")
+        CustnoEditer.commit()
+
+        val Custno1SP = this!!.getSharedPreferences(Config.SHARED_PREF20, 0)
+        val Custno1Editer = Custno1SP.edit()
+        Custno1Editer.putString("CustomerNumber", "")
+        Custno1Editer.commit()
+
+        val LastloginSP = this!!.getSharedPreferences(Config.SHARED_PREF29, 0)
+        val LastloginEditer = LastloginSP.edit()
+        LastloginEditer.putString("LastLoginTime", "")
+        LastloginEditer.commit()
+
+        val LastloginSP1 = this!!.getSharedPreferences(Config.SHARED_PREF120, 0)
+        val LastloginEditer1 = LastloginSP1.edit()
+        LastloginEditer1.putString("LastLogin", "")
+        LastloginEditer1.commit()
+
+
+        /////////
+
+        val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
+        val baseurlSPEditer = baseurlSP.edit()
+        baseurlSPEditer.putString("baseurl", SplashActivity.BASE_URL)
+        baseurlSPEditer.commit()
+
+        val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+        val ImageURLSPEditer = ImageURLSP.edit()
+        ImageURLSPEditer.putString("ImageURL", SplashActivity.IMAGE_URL)
+        ImageURLSPEditer.commit()
+
+
+        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+        val BankKeyEditer = BankKeySP.edit()
+        BankKeyEditer.putString("BankKey", SplashActivity.BankKey)
+        BankKeyEditer.commit()
+
+        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+        val BankHeaderEditer = BankHeaderSP.edit()
+        BankHeaderEditer.putString("BankHeader", SplashActivity.BankHeader)
+        BankHeaderEditer.commit()
+
+
+        val certificateSP = applicationContext.getSharedPreferences(Config.SHARED_PREF164, 0)
+        val certificateSPEditer = certificateSP.edit()
+        certificateSPEditer.putString("sslcertificate", SplashActivity.CERT_NAME)
+        certificateSPEditer.commit()
+
+        val ID_status = applicationContext.getSharedPreferences(Config.SHARED_PREF346, 0)
+        val ID_statusEditer = ID_status.edit()
+        ID_statusEditer.putString("nidhicode", "")
+        ID_statusEditer.commit()
+
+        val ID_CommonApp = applicationContext.getSharedPreferences(Config.SHARED_PREF345, 0)
+        val ID_CommonAppEditer = ID_CommonApp.edit()
+        ID_CommonAppEditer.putString("nidhicheck", "")
+        ID_CommonAppEditer.commit()
+
+        val intent = Intent(this, SplashActivity::class.java)
+        intent.putExtra("from", "true")
+        this.startActivity(intent)
+        this.finish()
 
     }
 

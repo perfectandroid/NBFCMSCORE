@@ -341,20 +341,20 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                             applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
                         val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
-                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("26"))
-                        requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+                        requestObject1.put("Reqmode","26")
+                        requestObject1.put("Token",Token)
                         requestObject1.put(
                             "FK_Customer",
-                            MscoreApplication.encryptStart(FK_Customer)
+                            FK_Customer
                         )
                         requestObject1.put(
                             "SubMode",
-                            MscoreApplication.encryptStart("2")
+                           "2"
                         )
-                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankKey", BankKeyPref)
                         requestObject1.put(
                             "BankHeader",
-                            MscoreApplication.encryptStart(BankHeaderPref)
+                            BankHeaderPref
                         )
 
 

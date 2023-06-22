@@ -421,7 +421,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:padding="3dp"
-            android:background="@color/passavailbal"
+            android:background="@color/white"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -429,6 +429,7 @@
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_weight="1.8"
+                android:visibility="gone"
                 android:orientation="vertical">
 
                 <ImageView
@@ -451,7 +452,7 @@
                     android:textStyle="bold"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="5dp"
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorPrimary"
                     android:drawablePadding="10dp"
                     android:text="Available Balance"/>
 
@@ -464,7 +465,7 @@
                     android:gravity="left"
                     android:textStyle="bold"
                     android:layout_gravity="center_horizontal"
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorPrimaryExtraDark"
                     android:drawablePadding="10dp"
                     android:text="0"/>
             </LinearLayout>
@@ -561,7 +562,7 @@
                     android:layout_centerInParent="true"
                     android:layout_margin="20dp"
                     android:gravity="center"
-                    android:textColor="@color/blue"
+                    android:textColor="@color/colorPrimaryExtraDark"
                     android:textSize="16sp"
                     />
             </RelativeLayout>

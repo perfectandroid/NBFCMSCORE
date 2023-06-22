@@ -16,6 +16,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Adapter.LanguageLsitAdaptor
+import com.perfect.nbfcmscore.Helper.AlertMessage
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
 import com.perfect.nbfcmscore.Helper.MscoreApplication
@@ -51,32 +52,32 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
         Glide.with(this).load(R.drawable.langicon).into(imglogo)
 
         from = intent.getStringExtra("From")
-       /* if(from.equals("welcome"))
-        {
-            getLanguagelist()
-        }
-        else
-        {
-            this.recreate();*/
-            getLanguagelist()
-      /*  val SelectlanSP = applicationContext.getSharedPreferences(Config.SHARED_PREF38,0)
-        val SkipSP = applicationContext.getSharedPreferences(Config.SHARED_PREF39,0)
+        /* if(from.equals("welcome"))
+         {
+             getLanguagelist()
+         }
+         else
+         {
+             this.recreate();*/
+        getLanguagelist()
+        /*  val SelectlanSP = applicationContext.getSharedPreferences(Config.SHARED_PREF38,0)
+          val SkipSP = applicationContext.getSharedPreferences(Config.SHARED_PREF39,0)
 
-        tvskip!!.setText(SelectlanSP!!.getString("SelectLanguage",null))
-        tvHeader2!!.setText(SkipSP.getString("Skip",null))*/
+          tvskip!!.setText(SelectlanSP!!.getString("SelectLanguage",null))
+          tvHeader2!!.setText(SkipSP.getString("Skip",null))*/
         //}
 
-       /* val SkipSP = this.getSharedPreferences(Config.SHARED_PREF39, 0)
-        val LanguageslctSP = this.getSharedPreferences(Config.SHARED_PREF38, 0)
+        /* val SkipSP = this.getSharedPreferences(Config.SHARED_PREF39, 0)
+         val LanguageslctSP = this.getSharedPreferences(Config.SHARED_PREF38, 0)
 
-        tvHeader2!!.setText(LanguageslctSP.getString("SelectLanguage", null))
-        tvskip!!.setText(SkipSP.getString("Skip", null))*/
+         tvHeader2!!.setText(LanguageslctSP.getString("SelectLanguage", null))
+         tvskip!!.setText(SkipSP.getString("Skip", null))*/
 
 
     }
 
     private fun setRegViews() {
-         tvskip = findViewById<TextView>(R.id.tvskip) as TextView
+        tvskip = findViewById<TextView>(R.id.tvskip) as TextView
         tvHeader2 = findViewById<TextView>(R.id.tvHeader2) as TextView
         rv_Languagelist = findViewById<RecyclerView>(R.id.rv_Languagelist) as RecyclerView
         tvskip!!.setOnClickListener(this)
@@ -85,8 +86,8 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-        when(v.id){
-            R.id.tvskip->{
+        when (v.id) {
+            R.id.tvskip -> {
                 intent = Intent(applicationContext, WelcomeActivity::class.java)
                 intent.putExtra("skip", "1")
                 startActivity(intent)
@@ -97,7 +98,7 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
     private fun getLanguagelist() {
         val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurl = baseurlSP.getString("baseurl", null)
-        when(ConnectivityUtils.isConnected(this)) {
+        when (ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@LanguageSelectionActivity, R.style.Progress)
                 progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
@@ -116,7 +117,7 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
                                 + Arrays.toString(trustManagers))
                     }
                     val trustManager = trustManagers[0] as X509TrustManager
-                    val client:OkHttpClient = okhttp3 . OkHttpClient . Builder ()
+                    val client: OkHttpClient = okhttp3.OkHttpClient.Builder()
                         .connectTimeout(60, TimeUnit.SECONDS)
                         .readTimeout(60, TimeUnit.SECONDS)
                         .writeTimeout(60, TimeUnit.SECONDS)
@@ -135,24 +136,30 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
                     val apiService = retrofit.create(ApiInterface::class.java!!)
                     val requestObject1 = JSONObject()
                     try {
-                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeySP =
+                            applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
                         val BankKeyPref = BankKeySP.getString("BankKey", null)
-                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderSP =
+                            applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
                         val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("7"))
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
-                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
+                        requestObject1.put(
+                            "BankHeader",
+                            MscoreApplication.encryptStart(BankHeaderPref)
+                        )
 
                         Log.e("TAG", "requestObject1  language   " + requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
-                        e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                            findViewById(R.id.rl_main),
-                            " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(
+                            this@LanguageSelectionActivity,
+                            this@LanguageSelectionActivity,
+                            "Alert",
+                            "Some technical issues.",
+                            1
+                        );
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -168,80 +175,77 @@ class LanguageSelectionActivity : AppCompatActivity(), View.OnClickListener {
                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 if (jObject.getString("StatusCode") == "0") {
-                                 //   val jobjt = jObject.getJSONObject("VarificationMaintenance")
+                                    //   val jobjt = jObject.getJSONObject("VarificationMaintenance")
 
                                     val jobjt =
                                         jObject.getJSONObject("Languages")
                                     val jarray =
                                         jobjt.getJSONArray("LanguagesList")
 
-                                    val obj_adapter = LanguageLsitAdaptor(applicationContext!!, jarray)
-                                    rv_Languagelist!!.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
+                                    val obj_adapter =
+                                        LanguageLsitAdaptor(applicationContext!!, jarray)
+                                    rv_Languagelist!!.layoutManager = LinearLayoutManager(
+                                        applicationContext,
+                                        LinearLayoutManager.VERTICAL,
+                                        false
+                                    )
                                     rv_Languagelist!!.adapter = obj_adapter
                                     obj_adapter!!.notifyDataSetChanged()
                                 } else {
-                                    val builder = AlertDialog.Builder(
+                                    AlertMessage().alertMessage(
                                         this@LanguageSelectionActivity,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                        this@LanguageSelectionActivity,
+                                        "Alert",
+                                        jObject.getString("EXMessage"),
+                                        1
+                                    );
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
 
-                                val builder = AlertDialog.Builder(
+                                AlertMessage().alertMessage(
                                     this@LanguageSelectionActivity,
-                                    R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                    this@LanguageSelectionActivity,
+                                    "Alert",
+                                    "Some technical issues.",
+                                    1
+                                );
                                 e.printStackTrace()
                             }
                         }
+
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
 
-                            val builder = AlertDialog.Builder(
+                            AlertMessage().alertMessage(
                                 this@LanguageSelectionActivity,
-                                R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                                this@LanguageSelectionActivity,
+                                "Alert",
+                                "Some technical issues.",
+                                1
+                            );
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(this@LanguageSelectionActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(
+                        this@LanguageSelectionActivity,
+                        this@LanguageSelectionActivity,
+                        "Alert",
+                        "Some technical issues.",
+                        1
+                    );
                     e.printStackTrace()
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@LanguageSelectionActivity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(
+                    this@LanguageSelectionActivity,
+                    this@LanguageSelectionActivity,
+                    "Alert",
+                    "No Internet Connection.",
+                    3
+                );
             }
         }
 

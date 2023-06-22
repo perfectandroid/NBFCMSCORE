@@ -131,7 +131,7 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                                 + Arrays.toString(trustManagers))
                     }
                     val trustManager = trustManagers[0] as X509TrustManager
-                    val client:OkHttpClient = okhttp3 . OkHttpClient . Builder ()
+                    val client: OkHttpClient = okhttp3.OkHttpClient.Builder()
                         .connectTimeout(60, TimeUnit.SECONDS)
                         .readTimeout(60, TimeUnit.SECONDS)
                         .writeTimeout(60, TimeUnit.SECONDS)
@@ -392,7 +392,7 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                                 + Arrays.toString(trustManagers))
                     }
                     val trustManager = trustManagers[0] as X509TrustManager
-                    val client:OkHttpClient = okhttp3 . OkHttpClient . Builder ()
+                    val client: OkHttpClient = okhttp3.OkHttpClient.Builder()
                         .connectTimeout(60, TimeUnit.SECONDS)
                         .readTimeout(60, TimeUnit.SECONDS)
                         .writeTimeout(60, TimeUnit.SECONDS)
@@ -489,8 +489,8 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 
                                         rv_holiday!!.adapter = adapter
                                         setCalender();
-                                        loadList()
-
+//                                        loadList()
+                                        loadCalender()
                                     } else {
                                         if (rv_holiday!!.isShown()) {
                                             val builder = AlertDialog.Builder(
@@ -633,6 +633,7 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
     }
 
     fun loadCalender() {
+        Log.v("fdsfdddd", "loadCalender")
         val date = Date()
         val myFormat = SimpleDateFormat("dd-MM-yyyy")
         val inputString1 = myFormat.format(date);

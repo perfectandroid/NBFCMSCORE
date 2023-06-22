@@ -732,11 +732,13 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             val url = pref.getString("PlayStoreLink", null)
             URL(url)
         } catch (e: MalformedURLException) {
-            val alertDialogBuilder = AlertDialog.Builder(this@HomeActivity)
-            alertDialogBuilder.setMessage("The app is under maintenance. Sorry for the inconvenience.")
-            alertDialogBuilder.setCancelable(false)
-            alertDialogBuilder.setPositiveButton("Ok") { dialog: DialogInterface?, which: Int -> finish() }
-            alertDialogBuilder.show()
+//            val alertDialogBuilder = AlertDialog.Builder(this@HomeActivity)
+//            alertDialogBuilder.setMessage("The app is under maintenance. Sorry for the inconvenience.")
+//            alertDialogBuilder.setCancelable(false)
+//            alertDialogBuilder.setPositiveButton("Ok") { dialog: DialogInterface?, which: Int -> finish() }
+//            alertDialogBuilder.show()
+
+            alertMessage("Success","The app is under maintenance. Sorry for the inconvenience.",1)
             return
         }
         val bottomSheetDialog = BottomSheetDialog(this)
@@ -1237,6 +1239,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.drawable.logoutnav,
             R.drawable.exitnav
         )
+
         val adapter = NavMenuAdapter(this@HomeActivity, menulist, imageId)
         lvNavMenu!!.adapter = adapter
         lvNavMenu!!.onItemClickListener = OnItemClickListener { parent, view, position, id ->
@@ -6436,6 +6439,45 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onResume() {  // After a pause OR at startup
         super.onResume()
         setdefaultAccountDetails()
+    }
+
+
+    fun alertMessage(header: String, message: String, type: Int) {
+        val bottomSheetDialog = BottomSheetDialog(this@HomeActivity)
+        bottomSheetDialog.setContentView(R.layout.alert_message)
+        val txt_ok = bottomSheetDialog.findViewById<TextView>(R.id.txt_ok)
+        val img = bottomSheetDialog.findViewById<ImageView>(R.id.img)
+        val txt_cancel = bottomSheetDialog.findViewById<TextView>(R.id.txt_cancel)
+        val txtheader = bottomSheetDialog.findViewById<TextView>(R.id.header)
+        val txtmessage = bottomSheetDialog.findViewById<TextView>(R.id.message)
+        txtmessage!!.setText(message)
+        txtheader!!.setText(header)
+        txt_cancel!!.setText("OK")
+        txt_cancel!!.setOnClickListener {
+            bottomSheetDialog.dismiss()
+            finish()
+        }
+        if(type==1)
+        {
+            txt_ok!!.visibility=View.GONE
+            txt_cancel!!.visibility=View.VISIBLE
+            img!!.setImageResource(R.drawable.new_alert)
+        }
+        else if(type==2)
+        {
+            txt_ok!!.visibility=View.GONE
+            txt_cancel!!.visibility=View.VISIBLE
+            img!!.setImageResource(R.drawable.new_success)
+        }
+        else if(type==3)
+        {
+            txt_ok!!.visibility=View.GONE
+            txt_cancel!!.visibility=View.VISIBLE
+            img!!.setImageResource(R.drawable.new_nonetwork)
+        }
+
+        bottomSheetDialog.setCancelable(false)
+        bottomSheetDialog.show()
     }
 
 }

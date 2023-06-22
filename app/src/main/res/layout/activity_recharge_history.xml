@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.RechargeHistoryActivity"
-    android:background="@color/white">
+    android:background="@drawable/background">
 
     <RelativeLayout
         android:id="@+id/rltv_header"
@@ -90,9 +90,12 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvrechargeHistory"
-            android:layout_margin="2dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="2dp" />
 
     </RelativeLayout>
 
