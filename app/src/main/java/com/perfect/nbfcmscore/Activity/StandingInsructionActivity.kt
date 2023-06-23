@@ -115,11 +115,11 @@ class StandingInsructionActivity : AppCompatActivity(), View.OnClickListener {
                         val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
 
-                        requestObject1.put("Reqmode", "15")
-                        requestObject1.put("FK_Customer", FK_Customer)
-                        requestObject1.put("Token", Token)
-                        requestObject1.put("BankKey",BankKeyPref)
-                        requestObject1.put("BankHeader", BankHeaderPref)
+                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("15"))
+                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
+                        requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+                        requestObject1.put("BankKey",MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
                         Log.e(TAG,"requestObject1  516   "+requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()

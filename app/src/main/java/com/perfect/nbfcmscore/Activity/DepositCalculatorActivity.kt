@@ -87,7 +87,7 @@ class DepositCalculatorActivity : AppCompatActivity(),View.OnClickListener,Adapt
 
         val Amtsp = applicationContext.getSharedPreferences(Config.SHARED_PREF113, 0)
         txtamt!!.setText(Amtsp.getString("Amount", null))
-        etxt_amount!!.setText(Amtsp.getString("Amount", null))
+        etxt_amount!!.setHint(Amtsp.getString("Amount", null))
 
         val Tenresp = applicationContext.getSharedPreferences(Config.SHARED_PREF180, 0)
         txtv_tenure!!.setText(Tenresp.getString("Tenure", null))

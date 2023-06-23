@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout
 import com.perfect.nbfcmscore.Fragment.*
 import com.perfect.nbfcmscore.Helper.Config
@@ -221,39 +222,83 @@ class AccountDetailsActivity : AppCompatActivity() , View.OnClickListener {
     }
 
 
+//    private fun share() {
+//        try {
+//            val builder = AlertDialog.Builder(this)
+//
+//            val inflater1 =
+//                applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+//            val layout: View = inflater1.inflate(R.layout.share_popup, null)
+//
+//
+//
+//            val tv_share = layout.findViewById<TextView>(R.id.tv_share)
+//            val tv_cancel = layout.findViewById<TextView>(R.id.tv_cancel)
+//            val tvp_name = layout.findViewById<TextView>(R.id.tvp_name)
+//            val tvp_accNum = layout.findViewById<TextView>(R.id.tvp_accNum)
+//            builder.setView(layout)
+//            val alertDialog = builder.create()
+//
+//            val CustomerNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF3, 0)
+//            val CustomerName = CustomerNameSP.getString("CustomerName", null)
+//
+//            tvp_name.text = "Beneficiary Name : " + CustomerName + ""
+//            tvp_accNum.text = "Account Type : "+LoanType +"\nBeneficiary Account : "+FundTransferAccount +"\nIFSC Code : "+IFSCCode
+//
+//            tv_cancel.setOnClickListener { alertDialog.dismiss() }
+//            tv_share.setOnClickListener {
+//               var shareData = ""+tvp_name.getText()+"\nAccount Type : "+LoanType+"\n"+"Beneficiary Account : "+FundTransferAccount+"\n"+"IFSC Code : "+IFSCCode;
+//                val sendIntent = Intent()
+//                sendIntent.action = Intent.ACTION_SEND
+//                sendIntent.putExtra(Intent.EXTRA_TEXT, shareData)
+//                sendIntent.type = "text/plain"
+//                startActivity(sendIntent)
+//                alertDialog.dismiss()
+//            }
+//
+//
+//
+//            alertDialog.show()
+//        } catch (e: java.lang.Exception) {
+//            e.printStackTrace()
+//        }
+//    }
+
+
     private fun share() {
         try {
-            val builder = AlertDialog.Builder(this)
+        val bottomSheetDialog = BottomSheetDialog(this)
+        bottomSheetDialog.setContentView(R.layout.share_popup)
 
-            val inflater1 =
-                applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            val layout: View = inflater1.inflate(R.layout.share_popup, null)
-            val tv_share = layout.findViewById<TextView>(R.id.tv_share)
-            val tv_cancel = layout.findViewById<TextView>(R.id.tv_cancel)
-            val tvp_name = layout.findViewById<TextView>(R.id.tvp_name)
-            val tvp_accNum = layout.findViewById<TextView>(R.id.tvp_accNum)
-            builder.setView(layout)
-            val alertDialog = builder.create()
+
+            val tv_share = bottomSheetDialog.findViewById<TextView>(R.id.tv_share)
+            val tv_cancel = bottomSheetDialog.findViewById<TextView>(R.id.tv_cancel)
+            val tvp_name = bottomSheetDialog.findViewById<TextView>(R.id.tvp_name)
+            val tvp_accNum = bottomSheetDialog.findViewById<TextView>(R.id.tvp_accNum)
 
             val CustomerNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF3, 0)
             val CustomerName = CustomerNameSP.getString("CustomerName", null)
 
-            tvp_name.text = "Beneficiary Name : " + CustomerName + ""
-            tvp_accNum.text = "Account Type : "+LoanType +"\nBeneficiary Account : "+FundTransferAccount +"\nIFSC Code : "+IFSCCode
+            tvp_name?.text = "Beneficiary Name : " + CustomerName + ""
+            tvp_accNum?.text = "Account Type : "+LoanType +"\nBeneficiary Account : "+FundTransferAccount +"\nIFSC Code : "+IFSCCode
 
-            tv_cancel.setOnClickListener { alertDialog.dismiss() }
-            tv_share.setOnClickListener {
-               var shareData = ""+tvp_name.getText()+"\nAccount Type : "+LoanType+"\n"+"Beneficiary Account : "+FundTransferAccount+"\n"+"IFSC Code : "+IFSCCode;
+            tv_cancel?.setOnClickListener { bottomSheetDialog.dismiss() }
+            tv_share?.setOnClickListener {
+                var shareData = ""+tvp_name?.getText()+"\nAccount Type : "+LoanType+"\n"+"Beneficiary Account : "+FundTransferAccount+"\n"+"IFSC Code : "+IFSCCode;
                 val sendIntent = Intent()
                 sendIntent.action = Intent.ACTION_SEND
                 sendIntent.putExtra(Intent.EXTRA_TEXT, shareData)
                 sendIntent.type = "text/plain"
                 startActivity(sendIntent)
-                alertDialog.dismiss()
+                bottomSheetDialog.dismiss()
             }
-            alertDialog.show()
+
+
+
+        bottomSheetDialog.show()
         } catch (e: java.lang.Exception) {
             e.printStackTrace()
         }
     }
+
 }
