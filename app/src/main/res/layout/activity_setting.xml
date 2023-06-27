@@ -341,6 +341,23 @@
 
                     </LinearLayout>
 
+                    <TextView
+
+                        android:id="@+id/btn_KYC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_button"
+                        android:layout_marginLeft="10dp"
+                        android:padding="10dp"
+                        android:layout_marginTop="10dp"
+                        android:backgroundTint="@color/white"
+                        android:gravity="center"
+                        android:text="KYC"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorPrimaryExtraDark"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
 
 

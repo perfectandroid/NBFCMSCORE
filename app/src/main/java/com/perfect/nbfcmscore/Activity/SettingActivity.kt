@@ -37,6 +37,7 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
     var im_back: ImageView? = null
     var im_home: ImageView? = null
     var btn_clear: TextView? = null
+    var btn_KYC: TextView? = null
 
     var act_UpdateDays: AutoCompleteTextView? = null
     var act_hours: AutoCompleteTextView? = null
@@ -83,8 +84,8 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
         val ID_rest = applicationContext.getSharedPreferences(Config.SHARED_PREF189,0)
         btn_clear!!.setText(ID_rest.getString("RESET",null))
 
-
-
+// TODO:  Unccoment below code
+//        btn_KYC?.visibility=View.GONE
 
 //        val adapterday = ArrayAdapter(this@SettingActivity,
 //            android.R.layout.simple_list_item_1, daysItems)
@@ -163,6 +164,7 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
         txtvdefltacc= findViewById<TextView>(R.id.txtvdefltacc)
 
         btn_apply = findViewById<TextView>(R.id.btn_apply)
+        btn_KYC = findViewById<TextView>(R.id.btn_KYC)
 
     }
 
@@ -177,6 +179,7 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
 
         btn_apply!!.setOnClickListener(this)
         btn_clear!!.setOnClickListener(this)
+        btn_KYC!!.setOnClickListener(this)
 
 
     }
@@ -192,6 +195,10 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
 
             R.id.im_home ->{
                 startActivity(Intent(this@SettingActivity, HomeActivity::class.java))
+                finish()
+            }
+            R.id.btn_KYC ->{
+                startActivity(Intent(this@SettingActivity, Kyc::class.java))
                 finish()
             }
             R.id.act_UpdateDays ->{
