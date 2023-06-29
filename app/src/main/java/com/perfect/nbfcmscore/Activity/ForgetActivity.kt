@@ -12,13 +12,11 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Api.ApiInterface
-import com.perfect.nbfcmscore.Helper.Config
-import com.perfect.nbfcmscore.Helper.ConnectivityUtils
-import com.perfect.nbfcmscore.Helper.MscoreApplication
-import com.perfect.nbfcmscore.Helper.PicassoTrustAll
+import com.perfect.nbfcmscore.Helper.*
 import com.perfect.nbfcmscore.R
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
@@ -49,19 +47,22 @@ class ForgetActivity : AppCompatActivity(), View.OnClickListener {
 
         val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
         val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
-        val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14,0)
-        val ProductNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF12,0)
-        var IMAGRURL = IMAGE_URL+AppIconImageCodeSP.getString("AppIconImageCode",null)
+        val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
+        val ProductNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF12, 0)
+        var IMAGRURL = IMAGE_URL + AppIconImageCodeSP.getString("AppIconImageCode", null)
 
 //        Glide.with(this).load(IMAGRURL).placeholder(R.drawable.login_icon).into(imgLogo);
-        try { val imagepath = IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
-            Log.e("TAG","imagepath  116   "+imagepath)
+        try {
+            val imagepath = IMAGE_URL + AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+            Log.e("TAG", "imagepath  116   " + imagepath)
             //PicassoTrustAll.getInstance(this)!!.load(imagepath).error(null).into(im_applogo)
-            PicassoTrustAll.getInstance(this@ForgetActivity)!!.load(imagepath).error(android.R.color.transparent).into(imgLogo!!)
+            PicassoTrustAll.getInstance(this@ForgetActivity)!!.load(imagepath)
+                .error(android.R.color.transparent).into(imgLogo!!)
 
-        }catch (e: Exception) {
-            e.printStackTrace()}
-        tv_product_name!!.setText(ProductNameSP.getString("ProductName",null))
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        tv_product_name!!.setText(ProductNameSP.getString("ProductName", null))
     }
 
     private fun setRegViews() {
@@ -71,26 +72,26 @@ class ForgetActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-        when(v.id){
-            R.id.btforgrt->{
+        when (v.id) {
+            R.id.btforgrt -> {
                 validation()
 
             }
-          /*  R.id.tvreg-> {
-                intent = Intent(applicationContext, RegistrationActivity::class.java)
-                startActivity(intent)
-            }*/
+            /*  R.id.tvreg-> {
+                  intent = Intent(applicationContext, RegistrationActivity::class.java)
+                  startActivity(intent)
+              }*/
         }
     }
 
     private fun validation() {
         if (etxt_mob!!.text.toString() == null || etxt_mob!!.text.toString().isEmpty()) {
             etxt_mob!!.setError("Please Enter Mobile Number")
-        }
-        else if (etxt_mob!!.text.toString().isNotEmpty() && etxt_mob!!.text.toString().length!=10) {
+        } else if (etxt_mob!!.text.toString()
+                .isNotEmpty() && etxt_mob!!.text.toString().length != 10
+        ) {
             etxt_mob!!.setError("Please Enter Valid Mobile Number")
-        }
-        else{
+        } else {
             getForegetpassword(etxt_mob!!.text.toString())
         }
     }
@@ -98,7 +99,7 @@ class ForgetActivity : AppCompatActivity(), View.OnClickListener {
     private fun getForegetpassword(varPhone: String) {
         val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurl = baseurlSP.getString("baseurl", null)
-        when(ConnectivityUtils.isConnected(this)) {
+        when (ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@ForgetActivity, R.style.Progress)
                 progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
@@ -117,7 +118,7 @@ class ForgetActivity : AppCompatActivity(), View.OnClickListener {
                                 + Arrays.toString(trustManagers))
                     }
                     val trustManager = trustManagers[0] as X509TrustManager
-                    val client:OkHttpClient = okhttp3 . OkHttpClient . Builder ()
+                    val client: OkHttpClient = okhttp3.OkHttpClient.Builder()
                         .connectTimeout(60, TimeUnit.SECONDS)
                         .readTimeout(60, TimeUnit.SECONDS)
                         .writeTimeout(60, TimeUnit.SECONDS)
@@ -137,33 +138,45 @@ class ForgetActivity : AppCompatActivity(), View.OnClickListener {
                     val requestObject1 = JSONObject()
                     try {
 
-                        val FK_CustomerSP = applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
+                        val FK_CustomerSP =
+                            applicationContext.getSharedPreferences(Config.SHARED_PREF1, 0)
                         val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
 
-                        val TokenSP = applicationContext.getSharedPreferences(Config.SHARED_PREF8, 0)
+                        val TokenSP =
+                            applicationContext.getSharedPreferences(Config.SHARED_PREF8, 0)
                         val Token = TokenSP.getString("Token", null)
 
-                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeySP =
+                            applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
                         val BankKeyPref = BankKeySP.getString("BankKey", null)
-                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderSP =
+                            applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
                         val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("4"))
-                        requestObject1.put("FK_Customer",  MscoreApplication.encryptStart(FK_Customer))
+                        requestObject1.put(
+                            "FK_Customer",
+                            MscoreApplication.encryptStart(FK_Customer)
+                        )
                         requestObject1.put("MobileNumber", MscoreApplication.encryptStart(varPhone))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
 
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
-                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
+                        requestObject1.put(
+                            "BankHeader",
+                            MscoreApplication.encryptStart(BankHeaderPref)
+                        )
 
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                            findViewById(R.id.rl_main),
-                            " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(
+                            this@ForgetActivity,
+                            this@ForgetActivity,
+                            "Alert",
+                            "Some technical issues.",
+                            1
+                        );
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -180,87 +193,107 @@ class ForgetActivity : AppCompatActivity(), View.OnClickListener {
                                 val jObject = JSONObject(response.body())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jobjt = jObject.getJSONObject("VarificationMaintenance")
-                                    val builder = AlertDialog.Builder(
-                                        this@ForgetActivity,
-                                        R.style.MyDialogTheme
+                                    alertMessage(
+                                        "Success",
+                                        "" + jobjt.getString("ResponseMessage"),
+                                        2
                                     )
-                                    builder.setMessage("" + jobjt.getString("ResponseMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                        startActivity(
-                                            Intent(
-                                                this@ForgetActivity,
-                                                MpinActivity::class.java
-                                            )
-                                        )
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
                                 } else {
-                                    val builder = AlertDialog.Builder(
+                                    AlertMessage().alertMessage(
                                         this@ForgetActivity,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                        this@ForgetActivity,
+                                        "Alert",
+                                        jObject.getString("EXMessage"),
+                                        1
+                                    );
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
 
-                                val builder = AlertDialog.Builder(
+                                AlertMessage().alertMessage(
                                     this@ForgetActivity,
-                                    R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                    this@ForgetActivity,
+                                    "Alert",
+                                    "Some technical issues.",
+                                    1
+                                );
                                 e.printStackTrace()
                             }
                         }
+
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
 
-                            val builder = AlertDialog.Builder(
+                            AlertMessage().alertMessage(
                                 this@ForgetActivity,
-                                R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                                this@ForgetActivity,
+                                "Alert",
+                                "Some technical issues.",
+                                1
+                            );
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(this@ForgetActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(
+                        this@ForgetActivity,
+                        this@ForgetActivity,
+                        "Alert",
+                        "Some technical issues.",
+                        1
+                    );
                     e.printStackTrace()
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@ForgetActivity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(
+                    this@ForgetActivity,
+                    this@ForgetActivity,
+                    "Alert",
+                    "No Internet Connection.",
+                    3
+                );
             }
         }
 
+    }
+
+    fun alertMessage(header: String, message: String, type: Int) {
+        val bottomSheetDialog = BottomSheetDialog(this@ForgetActivity)
+        bottomSheetDialog.setContentView(R.layout.alert_message)
+        val txt_ok = bottomSheetDialog.findViewById<TextView>(R.id.txt_ok)
+        val img = bottomSheetDialog.findViewById<ImageView>(R.id.img)
+        val txt_cancel = bottomSheetDialog.findViewById<TextView>(R.id.txt_cancel)
+        val txtheader = bottomSheetDialog.findViewById<TextView>(R.id.header)
+        val txtmessage = bottomSheetDialog.findViewById<TextView>(R.id.message)
+        txtmessage!!.setText(message)
+        txtheader!!.setText(header)
+        txt_cancel!!.setText("OK")
+        txt_cancel!!.setOnClickListener {
+            bottomSheetDialog.dismiss()
+            startActivity(
+                Intent(
+                    this@ForgetActivity,
+                    MpinActivity::class.java
+                )
+            )
+            finish()
+        }
+        if (type == 1) {
+            txt_ok!!.visibility = View.GONE
+            txt_cancel!!.visibility = View.VISIBLE
+            img!!.setImageResource(R.drawable.new_alert)
+        } else if (type == 2) {
+            txt_ok!!.visibility = View.GONE
+            txt_cancel!!.visibility = View.VISIBLE
+            img!!.setImageResource(R.drawable.new_success)
+        } else if (type == 3) {
+            txt_ok!!.visibility = View.GONE
+            txt_cancel!!.visibility = View.VISIBLE
+            img!!.setImageResource(R.drawable.new_nonetwork)
+        }
+
+        bottomSheetDialog.setCancelable(false)
+        bottomSheetDialog.show()
     }
 }

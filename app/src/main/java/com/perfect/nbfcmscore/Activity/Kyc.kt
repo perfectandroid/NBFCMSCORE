@@ -2,6 +2,7 @@ package com.perfect.nbfcmscore.Activity
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.os.AsyncTask
@@ -12,8 +13,10 @@ import android.view.Window
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -36,13 +39,18 @@ import java.net.HttpURLConnection
 import java.net.MalformedURLException
 import java.net.URL
 
-class Kyc : AppCompatActivity() {
+class Kyc : AppCompatActivity(), View.OnClickListener {
+    var imgBack: ImageView? = null
+    var imgHome: ImageView? = null
     var cobrandPrepaidSdkkit: CobrandPrepaidSdkkit? = null
     private var upiBankCode: String = ""
     private var mobile: String = ""
     private var strAgentEmail: String = ""
     var textDialogue: TextView? = null
+    var btlogin: TextView? = null
+    var lin_start: LinearLayout? = null
     var TAG = "KYC MAIN"
+    private var progressDialog: ProgressDialog? = null
     var webview: WebView? = null
     var constrWebview: ConstraintLayout? = null
     private lateinit var dialog1: Dialog
@@ -63,17 +71,20 @@ class Kyc : AppCompatActivity() {
         mobile = "8075115147"
         upiBankCode = "ATA000823"
         strAgentEmail = "kscbp373@gmail.com"
-
-
-        prepaidCardExistCheck()
-//        var url =
-//            "https://aceneobank.com/api/callback/get/aadhardetails?state=d0d70ffab7bc4c07b3327dcdf771f07a&confirmAuthorization=true&taskId="
-//        JsonTask(this@Kyc).execute(url)
     }
 
     private fun setId() {
+        imgBack = findViewById(R.id.imgBack)
+        imgHome = findViewById(R.id.imgHome)
         constrWebview = findViewById<ConstraintLayout>(R.id.constrWebview)
         webview = findViewById(R.id.webview)
+        lin_start = findViewById(R.id.lin_start)
+        btlogin = findViewById(R.id.btlogin)
+
+
+        imgBack!!.setOnClickListener(this)
+        imgHome!!.setOnClickListener(this)
+        btlogin!!.setOnClickListener(this)
     }
 
     private fun prepaidCardExistCheck() {
@@ -99,6 +110,7 @@ class Kyc : AppCompatActivity() {
             }
 
             override fun onFailure(s: String, jsonObject: JsonObject) {
+                progressDialog?.dismiss()
                 Log.e(TAG, "f_card check json $jsonObject")
                 dialog1!!.dismiss()
                 try {
@@ -126,6 +138,7 @@ class Kyc : AppCompatActivity() {
         cobrandPrepaidSdkkit!!.setResponseCall(object : ResponseListener {
             override fun onSuccess(s: String, jsonObject: JsonObject) {
                 dialog1!!.dismiss()
+                progressDialog?.dismiss()
                 //                {"status":true,"message":"Success","requestId":"b4990da6be1816659dd5aed04621dbfb","url":"https://api.digitallocker.gov.in/public/oauth2/1/authorize?response_type=code&client_id=CE07F040&redirect_uri=https://sandbox.kyckart.com/page/digilocker-auth-complete&state=b4990da6be1816659dd5aed04621dbfb","aadhar":""}
                 Log.e(TAG, "s_aadharDetails json $jsonObject")
                 Log.e(TAG, "s_aadharDetails s $s")
@@ -135,11 +148,13 @@ class Kyc : AppCompatActivity() {
                     loadWebView(jsonObject["url"].asString)
                 } else {
                     dialog1!!.dismiss()
+                    progressDialog?.dismiss()
                 }
             }
 
             override fun onFailure(s: String, jsonObject: JsonObject) {
                 dialog1!!.dismiss()
+                progressDialog?.dismiss()
                 Log.e(TAG, "F_aadharDetails json $jsonObject")
                 Log.e(TAG, "F_aadharDetails s $s")
                 //   loadWebView("http://www.tutorialspoint.com");
@@ -148,7 +163,8 @@ class Kyc : AppCompatActivity() {
     }
 
     private fun loadWebView(url: String) {
-        webview?.setVisibility(View.VISIBLE)
+        constrWebview?.setVisibility(View.VISIBLE)
+        lin_start?.setVisibility(View.GONE)
         webview?.loadUrl(url)
         val webSettings: WebSettings = webview!!.getSettings()
         webSettings.javaScriptEnabled = true
@@ -157,18 +173,25 @@ class Kyc : AppCompatActivity() {
     }
 
     fun showLoadingDialog(msg: String?): Dialog? {
+        progressDialog = ProgressDialog(this@Kyc, R.style.Progress)
+        progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
+        progressDialog!!.setCancelable(false)
+        progressDialog!!.setIndeterminate(true)
+        progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
+        progressDialog!!.show()
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(false)
         dialog.setContentView(R.layout.alert_loading)
         textDialogue = dialog.findViewById<TextView>(R.id.text)
         textDialogue!!.setText(msg)
+        dialog.window!!.setBackgroundDrawableResource(R.color.transparent)
         dialog.show()
         return dialog
     }
 
     private class MyWebViewClient(kyc: Kyc) : WebViewClient() {
-        val kyc=kyc
+        val kyc = kyc
         override fun shouldOverrideUrlLoading(webView: WebView, url: String): Boolean {
             Log.v("sfsdfsdfdd", "shouldOverrideUrlLoading $url")
             return false
@@ -191,8 +214,9 @@ class Kyc : AppCompatActivity() {
 
     class JsonTask(mContext: Context) : AsyncTask<String?, String?, String?>() {
         private lateinit var dialog1: Dialog
-        var mContext=mContext
-           override fun doInBackground(vararg p0: String?): String? {
+        private var progressDialog: ProgressDialog? = null
+        var mContext = mContext
+        override fun doInBackground(vararg p0: String?): String? {
             var connection: HttpURLConnection? = null
             var reader: BufferedReader? = null
             try {
@@ -238,17 +262,25 @@ class Kyc : AppCompatActivity() {
 
         override fun onPreExecute() {
             super.onPreExecute()
-             dialog1=showLoadingDialog("Fetching data for registering prepaid card user.",mContext)
+            dialog1 =
+                showLoadingDialog("Fetching data for registering prepaid card user.", mContext)
             Log.v("dfsfsdfsdddd", "pre execute")
         }
 
-        private fun showLoadingDialog(msg: String,mContext:Context): Dialog {
+        private fun showLoadingDialog(msg: String, mContext: Context): Dialog {
+            progressDialog = ProgressDialog(mContext, R.style.Progress)
+            progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
+            progressDialog!!.setCancelable(false)
+            progressDialog!!.setIndeterminate(true)
+            progressDialog!!.setIndeterminateDrawable(mContext.resources.getDrawable(R.drawable.progress))
+            progressDialog!!.show()
             val dialog = Dialog(mContext)
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.setCancelable(false)
             dialog.setContentView(R.layout.alert_loading)
             var textDialogue = dialog.findViewById<TextView>(R.id.text)
             textDialogue!!.setText(msg)
+            dialog.window!!.setBackgroundDrawableResource(R.color.transparent)
             dialog.show()
             return dialog
         }
@@ -262,14 +294,15 @@ class Kyc : AppCompatActivity() {
                 val status = obj.getBoolean("status")
                 Log.e("KYC MAIN", "status " + status)
                 if (status) {
+                    progressDialog!!.dismiss()
                     dialog1.dismiss()
                     var intent = Intent(mContext, Kyc2::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.putExtra("obj", obj.toString())
                     mContext.startActivity(intent)
 
                 } else {
+                    progressDialog!!.dismiss()
                     dialog1.dismiss()
                     Toast.makeText(
                         mContext,
@@ -285,24 +318,29 @@ class Kyc : AppCompatActivity() {
         }
 
     }
+    override fun onClick(p0: View?) {
+        when (p0?.id) {
+            R.id.imgBack -> {
+                finish()
+            }
+            R.id.imgHome -> {
+                startActivity(Intent(this@Kyc, HomeActivity::class.java))
+            }
+            R.id.btlogin -> {
 
-    fun redirect(obj: JSONObject) {
-//        var intent = Intent(applicationContext, Kyc2::class.java)
-//        intent.putExtra("obj", obj.toString())
-//        startActivity(intent)
-       // startActivity(Intent(mContext, Kyc2::class.java))
+                prepaidCardExistCheck()
+//                var url =
+//                    "https://aceneobank.com/api/callback/get/aadhardetails?state=8b0ead52b9633a157209469c90229471&confirmAuthorization=true&taskId="
+//                JsonTask(this@Kyc).execute(url)
+            }
+        }
     }
 
-
-
-
-
-
-
-
-
-
-
+    override fun onResume() {
+        super.onResume()
+        constrWebview?.visibility=View.GONE
+        lin_start?.visibility=View.VISIBLE
+    }
 
 
 }

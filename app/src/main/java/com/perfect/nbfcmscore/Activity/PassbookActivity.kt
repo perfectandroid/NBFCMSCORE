@@ -51,7 +51,7 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
     private var tv_list_days: TextView? = null
     private var rv_passbook: RecyclerView? = null
     private var ll_balance1: LinearLayout? = null
-    private var card_list: CardView? = null
+    private var card_list: LinearLayout? = null
 
     private var txtvAcnttype: TextView? = null
     private var txtv_Acntno: TextView? = null
@@ -498,6 +498,7 @@ class PassbookActivity : AppCompatActivity(), OnItemSelectedListener,View.OnClic
                                 "FK_Account",
                                 MscoreApplication.encryptStart(fkaccount)
                         )
+                        Log.e("TAG", "fkaccount   " + fkaccount)
                         requestObject1.put(
                                 "FK_Customer",
                                 MscoreApplication.encryptStart(FK_Customer)

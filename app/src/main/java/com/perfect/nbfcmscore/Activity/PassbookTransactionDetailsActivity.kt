@@ -14,6 +14,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Adapter.PassbookTransactionDetailsAdapter
 import com.perfect.nbfcmscore.Api.ApiInterface
+import com.perfect.nbfcmscore.Helper.AlertMessage
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
 import com.perfect.nbfcmscore.Helper.MscoreApplication
@@ -116,35 +117,31 @@ class PassbookTransactionDetailsActivity : AppCompatActivity(), View.OnClickList
                         val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
                         val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
-//                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("14"))
-//                        requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-//                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
-//                        requestObject1.put("TransactionID", MscoreApplication.encryptStart(transactionID))
-//                        requestObject1.put("SubModule", MscoreApplication.encryptStart(subModule))
+                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("14"))
+                        requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
+                        requestObject1.put("TransactionID", MscoreApplication.encryptStart(transactionID))
+                        requestObject1.put("SubModule", MscoreApplication.encryptStart(subModule))
+
+                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
+                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
+
+
+//                        requestObject1.put("Reqmode", "14")
+//                        requestObject1.put("Token", Token)
+//                        requestObject1.put("FK_Customer", FK_Customer)
+//                        requestObject1.put("TransactionID", transactionID)
+//                        requestObject1.put("SubModule",subModule)
 //
-//                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
-//                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
-
-
-                        requestObject1.put("Reqmode", "14")
-                        requestObject1.put("Token", Token)
-                        requestObject1.put("FK_Customer", FK_Customer)
-                        requestObject1.put("TransactionID", transactionID)
-                        requestObject1.put("SubModule",subModule)
-
-                        requestObject1.put("BankKey",BankKeyPref)
-                        requestObject1.put("BankHeader", BankHeaderPref)
+//                        requestObject1.put("BankKey",BankKeyPref)
+//                        requestObject1.put("BankHeader", BankHeaderPref)
 
 
                         Log.e("TAG", "requestObject1  17333   " + requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                                findViewById(R.id.rl_main),
-                                " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@PassbookTransactionDetailsActivity,this@PassbookTransactionDetailsActivity,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -171,16 +168,7 @@ class PassbookTransactionDetailsActivity : AppCompatActivity(), View.OnClickList
                                     rv_statementDetails!!.adapter = adapter
                                 }
                                 else {
-                                    val builder = AlertDialog.Builder(
-                                        this@PassbookTransactionDetailsActivity,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                    AlertMessage().alertMessage(this@PassbookTransactionDetailsActivity,this@PassbookTransactionDetailsActivity,"Alert",jObject.getString("EXMessage"),1);
                                 }
                                 /* if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
@@ -207,16 +195,7 @@ class PassbookTransactionDetailsActivity : AppCompatActivity(), View.OnClickList
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
 
-                                val builder = AlertDialog.Builder(
-                                        this@PassbookTransactionDetailsActivity,
-                                        R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@PassbookTransactionDetailsActivity,this@PassbookTransactionDetailsActivity,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
@@ -224,38 +203,17 @@ class PassbookTransactionDetailsActivity : AppCompatActivity(), View.OnClickList
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
 
-                            val builder = AlertDialog.Builder(
-                                    this@PassbookTransactionDetailsActivity,
-                                    R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@PassbookTransactionDetailsActivity,this@PassbookTransactionDetailsActivity,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(this@PassbookTransactionDetailsActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(this@PassbookTransactionDetailsActivity,this@PassbookTransactionDetailsActivity,"Alert","Some technical issues.",1);
                     e.printStackTrace()
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@PassbookTransactionDetailsActivity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@PassbookTransactionDetailsActivity,this@PassbookTransactionDetailsActivity,"Alert"," No Internet Connection. ",3);
             }
         }
 

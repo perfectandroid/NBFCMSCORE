@@ -15,6 +15,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Adapter.ProductSummaryAdapter
 import com.perfect.nbfcmscore.Api.ApiInterface
+import com.perfect.nbfcmscore.Helper.AlertMessage
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
 import com.perfect.nbfcmscore.Helper.MscoreApplication
@@ -76,7 +77,7 @@ class ProductListDetailsActivity : AppCompatActivity(), View.OnClickListener {
     private fun getProductdetail(fkproduct: String?) {
         val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurl = baseurlSP.getString("baseurl", null)
-        when(ConnectivityUtils.isConnected(this)) {
+        when (ConnectivityUtils.isConnected(this)) {
             true -> {
                 progressDialog = ProgressDialog(this@ProductListDetailsActivity, R.style.Progress)
                 progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
@@ -95,60 +96,70 @@ class ProductListDetailsActivity : AppCompatActivity(), View.OnClickListener {
                                 + Arrays.toString(trustManagers))
                     }
                     val trustManager = trustManagers[0] as X509TrustManager
-                    val client:OkHttpClient = okhttp3 . OkHttpClient . Builder ()
+                    val client: OkHttpClient = okhttp3.OkHttpClient.Builder()
                         .connectTimeout(60, TimeUnit.SECONDS)
                         .readTimeout(60, TimeUnit.SECONDS)
                         .writeTimeout(60, TimeUnit.SECONDS)
                         .sslSocketFactory(Config.getSSLSocketFactory(this), trustManager)
-                            .hostnameVerifier(Config.getHostnameVerifier())
-                            .build()
+                        .hostnameVerifier(Config.getHostnameVerifier())
+                        .build()
                     val gson = GsonBuilder()
-                            .setLenient()
-                            .create()
+                        .setLenient()
+                        .create()
                     val retrofit = Retrofit.Builder()
-                            .baseUrl(baseurl)
-                            .addConverterFactory(ScalarsConverterFactory.create())
-                            .addConverterFactory(GsonConverterFactory.create(gson))
-                            .client(client)
-                            .build()
+                        .baseUrl(baseurl)
+                        .addConverterFactory(ScalarsConverterFactory.create())
+                        .addConverterFactory(GsonConverterFactory.create(gson))
+                        .client(client)
+                        .build()
 
                     val apiService = retrofit.create(ApiInterface::class.java!!)
                     val requestObject1 = JSONObject()
                     try {
 
                         val FK_CustomerSP = this.applicationContext.getSharedPreferences(
-                                Config.SHARED_PREF1,
-                                0
+                            Config.SHARED_PREF1,
+                            0
                         )
                         val FK_Customer = FK_CustomerSP.getString("FK_Customer", null)
 
                         val TokenSP = this!!.applicationContext.getSharedPreferences(
-                                Config.SHARED_PREF8,
-                                0
+                            Config.SHARED_PREF8,
+                            0
                         )
                         val Token = TokenSP.getString("Token", null)
-                        val BankKeySP = applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
+                        val BankKeySP =
+                            applicationContext.getSharedPreferences(Config.SHARED_PREF312, 0)
                         val BankKeyPref = BankKeySP.getString("BankKey", null)
-                        val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
+                        val BankHeaderSP =
+                            applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
                         val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
                         requestObject1.put("Reqmode", MscoreApplication.encryptStart("34"))
                         requestObject1.put("Token", MscoreApplication.encryptStart(Token))
-                        requestObject1.put("FK_Customer", MscoreApplication.encryptStart(FK_Customer))
+                        requestObject1.put(
+                            "FK_Customer",
+                            MscoreApplication.encryptStart(FK_Customer)
+                        )
                         requestObject1.put("FK_Product", MscoreApplication.encryptStart(fkproduct))
 
                         requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
-                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
+                        requestObject1.put(
+                            "BankHeader",
+                            MscoreApplication.encryptStart(BankHeaderPref)
+                        )
 
                         Log.e("TAG", "requestObject1  171   " + requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                                findViewById(R.id.rl_main),
-                                " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(
+                            this@ProductListDetailsActivity,
+                            this@ProductListDetailsActivity,
+                            "Alert",
+                            "Some technical issues.",
+                            1
+                        );
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -157,8 +168,8 @@ class ProductListDetailsActivity : AppCompatActivity(), View.OnClickListener {
                     val call = apiService.getProductsummary(body)
                     call.enqueue(object : retrofit2.Callback<String> {
                         override fun onResponse(
-                                call: retrofit2.Call<String>, response:
-                                Response<String>
+                            call: retrofit2.Call<String>, response:
+                            Response<String>
                         ) {
                             try {
                                 progressDialog!!.dismiss()
@@ -166,31 +177,28 @@ class ProductListDetailsActivity : AppCompatActivity(), View.OnClickListener {
                                 Log.i("Response-productsummary", response.body().toString())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
-                                            jObject.getJSONObject("ProductDetailsSummary")
+                                        jObject.getJSONObject("ProductDetailsSummary")
                                     val jsonobj2 = JSONObject(jsonObj1.toString())
 
                                     jresult = jsonobj2.getJSONArray("ProductDetailsSummaryList")
                                     if (jresult!!.length() != 0) {
                                         val lLayout =
-                                                GridLayoutManager(this@ProductListDetailsActivity, 1)
+                                            GridLayoutManager(this@ProductListDetailsActivity, 1)
                                         rv_productsummaryDetails!!.layoutManager = lLayout
                                         rv_productsummaryDetails!!.setHasFixedSize(true)
 
-                                        val adapter = ProductSummaryAdapter(applicationContext!!, jresult!!)
+                                        val adapter =
+                                            ProductSummaryAdapter(applicationContext!!, jresult!!)
                                         rv_productsummaryDetails!!.adapter = adapter
                                     }
-                                }
-                                else {
-                                    val builder = AlertDialog.Builder(
+                                } else {
+                                    AlertMessage().alertMessage(
                                         this@ProductListDetailsActivity,
-                                        R.style.MyDialogTheme
-                                    )
-                                    builder.setMessage("" + jObject.getString("EXMessage"))
-                                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                    }
-                                    val alertDialog: AlertDialog = builder.create()
-                                    alertDialog.setCancelable(false)
-                                    alertDialog.show()
+                                        this@ProductListDetailsActivity,
+                                        "Alert",
+                                        jObject.getString("EXMessage"),
+                                        1
+                                    );
                                 }
                                 /* if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
@@ -217,16 +225,13 @@ class ProductListDetailsActivity : AppCompatActivity(), View.OnClickListener {
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
 
-                                val builder = AlertDialog.Builder(
-                                        this@ProductListDetailsActivity,
-                                        R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(
+                                    this@ProductListDetailsActivity,
+                                    this@ProductListDetailsActivity,
+                                    "Alert",
+                                    "Some technical issues.",
+                                    1
+                                );
                                 e.printStackTrace()
                             }
                         }
@@ -234,38 +239,35 @@ class ProductListDetailsActivity : AppCompatActivity(), View.OnClickListener {
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
 
-                            val builder = AlertDialog.Builder(
-                                    this@ProductListDetailsActivity,
-                                    R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(
+                                this@ProductListDetailsActivity,
+                                this@ProductListDetailsActivity,
+                                "Alert",
+                                "Some technical issues.",
+                                1
+                            );
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(this@ProductListDetailsActivity, R.style.MyDialogTheme)
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(
+                        this@ProductListDetailsActivity,
+                        this@ProductListDetailsActivity,
+                        "Alert",
+                        "Some technical issues.",
+                        1
+                    );
                     e.printStackTrace()
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(this@ProductListDetailsActivity, R.style.MyDialogTheme)
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(
+                    this@ProductListDetailsActivity,
+                    this@ProductListDetailsActivity,
+                    "Alert",
+                    "No Internet Connection.",
+                    3
+                );
             }
         }
 
@@ -274,10 +276,10 @@ class ProductListDetailsActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.imgBack ->{
+            R.id.imgBack -> {
                 finish()
             }
-            R.id.imgHome ->{
+            R.id.imgHome -> {
                 startActivity(Intent(this@ProductListDetailsActivity, HomeActivity::class.java))
             }
         }

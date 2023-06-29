@@ -2,6 +2,7 @@ package com.perfect.nbfcmscore.Activity
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.Window
@@ -27,6 +28,7 @@ class Kyc2 : AppCompatActivity() {
     private var strAgentEmail: String = ""
     var TAG = "KYC MAIN 2"
     lateinit var textDialogue: TextView
+    private var progressDialog: ProgressDialog? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kyc2)
@@ -90,6 +92,7 @@ class Kyc2 : AppCompatActivity() {
             cobrandPrepaidSdkkit?.setResponseCall(object : CobrandPrepaidSdkkit.ResponseListener {
                 override fun onSuccess(s: String, jsonObject: JsonObject) {
                        dialog1?.dismiss()
+                    progressDialog?.dismiss()
                     Log.e(TAG, "s_registerPrepaid json $jsonObject")
                     Log.e(TAG, "s_registerPrepaid s $s")
                     if (jsonObject["status"].asBoolean == true) {
@@ -100,6 +103,7 @@ class Kyc2 : AppCompatActivity() {
 
                 override fun onFailure(s: String, jsonObject: JsonObject) {
                        dialog1?.dismiss()
+                    progressDialog?.dismiss()
                     registerUserAPI()
                     //                    {"status":false,"data":[],"message":"success","errors":[{"message":"Invalid Credentials, do not match our records"}]}
                     Log.e(TAG, "f_registerPrepaid json $jsonObject")
@@ -142,12 +146,19 @@ class Kyc2 : AppCompatActivity() {
     }
 
     fun showLoadingDialog(msg: String?): Dialog? {
+        progressDialog = ProgressDialog(this@Kyc2, R.style.Progress)
+        progressDialog!!.setProgressStyle(android.R.style.Widget_ProgressBar)
+        progressDialog!!.setCancelable(false)
+        progressDialog!!.setIndeterminate(true)
+        progressDialog!!.setIndeterminateDrawable(this.resources.getDrawable(R.drawable.progress))
+        progressDialog!!.show()
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(false)
         dialog.setContentView(R.layout.alert_loading)
         textDialogue = dialog.findViewById<TextView>(R.id.text)
         textDialogue.setText(msg)
+        dialog.window?.setBackgroundDrawableResource(R.color.transparent)
         dialog.show()
         return dialog
     }
@@ -217,7 +228,9 @@ class Kyc2 : AppCompatActivity() {
                 registerUserOtp(otp, "", bottomSheetDialog)
             }
         }
-        imgclose!!.setOnClickListener { bottomSheetDialog.dismiss() }
+        imgclose!!.setOnClickListener { bottomSheetDialog.dismiss()
+        finish()
+        }
         bottomSheetDialog.setCancelable(false)
         bottomSheetDialog.show()
     }
@@ -299,7 +312,9 @@ class Kyc2 : AppCompatActivity() {
                 registerUserMiniKyc(aadhar, token)
             }
         }
-        imgclose!!.setOnClickListener { bottomSheetDialog.dismiss() }
+        imgclose!!.setOnClickListener { bottomSheetDialog.dismiss()
+        finish()
+        }
         bottomSheetDialog.setCancelable(false)
         bottomSheetDialog.show()
     }
