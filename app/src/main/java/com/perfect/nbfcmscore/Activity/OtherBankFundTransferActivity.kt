@@ -664,32 +664,31 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
 
     }
 
+
     private fun FundConfirmPopup(accountNo: String, subModule: String?, beneName: String, beneIFSC: String, beneAccountNumber: String,
-        amount: String, eftType: String?, beneAdd: String, otpRef: String, otpCode: String) {
-
-
-        val dialog = Dialog(this)
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setCancelable(true)
+                                 amount: String, eftType: String?, beneAdd: String, otpRef: String, otpCode: String) {
+        val dialog = BottomSheetDialog(this)
         dialog.setContentView(R.layout.confirmation_fund_popup)
 
+
+
         val amnt: String = tie_amount!!.text.toString().replace(",".toRegex(), "")
-        val text_confirmationmsg: TextView = dialog.findViewById<TextView>(R.id.text_confirmationmsg)
-        val tv_amount: TextView = dialog.findViewById<TextView>(R.id.tv_amount)
-        val txtvAcntno: TextView = dialog.findViewById<TextView>(R.id.txtvAcntno)
-        val txtvbranch: TextView = dialog.findViewById<TextView>(R.id.txtvbranch)
-        val tv_amount_words: TextView = dialog.findViewById<TextView>(R.id.tv_amount_words)
-        val img_aapicon: ImageView = dialog.findViewById<ImageView>(R.id.img_aapicon)
+        val text_confirmationmsg: TextView? = dialog.findViewById<TextView>(R.id.text_confirmationmsg)
+        val tv_amount: TextView? = dialog.findViewById<TextView>(R.id.tv_amount)
+        val txtvAcntno: TextView? = dialog.findViewById<TextView>(R.id.txtvAcntno)
+        val txtvbranch: TextView? = dialog.findViewById<TextView>(R.id.txtvbranch)
+        val tv_amount_words: TextView? = dialog.findViewById<TextView>(R.id.tv_amount_words)
+        val img_aapicon: ImageView? = dialog.findViewById<ImageView>(R.id.img_aapicon)
 //        val txtvbalnce: TextView = dialog.findViewById<TextView>(R.id.txtvbalnce)
 
-        val txtvAcntnoto: TextView = dialog.findViewById<TextView>(R.id.txtvAcntnoto)
+        val txtvAcntnoto: TextView? = dialog.findViewById<TextView>(R.id.txtvAcntnoto)
 //        val txtvbranchto: TextView = dialog.findViewById<TextView>(R.id.txtvbranchto)
 //        val txtvbalnceto: TextView = dialog.findViewById<TextView>(R.id.txtvbalnceto)
 
-        val butOk: TextView = dialog.findViewById<TextView>(R.id.btnOK)
-        val butCan: TextView = dialog.findViewById<TextView>(R.id.btnCncl)
+        val butOk: TextView? = dialog.findViewById<TextView>(R.id.btnOK)
+        val butCan: TextView? = dialog.findViewById<TextView>(R.id.btnCncl)
 
-        txtvAcntno.text = ""+ accountNo
+        txtvAcntno!!.text = ""+ accountNo
         txtvbranch!!.setText(""+BranchName)
         txtvAcntnoto!!.setText(""+BeneAccountNumber)
         tv_amount!!.setText("₹ "+Config.getDecimelFormate(amount!!.toDouble()))
@@ -699,7 +698,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
         val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
         val imagepath = IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
 //        Log.e(TAG,"imagepath  566   "+imagepath)
-       // img_aapicon!!.setImageResource(R.drawable.applogo)
+        // img_aapicon!!.setImageResource(R.drawable.applogo)
         PicassoTrustAll.getInstance(this@OtherBankFundTransferActivity)!!.load(imagepath).error(android.R.color.transparent).into(img_aapicon!!)
 
 //        val fmt = DecimalFormat("#,##,###.00")
@@ -708,36 +707,109 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
 
         val netAmountArr = amount.split("\\.".toRegex()).toTypedArray()
         var amountInWordPop = ""
-          if (netAmountArr.size > 0) {
-              val integerValue = netAmountArr[0].toInt()
-              amountInWordPop = "Rupees " + NumberToWord!!.convertNumberToWords(integerValue)
-              if (netAmountArr.size > 1) {
-                  val decimalValue = netAmountArr[1].toInt()
-                  if (decimalValue != 0) {
-                      amountInWordPop += " and " + NumberToWord.convertNumberToWords(decimalValue).toString() + " paise"
-                  }
-              }
-              amountInWordPop += " only"
-          }
+        if (netAmountArr.size > 0) {
+            val integerValue = netAmountArr[0].toInt()
+            amountInWordPop = "Rupees " + NumberToWord!!.convertNumberToWords(integerValue)
+            if (netAmountArr.size > 1) {
+                val decimalValue = netAmountArr[1].toInt()
+                if (decimalValue != 0) {
+                    amountInWordPop += " and " + NumberToWord.convertNumberToWords(decimalValue).toString() + " paise"
+                }
+            }
+            amountInWordPop += " only"
+        }
         tv_amount_words!!.setText("" + amountInWordPop)
 
 
-        butOk.setOnClickListener(View.OnClickListener { v: View? ->
+        butOk!!.setOnClickListener(View.OnClickListener { v: View? ->
             dialog.dismiss()
-           // submit()
-         //   OtpPopups(accountNo, subModule, beneName, beneIFSC, beneAccountNumber, amount, eftType, beneAdd, otpRef, otpCode)
+            // submit()
+            //   OtpPopups(accountNo, subModule, beneName, beneIFSC, beneAccountNumber, amount, eftType, beneAdd, otpRef, otpCode)
             RetreiveOtp(accountNo, subModule, beneName, beneIFSC, beneAccountNumber, amount, eftType, beneAdd, otpRef, otpCode)
-          //  otpPopup()
+            //  otpPopup()
 
         })
 
-        butCan.setOnClickListener(View.OnClickListener {
+        butCan!!.setOnClickListener(View.OnClickListener {
             dialog.dismiss() })
-
-
         dialog.show()
-
     }
+
+//    private fun FundConfirmPopup(accountNo: String, subModule: String?, beneName: String, beneIFSC: String, beneAccountNumber: String,
+//        amount: String, eftType: String?, beneAdd: String, otpRef: String, otpCode: String) {
+//
+//
+//        val dialog = Dialog(this)
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+//        dialog.setCancelable(true)
+//        dialog.setContentView(R.layout.confirmation_fund_popup)
+//
+//
+//        val amnt: String = tie_amount!!.text.toString().replace(",".toRegex(), "")
+//        val text_confirmationmsg: TextView = dialog.findViewById<TextView>(R.id.text_confirmationmsg)
+//        val tv_amount: TextView = dialog.findViewById<TextView>(R.id.tv_amount)
+//        val txtvAcntno: TextView = dialog.findViewById<TextView>(R.id.txtvAcntno)
+//        val txtvbranch: TextView = dialog.findViewById<TextView>(R.id.txtvbranch)
+//        val tv_amount_words: TextView = dialog.findViewById<TextView>(R.id.tv_amount_words)
+//        val img_aapicon: ImageView = dialog.findViewById<ImageView>(R.id.img_aapicon)
+////        val txtvbalnce: TextView = dialog.findViewById<TextView>(R.id.txtvbalnce)
+//
+//        val txtvAcntnoto: TextView = dialog.findViewById<TextView>(R.id.txtvAcntnoto)
+////        val txtvbranchto: TextView = dialog.findViewById<TextView>(R.id.txtvbranchto)
+////        val txtvbalnceto: TextView = dialog.findViewById<TextView>(R.id.txtvbalnceto)
+//
+//        val butOk: TextView = dialog.findViewById<TextView>(R.id.btnOK)
+//        val butCan: TextView = dialog.findViewById<TextView>(R.id.btnCncl)
+//
+//        txtvAcntno.text = ""+ accountNo
+//        txtvbranch!!.setText(""+BranchName)
+//        txtvAcntnoto!!.setText(""+BeneAccountNumber)
+//        tv_amount!!.setText("₹ "+Config.getDecimelFormate(amount!!.toDouble()))
+//
+//        val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
+//        val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
+//        val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
+//        val imagepath = IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+////        Log.e(TAG,"imagepath  566   "+imagepath)
+//       // img_aapicon!!.setImageResource(R.drawable.applogo)
+//        PicassoTrustAll.getInstance(this@OtherBankFundTransferActivity)!!.load(imagepath).error(android.R.color.transparent).into(img_aapicon!!)
+//
+////        val fmt = DecimalFormat("#,##,###.00")
+////
+//// Log.e(TAG,"517     "+Config.getDecimelFormate(amount!!.toDouble()))
+//
+//        val netAmountArr = amount.split("\\.".toRegex()).toTypedArray()
+//        var amountInWordPop = ""
+//          if (netAmountArr.size > 0) {
+//              val integerValue = netAmountArr[0].toInt()
+//              amountInWordPop = "Rupees " + NumberToWord!!.convertNumberToWords(integerValue)
+//              if (netAmountArr.size > 1) {
+//                  val decimalValue = netAmountArr[1].toInt()
+//                  if (decimalValue != 0) {
+//                      amountInWordPop += " and " + NumberToWord.convertNumberToWords(decimalValue).toString() + " paise"
+//                  }
+//              }
+//              amountInWordPop += " only"
+//          }
+//        tv_amount_words!!.setText("" + amountInWordPop)
+//
+//
+//        butOk.setOnClickListener(View.OnClickListener { v: View? ->
+//            dialog.dismiss()
+//           // submit()
+//         //   OtpPopups(accountNo, subModule, beneName, beneIFSC, beneAccountNumber, amount, eftType, beneAdd, otpRef, otpCode)
+//            RetreiveOtp(accountNo, subModule, beneName, beneIFSC, beneAccountNumber, amount, eftType, beneAdd, otpRef, otpCode)
+//          //  otpPopup()
+//
+//        })
+//
+//        butCan.setOnClickListener(View.OnClickListener {
+//            dialog.dismiss() })
+//
+//
+//        dialog.show()
+//
+//    }
 
     private fun RetreiveOtp(accountNo: String, subModule: String?, beneName: String, beneIFSC: String, beneAccountNumber: String,
                                  amount: String, eftType: String?, beneAdd: String, otpRef: String, otpCode: String) {
@@ -1306,6 +1378,7 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
         }
 
         val alertDialog = dialogBuilder.create()
+        alertDialog.setCancelable(false)
         alertDialog.show()
     }
 

@@ -1,15 +1,16 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
-    app:cardCornerRadius="1dp"
-   >
+    app:cardCornerRadius="1dp">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,13 +25,14 @@
                 android:background="@color/white"
                 android:visibility="gone">
 
-                <ImageView android:layout_height="40dp"
-                    android:layout_width="40dp"
-                    android:layout_margin="10dp"
+                <ImageView
                     android:id="@+id/img_share"
-                    android:layout_marginRight="10dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_alignParentRight="true"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:layout_marginRight="10dp" />
 
             </RelativeLayout>
 
@@ -99,31 +101,40 @@
                     android:layout_below="@id/txt_message"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tvdate"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="20dp"
-                        android:layout_weight="1"
-                        android:textColor="@color/black_lang"
-                        android:drawableLeft="@drawable/icondates"
-                        android:drawablePadding="3dp"
-                        android:drawableTint="@color/colorPrimary"
-                        android:gravity="center_vertical"
-                        android:text="date"
-                        android:textStyle="bold"></TextView>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginLeft="20dp"
+                            android:src="@drawable/input_calender"
+                            app:tint="@color/colorPrimaryExtraDark" />
+
+                        <TextView
+                            android:id="@+id/tvdate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:drawablePadding="3dp"
+                            android:layout_marginLeft="5dp"
+                            android:drawableTint="@color/colorPrimary"
+                            android:gravity="center_vertical"
+                            android:text="date"
+                            android:textColor="@color/black_lang"
+                            android:textStyle="bold"></TextView>
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/tvtime"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:drawableLeft="@drawable/time"
-                        android:textColor="@color/black_lang"
                         android:drawablePadding="3dp"
+                        android:layout_marginLeft="5dp"
                         android:drawableTint="@color/colorPrimary"
                         android:gravity="center_vertical"
                         android:text="time"
+                        android:textColor="@color/black_lang"
                         android:textStyle="bold"></TextView>
                 </LinearLayout>
 
@@ -132,12 +143,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/l1"
-                    android:layout_marginLeft="50dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="25dp"
                     android:layout_weight="1"
                     android:drawablePadding="5dp"
-                    android:textColor="@color/black_lang"
                     android:text=""
+                    android:textColor="@color/black_lang"
                     android:textSize="18dp"
                     android:textStyle="bold"></TextView>
 
@@ -148,10 +159,11 @@
                     android:layout_below="@id/tvrefe"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
-                    android:drawableLeft="@drawable/payingfrom"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryExtraDark"
                     android:drawablePadding="5dp"
-                    android:text="Paying From"
-                    android:textColor="@color/black"></TextView>
+                    android:text="Paying From"></TextView>
 
                 <LinearLayout
                     android:id="@+id/l0"
@@ -216,10 +228,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="10dp"
-                        android:drawableLeft="@drawable/payingto"
                         android:drawablePadding="5dp"
                         android:text="Paying To"
-                        android:textColor="@color/black"></TextView>
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryExtraDark"></TextView>
 
                     <LinearLayout
                         android:id="@+id/l11"
@@ -260,11 +273,11 @@
                             android:id="@+id/txtvbalnceto"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
+                            android:layout_marginLeft="20dp"
                             android:layout_marginTop="15dp"
                             android:layout_weight="1"
                             android:text="Paid Amount"
-                            android:textColor="@color/RoyalBlue"
+                            android:textColor="@color/colorPrimaryExtraDark"
                             android:textSize="20dp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -287,7 +300,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30dp"
-                        android:layout_marginTop="5dp"
                         android:layout_marginRight="15dp"
                         android:layout_marginBottom="5dp"
                         android:gravity="left"
@@ -311,8 +323,8 @@
                 android:id="@+id/ll_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginBottom="10dp"
                 android:layout_below="@+id/rltv_share"
+                android:layout_marginBottom="30dp"
                 android:orientation="horizontal">
 
                 <RelativeLayout
@@ -320,54 +332,56 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@+id/rltv_share"
-                    android:background="@drawable/bg_unselect"
-                    android:clickable="true"
+                    android:layout_alignParentBottom="true"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="10dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/colorPrimaryExtraDark"
+                    android:background="@drawable/btn_bg"
+                    android:clickable="true">
                     <!--            android:background="@drawable/ripple_effect_confirmation"-->
                     <!--        android:layout_height="?android:attr/actionBarSize"-->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
                         android:text="@string/COMMON_ok"
                         android:textColor="@color/white"
                         android:textSize="20sp"
-                        android:gravity="center"
-                        android:textStyle="bold"
-                        android:layout_centerInParent="true"/>
+                        android:textStyle="bold" />
                 </RelativeLayout>
+
                 <View
                     android:layout_width="1dp"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent" />
 
                 <RelativeLayout
                     android:id="@+id/lay_share"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentTop="true"
-                    android:background="@drawable/bg_select"
-                    android:layout_marginRight="30dp"
                     android:layout_marginLeft="10dp"
-                    android:visibility="visible"
-                    android:layout_weight="1">
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_bg"
+                    android:textColor="@color/colorPrimaryExtraDark"
+                    android:visibility="visible">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Share"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
+                        android:layout_centerInParent="true"
                         android:gravity="center"
-                        android:textStyle="bold"
-                        android:layout_centerInParent="true"/>
+                        android:text="Share"
+                        android:textColor="@color/colorPrimaryExtraDark"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
 
             </LinearLayout>
-
 
 
         </RelativeLayout>

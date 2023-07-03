@@ -270,17 +270,31 @@
                     android:text="0010011001"
                     android:textColor="@color/white"
                     android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="wrap_content"
+                    >
                 <TextView
                     android:id="@+id/tv_def_availablebal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
+                    android:minWidth="150dp"
+                    android:gravity="center_vertical"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginTop="-3dp"
-                    android:text="58745"
-                    android:layout_marginBottom="10dp"
+                    android:text="⋅⋅⋅⋅⋅⋅⋅"
                     android:textColor="@color/white"
-                    android:textSize="22dp"
+                    android:textSize="30dp"
                     android:textStyle="bold" />
+                    <ImageView
+                        android:id="@+id/img_hide_balance"
+                        android:layout_width="20dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/new_eye_open"
+                        app:tint="@color/white" />
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>

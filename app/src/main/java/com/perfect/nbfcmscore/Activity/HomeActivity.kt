@@ -12,6 +12,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.util.TypedValue
 import android.view.*
 import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
@@ -92,6 +93,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var llupimain: LinearLayout? = null
     var ll_fundtransfer: LinearLayout? = null
     var ll_recharge: LinearLayout? = null
+    var balance: Double = 0.0
 
     var tv_def_account: TextView? = null
     var tv_def_availablebal: TextView? = null
@@ -165,6 +167,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     var rvfundTransfer: RecyclerView? = null
     var jArrayMenuFund: JSONArray? = null
+    var img_hide_balance: ImageView? = null
 
     var rvRecharge: RecyclerView? = null
     var jArrayMenuRech: JSONArray? = null
@@ -666,7 +669,13 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     } catch (e: Exception) {
                         // progressDialog!!.dismiss()
                         e.printStackTrace()
-                        AlertMessage().alertMessage(this@HomeActivity,this@HomeActivity,"Alert","Some technical issues.",1);
+                        AlertMessage().alertMessage(
+                            this@HomeActivity,
+                            this@HomeActivity,
+                            "Alert",
+                            "Some technical issues.",
+                            1
+                        );
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -697,12 +706,24 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
                                 } else {
-                                    AlertMessage().alertMessage(this@HomeActivity,this@HomeActivity,"Alert",jObject.getString("EXMessage"),1);
+                                    AlertMessage().alertMessage(
+                                        this@HomeActivity,
+                                        this@HomeActivity,
+                                        "Alert",
+                                        jObject.getString("EXMessage"),
+                                        1
+                                    );
                                 }
                             } catch (e: Exception) {
                                 //   progressDialog!!.dismiss()
 
-                                AlertMessage().alertMessage(this@HomeActivity,this@HomeActivity,"Alert","Some technical issues.",1);
+                                AlertMessage().alertMessage(
+                                    this@HomeActivity,
+                                    this@HomeActivity,
+                                    "Alert",
+                                    "Some technical issues.",
+                                    1
+                                );
                                 e.printStackTrace()
                             }
                         }
@@ -710,17 +731,35 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             //  progressDialog!!.dismiss()
 
-                            AlertMessage().alertMessage(this@HomeActivity,this@HomeActivity,"Alert","Some technical issues.",1);
+                            AlertMessage().alertMessage(
+                                this@HomeActivity,
+                                this@HomeActivity,
+                                "Alert",
+                                "Some technical issues.",
+                                1
+                            );
                         }
                     })
                 } catch (e: Exception) {
                     // progressDialog!!.dismiss()
-                    AlertMessage().alertMessage(this@HomeActivity,this@HomeActivity,"Alert","Some technical issues.",1);
+                    AlertMessage().alertMessage(
+                        this@HomeActivity,
+                        this@HomeActivity,
+                        "Alert",
+                        "Some technical issues.",
+                        1
+                    );
                     e.printStackTrace()
                 }
             }
             false -> {
-                AlertMessage().alertMessage(this@HomeActivity,this@HomeActivity,"Alert"," No Internet Connection. ",3);
+                AlertMessage().alertMessage(
+                    this@HomeActivity,
+                    this@HomeActivity,
+                    "Alert",
+                    " No Internet Connection. ",
+                    3
+                );
             }
         }
     }
@@ -738,7 +777,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //            alertDialogBuilder.setPositiveButton("Ok") { dialog: DialogInterface?, which: Int -> finish() }
 //            alertDialogBuilder.show()
 
-            alertMessage("Success","The app is under maintenance. Sorry for the inconvenience.",1)
+            alertMessage("Success", "The app is under maintenance. Sorry for the inconvenience.", 1)
             return
         }
         val bottomSheetDialog = BottomSheetDialog(this)
@@ -844,7 +883,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         if (DefaultAccountSP.getString("DefaultAccount1", null) == null) {
             tv_def_account!!.setText("")
-            tv_def_availablebal!!.setText("")
+            tv_def_availablebal!!.setText("\u22C5⋅⋅⋅⋅⋅⋅⋅⋅")
             getOwnAccount()
 
         } else {
@@ -934,7 +973,13 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     } catch (e: Exception) {
                         // progressDialog!!.dismiss()
                         e.printStackTrace()
-                        AlertMessage().alertMessage(this@HomeActivity,this@HomeActivity,"Alert","Some technical issues.",1);
+                        AlertMessage().alertMessage(
+                            this@HomeActivity,
+                            this@HomeActivity,
+                            "Alert",
+                            "Some technical issues.",
+                            1
+                        );
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -1002,12 +1047,24 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
                                 } else {
-                                    AlertMessage().alertMessage(this@HomeActivity,this@HomeActivity,"Alert",jObject.getString("EXMessage"),1);
+                                    AlertMessage().alertMessage(
+                                        this@HomeActivity,
+                                        this@HomeActivity,
+                                        "Alert",
+                                        jObject.getString("EXMessage"),
+                                        1
+                                    );
                                 }
                             } catch (e: Exception) {
                                 //   progressDialog!!.dismiss()
 
-                                AlertMessage().alertMessage(this@HomeActivity,this@HomeActivity,"Alert","Some technical issues.",1);
+                                AlertMessage().alertMessage(
+                                    this@HomeActivity,
+                                    this@HomeActivity,
+                                    "Alert",
+                                    "Some technical issues.",
+                                    1
+                                );
                                 e.printStackTrace()
                             }
                         }
@@ -1015,17 +1072,35 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             //  progressDialog!!.dismiss()
 
-                            AlertMessage().alertMessage(this@HomeActivity,this@HomeActivity,"Alert","Some technical issues.",1);
+                            AlertMessage().alertMessage(
+                                this@HomeActivity,
+                                this@HomeActivity,
+                                "Alert",
+                                "Some technical issues.",
+                                1
+                            );
                         }
                     })
                 } catch (e: Exception) {
                     // progressDialog!!.dismiss()
-                    AlertMessage().alertMessage(this@HomeActivity,this@HomeActivity,"Alert","Some technical issues.",1);
+                    AlertMessage().alertMessage(
+                        this@HomeActivity,
+                        this@HomeActivity,
+                        "Alert",
+                        "Some technical issues.",
+                        1
+                    );
                     e.printStackTrace()
                 }
             }
             false -> {
-                AlertMessage().alertMessage(this@HomeActivity,this@HomeActivity,"Alert"," No Internet Connection. ",3);
+                AlertMessage().alertMessage(
+                    this@HomeActivity,
+                    this@HomeActivity,
+                    "Alert",
+                    " No Internet Connection. ",
+                    3
+                );
             }
         }
         /* for (i in 0 until 4)
@@ -1050,6 +1125,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     open fun setInitialise() {
 
 
+        img_hide_balance = findViewById(R.id.img_hide_balance)
         llloanstatus = findViewById(R.id.llloanstatus)
         img_barcode = findViewById(R.id.img_barcode)
         im_applogo = findViewById(R.id.im_applogo)
@@ -1154,6 +1230,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     open fun setRegister() {
+        img_hide_balance!!.setOnClickListener(this)
         img_barcode!!.setOnClickListener(this)
         llloanstatus!!.setOnClickListener(this)
         improfile!!.setOnClickListener(this)
@@ -1674,8 +1751,36 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(Intent(this@HomeActivity, LoanApplicationActivity::class.java))
             }
             R.id.img_barcode -> {
-                AlertMessage().alertMessage(this@HomeActivity,this@HomeActivity,"Attention","This feature will unlock soon ",1);
-               // startActivity(Intent(this, BarcodeMain::class.java))
+                AlertMessage().alertMessage(
+                    this@HomeActivity,
+                    this@HomeActivity,
+                    "Attention",
+                    "This feature will unlock soon ",
+                    1
+                );
+                // startActivity(Intent(this, BarcodeMain::class.java))
+            }
+            R.id.img_hide_balance -> {
+              if(tv_def_availablebal?.text!!.equals( "\u20b9 " + Config.getDecimelFormate(
+                      balance
+                  )))
+
+              {
+                  tv_def_availablebal!!.setText("\u22C5⋅⋅⋅⋅⋅⋅⋅⋅")
+                  img_hide_balance!!.setImageResource(R.drawable.new_eye_open);
+                  tv_def_availablebal!!.setTextSize(TypedValue.COMPLEX_UNIT_SP,30F);
+              }
+                else
+              {
+
+                  tv_def_availablebal!!.setTextSize(TypedValue.COMPLEX_UNIT_SP,22F);
+                  tv_def_availablebal!!.setText(
+                      "\u20b9 " + Config.getDecimelFormate(
+                          balance
+                      )
+                  )
+                  img_hide_balance!!.setImageResource(R.drawable.new_eye_closed);
+              }
             }
             R.id.llloanstatus -> {
                 startActivity(Intent(this@HomeActivity, LoanStatusActivity::class.java))
@@ -1848,7 +1953,13 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                     } catch (e: Exception) {
                         e.printStackTrace()
-                        AlertMessage().alertMessage(this@HomeActivity,this@HomeActivity,"Alert","Some technical issues.",1);
+                        AlertMessage().alertMessage(
+                            this@HomeActivity,
+                            this@HomeActivity,
+                            "Alert",
+                            "Some technical issues.",
+                            1
+                        );
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -1884,12 +1995,12 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                                         ) {
                                             if (i == 0) {
 
-                                                val balance = obj.getString("Balance").toDouble()
-                                                tv_def_availablebal!!.setText(
-                                                    "Rs. " + Config.getDecimelFormate(
-                                                        balance
-                                                    )
-                                                )
+                                                balance = obj.getString("Balance").toDouble()
+//                                                tv_def_availablebal!!.setText(
+//                                                    "\u20b9 " + Config.getDecimelFormate(
+//                                                        balance
+//                                                    )
+//                                                )
                                                 tv_def_account!!.setText(obj.getString("AccountNumber"))
 
                                             }
@@ -1901,12 +2012,12 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                                         ) {
 
 
-                                            val balance = obj.getString("Balance").toDouble()
-                                            tv_def_availablebal!!.setText(
-                                                "Rs. " + Config.getDecimelFormate(
-                                                    balance
-                                                )
-                                            )
+                                            balance = obj.getString("Balance").toDouble()
+//                                            tv_def_availablebal!!.setText(
+//                                                "Rs. " + Config.getDecimelFormate(
+//                                                    balance
+//                                                )
+//                                            )
                                             tv_def_account!!.setText(obj.getString("AccountNumber"))
 
 
@@ -1931,7 +2042,13 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             false -> {
 
-                AlertMessage().alertMessage(this@HomeActivity,this@HomeActivity,"Alert"," No Internet Connection. ",3);
+                AlertMessage().alertMessage(
+                    this@HomeActivity,
+                    this@HomeActivity,
+                    "Alert",
+                    " No Internet Connection. ",
+                    3
+                );
             }
         }
     }
@@ -2018,7 +2135,13 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        AlertMessage().alertMessage(this@HomeActivity,this@HomeActivity,"Alert","Some technical issues.",1);
+                        AlertMessage().alertMessage(
+                            this@HomeActivity,
+                            this@HomeActivity,
+                            "Alert",
+                            "Some technical issues.",
+                            1
+                        );
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -2044,12 +2167,24 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                                     LanguagePopup(jArrayLang!!)
 
                                 } else {
-                                    AlertMessage().alertMessage(this@HomeActivity,this@HomeActivity,"Alert",jObject.getString("EXMessage"),1);
+                                    AlertMessage().alertMessage(
+                                        this@HomeActivity,
+                                        this@HomeActivity,
+                                        "Alert",
+                                        jObject.getString("EXMessage"),
+                                        1
+                                    );
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
 
-                                AlertMessage().alertMessage(this@HomeActivity,this@HomeActivity,"Alert","Some technical issues.",1);
+                                AlertMessage().alertMessage(
+                                    this@HomeActivity,
+                                    this@HomeActivity,
+                                    "Alert",
+                                    "Some technical issues.",
+                                    1
+                                );
                                 e.printStackTrace()
                             }
                         }
@@ -2057,18 +2192,36 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
 
-                            AlertMessage().alertMessage(this@HomeActivity,this@HomeActivity,"Alert","Some technical issues.",1);
+                            AlertMessage().alertMessage(
+                                this@HomeActivity,
+                                this@HomeActivity,
+                                "Alert",
+                                "Some technical issues.",
+                                1
+                            );
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
-                    AlertMessage().alertMessage(this@HomeActivity,this@HomeActivity,"Alert","Some technical issues.",1);
+                    AlertMessage().alertMessage(
+                        this@HomeActivity,
+                        this@HomeActivity,
+                        "Alert",
+                        "Some technical issues.",
+                        1
+                    );
                     e.printStackTrace()
                 }
             }
             false -> {
                 val builder =
-                    AlertMessage().alertMessage(this@HomeActivity,this@HomeActivity,"Alert"," No Internet Connection. ",3);
+                    AlertMessage().alertMessage(
+                        this@HomeActivity,
+                        this@HomeActivity,
+                        "Alert",
+                        " No Internet Connection. ",
+                        3
+                    );
             }
         }
     }
@@ -2275,7 +2428,13 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
-                        AlertMessage().alertMessage(this@HomeActivity,this@HomeActivity,"Alert","Some technical issues.",1);
+                        AlertMessage().alertMessage(
+                            this@HomeActivity,
+                            this@HomeActivity,
+                            "Alert",
+                            "Some technical issues.",
+                            1
+                        );
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -6405,13 +6564,25 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
                                 } else {
-                                    AlertMessage().alertMessage(this@HomeActivity,this@HomeActivity,"Alert",jObject.getString("EXMessage"),1);
+                                    AlertMessage().alertMessage(
+                                        this@HomeActivity,
+                                        this@HomeActivity,
+                                        "Alert",
+                                        jObject.getString("EXMessage"),
+                                        1
+                                    );
                                 }
                             } catch (e: Exception) {
                                 progressDialog!!.dismiss()
 
                                 Log.e(TAG, "Exception   26000   " + e.toString())
-                                AlertMessage().alertMessage(this@HomeActivity,this@HomeActivity,"Alert","Some technical issues.",1);
+                                AlertMessage().alertMessage(
+                                    this@HomeActivity,
+                                    this@HomeActivity,
+                                    "Alert",
+                                    "Some technical issues.",
+                                    1
+                                );
                                 e.printStackTrace()
                             }
                         }
@@ -6419,18 +6590,36 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             progressDialog!!.dismiss()
                             Log.e(TAG, "Exception   260001   " + t.message)
-                            AlertMessage().alertMessage(this@HomeActivity,this@HomeActivity,"Alert","Some technical issues.",1);
+                            AlertMessage().alertMessage(
+                                this@HomeActivity,
+                                this@HomeActivity,
+                                "Alert",
+                                "Some technical issues.",
+                                1
+                            );
                         }
                     })
                 } catch (e: Exception) {
                     progressDialog!!.dismiss()
                     Log.e(TAG, "Exception   260002   " + e.toString())
-                    AlertMessage().alertMessage(this@HomeActivity,this@HomeActivity,"Alert","Some technical issues.",1);
+                    AlertMessage().alertMessage(
+                        this@HomeActivity,
+                        this@HomeActivity,
+                        "Alert",
+                        "Some technical issues.",
+                        1
+                    );
                     e.printStackTrace()
                 }
             }
             false -> {
-                AlertMessage().alertMessage(this@HomeActivity,this@HomeActivity,"Alert"," No Internet Connection. ",3);
+                AlertMessage().alertMessage(
+                    this@HomeActivity,
+                    this@HomeActivity,
+                    "Alert",
+                    " No Internet Connection. ",
+                    3
+                );
             }
         }
 
@@ -6457,22 +6646,17 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             bottomSheetDialog.dismiss()
             finish()
         }
-        if(type==1)
-        {
-            txt_ok!!.visibility=View.GONE
-            txt_cancel!!.visibility=View.VISIBLE
+        if (type == 1) {
+            txt_ok!!.visibility = View.GONE
+            txt_cancel!!.visibility = View.VISIBLE
             img!!.setImageResource(R.drawable.new_alert)
-        }
-        else if(type==2)
-        {
-            txt_ok!!.visibility=View.GONE
-            txt_cancel!!.visibility=View.VISIBLE
+        } else if (type == 2) {
+            txt_ok!!.visibility = View.GONE
+            txt_cancel!!.visibility = View.VISIBLE
             img!!.setImageResource(R.drawable.new_success)
-        }
-        else if(type==3)
-        {
-            txt_ok!!.visibility=View.GONE
-            txt_cancel!!.visibility=View.VISIBLE
+        } else if (type == 3) {
+            txt_ok!!.visibility = View.GONE
+            txt_cancel!!.visibility = View.VISIBLE
             img!!.setImageResource(R.drawable.new_nonetwork)
         }
 
