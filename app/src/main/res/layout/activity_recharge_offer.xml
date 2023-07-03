@@ -4,13 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/background4"
     tools:context=".Activity.RechargeOfferActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
+        android:layout_height="match_parent">
 
 
 
@@ -35,9 +34,10 @@
 
                     <ImageView
                         android:id="@+id/im_back"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:src="@drawable/arrow_back" />
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/arrow_left_icon"
+                        app:tint="@color/white" />
 
                 </LinearLayout>
 
@@ -72,7 +72,8 @@
                         android:id="@+id/im_home"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
-                        android:src="@drawable/ic_home" />
+                        android:src="@drawable/ic_home"
+                        app:tint="@color/white" />
 
                 </LinearLayout>
 
@@ -98,6 +99,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <androidx.recyclerview.widget.RecyclerView

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cv_accSummary"
@@ -7,12 +8,9 @@
     android:layout_height="wrap_content"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
+    android:background="@drawable/btn_bg3"
     android:layout_marginTop="2dp"
-    android:layout_marginBottom="2dp"
-    app:cardCornerRadius="2dp"
-    app:cardElevation="8dp"
-    tools:ignore="MissingConstraints"
-    app:cardBackgroundColor="@android:color/white">
+    android:layout_marginBottom="2dp">
 
     <RelativeLayout
         android:id="@+id/rltv_main"
@@ -32,6 +30,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/rounded_corner"
+                android:backgroundTint="@color/colorPrimaryExtraDark"
                 android:orientation="horizontal"
                 android:padding="5dp">
 
@@ -42,7 +41,7 @@
                     android:fontFamily="sans-serif-light"
                     android:paddingLeft="10dp"
                     android:text="₹"
-                    android:textColor="@color/tab_color"
+                    android:textColor="@color/colorPrimaryExtraDark"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -55,7 +54,7 @@
                     android:fontFamily="sans-serif-light"
                     android:paddingRight="10dp"
                     android:text="222"
-                    android:textColor="@color/tab_color"
+                    android:textColor="@color/colorPrimaryExtraDark"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -121,4 +120,4 @@
 
     </RelativeLayout>
 
-</androidx.cardview.widget.CardView>
+</LinearLayout>

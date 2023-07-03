@@ -6,20 +6,15 @@
     android:orientation="horizontal"
     android:gravity="center_vertical">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="2dp"
-        app:cardBackgroundColor="@color/color_prodlist"
-        app:cardCornerRadius="5dp">
-
         <LinearLayout
             android:id="@+id/ll_branchrow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
+            android:background="@drawable/btn_bg3"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:padding="4dp"
+            android:layout_marginTop="2dp"
             android:orientation="horizontal">
 
 
@@ -46,8 +41,8 @@
                         <androidx.cardview.widget.CardView
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            app:cardBackgroundColor="@color/card_color"
-                            app:cardCornerRadius="5dp">
+                            app:cardBackgroundColor="@color/colorPrimaryExtraDark"
+                            app:cardCornerRadius="0dp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -82,7 +77,6 @@
                         android:textSize="12dp"
                         android:layout_weight="0.2"
                         android:padding="2dp"
-                        android:textStyle="bold"
                         android:textColor="@color/grey"
                         android:text="wewew" />
                 </LinearLayout>
@@ -104,8 +98,6 @@
 
 
         </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
 
 
 
