@@ -13,6 +13,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.*
@@ -669,9 +670,16 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                          val mPinString = etxt_mpin!!.text.toString()
                          var branch = branchname
                          var submodle =submodule
-                         val builder = AlertDialog.Builder(this)
-                         val inflater1 = this.getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-                         val layout = inflater1.inflate(R.layout.quick_pay_confirmation_popup, null)
+
+
+//                         val builder = AlertDialog.Builder(this)
+//                         val inflater1 = this.getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
+//                         val layout = inflater1.inflate(R.layout.quick_pay_confirmation_popup, null)
+
+                         val layout = BottomSheetDialog(this)
+                         layout.setContentView(R.layout.quick_pay_confirmation_popup)
+
+
                          val tvbranch = layout.findViewById<TextView>(R.id.tvbranch)
                          val tv_sender_name = layout.findViewById<TextView>(R.id.tv_sender_name)
                          val tv_sender_acc_no = layout.findViewById<TextView>(R.id.tv_sender_acc_no)
@@ -684,18 +692,18 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                          val text_confirmationmsg = layout.findViewById<TextView>(R.id.text_confirmationmsg)
                          val bt_ok = layout.findViewById<TextView>(R.id.bt_ok)
                          val bt_cancel = layout.findViewById<TextView>(R.id.bt_cancel)
-                         builder.setView(layout)
-                         val alertDialog = builder.create()
-                         tvbranch.text = branch
-                         tv_sender_name.text = senderName
-                         tv_sender_acc_no.text = accountNumber
-                         tv_sender_mob_no.text = senderMobile
-                         tv_reciever_name.text = recievererName
-                         tv_reciever_acc_no.text = receiverAccountno
-                         tv_reciever_mob_no.text = recieverMobile
+//                         builder.setView(layout)
+//                         val alertDialog = builder.create()
+                         tvbranch?.text = branch
+                         tv_sender_name?.text = senderName
+                         tv_sender_acc_no?.text = accountNumber
+                         tv_sender_mob_no?.text = senderMobile
+                         tv_reciever_name?.text = recievererName
+                         tv_reciever_acc_no?.text = receiverAccountno
+                         tv_reciever_mob_no?.text = recieverMobile
                          val num = ("" + amount).toDouble()
                          val stramnt: String? = Config.getDecimelFormate(num)
-                         text_confirmationmsg.text = "Proceed Payment With Above Amount" + "..?"
+                         text_confirmationmsg?.text = "Proceed Payment With Above Amount" + "..?"
                          val netAmountArr = amount.split("\\.".toRegex()).toTypedArray()
                          var amountInWordPop = ""
                          if (netAmountArr.size > 0) {
@@ -709,17 +717,23 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                              }
                              amountInWordPop += " Only"
                          }
-                         tv_amount_words.text = "" + amountInWordPop
-                         tv_amount.text = "₹ $stramnt"
-                         bt_cancel.setOnClickListener { alertDialog.dismiss() }
-                         bt_ok.setOnClickListener {
+                         tv_amount_words?.text = "" + amountInWordPop
+                         tv_amount?.text = "₹ $stramnt"
+                         bt_cancel?.setOnClickListener { layout.dismiss() }
+                         bt_ok?.setOnClickListener {
                              if (branch != null) {
                                  getQuickPay(first, fkSenderId!!, receiver, amount, message, mPinString, senderName, senderAccountno, senderMobile, recievererName, receiverAccountno, recieverMobile, branch, submodle)
                              }
                             // com.creativethoughts.iscore.money_transfer.QuickPayMoneyTransferFragment.MoneyTransferAsyncTask(accountNumber, sender, receiver, amount, message, mPinString, senderName, senderAccountno, senderMobile, recievererName, receiverAccountno, recieverMobile, branch).execute()
-                             alertDialog.dismiss()
+                             layout.dismiss()
                          }
-                         alertDialog.show()
+
+
+
+                         layout.show()
+
+
+
                      } catch (e: java.lang.Exception) {
                          e.printStackTrace()
                      }

@@ -7,12 +7,15 @@ import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Api.ApiInterface
+import com.perfect.nbfcmscore.Helper.AlertMessage
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.Config.getSSLSocketFactory
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
@@ -38,9 +41,9 @@ class TransactionOTPActivity : AppCompatActivity() , View.OnClickListener{
 
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
-    var etxt_otp: AppCompatEditText? = null
-    var btn_resend_otp: Button? = null
-    var btn_submit: Button? = null
+    var etxt_otp: EditText? = null
+    var btn_resend_otp: TextView? = null
+    var btn_submit: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -193,11 +196,7 @@ class TransactionOTPActivity : AppCompatActivity() , View.OnClickListener{
                     } catch (e: Exception) {
                         // progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                                findViewById(R.id.rl_main),
-                                " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@TransactionOTPActivity,this@TransactionOTPActivity,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -272,16 +271,7 @@ class TransactionOTPActivity : AppCompatActivity() , View.OnClickListener{
                             } catch (e: Exception) {
                                 //  progressDialog!!.dismiss()
 
-                                val builder = AlertDialog.Builder(
-                                        this@TransactionOTPActivity,
-                                        R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@TransactionOTPActivity,this@TransactionOTPActivity,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
@@ -289,44 +279,17 @@ class TransactionOTPActivity : AppCompatActivity() , View.OnClickListener{
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             //  progressDialog!!.dismiss()
 
-                            val builder = AlertDialog.Builder(
-                                    this@TransactionOTPActivity,
-                                    R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@TransactionOTPActivity,this@TransactionOTPActivity,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     //  progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(
-                            this@TransactionOTPActivity,
-                            R.style.MyDialogTheme
-                    )
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(this@TransactionOTPActivity,this@TransactionOTPActivity,"Alert","Some technical issues.",1);
                     e.printStackTrace()
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(
-                        this@TransactionOTPActivity,
-                        R.style.MyDialogTheme
-                )
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@TransactionOTPActivity,this@TransactionOTPActivity,"Alert","No Internet Connection.",3);
             }
         }
     }
@@ -419,11 +382,7 @@ class TransactionOTPActivity : AppCompatActivity() , View.OnClickListener{
                     } catch (e: Exception) {
                         // progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                                findViewById(R.id.rl_main),
-                                " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@TransactionOTPActivity,this@TransactionOTPActivity,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -498,16 +457,7 @@ class TransactionOTPActivity : AppCompatActivity() , View.OnClickListener{
                             } catch (e: Exception) {
                                 //  progressDialog!!.dismiss()
 
-                                val builder = AlertDialog.Builder(
-                                        this@TransactionOTPActivity,
-                                        R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@TransactionOTPActivity,this@TransactionOTPActivity,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
@@ -515,44 +465,17 @@ class TransactionOTPActivity : AppCompatActivity() , View.OnClickListener{
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             //  progressDialog!!.dismiss()
 
-                            val builder = AlertDialog.Builder(
-                                    this@TransactionOTPActivity,
-                                    R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@TransactionOTPActivity,this@TransactionOTPActivity,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     //  progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(
-                            this@TransactionOTPActivity,
-                            R.style.MyDialogTheme
-                    )
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(this@TransactionOTPActivity,this@TransactionOTPActivity,"Alert","Some technical issues.",1);
                     e.printStackTrace()
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(
-                        this@TransactionOTPActivity,
-                        R.style.MyDialogTheme
-                )
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@TransactionOTPActivity,this@TransactionOTPActivity,"Alert","No Internet Connection.",3);
             }
         }
     }
@@ -641,11 +564,7 @@ class TransactionOTPActivity : AppCompatActivity() , View.OnClickListener{
                     } catch (e: Exception) {
                         // progressDialog!!.dismiss()
                         e.printStackTrace()
-                        val mySnackbar = Snackbar.make(
-                                findViewById(R.id.rl_main),
-                                " Some technical issues.", Snackbar.LENGTH_SHORT
-                        )
-                        mySnackbar.show()
+                        AlertMessage().alertMessage(this@TransactionOTPActivity,this@TransactionOTPActivity,"Alert","Some technical issues.",1);
                     }
                     val body = RequestBody.create(
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
@@ -665,16 +584,7 @@ class TransactionOTPActivity : AppCompatActivity() , View.OnClickListener{
                             } catch (e: Exception) {
                                 //  progressDialog!!.dismiss()
 
-                                val builder = AlertDialog.Builder(
-                                        this@TransactionOTPActivity,
-                                        R.style.MyDialogTheme
-                                )
-                                builder.setMessage("Some technical issues.")
-                                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                                }
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
+                                AlertMessage().alertMessage(this@TransactionOTPActivity,this@TransactionOTPActivity,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }
                         }
@@ -682,44 +592,17 @@ class TransactionOTPActivity : AppCompatActivity() , View.OnClickListener{
                         override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
                             //  progressDialog!!.dismiss()
 
-                            val builder = AlertDialog.Builder(
-                                    this@TransactionOTPActivity,
-                                    R.style.MyDialogTheme
-                            )
-                            builder.setMessage("Some technical issues.")
-                            builder.setPositiveButton("Ok") { dialogInterface, which ->
-                            }
-                            val alertDialog: AlertDialog = builder.create()
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
+                            AlertMessage().alertMessage(this@TransactionOTPActivity,this@TransactionOTPActivity,"Alert","Some technical issues.",1);
                         }
                     })
                 } catch (e: Exception) {
                     //  progressDialog!!.dismiss()
-                    val builder = AlertDialog.Builder(
-                            this@TransactionOTPActivity,
-                            R.style.MyDialogTheme
-                    )
-                    builder.setMessage("Some technical issues.")
-                    builder.setPositiveButton("Ok") { dialogInterface, which ->
-                    }
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                    AlertMessage().alertMessage(this@TransactionOTPActivity,this@TransactionOTPActivity,"Alert","Some technical issues.",1);
                     e.printStackTrace()
                 }
             }
             false -> {
-                val builder = AlertDialog.Builder(
-                        this@TransactionOTPActivity,
-                        R.style.MyDialogTheme
-                )
-                builder.setMessage("No Internet Connection.")
-                builder.setPositiveButton("Ok") { dialogInterface, which ->
-                }
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                AlertMessage().alertMessage(this@TransactionOTPActivity,this@TransactionOTPActivity,"Alert","No Internet Connection.",3);
             }
         }
     }

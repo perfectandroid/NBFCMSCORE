@@ -12,7 +12,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import android.util.TypedValue
 import android.view.*
 import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
@@ -26,7 +25,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Adapter.*
@@ -67,6 +65,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var lvNavMenu: ListView? = null
     var drawer: DrawerLayout? = null
     var imgMenu: ImageView? = null
+    private lateinit var timer: Timer
     var ll_branschDetails: LinearLayout? = null
     var ll_prepaid: LinearLayout? = null
     var ll_postpaid: LinearLayout? = null
@@ -93,6 +92,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var llupimain: LinearLayout? = null
     var ll_fundtransfer: LinearLayout? = null
     var ll_recharge: LinearLayout? = null
+    var lin_show: LinearLayout? = null
     var balance: Double = 0.0
 
     var tv_def_account: TextView? = null
@@ -110,6 +110,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var img_barcode: ImageView? = null
     var imlanguage: ImageView? = null
     var imquit: ImageView? = null
+    var img_show: ImageView? = null
     var imlogout: ImageView? = null
     var im_applogo: ImageView? = null
     var tv_header: TextView? = null
@@ -167,7 +168,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     var rvfundTransfer: RecyclerView? = null
     var jArrayMenuFund: JSONArray? = null
-    var img_hide_balance: ImageView? = null
+    var lin_hide_balance: ImageView? = null
 
     var rvRecharge: RecyclerView? = null
     var jArrayMenuRech: JSONArray? = null
@@ -189,6 +190,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setdefaultAccountDetails()
         createHomeMenuFund()
         createHomeMenuRecharge()
+        timer = Timer()
         val versionCode: Int = BuildConfig.VERSION_CODE
         val versionName: String = BuildConfig.VERSION_NAME
         txt_vcode?.text = "V." + versionCode
@@ -883,11 +885,15 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         if (DefaultAccountSP.getString("DefaultAccount1", null) == null) {
             tv_def_account!!.setText("")
-            tv_def_availablebal!!.setText("\u22C5⋅⋅⋅⋅⋅⋅⋅⋅")
+            tv_def_availablebal!!.setText("View Balance")
             getOwnAccount()
 
         } else {
-            tv_def_account!!.setText(DefaultAccountSP.getString("DefaultAccount1", null))
+//            tv_def_account!!.setText(DefaultAccountSP.getString("DefaultAccount1", null))
+            tv_def_account!!.setText(
+                DefaultAccountSP.getString("DefaultAccount1", null)!!
+                    .replace("\\w(?=\\w{4})".toRegex(), "*")
+            )
             //  val balance = DefaultBalanceSP.getString("DefaultBalance", null)!!.toDouble()
             //   tv_def_availablebal!!.setText("Rs. " + Config.getDecimelFormate(balance))
             getOwnAccount()
@@ -1027,24 +1033,41 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                                                 XMENArray
                                             )
                                             indicator!!.setViewPager(mPager)
-                                            val handler = Handler()
-                                            val Update = Runnable {
-                                                if (currentPage === jresult!!.length()) {
-                                                    currentPage = 0
-                                                }
-                                                mPager!!.setCurrentItem(currentPage++, true)
-                                            }
-                                            val swipeTimer = Timer()
-                                            swipeTimer.schedule(object : TimerTask() {
-                                                override fun run() {
-                                                    handler.post(Update)
-                                                }
-                                            }, 3000, 3000)
+                                            /////////////////////////////
+
+//                                            Handler().postDelayed({
+//                                                Log.v("dfdsdd","curent "+currentPage)
+//                                                currentPage++
+//                                            },3000);
+                                            ////////////////////////////
+
+
+
+
+
+
+
+
                                         } catch (e: JSONException) {
                                             e.printStackTrace()
                                         }
                                     }
+                                    val handler = Handler()
+                                    val Update = Runnable {
+                                        Log.v("dfdsdd","curent "+currentPage)
+                                        if (currentPage === jresult!!.length()) {
 
+                                            Log.v("dfdsdd","in")
+                                            currentPage = 0
+                                        }
+                                        mPager!!.setCurrentItem(currentPage++, true)
+                                    }
+                                    val swipeTimer = Timer()
+                                    swipeTimer.schedule(object : TimerTask() {
+                                        override fun run() {
+                                            handler.post(Update)
+                                        }
+                                    }, 5000, 5000)
 
                                 } else {
                                     AlertMessage().alertMessage(
@@ -1122,10 +1145,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
          }, 3000, 3000)*/
     }
 
+
     open fun setInitialise() {
-
-
-        img_hide_balance = findViewById(R.id.img_hide_balance)
+        lin_show = findViewById(R.id.lin_show)
+        img_show = findViewById(R.id.img_show)
         llloanstatus = findViewById(R.id.llloanstatus)
         img_barcode = findViewById(R.id.img_barcode)
         im_applogo = findViewById(R.id.im_applogo)
@@ -1230,7 +1253,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     open fun setRegister() {
-        img_hide_balance!!.setOnClickListener(this)
+        tv_def_availablebal!!.setOnClickListener(this)
+        tv_def_account!!.setOnClickListener(this)
+        img_show!!.setOnClickListener(this)
+        lin_show!!.setOnClickListener(this)
         img_barcode!!.setOnClickListener(this)
         llloanstatus!!.setOnClickListener(this)
         improfile!!.setOnClickListener(this)
@@ -1760,27 +1786,59 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 );
                 // startActivity(Intent(this, BarcodeMain::class.java))
             }
-            R.id.img_hide_balance -> {
-              if(tv_def_availablebal?.text!!.equals( "\u20b9 " + Config.getDecimelFormate(
-                      balance
-                  )))
+            R.id.tv_def_availablebal -> {
+                if (tv_def_availablebal?.text!!.equals(
+                        "\u20b9 " + Config.getDecimelFormate(
+                            balance
+                        )
+                    )
+                ) {
+                    tv_def_availablebal!!.setText("View Balance")
+                } else {
+                    tv_def_availablebal!!.setText(
+                        "\u20b9 " + Config.getDecimelFormate(
+                            balance
+                        )
+                    )
+                }
+            }
+            R.id.tv_def_account -> {
+                val DefaultAccountSP = applicationContext.getSharedPreferences(Config.SHARED_PREF24, 0)
+                if(tv_def_account?.text!!.equals( DefaultAccountSP.getString("DefaultAccount1", null)))
 
-              {
-                  tv_def_availablebal!!.setText("\u22C5⋅⋅⋅⋅⋅⋅⋅⋅")
-                  img_hide_balance!!.setImageResource(R.drawable.new_eye_open);
-                  tv_def_availablebal!!.setTextSize(TypedValue.COMPLEX_UNIT_SP,30F);
-              }
+                {
+
+                    tv_def_account!!.setText(
+                        DefaultAccountSP.getString("DefaultAccount1", null)!!
+                            .replace("\\w(?=\\w{4})".toRegex(), "*")
+                    )
+                    img_show!!.setImageResource(R.drawable.new_eye_open);
+                }
                 else
-              {
+                {
+                    tv_def_account!!.setText(
+                        DefaultAccountSP.getString("DefaultAccount1", null))
+                    img_show!!.setImageResource(R.drawable.new_eye_closed);
+                }
+            }
+            R.id.img_show -> {
+                val DefaultAccountSP = applicationContext.getSharedPreferences(Config.SHARED_PREF24, 0)
+                if(tv_def_account?.text!!.equals( DefaultAccountSP.getString("DefaultAccount1", null)))
 
-                  tv_def_availablebal!!.setTextSize(TypedValue.COMPLEX_UNIT_SP,22F);
-                  tv_def_availablebal!!.setText(
-                      "\u20b9 " + Config.getDecimelFormate(
-                          balance
-                      )
-                  )
-                  img_hide_balance!!.setImageResource(R.drawable.new_eye_closed);
-              }
+                {
+
+                    tv_def_account!!.setText(
+                        DefaultAccountSP.getString("DefaultAccount1", null)!!
+                            .replace("\\w(?=\\w{4})".toRegex(), "*")
+                    )
+                    img_show!!.setImageResource(R.drawable.new_eye_open);
+                }
+                else
+                {
+                    tv_def_account!!.setText(
+                        DefaultAccountSP.getString("DefaultAccount1", null))
+                    img_show!!.setImageResource(R.drawable.new_eye_closed);
+                }
             }
             R.id.llloanstatus -> {
                 startActivity(Intent(this@HomeActivity, LoanStatusActivity::class.java))
@@ -2001,8 +2059,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //                                                        balance
 //                                                    )
 //                                                )
-                                                tv_def_account!!.setText(obj.getString("AccountNumber"))
-
+//                                                tv_def_account!!.setText(obj.getString("AccountNumber"))
+                                                tv_def_account!!.setText(
+                                                    obj.getString("AccountNumber")
+                                                        .replace("\\w(?=\\w{4})".toRegex(), "*")
+                                                )
                                             }
 
                                         } else if (DefaultAccountSP.getString(
@@ -2018,8 +2079,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //                                                    balance
 //                                                )
 //                                            )
-                                            tv_def_account!!.setText(obj.getString("AccountNumber"))
-
+//                                            tv_def_account!!.setText(obj.getString("AccountNumber"))
+                                            tv_def_account!!.setText(
+                                                obj.getString("AccountNumber")
+                                                    .replace("\\w(?=\\w{4})".toRegex(), "*")
+                                            )
 
                                         }
                                     }

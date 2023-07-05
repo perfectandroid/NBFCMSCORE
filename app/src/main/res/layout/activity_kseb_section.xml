@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@drawable/background4">
 
         <RelativeLayout
             android:id="@+id/rltv_header"
@@ -126,10 +126,10 @@
                         android:id="@+id/img_clear"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_centerInParent="true"
                         android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
                         android:src="@drawable/ic_close"
-                        app:tint="@color/red" />
+                        app:tint="@color/colorPrimaryExtraDark" />
 
                 </RelativeLayout>
 

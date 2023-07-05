@@ -1,12 +1,12 @@
 package com.perfect.nbfcmscore.Activity
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.os.StrictMode
@@ -14,15 +14,16 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.view.Window
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Adapter.AccountAdapter
 import com.perfect.nbfcmscore.Api.ApiInterface
+import com.perfect.nbfcmscore.BuildConfig
 import com.perfect.nbfcmscore.Helper.*
 import com.perfect.nbfcmscore.Helper.Config.getSSLSocketFactory
 import com.perfect.nbfcmscore.R
@@ -73,10 +74,10 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
     var tie_Conf_beneficiary_aacno: EditText? = null
     var tie_ifsc_code: EditText? = null
     var tie_amount: EditText? = null
-
-
+    var bitmapt: Bitmap? = null
+    lateinit var file: File
     var jArrayAccount: JSONArray? = null
-
+    var uri: Uri? = null
     var  dialogAccount: BottomSheetDialog? = null
     var ll_chk_bene: LinearLayout? = null
     var llhist: LinearLayout? = null
@@ -1326,51 +1327,47 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
             txtMessage.setText(result)
             txtTitle.text = title
             lay_share.setOnClickListener {
-                Log.e("img_share", "img_share   1170   ")
-//                val bitmap = Bitmap.createBitmap(rltv_share.width,
-//                    rltv_share.height, Bitmap.Config.ARGB_8888)
-//                val canvas = Canvas(bitmap)
-//                rltv_share.draw(canvas)
-//                try {
-//                    val bmpUri: Uri = getLocalBitmapUri(bitmap)!!
+                sharelayout(dialogView)
+                val sendIntent = Intent(Intent.ACTION_SEND)
+                sendIntent.type = "image/*"
+                sendIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                sendIntent.putExtra(
+                    Intent.EXTRA_STREAM,
+                    FileProvider.getUriForFile(
+                        this@OtherBankFundTransferActivity,
+                        BuildConfig.APPLICATION_ID + ".fileprovider",
+                        file
+                    )
+                )
+                startActivity(Intent.createChooser(sendIntent, "Share "))
+
+//                try{
+//
+//                    val bitmap = Bitmap.createBitmap(rltv_share.width,
+//                        rltv_share.height, Bitmap.Config.ARGB_8888)
+//                    val canvas = Canvas(bitmap)
+//                    rltv_share.draw(canvas)
+//
+//                    val file: File = saveBitmap(bitmap, System.currentTimeMillis().toString() + ".png")
+//                    Log.e("chase  2044   ", "filepath: " + file.absolutePath)
+//                    val bmpUri = Uri.fromFile(file)
+//                    Log.i("Uri", bmpUri.toString())
+//
+//
+//                    // Uri bmpUri = getLocalBitmapUri(bitmap);
 //                    val shareIntent = Intent()
 //                    shareIntent.action = Intent.ACTION_SEND
 //                    shareIntent.putExtra(Intent.EXTRA_STREAM, bmpUri)
 //                    shareIntent.type = "image/*"
 //                    shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+//                    //    shareIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+//                    //    shareIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
 //                    startActivity(Intent.createChooser(shareIntent, "Share"))
-//                } catch (e: java.lang.Exception) {
-//                    e.printStackTrace()
-//                    Log.e("Exception", "Exception   117   $e")
+//
+//
+//                }catch (e : Exception){
+//
 //                }
-
-                try{
-
-                    val bitmap = Bitmap.createBitmap(rltv_share.width,
-                        rltv_share.height, Bitmap.Config.ARGB_8888)
-                    val canvas = Canvas(bitmap)
-                    rltv_share.draw(canvas)
-
-                    val file: File = saveBitmap(bitmap, System.currentTimeMillis().toString() + ".png")
-                    Log.e("chase  2044   ", "filepath: " + file.absolutePath)
-                    val bmpUri = Uri.fromFile(file)
-                    Log.i("Uri", bmpUri.toString())
-
-
-                    // Uri bmpUri = getLocalBitmapUri(bitmap);
-                    val shareIntent = Intent()
-                    shareIntent.action = Intent.ACTION_SEND
-                    shareIntent.putExtra(Intent.EXTRA_STREAM, bmpUri)
-                    shareIntent.type = "image/*"
-                    shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                    //    shareIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-                    //    shareIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-                    startActivity(Intent.createChooser(shareIntent, "Share"))
-
-
-                }catch (e : Exception){
-
-                }
             }
 
         } catch (e: java.lang.Exception) {
@@ -1380,6 +1377,41 @@ class OtherBankFundTransferActivity : AppCompatActivity() , View.OnClickListener
         val alertDialog = dialogBuilder.create()
         alertDialog.setCancelable(false)
         alertDialog.show()
+    }
+
+    private fun sharelayout(customLayout2: View) {
+        val view: RelativeLayout
+        view = customLayout2.findViewById(R.id.rltv_share)
+        view.isDrawingCacheEnabled = true
+        view.measure(
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        )
+        view.layout(0, 0, view.measuredWidth, view.measuredHeight)
+        view.buildDrawingCache(true)
+        bitmapt =
+            Bitmap.createBitmap(view.drawingCache)
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                file = File(getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), "mscore.png")
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                Log.v(
+                    "fdsfsdfd",
+                    "directory  " + getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
+                )
+            }
+            val stream: FileOutputStream = FileOutputStream(file)
+            bitmapt!!.compress(
+                Bitmap.CompressFormat.PNG,
+                90,
+                stream
+            )
+            stream.close()
+            uri = Uri.fromFile(file)
+        } catch (e: IOException) {
+            Log.v("fdsfsdfd", "IOException while trying to write file for sharing: " + e.message)
+        }
     }
 
     private fun saveBitmap(bm: Bitmap, fileName: String): File {
