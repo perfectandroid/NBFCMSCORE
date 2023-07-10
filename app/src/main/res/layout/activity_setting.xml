@@ -349,6 +349,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/bg_button"
                         android:layout_marginLeft="10dp"
+                        android:visibility="gone"
                         android:padding="10dp"
                         android:layout_marginTop="10dp"
                         android:backgroundTint="@color/white"

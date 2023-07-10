@@ -30,7 +30,7 @@
                     android:textStyle="normal"
                     android:layout_margin="5dp"
                     android:gravity="center_vertical"
-                    android:textSize="15sp"/>
+                    android:textSize="15dp"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -130,10 +130,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:textColor="@color/colorPrimary"
-                                android:paddingLeft="7dp"
+                                android:paddingLeft="5dp"
                                 android:textAllCaps="false"
                                 android:layout_weight="1"
-                                android:text=""
+                                android:text="Sindu Anil"
                                 android:textStyle="bold"
                                 android:textSize="15dp"
                                 android:gravity="start"
@@ -212,8 +212,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="30dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="10dp"
                         android:layout_gravity="bottom"
                         android:orientation="horizontal">
 
@@ -221,6 +221,7 @@
                             android:id="@+id/txtv_elctrnc"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:paddingLeft="5dp"
                             android:textColor="@color/colorPrimary"
                             android:text="Electronic use only"
                             android:textSize="14dp"
@@ -266,7 +267,7 @@
                     android:layout_margin="15dp"
                     android:textStyle="bold"
                     android:visibility="gone"
-                    android:textSize="15sp"
+                    android:textSize="15dp"
                     tools:ignore="MissingConstraints" />
                 <ScrollView
                     android:layout_width="match_parent"
@@ -296,7 +297,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/transactions"
                                 android:gravity="center_vertical"
-                                android:textSize="13sp"
+                                android:textSize="13dp"
                                 android:paddingLeft="5dp"
                                 android:paddingRight="5dp"
                                 android:visibility="gone"
@@ -325,7 +326,7 @@
                             android:layout_height="wrap_content"
                             android:text=""
                             android:gravity="center_vertical"
-                            android:textSize="13sp"
+                            android:textSize="13dp"
                             android:paddingLeft="5dp"
                             android:paddingRight="5dp"
                             android:visibility="gone"
@@ -355,7 +356,7 @@
                             android:layout_height="wrap_content"
                             android:text=""
                             android:gravity="center_vertical"
-                            android:textSize="13sp"
+                            android:textSize="13dp"
                             android:paddingLeft="5dp"
                             android:paddingRight="5dp"
                             android:visibility="gone"
@@ -384,7 +385,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/queue"
                             android:gravity="center_vertical"
-                            android:textSize="13sp"
+                            android:textSize="13dp"
                             android:paddingLeft="5dp"
                             android:paddingRight="5dp"
                             android:visibility="gone"

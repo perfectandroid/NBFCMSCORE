@@ -5,24 +5,29 @@ import android.app.Dialog
 import android.app.ProgressDialog
 import android.content.*
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.util.Base64
 import android.util.Log
 import android.view.*
 import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityOptionsCompat
 import androidx.core.view.GravityCompat
 import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
+import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.navigation.NavigationView
 import com.google.android.play.core.appupdate.AppUpdateManager
@@ -32,6 +37,7 @@ import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.BuildConfig
 import com.perfect.nbfcmscore.Helper.*
 import com.perfect.nbfcmscore.R
+import de.hdodenhof.circleimageview.CircleImageView
 import me.relex.circleindicator.CircleIndicator
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
@@ -43,6 +49,8 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
 import java.net.MalformedURLException
 import java.net.URL
 import java.security.KeyStore
@@ -51,12 +59,14 @@ import java.util.concurrent.TimeUnit
 import javax.net.ssl.TrustManagerFactory
 import javax.net.ssl.X509TrustManager
 
+
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
     View.OnClickListener,
     ItemClickListener {
     val TAG: String? = "HomeActivity"
     private var progressDialog: ProgressDialog? = null
     var llloanstatus: LinearLayout? = null
+    var lin_all: LinearLayout? = null
     var llloanapplication: LinearLayout? = null
     var lldashboard: LinearLayout? = null
     var llprdctdetail: LinearLayout? = null
@@ -116,6 +126,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var tv_header: TextView? = null
     var tvuser: TextView? = null
     var tv_mobile: TextView? = null
+    var tv_consumer: TextView? = null
     var txtv_myacc: TextView? = null
     var txtv_pasbk: TextView? = null
     var txtv_quickbal: TextView? = null
@@ -150,6 +161,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var txtv_accnt: TextView? = null
     var txt_vcode: TextView? = null
     var txt_vname: TextView? = null
+    var account: String? = null
+    var profile_image: CircleImageView? = null
 
 
     private var mPager: ViewPager? = null
@@ -330,6 +343,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val CusMobileSP = applicationContext.getSharedPreferences(Config.SHARED_PREF2, 0)
         tv_mobile!!.setText(CusMobileSP.getString("CusMobile", null))
 
+        val CustomerNumberSP = applicationContext.getSharedPreferences(Config.SHARED_PREF20, 0)
+        val CustomerNumberSP1 = applicationContext.getSharedPreferences(Config.SHARED_PREF310, 0)
+
+        tv_consumer!!.setText(CustomerNumberSP.getString("CustomerNumber", null))
 
     }
 
@@ -1042,22 +1059,16 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                                             ////////////////////////////
 
 
-
-
-
-
-
-
                                         } catch (e: JSONException) {
                                             e.printStackTrace()
                                         }
                                     }
                                     val handler = Handler()
                                     val Update = Runnable {
-                                        Log.v("dfdsdd","curent "+currentPage)
+                                        Log.v("dfdsdd", "curent " + currentPage)
                                         if (currentPage === jresult!!.length()) {
 
-                                            Log.v("dfdsdd","in")
+                                            Log.v("dfdsdd", "in")
                                             currentPage = 0
                                         }
                                         mPager!!.setCurrentItem(currentPage++, true)
@@ -1147,6 +1158,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
     open fun setInitialise() {
+        profile_image = findViewById(R.id.profile_image)
+        tv_consumer = findViewById(R.id.tv_consumer)
+        lin_all = findViewById(R.id.lin_all)
         lin_show = findViewById(R.id.lin_show)
         img_show = findViewById(R.id.img_show)
         llloanstatus = findViewById(R.id.llloanstatus)
@@ -1254,6 +1268,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     open fun setRegister() {
         tv_def_availablebal!!.setOnClickListener(this)
+        lin_all!!.setOnClickListener(this)
         tv_def_account!!.setOnClickListener(this)
         img_show!!.setOnClickListener(this)
         lin_show!!.setOnClickListener(this)
@@ -1697,7 +1712,14 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(Intent(this@HomeActivity, AccountlistActivity::class.java))
             }
             R.id.ll_branschDetails -> {
-                startActivity(Intent(this@HomeActivity, BranchDetailActivity::class.java))
+                try {
+                    startActivity(Intent(this@HomeActivity, BranchDetailActivity::class.java))
+                }
+                catch (e:Exception)
+                {
+
+                }
+
             }
 
             R.id.ll_holidaylist -> {
@@ -1713,7 +1735,14 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(intent)
             }
             R.id.improfile -> {
-                startActivity(Intent(this@HomeActivity, ProfileActivity::class.java))
+                val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    this,
+                    profile_image!!,
+                    "imageTransition"
+                )
+                val intent = Intent(this, ProfileActivity::class.java)
+                startActivity(intent, options.toBundle())
+             //   startActivity(Intent(this@HomeActivity, ProfileActivity::class.java))
             }
             R.id.imlanguage -> {
 
@@ -1803,41 +1832,85 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
             }
             R.id.tv_def_account -> {
-                val DefaultAccountSP = applicationContext.getSharedPreferences(Config.SHARED_PREF24, 0)
-                if(tv_def_account?.text!!.equals( DefaultAccountSP.getString("DefaultAccount1", null)))
+                val DefaultAccountSP =
+                    applicationContext.getSharedPreferences(Config.SHARED_PREF24, 0)
+                if (DefaultAccountSP.getString("DefaultAccount1", null)==null) {
+                    if (tv_def_account?.text!!.equals(account)
+                    ) {
 
-                {
-
-                    tv_def_account!!.setText(
-                        DefaultAccountSP.getString("DefaultAccount1", null)!!
-                            .replace("\\w(?=\\w{4})".toRegex(), "*")
-                    )
-                    img_show!!.setImageResource(R.drawable.new_eye_open);
+                        tv_def_account!!.setText(
+                            account!!
+                                .replace("\\w(?=\\w{4})".toRegex(), "*")
+                        )
+                        img_show!!.setImageResource(R.drawable.new_eye_open);
+                    } else {
+                        tv_def_account!!.setText(
+                            account
+                        )
+                        img_show!!.setImageResource(R.drawable.new_eye_closed);
+                    }
                 }
-                else
-                {
-                    tv_def_account!!.setText(
-                        DefaultAccountSP.getString("DefaultAccount1", null))
-                    img_show!!.setImageResource(R.drawable.new_eye_closed);
+                else {
+                    if (tv_def_account?.text!!.equals(
+                            DefaultAccountSP.getString(
+                                "DefaultAccount1",
+                                null
+                            )
+                        )
+                    ) {
+
+                        tv_def_account!!.setText(
+                            DefaultAccountSP.getString("DefaultAccount1", null)!!
+                                .replace("\\w(?=\\w{4})".toRegex(), "*")
+                        )
+                        img_show!!.setImageResource(R.drawable.new_eye_open);
+                    } else {
+                        tv_def_account!!.setText(
+                            DefaultAccountSP.getString("DefaultAccount1", null)
+                        )
+                        img_show!!.setImageResource(R.drawable.new_eye_closed);
+                    }
                 }
             }
             R.id.img_show -> {
-                val DefaultAccountSP = applicationContext.getSharedPreferences(Config.SHARED_PREF24, 0)
-                if(tv_def_account?.text!!.equals( DefaultAccountSP.getString("DefaultAccount1", null)))
+                val DefaultAccountSP =
+                    applicationContext.getSharedPreferences(Config.SHARED_PREF24, 0)
+                if (DefaultAccountSP.getString("DefaultAccount1", null)==null) {
+                    if (tv_def_account?.text!!.equals(account)
+                    ) {
 
-                {
-
-                    tv_def_account!!.setText(
-                        DefaultAccountSP.getString("DefaultAccount1", null)!!
-                            .replace("\\w(?=\\w{4})".toRegex(), "*")
-                    )
-                    img_show!!.setImageResource(R.drawable.new_eye_open);
+                        tv_def_account!!.setText(
+                            account!!
+                                .replace("\\w(?=\\w{4})".toRegex(), "*")
+                        )
+                        img_show!!.setImageResource(R.drawable.new_eye_open);
+                    } else {
+                        tv_def_account!!.setText(
+                            account
+                        )
+                        img_show!!.setImageResource(R.drawable.new_eye_closed);
+                    }
                 }
-                else
-                {
-                    tv_def_account!!.setText(
-                        DefaultAccountSP.getString("DefaultAccount1", null))
-                    img_show!!.setImageResource(R.drawable.new_eye_closed);
+                else {
+                    if (tv_def_account?.text!!.equals(
+                            DefaultAccountSP.getString(
+                                "DefaultAccount1",
+                                null
+                            )
+                        )
+                    ) {
+
+                        tv_def_account!!.setText(
+                            DefaultAccountSP.getString("DefaultAccount1", null)!!
+                                .replace("\\w(?=\\w{4})".toRegex(), "*")
+                        )
+                        img_show!!.setImageResource(R.drawable.new_eye_open);
+                    } else {
+                        tv_def_account!!.setText(
+                            DefaultAccountSP.getString("DefaultAccount1", null)
+                        )
+                        img_show!!.setImageResource(R.drawable.new_eye_closed);
+                    }
                 }
             }
             R.id.llloanstatus -> {
@@ -1913,25 +1986,23 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(intent)
             }
             R.id.llstatement -> {
-
                 var intent = Intent(this@HomeActivity, StatementActivity::class.java)
                 startActivity(intent)
             }
             R.id.llquickpay -> {
-
                 var intent = Intent(this@HomeActivity, QuickPayActivity::class.java)
                 startActivity(intent)
             }
+            R.id.lin_all -> {
+                startActivity(Intent(this@HomeActivity, AccountlistActivity::class.java))
+            }
             R.id.tv_viewall -> {
-
                 startActivity(Intent(this@HomeActivity, AccountlistActivity::class.java))
             }
             R.id.llenquiry -> {
-
                 startActivity(Intent(this@HomeActivity, EnquiryActivity::class.java))
             }
             R.id.llupimain -> {
-
                 startActivity(Intent(this@HomeActivity, UpiMain::class.java))
             }
         }
@@ -2064,6 +2135,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                                                     obj.getString("AccountNumber")
                                                         .replace("\\w(?=\\w{4})".toRegex(), "*")
                                                 )
+                                                account=obj.getString("AccountNumber");
                                             }
 
                                         } else if (DefaultAccountSP.getString(
@@ -2084,6 +2156,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                                                 obj.getString("AccountNumber")
                                                     .replace("\\w(?=\\w{4})".toRegex(), "*")
                                             )
+                                            account=obj.getString("AccountNumber");
 
                                         }
                                     }
@@ -6726,6 +6799,31 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         bottomSheetDialog.setCancelable(false)
         bottomSheetDialog.show()
+    }
+
+    fun setImage()
+    {
+        try {
+            val decodedString: ByteArray =
+                Base64.decode("data from db", Base64.DEFAULT)
+            ByteArrayToBitmap(decodedString)
+            val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+            val stream = ByteArrayOutputStream()
+            decodedByte.compress(Bitmap.CompressFormat.PNG, 100, stream)
+            Glide.with(this)
+                .load(stream.toByteArray())
+                .placeholder(R.drawable.person)
+                .error(R.drawable.person)
+                .into(profile_image!!)
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+            Log.e("TAG", "1354  $e")
+        }
+    }
+
+    fun ByteArrayToBitmap(byteArray: ByteArray?): Bitmap? {
+        val arrayInputStream = ByteArrayInputStream(byteArray)
+        return BitmapFactory.decodeStream(arrayInputStream)
     }
 
 }

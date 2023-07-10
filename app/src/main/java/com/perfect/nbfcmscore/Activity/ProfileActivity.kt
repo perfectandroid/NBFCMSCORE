@@ -1,15 +1,19 @@
 package com.perfect.nbfcmscore.Activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
+import android.transition.Transition
+import android.transition.TransitionInflater
 import android.view.View
+import android.view.Window
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.perfect.nbfcmscore.Helper.Config
-import com.perfect.nbfcmscore.Helper.PicassoTrustAll
 import com.perfect.nbfcmscore.R
+import de.hdodenhof.circleimageview.CircleImageView
+
 
 class ProfileActivity : AppCompatActivity() , View.OnClickListener{
 
@@ -24,8 +28,11 @@ class ProfileActivity : AppCompatActivity() , View.OnClickListener{
     var tv_cusnumber: TextView? = null
     var tv_header: TextView? = null
 
+    var profile_image: CircleImageView? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         setContentView(R.layout.activity_profile)
         imgBack = findViewById<ImageView>(R.id.imgBack)
         imgBack!!.setOnClickListener(this)
@@ -33,6 +40,7 @@ class ProfileActivity : AppCompatActivity() , View.OnClickListener{
 
 
         imgHome = findViewById<ImageView>(R.id.imgHome)
+        profile_image = findViewById<CircleImageView>(R.id.profile_image)
         imgHome!!.setOnClickListener(this)
         tv_customername = findViewById<TextView>(R.id.tv_customername)
         tv_mobile = findViewById<TextView>(R.id.tv_mobile)
@@ -55,7 +63,11 @@ class ProfileActivity : AppCompatActivity() , View.OnClickListener{
         tv_customername!!.setText(CustomerNameSP.getString("CustomerName",null))
         val CusMobileSP = applicationContext.getSharedPreferences(Config.SHARED_PREF2,0)
         tv_mobile!!.setText(CusMobileSP.getString("CusMobile",null))
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            val transition: Transition =
+                TransitionInflater.from(this).inflateTransition(android.R.transition.move)
+            window.sharedElementEnterTransition = transition
+        }
 
         val AddressSP = applicationContext.getSharedPreferences(Config.SHARED_PREF4,0)
         val AddressSP1 = applicationContext.getSharedPreferences(Config.SHARED_PREF299,0)

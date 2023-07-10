@@ -34,76 +34,106 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/llprofile"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:layout_height="200dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:weightSum="2">
 
-                        <TextView
-                            android:id="@+id/tvuser"
+                        <LinearLayout
+                            android:id="@+id/llprofile"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:text=""
-                            android:textColor="@color/colorPrimaryExtraDark"
-                            android:textSize="18dp" />
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:paddingLeft="115dp"
+                            android:gravity="bottom"
+                            android:background="@color/colorPrimary">
 
-                        <TextView
-                            android:id="@+id/tv_mobile"
+                            <TextView
+                                android:id="@+id/tvuser"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="3dp"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:textSize="18dp" />
+                            <TextView
+                                android:id="@+id/tv_mobile"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="3dp"
+                                android:layout_marginTop="-5dp"
+                                android:layout_marginRight="10dp"
+                                android:textColor="@color/white"
+                                android:textSize="10dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="10dp"
-                            android:text=""
-                            android:textColor="@color/colorPrimaryExtraDark"
-                            android:textSize="13dp" />
+                            android:layout_height="0dp"
+                            android:paddingLeft="115dp"
+                            android:layout_weight="1" >
+                            <TextView
+                                android:id="@+id/tv_consumer"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="10dp"
+                                android:textColor="@color/colorPrimaryExtraDark"
+                                android:textSize="13dp" />
+                        </LinearLayout>
                     </LinearLayout>
 
-                    <ImageView
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:visibility="gone"
-                        android:layout_weight="4"
-                        android:src="@drawable/arrownext" />
-                </LinearLayout>
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical">
+
+                        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginBottom="20dp"
+                            android:background="@drawable/roundbg"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:src="@drawable/ic_usericon"
+                            android:padding="5dp"
+                            app:civ_border_color="@color/white"
+                            app:civ_border_width="0dp" />
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <com.perfect.nbfcmscore.Helper.FullLenghtListview
                     android:id="@+id/lvNavMenu"
+                    android:layout_marginTop="-50dp"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"></com.perfect.nbfcmscore.Helper.FullLenghtListview>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
                 android:layout_marginBottom="20dp"
-                android:gravity="bottom|center_horizontal">
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/txt_vcode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="V.12"/>
+                    android:text="V.12" />
+
                 <TextView
                     android:id="@+id/txt_vname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="4.0.5"/>
+                    android:text="4.0.5" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 

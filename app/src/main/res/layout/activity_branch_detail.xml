@@ -110,7 +110,7 @@
                     android:gravity="start"
                     android:text="Enter District"
                     android:textColor="@color/colorPrimaryExtraDark"
-                    android:textSize="15sp"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
 
                 <LinearLayout

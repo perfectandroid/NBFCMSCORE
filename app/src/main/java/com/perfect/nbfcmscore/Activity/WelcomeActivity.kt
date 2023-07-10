@@ -232,11 +232,10 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         ID_WelcomeSPEditer.putString("welcome", jresult3.get("welcome") as String)
                                         ID_WelcomeSPEditer.commit()
 
-                                        // TODO: Please check customer number value from backend    
-//                                        val ID_cnmbr= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF310, 0)
-//                                        val ID_cnmbrEditer = ID_cnmbr.edit()
-//                                        ID_cnmbrEditer.putString("CustomerNumber1", jresult3.get("CustomerNumber") as String)
-//                                        ID_cnmbrEditer.commit()
+                                        val ID_cnmbr= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF310, 0)
+                                        val ID_cnmbrEditer = ID_cnmbr.edit()
+                                        ID_cnmbrEditer.putString("CustomerNumber1", jresult3.get("CustomerNumber") as String)
+                                        ID_cnmbrEditer.commit()
 
                                         val ID_FasterSP = this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF35, 0)
                                         val ID_FasterSPEditer = ID_FasterSP.edit()
@@ -262,16 +261,16 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                                         val ID_SkipSPEditer = ID_SkipSP.edit()
                                         ID_SkipSPEditer.putString("Skip", jresult3.get("Skip") as String)
                                         ID_SkipSPEditer.commit()
-                                        // TODO: Please Check
-//                                        val ID_add= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF299, 0)
-//                                        val ID_addEditer = ID_add.edit()
-//                                        ID_addEditer.putString("Address1", jresult3.get("Address") as String)
-//                                        ID_addEditer.commit()
 
-//                                        val ID_plsslctacc= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF284, 0)
-//                                        val ID_plsslctaccEditer = ID_plsslctacc.edit()
-//                                        ID_plsslctaccEditer.putString("PleaseSelectAccount", jresult3.get("PleaseSelectAccount") as String)
-//                                        ID_plsslctaccEditer.commit()
+                                        val ID_add= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF299, 0)
+                                        val ID_addEditer = ID_add.edit()
+                                        ID_addEditer.putString("Address1", jresult3.get("Address") as String)
+                                        ID_addEditer.commit()
+
+                                        val ID_plsslctacc= this@WelcomeActivity.getSharedPreferences(Config.SHARED_PREF284, 0)
+                                        val ID_plsslctaccEditer = ID_plsslctacc.edit()
+                                        ID_plsslctaccEditer.putString("PleaseSelectAccount", jresult3.get("PleaseSelectAccount") as String)
+                                        ID_plsslctaccEditer.commit()
 
 
 

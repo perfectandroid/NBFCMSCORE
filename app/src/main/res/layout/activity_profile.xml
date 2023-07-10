@@ -58,35 +58,40 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             android:paddingRight="15dp"
+            android:gravity="center"
             android:paddingLeft="15dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_margin="20dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/profileicon"
-                android:visibility="gone" />
+            android:orientation="vertical">
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/profile_image"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/roundbg"
+                android:backgroundTint="@color/colorPrimary"
+                android:src="@drawable/ic_usericon"
+                android:transitionName="imageTransition"
+                android:padding="3dp"
+                app:civ_border_color="@color/colorPrimary"
+                app:civ_border_width="1dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:gravity="center"
                 android:layout_marginBottom="10dp"
-                android:layout_marginRight="20dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tv_customername"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text=""
                     android:textColor="@color/white"
                     android:textSize="25dp"></TextView>
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:gravity="center_vertical"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -94,6 +99,7 @@
                         android:layout_width="20dp"
                         android:src="@drawable/new_postpaid_mobile"
                         android:tint="@color/white"
+                        android:visibility="gone"
                         android:layout_marginRight="10dp"
                         android:layout_height="20dp"/>
                 <TextView

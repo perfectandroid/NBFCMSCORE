@@ -93,7 +93,7 @@
                                 android:paddingLeft="10dp"
                                 android:text="Enquiry Type"
                                 android:textColor="@color/colorPrimaryExtraDark"
-                                android:textSize="15sp"
+                                android:textSize="15dp"
                                 android:textStyle="bold" />
 
                             <LinearLayout
@@ -135,7 +135,7 @@
                                 android:paddingLeft="10dp"
                                 android:text="Feedback"
                                 android:textColor="@color/colorPrimaryExtraDark"
-                                android:textSize="15sp"
+                                android:textSize="15dp"
                                 android:textStyle="bold" />
 
                             <LinearLayout
@@ -211,7 +211,7 @@
                                     android:paddingLeft="10dp"
                                     android:text="Mobile Number"
                                     android:textColor="@color/colorPrimaryExtraDark"
-                                    android:textSize="15sp"
+                                    android:textSize="15dp"
                                     android:textStyle="bold" />
 
                                 <LinearLayout
@@ -268,7 +268,7 @@
                                     android:paddingLeft="10dp"
                                     android:text="Convenient Date"
                                     android:textColor="@color/colorPrimaryExtraDark"
-                                    android:textSize="15sp"
+                                    android:textSize="15dp"
                                     android:textStyle="bold" />
 
                                 <LinearLayout
@@ -327,7 +327,7 @@
                                     android:paddingLeft="10dp"
                                     android:text="Convenient Time"
                                     android:textColor="@color/colorPrimaryExtraDark"
-                                    android:textSize="15sp"
+                                    android:textSize="15dp"
                                     android:textStyle="bold" />
 
                                 <LinearLayout
@@ -442,7 +442,7 @@
                                     android:paddingLeft="10dp"
                                     android:text="Contact Email"
                                     android:textColor="@color/colorPrimaryExtraDark"
-                                    android:textSize="15sp"
+                                    android:textSize="15dp"
                                     android:textStyle="bold" />
 
                                 <LinearLayout
@@ -506,7 +506,7 @@
                         android:textAllCaps="false"
                         android:background="@drawable/bg_button"
                         android:textColor="@color/colorPrimaryExtraDark"
-                        android:textSize="16sp"
+                        android:textSize="16dp"
                         android:textStyle="bold" />
 
                     <View
@@ -524,7 +524,7 @@
                         android:textColor="@color/colorPrimaryExtraDark"
                         android:text="Submit"
                         android:textAllCaps="false"
-                        android:textSize="16sp"
+                        android:textSize="16dp"
                         android:textStyle="bold"/>
 
 

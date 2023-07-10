@@ -79,7 +79,7 @@
                         android:gravity="center"
                         android:text="Assets"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
+                        android:textSize="18dp"
                         android:textStyle="bold" />
 
                     <com.github.mikephil.charting.charts.PieChart
@@ -141,7 +141,7 @@
                         android:gravity="center"
                         android:text="Payment Receipt"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
+                        android:textSize="18dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -284,7 +284,7 @@
                         android:gravity="center"
                         android:text="Liability"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
+                        android:textSize="18dp"
                         android:textStyle="bold" />
 
 

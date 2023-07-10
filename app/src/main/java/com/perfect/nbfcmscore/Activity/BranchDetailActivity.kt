@@ -426,6 +426,9 @@ class BranchDetailActivity : AppCompatActivity(), OnMapReadyCallback, View.OnCli
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
+        try
+        {
+
 //        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mMap = googleMap
         getBranchList1(mMap!!, "0");
@@ -471,6 +474,12 @@ class BranchDetailActivity : AppCompatActivity(), OnMapReadyCallback, View.OnCli
 //                10f
 //            )
 //        )
+
+        }
+        catch (e:Exception)
+        {
+
+        }
     }
 
     private fun getBranchList1(mMap: GoogleMap, FK_District: String) {
@@ -592,7 +601,7 @@ class BranchDetailActivity : AppCompatActivity(), OnMapReadyCallback, View.OnCli
                                     rvBranchList!!.adapter = obj_adapter
                                     obj_adapter.setClickListener(this@BranchDetailActivity)
 
-                                    setMarker(jsonArray!!, mMap)
+                                   // setMarker(jsonArray!!, mMap)
 
                                 } else {
                                     card_branches!!.visibility = View.GONE

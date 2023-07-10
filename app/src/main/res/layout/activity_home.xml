@@ -35,7 +35,7 @@
                         android:id="@+id/imgMenu"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_marginLeft="14dp"
+                        android:layout_marginLeft="10dp"
                         android:src="@drawable/homenavwhite"
                         app:tint="@color/white" />
 
@@ -89,7 +89,7 @@
                         android:id="@+id/img_barcode"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
-                        android:layout_marginRight="14dp"
+                        android:layout_marginRight="10dp"
                         android:src="@drawable/new_qr_code_scanner"
                         app:tint="@color/white" />
                 </LinearLayout>
@@ -100,7 +100,7 @@
                 android:id="@+id/txtv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="10dp"
                 android:textColor="@color/white"
                 android:textSize="18dp"
                 android:textStyle="bold" />
@@ -109,23 +109,12 @@
                 android:id="@+id/txtv_custno"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="-3dp"
                 android:layout_marginRight="10dp"
                 android:drawablePadding="10dp"
                 android:textColor="@color/white"
                 android:textSize="11dp" />
-
-            <TextView
-                android:id="@+id/tv_lastlogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="10dp"
-                android:gravity="right"
-                android:text="Last Login : 12-10-2021 9:30 am"
-                android:textColor="@color/black"
-                android:textSize="10dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -133,6 +122,17 @@
                 android:orientation="vertical"
                 android:visibility="visible">
 
+
+                <TextView
+                    android:id="@+id/tv_lastlogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="8dp"
+                    android:gravity="right"
+                    android:text="Last Login : 12-10-2021 9:30 am"
+                    android:textColor="@color/black"
+                    android:textSize="10dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -227,19 +227,23 @@
                 android:background="@drawable/square_radius">
 
                 <LinearLayout
+                    android:id="@+id/lin_all"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_margin="5dp"
                     android:layout_weight="1.2"
                     android:background="@drawable/square_radius"
                     android:backgroundTint="@color/white"
                     android:gravity="center"
                     android:orientation="vertical">
 
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profile_image"
                         android:layout_width="30dp"
+                        android:transitionName="imageTransition"
+                        app:civ_border_color="@color/colorPrimary"
+                        app:civ_border_width="1dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/new_account" />
+                        android:src="@drawable/ic_usericon" />
 
                     <TextView
                         android:id="@+id/tv_viewall"
@@ -261,7 +265,7 @@
                         android:id="@+id/txtv_accnt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:drawablePadding="10dp"
@@ -279,7 +283,7 @@
                             android:id="@+id/tv_def_account"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
+                            android:layout_marginLeft="10dp"
                             android:minWidth="150dp"
                             android:text="0010011001"
                             android:textColor="@color/white"
@@ -303,7 +307,7 @@
                             android:id="@+id/tv_def_availablebal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
+                            android:layout_marginLeft="10dp"
                             android:gravity="center_vertical"
                             android:text="View Balance"
                             android:textColor="@color/white"

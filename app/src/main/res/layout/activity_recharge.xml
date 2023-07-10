@@ -122,7 +122,7 @@
                             android:gravity="start"
                             android:text="Mobile Number"
                             android:textColor="@color/colorPrimaryExtraDark"
-                            android:textSize="15sp"
+                            android:textSize="15dp"
                             android:textStyle="bold" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -210,7 +210,7 @@
                             android:gravity="start"
                             android:text="Subscriber Id"
                             android:textColor="@color/colorPrimaryExtraDark"
-                            android:textSize="15sp"
+                            android:textSize="15dp"
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -266,7 +266,7 @@
                             android:gravity="start"
                             android:text="Operator"
                             android:textColor="@color/colorPrimaryExtraDark"
-                            android:textSize="15sp"
+                            android:textSize="15dp"
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -325,7 +325,7 @@
                             android:gravity="start"
                             android:text="Circle"
                             android:textColor="@color/colorPrimaryExtraDark"
-                            android:textSize="15sp"
+                            android:textSize="15dp"
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -384,7 +384,7 @@
                             android:gravity="start"
                             android:text="Amount"
                             android:textColor="@color/colorPrimaryExtraDark"
-                            android:textSize="15sp"
+                            android:textSize="15dp"
                             android:textStyle="bold" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -472,7 +472,7 @@
                             android:gravity="start"
                             android:text="Account No"
                             android:textColor="@color/colorPrimaryExtraDark"
-                            android:textSize="15sp"
+                            android:textSize="15dp"
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -530,7 +530,7 @@
                             android:gravity="start"
                             android:text="Account No"
                             android:textColor="@color/colorPrimaryExtraDark"
-                            android:textSize="15sp"
+                            android:textSize="15dp"
                             android:textStyle="bold" />
 
                         <LinearLayout

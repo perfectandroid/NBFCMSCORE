@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background2"
+    android:background="@drawable/background4"
     tools:context=".Activity.LoginActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/transparentbg"
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="vertical">
@@ -371,7 +370,7 @@
                                                     android:background="@color/white"
                                                     android:text="1"
                                                     android:textColor="@color/black"
-                                                    android:textSize="18sp" />
+                                                    android:textSize="18dp" />
 
                                                 <Button
                                                     android:id="@+id/two"
@@ -382,7 +381,7 @@
                                                     android:background="@color/white"
                                                     android:text="2"
                                                     android:textColor="@color/black"
-                                                    android:textSize="18sp" />
+                                                    android:textSize="18dp" />
 
 
                                                 <Button
@@ -394,7 +393,7 @@
                                                     android:background="@color/white"
                                                     android:text="3"
                                                     android:textColor="@color/black"
-                                                    android:textSize="18sp" />
+                                                    android:textSize="18dp" />
 
 
                                             </LinearLayout>
@@ -415,7 +414,7 @@
                                                     android:background="@color/white"
                                                     android:text="4"
                                                     android:textColor="@color/black"
-                                                    android:textSize="18sp" />
+                                                    android:textSize="18dp" />
 
                                                 <Button
                                                     android:id="@+id/five"
@@ -426,7 +425,7 @@
                                                     android:background="@color/white"
                                                     android:text="5"
                                                     android:textColor="@color/black"
-                                                    android:textSize="18sp" />
+                                                    android:textSize="18dp" />
 
                                                 <Button
                                                     android:id="@+id/six"
@@ -437,7 +436,7 @@
                                                     android:background="@color/white"
                                                     android:text="6"
                                                     android:textColor="@color/black"
-                                                    android:textSize="18sp" />
+                                                    android:textSize="18dp" />
 
 
                                             </LinearLayout>
@@ -457,7 +456,7 @@
                                                     android:background="@color/white"
                                                     android:text="7"
                                                     android:textColor="@color/black"
-                                                    android:textSize="18sp" />
+                                                    android:textSize="18dp" />
 
                                                 <Button
                                                     android:id="@+id/eight"
@@ -468,7 +467,7 @@
                                                     android:background="@color/white"
                                                     android:text="8"
                                                     android:textColor="@color/black"
-                                                    android:textSize="18sp" />
+                                                    android:textSize="18dp" />
 
 
                                                 <Button
@@ -480,7 +479,7 @@
                                                     android:background="@color/white"
                                                     android:text="9"
                                                     android:textColor="@color/black"
-                                                    android:textSize="18sp" />
+                                                    android:textSize="18dp" />
 
                                             </LinearLayout>
 
@@ -497,18 +496,14 @@
                                                     android:layout_width="match_parent"
                                                     android:layout_height="match_parent"
                                                     android:layout_weight="1"
+                                                    android:gravity="center"
                                                     android:background="@color/white"
                                                     android:padding="15dp">
 
                                                     <ImageView
                                                         android:id="@+id/imgclear"
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="match_parent"
-                                                        android:layout_marginLeft="20dp"
-                                                        android:layout_marginTop="1dp"
-                                                        android:layout_marginRight="20dp"
-                                                        android:layout_marginBottom="1dp"
-                                                        android:layout_weight="1"
+                                                        android:layout_width="30dp"
+                                                        android:layout_height="30dp"
                                                         android:backgroundTint="@color/colorPrimary"
                                                         android:background="@drawable/ic_clear" />
                                                 </LinearLayout>
@@ -522,7 +517,7 @@
                                                     android:background="@color/white"
                                                     android:text="0"
                                                     android:textColor="@color/black"
-                                                    android:textSize="18sp" />
+                                                    android:textSize="18dp" />
 
                                                 <LinearLayout
                                                     android:id="@+id/clear"
@@ -530,18 +525,14 @@
                                                     android:layout_height="match_parent"
                                                     android:layout_marginLeft="1dp"
                                                     android:layout_weight="1"
+                                                    android:gravity="center"
                                                     android:background="@color/white"
                                                     android:padding="15dp">
 
                                                     <ImageView
                                                         android:id="@+id/imgBack"
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="match_parent"
-                                                        android:layout_marginLeft="18dp"
-                                                        android:layout_marginTop="1dp"
-                                                        android:layout_marginRight="18dp"
-                                                        android:layout_marginBottom="1dp"
-                                                        android:layout_weight="1"
+                                                        android:layout_width="30dp"
+                                                        android:layout_height="30dp"
                                                         android:backgroundTint="@color/colorPrimary"
                                                         android:background="@drawable/ic_backspace" />
                                                 </LinearLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background1"
+    android:background="@drawable/background6"
     tools:context=".Activity.VirtualActivity">
 
     <RelativeLayout
@@ -146,7 +146,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="Notice"
-                    android:textSize="15sp"
+                    android:textSize="15dp"
                     android:textColor="@color/black" />
 
             </LinearLayout>
@@ -176,7 +176,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="Standing Instruction"
-                    android:textSize="15sp"
+                    android:textSize="15dp"
                     android:textColor="@color/black" />
 
             </LinearLayout>

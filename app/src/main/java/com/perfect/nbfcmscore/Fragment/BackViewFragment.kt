@@ -6,6 +6,7 @@ import android.content.Context.WINDOW_SERVICE
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.Point
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -19,7 +20,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidmads.library.qrgenearator.QRGContents
 import androidmads.library.qrgenearator.QRGEncoder
+import androidx.core.app.ActivityCompat.finishAffinity
 import androidx.fragment.app.Fragment
+import b.s
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.GsonBuilder
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.EncodeHintType
@@ -480,34 +484,49 @@ class BackViewFragment : Fragment() , OnClickListener{
         }
     }
 
+//    private fun showBarQrAlert(bitmapqrbar: Bitmap?, s: String) {
+//
+//        val dialogBuilder = AlertDialog.Builder(activity)
+//        val inflater = this.layoutInflater
+//        val dialogView = inflater.inflate(R.layout.alert_barqr_code, null)
+//        dialogBuilder.setView(dialogView)
+//        val b = dialogBuilder.create()
+//        b.setCancelable(false)
+//
+//        val img_barcode = dialogView.findViewById<ImageView>(R.id.img_barcode)
+//        val tv_scan_header = dialogView.findViewById<TextView>(R.id.tv_scan_header)
+//        val img_close = dialogView.findViewById<ImageView>(R.id.img_close)
+//        if(s.equals("QR")){
+//            tv_scan_header.text = "Scan QR Code"
+//        }
+//        if(s.equals("BAR")){
+//            tv_scan_header.text = "Scan Bar Code"
+//        }
+//        img_barcode.setImageBitmap(bitmapqrbar)
+//
+//
+//        img_close.setOnClickListener {
+//            b.dismiss()
+//        }
+//
+//
+//        b.show()
+//
+//    }
+
     private fun showBarQrAlert(bitmapqrbar: Bitmap?, s: String) {
-
-        val dialogBuilder = AlertDialog.Builder(activity)
-        val inflater = this.layoutInflater
-        val dialogView = inflater.inflate(R.layout.alert_barqr_code, null)
-        dialogBuilder.setView(dialogView)
-        val b = dialogBuilder.create()
-        b.setCancelable(false)
-
-        val img_barcode = dialogView.findViewById<ImageView>(R.id.img_barcode)
-        val tv_scan_header = dialogView.findViewById<TextView>(R.id.tv_scan_header)
-        val img_close = dialogView.findViewById<ImageView>(R.id.img_close)
+        val bottomSheetDialog = context?.let { BottomSheetDialog(it) }
+        bottomSheetDialog!!.setContentView(R.layout.alert_barqr_code)
+        val img_barcode = bottomSheetDialog.findViewById<ImageView>(R.id.img_barcode)
+        val tv_scan_header = bottomSheetDialog.findViewById<TextView>(R.id.tv_scan_header)
         if(s.equals("QR")){
-            tv_scan_header.text = "Scan QR Code"
+            tv_scan_header!!.text = "Scan QR Code"
         }
         if(s.equals("BAR")){
-            tv_scan_header.text = "Scan Bar Code"
+            tv_scan_header!!.text = "Scan Bar Code"
         }
-        img_barcode.setImageBitmap(bitmapqrbar)
-
-
-        img_close.setOnClickListener {
-            b.dismiss()
-        }
-
-
-        b.show()
-
+        img_barcode!!.setImageBitmap(bitmapqrbar)
+        bottomSheetDialog.show()
     }
 
 

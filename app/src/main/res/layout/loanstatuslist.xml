@@ -40,7 +40,7 @@
                             android:textStyle="bold"
                             android:drawablePadding="10dp"
                             android:textColor="@color/redDark"
-                            android:textSize="18sp" />
+                            android:textSize="18dp" />
                     </LinearLayout>
 
                     <View
@@ -69,10 +69,9 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:text="Application Number"
-                            android:gravity="center"
                             android:drawablePadding="10dp"
                             android:textColor="#000"
-                            android:textSize="12sp" />
+                            android:textSize="12dp" />
                         <TextView
                             android:id="@+id/tvApplicationNo"
                             android:layout_width="match_parent"
@@ -81,7 +80,7 @@
                             android:layout_marginRight="5dp"
                             android:textStyle="bold"
                             android:textColor="@color/colorPrimaryExtraDark"
-                            android:textSize="15sp" />
+                            android:textSize="15dp" />
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -97,10 +96,9 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:text="Loan Period"
-                            android:gravity="center"
                             android:drawablePadding="10dp"
                             android:textColor="#000"
-                            android:textSize="12sp" />
+                            android:textSize="12dp" />
                         <TextView
                             android:id="@+id/tvPeriod"
                             android:layout_width="match_parent"
@@ -112,7 +110,7 @@
                             android:textStyle="bold"
                             android:drawablePadding="10dp"
                             android:textColor="@color/colorPrimaryExtraDark"
-                            android:textSize="15sp" />
+                            android:textSize="15dp" />
                     </LinearLayout>
                 </LinearLayout>
                 <View
@@ -140,10 +138,9 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:text="Loan Purpose"
-                            android:gravity="center"
                             android:drawablePadding="10dp"
                             android:textColor="#000"
-                            android:textSize="12sp" />
+                            android:textSize="12dp" />
                         <TextView
                             android:id="@+id/tvPurpose"
                             android:layout_width="match_parent"
@@ -152,7 +149,7 @@
                             android:layout_marginRight="5dp"
                             android:textStyle="bold"
                             android:textColor="@color/colorPrimaryExtraDark"
-                            android:textSize="15sp" />
+                            android:textSize="15dp" />
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -168,10 +165,9 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:text="Loan Type"
-                            android:gravity="center"
                             android:drawablePadding="10dp"
                             android:textColor="#000"
-                            android:textSize="12sp" />
+                            android:textSize="12dp" />
                         <TextView
                             android:id="@+id/tvType"
                             android:layout_width="match_parent"
@@ -183,7 +179,7 @@
                             android:textStyle="bold"
                             android:drawablePadding="10dp"
                             android:textColor="@color/colorPrimaryExtraDark"
-                            android:textSize="15sp" />
+                            android:textSize="15dp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -213,10 +209,9 @@
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
                         android:text="Application Date"
-                        android:gravity="center"
                         android:drawablePadding="10dp"
                         android:textColor="#000"
-                        android:textSize="12sp" />
+                        android:textSize="12dp" />
 
 
                     <TextView
@@ -228,7 +223,7 @@
                         android:layout_marginBottom="5dp"
                         android:textStyle="bold"
                         android:textColor="@color/redDark"
-                        android:textSize="15sp" />
+                        android:textSize="15dp" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -244,10 +239,9 @@
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
                         android:text="Application Amount"
-                        android:gravity="center"
                         android:drawablePadding="10dp"
                         android:textColor="#000"
-                        android:textSize="12sp" />
+                        android:textSize="12dp" />
                     <TextView
                         android:id="@+id/tvamount"
                         android:layout_width="wrap_content"
@@ -258,7 +252,7 @@
                         android:layout_marginRight="5dp"
                         android:layout_marginBottom="5dp"
                         android:textColor="@color/green"
-                        android:textSize="15sp" />
+                        android:textSize="15dp" />
                 </LinearLayout>
             </LinearLayout>
             </LinearLayout>

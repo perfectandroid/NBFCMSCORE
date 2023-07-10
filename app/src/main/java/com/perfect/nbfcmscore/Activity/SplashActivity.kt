@@ -48,16 +48,13 @@ class SplashActivity : AppCompatActivity() {
     var CommonApp: String = ""
 
     companion object {
-
-
         ///////Development
-        public val BASE_URL = "https://202.164.150.65:15006/NbfcAndroidAPI/api/"  //DEV  08.07.2022
+        public val BASE_URL = "https://202.164.150.65:15006/NbfcAndroidAPI/api/"
         public val IMAGE_URL = "https://202.164.150.65:15006/NbfcAndroidAPI/"
         public val BankKey = "-500"
         public val BankHeader = "PERFECT NBFC BANK HEAD OFFICE"
         public val CERT_NAME = "staticvm.pem"
         public val CERT_NAME_TEST = "nbfctest.pem"
-
 
 ///////QA
 //        public val BASE_URL  = "https://112.133.227.123:14010/NBFCAndroidAPI/api/"  //QA  08.07.2022
