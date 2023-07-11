@@ -143,7 +143,7 @@
                                         android:gravity="start"
                                         android:text="@string/select_account"
                                         android:textColor="@color/colorPrimaryExtraDark"
-                                        android:textSize="15sp"
+                                        android:textSize="15dp"
                                         android:textStyle="bold" />
 
                                     <LinearLayout
@@ -202,7 +202,7 @@
                                         android:gravity="start"
                                         android:text="Select a period of your choice."
                                         android:textColor="@color/colorPrimaryExtraDark"
-                                        android:textSize="15sp"
+                                        android:textSize="15dp"
                                         android:textStyle="bold" />
 
                                     <LinearLayout
@@ -319,7 +319,7 @@
                                         android:gravity="start"
                                         android:text="Select a custom date of your choice."
                                         android:textColor="@color/colorPrimaryExtraDark"
-                                        android:textSize="15sp"
+                                        android:textSize="15dp"
                                         android:textStyle="bold" />
 
                                     <LinearLayout

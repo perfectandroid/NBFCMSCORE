@@ -126,6 +126,7 @@
                 <TextView
                     android:id="@+id/txt_vcode"
                     android:layout_width="wrap_content"
+                    android:textSize="11dp"
                     android:layout_height="wrap_content"
                     android:text="V.12" />
 
@@ -133,6 +134,7 @@
                     android:id="@+id/txt_vname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="11dp"
                     android:text="4.0.5" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

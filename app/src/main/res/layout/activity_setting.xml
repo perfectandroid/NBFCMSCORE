@@ -113,7 +113,7 @@
                                     android:layout_marginTop="2dp"
                                     android:text="@string/transaction_update_days"
                                     android:textColor="@color/colorPrimaryExtraDark"
-                                    android:textSize="15sp"
+                                    android:textSize="15dp"
                                     android:textStyle="bold" />
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -173,7 +173,7 @@
                                     android:layout_marginTop="2dp"
                                     android:text="@string/update_inerval"
                                     android:textColor="@color/colorPrimaryExtraDark"
-                                    android:textSize="15sp"
+                                    android:textSize="15dp"
                                     android:textStyle="bold" />
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -258,7 +258,7 @@
                                     android:layout_marginTop="2dp"
                                     android:text="@string/default_acc"
                                     android:textColor="@color/colorPrimaryExtraDark"
-                                    android:textSize="15sp"
+                                    android:textSize="15dp"
                                     android:textStyle="bold" />
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -317,7 +317,7 @@
                             android:text="Reset"
                             android:textAllCaps="false"
                             android:textColor="@color/colorPrimaryExtraDark"
-                            android:textSize="16sp"
+                            android:textSize="16dp"
                             android:textStyle="bold" />
 
                         <View
@@ -335,7 +335,7 @@
                             android:text="Apply"
                             android:textAllCaps="false"
                             android:textColor="@color/colorPrimaryExtraDark"
-                            android:textSize="16sp"
+                            android:textSize="16dp"
                             android:textStyle="bold" />
 
 
@@ -357,7 +357,7 @@
                         android:text="KYC"
                         android:textAllCaps="false"
                         android:textColor="@color/colorPrimaryExtraDark"
-                        android:textSize="16sp"
+                        android:textSize="16dp"
                         android:textStyle="bold" />
 
 

@@ -100,7 +100,7 @@
                                     android:gravity="start"
                                     android:text="Paying From"
                                     android:textColor="@color/colorPrimaryExtraDark"
-                                    android:textSize="16sp"
+                                    android:textSize="16dp"
                                     android:textStyle="bold" />
 
                                 <LinearLayout
@@ -122,7 +122,7 @@
                                             android:gravity="center_vertical"
                                             android:text=""
                                             android:textColor="@color/black_lang"
-                                            android:textSize="13sp"
+                                            android:textSize="13dp"
                                             android:textStyle="normal" />
 
                                         <LinearLayout
@@ -152,7 +152,7 @@
                                                     android:gravity="center_vertical"
                                                     android:text="Account No."
                                                     android:textColor="@color/black_lang"
-                                                    android:textSize="13sp"
+                                                    android:textSize="13dp"
                                                     android:textStyle="normal" />
                                             </LinearLayout>
 
@@ -164,7 +164,7 @@
                                                 android:layout_weight="1"
                                                 android:gravity="center_vertical"
                                                 android:textColor="@color/colorPrimary"
-                                                android:textSize="16sp"
+                                                android:textSize="16dp"
                                                 android:textStyle="bold" />
                                         </LinearLayout>
 
@@ -202,7 +202,7 @@
                                             android:gravity="center_vertical"
                                             android:text="Available Balance"
                                             android:textColor="@color/black_lang"
-                                            android:textSize="12sp"
+                                            android:textSize="12dp"
                                             android:textStyle="normal" />
                                     </LinearLayout>
 
@@ -215,7 +215,7 @@
                                         android:gravity="center_vertical"
                                         android:text=""
                                         android:textColor="@color/colorPrimary"
-                                        android:textSize="10sp"
+                                        android:textSize="10dp"
                                         android:textStyle="bold" />
                                 </LinearLayout>
 
@@ -262,7 +262,7 @@
                                     android:gravity="start"
                                     android:text="@string/reciever_account_type"
                                     android:textColor="@color/colorPrimaryExtraDark"
-                                    android:textSize="15sp"
+                                    android:textSize="15dp"
                                     android:textStyle="bold" />
 
                                 <LinearLayout
@@ -329,7 +329,7 @@
                                     android:paddingEnd="8dp"
                                     android:text=""
                                     android:textColor="@color/black"
-                                    android:textSize="14sp"
+                                    android:textSize="14dp"
                                     android:textStyle="normal" />
 
                                 <TextView
@@ -343,7 +343,7 @@
                                     android:paddingEnd="8dp"
                                     android:text=""
                                     android:textColor="@color/black"
-                                    android:textSize="14sp"
+                                    android:textSize="14dp"
                                     android:textStyle="normal"
                                     android:visibility="gone" />
 
@@ -374,7 +374,7 @@
                                 android:gravity="start"
                                 android:text="@string/account_no"
                                 android:textColor="@color/colorPrimaryExtraDark"
-                                android:textSize="15sp"
+                                android:textSize="15dp"
                                 android:textStyle="bold" />
 
                             <LinearLayout
@@ -467,7 +467,7 @@
                                         android:text="@string/scan"
                                         android:textAllCaps="false"
                                         android:textColor="@color/white"
-                                        android:textSize="10sp" />
+                                        android:textSize="10dp" />
 
                                 </RelativeLayout>
 
@@ -501,7 +501,7 @@
                                 android:gravity="start"
                                 android:text="@string/confirm_acc_no"
                                 android:textColor="@color/colorPrimaryExtraDark"
-                                android:textSize="15sp"
+                                android:textSize="15dp"
                                 android:textStyle="bold" />
 
                             <LinearLayout
@@ -615,7 +615,7 @@
                                 android:gravity="start"
                                 android:text="Amount Payable"
                                 android:textColor="@color/colorPrimaryExtraDark"
-                                android:textSize="15sp"
+                                android:textSize="15dp"
                                 android:textStyle="bold" />
 
                             <LinearLayout
@@ -688,7 +688,7 @@
                                 android:gravity="start"
                                 android:text="Remark"
                                 android:textColor="@color/colorPrimaryExtraDark"
-                                android:textSize="15sp"
+                                android:textSize="15dp"
                                 android:textStyle="bold" />
 
                             <LinearLayout

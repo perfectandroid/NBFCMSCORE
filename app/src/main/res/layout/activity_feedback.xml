@@ -93,7 +93,7 @@
                             android:gravity="start"
                             android:text="Category"
                             android:textColor="@color/colorPrimaryExtraDark"
-                            android:textSize="15sp"
+                            android:textSize="15dp"
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -141,7 +141,7 @@
                             android:gravity="start"
                             android:text="Feedback"
                             android:textColor="@color/colorPrimaryExtraDark"
-                            android:textSize="15sp"
+                            android:textSize="15dp"
                             android:textStyle="bold" />
 
                         <LinearLayout
