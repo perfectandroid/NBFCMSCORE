@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Activity.OtherfundTransferHistory
+import com.perfect.nbfcmscore.Adapter.FundTransferStatusAdapter
 import com.perfect.nbfcmscore.Adapter.ProductSummaryAdapter
 import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.AlertMessage
@@ -263,7 +264,7 @@ class OtherBankFundTransferPreviousHistoryFragment : Fragment() , OnItemSelected
                                                 GridLayoutManager(activity, 1)
                                         rv_otherfund!!.layoutManager = lLayout
                                         rv_otherfund!!.setHasFixedSize(true)
-                                        val adapter = ProductSummaryAdapter(activity!!, jresult!!)
+                                        val adapter = FundTransferStatusAdapter(activity!!, jresult!!)
                                         rv_otherfund!!.adapter = adapter
                                     } else {
                                         rv_otherfund!!.visibility = View.GONE

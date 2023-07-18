@@ -529,6 +529,7 @@
                                         android:layout_toLeftOf="@+id/confirm_acc_no_block_two"
                                         android:background="@drawable/etbackgroung1"
                                         android:imeActionId="@integer/viewfinder_border_width"
+                                        android:gravity="center"
                                         android:inputType="number"
                                         android:maxLength="3" />
 
@@ -547,6 +548,7 @@
                                         android:ems="3"
                                         android:imeActionId="@integer/viewfinder_border_width"
                                         android:inputType="number"
+                                        android:gravity="center"
                                         android:maxLength="3"
                                         android:paddingStart="5dp"
                                         android:paddingLeft="5dp"
@@ -567,6 +569,7 @@
                                         android:ems="6"
                                         android:imeActionId="@integer/viewfinder_border_width"
                                         android:inputType="number"
+                                        android:gravity="center"
                                         android:maxLength="6"
                                         android:paddingStart="5dp"
                                         android:paddingLeft="5dp"
@@ -640,7 +643,7 @@
                                     android:hint="Amount"
                                     android:inputType="number"
                                     android:maxLength="13"
-                                    android:textColor="@color/colorAccent"
+                                    android:textColor="@color/colorPrimaryExtraDark"
                                     android:textColorHint="@color/text_secondary"
                                     android:textSize="15dp" />
                             </LinearLayout>
@@ -713,7 +716,7 @@
                                     android:hint="Remark"
                                     android:inputType="text"
                                     android:maxLength="13"
-                                    android:textColor="@color/colorAccent"
+                                    android:textColor="@color/colorPrimaryExtraDark"
                                     android:textColorHint="@color/text_secondary"
                                     android:textSize="15dp" />
 
@@ -727,6 +730,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="45dp"
                         android:layout_marginTop="20dp"
                         android:layout_marginRight="10dp"
                         android:orientation="horizontal">

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         <LinearLayout
             android:id="@+id/lnLayout"
             android:layout_width="match_parent"
-            android:background="@color/white"
+            android:background="@drawable/btn_bg3"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
@@ -30,10 +30,9 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="5dp"
+                android:padding="25dp"
                 android:layout_gravity="center"
-                android:gravity="center"
-                android:scaleType="fitXY"
-                android:background="@drawable/notibell"
+                android:src="@drawable/new_postpaid_mobile"
                 ></ImageView>
 
         </LinearLayout>
@@ -54,9 +53,8 @@
                         android:layout_marginTop="5dp"
                         android:text="offer"
                         android:textColor="@color/black"
-                        android:textStyle="bold"
                         android:layout_marginLeft="5dp"
-                        android:textSize="18sp"/>
+                        android:textSize="15dp"/>
                     <TextView
                         android:id="@+id/tv_msgdetail"
                         android:layout_width="match_parent"
@@ -74,8 +72,6 @@
                     android:id="@+id/tv_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:gravity="right"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
                     android:textColor="@color/black"
@@ -84,6 +80,6 @@
             </LinearLayout>
 
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
 
