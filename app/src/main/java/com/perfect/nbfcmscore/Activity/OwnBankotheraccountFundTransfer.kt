@@ -563,6 +563,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
     }
 
     private fun getminTransAmount() {
+        Log.e("fddsdsssdsddd","getminTransAmount");
         val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
@@ -652,6 +653,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                                 //   progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 Log.e("Response-fundtransfer 4567", response.body().toString())
+                                Log.e("fddsdsssdsddd","response  "+ response.body().toString());
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
                                             jObject.getJSONObject("FundTransferLimit")
@@ -1149,7 +1151,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
     }
 
     private fun getCustomerAccount(alertDialog: AlertDialog?, customerNumber: String, submodule: String) {
-
+        Log.e("fddsdsssdsddd","getCustomerAccount  ");
         val baseurlSP = applicationContext.getSharedPreferences(Config.SHARED_PREF163, 0)
         val baseurl = baseurlSP.getString("baseurl", null)
         when(ConnectivityUtils.isConnected(this)) {
@@ -1251,6 +1253,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                                 //   progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
                                 Log.i("Response-customeracnt", response.body().toString())
+                                Log.e("fddsdsssdsddd","response  "+ response.body().toString());
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
                                             jObject.getJSONObject("BarcodeAgainstCustomerAccountDets")

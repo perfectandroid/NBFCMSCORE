@@ -435,6 +435,9 @@ object Config {
     const val SHARED_PREF355 = "UPIAccBalance"
 
 
+    const val SHARED_PREF356 = "CusImage"
+
+
     fun getHostnameVerifier(): HostnameVerifier {
         return HostnameVerifier { hostname, session -> true }
     }

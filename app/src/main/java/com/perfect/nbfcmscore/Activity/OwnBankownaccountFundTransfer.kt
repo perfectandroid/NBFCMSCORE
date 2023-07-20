@@ -571,8 +571,8 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
                                             )
                                         val tv_amount_words =
                                             dialogView.findViewById<TextView>(R.id.tv_amount_words)
-                                        val butOk = dialogView.findViewById<Button>(R.id.btnOK)
-                                        val butCan = dialogView.findViewById<Button>(R.id.btnCncl)
+                                        val butOk = dialogView.findViewById<TextView>(R.id.btnOK)
+                                        val butCan = dialogView.findViewById<TextView>(R.id.btnCncl)
                                         txtvAcntnoto.text =
                                             "A/C No: " + spn_account_num!!.getSelectedItem()
                                                 .toString()

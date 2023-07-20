@@ -52,7 +52,7 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
         else
         {
             val ID_Mylan = applicationContext.getSharedPreferences(Config.SHARED_PREF9,0)
-            Languageid =  ID_Mylan.getString("ID_Languages", null)
+            Languageid =  ID_Mylan.getString("ID_Languages", "1")
 
             getlabels(Languageid)
         }

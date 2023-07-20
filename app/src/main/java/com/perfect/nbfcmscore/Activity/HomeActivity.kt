@@ -163,6 +163,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var txt_vname: TextView? = null
     var account: String? = null
     var profile_image: CircleImageView? = null
+    var profile_image1: CircleImageView? = null
 
 
     private var mPager: ViewPager? = null
@@ -347,7 +348,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val CustomerNumberSP1 = applicationContext.getSharedPreferences(Config.SHARED_PREF310, 0)
 
         tv_consumer!!.setText(CustomerNumberSP.getString("CustomerNumber", null))
-
+        setImage()
     }
 
 
@@ -1159,6 +1160,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     open fun setInitialise() {
         profile_image = findViewById(R.id.profile_image)
+        profile_image1 = findViewById(R.id.profile_image1)
         tv_consumer = findViewById(R.id.tv_consumer)
         lin_all = findViewById(R.id.lin_all)
         lin_show = findViewById(R.id.lin_show)
@@ -1566,6 +1568,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         FK_CustomerMobEditer.putString("CusMobile", "")
         FK_CustomerMobEditer.commit()
 
+        val FK_CusImageSp = this!!.getSharedPreferences(Config.SHARED_PREF356, 0)
+        val FK_CusImageSpEditer = FK_CusImageSp.edit()
+        FK_CusImageSpEditer.putString("CusImage", "")
+        FK_CusImageSpEditer.commit()
+
         val CustomerNameSP = this!!.getSharedPreferences(Config.SHARED_PREF3, 0)
         val CustomerNameEditer = CustomerNameSP.edit()
         CustomerNameEditer.putString("CustomerName", "")
@@ -1714,9 +1721,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.ll_branschDetails -> {
                 try {
                     startActivity(Intent(this@HomeActivity, BranchDetailActivity::class.java))
-                }
-                catch (e:Exception)
-                {
+                } catch (e: Exception) {
 
                 }
 
@@ -1742,7 +1747,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 )
                 val intent = Intent(this, ProfileActivity::class.java)
                 startActivity(intent, options.toBundle())
-             //   startActivity(Intent(this@HomeActivity, ProfileActivity::class.java))
+                //   startActivity(Intent(this@HomeActivity, ProfileActivity::class.java))
             }
             R.id.imlanguage -> {
 
@@ -1834,7 +1839,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.tv_def_account -> {
                 val DefaultAccountSP =
                     applicationContext.getSharedPreferences(Config.SHARED_PREF24, 0)
-                if (DefaultAccountSP.getString("DefaultAccount1", null)==null) {
+                if (DefaultAccountSP.getString("DefaultAccount1", null) == null) {
                     if (tv_def_account?.text!!.equals(account)
                     ) {
 
@@ -1849,8 +1854,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         )
                         img_show!!.setImageResource(R.drawable.new_eye_closed);
                     }
-                }
-                else {
+                } else {
                     if (tv_def_account?.text!!.equals(
                             DefaultAccountSP.getString(
                                 "DefaultAccount1",
@@ -1875,7 +1879,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.img_show -> {
                 val DefaultAccountSP =
                     applicationContext.getSharedPreferences(Config.SHARED_PREF24, 0)
-                if (DefaultAccountSP.getString("DefaultAccount1", null)==null) {
+                if (DefaultAccountSP.getString("DefaultAccount1", null) == null) {
                     if (tv_def_account?.text!!.equals(account)
                     ) {
 
@@ -1890,8 +1894,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         )
                         img_show!!.setImageResource(R.drawable.new_eye_closed);
                     }
-                }
-                else {
+                } else {
                     if (tv_def_account?.text!!.equals(
                             DefaultAccountSP.getString(
                                 "DefaultAccount1",
@@ -2135,7 +2138,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                                                     obj.getString("AccountNumber")
                                                         .replace("\\w(?=\\w{4})".toRegex(), "*")
                                                 )
-                                                account=obj.getString("AccountNumber");
+                                                account = obj.getString("AccountNumber");
                                             }
 
                                         } else if (DefaultAccountSP.getString(
@@ -2156,7 +2159,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                                                 obj.getString("AccountNumber")
                                                     .replace("\\w(?=\\w{4})".toRegex(), "*")
                                             )
-                                            account=obj.getString("AccountNumber");
+                                            account = obj.getString("AccountNumber");
 
                                         }
                                     }
@@ -6801,11 +6804,14 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         bottomSheetDialog.show()
     }
 
-    fun setImage()
-    {
+    fun setImage() {
+
+        val CustomerImageSP = applicationContext.getSharedPreferences(Config.SHARED_PREF356, 0)
+        Log.v("dfsddd","image  "+CustomerImageSP.getString("CusImage", ""))
+
         try {
             val decodedString: ByteArray =
-                Base64.decode("data from db", Base64.DEFAULT)
+                Base64.decode(CustomerImageSP.getString("CusImage", ""), Base64.DEFAULT)
             ByteArrayToBitmap(decodedString)
             val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
             val stream = ByteArrayOutputStream()
@@ -6815,6 +6821,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 .placeholder(R.drawable.person)
                 .error(R.drawable.person)
                 .into(profile_image!!)
+            Glide.with(this)
+                .load(stream.toByteArray())
+                .placeholder(R.drawable.person)
+                .error(R.drawable.person)
+                .into(profile_image1!!)
         } catch (e: java.lang.Exception) {
             e.printStackTrace()
             Log.e("TAG", "1354  $e")

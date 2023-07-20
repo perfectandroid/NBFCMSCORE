@@ -632,6 +632,7 @@ class OTPActivity : AppCompatActivity(), View.OnClickListener {
 
                                 val jObject = JSONObject(response.body())
                                 Log.i("VerifictnResponse", response.body().toString())
+                                Log.v("adasdasda","get OTP "+response.body().toString())
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jobjt = jObject.getJSONObject("VarificationMaintenance")
 
@@ -675,6 +676,18 @@ class OTPActivity : AppCompatActivity(), View.OnClickListener {
                                         jobjt.getString("CustomerName")
                                     )
                                     CustomerNameEditer.commit()
+
+                                    val CustomerImageSP = applicationContext.getSharedPreferences(
+                                        Config.SHARED_PREF356,
+                                        0
+                                    )
+                                    Log.v("dfsddd","image1  "+jobjt.getString("CusImage"))
+                                    val CustomerImageEditer = CustomerImageSP.edit()
+                                    CustomerImageEditer.putString(
+                                        "CusImage",
+                                        jobjt.getString("CusImage")
+                                    )
+                                    CustomerImageEditer.commit()
 
                                     val AddressSP = applicationContext.getSharedPreferences(
                                         Config.SHARED_PREF4,

@@ -1,21 +1,28 @@
 package com.perfect.nbfcmscore.Activity
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import android.transition.Transition
 import android.transition.TransitionInflater
+import android.util.Base64
+import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.R
 import de.hdodenhof.circleimageview.CircleImageView
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
 
 
-class ProfileActivity : AppCompatActivity() , View.OnClickListener{
+class ProfileActivity : AppCompatActivity(), View.OnClickListener {
 
     var imgBack: ImageView? = null
     var imgHome: ImageView? = null
@@ -53,66 +60,125 @@ class ProfileActivity : AppCompatActivity() , View.OnClickListener{
         val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
         val IMAGE_URL = ImageURLSP.getString("ImageURL", null)
 
-        val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14,0)
+        val AppIconImageCodeSP = applicationContext.getSharedPreferences(Config.SHARED_PREF14, 0)
         try {
-            val imagepath = IMAGE_URL+AppIconImageCodeSP!!.getString("AppIconImageCode",null)
-          //  PicassoTrustAll.getInstance(this)!!.load(imagepath).error(R.drawable.no_image).into(im_applogo)
-        }catch (e: Exception) {
-            e.printStackTrace()}
-        val CustomerNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF3,0)
-        tv_customername!!.setText(CustomerNameSP.getString("CustomerName",null))
-        val CusMobileSP = applicationContext.getSharedPreferences(Config.SHARED_PREF2,0)
-        tv_mobile!!.setText(CusMobileSP.getString("CusMobile",null))
+            val imagepath = IMAGE_URL + AppIconImageCodeSP!!.getString("AppIconImageCode", null)
+            //  PicassoTrustAll.getInstance(this)!!.load(imagepath).error(R.drawable.no_image).into(im_applogo)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        val CustomerNameSP = applicationContext.getSharedPreferences(Config.SHARED_PREF3, 0)
+        tv_customername!!.setText(CustomerNameSP.getString("CustomerName", null))
+        val CusMobileSP = applicationContext.getSharedPreferences(Config.SHARED_PREF2, 0)
+        tv_mobile!!.setText(CusMobileSP.getString("CusMobile", null))
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             val transition: Transition =
                 TransitionInflater.from(this).inflateTransition(android.R.transition.move)
             window.sharedElementEnterTransition = transition
         }
 
-        val AddressSP = applicationContext.getSharedPreferences(Config.SHARED_PREF4,0)
-        val AddressSP1 = applicationContext.getSharedPreferences(Config.SHARED_PREF299,0)
+        val AddressSP = applicationContext.getSharedPreferences(Config.SHARED_PREF4, 0)
+        val AddressSP1 = applicationContext.getSharedPreferences(Config.SHARED_PREF299, 0)
 
 
-      //  Log.i("Addrstest",add!!)
-        tv_address!!.setText(AddressSP1.getString("Address1",null)+" :"+AddressSP.getString("Address",null))
+        //  Log.i("Addrstest",add!!)
+        tv_address!!.setText(
+            AddressSP1.getString(
+                "Address1",
+                null
+            ) + " :" + AddressSP.getString("Address", null)
+        )
 
 
-        val EmailSP = applicationContext.getSharedPreferences(Config.SHARED_PREF5,0)
-        val EmailSP1 = applicationContext.getSharedPreferences(Config.SHARED_PREF300,0)
+        val EmailSP = applicationContext.getSharedPreferences(Config.SHARED_PREF5, 0)
+        val EmailSP1 = applicationContext.getSharedPreferences(Config.SHARED_PREF300, 0)
 
-        tv_email!!.setText(EmailSP1.getString("Email1",null)+" :"+EmailSP.getString("Email",null))
+        tv_email!!.setText(
+            EmailSP1.getString("Email1", null) + " :" + EmailSP.getString(
+                "Email",
+                null
+            )
+        )
 
 
-        val GenderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF6,0)
-        val GenderSP1 = applicationContext.getSharedPreferences(Config.SHARED_PREF308,0)
+        val GenderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF6, 0)
+        val GenderSP1 = applicationContext.getSharedPreferences(Config.SHARED_PREF308, 0)
 
 
-        tv_gender!!.setText(GenderSP1.getString("Gender1",null)+" :"+GenderSP.getString("Gender",null))
+        tv_gender!!.setText(
+            GenderSP1.getString(
+                "Gender1",
+                null
+            ) + " :" + GenderSP.getString("Gender", null)
+        )
 
-        val DateOfBirthSP = applicationContext.getSharedPreferences(Config.SHARED_PREF7,0)
-        val DateOfBirthSP1 = applicationContext.getSharedPreferences(Config.SHARED_PREF309,0)
+        val DateOfBirthSP = applicationContext.getSharedPreferences(Config.SHARED_PREF7, 0)
+        val DateOfBirthSP1 = applicationContext.getSharedPreferences(Config.SHARED_PREF309, 0)
 
-        tv_dob!!.setText(DateOfBirthSP1.getString("DateofBirth1",null)+" :"+DateOfBirthSP.getString("DateOfBirth",null))
+        tv_dob!!.setText(
+            DateOfBirthSP1.getString(
+                "DateofBirth1",
+                null
+            ) + " :" + DateOfBirthSP.getString("DateOfBirth", null)
+        )
 
-        val CustomerNumberSP = applicationContext.getSharedPreferences(Config.SHARED_PREF20,0)
-        val CustomerNumberSP1 = applicationContext.getSharedPreferences(Config.SHARED_PREF310,0)
+        val CustomerNumberSP = applicationContext.getSharedPreferences(Config.SHARED_PREF20, 0)
+        val CustomerNumberSP1 = applicationContext.getSharedPreferences(Config.SHARED_PREF310, 0)
 
-        tv_cusnumber!!.setText(CustomerNumberSP1.getString("CustomerNumber1",null)+" :"+CustomerNumberSP.getString("CustomerNumber",null))
+        tv_cusnumber!!.setText(
+            CustomerNumberSP1.getString(
+                "CustomerNumber1",
+                null
+            ) + " :" + CustomerNumberSP.getString("CustomerNumber", null)
+        )
 
-        val profSP1 = applicationContext.getSharedPreferences(Config.SHARED_PREF344,0)
+        val profSP1 = applicationContext.getSharedPreferences(Config.SHARED_PREF344, 0)
 
-        tv_header!!.setText(profSP1.getString("Profile",null))
-
+        tv_header!!.setText(profSP1.getString("Profile", null))
+        setImage()
 
     }
+
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.imgBack ->{
+            R.id.imgBack -> {
                 finish()
             }
-            R.id.imgHome ->{
+            R.id.imgHome -> {
                 startActivity(Intent(this@ProfileActivity, HomeActivity::class.java))
             }
         }
+    }
+
+    fun setImage() {
+
+        val CustomerImageSP = applicationContext.getSharedPreferences(Config.SHARED_PREF356, 0)
+        Log.v("dfsddd", "image  " + CustomerImageSP.getString("CusImage", ""))
+
+        try {
+            val decodedString: ByteArray =
+                Base64.decode(CustomerImageSP.getString("CusImage", ""), Base64.DEFAULT)
+            ByteArrayToBitmap(decodedString)
+            val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+            val stream = ByteArrayOutputStream()
+            decodedByte.compress(Bitmap.CompressFormat.PNG, 100, stream)
+            Glide.with(this)
+                .load(stream.toByteArray())
+                .placeholder(R.drawable.person)
+                .error(R.drawable.person)
+                .into(profile_image!!)
+            Glide.with(this)
+                .load(stream.toByteArray())
+                .placeholder(R.drawable.person)
+                .error(R.drawable.person)
+                .into(profile_image!!)
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+            Log.e("TAG", "1354  $e")
+        }
+    }
+    fun ByteArrayToBitmap(byteArray: ByteArray?): Bitmap? {
+        val arrayInputStream = ByteArrayInputStream(byteArray)
+        return BitmapFactory.decodeStream(arrayInputStream)
     }
 }
