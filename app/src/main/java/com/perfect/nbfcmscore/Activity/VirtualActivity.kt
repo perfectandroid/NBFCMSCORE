@@ -17,6 +17,7 @@ import com.perfect.nbfcmscore.Fragment.DepositFragment
 import com.perfect.nbfcmscore.Fragment.FrontViewFragment
 import com.perfect.nbfcmscore.Fragment.LoanlistFragment
 import com.perfect.nbfcmscore.Helper.Config
+import com.perfect.nbfcmscore.Helper.IdleUtil
 import com.perfect.nbfcmscore.R
 import java.util.*
 
@@ -128,5 +129,13 @@ class VirtualActivity : AppCompatActivity() , View.OnClickListener{
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        IdleUtil.startLogoutTimer(this, this)
+    }
 
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        IdleUtil.startLogoutTimer(this, this)
+    }
 }

@@ -878,19 +878,31 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
 
                                     Log.e(TAG, "filename  51621   " + filename)
                                     Log.e(TAG, "filename1  51621   " + filename1)
-
+                                    var filename4=filename.replace("\\","/")
+                                    var arr=filename4.split("/")
+                                    Log.v("fsdfsdddfdsddd","filename1 "+filename1)
+                                    Log.v("fsdfsdddfdsddd","filename2 "+filename)
+                                    Log.v("fsdfsdddfdsddd","filename4 "+filename4)
+                                    Log.v("fsdfsdddfdsddd","arr[0] "+arr[0])
+                                    Log.v("fsdfsdddfdsddd","arr[1] "+arr[1])
+                                    var finalPath=""
+                                    for (i in 3..arr.size) {
+                                        finalPath=finalPath+arr[i-1]+"/"
+                                    }
+                                    Log.v("fsdfsdddfdsddd","finalPath "+finalPath)
                                     val strNew: String? =
                                         filename.substringAfterLast("NbfcAndroidAPI\\")
 //                                    val strNew: String? = filename.substringAfterLast("NBFC\\")
                                     Log.e(TAG, "strNew  51622   " + strNew)
 
                                     //val ImageURLSP = applicationContext.getSharedPreferences(Config.SHARED_PREF165, 0)
-                                    val IMAGE_URL = SplashActivity.IMAGE_URL
+                                    val IMAGE_URL = SplashActivity.DOWNLOAD_URL
 //                                    val filename2: String = Config.BASE_URL + "\\" + strNew + "\\" + filename1
                                     val filename2: String =
-                                        IMAGE_URL + "" + strNew + "\\" + filename1
+                                        IMAGE_URL + "" + finalPath + "" + filename1
 //                                    val filename2: String = IMAGE_URL + "" + strNew + "\\"+"SD7.pdf"
                                     Log.e(TAG, "filename2  51623   filename2 " + filename2)
+
                                     Log.e(TAG, "filename2  51623   filename1 " + filename1)
 //
 //                                    if (docType.equals("1")){
@@ -899,6 +911,8 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
 //                                        startActivity(i)*/
 //                                    }
 //                                    var filename3 ="https://202.164.150.65:15006/NbfcMscoreDbAPI/Statement/PerfectBank/DDSB002001000052.pdf"
+
+                                    Log.v("fsdfsdddfdsddd","filename2 "+filename2)
                                     if (docType.equals("2")) {
                                         if (checkExternalStoragePermission(this@StatementActivity)) {
                                             downloadFile(filename1, filename2)
@@ -916,6 +930,7 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
                                     );
                                 }
                             } catch (e: Exception) {
+                                Log.v("fsdfsdddfdsddd" ,"err "+e)
                                 progressDialog!!.dismiss()
                                 Log.e(TAG, "Some  5164   " + e.toString())
                                 AlertMessage().alertMessage(
@@ -1152,6 +1167,14 @@ class StatementActivity : AppCompatActivity(), View.OnClickListener {
 
         return true
     }
+    override fun onResume() {
+        super.onResume()
+        IdleUtil.startLogoutTimer(this, this)
+    }
 
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        IdleUtil.startLogoutTimer(this, this)
+    }
 
 }

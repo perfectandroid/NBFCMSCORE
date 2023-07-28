@@ -25,6 +25,7 @@ import com.perfect.nbfcmscore.Api.ApiInterface
 import com.perfect.nbfcmscore.Helper.Config
 import com.perfect.nbfcmscore.Helper.Config.getSSLSocketFactory
 import com.perfect.nbfcmscore.Helper.ConnectivityUtils
+import com.perfect.nbfcmscore.Helper.IdleUtil
 import com.perfect.nbfcmscore.Helper.MscoreApplication
 import com.perfect.nbfcmscore.Model.Splitupdetail
 import com.perfect.nbfcmscore.R
@@ -1153,5 +1154,14 @@ class UserOnboardUPI : AppCompatActivity(), View.OnClickListener {
         dialog.setContentView(view)
         dialog.setCancelable(false)
         dialog.show()
+    }
+    override fun onResume() {
+        super.onResume()
+        IdleUtil.startLogoutTimer(this, this)
+    }
+
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        IdleUtil.startLogoutTimer(this, this)
     }
 }
