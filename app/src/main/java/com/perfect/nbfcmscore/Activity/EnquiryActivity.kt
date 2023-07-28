@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.creativityapps.gmailbackgroundlibrary.BackgroundMail
 import com.perfect.nbfcmscore.Helper.Config
+import com.perfect.nbfcmscore.Helper.IdleUtil
 import com.perfect.nbfcmscore.R
 import java.util.*
 import java.util.regex.Pattern
@@ -449,6 +450,16 @@ class EnquiryActivity : AppCompatActivity() , View.OnClickListener, AdapterView.
 
         return true
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        IdleUtil.startLogoutTimer(this, this)
+    }
+
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        IdleUtil.startLogoutTimer(this, this)
     }
     fun String.isEmailValid() =
             Pattern.compile(

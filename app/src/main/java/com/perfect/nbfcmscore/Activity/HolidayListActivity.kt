@@ -23,10 +23,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Adapter.HolidayListAdapter
 import com.perfect.nbfcmscore.Api.ApiInterface
-import com.perfect.nbfcmscore.Helper.AlertMessage
-import com.perfect.nbfcmscore.Helper.Config
-import com.perfect.nbfcmscore.Helper.ConnectivityUtils
-import com.perfect.nbfcmscore.Helper.MscoreApplication
+import com.perfect.nbfcmscore.Helper.*
 import com.perfect.nbfcmscore.Model.Branchcode
 import com.perfect.nbfcmscore.R
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -623,6 +620,14 @@ class HolidayListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             linList!!.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#F4CBB6")))
         };
     }
+    override fun onResume() {
+        super.onResume()
+        IdleUtil.startLogoutTimer(this, this)
+    }
 
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        IdleUtil.startLogoutTimer(this, this)
+    }
 
 }
