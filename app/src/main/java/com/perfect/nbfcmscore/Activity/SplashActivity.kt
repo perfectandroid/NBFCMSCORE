@@ -57,9 +57,10 @@ class SplashActivity : AppCompatActivity() {
         public val CERT_NAME = "staticvm.pem"
         public val CERT_NAME_TEST = "nbfctest.pem"
 
-///////QA
-//        public val BASE_URL  = "https://112.133.227.123:14010/NBFCAndroidAPI/api/"  //QA  08.07.2022
+        ///////QA
+//        public val BASE_URL = "https://112.133.227.123:14010/NBFCAndroidAPI/api/"  //QA  08.07.2022
 //        public val IMAGE_URL = "https://112.133.227.123:14010/NBFCAndroidAPI/"
+//        public val DOWNLOAD_URL = "https://112.133.227.123:14010/"
 //        public val BankKey = "-500"
 //        public val BankHeader = "PERFECT NBFC BANK HEAD OFFICE"
 //        public val CERT_NAME = "staticvm1.pem"  //QA
@@ -69,6 +70,7 @@ class SplashActivity : AppCompatActivity() {
 ///////NBFC COMMON
 //        public val BASE_URL  = "https://112.133.227.123:14422/NBFCANDROIDAPI/api/"
 //        public val IMAGE_URL = "https://112.133.227.123:14422/NBFCANDROIDAPI/"
+//        public val DOWNLOAD_URL = "https://112.133.227.123:14422/"
 //        public val BankKey = "500"
 //        public val BankHeader = "PERFECT NBFC BANK HEAD OFFICE"
 //        public val CERT_NAME = "nbfccommon.pem"
@@ -212,6 +214,7 @@ class SplashActivity : AppCompatActivity() {
 
 
                         Log.e("TAG", "requestObject1  commonappchk   " + requestObject1)
+                        Log.v("fdsfsdfddd", "requestObject1 " + requestObject1)
                     } catch (e: Exception) {
                         progressDialog!!.dismiss()
                         e.printStackTrace()
@@ -233,6 +236,7 @@ class SplashActivity : AppCompatActivity() {
                             call: retrofit2.Call<String>, response:
                             Response<String>
                         ) {
+                            Log.v("fdsfsdfddd", "response " + response.body().toString())
                             try {
                                 progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())

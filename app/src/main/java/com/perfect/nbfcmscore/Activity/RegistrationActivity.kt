@@ -403,4 +403,5 @@ class RegistrationActivity : AppCompatActivity(), View.OnClickListener {
         bottomSheetDialog.show()
     }
 
+
 }

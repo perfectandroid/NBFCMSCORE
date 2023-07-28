@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.perfect.nbfcmscore.Helper.Config
+import com.perfect.nbfcmscore.Helper.IdleUtil
 import com.perfect.nbfcmscore.Helper.PicassoTrustAll
 import com.perfect.nbfcmscore.R
 
@@ -56,5 +57,14 @@ class PrivacyPolicyActivity : AppCompatActivity() , View.OnClickListener{
                 startActivity(Intent(this@PrivacyPolicyActivity, HomeActivity::class.java))
             }
         }
+    }
+    override fun onResume() {
+        super.onResume()
+        IdleUtil.startLogoutTimer(this, this)
+    }
+
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        IdleUtil.startLogoutTimer(this, this)
     }
 }

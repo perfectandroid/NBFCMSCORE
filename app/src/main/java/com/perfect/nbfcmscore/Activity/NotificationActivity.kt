@@ -9,6 +9,7 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.perfect.nbfcmscore.Helper.IdleUtil
 import java.util.ArrayList
 
 class NotificationActivity : AppCompatActivity() {
@@ -36,5 +37,14 @@ class NotificationActivity : AppCompatActivity() {
 
         //now adding the adapter to recyclerview
         recyclerView.adapter = adapter
+    }
+    override fun onResume() {
+        super.onResume()
+        IdleUtil.startLogoutTimer(this, this)
+    }
+
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        IdleUtil.startLogoutTimer(this, this)
     }
 }

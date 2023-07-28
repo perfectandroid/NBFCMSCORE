@@ -437,7 +437,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                             this@OwnBankotheraccountFundTransfer!!.ZXING_CAMERA_PERMISSION
                     )
                 } else {
-                    val intent = Intent(this, ScannerActivity::class.java)
+                    val intent = Intent(this, FundTransferScan::class.java)
                     startActivityForResult(intent, 100)
                 }
 
@@ -652,7 +652,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                             try {
                                 //   progressDialog!!.dismiss()
                                 val jObject = JSONObject(response.body())
-                                Log.e("Response-fundtransfer 4567", response.body().toString())
+                                Log.e("Response-fund 4567", response.body().toString())
                                 Log.e("fddsdsssdsddd","response  "+ response.body().toString());
                                 if (jObject.getString("StatusCode") == "0") {
                                     val jsonObj1: JSONObject =
@@ -912,7 +912,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
     ) {
         if (requestCode == this@OwnBankotheraccountFundTransfer!!.ZXING_CAMERA_PERMISSION) {
             if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                val intent = Intent(this, ScannerActivity::class.java)
+                val intent = Intent(this, FundTransferScan::class.java)
                 startActivityForResult(intent, 100)
             } else {
                 Toast.makeText(
@@ -1210,27 +1210,27 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                         val BankHeaderSP = applicationContext.getSharedPreferences(Config.SHARED_PREF313, 0)
                         val BankHeaderPref = BankHeaderSP.getString("BankHeader", null)
 
-                        requestObject1.put("Reqmode", MscoreApplication.encryptStart("31"))
-                        requestObject1.put("Token", MscoreApplication.encryptStart(Token))
+                        requestObject1.put("Reqmode", "31")
+                        requestObject1.put("Token", Token)
                         requestObject1.put(
                                 "FK_Customer",
-                                MscoreApplication.encryptStart(FK_Customer)
+                               FK_Customer
                         )
 
                         requestObject1.put(
                                 "CustomerNumber",
-                                MscoreApplication.encryptStart(customerNumber)
+                                customerNumber
                         )
                         requestObject1.put(
                                 "SubModule",
-                                MscoreApplication.encryptStart(submodule)
+                                submodule
                         )
                         requestObject1.put(
                                 "ModuleCode",
-                                MscoreApplication.encryptStart(submodule)
+                               submodule
                         )
-                        requestObject1.put("BankKey", MscoreApplication.encryptStart(BankKeyPref))
-                        requestObject1.put("BankHeader", MscoreApplication.encryptStart(BankHeaderPref))
+                        requestObject1.put("BankKey",BankKeyPref)
+                        requestObject1.put("BankHeader",BankHeaderPref)
 
 
                         Log.e("TAG", "requestObject1  getcustomer   " + requestObject1)
@@ -1243,7 +1243,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                         "application/json; charset=utf-8".toMediaTypeOrNull(),
                         requestObject1.toString()
                     )
-                    val call = apiService.getfundtransferlimit(body)
+                    val call = apiService.getAccountList(body)
                     call.enqueue(object : retrofit2.Callback<String> {
                         override fun onResponse(
                                 call: retrofit2.Call<String>, response:
@@ -1314,7 +1314,7 @@ class OwnBankotheraccountFundTransfer : AppCompatActivity(), View.OnClickListene
                                 }*/
                             } catch (e: Exception) {
                                 //   progressDialog!!.dismiss()
-
+                                Log.i("Response-customeracnt", "e  "+e)
                                 AlertMessage().alertMessage(this@OwnBankotheraccountFundTransfer,this@OwnBankotheraccountFundTransfer,"Alert","Some technical issues.",1);
                                 e.printStackTrace()
                             }

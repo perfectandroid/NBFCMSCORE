@@ -302,7 +302,7 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
                                     //    spn_account_num!!.setSelection(arrayList1.indexOf("Select Account"));
 
                                 } else {
-                                    AlertMessage().alertMessage(this@QuickPayActivity,this@QuickPayActivity,"Alert","Some technical issues.",1);
+                                    AlertMessage().alertMessage(this@QuickPayActivity,this@QuickPayActivity,"Alert",jObject.getString("EXMessage"),1);
                                 }
                             } catch (e: Exception) {
                                 //  progressDialog!!.dismiss()
@@ -1264,7 +1264,13 @@ class QuickPayActivity : AppCompatActivity(),View.OnClickListener, AdapterView.O
     }
     override fun onResume() {  // After a pause OR at startup
         super.onResume()
+        IdleUtil.startLogoutTimer(this, this)
         getSenderReceiver()
+    }
+
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        IdleUtil.startLogoutTimer(this, this)
     }
 }
 

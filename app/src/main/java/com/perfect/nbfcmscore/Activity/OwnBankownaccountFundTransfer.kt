@@ -1726,4 +1726,13 @@ class OwnBankownaccountFundTransfer : AppCompatActivity(), View.OnClickListener,
         }
         return bmpUri
     }
+    override fun onResume() {
+        super.onResume()
+        IdleUtil.startLogoutTimer(this, this)
+    }
+
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        IdleUtil.startLogoutTimer(this, this)
+    }
 }

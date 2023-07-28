@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.perfect.nbfcmscore.Helper.Config
+import com.perfect.nbfcmscore.Helper.IdleUtil
 import com.perfect.nbfcmscore.R
 
 class OtherBankActivity : AppCompatActivity()  , View.OnClickListener{
@@ -159,5 +160,14 @@ class OtherBankActivity : AppCompatActivity()  , View.OnClickListener{
             }
 
         }
+    }
+    override fun onResume() {
+        super.onResume()
+        IdleUtil.startLogoutTimer(this, this)
+    }
+
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        IdleUtil.startLogoutTimer(this, this)
     }
 }

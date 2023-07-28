@@ -16,6 +16,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.perfect.nbfcmscore.Helper.Config
+import com.perfect.nbfcmscore.Helper.IdleUtil
 import com.perfect.nbfcmscore.R
 import de.hdodenhof.circleimageview.CircleImageView
 import java.io.ByteArrayInputStream
@@ -180,5 +181,14 @@ class ProfileActivity : AppCompatActivity(), View.OnClickListener {
     fun ByteArrayToBitmap(byteArray: ByteArray?): Bitmap? {
         val arrayInputStream = ByteArrayInputStream(byteArray)
         return BitmapFactory.decodeStream(arrayInputStream)
+    }
+    override fun onResume() {
+        super.onResume()
+        IdleUtil.startLogoutTimer(this, this)
+    }
+
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        IdleUtil.startLogoutTimer(this, this)
     }
 }

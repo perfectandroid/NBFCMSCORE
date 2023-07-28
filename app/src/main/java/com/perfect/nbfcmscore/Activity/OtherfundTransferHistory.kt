@@ -16,6 +16,7 @@ import com.google.android.material.tabs.TabLayout
 import com.perfect.nbfcmscore.Fragment.OtherBankFundTransferHistoryFragment
 import com.perfect.nbfcmscore.Fragment.OtherBankFundTransferPreviousHistoryFragment
 import com.perfect.nbfcmscore.Helper.Config
+import com.perfect.nbfcmscore.Helper.IdleUtil
 import com.perfect.nbfcmscore.R
 import org.json.JSONArray
 import java.util.*
@@ -120,6 +121,15 @@ class OtherfundTransferHistory : AppCompatActivity() ,View.OnClickListener{
                 startActivity(Intent(this@OtherfundTransferHistory, HomeActivity::class.java))
             }
         }
+    }
+    override fun onResume() {
+        super.onResume()
+        IdleUtil.startLogoutTimer(this, this)
+    }
+
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        IdleUtil.startLogoutTimer(this, this)
     }
 }
 

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException
 import com.google.zxing.qrcode.QRCodeWriter
+import com.perfect.nbfcmscore.Helper.IdleUtil
 import com.perfect.nbfcmscore.R
 
 class Upi_share : AppCompatActivity() {
@@ -50,5 +51,14 @@ class Upi_share : AppCompatActivity() {
         val bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         bitmap.setPixels(pixels, 0, w, 0, 0, w, h)
         return bitmap
+    }
+    override fun onResume() {
+        super.onResume()
+        IdleUtil.startLogoutTimer(this, this)
+    }
+
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        IdleUtil.startLogoutTimer(this, this)
     }
 }

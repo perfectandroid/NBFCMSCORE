@@ -15,10 +15,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.perfect.nbfcmscore.Adapter.ProductSummaryAdapter
 import com.perfect.nbfcmscore.Api.ApiInterface
-import com.perfect.nbfcmscore.Helper.AlertMessage
-import com.perfect.nbfcmscore.Helper.Config
-import com.perfect.nbfcmscore.Helper.ConnectivityUtils
-import com.perfect.nbfcmscore.Helper.MscoreApplication
+import com.perfect.nbfcmscore.Helper.*
 import com.perfect.nbfcmscore.R
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
@@ -283,5 +280,14 @@ class ProductListDetailsActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(Intent(this@ProductListDetailsActivity, HomeActivity::class.java))
             }
         }
+    }
+    override fun onResume() {
+        super.onResume()
+        IdleUtil.startLogoutTimer(this, this)
+    }
+
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        IdleUtil.startLogoutTimer(this, this)
     }
 }

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.zxing.Result;
+import com.perfect.nbfcmscore.Helper.IdleUtil;
 import com.perfect.nbfcmscore.R;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
