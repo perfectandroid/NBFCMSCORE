@@ -215,4 +215,13 @@ class MessagesActivity : AppCompatActivity() , View.OnClickListener{
             }
         }
     }
+    override fun onResume() {
+        super.onResume()
+        IdleUtil.startLogoutTimer(this, this)
+    }
+
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        IdleUtil.startLogoutTimer(this, this)
+    }
 }

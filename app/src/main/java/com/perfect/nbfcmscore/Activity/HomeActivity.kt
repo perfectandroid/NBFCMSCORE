@@ -6768,6 +6768,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onResume() {  // After a pause OR at startup
         super.onResume()
         setdefaultAccountDetails()
+        IdleUtil.startLogoutTimer(this, this)
     }
 
 
@@ -6835,6 +6836,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     fun ByteArrayToBitmap(byteArray: ByteArray?): Bitmap? {
         val arrayInputStream = ByteArrayInputStream(byteArray)
         return BitmapFactory.decodeStream(arrayInputStream)
+    }
+
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        IdleUtil.startLogoutTimer(this, this)
     }
 
 }

@@ -15,6 +15,7 @@ import com.aceware.cobrandprepaidkit.CobrandPrepaidSdkkit
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.JsonObject
 import com.perfect.nbfcmscore.Helper.Config
+import com.perfect.nbfcmscore.Helper.IdleUtil
 import com.perfect.nbfcmscore.R
 import `in`.aabhasjindal.otptextview.OtpTextView
 import org.json.JSONException
@@ -329,5 +330,14 @@ class Kyc2 : AppCompatActivity() {
             override fun onSuccess(s: String, jsonObject: JsonObject) {}
             override fun onFailure(s: String, jsonObject: JsonObject) {}
         })
+    }
+    override fun onResume() {
+        super.onResume()
+        IdleUtil.startLogoutTimer(this, this)
+    }
+
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        IdleUtil.startLogoutTimer(this, this)
     }
 }

@@ -27,6 +27,7 @@ import com.aceware.cobrandprepaidkit.CobrandPrepaidSdkkit.ResponseListener
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.JsonObject
 import com.perfect.nbfcmscore.Helper.Config
+import com.perfect.nbfcmscore.Helper.IdleUtil
 import com.perfect.nbfcmscore.R
 import com.sun.mail.imap.protocol.FLAGS
 import `in`.aabhasjindal.otptextview.OtpTextView
@@ -340,7 +341,12 @@ class Kyc : AppCompatActivity(), View.OnClickListener {
         super.onResume()
         constrWebview?.visibility=View.GONE
         lin_start?.visibility=View.VISIBLE
+        IdleUtil.startLogoutTimer(this, this)
     }
 
 
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        IdleUtil.startLogoutTimer(this, this)
+    }
 }
