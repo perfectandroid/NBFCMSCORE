@@ -18,6 +18,7 @@ import com.google.android.material.tabs.TabLayout
 import com.perfect.nbfcmscore.Fragment.DepositFragment
 import com.perfect.nbfcmscore.Fragment.LoanlistFragment
 import com.perfect.nbfcmscore.Helper.Config
+import com.perfect.nbfcmscore.Helper.IdleUtil
 import com.perfect.nbfcmscore.R
 import java.util.*
 
@@ -99,5 +100,15 @@ class AccountlistActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(Intent(this@AccountlistActivity, HomeActivity::class.java))
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        IdleUtil.startLogoutTimer(this, this)
+    }
+
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        IdleUtil.startLogoutTimer(this, this)
     }
 }

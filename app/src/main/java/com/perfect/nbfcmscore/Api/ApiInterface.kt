@@ -1,17 +1,10 @@
 package com.perfect.nbfcmscore.Api
 
 import com.squareup.okhttp.ResponseBody
-import okhttp3.HttpUrl
 import okhttp3.RequestBody
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.*
 import java.io.File
-import retrofit2.http.Url
-
-import retrofit2.http.GET
-
-import retrofit2.http.Streaming
 
 
 interface ApiInterface {
@@ -116,6 +109,9 @@ interface ApiInterface {
 
     @POST("AccountSummary/FundTransferLimit")
     fun getfundtransferlimit(@Body body: RequestBody): Call<String>
+
+    @POST("AccountSummary/BarcodeAgainstCustomerAccountDets")
+    fun getAccountList(@Body body: RequestBody?): Call<String>
 
 
     @POST("AccountSummary/GetInstalmmentRemittanceAmount")

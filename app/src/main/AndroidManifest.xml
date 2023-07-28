@@ -55,6 +55,13 @@
             android:windowSoftInputMode="stateHidden|adjustPan"
             tools:ignore="MissingClass" />
         <activity
+            android:name=".Activity.FundTransferScan"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            tools:ignore="MissingClass" />
+        <activity
             android:name=".Activity.BarcodeMain"
             android:exported="false"
             android:screenOrientation="portrait"

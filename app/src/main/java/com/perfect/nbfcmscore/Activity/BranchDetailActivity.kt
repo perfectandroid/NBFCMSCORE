@@ -1113,6 +1113,14 @@ class BranchDetailActivity : AppCompatActivity(), OnMapReadyCallback, View.OnCli
             .addApi(LocationServices.API).build()
         mGoogleApiClient!!.connect()
     }
+    override fun onResume() {
+        super.onResume()
+        IdleUtil.startLogoutTimer(this, this)
+    }
 
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        IdleUtil.startLogoutTimer(this, this)
+    }
 
 }

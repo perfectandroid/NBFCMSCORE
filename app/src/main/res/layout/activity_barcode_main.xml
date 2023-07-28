@@ -32,6 +32,7 @@
             android:layout_marginTop="10dp"
             android:layout_gravity="center"
             android:gravity="center"
+            android:visibility="gone"
             android:text="Focus on QR code"
             android:textColor="@color/white"
             android:textSize="20dp" />

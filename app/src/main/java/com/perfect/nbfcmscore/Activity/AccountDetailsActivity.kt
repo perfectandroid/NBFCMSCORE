@@ -19,6 +19,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout
 import com.perfect.nbfcmscore.Fragment.*
 import com.perfect.nbfcmscore.Helper.Config
+import com.perfect.nbfcmscore.Helper.IdleUtil
 import com.perfect.nbfcmscore.Helper.PicassoTrustAll
 import com.perfect.nbfcmscore.R
 import java.lang.Exception
@@ -299,6 +300,16 @@ class AccountDetailsActivity : AppCompatActivity() , View.OnClickListener {
         } catch (e: java.lang.Exception) {
             e.printStackTrace()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        IdleUtil.startLogoutTimer(this, this)
+    }
+
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        IdleUtil.startLogoutTimer(this, this)
     }
 
 }

@@ -24,6 +24,7 @@ import com.google.android.gms.vision.Detector.Detections
 import com.google.android.gms.vision.barcode.Barcode
 import com.google.android.gms.vision.barcode.BarcodeDetector
 import com.google.android.gms.vision.text.TextRecognizer
+import com.perfect.nbfcmscore.Helper.IdleUtil
 import com.perfect.nbfcmscore.R
 import java.io.IOException
 
@@ -156,5 +157,14 @@ class BarcodeMain : AppCompatActivity() {
                 Toast.makeText(this, "camera permission denied", Toast.LENGTH_LONG).show()
             }
         }
+    }
+    override fun onResume() {
+        super.onResume()
+        IdleUtil.startLogoutTimer(this, this)
+    }
+
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        IdleUtil.startLogoutTimer(this, this)
     }
 }
